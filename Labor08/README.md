@@ -118,7 +118,7 @@ Content-Length: 26940
 -	A fejléceket egy üres sor követi, majd a HTTP üzenet törzse következik, ami egy HTML5 dokumentum.
 
 ---
-### ![rep] Feladat 2 (0.5 pont)
+### ![rep] Feladat 2 (1 pont)
     Másoljon be egy képernyőképet a kérés-válasz párosról, amelyet a böngésző az aut.bme.hu címre küldött! A válasz és a kérés is nyers (Raw) formátumban legyen látható!
     Válaszolja meg az alábbi kérdéseket:
     - Milyen státuszkóddal válaszolt a szerver a kérésre?
@@ -246,8 +246,8 @@ namespace Labor08_webserver
 
 10. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
 ---
-### ![rep] Feladat 4 (0.5 pont)
-    Illesszen be egy-egy képernyőképet az alábbiakról:
+### ![rep] Feladat 4 (1 pont)
+    Illesszen be egy-egy képernyőképet az alábbiról:
     - A böngészőben megjelenő választ, a Network fülön látható időzítéssel!
 
     Mennyi időt vett igénybe a kérés teljes kiszolgálása a kliens szempontjából?
