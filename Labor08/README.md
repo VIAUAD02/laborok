@@ -17,11 +17,11 @@ Felhasznált technológiák és eszközök:
 
 ## 2 Jegyzőkönyv
 
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán. Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor08-jegyzokonyv.docx) letölthető.
+Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="././downloads/Labor08-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
-A _hiányos_ vagy _túl bőbeszédű_ feladatokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
+A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
 
 A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokumentálni szükséges egy-egy lépést:
 
@@ -247,8 +247,7 @@ namespace Labor08_webserver
 10. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
 ---
 ### ![rep] Feladat 4 (1 pont)
-    Illesszen be egy-egy képernyőképet az alábbiról:
-    - A böngészőben megjelenő választ, a Network fülön látható időzítéssel!
+    Illesszen be egy képernyőképet a böngészőben megjelenő válaszról, a Network fülön látható időzítéssel!
 
     Mennyi időt vett igénybe a kérés teljes kiszolgálása a kliens szempontjából?
 
@@ -280,8 +279,8 @@ catch (Exception ex)
 ### ![rep] Feladat 5 (1 pont)
     Demonstrálja képernyőképekkel az alábbiakat:
     - A szerverünk sikeresen elküld egy szöveges fájl a böngészőnek, az pedig megjeleníti annak tartalmát. Adja meg azt is, mennyi ideig tartott az első bájt fogadása (TTFB - Time to First Byte), és mennyi időbe telt maga a letöltés - ezt a böngésző fejlesztői eszközök Network fülén olvashatjuk le.
-    - A szerver a megadott útvonalon nem talál fájlt, és HTTP 404-es (Not Found) státuszkódú üzenettel válaszol. Ehhez adjon meg egy URL-t, ahol nem található fájl, pl: http://localhost/mobweb/index.html
-    - A szerver egyéb hibaesetre fut, és 500-as (Internal Server Error) státuszkódú üzenettel válaszol. Ez akkor történik meg, ha a File.WriteAllBytes sor hibát dob, pl. üres útvonal esetén, tehát az http://localhost/mobweb/ útvonalon.
+    - A szerver a megadott útvonalon nem talál fájlt, és HTTP 404-es (Not Found) státuszkódú üzenettel válaszol. Ehhez adjon meg egy URL-t, ahol nem található fájl, pl: http://localhost:8080/mobweb/index.html
+    - A szerver egyéb hibaesetre fut, és 500-as (Internal Server Error) státuszkódú üzenettel válaszol. Ez akkor történik meg, ha a File.WriteAllBytes sor hibát dob, pl. üres útvonal esetén, tehát az http://localhost:8080/mobweb/ útvonalon.
 ---
 
 
@@ -399,9 +398,9 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
         - Lábméret: szám, 0.5-ös léptékkel
         - Kutya: igen/nem, jelölőnégyzettel megadható
     - Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe! Az egyes mezők egymás alatt helyezkedjenek el!
-    - Legyen egy Küldés feliratú gomb, amely az adatokat a localhost:8080-as címen futó szervernek küldi!
-    - Készíts képernyőképet tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
-    - Demonstráld Fiddlerrel és a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET és POST igék használatával is! Mi a különbség az adatok küldésében GET és a POST használatakor (a HTTP kérés melyik részében utazik az adat)?
+    - Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi!
+    - Készítsen képernyőképet tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
+    - Demonstrálja Fiddlerrel és a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET és POST igék használatával is! Mi a különbség az adatok küldésében GET és a POST használatakor (a HTTP kérés melyik részében utazik az adat)?
 
 **Tipp:**
 
