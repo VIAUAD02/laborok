@@ -197,6 +197,7 @@ A webszerverek alapvetően egyszerű működésű szoftverek: adott TCP porton h
 ```CSharp
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 
