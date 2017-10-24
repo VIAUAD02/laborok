@@ -241,11 +241,13 @@ namespace Labor08_webserver
     ``` CSharp
     writer.WriteLine($"A kérés:<br/>{request.HttpMethod} {request.Url} HTTP/{request.ProtocolVersion}");
     ```
-> Vegyük észre, hogy a válaszban HTML-t állítottunk valójában össze, de ez a HTML nem helyesen formázott, nincs `<html>` és `<body>` tag például. A sortörés nem jelenik meg a böngészőben (a `<br>` viszont igen), ugyanis a HTML nem érzékeny a whitespace karakterekre.
 
 9. A fájl módosítása és mentése után állítsuk le a szervert a terminálban a Ctrl+C billentyűkombináció kiadásával, majd indítsuk el a ```dotnet run```-nal ismét.
 
 10. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
+
+> Vegyük észre, hogy a válaszban HTML-t állítottunk valójában össze, de ez a HTML nem helyesen formázott, nincs `<html>` és `<body>` tag például. A sortörés nem jelenik meg a böngészőben (a `<br>` viszont igen), ugyanis a HTML nem érzékeny a whitespace karakterekre.
+
 ---
 ### ![rep] Feladat 4 (0.5 pont)
     Illesszen be egy képernyőképet a böngészőben megjelenő válaszról, a Network fülön látható időzítéssel!
