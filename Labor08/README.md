@@ -52,7 +52,7 @@ Ne zárjuk be a Fiddler alkalmazást! Indítsuk el a Windows beépített proxy b
 
 Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy meg tudjuk vizsgálni a hálózati forgalmat!
 
-    A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a www.index.hu címre! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!
+    A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a index.hu címre! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!
 
 A Fiddler alapvető felépítése az alábbi:
 <img src="./assets/fiddler.png" title="A Telerik Fiddler áttekintése" >
@@ -141,7 +141,7 @@ Vegyük észre, hogy a HTTP kérésünkhöz tartozó válasz kizárólag a korá
 Navigáljunk a jobb oldali panelen a **Composer** fülre! Itt lehetőségünk van összeállítani egy HTTP üzenetet. A Parsed lehetőség kicsit szofisztikáltabb, nekünk most megfelelő lesz a **Raw** (nyers) összeállítás is. Küldjük el az alábbi HTTP üzenetet és vizsgáljuk meg az erre érkező választ:
 
 ``` HTTP
-GET http://index.hu/ HTTP/1.1
+GET http://www.index.hu/ HTTP/1.1
 
 
 ```
@@ -207,6 +207,7 @@ A webszerverek alapvetően egyszerű működésű szoftverek: adott TCP porton h
    > Megjegyzés: .NET Core 2.0-tól már használhatjuk a keretrendszerbe épített HttpListener osztályt is, ami hasonló interfészt nyújt, mint a WebListener. 
 
 6. A Program.cs fájl tartalma legyen az alábbi:
+
 ```CSharp
 using Microsoft.Net.Http.Server;
 using System;
