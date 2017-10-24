@@ -17,7 +17,7 @@ Felhasznált technológiák és eszközök:
 
 ## 2 Jegyzőkönyv
 
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="././downloads/Labor08-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
+Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="./downloads/Labor08-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
@@ -246,7 +246,7 @@ namespace Labor08_webserver
 
 10. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
 ---
-### ![rep] Feladat 4 (1 pont)
+### ![rep] Feladat 4 (0.5 pont)
     Illesszen be egy képernyőképet a böngészőben megjelenő válaszról, a Network fülön látható időzítéssel!
 
     Mennyi időt vett igénybe a kérés teljes kiszolgálása a kliens szempontjából?
