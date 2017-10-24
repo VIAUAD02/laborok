@@ -26,8 +26,10 @@ A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvr
 A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokumentálni szükséges egy-egy lépést:
 
 ---
+
 ### ![rep] Feladat 0 (0 pont)
     Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét. Ezeket az elkövetkezendő laboralkalmakon is ki kell majd töltenie.
+
 ---
 
 ## 3 HTTP hibakeresés
@@ -41,9 +43,12 @@ Ne zárjuk be a Fiddler alkalmazást! Indítsuk el a Windows beépített proxy b
     Indítsuk el a Windows beépített proxy beállító felületét! A Windows billentyűt nyomjuk le, a Start menü megnyílása után gépeljük be: "proxy", és nyissuk meg a proxybeállításokat!
 
 ---
+
 ### ![rep] Feladat 1 (0.5 pont)
     Másoljon be egy képernyőképet arról, hogyan módosítja a Fiddler a proxy beállításokat a Windows proxy beállításai között és a Telerik Fiddler Options > Connections fülön!
     Milyen porton és milyen IP címen történik a proxy-zás?
+
+---
 
 Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy meg tudjuk vizsgálni a hálózati forgalmat!
 
@@ -118,12 +123,14 @@ Content-Length: 26940
 -	A fejléceket egy üres sor követi, majd a HTTP üzenet törzse következik, ami egy HTML5 dokumentum.
 
 ---
+
 ### ![rep] Feladat 2 (1 pont)
     Másoljon be egy képernyőképet a kérés-válasz párosról, amelyet a böngésző az aut.bme.hu címre küldött! A válasz és a kérés is nyers (Raw) formátumban legyen látható!
     Válaszolja meg az alábbi kérdéseket:
     - Milyen státuszkóddal válaszolt a szerver a kérésre?
     - Hány bájt méretű volt a teljes HTTP kérés?
     - Hány bájt méretű válasz érkezett a szervertől?
+
 ---
 
 Vegyük észre, hogy a HTTP kérésünkhöz tartozó válasz kizárólag a korábban elküldött kérésünkben megtalálható információk alapján készült el! Ez jelenti azt, hogy **a HTTP állapotmentes**: az általunk elküldött kérés alapján kapjuk meg a választ, további állapoinformációkat nem feltételezhetünk a szerver részéről. Ez **nem összekeverendő azzal, hogy a szerver vagy kliens tárol-e állapotot vagy sem**: napjainkban mindkét oldalon tárolunk információt az állapotunkkal kapcsolatban, viszont a kérésben található meg minden olyan információ, ami alapján a szerver azonosítani tudja a kérőt és a kérési igényt, ami alapján összeállítja a választ.
@@ -141,10 +148,12 @@ GET http://www.aut.bme.hu/ HTTP/1.1
 > **Fontos**, hogy a fenti kérésben egy üres sor legyen a fejléc után, tehát két Entert is kell ütnünk.
 
 ---
+
 ### ![rep] Feladat 3 (0.5 pont)
     Másolja be a nyers HTTP választ a fenti kérésre! 
     
     Hány releváns választ látunk a Fiddlerben (tipp: ha beírja a böngészőbe a http://www.aut.bme.hu/ URL-t, akkor milyen URL-en töltődik be az oldal)?
+
 ---
 
 A fenti kérésünk formailag helyes HTTP üzenet: csak a HTTP ige, cím, és protokoll megadása kötelező, az összes fejléc opcionális, a törzs GET kérésnél pedig nem szabványos.
@@ -249,12 +258,14 @@ namespace Labor08_webserver
 > Vegyük észre, hogy a válaszban HTML-t állítottunk valójában össze, de ez a HTML nem helyesen formázott, nincs `<html>` és `<body>` tag például. A sortörés nem jelenik meg a böngészőben (a `<br>` viszont igen), ugyanis a HTML nem érzékeny a whitespace karakterekre.
 
 ---
+
 ### ![rep] Feladat 4 (0.5 pont)
     Illesszen be egy képernyőképet a böngészőben megjelenő válaszról, a Network fülön látható időzítéssel!
 
     Mennyi időt vett igénybe a kérés teljes kiszolgálása a kliens szempontjából?
 
     Sikeres volt-e a kérés? Honnan derül ez ki?
+
 ---
 
 ## 6 Fájlszerver
@@ -279,11 +290,13 @@ catch (Exception ex)
 ```
 
 ---
+
 ### ![rep] Feladat 5 (1 pont)
     Demonstrálja képernyőképekkel az alábbiakat:
     - A szerverünk sikeresen elküld egy szöveges fájl a böngészőnek, az pedig megjeleníti annak tartalmát. Adja meg azt is, mennyi ideig tartott az első bájt fogadása (TTFB - Time to First Byte), és mennyi időbe telt maga a letöltés - ezt a böngésző fejlesztői eszközök Network fülén olvashatjuk le.
     - A szerver a megadott útvonalon nem talál fájlt, és HTTP 404-es (Not Found) státuszkódú üzenettel válaszol. Ehhez adjon meg egy URL-t, ahol nem található fájl, pl: http://localhost:8080/mobweb/index.html
     - A szerver egyéb hibaesetre fut, és 500-as (Internal Server Error) státuszkódú üzenettel válaszol. Ez akkor történik meg, ha a File.WriteAllBytes sor hibát dob, pl. üres útvonal esetén, tehát az http://localhost:8080/mobweb/ útvonalon.
+
 ---
 
 
@@ -379,10 +392,13 @@ A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" f
 5. A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
 
 <img src="./assets/example-styles.png">
+
 ---
+
 ### ![rep] Feladat 6 (0.5 pont)
     Szemléltesse a dokumentum részletes szemantikus körvonalát! Az alábbi linken megadhatja az elkészült index.html fájlt, az így készült outline-ról készített képernyőképet másolja a jegyzőkönyvbe!
     https://hoyois.github.io/html5outliner/
+
 ---
 
 ## 8 HTML űrlapok
@@ -390,6 +406,7 @@ A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" f
 A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak számunkra a felhasználóval való kommunikációra. 
 
 ---
+
 ### ![rep] Önálló feladat (1 pont)
     Az előadáson elhangzottak gyakorlásaként állítson össze egy űrlapot, mely megfelel az alábbi feltételeknek:
     - Az űrlap az alábbi adatokat kéri be a felületen a felhasználótól (a *-gal jelölt mezők kötelezően kitöltendők):
