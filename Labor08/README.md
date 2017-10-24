@@ -13,7 +13,9 @@ Felhasznált technológiák és eszközök:
 
 - Visual Studio Code kódszerkesztő alkalmazás,
 
-- .NET Core.
+- .NET Core 2.0,
+
+    - Ennek hiányában a teljes .NET Framework-öt is megcélozhatjuk, ekkor a teljes Visual Studio-t használjuk!
 
 ## 2 Jegyzőkönyv
 
