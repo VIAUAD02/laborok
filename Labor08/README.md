@@ -13,9 +13,7 @@ Felhasznált technológiák és eszközök:
 
 - Visual Studio Code kódszerkesztő alkalmazás,
 
-- .NET Core 2.0,
-
-    - Ennek hiányában a teljes .NET Framework-öt is megcélozhatjuk, ekkor a teljes Visual Studio-t használjuk!
+- .NET Core.
 
 ## 2 Jegyzőkönyv
 
@@ -54,7 +52,7 @@ Ne zárjuk be a Fiddler alkalmazást! Indítsuk el a Windows beépített proxy b
 
 Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy meg tudjuk vizsgálni a hálózati forgalmat!
 
-    A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a www.aut.bme.hu címre! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!
+    A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a www.index.hu címre! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!
 
 A Fiddler alapvető felépítése az alábbi:
 <img src="./assets/fiddler.png" title="A Telerik Fiddler áttekintése" >
@@ -76,18 +74,19 @@ A Fiddler alapvető felépítése az alábbi:
 <!-- Content break -->
     Elemezzük a böngésző által generált kéréseket!
 
-A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg az aut.bme.hu szerver irányába. A Fiddlerben megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján.
+A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg az index.hu szerver irányába. A Fiddlerben megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján.
 
 Az első kérés az általunk beírt webcímre került kiküldésre az alábbi formában:
 
 ``` HTTP
-GET https://www.aut.bme.hu/ HTTP/1.1
+GET http://index.hu/ HTTP/1.1
 Accept: text/html, application/xhtml+xml, image/jxr, */*
 Accept-Language: en-US,en;q=0.7,hu;q=0.3
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063
-Accept-Encoding: gzip, deflate, br
-Host: www.aut.bme.hu
+Accept-Encoding: gzip, deflate
+Host: index.hu
 Connection: Keep-Alive
+
 ```
 
 > - A kérés GET igét használt, ezért nem tartozik hozzá törzs (body) a küldött HTTP üzenetben.
@@ -127,7 +126,7 @@ Content-Length: 26940
 ---
 
 ### ![rep] Feladat 2 (1 pont)
-    Másoljon be egy képernyőképet a kérés-válasz párosról, amelyet a böngésző az aut.bme.hu címre küldött! A válasz és a kérés is nyers (Raw) formátumban legyen látható!
+    Másoljon be egy képernyőképet a kérés-válasz párosról, amelyet a böngésző a index.hu címre küldött! A válasz és a kérés is nyers (Raw) formátumban legyen látható!
     Válaszolja meg az alábbi kérdéseket:
     - Milyen státuszkóddal válaszolt a szerver a kérésre?
     - Hány bájt méretű volt a teljes HTTP kérés?
@@ -142,7 +141,7 @@ Vegyük észre, hogy a HTTP kérésünkhöz tartozó válasz kizárólag a korá
 Navigáljunk a jobb oldali panelen a **Composer** fülre! Itt lehetőségünk van összeállítani egy HTTP üzenetet. A Parsed lehetőség kicsit szofisztikáltabb, nekünk most megfelelő lesz a **Raw** (nyers) összeállítás is. Küldjük el az alábbi HTTP üzenetet és vizsgáljuk meg az erre érkező választ:
 
 ``` HTTP
-GET http://www.aut.bme.hu/ HTTP/1.1
+GET http://index.hu/ HTTP/1.1
 
 
 ```
@@ -154,7 +153,7 @@ GET http://www.aut.bme.hu/ HTTP/1.1
 ### ![rep] Feladat 3 (0.5 pont)
     Másolja be a nyers HTTP választ a fenti kérésre! 
     
-    Hány releváns választ látunk a Fiddlerben (tipp: ha beírja a böngészőbe a http://www.aut.bme.hu/ URL-t, akkor milyen URL-en töltődik be az oldal)?
+    Hány releváns választ látunk a Fiddlerben (tipp: ha beírja a böngészőbe a http://index.hu/ URL-t, akkor milyen URL-en töltődik be az oldal)?
 
 ---
 
@@ -204,12 +203,15 @@ A webszerverek alapvetően egyszerű működésű szoftverek: adott TCP porton h
 
 4. A terminálba írjuk be az alábbi parancsot: ```dotnet new console```! Ez létrehoz nekünk egy teljesen üres Hello World! konzolalkalmazást.
 
-5. A Program.cs fájl tartalma legyen az alábbi:
+5. Futtassuk az alábbi parancsot is, ami letölti nekünk a szükséges bare bones szervert, amit futtatni fogunk: `dotnet add package Microsoft.Net.Http.Server`
+   > Megjegyzés: .NET Core 2.0-tól már használhatjuk a keretrendszerbe épített HttpListener osztályt is, ami hasonló interfészt nyújt, mint a WebListener. 
+
+6. A Program.cs fájl tartalma legyen az alábbi:
 ```CSharp
+using Microsoft.Net.Http.Server;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 
 namespace Labor08_webserver
@@ -218,16 +220,18 @@ namespace Labor08_webserver
     {
         static void Main(string[] args)
         {
-            using (var server = new HttpListener())
+            var settings = new WebListenerSettings();
+            settings.UrlPrefixes.Add("http://localhost:8080/mobweb/");
+
+            using (var server = new WebListener(settings))
             {
-                server.Prefixes.Add("http://localhost:8080/mobweb/");
                 server.Start();
                 Console.WriteLine("Listening...");
                 while (server.IsListening)
                 {
-                    var context = server.GetContext();
+                    var context = server.AcceptAsync().GetAwaiter().GetResult();
                     var request = context.Request;
-                    using (var writer = new StreamWriter(context.Response.OutputStream, Encoding.UTF8))
+                    using (var writer = new StreamWriter(context.Response.Body, Encoding.UTF8))
                     {
                         writer.WriteLine("Hello Mobil- és webes szoftverek!");
                     }
@@ -238,24 +242,25 @@ namespace Labor08_webserver
 }
 ```
 
-6. Értelmezzük a kódrészletet!
-> - A HttpListener példányunk a localhost 8080-as portján, a /mobweb kezdetű relatív útvonalakon hallgatózik egy végtelen ciklusban.
+7. Értelmezzük a kódrészletet!
+> - A WebListener példányunk a localhost 8080-as portján, a /mobweb kezdetű relatív útvonalakon hallgatózik egy végtelen ciklusban.
 > - A ```server.GetContext()``` hívásunk blokkolva várakozik egy kérés beérkezésére.
 > - Amikor egy HTTP kérés érkezik, az ahhoz tartozó választ egy StreamWriter példánnyal írjuk. A folyamot minden esetben le kell zárnunk, ezért használjuk a C# ```using``` mechanizmusát.
 > - Bármilyen bejövő kérésre a ```"Hello Mobil- és webes szoftverek!"``` szöveggel válaszolunk.
 
-7. Teszteljük a szervert! A ```dotnet run``` parancs kiadásával a szerverünk elindul és hallgatózik, ezt a konzolon megjelenő ```Listening...``` felirat nyugtázza. Böngészőben nyissuk meg a http://localhost:8080/mobweb/ címet!
+8. Teszteljük a szervert! A ```dotnet run``` parancs kiadásával a szerverünk elindul és hallgatózik, ezt a konzolon megjelenő ```Listening...``` felirat nyugtázza. Böngészőben nyissuk meg a http://localhost:8080/mobweb/ címet!
 
-8. A request objektum a HTTP kérést reprezentálja.
+9. A request objektum a HTTP kérést reprezentálja.
 
-        Írjuk ki a válaszba, egy új sorba a HTTP kérés első sorának megfelelő szöveget! Az alábbi kódrészlettel egészítsük ki az írás részt: 
+        Írjuk ki a válaszba, egy új sorba a HTTP kérés első sorának megfelelő szöveget! Cseréljük le a válaszba írás részt az alábbival: 
     ``` CSharp
-    writer.WriteLine($"A kérés:<br/>{request.HttpMethod} {request.Url} HTTP/{request.ProtocolVersion}");
+        writer.WriteLine($"A kérés:<br/>{request.Method} {request.Scheme}://localhost:{request.LocalPort}{request.RawUrl} HTTP/{request.ProtocolVersion}");
+
     ```
 
-9. A fájl módosítása és mentése után állítsuk le a szervert a terminálban a Ctrl+C billentyűkombináció kiadásával, majd indítsuk el a ```dotnet run```-nal ismét.
+10. A fájl módosítása és mentése után állítsuk le a szervert a terminálban a **Ctrl+C** billentyűkombináció kiadásával, majd indítsuk el a ```dotnet run```-nal ismét.
 
-10. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
+11. Böngészőben navigáljunk ismét a http://localhost:8080/mobweb/ címre!
 
 > Vegyük észre, hogy a válaszban HTML-t állítottunk valójában össze, de ez a HTML nem helyesen formázott, nincs `<html>` és `<body>` tag például. A sortörés nem jelenik meg a böngészőben (a `<br>` viszont igen), ugyanis a HTML nem érzékeny a whitespace karakterekre.
 
@@ -281,8 +286,11 @@ Egy igazi fájlszerver ügyel a biztonságra, nem enged kiszolgálni bizonyos f�
 ``` CSharp
 try
 {
-    var bytes = File.ReadAllBytes(String.Join('\\', request.Url.Segments.Skip(2)));
-    context.Response.OutputStream.Write(bytes, 0, bytes.Length);
+    var fileName = String.Join("\\", request.RawUrl.Split('/', '\\').Skip(2));
+    var bytes = File.ReadAllBytes(fileName);
+    if (fileName.ToLower().EndsWith(".html"))
+        context.Response.ContentType = "text/html";
+    context.Response.Body.Write(bytes, 0, bytes.Length);
 }
 catch (Exception ex)
 {
