@@ -2,13 +2,6 @@
 
 [rep]: ./assets/rep.png "Dokumentálandó"
 
-<style>
-.task {
-    padding-left: 20px;
-    border-left: 2px dotted black;
-}
-</style>
-
 ## 1 Bevezetés
 
 A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében. A labor kezdetén a laborvezetővel közösen bemelegítő feladatokat oldanak meg
@@ -32,9 +25,8 @@ A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban
 ---
 
 ### ![rep] Feladat 0 (0 pont)
-<div class="task">
+    
     Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
-</div>
 
 ---
 
@@ -46,7 +38,6 @@ Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 
 A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formázatlanok, viszont bizonyos szabályokat a böngésző alapértelmezetten illeszt az egyes elemekre, az elem típusa szerint.
 
-<div class="task">
     Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2, az A és a B elemekre!
 
 - Nyissuk meg a Visual Studio Code-ot egy üres munkamappában!
@@ -92,11 +83,9 @@ A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formáza
 
     - Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index-1.html** fájlt! Az alábbit kell látnunk:
     <img src="./assets/index-1-step-1.png"/>
-</div>
 
 Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.
  
-<div class="task">
 Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 
 Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect Element**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
@@ -122,21 +111,16 @@ A **html**, **body**, **div**, **h1**, **h2** elemek `display` tulajdonsága `bl
 Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 irányban:
 
 <img src="./assets/index-1-step-4.png"/>
-</div>
 
 ---
 
 ### ![rep] Feladat 1 (0.5 pont)
 
-<div class="task">
-
-Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alábbi kérdéseket:
+    Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alábbi kérdéseket:
 
 - Mekkora a **margin**, **padding** és **border** értéke az `<ul>` elemnek?
 
 - Hány pixel a (függőleges) távolság a `<h1>` és `<h2>` elemek tartalma között (ügyelve az átfedő margókra)? 
-
-</div>
 
 ---
 
@@ -163,8 +147,7 @@ Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alá
 > ![Egyszerű CSS selectorok](./assets/selectors-1.png)
 > ![Összetett selectorok](./assets/selectors-2.png)
 
-<div class="task">
-Módosítsuk az oldal megjelenését futási időben!
+    Módosítsuk az oldal megjelenését futási időben!
     
 - Rejtsük el a böngésző beépített stílusait, és láthatjuk, hogy kizárólag az üres inline stílus illeszkedik így az elemre. Itt hozzá tudunk adni új inline stílust az elemhez.
 - Ha új szabályt akarunk felvenni, akkor a kapcsoszárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
@@ -175,7 +158,6 @@ Módosítsuk az oldal megjelenését futási időben!
 - Közben vegyük észre a DOM reprezentációban, hogy bár a jobb oldali panelen szerkesztünk, pontosan ugyanaz történik, mintha a HTML elem `style` attribútumát adtuk volna meg.
 
 - Ha beállítjuk a `font-weight: bold;` tulajdonságot a `<body>`-n, akkor láthatjuk, hogy az összes gyermekére is érvényesül a szabály. Bizonyos szabályok öröklődnek (a `font-weight` ilyen), mások (például a `padding` és `margin`) viszont nem.
-</div>
 
 Lehetőség van esetenként több szabály aggregált megadására is ún. shorthandek használatával. Gyakori például a 4-irányú értékadás, ami a **top-right-bottom-left** iránysorrend szerint ad meg több értéket.
 - A `padding: 50px 30px 10px 5px;` szabály mind a négy értéket beállítja a fenti sorrend szerint.
@@ -187,8 +169,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 
 Az oldalhoz alapvetően kétféle módon van lehetőségünk stíluslapot rendelni: külső CSS fájlból vagy az oldalban definiált `<style>` tagben.
 
-<div class="task">
-Az index-1.html forráskódját egészítsük ki, a `<head>` elembe helyezzük el az alábbi kódot:
+    Az index-1.html forráskódját egészítsük ki, a <head> elembe helyezzük el az alábbi kódot:
 
 ```HTML
 <style>
@@ -272,22 +253,17 @@ A fájlt a HTML-ből az alábbi módon tudjuk linkelni: tegyük az oldal `<head>
 <link rel="stylesheet" type="text/css" href="index-1.css">
 ```
 
-</div>
-
 ---
 
 ### ![rep] Feladat 2 (0.5 pont)
 
-<div class="task">
-Képernyőképpel demonstrálja, hogy:
+    Képernyőképpel demonstrálja, hogy:
 
-- Az index-1.html letöltődését követően az index-1.css fájl is letöltődik.
-- Az `<ul>` lista elemei egymás mellett helyezkednek el. Ehhez a HTML-t módosítani szükséges.
-- Az egyik listaelem kijelölt állapotában a betűszín zöld lesz, a karakterek félkövérek.
+    - Az index-1.html letöltődését követően az index-1.css fájl is letöltődik.
+    - Az `<ul>` lista elemei egymás mellett helyezkednek el. Ehhez a HTML-t módosítani szükséges.
+    - Az egyik listaelem kijelölt állapotában a betűszín zöld lesz, a karakterek félkövérek.
 
-Milyen módosítást kell végeznünk a HTML-en, hogy az elvárt megjelenést lássuk?
-
-</div>
+    Milyen módosítást kell végeznünk a HTML-en, hogy az elvárt megjelenést lássuk?
 
 ---
 
@@ -318,11 +294,7 @@ A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik m
 
 ### ![rep] Feladat 3 (0.5 pont)
 
-<div class="task">
-
-Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve!
-
-</div>
+    Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve!
 
 ---
 
@@ -332,11 +304,11 @@ A CSS alapok gyakorlásaképp az alábbi feladatokat önállóan oldja meg!
 
 ### ![rep] Feladat 4 (3.5 pont)
 
-<div class="task">
+    Készítsen egyszerű statikus weboldalt! Igyekezzen megközelíteni a csatolt képeken látható tartalmat, elrendezést és megjelenést! 
+    Kiindulásképpen felhasználhatja a csatolt HTML fájlt.
+    Az elkészült funkciókról készítsen képernyőképet! A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-Készítsen egyszerű statikus weboldalt! Igyekezzen megközelíteni a csatolt képeken látható tartalmat, elrendezést és megjelenést! Kiindulásképpen felhasználhatja a csatolt HTML fájlt [innen](./downloads/index.html).
-
-Az elkészült funkciókról készítsen képernyőképet! A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
+A kiinduláshoz használható HTML fájl [itt](./downloads/index.html) található.
 
 ![Alacsony felbontáson](./assets/task-small.png)
 ![Közepes felbontáson](./assets/task-medium.png)
@@ -378,7 +350,5 @@ A bejegyzés részletes oldalán megjelenik az áttekintő nézet összes adata,
 - Az elrendezésnél érdemes figyelembe venni, hogy a `position: absolute;` érték a DOM-ban az elemhez legközelebbi olyan őshöz pozícionál, mely `position: relative;`. Ezután a `top`, `right`, `bottom` és `left` tulajdonságokat tudja beállítani pl. pixel vagy százalék érték alapján, így az adott őshöz pozícionálja az elemet.
 - Használhatja a `calc()` függvényt, mely egyszerű konstans értékek számítására használható, pl. `width: calc(50% - 100px);`. Fontos, hogy a számítandó értékek között mindenképpen szükséges szóközt tennie.
 - `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges.
-
-</div>
 
 ---
