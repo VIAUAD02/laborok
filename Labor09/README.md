@@ -275,20 +275,21 @@ A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a sz
 
 ``` CSS
 
-@media(min-width: 768px) and (max-width: 991){
+.medium-only {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
     .medium-only {
         display: block;
     }
-}
-
-.medium-only {
-    display: none;
 }
 
 ```
 
 A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik meg, tehát nem a képernyő mérete, hanem a rendelkezésre álló hely függvényében változik (pl. ablak átméretezésekor is). A `medium-only` osztállyal ellátott elemek csak ilyen képernyőméreten jelennek meg, ugyanis a media query szabály specifikusabb, mint az azon kívül definiált.
 
+Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
 ---
 
