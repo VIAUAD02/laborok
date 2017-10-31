@@ -298,7 +298,7 @@ A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik m
 
 ---
 
-A CSS alapok gyakorlásaképp az alábbi feladatokat önállóan oldja meg!
+## A CSS alapok gyakorlásaképp az alábbi feladatokat önállóan oldja meg!
 
 ---
 
