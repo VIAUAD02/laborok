@@ -141,7 +141,9 @@ Ha megvizsgáljuk, milyen stílusok illeszkednek a "gombunkra", akkor láthatjuk
 
 Ikonok elhelyezésére is egyszerű megoldást használhatunk. A Bootstrappel jár a Glyphicons/Halflings szimbólumokat tartalmazó fontkészlet, amelyet hasonlóképpen osztályokkal tudunk alkalmazni elemekre. Cseréljük le a gombunk tartalmát az alábbira:
 
+``` HTML
 <a class="btn btn-default" href="details.html">Tovább <i class="glyphicon glyphicon-chevron-right"></i></a>
+```
 
 ---
 
@@ -155,7 +157,7 @@ Mindegy, hogy milyen elemre tesszük az osztályokat, a Bootstrap erre a `:befor
     
     Vizsgálja meg az oldal elrendezését és a link/gomb stílusát a jelenlegi állapotban!
 
-- Alkalmazza a btn-success osztályt a gombon!
+- Alkalmazza a `btn-success` osztályt a gombon!
 - A gombot igazítsa a szülő jobb oldalához, ehhez használja a [Bootstrap megfelelő segédoszályát](https://getbootstrap.com/docs/3.3/css/#helper-classes-floats)!
 - Illesszen be egy képernyőképet az alkalmazás alap elrendezéséről és a gomb új stílusáról!
 
