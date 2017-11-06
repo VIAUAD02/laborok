@@ -2,7 +2,7 @@
 
 [rep]: ./assets/rep.png "Dokumentálandó"
 
-## 1 Bevezetés
+## Bevezetés
 
 A vezetett labor folyamán a hallgatók a laborvezetővel közösen végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében. A labor végén önálló feladatok elvégzése segíti az elhangzottak megértését.
 
@@ -11,13 +11,14 @@ Felhasznált technológiák és eszközök:
 
 - webböngészők beépített hibakereső eszközei,
 
+- .NET Core (legalább 1.1-es verzió),
+
 - Visual Studio Code kódszerkesztő alkalmazás,
+  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
-- .NET Core.
+### Jegyzőkönyv
 
-## 2 Jegyzőkönyv
-
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="./downloads/Labor08-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
+Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor08-jegyzokonyv.docx) letölthető.
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
@@ -32,7 +33,7 @@ A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban
 
 ---
 
-## 3 HTTP hibakeresés
+## HTTP hibakeresés
 
     Indítsuk el a Fiddler alkalmazást!
 
@@ -161,7 +162,7 @@ A fenti kérésünk formailag helyes HTTP üzenet: csak a HTTP ige, cím, és pr
 
 Ha megvizsgáljuk a kérésünkre érkező válaszokat, és összehasonlítjuk a korábban a böngészőnek küldött válasszal, akkor láthatjuk, hogy nem igazán van érdemi különbség a két válasz között.
 
-## 4 Hibakereső eszközök
+## Hibakereső eszközök
 
 Weboldalak készítésekor szükség lehet a HTTP forgalom megvizsgálására, viszont az esetek jelentős részében elegendő lehet, ha a böngésző forgalmát meg tudjuk vizsgálni. A mai böngészők mindegyike tartalmaz eszközöket, amellyel a weboldalak hibakeresése nagyon egyszerűen kezelhetővé válik.
 
@@ -171,7 +172,7 @@ A böngészők Inspector nézetét a böngészőben általában az **F12** bille
 
 A laborvezető által kijelölt böngészőn navigáljunk a [www.aut.bme.hu](https://www.aut.bme.hu) oldalra és vizsgáljuk meg az oldal felépítését! Nyissuk meg a hibakeresési eszköztárat az F12-vel, nézzük meg, milyen lehetőségeink vannak! 
 
-<img src="./assets/aut-bme-hu.png" title="A BME AUT kezdőlapja">
+![A BME AUT kezdőlapja](./assets/aut-bme-hu.png)
 
 A Chrome, Internet Explorer, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől eltekintve megegyezik, a leggyakoribb funkciók az alábbiak:
 
@@ -189,7 +190,7 @@ A Chrome, Internet Explorer, Edge és Firefox böngészők eszközkészlete kise
 
 - **Emuláció**: a böngészőkbe épített emulációs lehetőségek korlátozottak, általában csak a user agent string cseréjét és a kirajzoló terület felbontását állítják át (magát a böngészőmotort természetesen nem cserélik le futási időben, ami a valódi hibák jelentős részéért felelős).
 
-## 5 Egyedi webszerver készítése
+## Egyedi webszerver készítése
 
 A webszerverek alapvetően egyszerű működésű szoftverek: adott TCP porton hallgatóznak, és a beérkező adatfolyamra - ami jellemzően egy-egy stringnek megfeleltethető HTTP kérés - HTTP válaszüzeneteket állítanak elő, szintén jellemzően string formájában.
 
@@ -276,7 +277,7 @@ namespace Labor08_webserver
 
 ---
 
-## 6 Fájlszerver
+## Fájlszerver
 
 A statikus webszerverek (vagy fájlszerverek) a fájlrendszeren dolgoznak, jellemzően egy publikus mappából képesek kiszolgálni az ott levő fájlokat. Egy kezdetleges megoldás az URL-ben található útvonalat saját relatív mappjára képzi le, és onnan kiszolgálja a fájlokat. 
 
@@ -310,8 +311,9 @@ catch (Exception ex)
 
 ---
 
+> A feladat annak szemléltetésére szolgál, hogy lássuk, a szerveroldal hogyan épül fel, milyen logika alapján szolgál ki. Éles környezetben már kész megoldásokat használunk szerveroldal gyanánt, pl. IIS-t, Apache-t, nginx-t, ill. az ezek alatt futni képes szerveroldali alkalmazásfejlesztő keretrendszereket, pl. ASP.NET Core-t vagy NodeJS-t/expressjs-t.
 
-## 7 Szemantikus HTML
+## Szemantikus HTML
 
 A HTML (HyperText Markup Language) a web nyelve. A böngészők elsősorban HTTP-n keresztül eljuttatott HTML tartalom kirajzolásáért és feldolgozásáért felelősek.
 
@@ -412,7 +414,7 @@ A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" f
 
 ---
 
-## 8 HTML űrlapok
+## HTML űrlapok
 
 A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak számunkra a felhasználóval való kommunikációra. 
 

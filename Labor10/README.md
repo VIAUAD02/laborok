@@ -12,11 +12,12 @@ Felhasznált technológiák és eszközök:
 
 - NodeJS és npm csomagkezelő,
 
-- Visual Studio Code kódszerkesztő alkalmazás.
+- Visual Studio Code kódszerkesztő alkalmazás,
+  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
 ## Jegyzőkönyv
 
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="./downloads/Labor09-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
+Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor10-jegyzokonyv.docx) letölthető.
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
@@ -32,6 +33,12 @@ A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban
 
 ---
 
+### Előkészítés
+
+- Nyissuk meg a Visual Studio Code-ot egy üres munkamappában!
+- A Terminal (**Ctrl+ö** / View > Integrated Terminal) segítségével telepítsük a http-server modult: `npm install http-server`!
+- Indítsuk el a szervert: `.\node_modules\.bin\http-server`!
+
 ## Laborfeladatok
 
 A webfejlesztés során az első feladataink egyike a készítendő alkalmazás elrendezésének megtervezése és megvalósítása.
@@ -39,12 +46,6 @@ A webfejlesztés során az első feladataink egyike a készítendő alkalmazás 
 A [Twitter Bootstrap](http://getbootstrap.com) alapvetően két alapvető funkciót nyújt:
 - egységes formázás (gombok, színek) és grid alapú elrendezés kizárólag CSS-sel,
 - gyakori komponensek (felugró ablakok, nyitható-zárható blokkok, kiemelések, panelek) CSS-sel és/vagy JavaScriptből.
-
-### Előkészítés
-
-- Nyissuk meg a Visual Studio Code-ot egy üres munkamappában!
-- A Terminal (**Ctrl+ö** / View > Integrated Terminal) segítségével telepítsük a http-server modult: `npm install http-server`!
-- Indítsuk el a szervert: `.\node_modules\.bin\http-server`!
 
 ### Bootstrap osztályok
 
@@ -141,7 +142,11 @@ Ha megvizsgáljuk, milyen stílusok illeszkednek a "gombunkra", akkor láthatjuk
 
 Ikonok elhelyezésére is egyszerű megoldást használhatunk. A Bootstrappel jár a Glyphicons/Halflings szimbólumokat tartalmazó fontkészlet, amelyet hasonlóképpen osztályokkal tudunk alkalmazni elemekre. Cseréljük le a gombunk tartalmát az alábbira:
 
+``` HTML
+
 <a class="btn btn-default" href="details.html">Tovább <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+```
 
 ---
 

@@ -2,7 +2,7 @@
 
 [rep]: ./assets/rep.png "Dokumentálandó"
 
-## 1 Bevezetés
+## Bevezetés
 
 A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében. A labor kezdetén a laborvezetővel közösen bemelegítő-, később önálló feladatokat oldanak meg.
 
@@ -10,11 +10,12 @@ Felhasznált technológiák és eszközök:
 
 - webböngészők beépített hibakereső eszközei,
 
-- Visual Studio Code kódszerkesztő alkalmazás.
+- Visual Studio Code kódszerkesztő alkalmazás,
+  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
-## 2 Jegyzőkönyv
+### Jegyzőkönyv
 
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban <a href="./downloads/Labor09-jegyzokonyv.docx" target="_blank">innen</a> letölthető.
+Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor09-jegyzokonyv.docx) letölthető.
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
@@ -30,7 +31,7 @@ A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban
 
 ---
 
-## 3 Laborfeladatok
+## Laborfeladatok
 
 Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 - szabály (mintaillesztés) alapú, deklaratív programozási nyelv,
