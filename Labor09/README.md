@@ -10,6 +10,8 @@ Felhasznált technológiák és eszközök:
 
 - webböngészők beépített hibakereső eszközei,
 
+- npm, a NodeJS csomagkezelője,
+
 - Visual Studio Code kódszerkesztő alkalmazás,
   - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
