@@ -9,3 +9,5 @@ Mobil- és webes szoftverek - Webes laborfeladatok
 ## [Labor 10 - Bootstrap CSS](./Labor10/)
 
 ## [Labor 11 - JavaScript alapok](./Labor11/)
+
+## [Labor 12 - jQuery](./Labor12/)
