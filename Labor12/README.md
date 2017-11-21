@@ -65,11 +65,18 @@ Az alkalmazás wwwroot mappájában találhatók a statikusan kiszolgált tartal
 - `index.html`: a kiinduló fájl, statikus tartalommal,
 - `todo.js`: a saját, egyelőre üres JavaScript fájlunk, ebben fogunk doldozni.
 
-Az alkalmazás indítását az F5 billentyű lenyomásával érjük el. A .NET oldali kódot debugolni is tudjuk, viszont a célunk most nem a szerver oldali, hanem a kliens oldali alkalmazás elkészítése. Az indítást követően nem szükséges újraindítanunk a szervert. Az alkalmazás a http://localhost:5000/ URL-en érhető el.
+Az alkalmazást a Terminal-ban (Ctrl+ö) kiadott alábbi parancsokkal indíthatjuk:
 
-> Amennyiben a szerverünk nem indul, futtassuk előbb a `dotnet restore` parancsot a beépített terminálból!
+``` 
+dotnet restore
+dotnet run
+```
 
 > A szerver újraindításával a memóriában tárolt adatok, így az összes todo elem elvész. Ez persze implementációfüggő, ez az implementáció nem tárolja diszken vagy DB-ben az adatokat.
+
+> Ha újabb VS Code-unk van, az alkalmazás indítását az F5 billentyű lenyomásával is elérjük, ekkor a .NET oldali kódot debugolni is tudjuk, viszont a célunk most nem a szerver oldali, hanem a kliens oldali alkalmazás elkészítése. Az indítást követően nem szükséges újraindítanunk a szervert. Az alkalmazás ilyenkor a http://localhost:5000/ URL-en érhető el.
+> 
+> Régebbi VS Code-dal az alábbit kell eljátszanunk: a .vs\tasks.json-ben a `label`-t `taskName`-re kell módosítanunk, és a .vs\tasks.json-ben és .vs\launch.json-ben pedig a `${workspaceFolder}` változó helyére a teljes elérési útvonalát írjuk a munkakönyvtárnak.
 
 ### Kiinduló alkalmazás
 
@@ -160,7 +167,7 @@ $("#new-todo-form").submit(function (e) {
         $("#new-todo-form")[0].reset();
         $.get("/api/todos")
             .then(function (todos) {
-                console.log(data);
+                console.log(todos);
                 renderTodos(todos);
             }, console.error);
     }, console.error);
@@ -176,7 +183,7 @@ A `$("#new-todo-form")[0].reset();` sorral a teljes formot ürítjük, ami jelen
 function getAndRenderTodos() {
     $.get("/api/todos")
         .then(function (todos) {
-            console.log(data);
+            console.log(todos);
             renderTodos(todos);
       }, console.error);
 }
