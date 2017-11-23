@@ -10,9 +10,9 @@ Felhasznált technológiák és eszközök:
 
 - webböngészők beépített hibakereső eszközei,
 
-- .NET Core 1.1,
+- [.NET Core](https://www.microsoft.com/net/download/) (1.1 SDK),
 
-- Visual Studio Code kódszerkesztő alkalmazás,
+- [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
   - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
 ### Jegyzőkönyv

@@ -7,13 +7,13 @@
 A vezetett labor folyamán a hallgatók a laborvezetővel közösen végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében. A labor végén önálló feladatok elvégzése segíti az elhangzottak megértését.
 
 Felhasznált technológiák és eszközök:
-- Telerik Fiddler,
+- [Telerik Fiddler](https://www.telerik.com/download/fiddler),
 
 - webböngészők beépített hibakereső eszközei,
 
-- .NET Core (legalább 1.1-es verzió),
+- [.NET Core](https://www.microsoft.com/net/download/) (1.1 SDK),
 
-- Visual Studio Code kódszerkesztő alkalmazás,
+- [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
   - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
 ### Jegyzőkönyv
