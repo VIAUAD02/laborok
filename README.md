@@ -11,3 +11,5 @@ Mobil- és webes szoftverek - Webes laborfeladatok
 ## [Labor 11 - JavaScript alapok](./Labor11/)
 
 ## [Labor 12 - jQuery](./Labor12/)
+
+## [Labor 13 - Haladó JavaScript](./Labor13/)
