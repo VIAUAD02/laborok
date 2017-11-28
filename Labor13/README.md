@@ -465,7 +465,7 @@ export class Toplist {
 
     setItem(name, guesses, time) {
         this.items.push({ name, guesses, time });
-        this.items = this.items.sort((a, b) => a.guesses + a.time / 1000 - b.guesses + b.time / 1000).slice(0, 9);
+        this.items = this.items.sort((a, b) => a.guesses + a.time / 1000 - (b.guesses + b.time / 1000)).slice(0, 9);
         localStorage.setItem('toplist', JSON.stringify(this.items));
         this.render();
     }
