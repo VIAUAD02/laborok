@@ -4,14 +4,12 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében. A labor kezdetén a laborvezetővel közösen bemelegítő-, később önálló feladatokat oldanak meg.
+A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
 Felhasznált technológiák és eszközök:
 
 - webböngészők beépített hibakereső eszközei,
-
 - npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
-
 - [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
   - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
 
@@ -29,7 +27,7 @@ A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban
 
 ### ![rep] Feladat 0 (0 pont)
     
-    Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
+Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
 
 ---
 
@@ -41,7 +39,7 @@ Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 
 A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formázatlanok, viszont bizonyos szabályokat a böngésző alapértelmezetten illeszt az egyes elemekre, az elem típusa szerint.
 
-    Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2, az A és a B elemekre!
+Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2, az A és a B elemekre!
 
 - Nyissuk meg a Visual Studio Code-ot egy üres munkamappában!
 - Vegyünk fel egy index-1.html fájlt az alábbi tartalommal:
@@ -75,12 +73,10 @@ A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formáza
     </body>
     </html>
     ```
-- Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat. Most nem készítünk saját webszervert, hanem használhatunk létező szervereket. Egy nagyon gyors megoldás, ha `npm`-ből telepítünk egyet és elindítjuk.
-    - Futtassuk az alábbi parancsokat a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból (az első parancs telepíti, a második elindítja a `http-server` nevű npm csomagot): 
+- Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat. Egy nagyon gyors megoldás, ha `npm`-ből telepítünk egyet és elindítjuk.
+    - Futtassuk az alábbi parancsot a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból. (A labor gépekre már előre fel van telepítve globálisan a http-server, így elegendő csak elindítani azt.): 
 
-        `npm i http-server`
-
-        `.\node_modules\.bin\http-server`
+        `http-server`
 
         Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
 
@@ -119,7 +115,7 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 
 ### ![rep] Feladat 1 (0.5 pont)
 
-    Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alábbi kérdéseket:
+Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alábbi kérdéseket:
 
 - Mekkora a **margin**, **padding** és **border** értéke az `<ul>` elemnek?
 
@@ -150,7 +146,7 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 > ![Egyszerű CSS selectorok](./assets/selectors-1.png)
 > ![Összetett selectorok](./assets/selectors-2.png)
 
-    Módosítsuk az oldal megjelenését futási időben!
+Módosítsuk az oldal megjelenését futási időben!
     
 - Rejtsük el a böngésző beépített stílusait, és láthatjuk, hogy kizárólag az üres inline stílus illeszkedik így az elemre. Itt hozzá tudunk adni új inline stílust az elemhez.
 - Ha új szabályt akarunk felvenni, akkor a kapcsoszárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
@@ -172,7 +168,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 
 Az oldalhoz alapvetően kétféle módon van lehetőségünk stíluslapot rendelni: külső CSS fájlból vagy az oldalban definiált `<style>` tagben.
 
-    Az index-1.html forráskódját egészítsük ki, a <head> elembe helyezzük el az alábbi kódot:
+Az **index-1.html** forráskódját egészítsük ki, a `<head>` elembe helyezzük el az alábbi kódot:
 
 ```HTML
 <style>
@@ -260,19 +256,19 @@ A fájlt a HTML-ből az alábbi módon tudjuk linkelni: tegyük az oldal `<head>
 
 ### ![rep] Feladat 2 (0.5 pont)
 
-    Képernyőképpel demonstrálja, hogy:
+Képernyőképpel demonstrálja, hogy:
 
-    - Az index-1.html letöltődését követően az index-1.css fájl is letöltődik.
-    - Az `<ul>` lista elemei egymás mellett helyezkednek el. Ehhez a HTML-t módosítani szükséges.
-    - Az egyik listaelem kijelölt állapotában a betűszín zöld lesz, a karakterek félkövérek.
+- Az index-1.html letöltődését követően az index-1.css fájl is letöltődik.
+- Az `<ul>` lista elemei egymás mellett helyezkednek el. Ehhez a HTML-t módosítani szükséges.
+- Az egyik listaelem kijelölt állapotában a betűszín zöld lesz, a karakterek félkövérek.
 
-    Milyen módosítást kell végeznünk a HTML-en, hogy az elvárt megjelenést lássuk?
+Milyen módosítást kell végeznünk a HTML-en, hogy az elvárt megjelenést lássuk?
 
 ---
 
 ### Reszponzív elrendezés
 
-A weboldalakat különböző képernyőméretű- és felbontású eszközökről szoktuk látogatni. A túl részletes táblázatok, hosszú, meg nem törő sorok nem felhasználóbarátak kisebb méretű kijelzőkön, még ha az eszköz felbontása kellően nagy is. A mobil eszközök ezért szorzókat alkalmaznak a valós és a hasznos felbontás közötti megkülönböztetésképpen.
+A weboldalakat különböző képernyőméretű és -felbontású eszközökről szoktuk látogatni. A túl részletes táblázatok, hosszú, meg nem törő sorok nem felhasználóbarátak kisebb méretű kijelzőkön, még ha az eszköz felbontása kellően nagy is. A mobil eszközök ezért szorzókat alkalmaznak a valós és a hasznos felbontás közötti megkülönböztetésképpen.
 
 A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a szélesség függvényében történő átméretezése az oldalnak. Ezeket az alábbi szintaxis alapján, ún. media query-kkel tudjuk implementálni:
 
@@ -298,59 +294,80 @@ Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük
 
 ### ![rep] Feladat 3 (0.5 pont)
 
-    Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve!
+Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve!
 
 ---
 
-## A CSS alapok gyakorlásaképp az alábbi feladatokat önállóan oldja meg!
+## A CSS alapok gyakorlása egy komplexebb feladatban
 
 ---
 
 ### ![rep] Feladat 4 (3.5 pont)
 
-    Készítsen egyszerű statikus weboldalt! Igyekezzen megközelíteni a csatolt képeken látható tartalmat, elrendezést és megjelenést! 
-    Kiindulásképpen felhasználhatja a csatolt HTML fájlt.
-    Az elkészült funkciókról készítsen képernyőképet! A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
+Készítse el a kiinduló HTML oldal designját, melyben megközelíti a csatolt képeken látható elrendezést és megjelenést!
+Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat, és kerülje a HTML fájl módosítását.
+Az elkészült funkciókról készítsen képernyőképet! 
+A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-A kiinduláshoz használható HTML fájl [itt](./downloads/index.html) található.
+A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [nas.jpg](./downloads/nas.jpg).
 
-![Alacsony felbontáson](./assets/task-small.png)
-![Közepes felbontáson](./assets/task-medium.png)
-![Magas felbontáson](./assets/task-large.png)
+>![Magas felbontáson](./assets/hirportal.png)
 
-Nem alkalmazhat inline stílusokat!
+>![900px alatt](./assets/hirportal-small.png)
 
-#### Fejléc (2 pont)
+#### Fejléc (1 pont)
 
-Az oldalon fix fejléc található (tehát a fejléc nem tűnik el, ha kigörgetünk a tartalomból). Ügyeljen rá, hogy a fejléc ne takarja ki az oldal központi tartalmát! A fejlécen az alkalmazás **logó**ja helyezkedik el (használja a https://placeholder.com/ oldalt helyőrző kép beillesztéséhez), melyre kattintva az `index.html` oldalra navigál a böngésző. 
+A fejléc megjelenését a **navbar.css** fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
 
-A logó mellett egy 3 elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html`, `contact.html` és `profile.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* és *Profil* (ezeket az oldalakat nem kell elkészítenie)!
-- A menüsort `<ul>` és `<li>` elemek használatával strukturálja! 
-- A menüpontok mérete fixen 200x50px, a félkövér szöveg függőlegesen és vízszintesen is középen helyezkedik el a menüpontban. A szöveg legyen nagyobb, mint az oldal alapértelmezett törzshöz tartozó szövegmérete!
-- A menüpontok háttérszíne világoskék, előtérszíne fehér, az egeret a menüpontra helyezve (használja a `:hover` pszeudoclasst) a háttérszín valamelyest sötétebbé válik.
-- A Profil menüpontban egy 40x40 px méretű **profilkép** is helyet foglal a szövegtől *balra*, és ez az utolsó menüpont az oldal jobb oldalán helyezkedik el (használja a `float` tulajdonságot vagy a `position: absolute` értéket).
-- A menüsor 769 pixel alatti oldalszélességnél átalakul: a menüpontok egymás alatt helyezkednek el teljes szélességben, a profilkép pedig átkerül a *Profil* szöveg jobb oldalára!
-- Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort!
+> ![Fejléc](./assets/header.png)
 
-#### Hírfolyam (1.5 pont)
+Az oldalon fix fejléc található (tehát a fejléc nem tűnik el, ha kigörgetünk a tartalomból). 
+- Ügyeljen rá, hogy a fejléc ne takarja ki az oldal központi tartalmát! (Tipp: `padding`)
+- A fejléc magassága 60px és a háttere bordó!
 
-A kezdőoldalon egyszerű hírfolyam található. A hírfolyam bejegyzések egymás alatt/mellett történő megjelenítését jelenti.
-- A bejegyzésnek van **címe**, **szerzője**, **publikálás dátuma**, **képe** és **bevezetője**, ezeket a csatolt képernyőkép alapján rendezze és formázza!
-- A hírfolyam 769 pixel alatti oldalszélességnél egy elemet, 769 pixel és 992 pixel között két elemet, 992 pixel felett három elemet jelenít meg egymás mellett. Az elemek között minden irányban 15px vagy 30px távolság van. Ügyeljen rá, hogy egy elem esetén ne jelenjen meg vízszintes görgetősáv!
-- A kép az `object-fit: cover` tulajdonsággal és explicit méretek megadásával méretezendő (100% x 400px).
-- A bejegyzés képére a címet, szerzőt és dátumot abszolút pozícionálja!
-- A bejegyzések fix magasságúak, amennyiben több elem jelenik meg egymás mellett. Az esetleg túlfolyó szöveg a bejegyzés bevezetőjében nem lóg ki az őt befoglaló HTML elemekből (szöveg generálásához használhatja a https://www.lipsum.com/ oldalt). A bejegyzés magassága 475px. A bevezető szöveg 60px magas.
-- A bejegyzés jobb alsó sarkában található egy Tovább... link, melyre kattintva a bejegyzés részletes oldala jön be.
+A logó mellett egy 2 elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészítenie)!
+- A menüsort `<ul>` és `<li>` elemek használatával strukturálja. (Tipp: `display: inline-block`)
+- A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín valamelyest sötétebbé válik.
+- A menüpontok szövege legyen függőlegesen középre igazítva. (Tipp: `line-height`)
+- A fejlécben jobbra igazítva található egy Bejelentkezés gomb (Tipp: `float`).
+- Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
 
-#### iMSC feladat: Bejegyzés részletes oldala (1 iMSc pont)
+#### Fő hír megjelenítése (1 pont)
 
-A bejegyzés részletes oldalán megjelenik az áttekintő nézet összes adata, kivéve a bevezető szöveget, ehelyett a teljes szöveg jelenik meg.
-- A bejegyzéshez tartozó kép a szöveg előtt jelenik meg, 769 pixeltől 50%-os szélességgel, e felett 100%-os szélességgel. 50%-os szélesség esetén a szöveg a képtől jobbra kezdődik, majd a kép alatt megtörve folytatódik.
-- A bejegyzés alatt hozzászólások láthatók. A hozzászólások 90% szélességűek, a páratlan elemek az oldal bal, a páros elemek az oldal jobb széléhez illeszkedve helyezkednek el (használja az :nth-child(2) vagy :nth-of-type(2) pszeudoszelektorokat).
+A fő hír megjelenését a **news.css** fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
+
+> ![Fő hír](./assets/main.png)
+
+A kezdőoldalon a legfrissebb hír jelenik meg.
+- A hírnek van egy fejléce amiben megtalálható a **cím**, **szerző**, **szerző profil képe**, **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
+  - A szerző profil képe 80px x 80px. Ezek mellett jelenik meg a cím, a szerző neve, és a publikálás dátuma.
+  - A profilkép és a szöveg között legyen 10px távolság.
+  - A cím, szerző neve és publikálás dátumánál úgy állítsa át a betűméretet és a margókat, hogy azok olyan magasak legyenek mint a kép.
+- A hír törzse egy **bevezető**, **kép** majd **további tartalomból** áll.
+  - A hírhez tartozó kép legyen középre igazítva.
+- Ügyeljen arra, hogy a szövegek tartsanak egységesen 16px távolságot a befoglaló elemektől. (Tipp: `padding`)
+
+#### Oldalsó sáv (1 pont)
+
+Az oldalsó sáv megjelenítését is a **news.css** fájba készítse el.
+
+> ![Oldalsó sáv](./assets/aside.png)
+
+- Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg
+  - Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)
+  - Az oldalsáv háttérszíne legyen világosszürke.
+  - Ha a fő hír magasabb mint az oldalsáv, akkor is érjen le az oldalsáv a láblécig. (Tipp: `position: absolute`)
+  - Ha az oldalsáv magasabb, akkor pedig jelenjen meg a scrollbar az oldalsávon. (Tipp: `overflow: auto`)
+  - Az egyes hírek között legyen egy elválasztó vonal (Tipp: `border-bottom`)
+  - Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
+
+#### Reszponzivitás (0.5 pont)
+
+Egészítse ki a **news.css** fájlt úgy, hogy ha 900px-nél kissebbre állítjuk az ablakor, akkor a jobb oldali sáv tűnjön el, és a teljes oldalt a fő hír foglalja el. (Tipp: `@media( max-width: 900px )`)
 
 **Tippek a megoldáshoz:**
 - Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek.
-- Ha egy elemnek ki kell töltenie a rendelkezésre álló szélességet, akkor minden ősének a fában ki kell töltenie a rendelkezésre álló szélességet, amíg az szükséges. Pl. a `width: 100%;` csak a közvetlen ősre vonatkozik blokkszintű elemeknél, ha a `position: relative` vagy nincs beállítva.
+- Ha egy elemnek ki kell töltenie a rendelkezésre álló szélességet, akkor minden ősének a fában ki kell töltenie a rendelkezésre álló szélességet, amíg az szükséges. Pl. a `width: 100%;` csak a közvetlen ősre vonatkozik blokkszintű elemeknél, ha az `position: relative` vagy nincs beállítva.
 - Az elrendezésnél érdemes figyelembe venni, hogy a `position: absolute;` érték a DOM-ban az elemhez legközelebbi olyan őshöz pozícionál, mely `position: relative;`. Ezután a `top`, `right`, `bottom` és `left` tulajdonságokat tudja beállítani pl. pixel vagy százalék érték alapján, így az adott őshöz pozícionálja az elemet.
 - Használhatja a `calc()` függvényt, mely egyszerű konstans értékek számítására használható, pl. `width: calc(50% - 100px);`. Fontos, hogy a számítandó értékek között mindenképpen szükséges szóközt tennie.
 - `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges.

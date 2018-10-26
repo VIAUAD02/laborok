@@ -1,0 +1,24 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    text-decoration: none;  /* Linkek ne legyenek aláhúzva */
+}
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;   /* Ahhoz kell, hogy a sidebar ehhez képest legyen absolute pozícióban (a szélesség miatt) */
+}
+
+footer {
+    text-align: center;
+    border-top: solid 1px gray;
+    line-height: 40px;
+    font-size: 70%;
+    color: gray;
+}
