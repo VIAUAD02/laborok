@@ -78,6 +78,7 @@ Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV
 
         `http-server`
 
+        **Figyelem! Ügyeljen rá, hogy a parancsot a megfelelő munkakönyvtárban adja ki, ahol a szerkesztett fájl is található!**
         Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
 
     - Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index-1.html** fájlt! Az alábbit kell látnunk:
