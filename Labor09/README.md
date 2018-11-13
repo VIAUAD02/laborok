@@ -310,7 +310,7 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 Az elkészült funkciókról készítsen képernyőképet! 
 A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [nas.jpg](./downloads/nas.jpg).
+A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [NAS.jpg](./downloads/nas.jpg).
 
 >![Magas felbontáson](./assets/hirportal.png)
 
