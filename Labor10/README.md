@@ -135,9 +135,9 @@ Még mielőtt nekiesnénk az egyedi megoldás kitalálására érdemes megnézni
 
 A kész oldalnak így kell kinéznie.
 - Mobil eszközön zárva.
-> ![Fejléc-mobil](./assets/header-small.png)
+> <img src="./assets/header-small.png" width="300">
 - Mobil eszközön lenyitva
-> ![Fejléc-mobil-nyitva](./assets/header-small-open.png) 
+> <img src="./assets/header-small-open.png" width="300">
 
 ---
 
