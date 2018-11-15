@@ -92,6 +92,8 @@ Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetős
 
 <img src="./assets/index-1-step-2.png"/>
 
+**Fontos! A böngészők agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat. A cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t (Chrome-ban ez a 'Disable cache' lehetőség, Edge-ben 'Always refresh from server').
+
 Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
 
 A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS fájlunk linkelve és CSS szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített **user agent stylesheet**-je érvényesül. Itt láthatjuk a **CSS Box model**t is, ami az elem **tartalma**, a hozzá tartozó **padding**, **border** és **margin** értékek egymásra halmozását jelenti a *2 dimenziós téglalap* oldalaihoz mérten.
@@ -310,7 +312,7 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 Az elkészült funkciókról készítsen képernyőképet! 
 A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [nas.jpg](./downloads/nas.jpg).
+A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [NAS.jpg](./downloads/NAS.jpg).
 
 >![Magas felbontáson](./assets/hirportal.png)
 
