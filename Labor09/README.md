@@ -78,6 +78,7 @@ Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV
 
         `http-server`
 
+        **Figyelem! Ügyeljen rá, hogy a parancsot a megfelelő munkakönyvtárban adja ki, ahol a szerkesztett fájl is található!**
         Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
 
     - Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index-1.html** fájlt! Az alábbit kell látnunk:
@@ -90,6 +91,8 @@ Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect Element**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
 
 <img src="./assets/index-1-step-2.png"/>
+
+**Fontos! A böngészők agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat. A cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t (Chrome-ban ez a 'Disable cache' lehetőség, Edge-ben 'Always refresh from server').
 
 Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
 
@@ -309,7 +312,7 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 Az elkészült funkciókról készítsen képernyőképet! 
 A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [nas.jpg](./downloads/nas.jpg).
+A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [NAS.jpg](./downloads/NAS.jpg).
 
 >![Magas felbontáson](./assets/hirportal.png)
 
