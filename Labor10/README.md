@@ -197,9 +197,9 @@ Az oldalt úgy valósítsa meg, hogy magas felbontáson 3 hasábos legyen, köze
 - Magas felbontások
 > ![Index-magas](./assets/index-full.png)
 - Közepes felbontáson
-> ![Index-kozepes](./assets/index-full-medium.png)
+> <img src="./assets/index-full-medium.png" width="600">
 - Kicsi felbontáson
-> ![Index-kicsi](./assets/index-full-small.png) 
+> <img src="./assets/index-full-small.png" width="300">
 
 ---
 
@@ -255,7 +255,7 @@ Az űrlap végén legyen egy checkbox, hogy elfogaja a feltételeket illetve egy
 
 - Ellenőrizze, hogy az oldal kis képernyő méreten az alábbi elrednezésben jelenik-e meg. Ha nem akkor javítsa a kódot, hogy az alábbi kinézetet kapja.
 
-> ![Index-magas](./assets/register-small.png)
+> <img src="./assets/register-small.png" width="300">
 
 ---
 
