@@ -178,7 +178,7 @@ A megoldáshoz használjuk a [Bootstrap card](http://getbootstrap.com/docs/4.1/c
 - Ügyeljen arra, hogy a margók és paddingok hasonlóak legyenek. Tipp: használja a `m-0`, `py-2`.... osztályokat. Részletesen a [Bootstrap spacing](http://getbootstrap.com/docs/4.1/utilities/spacing/) szekcióban lehet róla olvasni.
 
 Az egyes blog bejegyzéseknek, az az alábbi képen látható módon kell megjelennie:
-> ![karatya](./assets/card.png)
+> ![karatya](./assets/onecard.png)
 
 ---
 
