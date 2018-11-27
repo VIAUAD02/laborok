@@ -4,7 +4,7 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók a laborvezető segítségével vezetetten és önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
 Felhasznált technológiák és eszközök:
 
