@@ -298,16 +298,16 @@ A `selectTab` függvény hívását a HTML-ből kössük a klikk eseményre, cse
 
 ``` HTML
 
-<a class="todo-tab nav-item nav-link active" data-tab-name="allhref="#all" onclick="selectTab('all')">
+<a class="todo-tab nav-item nav-link active" data-tab-name="all" href="#all" onclick="selectTab('all')">
     All <span class="badge badge-secondary">1</span>
 </a>
-<a class="todo-tab nav-item nav-link" data-tab-name="activehref="#active" onclick="selectTab('active')">
+<a class="todo-tab nav-item nav-link" data-tab-name="active" href="#active" onclick="selectTab('active')">
     Active <span class="badge badge-secondary">1</span>
 </a>
-<a class="todo-tab nav-item nav-link" data-tab-name="inactivehref="#inactive" onclick="selectTab('inactive')">
+<a class="todo-tab nav-item nav-link" data-tab-name="inactive" href="#inactive" onclick="selectTab('inactive')">
     Inactive <span class="badge badge-secondary"></span>
 </a>
-<a class="todo-tab nav-item nav-link" data-tab-name="done" href="#doneonclick="selectTab('done')">
+<a class="todo-tab nav-item nav-link" data-tab-name="done" href="#done" onclick="selectTab('done')">
     Done <span class="badge badge-secondary"></span>
 </a>
 
