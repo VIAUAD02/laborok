@@ -139,7 +139,7 @@ Az alábbi formátumú válasz érkezik a távoli API-tól:
             "category": "Entertainment: Film",
             "type": "multiple",
             "difficulty": "hard",
-            "question": "In the 1976 film "Taxi Driver", how many guns did Travis buy from the salesman?",
+            "question": "In the 1976 film 'Taxi Driver', how many guns did Travis buy from the salesman?",
             "correct_answer": "4",
             "incorrect_answers": [ "2" , "6" , "1" ]
         },
