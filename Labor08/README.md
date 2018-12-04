@@ -267,57 +267,57 @@ szerkesztőt! Hozzunk létre itt egy fájlt, a neve legyen `index.html`, tartalm
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Example</title>
+	<meta charset="utf-8">
+	<title>Example</title>
 </head>
 
 <body>
-    <div>
-        <div>
-            <img src="logo.png" alt="logo" />
-        </div>
-        <div>
-            <a href="index.html">Főoldal</a>
-            <a href="services.html">Szolgáltatások</a>
-            <a href="contact.html">Kapcsolat</a>
-            <a href="about.html">Rólunk</a>
-        </div>
-    </div>
-    <div>
-        <div>
-            <h1>Webes technológiákról általában</h1>
-            <p>A HTTP, HTML, CSS és JavaScript adják napjaink legfontosabb...</p>
-            <div>
-                <h2>HTTP</h2>
-                <p>A HTTP egyszerű átviteli protokoll...</p>
-            </div>
-            <div>
-                <h2>HTML</h2>
-                <p>A HTML (HyperText Markup Language)...</p>
-            </div>
-            <section>
-                <h2>CSS</h2>
-                <p>HTML oldalaink kinézetét ún. egymásba ágyazható stíluslapokkal (CSS)...</p>
-            </div>
-            <div>
-                <h2>JavaScript</h2>
-                <p>A statikus HTML oldalakhoz dinamikus működést JavaScript segítségével...</p>
-            </div>
-            <div>
-                <p>3032 ember látta ezt a cikket</p>
-                <p>Szerző: John Doe</p>
-                <div>
-                    <img src="http://via.placeholder.com/80x80" alt="person1"/>
-                    <img src="http://via.placeholder.com/80x80" alt="person2"/>
-                    <img src="http://via.placeholder.com/80x80" alt="person3"/>
-                    <div>Ők kedvelték a cikket</figcaption>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        Minden jog fenntartva | 2018 | BME AUT
-    </div>
+<div>
+	<div>
+		<img src="logo.png" alt="logo" />
+	</div>
+	<div>
+		<a href="index.html">Főoldal</a>
+		<a href="services.html">Szolgáltatások</a>
+		<a href="contact.html">Kapcsolat</a>
+		<a href="about.html">Rólunk</a>
+	</div>
+</div>
+<div>
+	<div>
+		<h1>Webes technológiákról általában</h1>
+		<p>A HTTP, HTML, CSS és JavaScript adják napjaink legfontosabb...</p>
+		<div>
+			<h2>HTTP</h2>
+			<p>A HTTP egyszerű átviteli protokoll...</p>
+		</div>
+		<div>
+			<h2>HTML</h2>
+			<p>A HTML (HyperText Markup Language)...</p>
+		</div>
+		<div>
+			<h2>CSS</h2>
+			<p>HTML oldalaink kinézetét ún. egymásba ágyazható stíluslapokkal (CSS)...</p>
+		</div>
+	</div>
+	<div>
+		<h2>JavaScript</h2>
+		<p>A statikus HTML oldalakhoz dinamikus működést JavaScript segítségével...</p>
+	</div>
+	<div>
+		<p>3032 ember látta ezt a cikket</p>
+		<p>Szerző: John Doe</p>
+		<div>
+			<img src="http://via.placeholder.com/80x80" alt="person1"/>
+			<img src="http://via.placeholder.com/80x80" alt="person2"/>
+			<img src="http://via.placeholder.com/80x80" alt="person3"/>
+			<div>Ők kedvelték a cikket</div>
+		</div>
+	</div>
+</div>
+<div>
+	Minden jog fenntartva | 2018 | BME AUT
+</div>
 </body>
 
 </html>
