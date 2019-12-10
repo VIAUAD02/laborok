@@ -12,7 +12,7 @@ Felhasznált technológiák és eszközök:
 
 - npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
 
-- [.NET Core](https://www.microsoft.com/net/download/) (1.1 SDK),
+- [.NET Core](https://www.microsoft.com/net/download/) (2.1 SDK),
 
 - [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
   - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
@@ -85,17 +85,21 @@ A [Webpack](https://webpack.js.org/) egy modern "modulcsomagoló". A JavaScript 
 
 A laboron készítendő alkalmazás egy **kisebb/nagyobb barkóba** lesz. A "gép" gondol egy számra, majd a felhasználó dolga kitalálni a számot. A tippre a válasz mindig "kisebb", "nagyobb" vagy "talált".
 
-Töltsük le a kiinduló projektet az [alábbi linkről](./downloads/labor13-start.zip)! A fájlt csomagoljuk ki egy üres munkamappába, majd a mappában indítsuk el a VS Code-ot! A beépített terminálból (Ctrl+ö) adjuk ki az alábbi parancsokat:
+Klónozzuk le a kiinduló projektet (https://github.com/VIAUAC00/labor13-start.git) egy git klienssel vagy parancssorból! Egy üres munkamappában indítsuk el a VS Code-ot! A beépített terminálból (Ctrl+ö) adjuk ki az alábbi parancsokat:
 
 ```
+git clone https://github.com/VIAUAC00/labor13-start.git
+cd labor13-start
 npm install
 dotnet restore
 dotnet run
 ```
 
-> Az első parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a jQuery-t és Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.
+> Az `npm install` parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a jQuery-t és Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.
 > 
-> A második parancs a szerveroldali .NET függőségeket tölti le. A harmadik parancs elindítja a szerveralkalmazást.
+> A `dotnet restore` parancs a szerveroldali .NET függőségeket tölti le. A `dotnet run` parancs elindítja a szerveralkalmazást.
+> 
+> Megj.: Mivel ez egy .NET-es projekt akár a Visual Studio 2019-cel is megnyithattuk volna a solution-t, sőt ez a preferált, ha a szerver oldali kódot szeretnénk módosítani majd.
 
 Az alkalmazás indulását követően ha új JS fájlokat hozunk létre és hivatkozzuk őket, a Webpack HMR ezeket a fájlokat automatikusan frissíti a böngészőben. Ettől függetlenül előfordulhat, hogy a kliensoldalt újra kell indítanunk, ekkor továbbra is szükséges a böngészőben frissítenünk F5-tel.
 
