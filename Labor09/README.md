@@ -4,32 +4,9 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók a laborvezető segítségével önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
 
-Felhasznált technológiák és eszközök:
-
-- webböngészők beépített hibakereső eszközei,
-- npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
-- [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
-
-### Jegyzőkönyv
-
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor09-jegyzokonyv.docx) letölthető.
-
-A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
-
-A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
-
-A laborvezető jelen dokumentum alapján vezeti végig a labort. A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokumentálni szükséges egy-egy lépést:
-
----
-
-### ![rep] Feladat 0 (0 pont)
-    
-Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
-
----
+Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor09-jegyzokonyv.docx) letölthető.
 
 ## Laborfeladatok
 
@@ -73,8 +50,8 @@ Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV
     </body>
     </html>
     ```
-- Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat. Egy nagyon gyors megoldás, ha `npm`-ből telepítünk egyet és elindítjuk.
-    - Futtassuk az alábbi parancsot a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból. (A labor gépekre már előre fel van telepítve globálisan a http-server, így elegendő csak elindítani azt.): 
+- Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat.
+    - Futtassuk az alábbi parancsot a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból. 
 
         `http-server`
 
@@ -92,7 +69,7 @@ Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetős
 
 <img src="./assets/index-1-step-2.png"/>
 
-**Fontos! A böngészők agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat. A cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t (Chrome-ban ez a 'Disable cache' lehetőség, Edge-ben 'Always refresh from server').
+**Fontos!** A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
 
 Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
 
@@ -100,11 +77,11 @@ A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvé
 
 > A CSS feloldásában a `cascading`, azaz "egymásba ágyazható" rész szerint több stíluslap létezik a származás szempontjából; mi most a *böngészőbe beépített*, ún. `user agent stylesheet`-et látjuk.
 
-Ez alapértelmezetten nem látható a felületen, a Computed fülön van lehetőségünk ezek megtekintését bekapcsolni:
+A user agent stylesheet alapértelmezetten nem biztos, hogy látható a felületen, a Computed fülön van lehetőségünk ezek megtekintését bekapcsolni ("Browser styles"/"Show all" stb. lehetsőségek):
 
 <img src="./assets/index-1-step-3.png"/>
 
-A fenti szűrőt használva van lehetősünk az alkalmazott CSS szabályok között keresni.
+A fenti szűrőt használva van lehetősünk az alkalmazott CSS szabályok között keresni is.
 
 A **h1**, **h2** és **b** elemek alapértelmezetten félkövérek, ezt a `font-weight: 700;` tulajdonság írja le nekünk.
 
@@ -152,7 +129,7 @@ Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alá
 Módosítsuk az oldal megjelenését futási időben!
     
 - Rejtsük el a böngésző beépített stílusait, és láthatjuk, hogy kizárólag az üres inline stílus illeszkedik így az elemre. Itt hozzá tudunk adni új inline stílust az elemhez.
-- Ha új szabályt akarunk felvenni, akkor a kapcsoszárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
+- Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
 - Vegyük fel a `<h1>` elemhez az alábbi CSS tulajdonságot:
     ``` CSS
     color: red;
@@ -193,7 +170,7 @@ Ha frissítjük az oldalt (nem szükséges újraindítani a szervert, csak mente
 
 > A `float: left;` tulajdonság állításával nem ugyanazt érjük el, mintha a listaelemet `display: inline-block;`-ra állítanánk, mert az `inline-block` megtartja az egymást követő elemek közötti whitespace-eket, a `float: left;` viszont nem.
 
-A float segítségével komplexebb elrendezéseket is el tudunk érni, viszont a float-olást meg kell tudnunk szüntetni. Ehhez a `clear: both;` értéket állíthatjuk be egy elemen.
+A float segítségével komplexebb elrendezéseket is el tudunk érni, viszont a float-olást meg kell tudnunk szüntetni. Ehhez a `clear: both;` értéket állíthatjuk be egy elemen. A float-olás azon kevés CSS tulajdonság egyike, ami az elemet sorban követő további testvérekre is közvetlenül hat.
 
 Az alábbi szabályt használhatjuk a float-olás megszüntetéséhez, ekkor az `<article>` elemre a `clearfix` osztályt alkalmazva az már új sorba is kerül.
 
