@@ -4,36 +4,14 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
 
-Felhasznált technológiák és eszközök:
-- Webböngészők beépített hibakereső eszközei,
-- npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-  - Otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
-
-## Jegyzőkönyv
-
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor10-jegyzokonyv.docx) letölthető.
-
-A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
-
-A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
-
-A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokumentálni szükséges egy-egy lépést:
-
----
-
-### ![rep] Feladat 0 (0 pont)
-    
-Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
-
----
+Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor10-jegyzokonyv.docx) letölthető.
 
 ### Előkészítés
 
-- Hozzünk létre egy üres könyvtárat a C:\work alatt.
-- Töltsük le a [kiinduló állományokat tartalmazó zip](https://github.com/VIAUAC00/Web-labor/tree/master/Labor10/downloads/10-Labor-kiindulo.zip) fájlt majd csomagoljuk ki a létrehozott könyvtárba.
+- Hozzünk létre egy üres munkakönyvtárat!
+- Töltsük le a [kiinduló állományokat tartalmazó zip](https://github.com/VIAUAC00/Web-labor/tree/master/Labor10/downloads/10-Labor-kiindulo.zip) fájlt majd csomagoljuk ki a létrehozott könyvtárba!
 - Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -> Open Folder)!
 - Indítsuk el a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból a http-server-t: `http-server`
 - Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!
@@ -75,7 +53,7 @@ Nézzük meg, hogy az oldal head-jében milyen állományokat és honnan töltü
 ```
 
 Figyeljük meg, hogy négy különbőző CSS állományt töltünk be, egy kivételével CDN-ről:
-1. Az első magát a Bootstrap-et tölti be
+1. Az első magát a Bootstrap-et tölti be.
 2. Ezt követően egy gyakran használt ikongyűjteményt, a Font Awesome-ot töltjük le.
 3. Ezen felül, mivel egyedi betűtípust használunk, azt a Google fonts oldaláról töltjük le.
 4. A legutolsó hivatkozás pedig az általunk készített CSS fájlt hivatkozza be.

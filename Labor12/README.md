@@ -4,40 +4,9 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
 
-Felhasznált technológiák és eszközök:
-
-- webböngészők beépített hibakereső eszközei,
-
-- [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet,
-  
-- [http-server](https://www.npmjs.com/package/http-server) npm csomag a statikus fájlok lokális kiszolgálásához. Az eszköz a laborgépeken globálisan telepítve található meg, a `http-server` parancs futtatásával indítható, lokális környezetben globálisan telepíthető az alábbi parancs futtatásával: `npm i -g http-server`,
-
-- [Bootstrap 4](http://getbootstrap.com/docs/4.1/getting-started/download/) stílusozó keretrendszer,
-
-- [Font Awesome 5](https://fontawesome.com/start) ikonkészlet,
-
-- [jQuery 3](https://jquery.com/download/) library.
-
-### Jegyzőkönyv
-
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal (projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. Ügyeljen rá, hogy a ZIP fájlba artifakt ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj mappa tartalma). Az eredmények is itt lesznek. A jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor12-jegyzokonyv.docx) letölthető.
-
-A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
-
-A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
-
-A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokumentálni szükséges egy-egy lépést:
-
----
-
-### ![rep] Feladat 0 (0 pont)
-    
-    Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét.
-
----
+Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor12-jegyzokonyv.docx) letölthető.
 
 > Emlékeztetőként néhány gondolat a jQuery-ről:
 >
@@ -48,7 +17,7 @@ A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokument
 > A [jQuery API](http://api.jquery.com/) a `$` (és ritkábban a `jQuery`) globális változón keresztül érhető el, alapvetően az alábbi módokon:
 > - `const elements = $('ul li.active')`: a megadott CSS selectornak megfelelő DOM elemeket választja ki, és visszaadja egy *jQuery objektumban*. A bármilyen módon szerzett jQuery objektum hivatkozásokon az alábbihoz hasonló lehetőségeink vannak:
 >   - A jQuery objektum példányai egyben tömbök, amik tartalmazzák a megtalált natív DOM elemeket (tehát iterálhatunk rajta), ill. a jQuery példányfüggvényeit tartalmazzák, amelyek elérik az illesztett DOM elemeket.
-
+> ---
 >   - `.show()`, `.hide()`, `.toggle()`: az illesztett elemeket megjeleníti vagy elrejti azáltal, hogy az elemre inline `display: none` stílust helyezi,
 >   - `.append(e)`, `.appendTo(e)`, `.before(e)`, `.after(e)`, az elemhez/elé/után szúr be újabb elemeket (jQuery szelektorral elért elemeket, DOM elemeket vagy HTML tartalmat),
 >   - `.attr()`: gyakori, hogy egy függvény getter-setterként működik, ilyen az attr is. Ha egy paramétert adunk át, az adott attribútum értékét kapjuk vissza, ha kettőt, a második paraméter az első néven adott attribútum értéke lesz (minden illesztett elemre).

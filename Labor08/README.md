@@ -4,26 +4,34 @@
 
 ## Bevezetés
 
-A labor folyamán a hallgatók a önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
-Felhasznált technológiák és eszközök:
+A félév során felhasznált eszközök:
 - [Telerik Fiddler](https://www.telerik.com/download/fiddler),
-
+  - használható az OS X / Linux verzión is futtatható Fiddler Everywhere verzió is, ekkor viszont a különbségekből fakadó esetleges kellemetlenségekért nem vállalunk felelősséget,
+  - közvetlen link: [FiddlerSetup.exe](https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe),
 - webböngészők beépített hibakereső eszközei,
-
 - [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet.
+  - otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet,
+- npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
+  - a [http-server](https://www.npmjs.com/package/http-server) npm csomag, ami egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló
+    - ha a gépen nincsen telepítve a http-server, azt az ```npm install -g http-server``` paranccsal lehet telepíteni a NodeJS telepítését követően, majd parancssorban a `http-server` parancs kiadásával egy új HTTP szerver indul, ami az aktuális munkamappa tartalmát szolgálja ki.
+
+Az npm parancs futtatásához telepített NodeJS-re is szükség van.
+
+ Amelyik laboron ezeken felül további eszközökre lesz szükség, ott a labor bevezetőjében ezt jelezzük.
 
 ### Jegyzőkönyv
 
-Az elkészült jegyzőkönyvet egy PDF formájában kell feltölteni a tárgy oldalán, a szükséges további erőforrásokkal 
-(projekt, HTML, CSS, JavaScript fájlok) egy ZIP fájlba csomagolva. **Ügyeljen rá**, hogy a ZIP fájlba artifakt és külső 
-függőség ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a **bin/obj és node_modules** mappák). A munkájára
-kapott eredményét is itt fogja tudni megtekinteni. A jegyzőkönyv sablonja DOCX formátumban 
-[innen](./downloads/Labor08-jegyzokonyv.docx) letölthető.
+Az itt leírt formai hibákért pontlevonás adható!
+
+Az elkészült jegyzökönyvet PDF formátumban a labor megoldásával együtt (projekt, HTML, CSS, JavaScript forrásfájlok) egyetlen ZIP fájlba csomagolva kell feltölteni a félév elején ismertetett módon. **A .docx formátum nem megfelelő.** 
+
+**Ügyeljen rá**, hogy a ZIP fájlba artifakt és külső 
+függőség ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a **bin/obj és node_modules** mappák).
 
 A jegyzőkönyvben csak a szükséges mértékű magyarázatot várjuk el. Ahol másképpen nincs jelezve, eredményközlés is 
-elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool** eszköz használható, vagy az 
+elegendő. Képernyőképek bevágásához a Windows-ban található **Snipping Tool**/**Snip & Sketch** eszköz használható, vagy az 
 **Alt+PrtScr** billentyűkombinációval az aktuálisan fókuszált ablak teljes egésze másolható.
 
 A _hiányos_ vagy _túl bőbeszédű_ megoldásokra vagy a teljes jegyzőkönyvre helyes megoldás esetén is pontlevonás adható!
@@ -33,10 +41,13 @@ A dokumentumban az alábbi módon van jelölve, hogy a jegyzőkönyvben dokument
 ---
 
 ### ![rep] Feladat 0 (0 pont)
-Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét. Ezeket az 
+Töltse ki a jegyzőkönyvben található szükséges adatokat: a nevét, Neptun kódját, a labor idejét és helyét (online/távoli munkavégzés esetén értelemszerűen ezzel töltse ki). Ezeket az 
 elkövetkezendő laboralkalmakon is ki kell majd töltenie.
 
 ---
+
+A jegyzőkönyv sablonja ehhez a laborhoz DOCX formátumban 
+[innen](./downloads/Labor08-jegyzokonyv.docx) letölthető.
 
 ## HTTP hibakeresés
 
@@ -65,8 +76,10 @@ Milyen porton és milyen IP címen történik a proxy-zás?
 Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy 
 meg tudjuk vizsgálni a hálózati forgalmat!
 
-A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a www.aut.bme.hu címre! Tekintsük át a program felületét 
-az így keletkező HTTP kérések alapján!
+Mielőtt használjuk az eszközt, szükséges lehet a HTTPS forgalom feloldása, amihez egy egyedi tanúsítványt kell telepítenünk a gépünkre. Ezt a Tools -> Options -> HTTPS lehetőségnél kezdeményezhetjük.
+
+A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a https://www.aut.bme.hu címre (**figyelem, pontosan írjuk/másoljuk be!**)! Tekintsük át a program felületét 
+az így keletkező HTTP kérések alapján! 
 
 A Fiddler alapvető felépítése az alábbi:
 <img src="./assets/fiddler.png" title="A Telerik Fiddler áttekintése" >
@@ -74,7 +87,8 @@ A Fiddler alapvető felépítése az alábbi:
 > 1. HTTP kérések időrendi listája: itt látjuk, hogy milyen kéréseink mentek ki a hálózatra. A **protokoll** HTTP vagy 
 HTTPS lehet, a **Result** a válaszüzenetben érkező HTTP **státuszkódot** jelzi. A **Body** mezőben láthatjuk, hogy a 
 válasz hány bájt méretű volt. A bal oldali listában bármely **kérést** kiválasztva annak **részleteit jobb oldalon 
-láthatjuk**. Jobb egér gombbal a lista elemein lehetőségünk van azok **újrajátszására**.
+láthatjuk**. 
+>    - Jobb egérgombbal a lista elemein lehetőségünk van azok **újrajátszására**.
 >    - Lehetőségünk van a listában aktív szűrő beállítására pl. alkalmazás (process ID) vagy host alapján.
 > 2. A jobb oldali fülön alapértelmezés szerint az **Inspectors** fül van kiválasztva, ami az *aktuálisan kiválasztott* 
 HTTP **kérés-válasz párost** részletezi. A **felső** panel a **kimenő kérés** panelje. A tabok során váltogatva az
@@ -92,8 +106,9 @@ jelentős része analóg a kérés formátumával és a Request panelen találha
 
 Elemezzük a böngésző által generált kéréseket!
 
-A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg a www.aut.bme.hu szerver irányába. A Fiddlerben 
-megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján.
+A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg a www.aut.bme.hu szerver irányába (esetleg HTTP átirányítást követően, ami a www nélküli variáns vagy a nem HTTPS variáns esetén a megfelelő oldalra irányít át). A Fiddlerben megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján. 
+
+Laborgépeken elképzelhető, hogy a tanúsítvány nincsen telepítve és nincsen jogunk a telepítéshez. Ebben az esetben haladjunk a laborral a leírtaknak megfelelően, de minden esetben a HTTPS URL-ek helyett HTTP-t használjunk! A válasz ezekben az esetekben egy átirányítás lesz a szokásos 200 OK válasz helyett.
 
 Az első kérés az általunk beírt webcímre került kiküldésre az alábbi formában:
 
@@ -109,17 +124,18 @@ Connection: Keep-Alive
 ```
 
 > - A kérés GET igét használt, ezért nem tartozik hozzá törzs (body) a küldött HTTP üzenetben.
+> - A **HTTP üzenet egyszerű szöveges formátumú**, ember által is olvasható.
 > - A böngésző kulcs-érték párok formájában további adatokat küldött a szerver felé, mint pl. a böngészőt azonosító 
 karakterláncot (**User-Agent**), a várt adat formátumát (**Accept**, **Accept-Encoding**), eltárolt sütiket (**Cookie**) 
 stb.
 >    - Érdekesség, hogy bizonyos kulcsok többször előfordulhatnak egy HTTP üzenetben, ekkor az összes ugyanolyan kulcshoz 
 tartozó értékek egy kollekcióként/tömbként értelmezhetők.
-> - A **HTTP üzenet egyszerű szöveges formátumú**, ember által is olvasható.
->- Az első elküldött üzenet után további HTTP kérések indultak el a stíluslapok (CSS), képek és szkriptek (JavaScript) 
+> - Az első elküldött üzenet után további HTTP kérések indultak el a stíluslapok (CSS), képek és szkriptek (JavaScript) 
 letöltéséért. Ennek az az oka, hogy a böngésző felépíti a HTML oldalt, amiben a további linkek további HTTP kéréseket 
 indukálnak.
 
 A kérésünkre az alábbi válasz érkezett:
+
 ``` HTTP
 HTTP/1.1 200 OK
 Cache-Control: no-cache
@@ -153,7 +169,7 @@ kliensen, ill. különböző fejlécekben definiálja a gyorsítótárazáshoz (
 ---
 
 ### ![rep] Feladat 2 (1 pont)
-Másoljon be egy képernyőképet a kérés-válasz párosról, amelyet a böngésző a www.aut.bme.hu címre küldött! A válasz és a 
+Másoljon be egy képernyőképet a kérésről, amelyet a böngésző a www.aut.bme.hu címre küldött és az ehhez tartozó válaszról! A válasz és a 
 kérés is nyers (Raw) formátumban legyen látható!
 Válaszolja meg az alábbi kérdéseket:
 - Milyen státuszkóddal válaszolt a szerver a kérésre?
@@ -188,7 +204,7 @@ GET http://www.aut.bme.hu/ HTTP/1.1
 ### ![rep] Feladat 3 (0.5 pont)
 Másolja be a nyers HTTP választ a fenti kérésre! 
     
-Hány releváns választ látunk a Fiddlerben (tipp: ha beírja a böngészőbe a www.aut.bme.hu/ URL-t, akkor milyen URL-en töltődik 
+Hány releváns választ látunk a Fiddlerben (tipp: ha beírja a böngészőbe **pontosan** a http://www.aut.bme.hu/ URL-t, akkor milyen URL-en töltődik 
 be végül az oldal)?
 
 ---
@@ -196,8 +212,7 @@ be végül az oldal)?
 A fenti kérésünk formailag helyes HTTP üzenet: csak a HTTP ige, cím, és protokoll megadása kötelező, az összes fejléc 
 opcionális, a törzs GET kérésnél pedig nem szabványos.
 
-Ha megvizsgáljuk a kérésünkre érkező válaszokat, és összehasonlítjuk a korábban a böngészőnek küldött válasszal, akkor 
-láthatjuk, hogy nem igazán van érdemi különbség a két válasz között.
+Ha megvizsgáljuk a kérésünkre érkező válaszokat, és összehasonlítjuk a korábban a böngészőnek küldött válasszal (erre lehetőségünk van a két releváns üzenetváltást kijelölve, majd a Compare lehetőséget használva), akkor láthatjuk, hogy a kérésünkre nem rögtön egy 200 OK válasz érkezik, hanem előtte egy átirányítást kapunk a HTTPS végpontra.
 
 ## Hibakereső eszközök
 
@@ -235,6 +250,8 @@ jellemzően a memória- és processzorhasználatot mérik.
 a kirajzoló terület felbontását állítják át (magát a böngészőmotort természetesen nem cserélik le futási időben, ami a 
 valódi hibák jelentős részéért felelős).
 
+Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.
+
 ## Szemantikus HTML
 
 A HTML (HyperText Markup Language) a web nyelve. A böngészők elsősorban HTTP-n keresztül eljuttatott HTML tartalom 
@@ -259,7 +276,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
 Nézzük meg, miként javítja a HTML szemantikus felépítése az alkalmazásunkat!
 
-1. A laborvezető által kijelölt elérési útvonalon hozzunk létre egy új munkakönyvtárat, amiben nyissuk meg a VS Code 
+1. Hozzunk létre egy új munkakönyvtárat (laborgépeken az elérési útvonalat a laborvezető határozza meg), amiben nyissuk meg a VS Code 
 szerkesztőt! Hozzunk létre itt egy fájlt, a neve legyen `index.html`, tartalma az alábbi:
 
 ```HTML
@@ -316,23 +333,20 @@ szerkesztőt! Hozzunk létre itt egy fájlt, a neve legyen `index.html`, tartalm
 	</div>
 </div>
 <div>
-	Minden jog fenntartva | 2018 | BME AUT
+	Minden jog fenntartva | 2020 | BME AUT
 </div>
 </body>
 
 </html>
 ```
 
-A kód jól értelmezhető, az egyes elemek nyitó és záró tag-je között találhatók a hozzárendelt gyerekelemek. A whitespace-ek,
+A kód könnyen értelmezhető, az egyes elemek nyitó és záró tag-je között találhatók a hozzárendelt gyerekelemek. A whitespace-ek,
 behúzások csak az olvashatóságot segítik.
 
 2. Nyissuk meg VS Code-ban a Terminalt (Ctrl+ö, vagy View > Terminal), ami egy beépített Powershell futtatókörnyezetet ad. 
 Itt adjuk ki az alábbi parancsot:
-    http-server
-
-    2.1. A laborgépeken elérhető a [http-server](https://www.npmjs.com/package/http-server) csomag, ami egy nagyon egyszerű
-kiszolgáló. Ha a gépén nincsen telepítve a http-server, azt az ```npm install -g http-server``` paranccsal lehet telepíteni.
-Az npm parancs futtatásához telepített NodeJS-re is szükség van.
+    
+	`http-server`
 
 3. Navigáljunk a böngészőben a http://localhost:8080/ URL-re, és teszteljük le, mit látunk!
 
@@ -347,7 +361,7 @@ ezért törik a `<div>` (ami blockszintű elem), és marad folyószöveg a `<spa
 5. A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra
 kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
 
-<img src="./assets/example-styles.png" title="A böngésző beépített stílusainak vizsgálata F12 eszközökkel">
+<img src="./assets/example-style.png" title="A böngésző beépített stílusainak vizsgálata F12 eszközökkel">
 
 <img src="./assets/semantic-flowchart.png" title="Szemantikus web elemek folyamatábrája">
 
@@ -376,7 +390,7 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
 Az előadáson elhangzottak gyakorlásaként állítson össze egy űrlapot, mely megfelel az alábbi feltételeknek:
 - Az űrlap az alábbi adatokat kéri be a felületen a felhasználótól (a *-gal jelölt mezők kötelezően kitöltendők):
     - Név*: szöveges mező
-    - Jelszó*: jelszó mező (nem látható karakterek – használd a "mobweb" jelszót szemléltetésre)
+    - Jelszó*: jelszó mező (nem látható karakterek – használja a "mobweb" jelszót szemléltetésre)
     - Leírás: szöveges mező, többsoros
     - Születési dátum*: dátum
     - Nem: fiú/lány/egyéb, legördülő menüből
