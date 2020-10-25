@@ -18,7 +18,7 @@ A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formáza
 
 Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2, az A és a B elemekre!
 
-- Nyissuk meg a Visual Studio Code-ot egy üres munkamappában!
+- Nyissuk meg a Visual Studio Code-ot egy üres munkamappában (laborteremben a laborvezető jelöli ki a munkamappa elérési útvonalát)!
 - Vegyünk fel egy index-1.html fájlt az alábbi tartalommal:
 
     ``` HTML
@@ -59,7 +59,8 @@ Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV
         Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
 
     - Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index-1.html** fájlt! Az alábbit kell látnunk:
-    <img src="./assets/index-1-step-1.png"/>
+
+        ![1. lépés](assets/index-1-step-1.png)
 
 Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.
  
@@ -67,7 +68,7 @@ Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 
 Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect Element**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
 
-<img src="./assets/index-1-step-2.png"/>
+![2. lépés](assets/index-1-step-2.png)
 
 **Fontos!** A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
 
@@ -79,7 +80,7 @@ A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvé
 
 A user agent stylesheet alapértelmezetten nem biztos, hogy látható a felületen, a Computed fülön van lehetőségünk ezek megtekintését bekapcsolni ("Browser styles"/"Show all" stb. lehetsőségek):
 
-<img src="./assets/index-1-step-3.png"/>
+![3. lépés](assets/index-1-step-3.png)
 
 A fenti szűrőt használva van lehetősünk az alkalmazott CSS szabályok között keresni is.
 
@@ -89,7 +90,7 @@ A **html**, **body**, **div**, **h1**, **h2** elemek `display` tulajdonsága `bl
 
 Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 irányban:
 
-<img src="./assets/index-1-step-4.png"/>
+![4. lépés](assets/index-1-step-4.png)
 
 ---
 
@@ -123,8 +124,8 @@ Szövegesen és egy-egy képernyőképpel alátámasztva válaszolja meg az alá
 >
 > A szabályok definiálása:
 >
-> ![Egyszerű CSS selectorok](./assets/selectors-1.png)
-> ![Összetett selectorok](./assets/selectors-2.png)
+> ![Egyszerű CSS selectorok](assets/selectors-1.png)
+> ![Összetett selectorok](assets/selectors-2.png)
 
 Módosítsuk az oldal megjelenését futási időben!
     
@@ -289,17 +290,17 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 Az elkészült funkciókról készítsen képernyőképet! 
 A PDF formátumú jegyzőkönyv mellé csomagolja a forrásfájlokat is (kivéve a node_modules mappát) egy ZIP fájlban!
 
-A kiinduláshoz használja az következő fájlokat: [index.html](./downloads/index.html), [main.css](./downloads/main.css), [NAS.jpg](./downloads/NAS.jpg).
+A kiinduláshoz használja az következő fájlokat: [index.html](downloads/index.html), [main.css](downloads/main.css), [NAS.jpg](downloads/NAS.jpg).
 
->![Magas felbontáson](./assets/hirportal.png)
+>![Magas felbontáson](assets/hirportal.png)
 
->![900px alatt](./assets/hirportal-small.png)
+>![900px alatt](assets/hirportal-small.png)
 
 #### Fejléc (1 pont)
 
 A fejléc megjelenését a **navbar.css** fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
 
-> ![Fejléc](./assets/header.png)
+> ![Fejléc](assets/header.png)
 
 Az oldalon fix fejléc található (tehát a fejléc nem tűnik el, ha kigörgetünk a tartalomból). 
 - Ügyeljen rá, hogy a fejléc ne takarja ki az oldal központi tartalmát! (Tipp: `padding`)
@@ -316,7 +317,7 @@ A logó mellett egy 2 elemből álló **menüsor** található, ahol az elemek �
 
 A fő hír megjelenését a **news.css** fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
 
-> ![Fő hír](./assets/main.png)
+> ![Fő hír](assets/main.png)
 
 A kezdőoldalon a legfrissebb hír jelenik meg.
 - A hírnek van egy fejléce amiben megtalálható a **cím**, **szerző**, **szerző profil képe**, **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
@@ -331,7 +332,7 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
 
 Az oldalsó sáv megjelenítését is a **news.css** fájba készítse el.
 
-> ![Oldalsó sáv](./assets/aside.png)
+> ![Oldalsó sáv](assets/aside.png)
 
 - Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg
   - Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)

@@ -361,7 +361,7 @@ ezért törik a `<div>` (ami blockszintű elem), és marad folyószöveg a `<spa
 5. A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra
 kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
 
-<img src="./assets/example-styles.png" title="A böngésző beépített stílusainak vizsgálata F12 eszközökkel">
+<img src="./assets/example-style.png" title="A böngésző beépített stílusainak vizsgálata F12 eszközökkel">
 
 <img src="./assets/semantic-flowchart.png" title="Szemantikus web elemek folyamatábrája">
 
