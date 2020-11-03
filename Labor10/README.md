@@ -11,7 +11,7 @@ Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](
 ### Előkészítés
 
 - Hozzünk létre egy üres munkakönyvtárat!
-- Töltsük le a [kiinduló állományokat tartalmazó zip](https://github.com/VIAUAC00/Web-labor/tree/master/Labor10/downloads/10-Labor-kiindulo.zip) fájlt majd csomagoljuk ki a létrehozott könyvtárba!
+- Töltsük le a [kiinduló állományokat tartalmazó zip](https://github.com/VIAUAC00/Web-labor/tree/master/Labor10/downloads/10-Labor-kiindulo.zip) fájlt, majd csomagoljuk ki a létrehozott könyvtárba!
 - Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -> Open Folder)!
 - Indítsuk el a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból a http-server-t: `http-server`
 - Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!
@@ -42,9 +42,9 @@ Nézzük meg, hogy az oldal head-jében milyen állományokat és honnan töltü
     <title>MyBlog</title>
 
     <!-- Bootstrap linkelése CDN-ről -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Font awesome 5 CDN-ről (solid, regular és brand is) -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" crossorigin="anonymous">
     <!-- Google font (Muli) letöltése -->
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <!-- Saját CSS -->
@@ -61,32 +61,31 @@ Figyeljük meg, hogy négy különbőző CSS állományt töltünk be, egy kivé
 > A CSS és JS könyvtárakat többféleképpen is be tudjuk tölteni:
 > - CDN-ről, publikus webről tölti le a CSS fájlt, amit most is használunk,
 > - van lehetőségünk csomagkezelőt (npm, bower) használni letöltésre és magunk kiszolgálni a fájlt,
-> - akár saját magunk kézzel is letölthetjük a megfelelő fájlokat. Ebben az esetben is a saját webszerverünk szolgálja ki ezeket a fájlokat.
+> - akár saját magunk kézzel is letölthetjük a megfelelő fájlokat, ebben az esetben is a saját webszerverünk szolgálja ki ezeket a fájlokat.
 
 Ha az alkalmazás elrendezését szeretnénk megadni, elég sok boilerplate-jellegű CSS kódot kellene írnunk. A Bootstrap megközelítése, hogy a gyakori elrendezési lehetőségeket és stílusozási lehetőségeket készen és konfigurálhatóan adja nekünk.
 
-A megvalósítanó oldal az alábbi főbb részekből áll
-- Navigációs sáv
-- Oldal központi eleme, mai blog bejegyzések listáját tartalmazza
-- Lábléc
-
+A megvalósítanó oldal az alábbi főbb részekből áll:
+- navigációs sáv,
+- oldal központi eleme, ami blogbejegyzések listáját tartalmazza,
+- lábléc.
 
 ### Navigációs sáv
 
 A navigációs sáv felépítése legyen a következő (a HTML váz szerepel a kiinuló index.html-ben):
-- Bal szélen szerepeljen egy a BME AUT logo, ami az `assets/img/logo-bme-aut.png` útvonalon érhető el.
-- Ezt követően a két navigációs link (Home, Register)
-- A sáv jobb szélén pedig egy keresés szövegdoboz és egy Search feliratú gomb legyen
+- bal szélen szerepeljen egy a BME AUT logo, ami az `assets/img/logo-bme-aut.png` útvonalon érhető el,
+- ezt követően a két navigációs link: Home és Registration,
+- a sáv jobb szélén pedig egy keresés szövegdoboz és egy Search feliratú gomb legyen.
  
 A navigációs sáv az alábbiak szerint nézzen ki:
 - Magas felbontáson
 > ![Fejléc](./assets/header.png)
 
 Mivel a navigáció is egy gyakori probléma, a Bootstrap ad rá kész komponenst, a **navbar**t.
-A megvalósítás előtt nézzük meg, hogyan épül fel a [Bootstrap navbar](http://getbootstrap.com/docs/4.1/components/navbar/) komponense. Az oldalon találunk kész HTML vázakat is, amiből ha a megfelelőt kiválasztva bemásoljuk a saját kódunkba, apró módosításokkal el tudjuk érni a megfelelő kinézetet.
+A megvalósítás előtt nézzük meg, hogyan épül fel a [Bootstrap navbar](http://getbootstrap.com/docs/4.5/components/navbar/) komponense. Az oldalon találunk kész HTML vázakat is, amiből ha a megfelelőt kiválasztva bemásoljuk a saját kódunkba, apró módosításokkal el tudjuk érni a megfelelő kinézetet.
 
 A legfontosabb osztályok, amire a navbar épít:
-- `.navbar-brand` cég logo megjelenítésére.
+- `.navbar-brand` brand logo megjelenítésére.
 - `.navbar-nav` teljes magasságú egyszerű navigációs elemek megadásához (a legördülő lista is támogatott).
 - `.navbar-toggler` mobil nézeten el lehessen rejteni a linkeket egy hamburger menü alá.
 - `.form-inline` ha valamilyen form controlt szeretnénk a navigációs sávba tenni.
@@ -94,7 +93,7 @@ A legfontosabb osztályok, amire a navbar épít:
 - `.collapse.navbar-collapse` elemek csoportos elrejtésére használható.
 
 > Érdemes keresni a dokumentációban egy ahhoz hasonló megjelenést amire nekünk is szükségünk van és az ott található HTML kódot átalakítani a saját igényeinknek megfelelően.
-> - A sötét hátterú navbart használjuk `navbar-dark` osztályt.
+> - A sötét hátterú navbarhoz használjuk `navbar-dark` és `bg-dark` osztályokat.
 
 ---
 
@@ -110,7 +109,7 @@ Az elkészült navigációs sávról illesszen be egy képernyőképet!
 
 A navigációt is reszponzívan kell megvalósítani, tehát ha átmérezezzük az oldalt, akkor a navigációs menüpontokat el kell rejteni és egy úgynevezett hamburger menüt kell megjeleníteni helyette, amire kattintva megjelennek a menüpontok.
 
-Még mielőtt nekiesnénk az egyedi megoldás kitalálására érdemes megnézni, hogy a Bootstrap támogatja ezt a funkcionalitást is, tehát csak a megfelelő HTML vázat kell kikeresni a [Bootstrap navbar](http://getbootstrap.com/docs/4.1/components/navbar/)  dokumentációjából és az alapján kiegészíteni a kódunkat. Tipp: `navbar-toggler`
+Még mielőtt nekiesnénk az egyedi megoldás kitalálására érdemes megnézni, hogy a Bootstrap támogatja ezt a funkcionalitást is, tehát csak a megfelelő HTML vázat kell kikeresni a [Bootstrap navbar](http://getbootstrap.com/docs/4.5/components/navbar/)  dokumentációjából és az alapján kiegészíteni a kódunkat. Tipp: `navbar-toggler`
 
 A kész oldalnak így kell kinéznie.
 - Mobil eszközön zárva.
@@ -144,7 +143,7 @@ A navigációs menüben a linkek fehér színűek, hiszen a Bootstrap erre áll�
 
 A navigáció után térjünk át a fő tartalmi elemre, a blog bejegyzésre. Először csak egy bejegyzést formázzunk meg. A blog post HTML váza már szerepel az index oldalon, ezt kell kiegészíteni a megfelelő Bootstrap osztályokkal és helyenként készíteni egy-egy CSS szabályt, amivel kiegészítjük a Bootstrap-es osztályokat.
 
-A megoldáshoz használjuk a [Bootstrap card](http://getbootstrap.com/docs/4.1/components/card/)-ját.
+A megoldáshoz használjuk a [Bootstrap card](http://getbootstrap.com/docs/4.5/components/card/)-ját.
 - Mivel majd több kártya kerül egymás mellé a szélességet a grid oszlopaihoz használt `col-x` segítségével adjuk meg.
 - A kép igazításához használjuk a `card-img-top` oszátly
 - A szöveges rész legyen a kártya törzse `card-body`
@@ -155,7 +154,7 @@ A megoldáshoz használjuk a [Bootstrap card](http://getbootstrap.com/docs/4.1/c
   - a háttérszín átlátszó,
   - a láblécben szereplő linkek legyenek szürkék és ha fölé visszük az egeret akkor zöldek, de ne legyen aláhúzva. Az ikonok mindig legyenek zöldek.
   - Tipp: A lábléchez érdemes egyedi CSS osztály(oka)t is definiálni.
-- Ügyeljen arra, hogy a margók és paddingok hasonlóak legyenek. Tipp: használja a `m-0`, `py-2`.... osztályokat. Részletesen a [Bootstrap spacing](http://getbootstrap.com/docs/4.1/utilities/spacing/) szekcióban lehet róla olvasni.
+- Ügyeljen arra, hogy a margók és paddingok hasonlóak legyenek. Tipp: használja a `m-0`, `py-2`.... osztályokat. Részletesen a [Bootstrap spacing](http://getbootstrap.com/docs/4.5/utilities/spacing/) szekcióban lehet róla olvasni.
 
 Az egyes blog bejegyzéseknek, az alábbi képen látható módon kell megjelennie:
 > ![kartya](./assets/onecard.png)
@@ -170,7 +169,7 @@ Az egyes blog bejegyzéseknek, az alábbi képen látható módon kell megjelenn
 
 ### Reszponzív blog bejegyzés lista
 
-Egészítse ki a HTML kódot úgy, hogy az oldalon összesen 6 blogbejegyzés jelenjen meg. Az egyes bejegyzések minden adata lehet azonos, csak a képeket cserélje le. A képeket az **assets/img** könyvtárban találja.
+Egészítse ki a HTML kódot úgy, hogy az oldalon összesen 6 blogbejegyzés jelenjen meg. Az egyes bejegyzések minden adata lehet azonos, csak a képeket cserélje le. A képeket az **assets/img** könyvtárban találja. Használja a Bootstrap által definiált [alapértelmezetten 12 hasábos grid rendszert](https://getbootstrap.com/docs/4.5/layout/grid/).
 
 Az oldalt úgy valósítsa meg, hogy magas felbontáson 3 hasábos legyen, közepesen 2, kicsin pedig 1 hasábos.
 
@@ -193,7 +192,7 @@ Az oldalt úgy valósítsa meg, hogy magas felbontáson 3 hasábos legyen, köze
 ### Oldal lábléc elkészítése
 
 - A lábléc elkészítésekor a footerben egyedi CSS osztályban adja meg, hogy fekete legyen a háttér és fehér a betűszín.
-- Ezen felül adjon meg megfelelő méretű paddingot, amihez használhajta a `p-4` CSS osztályt illetve annak egyéb változatait. Részletes leírás a [Bootstrap spacing](https://getbootstrap.com/docs/4.1/utilities/spacing/) fejezetben található.
+- Ezen felül adjon meg megfelelő méretű paddingot, amihez használhajta a `p-4` CSS osztályt illetve annak egyéb változatait. Részletes leírás a [Bootstrap spacing](https://getbootstrap.com/docs/4.5/utilities/spacing/) fejezetben található.
 - A copyright szöveg kerüljön balra, az ikonok pedig jobbra. Ehhez a flexboxot használja.
 - Ügyeljen arra, hogy az egyes ikonok mérete és távolsága is megfelelő legyen.
 
