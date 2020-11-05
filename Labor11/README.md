@@ -30,7 +30,9 @@ Az alkalmazásainkhoz dinamizmust (időbeni változást) szkripteléssel rendel�
 > - dinamikus típusosság és típuskonverzió,
 > - egyszálúság, event loop és aszinkronitás.
 
-Említésre méltó még, hogy a JavaScript (klasszikus értelemben véve) nem objektum-orientált, az osztályok koncepciója a nyelvben később jelent meg és nem minden böngészőben támogatott; a nyelv a **prototipikus öröklés** módszerét alkalmazza az objektumorientált megközelítéshez. Ezen kívül különös sajátosságai vannak, a `this` kulcsszó pl. nem az aktuális *objektumra*, hanem az aktuális *függvényre* mutat (kivétel az *arrow syntax*, ami a `this`-t az eredeti értéken hagyja).
+Említésre méltó még, hogy a JavaScript (klasszikus értelemben véve) nem objektum-orientált, az osztályok koncepciója a nyelvben később jelent meg; a nyelv a **prototipikus öröklés** módszerét alkalmazza az objektumorientált megközelítéshez. Ezen kívül különös sajátosságai vannak, a `this` kulcsszó pl. nem az aktuális *objektumra*, hanem az aktuális *függvényre* mutat (kivétel az *arrow syntax*, ami a `this`-t az eredeti értéken hagyja).
+
+> <i>Lábjegyzet</i>: az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
 
 ## Laborfeladatok
 
@@ -51,8 +53,8 @@ A kiinduló **index.html** tartalma legyen az alábbi:
 
 <head>
     <title>To-Do | Mobil- és webes szoftverek</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
 </head>
 
 <body class="container">
@@ -114,11 +116,11 @@ Láthatjuk, hogy a statikus oldal az alábbiakból tevődik össze:
 - a to-do elemek listája, az egyes elemek mellett az értelmezett műveletek,
 - új elem hozzáadása panel, melyen az új to-do bejegyzés szövegét kell megadnunk egy űrlapon.
 
-A `<body>` végén egy `<script>` a **todo.js** fájlra hivatkozik, így hozzuk azt is létre. A szkript az oldal lényegi tartalmának betöltődése után fut le, így nem kell majd várakoznunk a dokumentum teljes betöltődésére. A gyakorlatban ez változó, szokás a `<head>` elemben in betölteni JS fájlokat amikor kritikus, viszont az gátolja a HTML megjelenését, amíg a JS fájl le nem töltődik.
+A `<body>` végén egy `<script>` a **todo.js** fájlra hivatkozik, így hozzuk azt is létre. A szkript az oldal lényegi tartalmának betöltődése után fut le, így nem kell majd várakoznunk a dokumentum teljes betöltődésére (a gyakorlatban ez azt jelenti, hogy a szkript futásának kezdetén a DOM a HTML-nek megfelelő állapotban már létrejött). A gyakorlatban ez változó, szokás a `<head>` elemben in betölteni JS fájlokat amikor kritikus, viszont az gátolja a HTML megjelenését, amíg a JS fájl le nem töltődik.
 
-Az egyes to-do-k modelljére érdemes saját osztályt definiálnunk. A böngészők jelenleg nem támogatják teljes mértékben a `class` kulcsszót, így a "klasszikus" megoldást alkalmazzuk.
+Az egyes to-do-k modelljére érdemes saját osztályt definiálnunk. Ezt megtehetjük az ES6 óta használható (IE és Opera Mini kivételével támogatott) `class` kulcsszóval, de mi most a "klasszikus" megoldást alkalmazzuk.
 
-> JavaScriptben egy függvény konstruktorfüggvény, ha a `this` változón tulajdonságokat helyez el és nem tér vissza semmivel. Ekkor a `new` kulcsszóval meghívva a függvényt az konstruktorként funkcionál és a `this` értékét kapjuk vissza. Ezen felül az `instanceof` kulcsszóval megvizsgálhatjuk, hogy adott függvény konstruktora által készített objektumról van-e szó.
+> JavaScriptben egy függvény konstruktorfüggvény, ha a `this` változón tulajdonságokat helyez el és nem tér vissza semmivel. Ekkor a `new` kulcsszóval meghívva a függvényt az konstruktorként funkcionál és a `this` (tulajdonságokkal "felaggatott") értékét kapjuk vissza. Ezen felül az `instanceof` kulcsszóval megvizsgálhatjuk, hogy egy adott függvény konstruktora által készített objektumról van-e szó, tehát <i>szinte</i> már osztálypéldányként kezelhetjük az objektumot.
 
 A fülek lehetséges állapotai az "all", "active", "inactive" és "done", az "all" kivételével ezeket az állapotokat veheti fel egy to-do elem is. 
 
@@ -333,7 +335,7 @@ var filtered = todos.filter(function(todo){ return todo.state === currentTab || 
 filtered.forEach(function (todo) { // ...
 
 ```
-> A legtöbb böngészőben már használható az *arrow syntax*, ami amellett, hogy jelentősen rövidebb kódot eredményez, a `this` működését is "feljavítja": igazából a this értékét nem változtatja meg, mint minden függvény, hanem a körülötte levő értékén hagyja. A fenti kód *arrow syntax*-szal és egy kis fényezéssel, erősen funkcionális megközelítésben az alábbi lehet:
+> A legtöbb böngészőben már használható az *arrow syntax*, ami amellett, hogy jelentősen rövidebb kódot eredményez, a `this` működését is "feljavítja": igazából a this értékét nem változtatja meg, mint minden függvény, hanem a körülötte levő értékén hagyja. A fenti kód *arrow syntax*-szal és egy kis fényezéssel (és optimalizálási hiányosságokkal), erősen funkcionális megközelítésben az alábbi lehet:
 > ``` JS
 > todos.filter(todo => ["all", todo.state].includes(currentTab)).forEach(todo => {
 > ```
