@@ -399,7 +399,7 @@ Az előadáson elhangzottak gyakorlásaként állítson össze egy űrlapot, mel
 - Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns
 mezőbe (használja az `id` és `for` attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!
 - Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi a /postform.html URL-re, ahol egy egyszerű
-oldal jelenjen meg a kérés hatására!
+oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!
 - Készítsen képernyőképet tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba 
 található!
 - Demonstrálja Fiddlerrel és a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET és POST igék 
