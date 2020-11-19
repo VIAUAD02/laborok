@@ -21,16 +21,16 @@ Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](
 >   - `.show()`, `.hide()`, `.toggle()`: az illesztett elemeket megjeleníti vagy elrejti azáltal, hogy az elemre inline `display: none` stílust helyezi,
 >   - `.append(e)`, `.appendTo(e)`, `.before(e)`, `.after(e)`, az elemhez/elé/után szúr be újabb elemeket (jQuery szelektorral elért elemeket, DOM elemeket vagy HTML tartalmat),
 >   - `.attr()`: gyakori, hogy egy függvény getter-setterként működik, ilyen az attr is. Ha egy paramétert adunk át, az adott attribútum értékét kapjuk vissza, ha kettőt, a második paraméter az első néven adott attribútum értéke lesz (minden illesztett elemre).
->   - `.click()`, `.submit()` stb.: az adott JavaScript események elsütése (paraméter nélkül) vagy feliratkozás az eseményre (callback megadásával) az illesztett elemeken.
->   - `.on()`: eseménykezelő feliratkoztatása az adott névvel. Két paraméter esetén ha a második paraméter a callback, úgy az hívódik meg az adott elemen; ha a callback előtt egy szelektort is megadunk, az "élő" feliratkozás lesz az illesztett elemen belüli leszármazott gyerekekre. Párja az `.off()`, amellyel eseménykezelőt iratkoztathatunk le, ezáltal elkerülve a memóriaszivárgást.
->   - `.data(name)`: a DOM elem data-{name} attribútumában szereplő érték beállítására és lekérdezésére használhatjuk. A lekérdezés gyakorlatilag ekvivalens azzal, mintha az alábbit használnánk: `.attr("data-"+name").val()`. Emlékeztetőként, a CSS-ben attribútum alapján lekérdezni elemet az alábbi módon tudunk: `$("elem[data-my-value='value']")`. A `data-` attribútumok tetszőleges kulcs-érték párok tárolására szolgálnak a DOM-ban.
+>   - `.on()`: eseménykezelő feliratkoztatása az adott névvel. Két paraméter esetén ha a második paraméter a callback, úgy az hívódik meg az adott elemen; ha a callback előtt egy szelektort is megadunk, az "élő" feliratkozás lesz az illesztett elemen belüli leszármazott gyerekekre. Párja az `.off()`, amellyel eseménykezelőt iratkoztathatunk le, ezáltal elkerülve az esetleges memóriaszivárgást.
+>     - `.click()`, `.submit()` stb.: az adott JavaScript események elsütése (paraméter nélkül) vagy feliratkozás az eseményre (callback megadásával) az illesztett elemeken. Elavult, ehelyett a fentebb leírt `.on()`-t használjuk feliratkozásra, a `.trigger()`-t pedig elsütésre.
+>   - `.data(name)`: a DOM elem data-{name} attribútumában szereplő érték beállítására és lekérdezésére használhatjuk. A lekérdezés gyakorlatilag ekvivalens azzal, mintha az alábbit használnánk: `.attr("data-name").val()`. Emlékeztetőként, a CSS-ben attribútum alapján lekérdezni elemet az alábbi módon tudunk: `$("elem[data-my-value='value']")`. A `data-` attribútumok tetszőleges kulcs-érték párok tárolására szolgálnak a DOM-ban.
 >   - Nagyon gyakori, hogy az egyes elemeken végzett műveleteket láncoljuk az alábbihoz hasonló módon: `$(".button").before(spinner).attr("disabled", true)`.
 > - `$(function () { /*...*/ })`: az így megadott függvény a dokumentum betöltődését követően fut le. Ekvivalens a `$(document).ready(function () { /*...*/} )` hívással.
 > - `$.ajax()`, `$.get()`, `$.post()` stb.: a globális jQuery objektumon elérhető statikus függvények függetlenek az egyes DOM elemektől, ezek pl. aszinkron AJAX kérések végrehajtására használhatók.
 > 
 > ### jQuery pluginek
 > 
-> A jQuery kiegészítéseképpen egyszerűbb és bonyolultabb plugineket használhatunk. Ezek a pluginek jellemzően a jQuery objektumra újabb függvényeket helyeznek el, amelyek segítségével a kiegészítő funkcionalitás elérhető. A Boostrap kétféle módon teszi elérhetővé a plugineket: data-attibútumok formájában és a jQuery API-n keresztül. A fontosabbak pl.: `.modal()` `.dropdown()`, `.tooltip()`, `.alert()`, `.collapse()`. [Bővebben a Bootstrap jQuery pluginekről itt olvashat.](https://getbootstrap.com/docs/4.1/javascript/)
+> A jQuery kiegészítéseképpen egyszerűbb és bonyolultabb plugineket használhatunk. Ezek a pluginek jellemzően a jQuery objektumra újabb függvényeket helyeznek el, amelyek segítségével a kiegészítő funkcionalitás elérhető. A Boostrap kétféle módon teszi elérhetővé a plugineket: data-attibútumok formájában és a jQuery API-n keresztül. A fontosabbak pl.: `.modal()` `.dropdown()`, `.tooltip()`, `.alert()`, `.collapse()`. [Bővebben a Bootstrap jQuery pluginekről itt olvashat.](https://getbootstrap.com/docs/4.5/getting-started/introduction/#components)
 > 
 > Gyakran használt pluginokat ad még pl. a [jQuery UI](https://jqueryui.com/), amiben dátum- és időválasztó, dialógusablak, progressbar stb. "widgetek" találhatók.
 
@@ -52,7 +52,7 @@ Említésre méltó még, hogy TypeScript támogatással a JavaScript kódunkban
 
 Az alkalmazás kiinduló kódját megvizsgálva az alábbi fájlokat találjuk:
 - index.html: a kiinduló HTML. A fájlt a feladatok megoldásához nem szükséges módosítani. Ha a fájlban módosít, dokumentálja a módosítását!
-- node_modules mappa: az npm csomagkezelővel letöltött jQuery típusdefiníciós fájlok JavaScript IntelliSense támogatáshoz találhatók itt.
+- node_modules mappa: az npm csomagkezelővel letöltött jQuery típusdefiníciós fájlok JavaScript (TypeScript) IntelliSense támogatáshoz találhatók itt.
 - triviaut.js: egy üres JavaScript fájl, amely az index.html `<head>` részében került hivatkozásra. Az alkalmazás forráskódját ebbe a fájlba szükséges helyezni.
 - start-game-form-contents.html: egy részleges HTML fájl, amelyben a játék indításához szükséges opciók leírása található.
 - opentriviadb-logo.png: értelemszerűen a fentebb hivatkozott API logója.
@@ -60,17 +60,12 @@ Az alkalmazás kiinduló kódját megvizsgálva az alábbi fájlokat találjuk:
 Vizsgáljuk meg az index.html tartalmát!
 
 A fájlban látható, hogy be vannak hivatkozva az alábbiak:
+- a saját JavaScript fájlunk, a `triviaut.js`,
 - a Bootstrap CSS és JavaScript fájljai,
 - a FontAwesome ikonkészlet CSS fájlja,
-- a jQuery osztálykönyvtár JS fájlja,
-- a saját JavaScript fájlunk, a `triviaut.js`.
+- a jQuery osztálykönyvtár JS fájlja.
 
-A JavaScript fájlok sorrendje kiemelten fontos! A betöltődés sorrendje implikálja a függőségi sorrendet is, ugyanis végrehajtásuk a böngészőben alapértelmezetten az importálás sorrendjével megegyezik. Ha a saját fájlunkat előbb hivatkoznánk, mint a jQuery-t, úgy az ott futó kód `$` változóra történő (szinkron) hivatkozása hibát dobna:
-```
-'$' is not defined
-```
-
-Hasonlóképpen fontos továbbá, hogy a JavaScript fájl betöltődésekor az _addig a pontig_ elkészült DOM-on képes manipulációt végezni.
+Fontos, hogy a JavaScript fájl betöltődésekor az _addig a pontig_ elkészült DOM-on képes manipulációt végezni.
 
 Ezen kívül láthatjuk, hogy a HTML fájlunkban egy `<header>` és egy `<main>` elem található. A `<header>` tartalma számunkra statikus. A `<main>`-ben három db `<section>` elemet láthatunk az alábbi ID-kkal ellátva: 
 - `lets-play-section`: a játék indítására (az opciók megjelenítésére) szánt gomb, 
@@ -92,9 +87,19 @@ Teszteljük a távoli API-t! A `triviaut.js` fájlba írjuk az alábbi kódot:
 ``` JavaScript
 $.get("https://opentdb.com/api.php?amount=10").then(function (q) {
     console.log(q);
-    $("body").text(JSON.stringify(q));
+    $("body").text(JSON.stringify(q, '\n'));
 });
 ```
+
+Ha mindent jól csináltunk, az alábbi (vagy nagyon hasonló) hibát látjuk a konzolon az oldal betöltődését követően:
+
+```
+Uncaught ReferenceError: $ is not defined
+```
+
+A JavaScript fájlok betöltési sorrendje kiemelten fontos! A betöltődés sorrendje implikálja a függőségi sorrendet is, ugyanis végrehajtásuk a böngészőben alapértelmezetten az importálás sorrendjével megegyezik. Ha a saját fájlunkat előbb hivatkozzuk, mint a jQuery-t, úgy az ott futó kód `$` változóra történő (szinkron) hivatkozása hibát dob (mert ekkor még nem futott le a jQuery `$` objektumot definiáló kód). 
+
+A megoldás, hogy át kell mozgatnunk a saját JS fájlunk hivatkozását a HTML `<head>` elemben a jQuery hivatkozás után (érdemes minden külső függőség hivatkozása utánra, tehát a `<head>` végére tenni).
 
 A `$.get` statikus függvény a `$.ajax` hívás rövidítése, ahol a HTTP ige fixen a HTTP GET. Visszatérése egy Promise objektum, melyre a `.then` hívással iratkozunk fel, ami 3 callback paramétert vár (mindhárom opcionális): a sikeres teljesülést, a hibaágat, és mindet.
 
@@ -120,8 +125,8 @@ Az alábbi formátumú válasz érkezik a távoli API-tól:
 Indítsuk el a játékot! A triviaut.js fájl tartalmát cseréljük le az alábbira:
 
 ``` JS
-$("#lets-play-button").click(function (e) {
-    $(e).toggle();
+$("#lets-play-button").on("click", function (e) {
+    $(e.target).toggle();
     $("#start-game-form").toggle();
 });
 ```
@@ -154,7 +159,7 @@ A kezdeti működésünket tehát elérhetjük az alábbi módon:
 
 ``` JS
 $(() => {
-    $("#lets-play-button").click(() => {
+    $("#lets-play-button").on("click", () => {
         $("#lets-play-section, #start-game-form-section").toggle();
     });
 });
@@ -188,14 +193,15 @@ function getNextQuestion() { }
 
 //...
 $.get("start-game-form-contents.html").then(html => $("#start-game-form").html(html)
-.submit(e => { // közvetlenül a HTML beszúrása után lácolhatjuk a 'submit' eseményre történő feliratkozást
+.on("submit", e => { // közvetlenül a HTML beszúrása után lácolhatjuk a 'submit' eseményre történő feliratkozást
     e.preventDefault(); // a böngésző alapértelmezett működését megállítjuk, amivel újratöltené az oldalt
-    $("#lets-play-button").attr("disabled", true); // a Let's Play! gombot letiltjuk, hogy ne lehessen újra API kérést indítani, amíg meg nem érkezett a válasz
+    $("#start-game-form button[type='submit']").attr("disabled", true); // a Go! gombot letiltjuk, hogy ne lehessen újra API kérést indítani, amíg meg nem érkezett a válasz
     $.get("https://opentdb.com/api.php?type=multiple&encode=base64&amount=" + $("[name='trivia_amount']").val()).then(data => {
         remainingQuestions = data.results;
         console.log(remainingQuestions);
         currentQuestion = 0;
         $("#total-questions").text(remainingQuestions.length);
+        $("#start-game-form button[type='submit']").removeAttr("disabled");
         getNextQuestion();
     });
 }));
@@ -260,7 +266,7 @@ A tanultak gyakorlásaképp készítse el az alábbi funkciókat:
 - A helyes válaszok számát tartsa nyilván!
 - Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott!
 - A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!
-- A játék befejeztével lehessen újratöltés nélkül új játékot indítani!
+- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani!
 
 ---
 
