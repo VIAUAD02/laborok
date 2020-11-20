@@ -6,21 +6,23 @@
 
 Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
 
+A jelenlegi laborhoz telepítve kell lennie a [.NET Core **SDK**](https://dotnet.microsoft.com/download/dotnet/5.0) legalább 5.0-s verziójának is a gépre (ez Visual Studio 2019 16.8-as verzióval is települ).
+
 Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor13-jegyzokonyv.docx) letölthető.
 
 ### Modern JavaScript funkciók
 
-A JavaScript nyelv napjainkban rohamosan fejlődik, viszont a böngészőgyártóknak lehetőségük sincs tartani az iramot az ECMAScript szabványosítási folyamattal. A manapság támogatandó böngészők legtöbbje szinte az összes ECMAScript 5 funkciót támogatja, ES6-tól viszont már nagy a támogatottsági töredezettség.
+A JavaScript nyelv napjainkban rohamosan (talán lassan csökkenő ütemben) fejlődik, de a böngészőgyártók lassan felvették az iramot ECMAScript szabványosítási folyamattal. A manapság támogatandó böngészők legtöbbje szinte az összes ECMAScript 5 és 6 funkciót támogatja. Az Internet Explorer egy elavult, manapság kerülendő böngésző, ami támogat bizonyos ES5 funkciókat, de új funkciófrissítéseket nem kap. Kevés érv maradt a használata mellett, ugyanis a Microsoft az UWP alapú Edge böngészőről áttért a Chromium motorra épülő Edge-re, ami még Windows 7 OS-en is elérhető. Kirívó eset gyakran néhány kevésbé elterjedt mobil böngésző (pl. Opera Mini), valamint a Safari iOS és Mac verziói is hagynak némi kívánni valót maguk után (a különféle JavaScript funkciók támogatása terén). Ezzel azt mondhatjuk, hogy modern JavaScript alapú alkalmazások fejlesztésekor elegendő az ún. "örökzöld" böngészőket támogatnunk, amik naprakészen tartják magukat folyamatos frissítésekkel.
 
-Az új nyelvi funkciók jelentős része megfeleltethető korábban alkalmazott programozási mintáknak, az ES6 funkciók kb. 99%-a "lefordítható" ES5-re, melyet a szükséges böngészők (még az IE10 is) támogatnak. Az új funkciók használatához a kódot írhatjuk ES6-ban, sőt, a mindig aktuális, legfrissebb ES szabványban is (ez jelenleg ES8 / ES2017) is, a [**babel**](https://babeljs.io/) fordító a "modern" forrásunkat képes átfordítani kompatibilis JavaScriptté.
+Az új nyelvi funkciók jelentős része megfeleltethető korábban alkalmazott programozási mintáknak, ezáltal az újabb funkciókat (új ECMAScript verziókban megjelenő szabványos elemeket) lefordíthatjuk szabványos korábbi ES verzióra (jellemzően ES5-re). A [**babel**](https://babeljs.io/) fordító a "modern" forrásunkat képes átfordítani erősen kompatibilis JavaScriptté. Említésre méltó még a [TypeScript](https://www.typescriptlang.org/), ami a JavaScript nyelvre épül, kibővítve azt különféle funkciókkal, elsősrban a típusinformációk rendszerével.
 
 Fontosabb modern JS képességek:
-- **arrow function**: `function (param) { return param + 1; }` helyett írhatjuk a rövidebb `param => param + 1;` kódot. Ezen felül az arrow function nem rendel külön értéket a `this` változónak, így a this ilyen esetekben a **külső** függvényre mutat.
-- **string interpolation**: a string interpoláció template-ezést jelent, a string-ben különböző placeholder-eket helyezhetünk el, amelyek kiértékelődnek: 
+- **arrow function**: `function (param) { return param + 1; }` helyett írhatjuk a rövidebb `param => param + 1;` kódot. Ezen felül az arrow function nem rendel külön értéket a `this` változónak, így a this ilyen esetekben a **külső** függvényre mutat (a függvényen belül ugyanaz a `this`, mint a hívó fél számára).
+- **string interpolation**: a string interpoláció sablonozást, "template-ezést" jelent, a string-ben különböző helyőrzőket helyezhetünk el, amelyek kiértékelődnek: 
     ``` JS 
     `Hello, I'm ${this.getName()}!`
     ```
-- **const** és **let**: a `var` "univerzális" változódeklaráció helyett érdemesebb használni a `let` és `const` kulcsszavakat: előbbi változtathat értéket, utóbbi pedig nem. Előnyük, hogy valóban blokkszintűek, a `var` képes volt blokkok között is érvényesülni.
+- **const** és **let**: a `var` "univerzális" változódeklaráció helyett érdemesebb használni a `let` és `const` kulcsszavakat: előbbi változtathat értéket, utóbbi pedig nem. Előnyük, hogy valóban blokkszintűek, a `var` képes blokkok között is érvényesülni (sajnos).
 - **class**: használhatjuk az objektum-orientált class kulcsszót, amelyet korábban címkézetlen, közönséges konstruktorfüggvényekkel próbáltunk körülírni:
     ``` JS
     class Dog {
@@ -41,18 +43,24 @@ Fontosabb modern JS képességek:
     ``` JS
     dog.js:
     -------
-    export class Dog { /* ... */ }
+    export class Dog { 
+        bark() => console.log(`Woof! I'm ${this.name}!`)
+    }
 
     barks.js:
     ---------
     import { Dog } from './dog';
 
-    new Dog("Spot").bark();
+    export function makeNewDogAndBark(name) {
+        const dog = new Dog(name);
+        dog.bark();
+        return dog;
+    }
     ```
 
-> A [TypeScript](https://www.typescriptlang.org/) nyelv a fenti fordítási folyamatot annyival egészíti ki, hogy fordítási időben különféle vizsgálatokat végez a kódon, így a hibáink akár már fordítási időben is kiderülhetnek. Elsősorban ehhez típusvizsgálatokat és statikus kódanalízist hajt végre.
-
-A [Webpack](https://webpack.js.org/) egy modern "modulcsomagoló". A JavaScript fájljainkat érdemes külön tartani, hogy ne többtízezer soros kódfájljaink legyenek, hanem minden a saját helyén legyen - a böngészőben sok fájlt letölteni pedig még HTTP/2-vel sem optimálisabb, mintha egy nagy fájlt töltenénk le. Webpack segítségével többek között a JS fájljainkat minifikálni tudjuk, össze tudjuk őket csomagolni kevesebb fájllá, valamint különféle plusz funkciókat tudunk pluginekkel és betöltőkkel az alkalmazásunk terjesztési folyamatába ékelni, pl. source map fájlokat, transpilereket vagy kép-optimalizálókat használni. Manapság gyakorta használt funkciója a *Hot Module Replacement (HMR)*, amely bármiféle újraindítás nélkül, amikor a forrásfájlunk módosul, értesítő a böngészőt a változásról és azonnal az új kód töltődik be (frissíteni sem szükséges a böngészőt).
+> A [TypeScript](https://www.typescriptlang.org/) nyelv a fenti fordítási folyamatot annyival egészíti ki, hogy fordítási időben különféle vizsgálatokat végez a kódon, így a hibáink akár már fordítási időben is kiderülhetnek. Elsősorban ehhez típusvizsgálatokat és statikus kódanalízist hajt végre. A VS Code az analízist TypeScript segítségével a normál JavaScript fájlokon is elvégzi, ezért kapunk IntelliSense-t, sőt, ezért jelennek meg esetenként változók, paraméterek típusai is a segítségben.
+>
+> A [Webpack](https://webpack.js.org/) egy modern "modulcsomagoló". A JavaScript fájljainkat érdemes külön tartani, hogy ne többtízezer soros kódfájljaink legyenek, hanem minden a saját helyén legyen - a böngészőben sok fájlt letölteni pedig még HTTP/2-vel sem optimálisabb, mintha egy nagy fájlt töltenénk le. Webpack segítségével többek között a JS fájljainkat minifikálni tudjuk, össze tudjuk őket csomagolni kevesebb fájllá, valamint különféle plusz funkciókat tudunk pluginekkel és betöltőkkel az alkalmazásunk terjesztési folyamatába ékelni, pl. source map fájlokat, transpilereket vagy kép-optimalizálókat használni. Manapság gyakorta használt funkciója a *Hot Module Replacement (HMR)*, amely bármiféle újraindítás nélkül, amikor a forrásfájlunk módosul, értesíti a böngészőt a változásról és azonnal az új kód töltődik be (frissíteni sem szükséges a böngészőt). Gyakran a Webpacket valamilyen magasabb szintű keretrendszer részeként (pl. Angular) használjuk, előlünk el van fedve, de használhatjuk kézzel is. Hátránya, hogy a konfiguráció gyakran nagyon bonyolult, a dokumentációja pedig nem a legjobb minőségű.
 
 ### Előkészítés
 
@@ -65,22 +73,22 @@ git clone https://github.com/VIAUAC00/labor13-start.git
 cd labor13-start
 npm install
 dotnet restore
-dotnet run
+dotnet watch run
 ```
 
 > Az `npm install` parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a jQuery-t és Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.
 > 
-> A `dotnet restore` parancs a szerveroldali .NET függőségeket tölti le. A `dotnet run` parancs elindítja a szerveralkalmazást.
+> A `dotnet restore` parancs a szerveroldali .NET függőségeket tölti le. A `dotnet watch run` parancs elindítja a szerveralkalmazást, majd újrafordítja és újraindítja, amikor változást detektál és értesíti a kapcsolódott böngészőpéldányt, hogy változás volt, ami frissíti magát. Utóbbi funkció (hot reload) nem mindig működik hibátlanul, ezért érdemes továbbra is figyelni, hogy a változásaink érvényre jutottak-e, esetleg kézzel frissíteni az oldalt. Fontos, hogy a webpack a .NET fordítás előtt fut, ezért ha fordítási hibánk van, akkor azt a `.\node_modules\.bin\webpack` parancs kiadásával tudjuk ellenőrizni.
 > 
-> Megj.: Mivel ez egy .NET-es projekt akár a Visual Studio 2019-cel is megnyithattuk volna a solution-t, sőt ez a preferált, ha a szerver oldali kódot szeretnénk módosítani majd.
+> <i>Megj.: Mivel ez egy .NET-es projekt, akár a Visual Studio 2019-cel is megnyithattuk volna a solution-t, sőt, ez lehet a preferált, ha a szerver oldali kódot szeretnénk majd módosítani. Ha valaki kényelmesen mozog a Visual Studio-ban, használja a labor során azt nyugodtan VS Code helyett. A VS Code gyakrabban használt kliens oldali fejlesztéshez, míg a "nagy" Visual Studio kényelmesebb a szerver oldalra.</i>
 
-Az alkalmazás indulását követően ha új JS fájlokat hozunk létre és hivatkozzuk őket, a Webpack HMR ezeket a fájlokat automatikusan frissíti a böngészőben. Ettől függetlenül előfordulhat, hogy a kliensoldalt újra kell indítanunk, ekkor továbbra is szükséges a böngészőben frissítenünk F5-tel.
+Az alkalmazás indulását követően, ha új JS fájlokat hozunk létre és hivatkozzuk őket, a Webpack HMR ezeket a fájlokat automatikusan frissíti a böngészőben. Ettől függetlenül előfordulhat, hogy a kliens oldalt újra kell indítanunk, ekkor továbbra is szükséges a böngészőben frissítenünk F5-tel.
 
 Elegendő egyetlen fájlt referálnunk a HTML-ben, ez a guessgame.js névre hallgat. Ez az összecsomagolt, kliens oldali JavaScript alkalmazásunk.
 
 A kliens oldali kód a ClientApp mappában lesz található. **Az alkalmazás belépési pontja a ClientApp/client-start.js fájl.**
 
-A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: **egy objektum komponens, ha megjelenik a felületen a reprezentációja**, képes kommunikálni más objektumokkal és komponensekkel, és lehet állapota.
+A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: **egy objektum komponens, ha megjelenik a felületen a reprezentációja**, képes kommunikálni más objektumokkal és komponensekkel, ezen felül lehet állapota (mezői, tulajdonságai, amiket karban tart).
 
 ---
 
@@ -155,7 +163,7 @@ ClientApp\player.js:
 export class Player {
     constructor() {
         this.onNameSet = new Promise((resolve, reject) => {
-            $('#start-form').submit((e) => {
+            $('#start-form').on('submit', e => {
                 e.preventDefault();
                 const name = $('#name-input').val();
                 if (name && name.length) {
@@ -189,7 +197,7 @@ A Promise beteljesedik, amikor a `#start-form` űrlapot elküldik, és a `#name-
 
 Láthatjuk, hogy mindenki saját magát rendereli ki, amikor állapotváltozást észlel.
 
-Az egész összekötésére hozzuk létre a Game-et, ami magát a játékot reprezentálja. A Game már biztonsan ismer egy időzítőt és egy játékost. A kezdeti állapotot is ki tudja renderelni. Egy `components` property-ben fogjuk gyűjteni az egyes komponenseinket, és azoknak meg tudjuk hívni mindnek a `render` függvényét (amennyiben a komponensnek van `render` függvénye):
+Az egész összekötésére hozzuk létre a Game-et, ami magát a játékot reprezentálja. A Game már biztonsan ismer egy időzítőt és egy játékost. A játékos nevének változására iratkozzunk fel, ez fogja elindítani a játékot magát. A kezdeti állapotot is ki tudja renderelni. Egy `components` property-ben fogjuk gyűjteni az egyes komponenseinket, és azoknak meg tudjuk hívni mindnek a `render` függvényét (amennyiben a komponensnek van `render` függvénye):
 
 ``` JS
 
@@ -245,8 +253,6 @@ $(() => {
 
 ```
 
-A játékos nevének változására iratkozzunk fel, ez fogja elindítani a játékot magát.
-
 ---
 
 ### ![rep] Feladat 2 (1 pont)
@@ -283,7 +289,7 @@ export class Logic {
 
 A titkos számot a lokálisan, a `startGame` függvényben tárolt `secretNumber` változóban tároljuk. Ez a változó kívülről nem látható, az egyetlen függvény, aki ismeri ezt az értéket, a `secretGuess`. A `guess` "publikus" függvényt meghívva a logika értesíti a játékot a tipp helyességéről az `onGuessed` függvényen keresztül. A válasz késleltetve érkezik, a késleltetés 400ms.
 
-A játéknak szüksége lesz valamilyen mechanizmusra, hogy meg tudja jeleníteni a helyes/helytelen tippeket. Ezt egy Guesses osztály példányában fogjuk tárolni, ami a jobb oldalon megjelenő táblázatot fogja frissíteni szükség esetén.
+A játéknak szüksége lesz valamilyen mechanizmusra, hogy meg tudja jeleníteni a helyes/helytelen tippeket. Ezt egy Guesses osztály példányában fogjuk tárolni, ami a felületen megjelenő, tippeket tartalmazó táblázatot fogja frissíteni szükség esetén.
 
 ``` JS
 
@@ -329,7 +335,7 @@ ClientApp\guess.js
 
 export class Guess {
     constructor(game) {
-        $('#guess-form').submit(e => {
+        $('#guess-form').on('submit', e => {
             e.preventDefault();
             const value = parseInt($('#guess-input').val());
             if (!isNaN(value) && value > 0 && value <= 100)
@@ -529,11 +535,11 @@ A kliens oldalon tárolt logikát helyezze át a szerver oldalra!
 
 A szerveren fut egy WebSocket kiszolgáló, mely bármilyen `ws://localhost:port`-on futó kérésre válaszol.
 
-A szerverkapcsolatot az alábbi osztály reprezentálja (a portszámot szükséges lehet átírnia):
+A szerverkapcsolatot az alábbi osztály reprezentálja (a portszámot szükséges lehet átírnia a saját szerver portszámára):
 
 ``` JS
 
-ClientApp\serverserver.js:
+ClientApp\socketserver.js:
 --------------------------
 
 export class SocketServer {
@@ -549,8 +555,11 @@ export class SocketServer {
     }
 
     send(action, name, guess) {
-        if (this.open)
-            this.socket.send(JSON.stringify({ action, name, guess }));
+        if (this.open) {
+            const json = JSON.stringify({ action, name, guess });
+            console.log(`Sending message: ${json}`)
+            this.socket.send(json);
+        }
     }
 
     onRecieve(data) {
@@ -566,10 +575,15 @@ A szervert az alábbi kód mintájára tudja használni:
 
 const server = new SocketServer();
 
-server.send("setName", "John Doe");
+setTimeout(() => {
+    server.send("setName", "John Doe");
 
-let guess = 0;
-setInterval(() => server.send("guess", null, ++guess), 100);
+    server.send("startGame", "John Doe");
+
+    let guess = 0;
+
+    setInterval(() => server.send("guess", "John Doe", ++guess), 500);
+}, 2000);
 
 ```
 
