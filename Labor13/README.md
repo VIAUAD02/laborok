@@ -525,11 +525,9 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 
     - Illesszen be képernyőképet a felületen dinamikusan elhelyezett gombról!
 
-> Alternatív megoldásként elfogadjuk az iMSc feladat megoldását is, melyben WebSocket alapú kommunikációt kell megvalósítania!
-
 ---
 
-### iMSc feladat (1 pont)
+### iMSc feladat (2 pont)
 
 A kliens oldalon tárolt logikát helyezze át a szerver oldalra!
 
@@ -605,7 +603,7 @@ Valósítsa meg az alábbiakat:
 
 ---
 
-### ![rep] iMSc feladat (1 pont)
+### ![rep] iMSc feladat (2 pont)
     
     Másolja be a releváns kódrészleteket és rövid magyarázattal támassza alá megoldását!
 
