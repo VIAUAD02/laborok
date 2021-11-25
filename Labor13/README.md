@@ -80,7 +80,7 @@ dotnet restore
 dotnet watch run
 ```
 
-> Az `npm install` parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a jQuery-t és Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.
+> Az `npm install` parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.
 > 
 > A `dotnet restore` parancs a szerveroldali .NET függőségeket tölti le. A `dotnet watch run` parancs elindítja a szerveralkalmazást, majd újrafordítja és újraindítja, amikor változást detektál és értesíti a kapcsolódott böngészőpéldányt, hogy változás volt, ami frissíti magát. Utóbbi funkció (hot reload) nem mindig működik hibátlanul, ezért érdemes továbbra is figyelni, hogy a változásaink érvényre jutottak-e, esetleg kézzel frissíteni az oldalt. Fontos, hogy a webpack a .NET fordítás előtt fut, ezért ha fordítási hibánk van, akkor azt a `.\node_modules\.bin\webpack` parancs kiadásával tudjuk ellenőrizni.
 > 
@@ -95,11 +95,10 @@ dotnet watch run
 > - VAGY a launchSettings.json fájlban írjuk át a 'launchUrl' és 'applicationUrl' értékeket `https`-ről `http`-re, és szükség esetén engedélyezzük a böngésző beállításai között, hogy http-n is engedélyezze a kommunikációt,
 > - VAGY (ha a laborgépeken minden kötél szakad, de **figyelem**, így az utolsó, iMSc feladat nem végezhető el, ahhoz a szerverre mindenképp szükség van!), használjuk a Live Servert:
 >   1. *közvetlenül* a wwwroot mappát nyissuk meg VS Code-ban,
->   2. másoljuk át ide a node_modules-ból a `bootstrap\dist\css\bootstrap.css` és `jquery\dist\jquery.js` fájlokat,
+>   2. másoljuk át ide a node_modules-ból a `bootstrap\dist\css\bootstrap.css` fájlt,
 >   3. hozzunk létre egy-egy üres fájlt a wwwroot mappában `client-start.js` és `styles.css` néven,
 >   4. hivatkozzuk ezeket az index.html `<head>` elemében a `guessgame.js` hivatkozása __helyett__:
 >      ``` HTML
->      <script src="jquery.js"></script>
 >      <script src="client-start.js"></script>
 >      <link rel="stylesheet" href="bootstrap.css"/>
 >      <link rel="stylesheet" href="styles.css"/>
@@ -171,7 +170,7 @@ ClientApp\client-start.js:
 
 import { Timer } from './timer';
 
-$(() => {
+window.addEventListener('DOMContentLoaded', () => {
     const timer = new Timer();
     timer.start();
     setTimeout(() => timer.stop(), 3000);
@@ -189,27 +188,24 @@ ClientApp\player.js:
 export class Player {
     constructor() {
         this.onNameSet = new Promise((resolve, reject) => {
-            $('#start-form').on('submit', e => {
+            document.getElementById('start-form').addEventListener('submit', e => {
                 e.preventDefault();
-                const name = $('#name-input').val();
+                const name = document.getElementById('name-input').value;
                 if (name && name.length) {
                     resolve(name);
                 }
             });
         });
 
-        await this.onNameSet;
-        this.name = name;
-        this.render();
+        this.onNameSet.then(name => {
+            this.name = name;
+            this.render();
+        });
     }
 
     render() {
-        const elements = $('#name-input, #start-button')
-        if (this.name && this.name.length) {
-            elements.attr('disabled', 'disabled');
-        } else {
-            elements.removeAttr('disabled');
-        }
+        for (let element of [document.getElementById('name-input'), document.getElementById('start-button')])
+            element.disabled = !!(this.name && this.name.length);
     }
 }
 
@@ -271,7 +267,7 @@ ClientApp\client-start.js:
 
 import { Game } from './game';
 
-$(() => {
+window.addEventListener('DOMContentLoaded', () => {
     const game = new Game();
 });
 
@@ -338,14 +334,16 @@ export class Guesses {
     }
 
     render() {
-        $('#guesses tbody tr').remove();
-        $('#guesses tbody').append(this.guesses.map((g, i) => $(
-            `<tr>
-                <td>${i + 1}</td>
-                <td class='text-right'>${g.num}</td>
-                <td class='bg-${g.value === 'correct' ? 'success' : 'danger'}'>${g.value === 'correct' ? '!!!' : g.value === 'less' ? '&gt;' : '&lt;'}</td>
-            </tr>`
-        )).reverse());
+        for (let tr of Array.from(document.querySelectorAll('#guesses tbody tr')))
+            tr.remove();
+
+        for (let tr of (this.guesses.map((g, i) => 
+                `<tr>
+                    <td>${i + 1}</td>
+                    <td class='text-right'>${g.num}</td>
+                    <td class='bg-${g.value === 'correct' ? 'success' : 'danger'}'>${g.value === 'correct' ? '!!!' : g.value === 'less' ? '&gt;' : '&lt;'}</td>
+                </tr>`).reverse()))
+            document.querySelector('#guesses tbody').innerHTML += tr;
     }
 }
 
@@ -359,14 +357,14 @@ ClientApp\guess.js
 
 export class Guess {
     constructor(game) {
-        $('#guess-form').on('submit', e => {
+        document.getElementById('guess-form').addEventListener('submit', e => {
             e.preventDefault();
-            const value = parseInt($('#guess-input').val());
+            const value = parseInt(document.getElementById('guess-input').value);
             if (!isNaN(value) && value > 0 && value <= 100)
                 game.onGuessing(value);
-            $('#guess-form')[0].reset();
+            document.getElementById('guess-form').reset();
         });
-        $('#guess-form')[0].reset();
+        document.getElementById('guess-form').reset();
         this.setEnabled(false);
     }
 
@@ -376,12 +374,12 @@ export class Guess {
     }
 
     render() {
-        const elements = $('#guess-input, #guess-button')
+        for (let element of [document.getElementById('guess-input'), document.getElementById('guess-button')]) {
+            element.disabled = !this.enabled;
+        }
+
         if (!this.enabled) {
-            elements.attr('disabled', 'disabled');
-        } else {
-            elements.removeAttr('disabled');
-            $('#guess-input').focus();
+            document.getElementById('guess-input').focus();
         }
     }
 }
@@ -478,15 +476,16 @@ export class Toplist {
     }
 
     render() {
-        $('#toplist tbody tr').remove();
-        $('#toplist tbody').append(this.items.map((e, i) => $(
+        document.querySelector('#toplist tbody tr').remove();
+        for (let tr of (this.items.map((e, i) => $(
             `<tr>
                 <th>${i + 1}</th>
                 <td>${e.name}</td>
                 <td>${e.guesses}</td>
                 <td>${e.time}</td>
             </tr>`
-        )));
+        ))))
+            document.querySelector('#toplist tbody').innerHTML += tr;
     }
 }
 
