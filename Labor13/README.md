@@ -2,6 +2,10 @@
 
 [rep]: ./assets/rep.png "Dokumentálandó"
 
+## FONTOS!
+
+A labor végén beadandó a jegyzőkönyv PDF formátumban! Ügyeljen rá, hogy a ZIP fájlba artifakt és külső függőség ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj és node_modules mappák). A végső ZIP fájl várható mérete kb. 1-2 MB, az 5 MB-ot semmiképp nem haladhatja meg!
+
 ## Bevezetés
 
 Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
@@ -14,7 +18,7 @@ Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](
 
 A JavaScript nyelv napjainkban rohamosan (talán lassan csökkenő ütemben) fejlődik, de a böngészőgyártók lassan felvették az iramot ECMAScript szabványosítási folyamattal. A manapság támogatandó böngészők legtöbbje szinte az összes ECMAScript 5 és 6 funkciót támogatja. Az Internet Explorer egy elavult, manapság kerülendő böngésző, ami támogat bizonyos ES5 funkciókat, de új funkciófrissítéseket nem kap. Kevés érv maradt a használata mellett, ugyanis a Microsoft az UWP alapú Edge böngészőről áttért a Chromium motorra épülő Edge-re, ami még Windows 7 OS-en is elérhető. Kirívó eset gyakran néhány kevésbé elterjedt mobil böngésző (pl. Opera Mini), valamint a Safari iOS és Mac verziói is hagynak némi kívánni valót maguk után (a különféle JavaScript funkciók támogatása terén). Ezzel azt mondhatjuk, hogy modern JavaScript alapú alkalmazások fejlesztésekor elegendő az ún. "örökzöld" böngészőket támogatnunk, amik naprakészen tartják magukat folyamatos frissítésekkel.
 
-Az új nyelvi funkciók jelentős része megfeleltethető korábban alkalmazott programozási mintáknak, ezáltal az újabb funkciókat (új ECMAScript verziókban megjelenő szabványos elemeket) lefordíthatjuk szabványos korábbi ES verzióra (jellemzően ES5-re). A [**babel**](https://babeljs.io/) fordító a "modern" forrásunkat képes átfordítani erősen kompatibilis JavaScriptté. Említésre méltó még a [TypeScript](https://www.typescriptlang.org/), ami a JavaScript nyelvre épül, kibővítve azt különféle funkciókkal, elsősrban a típusinformációk rendszerével.
+Az új nyelvi funkciók jelentős része megfeleltethető korábban alkalmazott programozási mintáknak, ezáltal az újabb funkciókat (új ECMAScript verziókban megjelenő szabványos elemeket) lefordíthatjuk szabványos korábbi ES verzióra (jellemzően ES5-re). A [**babel**](https://babeljs.io/) fordító a "modern" forrásunkat képes átfordítani erősen kompatibilis JavaScriptté. Említésre méltó még a [TypeScript](https://www.typescriptlang.org/), ami a JavaScript nyelvre épül, kibővítve azt különféle funkciókkal, elsősorban a típusinformációk rendszerével.
 
 Fontosabb modern JS képességek:
 - **arrow function**: `function (param) { return param + 1; }` helyett írhatjuk a rövidebb `param => param + 1;` kódot. Ezen felül az arrow function nem rendel külön értéket a `this` változónak, így a this ilyen esetekben a **külső** függvényre mutat (a függvényen belül ugyanaz a `this`, mint a hívó fél számára).
@@ -60,7 +64,7 @@ Fontosabb modern JS képességek:
 
 > A [TypeScript](https://www.typescriptlang.org/) nyelv a fenti fordítási folyamatot annyival egészíti ki, hogy fordítási időben különféle vizsgálatokat végez a kódon, így a hibáink akár már fordítási időben is kiderülhetnek. Elsősorban ehhez típusvizsgálatokat és statikus kódanalízist hajt végre. A VS Code az analízist TypeScript segítségével a normál JavaScript fájlokon is elvégzi, ezért kapunk IntelliSense-t, sőt, ezért jelennek meg esetenként változók, paraméterek típusai is a segítségben.
 >
-> A [Webpack](https://webpack.js.org/) egy modern "modulcsomagoló". A JavaScript fájljainkat érdemes külön tartani, hogy ne többtízezer soros kódfájljaink legyenek, hanem minden a saját helyén legyen - a böngészőben sok fájlt letölteni pedig még HTTP/2-vel sem optimálisabb, mintha egy nagy fájlt töltenénk le. Webpack segítségével többek között a JS fájljainkat minifikálni tudjuk, össze tudjuk őket csomagolni kevesebb fájllá, valamint különféle plusz funkciókat tudunk pluginekkel és betöltőkkel az alkalmazásunk terjesztési folyamatába ékelni, pl. source map fájlokat, transpilereket vagy kép-optimalizálókat használni. Manapság gyakorta használt funkciója a *Hot Module Replacement (HMR)*, amely bármiféle újraindítás nélkül, amikor a forrásfájlunk módosul, értesíti a böngészőt a változásról és azonnal az új kód töltődik be (frissíteni sem szükséges a böngészőt). Gyakran a Webpacket valamilyen magasabb szintű keretrendszer részeként (pl. Angular) használjuk, előlünk el van fedve, de használhatjuk kézzel is. Hátránya, hogy a konfiguráció gyakran nagyon bonyolult, a dokumentációja pedig nem a legjobb minőségű.
+> A [Webpack](https://webpack.js.org/) egy "modulcsomagoló". A JavaScript fájljainkat érdemes külön tartani, hogy ne többtízezer soros kódfájljaink legyenek, hanem minden a saját helyén legyen - mivel a böngészőben sok fájlt letölteni pedig még HTTP/2-vel sem optimálisabb, mintha egy nagy fájlt töltenénk le. Webpack segítségével többek között a JS fájljainkat minifikálni tudjuk, össze tudjuk őket csomagolni kevesebb fájllá, valamint különféle plusz funkciókat tudunk pluginekkel és betöltőkkel az alkalmazásunk terjesztési folyamatába ékelni, pl. source map fájlokat, transpilereket vagy kép-optimalizálókat használni. Manapság gyakorta használt funkciója a *Hot Module Replacement (HMR)*, amely bármiféle újraindítás nélkül, amikor a forrásfájlunk módosul, értesíti a böngészőt a változásról és azonnal az új kód töltődik be (frissíteni sem szükséges a böngészőt). Gyakran a Webpacket valamilyen magasabb szintű keretrendszer részeként (pl. Angular) használjuk, előlünk el van fedve, de használhatjuk kézzel is. Hátránya, hogy a konfiguráció gyakran nagyon bonyolult, a dokumentációja pedig nem a legjobb minőségű.
 
 ### Előkészítés
 
@@ -82,6 +86,26 @@ dotnet watch run
 > 
 > <i>Megj.: Mivel ez egy .NET-es projekt, akár a Visual Studio 2019-cel is megnyithattuk volna a solution-t, sőt, ez lehet a preferált, ha a szerver oldali kódot szeretnénk majd módosítani. Ha valaki kényelmesen mozog a Visual Studio-ban, használja a labor során azt nyugodtan VS Code helyett. A VS Code gyakrabban használt kliens oldali fejlesztéshez, míg a "nagy" Visual Studio kényelmesebb a szerver oldalra.</i>
 
+> Ha nem érhető el az oldal a HTTPS végponton, próbáljuk meg az alábbiakat:
+> - [tanúsítvány probléma esetén](https://github.com/bmeaut/dotnet/blob/master/laborgep-issues.md) adjuk ki az alábbi parancsokat PowerShellben (pl. a VS Code beépített Terminalból) a projekt gyökérmappájából, ahol a .csproj fájl is található:
+>   ``` PowerShell
+>   Get-ChildItem Cert:\CurrentUser\My | Where-Object { $_.Subject -match 'localhost' } | Remove-Item
+>   dotnet dev-certs https -t
+>   ```
+> - VAGY a launchSettings.json fájlban írjuk át a 'launchUrl' és 'applicationUrl' értékeket `https`-ről `http`-re, és szükség esetén engedélyezzük a böngésző beállításai között, hogy http-n is engedélyezze a kommunikációt,
+> - VAGY (ha a laborgépeken minden kötél szakad, de **figyelem**, így az utolsó, iMSc feladat nem végezhető el, ahhoz a szerverre mindenképp szükség van!), használjuk a Live Servert:
+>   1. *közvetlenül* a wwwroot mappát nyissuk meg VS Code-ban,
+>   2. másoljuk át ide a node_modules-ból a `bootstrap\dist\css\bootstrap.css` és `jquery\dist\jquery.js` fájlokat,
+>   3. hozzunk létre egy-egy üres fájlt a wwwroot mappában `client-start.js` és `styles.css` néven,
+>   4. hivatkozzuk ezeket az index.html `<head>` elemében a `guessgame.js` hivatkozása __helyett__:
+>      ``` HTML
+>      <script src="jquery.js"></script>
+>      <script src="client-start.js"></script>
+>      <link rel="stylesheet" href="bootstrap.css"/>
+>      <link rel="stylesheet" href="styles.css"/>
+>   5. indítsuk el a Live Servert a VS Code-ból (a bal alsó sarokban levő "Go Live" vagy az F1 -> 'Open Live Server' lehetőséggel),
+>   6. a labor hátralevő részében ügyeljünk rá, hogy a ClientApp mappa helyett a wwwroot-ba dolgozzunk.
+
 Az alkalmazás indulását követően, ha új JS fájlokat hozunk létre és hivatkozzuk őket, a Webpack HMR ezeket a fájlokat automatikusan frissíti a böngészőben. Ettől függetlenül előfordulhat, hogy a kliens oldalt újra kell indítanunk, ekkor továbbra is szükséges a böngészőben frissítenünk F5-tel.
 
 Elegendő egyetlen fájlt referálnunk a HTML-ben, ez a guessgame.js névre hallgat. Ez az összecsomagolt, kliens oldali JavaScript alkalmazásunk.
@@ -89,6 +113,8 @@ Elegendő egyetlen fájlt referálnunk a HTML-ben, ez a guessgame.js névre hall
 A kliens oldali kód a ClientApp mappában lesz található. **Az alkalmazás belépési pontja a ClientApp/client-start.js fájl.**
 
 A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: **egy objektum komponens, ha megjelenik a felületen a reprezentációja**, képes kommunikálni más objektumokkal és komponensekkel, ezen felül lehet állapota (mezői, tulajdonságai, amiket karban tart).
+
+> A 2021. novemberben megjelent .NET 6-tal az itt alkalmazott megközelítés szerveroldali része jelentősen [egyszerűsödött](https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0#improved-single-page-app-spa-templates).
 
 ---
 
@@ -102,9 +128,9 @@ A megoldás során használjuk az objektumorientált megközelítést és a mode
 
 Az alkalmazásunknak szüksége lesz egy "gépre", aki majd kigondolja a számot. Az egyszerűség kedvéért most ez egy 1 és 100 közötti szám lesz, az érték nem konfigurálható. Szimuláljuk, hogy a "számítás" komplex, úgyhogy kis késleltetést viszünk majd abba, amíg a választ visszakapjuk a tippünkre.
 
-Az objektumaink, melyek a felületen is megjelennek, rendelkezni fognak egy `render()` függvénnyel, és lesz egy (az alkalmazás szempontjából) globális `render()` függvényünk, ami minden komponenst kirajzol a `render()` függvény meghívásával.
+Az objektumaink, melyek a felületen is megjelennek, rendelkezni fognak egy `render()` függvénnyel, és lesz egy (az alkalmazás szempontjából) globális `render()` függvényünk is, ami minden komponenst kirajzol azok `render()` függvényének meghívásával.
 
-Először készítsük el az időzítőt. Az időzítő a játék indulásakor elkezdi számolni a kliensen az eltelt időt. Más elemekről nem tud, önállóan működni képes, elindulni és megállni tud, el lehet tőle kérni formázottan az eltelt időt, és ki tudja rajzolni az eltelt időt a felületre. A komponens kódja így az alábbi:
+Először készítsük el az időzítőt! Az időzítő a játék indulásakor elkezdi számolni **a kliensen** az eltelt időt. Más elemekről nem tud, önállóan működni képes, elindulni és megállni tud, el lehet tőle kérni formázottan az eltelt időt, és ki tudja rajzolni az eltelt időt a felületre. A komponens kódja így az alábbi:
 
 ``` JS
 ClientApp\timer.js:
@@ -169,16 +195,12 @@ export class Player {
                 if (name && name.length) {
                     resolve(name);
                 }
-                else {
-                    reject();
-                }
             });
         });
 
-        this.onNameSet.then(name => {
-            this.name = name;
-            this.render();
-        });
+        await this.onNameSet;
+        this.name = name;
+        this.render();
     }
 
     render() {
@@ -194,6 +216,8 @@ export class Player {
 ```
 
 A Promise beteljesedik, amikor a `#start-form` űrlapot elküldik, és a `#name-input` értéke nem üres. Erre a Promise-re a játékos maga is feliratkozik, és sikeres beteljesedés esetén a `name` property-t beállítja magának. A `render()`-ben megvizsgálja, hogy van-e név, és ha van, a `disabled` attribútumokat megfelelően beállítja.
+
+> Használhatnánk a Promise bevárására az `await` kulcsszót is; ez viszont konstruktorban nem használható.
 
 Láthatjuk, hogy mindenki saját magát rendereli ki, amikor állapotváltozást észlel.
 
