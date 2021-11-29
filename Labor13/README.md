@@ -476,16 +476,14 @@ export class Toplist {
     }
 
     render() {
-        document.querySelector('#toplist tbody tr').remove();
-        for (let tr of (this.items.map((e, i) => $(
+        document.querySelector('#toplist tbody').innerHTML = this.items.map((e, i) => (
             `<tr>
                 <th>${i + 1}</th>
                 <td>${e.name}</td>
                 <td>${e.guesses}</td>
                 <td>${e.time}</td>
             </tr>`
-        ))))
-            document.querySelector('#toplist tbody').innerHTML += tr;
+        )).join("");
     }
 }
 
