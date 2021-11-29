@@ -2,6 +2,21 @@
 
 [rep]: ./assets/rep.png "Dokumentálandó"
 
+## FONTOS INFÓK 2021-22 ŐSZRE!
+
+A laborgépeken a .NET 5 SDK végső verziója van telepítve; mert csak a félév közben (2021. novemberben) jelent meg a .NET 6. A .NET 6-ban másképpen kezelendők az SPA alkalmazások, amilyen technikailag jelen labor kliensalkalmazása is, de az új módszer .NET 5 alatt nem támogatott. A korábbi megoldás integrálható volt a webpack egy korábbi verziójával, így ez a labor jelenleg ezt a verziót (és a babel-ből is korábbi verziót) használja.
+
+Ez végeredményében azt jelenti, hogy néhány újabb JavaScript funkció, például a null-propagátor operátor (`?.`) nem fog működni a webpack által fordított JavaScriptben.
+
+Az itt bemutatott JavaScript funkciók mindegyike elérhető már a böngészőben, így használhatjuk őket a webpack nélkül is, de erre az útmutató részletes utasítást nem ad. Ha valaki webpack nélkül szeretné elkészíteni a labort, úgy:
+- a `ClientApp` helyett közvetlenül a `wwwroot`-ba dolgozzon,
+- az `import { X } from 'x'` helyett mindenütt `import { X } from 'x.js'` szintaxist használjon,
+- a Bootstrap belinkelése történhet közvetlenül CDN-ről: `<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">`,
+- a kiinduló JavaScript fájl a belinkelt `guessgame.js` lesz a `client-start.js` helyett (az utóbbi fájlra nem lesz szükség),
+- a `guessgame.js` hivatkozásakor arra `module`-ként kell hivatkozni (különben az `import` utasítások nem fognak működni), tehát a kiinduló `<script>` elem lecserélendő: `<script src="guessgame.js" type="module">`.
+
+A működés ebben az esetben alapvetően más: a webpack segítségével az összes .js fájlunkból egyetlen, összecsomagolt fájl készülne, a közvetlen modulbetöltéssel viszont minden hivatkozott .js fájl külön-külön HTTP kérésekkel jut el a böngészőbe. Ez fejlesztési időben nem gond, de éles alkalmazásnál mindenképpen valamiféle build folyamat, SPA CLI eszköz vagy modulcsomagoló használata javasolt.
+
 ## FONTOS!
 
 A labor végén beadandó a jegyzőkönyv PDF formátumban! Ügyeljen rá, hogy a ZIP fájlba artifakt és külső függőség ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj és node_modules mappák). A végső ZIP fájl várható mérete kb. 1-2 MB, az 5 MB-ot semmiképp nem haladhatja meg!
@@ -72,10 +87,14 @@ A laboron készítendő alkalmazás egy **kisebb/nagyobb barkóba** lesz. A "gé
 
 Klónozzuk le a kiinduló projektet (https://github.com/VIAUAC00/labor13-start.git) egy git klienssel vagy parancssorból! Egy üres munkamappában indítsuk el a VS Code-ot! A beépített terminálból (Ctrl+ö) adjuk ki az alábbi parancsokat:
 
+> Fontos! A laborgépeken nem vagy nem mindig érhető el megfelelően az NPM lokális cache példánya, ezért használjuk helyette itt az `npm install --cache .cache` parancsot, ami az aktuális mappában egy `.cache` nevű mappát használ a központi gyorsítótár helyett. Lokális gépen is használhatjuk ezt a parancsot, de ott elegendő (kell, hogy legyen) az `npm install` is. 
+
+**Ez a `.cache` mappa NE KERÜLJÖN a tanulmányi rendszerbe feltöltendő ZIP fájlba!**
+
 ```
 git clone https://github.com/VIAUAC00/labor13-start.git
 cd labor13-start
-npm install
+npm install --cache .cache
 dotnet restore
 dotnet watch run
 ```
@@ -483,7 +502,7 @@ export class Toplist {
                 <td>${e.guesses}</td>
                 <td>${e.time}</td>
             </tr>`
-        )).join("");
+        )).join('');
     }
 }
 
