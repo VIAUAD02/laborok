@@ -571,7 +571,7 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 
 A kliens oldalon tárolt logikát helyezze át a szerver oldalra!
 
-A szerveren fut egy WebSocket kiszolgáló, mely bármilyen `ws://localhost:port`-on futó kérésre válaszol.
+A szerveren fut egy WebSocket kiszolgáló, mely bármilyen `wss://localhost:port`-on futó kérésre válaszol (HTTP esetén (`ws://localhost:port`)).
 
 A szerverkapcsolatot az alábbi osztály reprezentálja (a portszámot szükséges lehet átírnia a saját szerver portszámára):
 
@@ -582,7 +582,7 @@ ClientApp\socketserver.js:
 
 export class SocketServer {
     constructor() {
-        this.socket = new WebSocket('ws://localhost:1118/ws');
+        this.socket = new WebSocket('wss://localhost:7579/ws');
         this.open = false;
         this.socket.onopen = () => {
             this.open = true;
@@ -606,6 +606,8 @@ export class SocketServer {
 }
 
 ```
+
+> A socket szerver URL-t szükséges lehet átírni: a portszámnak a szerver portszámának kell lennie (a `dotnet watch run` parancs kiírja, hol indul a szerver), és `http` esetén `ws`, `https` esetén pedig `wss` protokollt kell (/érdemes) használni.
 
 A szervert az alábbi kód mintájára tudja használni:
 
