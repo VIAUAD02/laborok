@@ -46,7 +46,7 @@ A laboron készülő alkalmazás egy egyszerű kvízjáték, amely az [Open Triv
 - A 4 válaszlehetőség egyikére kattintva visszajelzés érkezik a válasz helyességéről. Ha a válasz helytelen volt, a helyes választ is jelzi az alkalmazás.
 - A kérdések végére érve az alkalmazás jelzi, hány pontot értünk el a maximumból, majd új játék indítására van lehetőség.
 
-Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: `http-server`! Ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki!
+Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: `http-server` (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az `index.html` megnyitása után, vagy F1 > "Live Server: Open with Live Server")! 
 
 Említésre méltó még, hogy TypeScript támogatással a JavaScript kódunkban IntelliSense-t fogunk kapni (Visual Studio Code vagy Visual Studio használatával) a jQuery könyvtárhoz is!
 
@@ -72,7 +72,7 @@ Ezen kívül láthatjuk, hogy a HTML fájlunkban egy `<header>` és egy `<main>`
 - `start-game-form-section`: a játék opcióit tartalmazó `<form>`, amely a `Loading...` szöveget tartalmazza - egyelőre el van rejtve a `style` attribútum `display: none` értéke alapján,
 - `game-section`: maga a játéktér, ahol a kérdések találhatók, szintén elrejtve található a DOM-ban.
 
-Próbáljuk ki a jQuery könyvtárat az alábbi módon: a szerver indítását követően navigáljunk a böngészőben a http://localhost:8080/ oldalra! Az F12 eszköztáron nyissuk meg a Console-t, és futtassuk az alábbi parancsokat egyesével, sorrendben (közben figyeljük, mi történik a felületen):
+Próbáljuk ki a jQuery könyvtárat az alábbi módon: a szerver indítását követően navigáljunk a böngészőben az oldalra! Az F12 eszköztáron nyissuk meg a Console-t, és futtassuk az alábbi parancsokat egyesével, sorrendben (közben figyeljük, mi történik a felületen):
 
 ``` JavaScript
 $("#lets-play-section").hide();
@@ -200,7 +200,8 @@ $.get("start-game-form-contents.html").then(html => $("#start-game-form").html(h
         remainingQuestions = data.results;
         console.log(remainingQuestions);
         currentQuestion = 0;
-        $("#total-questions").text(remainingQuestions.length);
+        totalQuestions = remainingQuestions.length;
+        $("#total-questions").text(totalQuestions);
         $("#start-game-form button[type='submit']").removeAttr("disabled");
         getNextQuestion();
     });
@@ -231,13 +232,13 @@ A `getNextQuestion()` függvény kódjának kezdeménye az alábbi lehet:
 ``` JS
 currentQuestion++;
 const question = remainingQuestions.pop();
-correctAnswerIndex = Math.floor(Math.random() * 4);
-const questions = question.incorrect_answers.slice();
-questions.splice(correctAnswerIndex, 0, question.correct_answer);
 if (question === undefined) {
     // TODO: nincs több kérdés!
     return;
 }
+correctAnswerIndex = Math.floor(Math.random() * 4);
+const answers = question.incorrect_answers.slice();
+answers.splice(correctAnswerIndex, 0, question.correct_answer);
 $(".answer .correct, .answer .incorrect, #next-question").hide();
 ```
 
@@ -262,11 +263,11 @@ Készítsen képernyőképet a játéktéren megjelenő kérdésről, válaszleh
 
 A tanultak gyakorlásaképp készítse el az alábbi funkciókat:
 - A válaszlehetőségre kattintva a rendszer a válasz mellett található pipa ikonnal jelzi, hogy helyes válasz érkezett, vagy x-szel, ha helytelen. Utóbbi esetben a helyes válasz mellett egy pipa is megjelenik.
-  - A feliratkozáshoz használja a `$(".answer").click(e => { /* */ })` kezelőt!
+  - A feliratkozáshoz használja az `$(".answer").on("click", e => { /* */ })` kezelőt!
 - A helyes válaszok számát tartsa nyilván!
-- Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott!
+- Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott! Arra kattintva jelenjen meg a következő kérdés!
 - A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!
-- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani!
+- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)!
 
 ---
 
