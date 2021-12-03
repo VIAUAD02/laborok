@@ -267,7 +267,7 @@ A tanultak gyakorlásaképp készítse el az alábbi funkciókat:
 - A helyes válaszok számát tartsa nyilván!
 - Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott! Arra kattintva jelenjen meg a következő kérdés!
 - A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!
-- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)!
+- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)! A legfelhasználóbarátabb élményért használhatja a Bootstrap modal megoldást is!
 
 ---
 
