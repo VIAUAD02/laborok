@@ -1,0 +1,799 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 10 - Bootstrap 5 - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-10-bootstrap-5" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 10 - Bootstrap 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../index.md" class="md-tabs__link">
+      None
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+    <nav class="md-nav" aria-label="Bevezetés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elokeszites" class="md-nav__link">
+    Előkészítés
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-hozzaadasa-egy-html-oldalhoz" class="md-nav__link">
+    Bootstrap hozzáadása egy HTML oldalhoz
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigacios-sav" class="md-nav__link">
+    Navigációs sáv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-1-navigacios-sav-05-pont" class="md-nav__link">
+    Feladat 1: Navigációs sáv (0.5 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="Feladat 1: Navigációs sáv (0.5 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reszponziv-megjelenes" class="md-nav__link">
+    Reszponzív megjelenés
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-2-reszponziv-navigacios-sav-05-pont" class="md-nav__link">
+    Feladat 2: Reszponzív navigációs sáv (0.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-feladat-2b-navigacios-savban-szabalyok-feluldefinialasa-1-imsc-pont" class="md-nav__link">
+    iMSc Feladat 2/b: Navigációs sávban szabályok felüldefiniálása (1 iMSc pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egy-kartya-blog-bejegyzes-formazasa" class="md-nav__link">
+    Egy kártya (blog bejegyzés) formázása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-3-egy-kartya-formazasa-1-pont" class="md-nav__link">
+    Feladat 3: Egy kártya formázása (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reszponziv-blog-bejegyzes-lista" class="md-nav__link">
+    Reszponzív blog bejegyzés lista
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-4-reszponziv-blog-bejegyzes-lista-1-pont" class="md-nav__link">
+    Feladat 4: Reszponzív blog bejegyzés lista (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oldal-lablec-elkeszitese" class="md-nav__link">
+    Oldal lábléc elkészítése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-5-lablec-05-pont" class="md-nav__link">
+    Feladat 5: Lábléc (0.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-lablec-igazitasa-az-oldal-aljara-05-imsc-pont" class="md-nav__link">
+    iMSc: Lábléc igazítása az oldal aljára (0.5 iMSc pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-feladat-5b-lablec-05-pont" class="md-nav__link">
+    iMSc Feladat 5/b: Lábléc (0.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regisztracios-urlap-letrehozasa" class="md-nav__link">
+    Regisztrációs űrlap létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-6-regisztracios-urlap-15-pont" class="md-nav__link">
+    Feladat 6: Regisztrációs űrlap (1.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-feladat-6b-regsztracio-urlap-kozepre-igazitasa-es-placeholder-design-05-pont" class="md-nav__link">
+    iMSc Feladat 6/b: Regsztráció űrlap középre igazítása és placeholder design (0.5 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/web-labor/edit/master/docs/laborok/10-bootstrap/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-10-bootstrap-5">Labor 10 - Bootstrap 5<a class="headerlink" href="#labor-10-bootstrap-5" title="Permanent link">&para;</a></h1>
+<h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
+<p>Általános áttekintés a webes laborokról és formai követelmények a <a href="../Labor08/README.md">8. labor bevezetőjében találhatók</a>.</p>
+<p>Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban <a href="downloads/Labor10-jegyzokonyv.docx">innen</a> letölthető.</p>
+<h3 id="elokeszites">Előkészítés<a class="headerlink" href="#elokeszites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Hozzünk létre egy üres munkakönyvtárat!</li>
+<li>Töltsük le a <a href="https://github.com/VIAUAC00/Web-labor/tree/master/Labor10/downloads/10-Labor-kiindulo.zip">kiinduló állományokat tartalmazó zip</a> fájlt, majd csomagoljuk ki a létrehozott könyvtárba!</li>
+<li>Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -&gt; Open Folder)!</li>
+<li>Indítsuk el a Terminal (<strong>Ctrl+ö</strong> vagy <strong>View &gt; Integrated Terminal</strong>) ablakból a http-server-t: <code>http-server</code></li>
+<li>Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!</li>
+</ul>
+<h2 id="laborfeladatok">Laborfeladatok<a class="headerlink" href="#laborfeladatok" title="Permanent link">&para;</a></h2>
+<p>A webfejlesztésben általános jelenség, hogy a designerek csak egy képet készítenek el, hogy a felületnek hogyan kell kinéznie, ami alapján el kell készíteni a megfelelő HTML és CSS kódot a fejlesztőnek.</p>
+<p>A mai labor alkalmával egy ilyen képből (és egy kicsi HTML váz segítségével) kell az oldalt elkészíteni.</p>
+<p>A designolás folyamán általában valamilyen keretrendszerből indulunk ki, mely kész megoldásokat ad a leggyakoribb feladatokra, így csökkentve az egyedi CSS mennyiségét.
+A <a href="http://getbootstrap.com">Bootstrap</a> két alapvető funkciót nyújt:
+- egységes formázás (gombok, színek) és grid alapú elrendezés kizárólag CSS-sel,
+- gyakori komponensek (felugró ablakok, kártyák, nyitható-zárható blokkok, kiemelések, panelek) CSS-sel és/vagy JavaScriptből.</p>
+<p>A laboron ezekből a kész komponensekből fogunk megismerni egy párat közelebbről is.</p>
+<h3 id="bootstrap-hozzaadasa-egy-html-oldalhoz">Bootstrap hozzáadása egy HTML oldalhoz<a class="headerlink" href="#bootstrap-hozzaadasa-egy-html-oldalhoz" title="Permanent link">&para;</a></h3>
+<p>Nyissuk meg az <strong>index.html</strong> fájlt, amit a labor során meg fogunk formázni.</p>
+<p>Nézzük meg, hogy az oldal head-jében milyen állományokat és honnan töltünk be.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>MyBlog<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Bootstrap linkelése CDN-ről --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css&quot;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&quot;sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2&quot;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&quot;anonymous&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Font awesome 5 CDN-ről (solid, regular és brand is) --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://use.fontawesome.com/releases/v5.15.1/css/all.css&quot;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&quot;anonymous&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Google font (Muli) letöltése --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Muli&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Saját CSS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;assets/css/site.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Figyeljük meg, hogy négy különbőző CSS állományt töltünk be, egy kivételével CDN-ről:
+1. Az első magát a Bootstrap-et tölti be.
+2. Ezt követően egy gyakran használt ikongyűjteményt, a Font Awesome-ot töltjük le.
+3. Ezen felül, mivel egyedi betűtípust használunk, azt a Google fonts oldaláról töltjük le.
+4. A legutolsó hivatkozás pedig az általunk készített CSS fájlt hivatkozza be.</p>
+<blockquote>
+<p>A CSS és JS könyvtárakat többféleképpen is be tudjuk tölteni:
+- CDN-ről, publikus webről tölti le a CSS fájlt, amit most is használunk,
+- van lehetőségünk csomagkezelőt (npm, bower) használni letöltésre és magunk kiszolgálni a fájlt,
+- akár saját magunk kézzel is letölthetjük a megfelelő fájlokat, ebben az esetben is a saját webszerverünk szolgálja ki ezeket a fájlokat.</p>
+</blockquote>
+<p>Ha az alkalmazás elrendezését szeretnénk megadni, elég sok boilerplate-jellegű CSS kódot kellene írnunk. A Bootstrap megközelítése, hogy a gyakori elrendezési lehetőségeket és stílusozási lehetőségeket készen és konfigurálhatóan adja nekünk.</p>
+<p>A megvalósítanó oldal az alábbi főbb részekből áll:
+- navigációs sáv,
+- oldal központi eleme, ami blogbejegyzések listáját tartalmazza,
+- lábléc.</p>
+<h3 id="navigacios-sav">Navigációs sáv<a class="headerlink" href="#navigacios-sav" title="Permanent link">&para;</a></h3>
+<p>A navigációs sáv felépítése legyen a következő (a HTML váz szerepel a kiinuló index.html-ben):
+- bal szélen szerepeljen egy a BME AUT logo, ami az <code>assets/img/logo-bme-aut.png</code> útvonalon érhető el,
+- ezt követően a két navigációs link: Home és Registration,
+- a sáv jobb szélén pedig egy keresés szövegdoboz és egy Search feliratú gomb legyen.</p>
+<p>A navigációs sáv az alábbiak szerint nézzen ki:
+- Magas felbontáson</p>
+<blockquote>
+<p><img alt="Fejléc" src="assets/header.png" /></p>
+</blockquote>
+<p>Mivel a navigáció is egy gyakori probléma, a Bootstrap ad rá kész komponenst, a **navbar**t.
+A megvalósítás előtt nézzük meg, hogyan épül fel a <a href="http://getbootstrap.com/docs/5.0/components/navbar/">Bootstrap navbar</a> komponense. Az oldalon találunk kész HTML vázakat is, amiből ha a megfelelőt kiválasztva bemásoljuk a saját kódunkba, apró módosításokkal el tudjuk érni a megfelelő kinézetet.</p>
+<p>A legfontosabb osztályok, amire a navbar épít:
+- <code>.navbar-brand</code> brand logo megjelenítésére.
+- <code>.navbar-nav</code> teljes magasságú egyszerű navigációs elemek megadásához (a legördülő lista is támogatott).
+- <code>.navbar-toggler</code> mobil nézeten el lehessen rejteni a linkeket egy hamburger menü alá.
+- <code>.form-inline</code> ha valamilyen form controlt szeretnénk a navigációs sávba tenni.
+- <code>.navbar-text</code> ha függőlegesen középre igazított szöveget szeretnénk használni.
+- <code>.collapse.navbar-collapse</code> elemek csoportos elrejtésére használható.</p>
+<blockquote>
+<p>Érdemes keresni a dokumentációban egy ahhoz hasonló megjelenést amire nekünk is szükségünk van és az ott található HTML kódot átalakítani a saját igényeinknek megfelelően.
+- A sötét hátterú navbarhoz használjuk <code>navbar-dark</code> és <code>bg-dark</code> osztályokat.</p>
+</blockquote>
+<hr />
+<h3 id="feladat-1-navigacios-sav-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 1: Navigációs sáv (0.5 pont)<a class="headerlink" href="#feladat-1-navigacios-sav-05-pont" title="Permanent link">&para;</a></h3>
+<p>Készítse el a fent ismertetett navigációs sávot Bootstrap 4 segítségével.</p>
+<p>Az elkészült navigációs sávról illesszen be egy képernyőképet!</p>
+<hr />
+<h4 id="reszponziv-megjelenes">Reszponzív megjelenés<a class="headerlink" href="#reszponziv-megjelenes" title="Permanent link">&para;</a></h4>
+<p>A navigációt is reszponzívan kell megvalósítani, tehát ha átmérezezzük az oldalt, akkor a navigációs menüpontokat el kell rejteni és egy úgynevezett hamburger menüt kell megjeleníteni helyette, amire kattintva megjelennek a menüpontok.</p>
+<p>Még mielőtt nekiesnénk az egyedi megoldás kitalálására érdemes megnézni, hogy a Bootstrap támogatja ezt a funkcionalitást is, tehát csak a megfelelő HTML vázat kell kikeresni a <a href="http://getbootstrap.com/docs/5.0/components/navbar/">Bootstrap navbar</a>  dokumentációjából és az alapján kiegészíteni a kódunkat. Tipp: <code>navbar-toggler</code></p>
+<p>A kész oldalnak így kell kinéznie.
+- Mobil eszközön zárva.</p>
+<blockquote>
+<p><img src="./assets/header-small.png" width="300">
+- Mobil eszközön lenyitva
+<img src="./assets/header-small-open.png" width="300"></p>
+</blockquote>
+<hr />
+<h3 id="feladat-2-reszponziv-navigacios-sav-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 2: Reszponzív navigációs sáv (0.5 pont)<a class="headerlink" href="#feladat-2-reszponziv-navigacios-sav-05-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tegye reszponzívvá a navigációs menüt a fenti képeknek megfelelően.</li>
+<li>Az elkészült teljes oldalról (ne csak a navigációs sávról) illesszen be egy-egy képernyőképet:</li>
+<li>mobil nézeten, ahol nincs lenyitva a hamburger menü,</li>
+<li>mobil nézeten, ahol le van nyitva a hamburger menü,</li>
+<li>nem mobil nézeten.</li>
+<li>Mekkora szélességnél vált mobil nézetre a menüsáv?</li>
+</ul>
+<hr />
+<h3 id="imsc-feladat-2b-navigacios-savban-szabalyok-feluldefinialasa-1-imsc-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> iMSc Feladat 2/b: Navigációs sávban szabályok felüldefiniálása (1 iMSc pont)<a class="headerlink" href="#imsc-feladat-2b-navigacios-savban-szabalyok-feluldefinialasa-1-imsc-pont" title="Permanent link">&para;</a></h3>
+<p>A navigációs menüben a linkek fehér színűek, hiszen a Bootstrap erre állítja be.
+- Illesszen be egy képernyőképet a böngésző devTool (F12) ablakáról, amin látható, hogy milyen CSS osztály határozza meg most az egyes menüpontok (pl.: Home) betűszínét. Tipp: használja a <code>Computed</code> tabfület.
+- Definiálja felül a Bootstrapben megadott menüpont színeket a site.css-ben úgy, hogy azok zöldek legyenek és ha egy menüpont fölé visszük az egeret, akkor váltson sötétzöldre. Az <code>!important</code> kulcsszót nem használhatja! 
+  - A kész megoldásról csatoljon egy képernyőképet.</p>
+<hr />
+<h3 id="egy-kartya-blog-bejegyzes-formazasa">Egy kártya (blog bejegyzés) formázása<a class="headerlink" href="#egy-kartya-blog-bejegyzes-formazasa" title="Permanent link">&para;</a></h3>
+<p>A navigáció után térjünk át a fő tartalmi elemre, a blog bejegyzésre. Először csak egy bejegyzést formázzunk meg. A blog post HTML váza már szerepel az index oldalon, ezt kell kiegészíteni a megfelelő Bootstrap osztályokkal és helyenként készíteni egy-egy CSS szabályt, amivel kiegészítjük a Bootstrap-es osztályokat.</p>
+<p>A megoldáshoz használjuk a <a href="http://getbootstrap.com/docs/5.0/components/card/">Bootstrap card</a>-ját.
+- Mivel majd több kártya kerül egymás mellé a szélességet a grid oszlopaihoz használt <code>col-x</code> segítségével adjuk meg.
+- A kép igazításához használjuk a <code>card-img-top</code> oszátly
+- A szöveges rész legyen a kártya törzse <code>card-body</code>
+- A címhez a <code>card-title</code> osztályt használjuk
+- Az egyéb adatok pedig a kártya láblécében <code>card-footer</code> jelenjenek meg
+  - a lábléc fölötti vonal legyen szaggatott, 
+  - a betűméret 12px, 
+  - a háttérszín átlátszó,
+  - a láblécben szereplő linkek legyenek szürkék és ha fölé visszük az egeret akkor zöldek, de ne legyen aláhúzva. Az ikonok mindig legyenek zöldek.
+  - Tipp: A lábléchez érdemes egyedi CSS osztály(oka)t is definiálni.
+- Ügyeljen arra, hogy a margók és paddingok hasonlóak legyenek. Tipp: használja a <code>m-0</code>, <code>py-2</code>.... osztályokat. Részletesen a <a href="http://getbootstrap.com/docs/5.0/utilities/spacing/">Bootstrap spacing</a> szekcióban lehet róla olvasni.</p>
+<p>Az egyes blog bejegyzéseknek, az alábbi képen látható módon kell megjelennie:</p>
+<blockquote>
+<p><img alt="kartya" src="assets/onecard.png" /></p>
+</blockquote>
+<hr />
+<h3 id="feladat-3-egy-kartya-formazasa-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 3: Egy kártya formázása (1 pont)<a class="headerlink" href="#feladat-3-egy-kartya-formazasa-1-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Illesszen be egy képernyőképet a teljes oldalról, amin látható az elkészített blogpost megformázva.</li>
+</ul>
+<hr />
+<h3 id="reszponziv-blog-bejegyzes-lista">Reszponzív blog bejegyzés lista<a class="headerlink" href="#reszponziv-blog-bejegyzes-lista" title="Permanent link">&para;</a></h3>
+<p>Egészítse ki a HTML kódot úgy, hogy az oldalon összesen 6 blogbejegyzés jelenjen meg. Az egyes bejegyzések minden adata lehet azonos, csak a képeket cserélje le. A képeket az <strong>assets/img</strong> könyvtárban találja. Használja a Bootstrap által definiált <a href="https://getbootstrap.com/docs/5.0/layout/grid/">alapértelmezetten 12 hasábos grid rendszert</a>.</p>
+<p>Az oldalt úgy valósítsa meg, hogy magas felbontáson 3 hasábos legyen, közepesen 2, kicsin pedig 1 hasábos.</p>
+<ul>
+<li>Magas felbontások<blockquote>
+<p><img alt="Index-magas" src="assets/index-full.png" /></p>
+</blockquote>
+</li>
+<li>Közepes felbontáson<blockquote>
+<p><img src="./assets/index-full-medium.png" width="600"></p>
+</blockquote>
+</li>
+<li>Kicsi felbontáson<blockquote>
+<p><img src="./assets/index-full-small.png" width="300"></p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h3 id="feladat-4-reszponziv-blog-bejegyzes-lista-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 4: Reszponzív blog bejegyzés lista (1 pont)<a class="headerlink" href="#feladat-4-reszponziv-blog-bejegyzes-lista-1-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Illesszen be egy-egy képernyőképet mindhárom felbontáson, a teljes oldalról.</li>
+</ul>
+<hr />
+<h3 id="oldal-lablec-elkeszitese">Oldal lábléc elkészítése<a class="headerlink" href="#oldal-lablec-elkeszitese" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A lábléc elkészítésekor a footerben egyedi CSS osztályban adja meg, hogy fekete legyen a háttér és fehér a betűszín.</li>
+<li>Ezen felül adjon meg megfelelő méretű paddingot, amihez használhajta a <code>p-4</code> CSS osztályt illetve annak egyéb változatait. Részletes leírás a <a href="https://getbootstrap.com/docs/5.0/utilities/spacing/">Bootstrap spacing</a> fejezetben található.</li>
+<li>A copyright szöveg kerüljön balra, az ikonok pedig jobbra. Ehhez a flexboxot használja.</li>
+<li>Ügyeljen arra, hogy az egyes ikonok mérete és távolsága is megfelelő legyen.</li>
+</ul>
+<blockquote>
+<p><img alt="Index-magas" src="assets/footer.png" /></p>
+</blockquote>
+<hr />
+<h3 id="feladat-5-lablec-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 5: Lábléc (0.5 pont)<a class="headerlink" href="#feladat-5-lablec-05-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Illesszen be egy képernyőképet az elkészített láblécről.</li>
+</ul>
+<hr />
+<h3 id="imsc-lablec-igazitasa-az-oldal-aljara-05-imsc-pont">iMSc: Lábléc igazítása az oldal aljára (0.5 iMSc pont)<a class="headerlink" href="#imsc-lablec-igazitasa-az-oldal-aljara-05-imsc-pont" title="Permanent link">&para;</a></h3>
+<p>Dolgozzon ki megoldást arra, hogy az oldal lábléce mindig a látható képernyő alján legyen.
+  - Akkor is ha az oldalon kevés a tartalom és akkor is ha scrollozni kell az oldalon
+  - Soha ne takarjon ki tartalmi részt.
+  - Tipp: a megoldáshoz használhatja a <code>calc</code> függvényt a magasság számításához, vagy akár a flexboxot is.</p>
+<h3 id="imsc-feladat-5b-lablec-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> iMSc Feladat 5/b: Lábléc (0.5 pont)<a class="headerlink" href="#imsc-feladat-5b-lablec-05-pont" title="Permanent link">&para;</a></h3>
+<p>Illesszen be egy-egy képernyőképet a teljes oldalról amikor azon kell scrollozni, illetve akkor is, amikor csak kevés tartalom van rajta. (A kevés tartalomhoz kommentezze ki a kártyák egy részét.)</p>
+<hr />
+<h3 id="regisztracios-urlap-letrehozasa">Regisztrációs űrlap létrehozása<a class="headerlink" href="#regisztracios-urlap-letrehozasa" title="Permanent link">&para;</a></h3>
+<p>Az elkészített oldal tetején található egy Register feliratú link, ami a register.html oldalra irányít. A feladat ennek az oldalnak az elkészítése.
+Az oldal fejléc és lábléc része változatlan, tehát azt másolja át a meglévő index.html oldalról. Csak a navigáció utáni rész fog változni.</p>
+<p>Az oldalon egy űrlapot kell készíteni, ahol a felhasználótó bekérjük a következő alábbi adatokat: <strong>Email cím</strong>, <strong>Password</strong>, <strong>Address</strong>, <strong>City</strong>, <strong>State</strong> (Tipp: <code>select</code>), <strong>ZIP</strong>.
+Az űrlap végén legyen egy checkbox, hogy elfogaja a feltételeket illetve egy Sign in feliratű gomb, ami elküldi az űrlapot.</p>
+<ul>
+<li>Az inputok létrehozásánál ügyeljen mindig a megfelelő típus használatára.</li>
+<li>A szövegdobozokba tegyen placeholder szöveget is.</li>
+<li>Az alábbi képen látható elrendezést valósítja meg.</li>
+</ul>
+<blockquote>
+<p><img alt="Index-magas" src="assets/register.png" /></p>
+</blockquote>
+<ul>
+<li>Ellenőrizze, hogy az oldal kis képernyő méreten az alábbi elrendezésben jelenik-e meg. Ha nem, akkor javítsa a kódot, hogy az alábbi kinézetet kapja.</li>
+</ul>
+<blockquote>
+<p><img src="./assets/register-small.png" width="300"></p>
+</blockquote>
+<hr />
+<h3 id="feladat-6-regisztracios-urlap-15-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 6: Regisztrációs űrlap (1.5 pont)<a class="headerlink" href="#feladat-6-regisztracios-urlap-15-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Illesszen be egy-egy képernyőképet az elkészített oldalról kicsi és magas felbontáson is.</li>
+</ul>
+<hr />
+<h3 id="imsc-feladat-6b-regsztracio-urlap-kozepre-igazitasa-es-placeholder-design-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> iMSc Feladat 6/b: Regsztráció űrlap középre igazítása és placeholder design (0.5 pont)<a class="headerlink" href="#imsc-feladat-6b-regsztracio-urlap-kozepre-igazitasa-es-placeholder-design-05-pont" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Flexbox segítségével igazítsa a regisztrációs űrlapot függőlegesen középre.</li>
+<li>
+<p>Definiálja felül a placeholder szövegek megjelenítését is. Legyen piros dőlt betű a placeholder mindenhol. Tipp: <code>::placeholder</code></p>
+</li>
+<li>
+<p>Illesszen be az elkészített teljes oldalról egy képernyőképet, ahol a placeholderek is láthatóak.</p>
+</li>
+</ul>
+<hr />
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

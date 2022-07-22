@@ -1,0 +1,710 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 12 - jQuery - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-12-jquery" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 12 - jQuery
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../index.md" class="md-tabs__link">
+      None
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+    <nav class="md-nav" aria-label="Bevezetés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-jquery" class="md-nav__link">
+    A jQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery-pluginek" class="md-nav__link">
+    jQuery pluginek
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elokeszites" class="md-nav__link">
+    Előkészítés
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-1-2-pont" class="md-nav__link">
+    Feladat 1 (2 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szerveroldali-api-hasznalata" class="md-nav__link">
+    Szerveroldali API használata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-2-05-pont" class="md-nav__link">
+    Feladat 2 (0.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-3-05-pont" class="md-nav__link">
+    Feladat 3 (0.5 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-jatek-menete" class="md-nav__link">
+    A játék menete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-4-1-pont" class="md-nav__link">
+    Feladat 4 (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-5-1-pont" class="md-nav__link">
+    Feladat 5 (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/web-labor/edit/master/docs/laborok/12-jquery/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-12-jquery">Labor 12 - jQuery<a class="headerlink" href="#labor-12-jquery" title="Permanent link">&para;</a></h1>
+<h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
+<p>Általános áttekintés a webes laborokról és formai követelmények a <a href="../Labor08/README.md">8. labor bevezetőjében találhatók</a>.</p>
+<p>Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban <a href="downloads/Labor12-jegyzokonyv.docx">innen</a> letölthető.</p>
+<blockquote>
+<p>Emlékeztetőként néhány gondolat a jQuery-ről:</p>
+<h3 id="a-jquery">A jQuery<a class="headerlink" href="#a-jquery" title="Permanent link">&para;</a></h3>
+<p>A <a href="http://jquery.com">jQuery</a> egy "svájcibicska-szerű" JavaScript library. Jelentősége napjainkban az alkalmazásfejlesztő keretrendszerek javára egyre csökken, viszont az alapkoncepciók megértésére továbbra is hasznos eszköz. Elsősorban kiegészítésképpen használják különféle dinamikusan generált HTML tartalmakhoz történő dinamizmus hozzárendelésével, nem pedig teljes, önálló, kliensoldali alkalmazás fejlesztésére (de utóbbira is használható).</p>
+<p>A <a href="http://api.jquery.com/">jQuery API</a> a <code>$</code> (és ritkábban a <code>jQuery</code>) globális változón keresztül érhető el, alapvetően az alábbi módokon:
+- <code>const elements = $('ul li.active')</code>: a megadott CSS selectornak megfelelő DOM elemeket választja ki, és visszaadja egy <em>jQuery objektumban</em>. A bármilyen módon szerzett jQuery objektum hivatkozásokon az alábbihoz hasonló lehetőségeink vannak:
+  - A jQuery objektum példányai egyben tömbök, amik tartalmazzák a megtalált natív DOM elemeket (tehát iterálhatunk rajta), ill. a jQuery példányfüggvényeit tartalmazzák, amelyek elérik az illesztett DOM elemeket.</p>
+<hr />
+<ul>
+<li><code>.show()</code>, <code>.hide()</code>, <code>.toggle()</code>: az illesztett elemeket megjeleníti vagy elrejti azáltal, hogy az elemre inline <code>display: none</code> stílust helyezi,</li>
+<li><code>.append(e)</code>, <code>.appendTo(e)</code>, <code>.before(e)</code>, <code>.after(e)</code>, az elemhez/elé/után szúr be újabb elemeket (jQuery szelektorral elért elemeket, DOM elemeket vagy HTML tartalmat),</li>
+<li><code>.attr()</code>: gyakori, hogy egy függvény getter-setterként működik, ilyen az attr is. Ha egy paramétert adunk át, az adott attribútum értékét kapjuk vissza, ha kettőt, a második paraméter az első néven adott attribútum értéke lesz (minden illesztett elemre).</li>
+<li><code>.on()</code>: eseménykezelő feliratkoztatása az adott névvel. Két paraméter esetén ha a második paraméter a callback, úgy az hívódik meg az adott elemen; ha a callback előtt egy szelektort is megadunk, az "élő" feliratkozás lesz az illesztett elemen belüli leszármazott gyerekekre. Párja az <code>.off()</code>, amellyel eseménykezelőt iratkoztathatunk le, ezáltal elkerülve az esetleges memóriaszivárgást.<ul>
+<li><code>.click()</code>, <code>.submit()</code> stb.: az adott JavaScript események elsütése (paraméter nélkül) vagy feliratkozás az eseményre (callback megadásával) az illesztett elemeken. Elavult, ehelyett a fentebb leírt <code>.on()</code>-t használjuk feliratkozásra, a <code>.trigger()</code>-t pedig elsütésre.</li>
+</ul>
+</li>
+<li><code>.data(name)</code>: a DOM elem data-{name} attribútumában szereplő érték beállítására és lekérdezésére használhatjuk. A lekérdezés gyakorlatilag ekvivalens azzal, mintha az alábbit használnánk: <code>.attr("data-name").val()</code>. Emlékeztetőként, a CSS-ben attribútum alapján lekérdezni elemet az alábbi módon tudunk: <code>$("elem[data-my-value='value']")</code>. A <code>data-</code> attribútumok tetszőleges kulcs-érték párok tárolására szolgálnak a DOM-ban.</li>
+<li>Nagyon gyakori, hogy az egyes elemeken végzett műveleteket láncoljuk az alábbihoz hasonló módon: <code>$(".button").before(spinner).attr("disabled", true)</code>.</li>
+<li><code>$(function () { /*...*/ })</code>: az így megadott függvény a dokumentum betöltődését követően fut le. Ekvivalens a <code>$(document).ready(function () { /*...*/} )</code> hívással.</li>
+<li><code>$.ajax()</code>, <code>$.get()</code>, <code>$.post()</code> stb.: a globális jQuery objektumon elérhető statikus függvények függetlenek az egyes DOM elemektől, ezek pl. aszinkron AJAX kérések végrehajtására használhatók.</li>
+</ul>
+<h3 id="jquery-pluginek">jQuery pluginek<a class="headerlink" href="#jquery-pluginek" title="Permanent link">&para;</a></h3>
+<p>A jQuery kiegészítéseképpen egyszerűbb és bonyolultabb plugineket használhatunk. Ezek a pluginek jellemzően a jQuery objektumra újabb függvényeket helyeznek el, amelyek segítségével a kiegészítő funkcionalitás elérhető. A Boostrap kétféle módon teszi elérhetővé a plugineket: data-attibútumok formájában és a jQuery API-n keresztül. A fontosabbak pl.: <code>.modal()</code> <code>.dropdown()</code>, <code>.tooltip()</code>, <code>.alert()</code>, <code>.collapse()</code>. <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/#components">Bővebben a Bootstrap jQuery pluginekről itt olvashat.</a></p>
+<p>Gyakran használt pluginokat ad még pl. a <a href="https://jqueryui.com/">jQuery UI</a>, amiben dátum- és időválasztó, dialógusablak, progressbar stb. "widgetek" találhatók.</p>
+</blockquote>
+<h3 id="elokeszites">Előkészítés<a class="headerlink" href="#elokeszites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Töltsük le és tömörítsük ki a kiinduló projektet az alábbi <a href="downloads/labor12-start.zip">linkről</a> egy üres munkamappába!</li>
+</ul>
+<p>A laboron készülő alkalmazás egy egyszerű kvízjáték, amely az <a href="https://opentdb.com/">Open Trivia Database</a> publikus, ingyenesen elérhető <a href="https://opentdb.com/api_config.php">API-ját</a> használja. A játék menete az alábbi lesz:
+- A játék opcióinak megadása a Let's play! gombra kattintva lehetséges.
+- Az opcióknál megadható a kérdések száma (1 és 50 között), a kérdés kategóriája és nehézsége. Ezt követően a játék a Go! feliratú gombra kattintva indítható.
+- A játék során a távoli API-tól lekérdezett kérdések fognak következni.
+- Az aktuális kérdés sorszáma és az összes kérdés száma látható a kérdés oldalán, a kérdés kategóriája, a kérdés szövege, valamint a 4 válaszlehetőség, amelyek közül mindig pontosan egy lesz helyes.
+- A 4 válaszlehetőség egyikére kattintva visszajelzés érkezik a válasz helyességéről. Ha a válasz helytelen volt, a helyes választ is jelzi az alkalmazás.
+- A kérdések végére érve az alkalmazás jelzi, hány pontot értünk el a maximumból, majd új játék indítására van lehetőség.</p>
+<p>Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: <code>http-server</code> (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az <code>index.html</code> megnyitása után, vagy F1 &gt; "Live Server: Open with Live Server")! </p>
+<p>Említésre méltó még, hogy TypeScript támogatással a JavaScript kódunkban IntelliSense-t fogunk kapni (Visual Studio Code vagy Visual Studio használatával) a jQuery könyvtárhoz is!</p>
+<p>Az alkalmazás kiinduló kódját megvizsgálva az alábbi fájlokat találjuk:
+- index.html: a kiinduló HTML. A fájlt a feladatok megoldásához nem szükséges módosítani. Ha a fájlban módosít, dokumentálja a módosítását!
+- node_modules mappa: az npm csomagkezelővel letöltött jQuery típusdefiníciós fájlok JavaScript (TypeScript) IntelliSense támogatáshoz találhatók itt.
+- triviaut.js: egy üres JavaScript fájl, amely az index.html <code>&lt;head&gt;</code> részében került hivatkozásra. Az alkalmazás forráskódját ebbe a fájlba szükséges helyezni.
+- start-game-form-contents.html: egy részleges HTML fájl, amelyben a játék indításához szükséges opciók leírása található.
+- opentriviadb-logo.png: értelemszerűen a fentebb hivatkozott API logója.</p>
+<p>Vizsgáljuk meg az index.html tartalmát!</p>
+<p>A fájlban látható, hogy be vannak hivatkozva az alábbiak:
+- a saját JavaScript fájlunk, a <code>triviaut.js</code>,
+- a Bootstrap CSS és JavaScript fájljai,
+- a FontAwesome ikonkészlet CSS fájlja,
+- a jQuery osztálykönyvtár JS fájlja.</p>
+<p>Fontos, hogy a JavaScript fájl betöltődésekor az <em>addig a pontig</em> elkészült DOM-on képes manipulációt végezni.</p>
+<p>Ezen kívül láthatjuk, hogy a HTML fájlunkban egy <code>&lt;header&gt;</code> és egy <code>&lt;main&gt;</code> elem található. A <code>&lt;header&gt;</code> tartalma számunkra statikus. A <code>&lt;main&gt;</code>-ben három db <code>&lt;section&gt;</code> elemet láthatunk az alábbi ID-kkal ellátva: 
+- <code>lets-play-section</code>: a játék indítására (az opciók megjelenítésére) szánt gomb, 
+- <code>start-game-form-section</code>: a játék opcióit tartalmazó <code>&lt;form&gt;</code>, amely a <code>Loading...</code> szöveget tartalmazza - egyelőre el van rejtve a <code>style</code> attribútum <code>display: none</code> értéke alapján,
+- <code>game-section</code>: maga a játéktér, ahol a kérdések találhatók, szintén elrejtve található a DOM-ban.</p>
+<p>Próbáljuk ki a jQuery könyvtárat az alábbi módon: a szerver indítását követően navigáljunk a böngészőben az oldalra! Az F12 eszköztáron nyissuk meg a Console-t, és futtassuk az alábbi parancsokat egyesével, sorrendben (közben figyeljük, mi történik a felületen):</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-section&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form-section&quot;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form-section, #game-section&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+</code></pre></div>
+<p>Láthatjuk, hogy a <code>.hide()</code>, <code>.show()</code> és <code>.toggle()</code> függvények értelemszerűen a CSS selector által illesztett <em>összes</em> DOM elem display: none CSS tulajdonságát teszik fel a DOM elemre, vagy veszik azt le róla.</p>
+<p>Teszteljük a távoli API-t! A <code>triviaut.js</code> fájlba írjuk az alábbi kódot:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;https://opentdb.com/api.php?amount=10&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="s1">&#39;\n&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Ha mindent jól csináltunk, az alábbi (vagy nagyon hasonló) hibát látjuk a konzolon az oldal betöltődését követően:</p>
+<div class="highlight"><pre><span></span><code>Uncaught ReferenceError: $ is not defined
+</code></pre></div>
+<p>A JavaScript fájlok betöltési sorrendje kiemelten fontos! A betöltődés sorrendje implikálja a függőségi sorrendet is, ugyanis végrehajtásuk a böngészőben alapértelmezetten az importálás sorrendjével megegyezik. Ha a saját fájlunkat előbb hivatkozzuk, mint a jQuery-t, úgy az ott futó kód <code>$</code> változóra történő (szinkron) hivatkozása hibát dob (mert ekkor még nem futott le a jQuery <code>$</code> objektumot definiáló kód). </p>
+<p>A megoldás, hogy át kell mozgatnunk a saját JS fájlunk hivatkozását a HTML <code>&lt;head&gt;</code> elemben a jQuery hivatkozás után (érdemes minden külső függőség hivatkozása utánra, tehát a <code>&lt;head&gt;</code> végére tenni).</p>
+<p>A <code>$.get</code> statikus függvény a <code>$.ajax</code> hívás rövidítése, ahol a HTTP ige fixen a HTTP GET. Visszatérése egy Promise objektum, melyre a <code>.then</code> hívással iratkozunk fel, ami 3 callback paramétert vár (mindhárom opcionális): a sikeres teljesülést, a hibaágat, és mindet.</p>
+<p>A fenti hívás tehát behív a megadott URL-re, a kapott választ a konzolon megjeleníti, majd a <code>&lt;body&gt;</code> elem tartalmát szövegesen lecseréli a kapott tartalmat string formára konvertálva (a válasz ugyanis egy JSON objektum).</p>
+<p>Az alábbi formátumú válasz érkezik a távoli API-tól:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;response_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> 
+            <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Entertainment: Film&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;multiple&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;difficulty&quot;</span><span class="p">:</span> <span class="s2">&quot;hard&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;In the 1976 film &#39;Taxi Driver&#39;, how many guns did Travis buy from the salesman?&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;incorrect_answers&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;2&quot;</span> <span class="p">,</span> <span class="s2">&quot;6&quot;</span> <span class="p">,</span> <span class="s2">&quot;1&quot;</span> <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="err">...</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Indítsuk el a játékot! A triviaut.js fájl tartalmát cseréljük le az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-button&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>A fenti kódrészlettel elvileg a gombra kattintva elrejtjük a gombot és megjelenítjük a játék opciós űrlapját. A kód viszont nem működik. Ha utánajárunk, úgy tűnik, hogy nem történik feliratkozás. Futtassuk le előtte az alábbi kódot is (a JS fájl elején):</p>
+<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-button&quot;</span><span class="p">).</span><span class="nx">length</span><span class="p">);</span>
+</code></pre></div>
+<p>A konzolon a 0 érték jelenik meg, tehát ilyen nincsen a DOM-ban. A probléma, hogy a JS fájlunk korábban fut, mint a DOM betöltődne! Fontos tehát megvárnunk, amíg ez megtörténik. A klasszikus módja ennek az alábbi megadás:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// itt már elkészült a DOM!</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>A fenti tehát kiválasztja a document elemet a DOM-ból, tehát a teljes DOM gyökerét, aminek feliratkozik a <code>ready</code> pszeudo-eseményére (ilyen konkrét DOM esemény ugyanis nincsen). A fentivel ekvivalens megadás az alábbi:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// itt már elkészült a DOM!</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>A fenti szintaxisban a <code>() =&gt; {}</code> kódrészlet szintén egy függvény deklarációja, melynek neve <em>arrow function</em>. Az arrow function szintaxis tömörebb, szintén paraméterezhető (<code>a =&gt; a + 10</code> vagy <code>(a, b) =&gt; { return a * b + 2; }</code>). További érdekessége, hogy a <code>function</code> kulcsszóval megadott függvényekkel ellentétben nem változtatja meg a <code>this</code> változó által reprezentált függvényt (objektumot) sem.</p>
+<p>A kezdeti működésünket tehát elérhetjük az alábbi módon:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-button&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-section, #start-game-form-section&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Tehát a gombot tartalmazó és a játék opciókat tartalmazó szekciókat megjelenítjük/elrejtjük.</p>
+<p>Egészítsük ki továbbá a fenti kódot (a megfelelő helyen) azzal, hogy a formot reprezentáló HTML részletet letöltjük a szervertől és a megfelelő helyre szúrjuk a DOM-ban:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;start-game-form-contents.html&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span> <span class="p">=&gt;</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">));</span>
+</code></pre></div>
+<hr />
+<h3 id="feladat-1-2-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 1 (2 pont)<a class="headerlink" href="#feladat-1-2-pont" title="Permanent link">&para;</a></h3>
+<p>Másoljon be egy teljes képernyős képernyőképet az opciók kezdeti állapotáról, ahol el van rejtve az indításra szolgáló gomb!</p>
+<hr />
+<h3 id="szerveroldali-api-hasznalata">Szerveroldali API használata<a class="headerlink" href="#szerveroldali-api-hasznalata" title="Permanent link">&para;</a></h3>
+<p>Töltsük le a paramétereknek megfelelő elemeket a távoli API-ról! Ehhez szintén a <code>$.get</code> függvényt tudjuk használni:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// a globális névtérben deklaráljuk az alábbi változókat és függvényt:</span>
+<span class="kd">let</span> <span class="nx">remainingQuestions</span><span class="p">,</span> <span class="nx">totalQuestions</span><span class="p">,</span> <span class="nx">currentQuestion</span><span class="p">,</span> <span class="nx">correctAnswerIndex</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">getNextQuestion</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="c1">//...</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;start-game-form-contents.html&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span> <span class="p">=&gt;</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="c1">// közvetlenül a HTML beszúrása után lácolhatjuk a &#39;submit&#39; eseményre történő feliratkozást</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">// a böngésző alapértelmezett működését megállítjuk, amivel újratöltené az oldalt</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form button[type=&#39;submit&#39;]&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// a Go! gombot letiltjuk, hogy ne lehessen újra API kérést indítani, amíg meg nem érkezett a válasz</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;https://opentdb.com/api.php?type=multiple&amp;encode=base64&amp;amount=&quot;</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;[name=&#39;trivia_amount&#39;]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">()).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">remainingQuestions</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">results</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">remainingQuestions</span><span class="p">);</span>
+        <span class="nx">currentQuestion</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+        <span class="nx">totalQuestions</span> <span class="o">=</span> <span class="nx">remainingQuestions</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#total-questions&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">totalQuestions</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form button[type=&#39;submit&#39;]&quot;</span><span class="p">).</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">);</span>
+        <span class="nx">getNextQuestion</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}));</span>
+</code></pre></div>
+<hr />
+<h3 id="feladat-2-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 2 (0.5 pont)<a class="headerlink" href="#feladat-2-05-pont" title="Permanent link">&para;</a></h3>
+<p>Készítsen képernyőképet a konzolon látható érkezett válaszokról! Legyen látható, hogy hány válasz érkezett, és ez a szám ne az alapértelmezett 10 legyen!</p>
+<hr />
+<h3 id="feladat-3-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 3 (0.5 pont)<a class="headerlink" href="#feladat-3-05-pont" title="Permanent link">&para;</a></h3>
+<p>Készítse el a maradék két paraméter elküldését is a <code>difficulty</code> és <code>category</code> releváns értékeinek megadásával! Használhatja a <a href="http://api.jquery.com/serializeArray/">$().serializeArray()</a> függvényt is!</p>
+<p>Az elkészült kódról és az érkező válaszról a konzolon készítsen képernyőképet!</p>
+<hr />
+<h3 id="a-jatek-menete">A játék menete<a class="headerlink" href="#a-jatek-menete" title="Permanent link">&para;</a></h3>
+<p>A megérkezett válasz kezeléséhez a megfelelő mezőket ki kell töltenünk a HTML dokumentumban.</p>
+<p>A <code>getNextQuestion()</code> függvény kódjának kezdeménye az alábbi lehet:
+<div class="highlight"><pre><span></span><code><span class="nx">currentQuestion</span><span class="o">++</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">remainingQuestions</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">question</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// TODO: nincs több kérdés!</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">correctAnswerIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mf">4</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">answers</span> <span class="o">=</span> <span class="nx">question</span><span class="p">.</span><span class="nx">incorrect_answers</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+<span class="nx">answers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">correctAnswerIndex</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">question</span><span class="p">.</span><span class="nx">correct_answer</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.answer .correct, .answer .incorrect, #next-question&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</code></pre></div></p>
+<p>A függvény további részét az alábbi módon implementálja:
+- rejtse el az opciós űrlapot,
+- jelenítse meg a játékteret,
+- töltse ki a jelenlegi játék számlálóját,
+- töltse ki a kérdés kategóriáját (<code>atob(question.category)</code>),
+- töltse ki a kérdés szövegét (szintén használja az <code>atob()</code> függvényt a base64 szöveg dekódolásához),
+- vegye le az összes válaszlehetőségről (<code>.answer</code>) a <code>disabled</code> attribútumot (tipp: <a href="https://api.jquery.com/removeAttr/">$().removeAttr()</a>),
+- minden válaszlehetőség szövegének helyőrzőjében helyezze el a válasz szövegét (ügyeljen rá, hogy ne törölje ki a helyes/helytelen ikonokat, és itt is használja az <code>atob()</code> konverziót)!</p>
+<hr />
+<h3 id="feladat-4-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 4 (1 pont)<a class="headerlink" href="#feladat-4-1-pont" title="Permanent link">&para;</a></h3>
+<p>Készítsen képernyőképet az implementáció kódjáról!</p>
+<p>Készítsen képernyőképet a játéktéren megjelenő kérdésről, válaszlehetőségekről!</p>
+<hr />
+<p>A tanultak gyakorlásaképp készítse el az alábbi funkciókat:
+- A válaszlehetőségre kattintva a rendszer a válasz mellett található pipa ikonnal jelzi, hogy helyes válasz érkezett, vagy x-szel, ha helytelen. Utóbbi esetben a helyes válasz mellett egy pipa is megjelenik.
+  - A feliratkozáshoz használja az <code>$(".answer").on("click", e =&gt; { /* */ })</code> kezelőt!
+- A helyes válaszok számát tartsa nyilván!
+- Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott! Arra kattintva jelenjen meg a következő kérdés!
+- A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!
+- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)! A legfelhasználóbarátabb élményért használhatja a Bootstrap modal megoldást is!</p>
+<hr />
+<h3 id="feladat-5-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 5 (1 pont)<a class="headerlink" href="#feladat-5-1-pont" title="Permanent link">&para;</a></h3>
+<p>Képernyőképekkel és a releváns kódrészletekkel demonstrálja az alábbi eseteket:
+- a játékos helyesen válaszolt a kérdésre,
+- a játékos helytelenül válaszolt a kérdésre,
+- a válaszadás előtt nem, utána látható a továbblépéshez használt gomb,
+- az aktuális kérdés számlálója növekszik,
+- megjelenik a felhasználó által elért pontszám!</p>
+<hr />
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

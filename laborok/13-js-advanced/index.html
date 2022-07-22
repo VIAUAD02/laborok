@@ -1,0 +1,1081 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 13 - Haladó JavaScript - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-13-halado-javascript" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 13 - Haladó JavaScript
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../index.md" class="md-tabs__link">
+      None
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fontos-infok-2021-22-oszre" class="md-nav__link">
+    FONTOS INFÓK 2021-22 ŐSZRE!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontos" class="md-nav__link">
+    FONTOS!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+    <nav class="md-nav" aria-label="Bevezetés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modern-javascript-funkciok" class="md-nav__link">
+    Modern JavaScript funkciók
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elokeszites" class="md-nav__link">
+    Előkészítés
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-1-1-pont" class="md-nav__link">
+    Feladat 1 (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-javascript-funkciok_1" class="md-nav__link">
+    Modern JavaScript funkciók
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-2-1-pont" class="md-nav__link">
+    Feladat 2 (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jateklogika" class="md-nav__link">
+    Játéklogika
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-3-1-pont" class="md-nav__link">
+    Feladat 3 (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onallo-feladatok" class="md-nav__link">
+    Önálló feladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Önálló feladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toplista" class="md-nav__link">
+    Toplista
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-4-1-pont" class="md-nav__link">
+    Feladat 4 (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ujrakezdes" class="md-nav__link">
+    Újrakezdés
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feladat-5-1-pont" class="md-nav__link">
+    Feladat 5 (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-feladat-2-pont" class="md-nav__link">
+    iMSc feladat (2 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imsc-feladat-2-pont_1" class="md-nav__link">
+    iMSc feladat (2 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/web-labor/edit/master/docs/laborok/13-js-advanced/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-13-halado-javascript">Labor 13 - Haladó JavaScript<a class="headerlink" href="#labor-13-halado-javascript" title="Permanent link">&para;</a></h1>
+<h2 id="fontos-infok-2021-22-oszre">FONTOS INFÓK 2021-22 ŐSZRE!<a class="headerlink" href="#fontos-infok-2021-22-oszre" title="Permanent link">&para;</a></h2>
+<p>A laborgépeken a .NET 5 SDK végső verziója van telepítve; mert csak a félév közben (2021. novemberben) jelent meg a .NET 6. A .NET 6-ban másképpen kezelendők az SPA alkalmazások, amilyen technikailag jelen labor kliensalkalmazása is, de az új módszer .NET 5 alatt nem támogatott. A korábbi megoldás integrálható volt a webpack egy korábbi verziójával, így ez a labor jelenleg ezt a verziót (és a babel-ből is korábbi verziót) használja.</p>
+<p>Ez végeredményében azt jelenti, hogy néhány újabb JavaScript funkció, például a null-propagátor operátor (<code>?.</code>) nem fog működni a webpack által fordított JavaScriptben.</p>
+<p>Az itt bemutatott JavaScript funkciók mindegyike elérhető már a böngészőben, így használhatjuk őket a webpack nélkül is, de erre az útmutató részletes utasítást nem ad. Ha valaki webpack nélkül szeretné elkészíteni a labort, úgy:
+- a <code>ClientApp</code> helyett közvetlenül a <code>wwwroot</code>-ba dolgozzon,
+- az <code>import { X } from 'x'</code> helyett mindenütt <code>import { X } from 'x.js'</code> szintaxist használjon,
+- a Bootstrap belinkelése történhet közvetlenül CDN-ről: <code>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</code>,
+- a kiinduló JavaScript fájl a belinkelt <code>guessgame.js</code> lesz a <code>client-start.js</code> helyett (az utóbbi fájlra nem lesz szükség),
+- a <code>guessgame.js</code> hivatkozásakor arra <code>module</code>-ként kell hivatkozni (különben az <code>import</code> utasítások nem fognak működni), tehát a kiinduló <code>&lt;script&gt;</code> elem lecserélendő: <code>&lt;script src="guessgame.js" type="module"&gt;</code>.</p>
+<p>A működés ebben az esetben alapvetően más: a webpack segítségével az összes .js fájlunkból egyetlen, összecsomagolt fájl készülne, a közvetlen modulbetöltéssel viszont minden hivatkozott .js fájl külön-külön HTTP kérésekkel jut el a böngészőbe. Ez fejlesztési időben nem gond, de éles alkalmazásnál mindenképpen valamiféle build folyamat, SPA CLI eszköz vagy modulcsomagoló használata javasolt.</p>
+<h2 id="fontos">FONTOS!<a class="headerlink" href="#fontos" title="Permanent link">&para;</a></h2>
+<p>A labor végén beadandó a jegyzőkönyv PDF formátumban! Ügyeljen rá, hogy a ZIP fájlba artifakt és külső függőség ne kerüljön (fordítás eredményeképpen előálló fájlok, pl. a bin/obj és node_modules mappák). A végső ZIP fájl várható mérete kb. 1-2 MB, az 5 MB-ot semmiképp nem haladhatja meg!</p>
+<h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
+<p>Általános áttekintés a webes laborokról és formai követelmények a <a href="../Labor08/README.md">8. labor bevezetőjében találhatók</a>.</p>
+<p>A jelenlegi laborhoz telepítve kell lennie a <a href="https://dotnet.microsoft.com/download/dotnet/5.0">.NET <strong>SDK</strong></a> legalább 5.0-s verziójának is a gépre (ez Visual Studio 2019 16.8-as verzióval is települ).</p>
+<p>Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban <a href="downloads/Labor13-jegyzokonyv.docx">innen</a> letölthető.</p>
+<h3 id="modern-javascript-funkciok">Modern JavaScript funkciók<a class="headerlink" href="#modern-javascript-funkciok" title="Permanent link">&para;</a></h3>
+<p>A JavaScript nyelv napjainkban rohamosan (talán lassan csökkenő ütemben) fejlődik, de a böngészőgyártók lassan felvették az iramot ECMAScript szabványosítási folyamattal. A manapság támogatandó böngészők legtöbbje szinte az összes ECMAScript 5 és 6 funkciót támogatja. Az Internet Explorer egy elavult, manapság kerülendő böngésző, ami támogat bizonyos ES5 funkciókat, de új funkciófrissítéseket nem kap. Kevés érv maradt a használata mellett, ugyanis a Microsoft az UWP alapú Edge böngészőről áttért a Chromium motorra épülő Edge-re, ami még Windows 7 OS-en is elérhető. Kirívó eset gyakran néhány kevésbé elterjedt mobil böngésző (pl. Opera Mini), valamint a Safari iOS és Mac verziói is hagynak némi kívánni valót maguk után (a különféle JavaScript funkciók támogatása terén). Ezzel azt mondhatjuk, hogy modern JavaScript alapú alkalmazások fejlesztésekor elegendő az ún. "örökzöld" böngészőket támogatnunk, amik naprakészen tartják magukat folyamatos frissítésekkel.</p>
+<p>Az új nyelvi funkciók jelentős része megfeleltethető korábban alkalmazott programozási mintáknak, ezáltal az újabb funkciókat (új ECMAScript verziókban megjelenő szabványos elemeket) lefordíthatjuk szabványos korábbi ES verzióra (jellemzően ES5-re). A <a href="https://babeljs.io/"><strong>babel</strong></a> fordító a "modern" forrásunkat képes átfordítani erősen kompatibilis JavaScriptté. Említésre méltó még a <a href="https://www.typescriptlang.org/">TypeScript</a>, ami a JavaScript nyelvre épül, kibővítve azt különféle funkciókkal, elsősorban a típusinformációk rendszerével.</p>
+<p>Fontosabb modern JS képességek:
+- <strong>arrow function</strong>: <code>function (param) { return param + 1; }</code> helyett írhatjuk a rövidebb <code>param =&gt; param + 1;</code> kódot. Ezen felül az arrow function nem rendel külön értéket a <code>this</code> változónak, így a this ilyen esetekben a <strong>külső</strong> függvényre mutat (a függvényen belül ugyanaz a <code>this</code>, mint a hívó fél számára).
+- <strong>string interpolation</strong>: a string interpoláció sablonozást, "template-ezést" jelent, a string-ben különböző helyőrzőket helyezhetünk el, amelyek kiértékelődnek: 
+    <div class="highlight"><pre><span></span><code><span class="sb">`Hello, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span><span class="si">}</span><span class="sb">!`</span>
+</code></pre></div>
+- <strong>const</strong> és <strong>let</strong>: a <code>var</code> "univerzális" változódeklaráció helyett érdemesebb használni a <code>let</code> és <code>const</code> kulcsszavakat: előbbi változtathat értéket, utóbbi pedig nem. Előnyük, hogy valóban blokkszintűek, a <code>var</code> képes blokkok között is érvényesülni (sajnos).
+- <strong>class</strong>: használhatjuk az objektum-orientált class kulcsszót, amelyet korábban címkézetlen, közönséges konstruktorfüggvényekkel próbáltunk körülírni:
+    <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nx">Dog</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">bark</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="sb">`Hello, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">spot</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s2">&quot;Spot&quot;</span><span class="p">);</span>
+<span class="nx">spot</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>import</strong>/<strong>export</strong>: fájljainkban változókat, osztályokat deklarálhatunk, melyeket kívülről használhatnak (kvázi, mint a publikus láthatóság), ezeket az <strong>export</strong> kulcsszóval látjuk el. A másik oldalon, ahol használni szeretnénk a fájlból egy publikált szimbólumot, az <strong>import</strong> kulcsszóval tehetjük ezt meg, a fájl elérési útját megadva:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">dog</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">-------</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Dog</span> <span class="p">{</span> 
+    <span class="nx">bark</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Woof! I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">barks</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">---------</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Dog</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./dog&#39;</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">makeNewDogAndBark</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">dog</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">dog</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+<blockquote>
+<p>A <a href="https://www.typescriptlang.org/">TypeScript</a> nyelv a fenti fordítási folyamatot annyival egészíti ki, hogy fordítási időben különféle vizsgálatokat végez a kódon, így a hibáink akár már fordítási időben is kiderülhetnek. Elsősorban ehhez típusvizsgálatokat és statikus kódanalízist hajt végre. A VS Code az analízist TypeScript segítségével a normál JavaScript fájlokon is elvégzi, ezért kapunk IntelliSense-t, sőt, ezért jelennek meg esetenként változók, paraméterek típusai is a segítségben.</p>
+<p>A <a href="https://webpack.js.org/">Webpack</a> egy "modulcsomagoló". A JavaScript fájljainkat érdemes külön tartani, hogy ne többtízezer soros kódfájljaink legyenek, hanem minden a saját helyén legyen - mivel a böngészőben sok fájlt letölteni pedig még HTTP/2-vel sem optimálisabb, mintha egy nagy fájlt töltenénk le. Webpack segítségével többek között a JS fájljainkat minifikálni tudjuk, össze tudjuk őket csomagolni kevesebb fájllá, valamint különféle plusz funkciókat tudunk pluginekkel és betöltőkkel az alkalmazásunk terjesztési folyamatába ékelni, pl. source map fájlokat, transpilereket vagy kép-optimalizálókat használni. Manapság gyakorta használt funkciója a <em>Hot Module Replacement (HMR)</em>, amely bármiféle újraindítás nélkül, amikor a forrásfájlunk módosul, értesíti a böngészőt a változásról és azonnal az új kód töltődik be (frissíteni sem szükséges a böngészőt). Gyakran a Webpacket valamilyen magasabb szintű keretrendszer részeként (pl. Angular) használjuk, előlünk el van fedve, de használhatjuk kézzel is. Hátránya, hogy a konfiguráció gyakran nagyon bonyolult, a dokumentációja pedig nem a legjobb minőségű.</p>
+</blockquote>
+<h3 id="elokeszites">Előkészítés<a class="headerlink" href="#elokeszites" title="Permanent link">&para;</a></h3>
+<p>A laboron készítendő alkalmazás egy <strong>kisebb/nagyobb barkóba</strong> lesz. A "gép" gondol egy számra, majd a felhasználó dolga kitalálni a számot. A tippre a válasz mindig "kisebb", "nagyobb" vagy "talált".</p>
+<p>Klónozzuk le a kiinduló projektet (<a href="https://github.com/VIAUAC00/labor13-start.git">https://github.com/VIAUAC00/labor13-start.git</a>) egy git klienssel vagy parancssorból! Egy üres munkamappában indítsuk el a VS Code-ot! A beépített terminálból (Ctrl+ö) adjuk ki az alábbi parancsokat:</p>
+<blockquote>
+<p>Fontos! A laborgépeken nem vagy nem mindig érhető el megfelelően az NPM lokális cache példánya, ezért használjuk helyette itt az <code>npm install --cache .cache</code> parancsot, ami az aktuális mappában egy <code>.cache</code> nevű mappát használ a központi gyorsítótár helyett. Lokális gépen is használhatjuk ezt a parancsot, de ott elegendő (kell, hogy legyen) az <code>npm install</code> is. </p>
+</blockquote>
+<p><strong>Ez a <code>.cache</code> mappa NE KERÜLJÖN a tanulmányi rendszerbe feltöltendő ZIP fájlba!</strong></p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/VIAUAC00/labor13-start.git
+cd labor13-start
+npm install --cache .cache
+dotnet restore
+dotnet watch run
+</code></pre></div>
+<blockquote>
+<p>Az <code>npm install</code> parancs a kliens- és szerver oldai JavaScript függőségeket tölti le. Kliens oldalon használjuk a Bootstrapet, szerver oldalon pedig a Webpacket és Babelt.</p>
+<p>A <code>dotnet restore</code> parancs a szerveroldali .NET függőségeket tölti le. A <code>dotnet watch run</code> parancs elindítja a szerveralkalmazást, majd újrafordítja és újraindítja, amikor változást detektál és értesíti a kapcsolódott böngészőpéldányt, hogy változás volt, ami frissíti magát. Utóbbi funkció (hot reload) nem mindig működik hibátlanul, ezért érdemes továbbra is figyelni, hogy a változásaink érvényre jutottak-e, esetleg kézzel frissíteni az oldalt. Fontos, hogy a webpack a .NET fordítás előtt fut, ezért ha fordítási hibánk van, akkor azt a <code>.\node_modules\.bin\webpack</code> parancs kiadásával tudjuk ellenőrizni.</p>
+<p><i>Megj.: Mivel ez egy .NET-es projekt, akár a Visual Studio 2019-cel is megnyithattuk volna a solution-t, sőt, ez lehet a preferált, ha a szerver oldali kódot szeretnénk majd módosítani. Ha valaki kényelmesen mozog a Visual Studio-ban, használja a labor során azt nyugodtan VS Code helyett. A VS Code gyakrabban használt kliens oldali fejlesztéshez, míg a "nagy" Visual Studio kényelmesebb a szerver oldalra.</i></p>
+<p>Ha nem érhető el az oldal a HTTPS végponton, próbáljuk meg az alábbiakat:
+- <a href="https://github.com/bmeaut/dotnet/blob/master/laborgep-issues.md">tanúsítvány probléma esetén</a> adjuk ki az alábbi parancsokat PowerShellben (pl. a VS Code beépített Terminalból) a projekt gyökérmappájából, ahol a .csproj fájl is található:
+  <div class="highlight"><pre><span></span><code><span class="nb">Get-ChildItem</span> <span class="n">Cert</span><span class="p">:\</span><span class="n">CurrentUser</span><span class="p">\</span><span class="n">My</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Subject</span> <span class="o">-match</span> <span class="s1">&#39;localhost&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Remove-Item</span>
+<span class="n">dotnet</span> <span class="n">dev-certs</span> <span class="n">https</span> <span class="n">-t</span>
+</code></pre></div>
+- VAGY a launchSettings.json fájlban írjuk át a 'launchUrl' és 'applicationUrl' értékeket <code>https</code>-ről <code>http</code>-re, és szükség esetén engedélyezzük a böngésző beállításai között, hogy http-n is engedélyezze a kommunikációt,
+- VAGY (ha a laborgépeken minden kötél szakad, de <strong>figyelem</strong>, így az utolsó, iMSc feladat nem végezhető el, ahhoz a szerverre mindenképp szükség van!), használjuk a Live Servert:
+  1. <em>közvetlenül</em> a wwwroot mappát nyissuk meg VS Code-ban,
+  2. másoljuk át ide a node_modules-ból a <code>bootstrap\dist\css\bootstrap.css</code> fájlt,
+  3. hozzunk létre egy-egy üres fájlt a wwwroot mappában <code>client-start.js</code> és <code>styles.css</code> néven,
+  4. hivatkozzuk ezeket az index.html <code>&lt;head&gt;</code> elemében a <code>guessgame.js</code> hivatkozása <strong>helyett</strong>:
+     ``` HTML
+     <script src="client-start.js"></script>
+     <link rel="stylesheet" href="bootstrap.css"/>
+     <link rel="stylesheet" href="styles.css"/>
+  5. indítsuk el a Live Servert a VS Code-ból (a bal alsó sarokban levő "Go Live" vagy az F1 -&gt; 'Open Live Server' lehetőséggel),
+  6. a labor hátralevő részében ügyeljünk rá, hogy a ClientApp mappa helyett a wwwroot-ba dolgozzunk.</p>
+</blockquote>
+<p>Az alkalmazás indulását követően, ha új JS fájlokat hozunk létre és hivatkozzuk őket, a Webpack HMR ezeket a fájlokat automatikusan frissíti a böngészőben. Ettől függetlenül előfordulhat, hogy a kliens oldalt újra kell indítanunk, ekkor továbbra is szükséges a böngészőben frissítenünk F5-tel.</p>
+<p>Elegendő egyetlen fájlt referálnunk a HTML-ben, ez a guessgame.js névre hallgat. Ez az összecsomagolt, kliens oldali JavaScript alkalmazásunk.</p>
+<p>A kliens oldali kód a ClientApp mappában lesz található. <strong>Az alkalmazás belépési pontja a ClientApp/client-start.js fájl.</strong></p>
+<p>A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: <strong>egy objektum komponens, ha megjelenik a felületen a reprezentációja</strong>, képes kommunikálni más objektumokkal és komponensekkel, ezen felül lehet állapota (mezői, tulajdonságai, amiket karban tart).</p>
+<blockquote>
+<p>A 2021. novemberben megjelent .NET 6-tal az itt alkalmazott megközelítés szerveroldali része jelentősen <a href="https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0#improved-single-page-app-spa-templates">egyszerűsödött</a>.</p>
+</blockquote>
+<hr />
+<h3 id="feladat-1-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 1 (1 pont)<a class="headerlink" href="#feladat-1-1-pont" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Másoljon be egy képernyőképet az alkalmazás kezdőképernyőjéről!
+</code></pre></div>
+<hr />
+<h3 id="modern-javascript-funkciok_1">Modern JavaScript funkciók<a class="headerlink" href="#modern-javascript-funkciok_1" title="Permanent link">&para;</a></h3>
+<p>Az alkalmazásunknak szüksége lesz egy "gépre", aki majd kigondolja a számot. Az egyszerűség kedvéért most ez egy 1 és 100 közötti szám lesz, az érték nem konfigurálható. Szimuláljuk, hogy a "számítás" komplex, úgyhogy kis késleltetést viszünk majd abba, amíg a választ visszakapjuk a tippünkre.</p>
+<p>Az objektumaink, melyek a felületen is megjelennek, rendelkezni fognak egy <code>render()</code> függvénnyel, és lesz egy (az alkalmazás szempontjából) globális <code>render()</code> függvényünk is, ami minden komponenst kirajzol azok <code>render()</code> függvényének meghívásával.</p>
+<p>Először készítsük el az időzítőt! Az időzítő a játék indulásakor elkezdi számolni <strong>a kliensen</strong> az eltelt időt. Más elemekről nem tud, önállóan működni képes, elindulni és megállni tud, el lehet tőle kérni formázottan az eltelt időt, és ki tudja rajzolni az eltelt időt a felületre. A komponens kódja így az alábbi:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">timer</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">-------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Timer</span> <span class="p">{</span>
+    <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">started</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(),</span> <span class="mf">150</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">stop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+        <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">interval</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">clear</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">started</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">getElapsedTime</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">started</span> <span class="o">?</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(((</span><span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">())</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">started</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000</span><span class="p">)</span> <span class="o">:</span> <span class="s2">&quot;-&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getElapsedTime</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Az időzítőt önmagában tesztelhetjük, ehhez példányosítjuk, elindítjuk, majd leállítjuk:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">client</span><span class="o">-</span><span class="nx">start</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">--------------------------</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Timer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./timer&#39;</span><span class="p">;</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Timer</span><span class="p">();</span>
+    <span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">timer</span><span class="p">.</span><span class="nx">stop</span><span class="p">(),</span> <span class="mf">3000</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Az időzítő persze önmagában nem egy hasznos funkció a játékban, viszont maga a játék, mint komponens egy eleme. A játékos is ilyen elem, róla csak a nevét kell tudnunk, viszont ez idővel fog csak ismertté válni számunkra, tehát egy Promise objektummal tudjuk reprezentálni.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">player</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">--------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Player</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">onNameSet</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;start-form&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+                <span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;name-input&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">resolve</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">onNameSet</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">name</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">element</span> <span class="k">of</span> <span class="p">[</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;name-input&#39;</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;start-button&#39;</span><span class="p">)])</span>
+            <span class="nx">element</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="o">!!</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A Promise beteljesedik, amikor a <code>#start-form</code> űrlapot elküldik, és a <code>#name-input</code> értéke nem üres. Erre a Promise-re a játékos maga is feliratkozik, és sikeres beteljesedés esetén a <code>name</code> property-t beállítja magának. A <code>render()</code>-ben megvizsgálja, hogy van-e név, és ha van, a <code>disabled</code> attribútumokat megfelelően beállítja.</p>
+<blockquote>
+<p>Használhatnánk a Promise bevárására az <code>await</code> kulcsszót is; ez viszont konstruktorban nem használható.</p>
+</blockquote>
+<p>Láthatjuk, hogy mindenki saját magát rendereli ki, amikor állapotváltozást észlel.</p>
+<p>Az egész összekötésére hozzuk létre a Game-et, ami magát a játékot reprezentálja. A Game már biztonsan ismer egy időzítőt és egy játékost. A játékos nevének változására iratkozzunk fel, ez fogja elindítani a játékot magát. A kezdeti állapotot is ki tudja renderelni. Egy <code>components</code> property-ben fogjuk gyűjteni az egyes komponenseinket, és azoknak meg tudjuk hívni mindnek a <code>render</code> függvényét (amennyiben a komponensnek van <code>render</code> függvénye):</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">game</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">------------------</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Player</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./player&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Timer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./timer&#39;</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Game</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Timer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Player</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">onNameSet</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">());</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="ow">typeof</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">onGuessed</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="nx">onGuessing</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A játékot a dokumentum betöltésekor példányosítjuk. Az onGuessed függvényt kívülről tudják majd meghívni, jelezvén, hogy egy tipp kisebb vagy nagyobb volt a "gondolt" számnál, esetleg talált. Az onGuessing függvénnyel egy tippet tudnak majd a játéknak küldeni. A <code>client-start.js</code> tartalmát <strong>cseréljük le</strong> az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">client</span><span class="o">-</span><span class="nx">start</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">--------------------------</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Game</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./game&#39;</span><span class="p">;</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">game</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Game</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="feladat-2-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 2 (1 pont)<a class="headerlink" href="#feladat-2-1-pont" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Másoljon be egy képernyőképet, ahol megadja a nevét, és ennek hatására az időzítő elindult, a név bekérésére szolgáló input, valamint az indításra szolgáló gomb pedig le vannak tiltva.
+</code></pre></div>
+<hr />
+<h3 id="jateklogika">Játéklogika<a class="headerlink" href="#jateklogika" title="Permanent link">&para;</a></h3>
+<p>A játéklogikát egy random generátor által adott 1 és 100 közötti egész szám, és a tippelésre adott kisebb/nagyobb válasz interfésze adja. Írjuk meg a játéklogikát a kliens oldalon!</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">logic</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">-------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Logic</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">game</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">game</span> <span class="o">=</span> <span class="nx">game</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="nx">startGame</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">secretNumber</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(((</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mf">100</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">secretGuess</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">secretNumber</span> <span class="o">&lt;</span> <span class="nx">num</span> <span class="o">?</span> <span class="s1">&#39;less&#39;</span> <span class="o">:</span> <span class="nx">secretNumber</span> <span class="o">&gt;</span> <span class="nx">num</span> <span class="o">?</span> <span class="s1">&#39;greater&#39;</span> <span class="o">:</span> <span class="s1">&#39;correct&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">guess</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">secretGuess</span> <span class="o">&amp;&amp;</span> <span class="ow">typeof</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">secretGuess</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">onGuessed</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">secretGuess</span><span class="p">(</span><span class="nx">num</span><span class="p">)),</span> <span class="mf">400</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A titkos számot a lokálisan, a <code>startGame</code> függvényben tárolt <code>secretNumber</code> változóban tároljuk. Ez a változó kívülről nem látható, az egyetlen függvény, aki ismeri ezt az értéket, a <code>secretGuess</code>. A <code>guess</code> "publikus" függvényt meghívva a logika értesíti a játékot a tipp helyességéről az <code>onGuessed</code> függvényen keresztül. A válasz késleltetve érkezik, a késleltetés 400ms.</p>
+<p>A játéknak szüksége lesz valamilyen mechanizmusra, hogy meg tudja jeleníteni a helyes/helytelen tippeket. Ezt egy Guesses osztály példányában fogjuk tárolni, ami a felületen megjelenő, tippeket tartalmazó táblázatot fogja frissíteni szükség esetén.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">---------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Guesses</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">addGuess</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">num</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">num</span><span class="p">,</span> <span class="nx">value</span> <span class="p">});</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">clear</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">tr</span> <span class="k">of</span> <span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;#guesses tbody tr&#39;</span><span class="p">)))</span>
+            <span class="nx">tr</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">tr</span> <span class="k">of</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">g</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> 
+                <span class="sb">`&lt;tr&gt;</span>
+<span class="sb">                    &lt;td&gt;</span><span class="si">${</span><span class="nx">i</span> <span class="o">+</span> <span class="mf">1</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">                    &lt;td class=&#39;text-right&#39;&gt;</span><span class="si">${</span><span class="nx">g</span><span class="p">.</span><span class="nx">num</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">                    &lt;td class=&#39;bg-</span><span class="si">${</span><span class="nx">g</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;correct&#39;</span> <span class="o">?</span> <span class="s1">&#39;success&#39;</span> <span class="o">:</span> <span class="s1">&#39;danger&#39;</span><span class="si">}</span><span class="sb">&#39;&gt;</span><span class="si">${</span><span class="nx">g</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;correct&#39;</span> <span class="o">?</span> <span class="s1">&#39;!!!&#39;</span> <span class="o">:</span> <span class="nx">g</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;less&#39;</span> <span class="o">?</span> <span class="s1">&#39;&amp;gt;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&amp;lt;&#39;</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">                &lt;/tr&gt;`</span><span class="p">).</span><span class="nx">reverse</span><span class="p">()))</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#guesses tbody&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">tr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Már csak a felületről érkező tippet kell kezelnünk, ehhez egy Guess osztályt hozunk létre:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">guess</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Guess</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">game</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+            <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mf">0</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">&lt;=</span> <span class="mf">100</span><span class="p">)</span>
+                <span class="nx">game</span><span class="p">.</span><span class="nx">onGuessing</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">reset</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">reset</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">setEnabled</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">value</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">element</span> <span class="k">of</span> <span class="p">[</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-button&#39;</span><span class="p">)])</span> <span class="p">{</span>
+            <span class="nx">element</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Össze kell kötnünk a játékot a logikával, ill. a korábbi tippek tárolásáért felelős objektummal, valamint kezelnünk kell a felületről, a felhasználó részéről érkező tippet. Frissítsük a <code>game.js</code> tartalmát az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">game</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">------------------</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Player</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./player&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Timer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./timer&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Logic</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./logic&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Guesses</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./guesses&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Guess</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./guess&#39;</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Game</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Timer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Player</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Logic</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Guesses</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guess</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Guess</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">onNameSet</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">());</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="ow">typeof</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">.</span><span class="nx">startGame</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">onGuessed</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">addGuess</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">guess</span> <span class="o">===</span> <span class="s1">&#39;correct&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">onGuessing</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">.</span><span class="nx">guess</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="feladat-3-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 3 (1 pont)<a class="headerlink" href="#feladat-3-1-pont" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Másoljon be egy képernyőképet egy játék végeredményéről, ahol láthatók a leadott tippek és az eltelt idő!
+</code></pre></div>
+<hr />
+<hr/>
+
+<h2 id="onallo-feladatok"><strong>Önálló feladatok</strong><a class="headerlink" href="#onallo-feladatok" title="Permanent link">&para;</a></h2>
+<h3 id="toplista">Toplista<a class="headerlink" href="#toplista" title="Permanent link">&para;</a></h3>
+<p>A toplistán kizárólag a legjobb 10 eredménnyel rendelkező egyén jelenik meg. A toplista először a tippek száma, majd a megtett idő alapján csökkenő sorrend szerint rendezett.</p>
+<p>A toplista perzisztens, tehát a játék indulásakor a toplista <code>localStorage</code>-ből betöltődik, az új bejegyzések pedig ide perzisztálódnak. Ehhez a <code>localStorage</code> globális objektum <code>getItem(key)</code> és <code>setItem(key, value)</code> metódusai használhatók, a rendezéshez a tömb <code>sort(callback)</code> függvénye használható, a callback két elemet kap, amelyekhez egy összehasonlítást kell megadnunk, ami egy számértékkel tér vissza (a kisebb számértékű elem előrébb lesz a listában).</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">toplist</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">---------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Toplist</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;toplist&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;[]&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">setItem</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">guesses</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">guesses</span><span class="p">,</span> <span class="nx">time</span> <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">guesses</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">time</span> <span class="o">/</span> <span class="mf">1000</span> <span class="o">-</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">guesses</span> <span class="o">+</span> <span class="nx">b</span><span class="p">.</span><span class="nx">time</span> <span class="o">/</span> <span class="mf">1000</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">9</span><span class="p">);</span>
+        <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;toplist&#39;</span><span class="p">,</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#toplist tbody&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">e</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span>
+            <span class="sb">`&lt;tr&gt;</span>
+<span class="sb">                &lt;th&gt;</span><span class="si">${</span><span class="nx">i</span> <span class="o">+</span> <span class="mf">1</span><span class="si">}</span><span class="sb">&lt;/th&gt;</span>
+<span class="sb">                &lt;td&gt;</span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">                &lt;td&gt;</span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">guesses</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">                &lt;td&gt;</span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">time</span><span class="si">}</span><span class="sb">&lt;/td&gt;</span>
+<span class="sb">            &lt;/tr&gt;`</span>
+        <span class="p">)).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A toplistát a játékhoz kell kötnünk, és a <code>setItem</code> metódust meghívni, amikor a játéknak vége.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">game</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">------------------</span>
+
+<span class="cm">/* ... */</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Toplist</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./toplist&#39;</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Game</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="cm">/* ... */</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">toplist</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Toplist</span><span class="p">();</span>
+        <span class="cm">/* ... */</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">toplist</span><span class="p">];</span>
+        <span class="cm">/* ... */</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* ... */</span>
+
+    <span class="nx">onGuessed</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* ... */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">guess</span> <span class="o">===</span> <span class="s1">&#39;correct&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="cm">/* ... */</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">toplist</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">getElapsedTime</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* ... */</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="feladat-4-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 4 (1 pont)<a class="headerlink" href="#feladat-4-1-pont" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Másoljon be egy képernyőképet, amelyen legalább 3 különböző eredmény látható!
+</code></pre></div>
+<hr />
+<h3 id="ujrakezdes">Újrakezdés<a class="headerlink" href="#ujrakezdes" title="Permanent link">&para;</a></h3>
+<p>A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését implementáló logikát! Az újrakezdés az alábbiakat jelenti:
+- a játék befejezését követően megjelenik a felületen egy <em>Restart</em> címkéjű gomb, melyet megnyomva új játék indul (ezt követően ismét eltűnik),
+- a felhasználó nevét bekérő űrlap újból engedélyezve lesz, a fókusz ide helyeződik, a felhasználónak lehetősége van átírni a nevét és új játékot indítani,
+- a jobb oldali táblázatban látható korábbi tippek ürülnek.</p>
+<hr />
+<h3 id="feladat-5-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 5 (1 pont)<a class="headerlink" href="#feladat-5-1-pont" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>- Illessze be a forráskódot az újrakezdést megvalósító komponenshez, illetve az összes érintett komponenshez!
+
+- Illesszen be képernyőképet a felületen dinamikusan elhelyezett gombról!
+</code></pre></div>
+<hr />
+<h3 id="imsc-feladat-2-pont">iMSc feladat (2 pont)<a class="headerlink" href="#imsc-feladat-2-pont" title="Permanent link">&para;</a></h3>
+<p>A kliens oldalon tárolt logikát helyezze át a szerver oldalra!</p>
+<p>A szerveren fut egy WebSocket kiszolgáló, mely bármilyen <code>wss://localhost:port</code>-on futó kérésre válaszol (HTTP esetén (<code>ws://localhost:port</code>)).</p>
+<p>A szerverkapcsolatot az alábbi osztály reprezentálja (a portszámot szükséges lehet átírnia a saját szerver portszámára):</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ClientApp</span><span class="err">\</span><span class="nx">socketserver</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span>
+<span class="o">--------------------------</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SocketServer</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">socket</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">&#39;wss://localhost:7579/ws&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">open</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">open</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">onRecieve</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="nx">send</span><span class="p">(</span><span class="nx">action</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">guess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">guess</span> <span class="p">});</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Sending message: </span><span class="si">${</span><span class="nx">json</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">onRecieve</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>A socket szerver URL-t szükséges lehet átírni: a portszámnak a szerver portszámának kell lennie (a <code>dotnet watch run</code> parancs kiírja, hol indul a szerver), és <code>http</code> esetén <code>ws</code>, <code>https</code> esetén pedig <code>wss</code> protokollt kell (/érdemes) használni.</p>
+</blockquote>
+<p>A szervert az alábbi kód mintájára tudja használni:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">SocketServer</span><span class="p">();</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;setName&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">);</span>
+
+    <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;startGame&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">);</span>
+
+    <span class="kd">let</span> <span class="nx">guess</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+
+    <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;guess&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">,</span> <span class="o">++</span><span class="nx">guess</span><span class="p">),</span> <span class="mf">500</span><span class="p">);</span>
+<span class="p">},</span> <span class="mf">2000</span><span class="p">);</span>
+</code></pre></div>
+<p>A szerver az alábbi kérésekre figyel:
+- <code>startGame</code>: játék indítása.
+- <code>setName</code>: név beállítása az aktuális játékoshoz. Szükséges a "name" paraméter megadása is.
+- <code>guess</code>: tipp küldése. Szükséges a guess paraméter megadása is.
+- <code>toplist</code>: toplista lekérése.</p>
+<p>A szerver az alábbiakat küldi:
+- a toplistát az alábbi JSON-formátumban küldi a szerver:<code>{ name, guesses, timeInSeconds }</code>,
+- egy tippre a szerver az összes klienst értesíti, az alábbi objektumot küldve: <code>{ name, guess, value, timeInSeconds }</code>.</p>
+<p>Valósítsa meg az alábbiakat:
+- a szerver tárolja a játék állapotot, nem a kliens,
+- a szerver értesülésére a kliensek fel vannak iratkozva, és megosztják az állapotot (több böngésző ablakkal tudja demonstrálni),
+- a szerver tárolja a toplistát,
+- a szerver küld válaszeseményeket a tippelésre, minden feliratkozót értesít.</p>
+<hr />
+<h3 id="imsc-feladat-2-pont_1"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> iMSc feladat (2 pont)<a class="headerlink" href="#imsc-feladat-2-pont_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Másolja be a releváns kódrészleteket és rövid magyarázattal támassza alá megoldását!
+</code></pre></div>
+<hr />
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

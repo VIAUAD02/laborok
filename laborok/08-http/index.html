@@ -1,0 +1,840 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 08 - HTTP, HTML - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-08-http-html" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 08 - HTTP, HTML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../index.md" class="md-tabs__link">
+      None
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/web-labor/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/web-labor
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 08 - HTTP, HTML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 08 - HTTP, HTML
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszulet" class="md-nav__link">
+    Előkészület
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészület">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése¶
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-1-http-hibakereses" class="md-nav__link">
+    Feladat 1 - HTTP hibakeresés
+  </a>
+  
+    <nav class="md-nav" aria-label="Feladat 1 - HTTP hibakeresés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keresek-vizsgalata" class="md-nav__link">
+    Kérések vizsgálata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keresek-inditasa" class="md-nav__link">
+    Kérések indítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-2-hibakereso-eszkozok" class="md-nav__link">
+    Feladat 2 - Hibakereső eszközök
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-3-szemantikus-html" class="md-nav__link">
+    Feladat 3 - Szemantikus HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-4-html-urlapok" class="md-nav__link">
+    Feladat 4 - HTML űrlapok
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszulet" class="md-nav__link">
+    Előkészület
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészület">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése¶
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-1-http-hibakereses" class="md-nav__link">
+    Feladat 1 - HTTP hibakeresés
+  </a>
+  
+    <nav class="md-nav" aria-label="Feladat 1 - HTTP hibakeresés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keresek-vizsgalata" class="md-nav__link">
+    Kérések vizsgálata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keresek-inditasa" class="md-nav__link">
+    Kérések indítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-2-hibakereso-eszkozok" class="md-nav__link">
+    Feladat 2 - Hibakereső eszközök
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-3-szemantikus-html" class="md-nav__link">
+    Feladat 3 - Szemantikus HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-4-html-urlapok" class="md-nav__link">
+    Feladat 4 - HTML űrlapok
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/web-labor/edit/master/docs/laborok/08-http/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-08-http-html">Labor 08 - HTTP, HTML<a class="headerlink" href="#labor-08-http-html" title="Permanent link">&para;</a></h1>
+<h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
+<p>A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.</p>
+<p>A félév során felhasznált eszközök:</p>
+<ul>
+<li><a href="https://www.telerik.com/download/fiddler">Telerik Fiddler</a>,<ul>
+<li>használható az OS X / Linux verzión is futtatható Fiddler Everywhere verzió is, ekkor viszont a különbségekből fakadó esetleges kellemetlenségekért nem vállalunk felelősséget,</li>
+<li>közvetlen link: <a href="https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe">FiddlerSetup.exe</a>,</li>
+</ul>
+</li>
+<li>webböngészők beépített hibakereső eszközei,</li>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a> kódszerkesztő alkalmazás,<ul>
+<li>otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet,</li>
+</ul>
+</li>
+<li>npm, a <a href="https://nodejs.org/en/download/">NodeJS</a> csomagkezelője,<ul>
+<li>a <a href="https://www.npmjs.com/package/http-server">http-server</a> npm csomag, ami egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló</li>
+<li>ha a gépen nincsen telepítve a http-server, azt az <code>npm install -g http-server</code> paranccsal lehet telepíteni a NodeJS telepítését követően, majd parancssorban a <code>http-server</code> parancs kiadásával egy új HTTP szerver indul, ami az aktuális munkamappa tartalmát szolgálja ki.</li>
+</ul>
+</li>
+</ul>
+<p>Az npm parancs futtatásához telepített NodeJS-re is szükség van.</p>
+<p>Amelyik laboron ezeken felül további eszközökre lesz szükség, ott a labor bevezetőjében ezt jelezzük.</p>
+<h2 id="elokeszulet">Előkészület<a class="headerlink" href="#elokeszulet" title="Permanent link">&para;</a></h2>
+<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.</p>
+<h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése¶<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
+<li>Várd meg, míg elkészül a repository, majd checkout-old ki.
+    &gt; Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.</li>
+<li>Hozz létre egy új ágat megoldas néven, és ezen az ágon dolgozz.</li>
+<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
+</ol>
+<h2 id="feladat-1-http-hibakereses">Feladat 1 - HTTP hibakeresés<a class="headerlink" href="#feladat-1-http-hibakereses" title="Permanent link">&para;</a></h2>
+<p>A Fiddler a Telerik cég ingyenes terméke, az egyik leggyakrabban használt webes hibakereső (debugger) eszköz. A Fiddler egy közbeékelődéses „támadást” (man in the middle attack) játszik el a gazda számítógépen azáltal, hogy proxy-ként viselkedik. A számítógépről kifelé induló HTTP kéréseinket elkapja, naplózza azokat feldolgozás és a felületen történő megjelenítés céljából, majd elküldi az eredeti címzett felé. Ugyanezt a sorozatot játssza el a visszairányban is, amikor a gépünk a hálózatról kap adatot.</p>
+<ol>
+<li>Indítsuk el a Fiddler alkalmazást!</li>
+<li>Ne zárjuk be a Fiddler alkalmazást! Indítsuk el a Windows beépített proxy beállító felületét!</li>
+<li>Indítsuk el a Windows beépített proxy beállító felületét! A Windows billentyűt nyomjuk le, a Start menü megnyílása után gépeljük be: "proxy", és nyissuk meg a proxybeállításokat!</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Másoljon be egy képernyőképet arról <code>f1a.png</code> néven, hogyan módosítja a Fiddler a proxy beállításokat a Windows proxy beállításai között és a Telerik Fiddler Options &gt; Connections fülön!</p>
+</div>
+<p>Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy meg tudjuk vizsgálni a hálózati forgalmat!</p>
+<p>Mielőtt használjuk az eszközt, szükséges lehet a HTTPS forgalom feloldása, amihez egy egyedi tanúsítványt kell telepítenünk a gépünkre. Ezt a Tools -&gt; Options -&gt; HTTPS lehetőségnél kezdeményezhetjük.</p>
+<p>A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a <a href="https://www.aut.bme.hu">https://www.aut.bme.hu</a> címre (<strong>figyelem, pontosan írjuk/másoljuk be!</strong>)! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!</p>
+<p>A Fiddler alapvető felépítése az alábbi: <img alt="A Telerik Fiddler áttekintése" src="assets/fiddler.png" /></p>
+<ol>
+<li>HTTP kérések időrendi listája: itt látjuk, hogy milyen kéréseink mentek ki a hálózatra. A <strong>protokoll</strong> HTTP vagy HTTPS lehet, a <strong>Result</strong> a válaszüzenetben érkező HTTP <strong>státuszkódot</strong> jelzi. A <strong>Body</strong> mezőben láthatjuk, hogy a válasz hány bájt méretű volt. A bal oldali listában bármely <strong>kérést</strong> kiválasztva annak <strong>részleteit jobb oldalon láthatjuk</strong>.<ul>
+<li>Jobb egérgombbal a lista elemein lehetőségünk van azok <strong>újrajátszására</strong>.</li>
+<li>Lehetőségünk van a listában aktív szűrő beállítására pl. alkalmazás (process ID) vagy host alapján.</li>
+</ul>
+</li>
+<li>A jobb oldali fülön alapértelmezés szerint az <strong>Inspectors</strong> fül van kiválasztva, ami az <em>aktuálisan kiválasztott</em> HTTP <strong>kérés-válasz párost</strong> részletezi. A <strong>felső</strong> panel a <strong>kimenő kérés</strong> panelje. A tabok során váltogatva az üzenetet különböző <strong>formázásokkal</strong> is megvizsgálhatjuk, a fontosabbak:<ul>
+<li><strong>Headers</strong>: itt láthatjuk a HTTP fejléc legfontosabb elemeit, úgy mint a HTTP igét és protokollt, csoportokba szervezve a HTTP üzenet tartalmát.</li>
+<li><strong>TextView</strong>: szöveges nézet.</li>
+<li><strong>WebForms</strong>: űrlapok küldése esetén a paraméterek nevét és értékét tartalmazza.</li>
+<li><strong>Cookies</strong>: a felküldött/fogadott sütik megjelenítése.</li>
+<li><strong>Raw</strong>: a nyers HTTP üzenet megjelenítése.</li>
+<li><strong>JSON/XML</strong>: az üzenet megjelenítése JSON/XML objektumokként (csak megfelelő formátum esetén).</li>
+</ul>
+</li>
+<li>A jobb oldali panelen az **Inspector**t választva az alsó részen a válaszból kinyerhető adatok találhatók meg, ezek jelentős része analóg a kérés formátumával és a Request panelen található adatokkal.</li>
+<li>Egy fontos eszköz lehet még számunkra a <strong>Composer</strong>, amellyel teljes HTTP kérést tudunk összeállítani és elküldeni.</li>
+</ol>
+<h3 id="keresek-vizsgalata">Kérések vizsgálata<a class="headerlink" href="#keresek-vizsgalata" title="Permanent link">&para;</a></h3>
+<p>Elemezzük a böngésző által generált kéréseket!</p>
+<p>A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg a <a href="http://www.aut.bme.hu">www.aut.bme.hu</a> szerver irányába (esetleg HTTP átirányítást követően, ami a www nélküli variáns vagy a nem HTTPS variáns esetén a megfelelő oldalra irányít át). A Fiddlerben megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján. </p>
+<p>Laborgépeken elképzelhető, hogy a tanúsítvány nincsen telepítve és nincsen jogunk a telepítéshez. Ebben az esetben haladjunk a laborral a leírtaknak megfelelően, de minden esetben a HTTPS URL-ek helyett HTTP-t használjunk! A válasz ezekben az esetekben egy átirányítás lesz a szokásos 200 OK válasz helyett.</p>
+<p>Az első kérés az általunk beírt webcímre került kiküldésre az alábbi formában:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">https://www.aut.bme.hu/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">text/html, application/xhtml+xml, image/jxr, */*</span>
+<span class="na">Accept-Language</span><span class="o">:</span> <span class="l">en-US,en;q=0.7,hu;q=0.3</span>
+<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063</span>
+<span class="na">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.aut.bme.hu</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">Keep-Alive</span>
+</code></pre></div>
+<ul>
+<li>A kérés GET igét használt, ezért nem tartozik hozzá törzs (body) a küldött HTTP üzenetben.</li>
+<li>A <strong>HTTP üzenet egyszerű szöveges formátumú</strong>, ember által is olvasható.</li>
+<li>A böngésző kulcs-érték párok formájában további adatokat küldött a szerver felé, mint pl. a böngészőt azonosító karakterláncot (<strong>User-Agent</strong>), a várt adat formátumát (<strong>Accept</strong>, <strong>Accept-Encoding</strong>), eltárolt sütiket (<strong>Cookie</strong>) stb.<ul>
+<li>Érdekesség, hogy bizonyos kulcsok többször előfordulhatnak egy HTTP üzenetben, ekkor az összes ugyanolyan kulcshoz tartozó értékek egy kollekcióként/tömbként értelmezhetők.</li>
+<li>Az első elküldött üzenet után további HTTP kérések indultak el a stíluslapok (CSS), képek és szkriptek (JavaScript) letöltéséért. Ennek az az oka, hogy a böngésző felépíti a HTML oldalt, amiben a további linkek további HTTP kéréseket indukálnak.</li>
+</ul>
+</li>
+</ul>
+<p>A kérésünkre az alábbi válasz érkezett:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">no-cache</span>
+<span class="na">Pragma</span><span class="o">:</span> <span class="l">no-cache</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=utf-8</span>
+<span class="na">Expires</span><span class="o">:</span> <span class="l">-1</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept-Encoding</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">Microsoft-IIS/8.0</span>
+<span class="na">X-AspNet-Version</span><span class="o">:</span> <span class="l">4.0.30319</span>
+<span class="na">Set-Cookie</span><span class="o">:</span> <span class="l">AaitC=3495d86d-2b52-4b73-b020-80eb90069465; path=/; HttpOnly</span>
+<span class="na">X-Powered-By</span><span class="o">:</span> <span class="l">ASP.NET</span>
+<span class="na">X-Frame-Options</span><span class="o">:</span> <span class="l">deny</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Wed, 18 Oct 2017 10:40:05 GMT</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">26940</span>
+
+<span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<ul>
+<li>A kérés sikeres volt, ezt a fejléc elején található státuszkódból és státusz üzenetéből látjuk.</li>
+<li>A válasz formátuma megegyezik a kérés formátumával: üzenet címe, fejlécek kulcs-érték párokként, üres sor, és egy opcionális törzs.</li>
+<li>A fejlécekben található fontosabb elemek a szerver típusa (Server), szerveridő (Date), a küldött adat típusa (Content-Type) és mérete bájtban (Content-Length). Ezen kívül a szerver a Set-Cookie headerrel két sütit állít be a kliensen, ill. különböző fejlécekben definiálja a gyorsítótárazáshoz (cache) szükséges szabályokat.</li>
+<li>A fejléceket egy üres sor követi, majd a HTTP üzenet törzse következik, ami egy HTML5 dokumentum.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Másoljon be egy képernyőképet <code>f1b.png</code> néven a kérésről, amelyet a böngésző a <a href="http://www.aut.bme.hu">www.aut.bme.hu</a> címre küldött és az ehhez tartozó válaszról! A válasz és a kérés is nyers (Raw) formátumban legyen látható!</p>
+</div>
+<p>Vegyük észre, hogy a HTTP kérésünkhöz tartozó válasz kizárólag a korábban elküldött kérésünkben megtalálható információk alapján készült el! Ez jelenti azt, hogy <strong>a HTTP állapotmentes</strong>: az általunk elküldött kérés alapján kapjuk meg a választ, további állapoinformációkat nem feltételezhetünk a szerver részéről. Ez <strong>nem összekeverendő azzal, hogy a szerver vagy kliens tárol-e állapotot vagy sem</strong>: napjainkban mindkét oldalon tárolunk információt az állapotunkkal kapcsolatban, viszont a kérésben található meg minden olyan információ, ami alapján a szerver azonosítani tudja a kérőt és a kérési igényt, ami alapján összeállítja a választ.</p>
+<h3 id="keresek-inditasa">Kérések indítása<a class="headerlink" href="#keresek-inditasa" title="Permanent link">&para;</a></h3>
+<p>Állítsunk össze egy egyszerű HTTP kérést a Fiddlerből!</p>
+<p>Navigáljunk a jobb oldali panelen a <strong>Composer</strong> fülre! Itt lehetőségünk van összeállítani egy HTTP üzenetet. A Parsed 
+lehetőség kicsit szofisztikáltabb, nekünk most megfelelő lesz a <strong>Raw</strong> (nyers) összeállítás is. Küldjük el az alábbi HTTP
+üzenetet és vizsgáljuk meg az erre érkező választ:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">http://www.aut.bme.hu/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre></div>
+<p><strong>Fontos</strong>, hogy a fenti kérésben egy üres sor legyen a fejléc után, tehát két Entert is kell ütnünk.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Készítsen képernyőképet a nyers HTTP válaszról <code>f1c.png</code> néven!</p>
+</div>
+<p>A fenti kérésünk formailag helyes HTTP üzenet: csak a HTTP ige, cím, és protokoll megadása kötelező, az összes fejléc opcionális, a törzs GET kérésnél pedig nem szabványos.</p>
+<p>Ha megvizsgáljuk a kérésünkre érkező válaszokat, és összehasonlítjuk a korábban a böngészőnek küldött válasszal (erre lehetőségünk van a két releváns üzenetváltást kijelölve, majd a Compare lehetőséget használva), akkor láthatjuk, hogy a kérésünkre nem rögtön egy 200 OK válasz érkezik, hanem előtte egy átirányítást kapunk a HTTPS végpontra.</p>
+<h2 id="feladat-2-hibakereso-eszkozok">Feladat 2 - Hibakereső eszközök<a class="headerlink" href="#feladat-2-hibakereso-eszkozok" title="Permanent link">&para;</a></h2>
+<p>Weboldalak készítésekor szükség lehet a HTTP forgalom megvizsgálására, viszont az esetek jelentős részében elegendő lehet, ha a böngésző forgalmát meg tudjuk vizsgálni. A mai böngészők mindegyike tartalmaz eszközöket, amellyel a weboldalak hibakeresése nagyon egyszerűen kezelhetővé válik.</p>
+<p>A böngészők Inspector nézetét a böngészőben általában az <strong>F12</strong> billentyűvel nyithatjuk meg.</p>
+<p>Vizsgáljuk meg, mit kínálnak a böngészőkbe épített hibakereső eszközök!</p>
+<p>A laborvezető által kijelölt böngészőn navigáljunk a <a href="https://www.aut.bme.hu">www.aut.bme.hu</a> oldalra és vizsgáljuk meg az oldal felépítését! Nyissuk meg a hibakeresési eszköztárat az F12-vel, nézzük meg, milyen lehetőségeink vannak! </p>
+<p><img alt="A BME AUT kezdőlapja" src="assets/aut-bme-hu.png" /></p>
+<p>A Chrome, Internet Explorer, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől eltekintve megegyezik, a leggyakoribb funkciók az alábbiak:</p>
+<ul>
+<li>A dokkolás módja megadható: az ablak alsó részére vagy oldalára is (Chrome, Firefox) dokkolható az eszköztár, ill. kivehető a saját ablakába.</li>
+<li><strong>DOM vizsgálata (DOM Explorer, Elements, Inspector)</strong>: a dokumentumfa felépítését tudjuk megvizsgálni, látható a kirajzolt HTML tartalom. Lehetőségünk van szerkeszteni az elemeket, beszúrni attribútumokat, elemeket, törölni őket. Kiválasztható egy DOM elem egérrel a kirajzolt oldalon vagy a szöveges megjelenítőben is. Egy elemet kiválasztva jobb oldalon az elemre illeszkedő stíluslap-szabályok (CSS) láthatók, ezek is szerkeszthetők.</li>
+<li><strong>JavaScript konzol (Console)</strong>: a JavaScript standard outputja a konzol, az alkalmazások által írt tartalmak itt láthatók. Lehetőségünk van kód futtatására is a konzol ablakban, ami azonnal kiértékelődik.</li>
+<li><strong>Hálózat (Network)</strong>: a Fiddlerhez hasonlóan láthatjuk a kimenő kéréseket és a rájuk érkező válaszokat. Előnye, hogy csak a konkrét oldalhoz tartozik, nem a teljes böngészőhöz, így könnyebb leszűrnünk, melyik kérések tartoznak melyik alkalmazáshoz/oldalhoz. Láthatók a pontos időzítések is, HTTP kérések indítását viszont nem lehetséges kézzel megejtenünk a beépített lehetőségekkel.</li>
+<li><strong>Hibakereső (Debugger)</strong>: az oldalhoz betöltött JavaScript forráskód hibakeresését teszi lehetővé.</li>
+<li><strong>Teljesítménymérők</strong>: különböző teljesítménymérő eszközök állnak rendelkezésünkre a weboldalak elemzéséhez, amik jellemzően a memória- és processzorhasználatot mérik.</li>
+<li><strong>Emuláció</strong>: a böngészőkbe épített emulációs lehetőségek korlátozottak, általában csak a user agent string cseréjét és a kirajzoló terület felbontását állítják át (magát a böngészőmotort természetesen nem cserélik le futási időben, ami a valódi hibák jelentős részéért felelős).</li>
+</ul>
+<p>Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.</p>
+<h2 id="feladat-3-szemantikus-html">Feladat 3 - Szemantikus HTML<a class="headerlink" href="#feladat-3-szemantikus-html" title="Permanent link">&para;</a></h2>
+<p>A HTML (HyperText Markup Language) a web nyelve. A böngészők elsősorban HTTP-n keresztül eljuttatott HTML tartalom  kirajzolásáért és feldolgozásáért felelősek.</p>
+<p>A HTML egy XML-szerű nyelv, amelyben elemek (tag) írják le a dokumentumunkat. Az egyes elemeknek lehetnek tulajdonságai, amiket attribútumoknak (attribute) nevezünk. Az attribútum értéke leggyakrabban szám, szöveg, korlátozott értékkészletű szöveg (enumeráció), ritkábban felsorolás vagy objektum lehet. A HTML-ben bizonyos szabályrendszernek kell eleget tennünk: megkötések vonatkoznak arra, hogy milyen jellegű elemeket milyen más elemekben helyezhetünk el.</p>
+<p>A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" funkcionalitást lássanak el, hanem jelentést is hordozzanak. Előnye kettős: gépi és emberi feldolgozása egyaránt egyszerűbb.</p>
+<p><strong>Fontos</strong>, hogy a HTML-ben vétett esetleges hibák <strong>csendes</strong> hibák, az esetleges hibás elhelyezések vagy helytelen formázás/szintaxis következtében a böngésző meg fogja jeleníteni az oldalt, amennyire a HTML alapján azt meg tudja tenni. Egy lemaradt <code>&lt;/lezáró tag&gt;</code> pl. nem minden esetben rontja el a HTML oldal kinézetét, de okozhat nemkívánatos mellékhatásokat.</p>
+<p><img alt="./assets/semantic-outline.png" src="Szemantikus web áttekintés" /></p>
+<p>Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">https://internetingishard.com/html-and-css/semantic-html/</a></p>
+<p>Nézzük meg, miként javítja a HTML szemantikus felépítése az alkalmazásunkat!</p>
+<ol>
+<li>Nyissuk meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyissuk meg a VS Code szerkesztőben! A <code>feladat3/index.html</code> fájlban dolgozzunk és a <code>megoldas</code> ágra pusholjunk.</li>
+</ol>
+<p>A kód könnyen értelmezhető, az egyes elemek nyitó és záró tag-je között találhatók a hozzárendelt gyerekelemek. A whitespace-ek, behúzások csak az olvashatóságot segítik.</p>
+<ol>
+<li>
+<p>Nyissuk meg VS Code-ban a Terminalt (Ctrl+ö, vagy View &gt; Terminal), ami egy beépített Powershell futtatókörnyezetet ad. Itt adjuk ki az alábbi parancsot:</p>
+<div class="highlight"><pre><span></span><code>http-server
+</code></pre></div>
+</li>
+<li>
+<p>Navigáljunk a böngészőben a <a href="http://localhost:8080/">http://localhost:8080/</a> URL-re, és teszteljük le, mit látunk!</p>
+</li>
+<li>
+<p>Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen ill. a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, ill. a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. </p>
+</li>
+<li>
+<p>Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>) mezők, ill. ezért törik a <code>&lt;div&gt;</code> (ami blockszintű elem), és marad folyószöveg a <code>&lt;span&gt;</code> (ami inline).</p>
+</li>
+<li>
+<p>A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).</p>
+<p><img alt="assets/example-style.png" src="A böngésző beépített stílusainak vizsgálata F12 eszközökkel" /></p>
+<p><img alt="./assets/semantic-flowchart.png" src="Szemantikus web elemek folyamatábrája" /></p>
+<p>Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">https://internetingishard.com/html-and-css/semantic-html/</a></p>
+</li>
+<li>
+<p>Módosítsa a HTML dokumentum tartalmát úgy, hogy szemantikus elemeket használ a nemszemantikus (pl. div) elemek helyett! A szükséges elemek: <code>article</code>, <code>aside</code>, <code>figure</code>, <code>figcaption</code>, <code>footer</code>, <code>header</code>, <code>main</code>, <code>nav</code>, <code>section</code></p>
+</li>
+<li>
+<p>Szemléltesse az így elkészült dokumentum részletes szemantikus körvonalát! <a href="https://hoyois.github.io/html5outliner/">https://hoyois.github.io/html5outliner/</a></p>
+</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1.5 pont)</p>
+<p>Az így készült outline-ról készített képernyőképet adja be <code>f3.png</code> néven a repository gyökerében!</p>
+<p>Az <code>index.html</code> módosításait is commitolja!</p>
+</div>
+<h2 id="feladat-4-html-urlapok">Feladat 4 - HTML űrlapok<a class="headerlink" href="#feladat-4-html-urlapok" title="Permanent link">&para;</a></h2>
+<p>A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak számunkra a felhasználóval való kommunikációra. </p>
+<p>Az előadáson elhangzottak gyakorlásaként állítson össze egy űrlapot a <code>feladat5/form.html</code> fájlba, mely megfelel az alábbi feltételeknek:</p>
+<ul>
+<li>Az űrlap az alábbi adatokat kéri be a felületen a felhasználótól (a *-gal jelölt mezők kötelezően kitöltendők):<ul>
+<li>Név*: szöveges mező</li>
+<li>Jelszó*: jelszó mező (nem látható karakterek – használja a "mobweb" jelszót szemléltetésre)</li>
+<li>Leírás: szöveges mező, többsoros</li>
+<li>Születési dátum*: dátum</li>
+<li>Nem: fiú/lány/egyéb, legördülő menüből</li>
+<li>Lábméret: szám, 0.5-ös léptékkel</li>
+<li>Kutya: igen/nem, jelölőnégyzettel megadható</li>
+</ul>
+</li>
+<li>Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe (használja az <code>id</code> és <code>for</code> attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!</li>
+<li>Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi a /postform.html URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Tipp:</p>
+<p>Szükséges elemek: <code>form</code>, <code>input</code>, <code>label</code>, <code>option</code>, <code>select</code>, <code>textarea</code>. </p>
+<p>Szükséges attribútumok: <code>action</code>, <code>for</code>, <code>id</code>, <code>method</code>, <code>name</code>, <code>required</code>, <code>step</code>, <code>type</code>, <code>value</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1.5 pont)</p>
+<ul>
+<li>Commitolja a <code>form.html</code> módosított tartalmát!</li>
+<li>Készítsen képernyőképet <code>f5a.png</code> néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!</li>
+<li>Demonstrálja Fiddlerrel és a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET <code>f5b.png</code> és POST <code>f5c.png</code> igék használatával is!</li>
+</ul>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
