@@ -28,8 +28,8 @@ theme:
     - navigation.instant
     - navigation.top
     - search.suggest   
-  logo: img/logo-bme-aut.png
-  favicon: img/favicon.ico
+  logo: logo-bme-aut.png
+  favicon: favicon.ico
 
 extra_css:
   - extra-material-theme.css
