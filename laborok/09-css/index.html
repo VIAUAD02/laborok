@@ -459,6 +459,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -619,8 +633,7 @@
 Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (<a href="http://localhost:8080/">http://localhost:8080/</a>), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.</p>
 </div>
 <p>Navigáljunk a <a href="http://localhost:8080/">http://localhost:8080/</a> URL-re a böngészőben! Nyissuk meg az itt látható <strong>index.html</strong> fájlt! Az alábbit kell látnunk:</p>
-<div class="highlight"><pre><span></span><code>![1. lépés](assets/index-1-step-1.png)
-</code></pre></div>
+<p><img alt="1. lépés" src="assets/index-1-step-1.png" /></p>
 <p>Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.</p>
 <p>Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!</p>
 <p>Nyissuk meg a böngésző beépített fejlesztői eszközeit (<strong>F12</strong>)! Lehetőségünk van az elemeket kijelölni (<strong>Jobb klikk</strong> &gt; <strong>Inspect Element</strong>), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.</p>
@@ -638,11 +651,9 @@ Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (<a href
 <p><img alt="4. lépés" src="assets/index-1-step-4.png" /></p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (0.5 pont)</p>
-<p>Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:</p>
-<ul>
-<li>Mekkora a <strong>margin</strong>, <strong>padding</strong> és <strong>border</strong> értéke az <code>&lt;ul&gt;</code> elemnek? <code>f1.1.png</code></li>
-<li>Hány pixel a (függőleges) távolság a <code>&lt;h1&gt;</code> és <code>&lt;h2&gt;</code> elemek tartalma között (ügyelve az átfedő margókra)? <code>f1.2.png</code></li>
-</ul>
+<p>Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:
+* Mekkora a <strong>margin</strong>, <strong>padding</strong> és <strong>border</strong> értéke az <code>&lt;ul&gt;</code> elemnek? <code>f1.1.png</code>
+* Hány pixel a (függőleges) távolság a <code>&lt;h1&gt;</code> és <code>&lt;h2&gt;</code> elemek tartalma között (ügyelve az átfedő margókra)? <code>f1.2.png</code></p>
 </div>
 <details class="note"><summary>Emlékeztető a CSS szabályok definiálásához</summary><p>Saját CSS szabályokat többféle módon tudunk az oldalunkhoz rendelni:</p>
 <ul>
@@ -665,17 +676,15 @@ Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (<a href
 <ul>
 <li>Rejtsük el a böngésző beépített stílusait, és láthatjuk, hogy kizárólag az üres inline stílus illeszkedik így az elemre. Itt hozzá tudunk adni új inline stílust az elemhez.</li>
 <li>Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).</li>
-<li>Vegyük fel a <code>&lt;h1&gt;</code> elemhez az alábbi CSS tulajdonságot:</li>
-</ul>
+<li>
+<p>Vegyük fel a <code>&lt;h1&gt;</code> elemhez az alábbi CSS tulajdonságot:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">color</span><span class="o">:</span> <span class="nt">red</span><span class="o">;</span>
 </code></pre></div>
-<ul>
+</li>
 <li>
 <p>Közben vegyük észre a DOM reprezentációban, hogy bár a jobb oldali panelen szerkesztünk, pontosan ugyanaz történik, mintha a HTML elem <code>style</code> attribútumát adtuk volna meg.</p>
 </li>
-<li>
-<p>Ha beállítjuk a <code>font-weight: bold;</code> tulajdonságot a <code>&lt;body&gt;</code>-n, akkor láthatjuk, hogy az összes gyermekére is érvényesül a szabály. Bizonyos szabályok öröklődnek (a <code>font-weight</code> ilyen), mások (például a <code>padding</code> és <code>margin</code>) viszont nem.</p>
-</li>
+<li>Ha beállítjuk a <code>font-weight: bold;</code> tulajdonságot a <code>&lt;body&gt;</code>-n, akkor láthatjuk, hogy az összes gyermekére is érvényesül a szabály. Bizonyos szabályok öröklődnek (a <code>font-weight</code> ilyen), mások (például a <code>padding</code> és <code>margin</code>) viszont nem.</li>
 </ul>
 <p>Lehetőség van esetenként több szabály aggregált megadására is ún. shorthandek használatával. Gyakori például a 4-irányú értékadás, ami a <strong>top-right-bottom-left</strong> iránysorrend szerint ad meg több értéket.</p>
 <ul>
@@ -810,9 +819,7 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 </div>
 <h3 id="fo-hir-megjelenitese-1-pont">Fő hír megjelenítése (1 pont)<a class="headerlink" href="#fo-hir-megjelenitese-1-pont" title="Permanent link">&para;</a></h3>
 <p>A fő hír megjelenését a <code>news.css</code> fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)</p>
-<blockquote>
 <p><img alt="Fő hír" src="assets/main.png" /></p>
-</blockquote>
 <p>A kezdőoldalon a legfrissebb hír jelenik meg.</p>
 <ul>
 <li>A hírnek van egy fejléce amiben megtalálható a <strong>cím</strong>, <strong>szerző</strong>, <strong>szerző profil képe</strong>, <strong>publikálási dátum</strong>.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!</li>
@@ -829,9 +836,7 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 </div>
 <h3 id="oldalso-sav-1-pont">Oldalsó sáv (1 pont)<a class="headerlink" href="#oldalso-sav-1-pont" title="Permanent link">&para;</a></h3>
 <p>Az oldalsó sáv megjelenítését is a <code>news.css</code> fájlba készítse el.</p>
-<blockquote>
 <p><img alt="Oldalsó sáv" src="assets/aside.png" /></p>
-</blockquote>
 <ul>
 <li>Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg</li>
 <li>Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: <code>width: calc(100% - oldalság szélessége - paddingok)</code>)</li>
@@ -897,6 +902,21 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
           </div>
         </a>
       
+      
+        
+        <a href="../10-bootstrap/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 10 - Bootstrap" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 10 - Bootstrap
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
