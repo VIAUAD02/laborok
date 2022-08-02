@@ -4,9 +4,6 @@
 
 ## Bevezetés
 
-Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
-
-Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor12-jegyzokonyv.docx) letölthető.
 
 > Emlékeztetőként néhány gondolat a jQuery-ről:
 >

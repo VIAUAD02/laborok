@@ -23,8 +23,6 @@ A labor végén beadandó a jegyzőkönyv PDF formátumban! Ügyeljen rá, hogy 
 
 ## Bevezetés
 
-Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
-
 A jelenlegi laborhoz telepítve kell lennie a [.NET **SDK**](https://dotnet.microsoft.com/download/dotnet/5.0) legalább 5.0-s verziójának is a gépre (ez Visual Studio 2019 16.8-as verzióval is települ).
 
 Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor13-jegyzokonyv.docx) letölthető.

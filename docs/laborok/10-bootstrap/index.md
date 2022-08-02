@@ -4,10 +4,6 @@
 
 ## Bevezetés
 
-Általános áttekintés a webes laborokról és formai követelmények a [8. labor bevezetőjében találhatók](../Labor08/README.md).
-
-Az aktuális laborhoz tartozó jegyzőkönyv sablonja DOCX formátumban [innen](./downloads/Labor10-jegyzokonyv.docx) letölthető.
-
 ### Előkészítés
 
 - Hozzünk létre egy üres munkakönyvtárat!
