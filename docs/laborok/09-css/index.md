@@ -1,4 +1,5 @@
 # Labor 09 - CSS
+
 ## Bevezetés
 
 A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
@@ -29,16 +30,15 @@ Nyissuk meg a Visual Studio Code-ban a leklónozott repositorynkat, és dolgozzu
 Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat. Futtassuk az alábbi parancsot a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból: `http-server`
 
 !!! warning "Figyelem!"
-
     **Ügyeljen rá, hogy a parancsot a megfelelő munkakönyvtárban adja ki, ahol a szerkesztett fájl is található!**
     Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
 
 Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index.html** fájlt! Az alábbit kell látnunk:
 
-    ![1. lépés](assets/index-1-step-1.png)
+![1. lépés](assets/index-1-step-1.png)
 
 Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.
- 
+
 Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 
 Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect Element**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
@@ -68,19 +68,16 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 ![4. lépés](assets/index-1-step-4.png)
 
 !!! example "BEADANDÓ (0.5 pont)"
-
     Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:
-
     * Mekkora a **margin**, **padding** és **border** értéke az `<ul>` elemnek? `f1.1.png`
     * Hány pixel a (függőleges) távolság a `<h1>` és `<h2>` elemek tartalma között (ügyelve az átfedő margókra)? `f1.2.png`
 
 ??? note "Emlékeztető a CSS szabályok definiálásához"
-
     Saját CSS szabályokat többféle módon tudunk az oldalunkhoz rendelni:
 
-    - CSS fájlokra történő hivatkozással,
-    - CSS szabályok felvételével a HTML tartalmán belüli `<style>` tagben,
-    - inline, a HTML elemek `style` attribútumának beállításával.
+    * CSS fájlokra történő hivatkozással,
+    * CSS szabályok felvételével a HTML tartalmán belüli `<style>` tagben,
+    * inline, a HTML elemek `style` attribútumának beállításával.
 
     Ütköző CSS szabályok közül az érvényesül, amelynek nagyobb a specificitása (megegyező specificitás esetében az utoljára definiált).
 
@@ -103,12 +100,11 @@ Módosítsuk az oldal megjelenését futási időben!
 * Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
 * Vegyük fel a `<h1>` elemhez az alábbi CSS tulajdonságot:
 
-```css
-color: red;
-```
+    ```css
+    color: red;
+    ```
 
 * Közben vegyük észre a DOM reprezentációban, hogy bár a jobb oldali panelen szerkesztünk, pontosan ugyanaz történik, mintha a HTML elem `style` attribútumát adtuk volna meg.
-
 * Ha beállítjuk a `font-weight: bold;` tulajdonságot a `<body>`-n, akkor láthatjuk, hogy az összes gyermekére is érvényesül a szabály. Bizonyos szabályok öröklődnek (a `font-weight` ilyen), mások (például a `padding` és `margin`) viszont nem.
 
 Lehetőség van esetenként több szabály aggregált megadására is ún. shorthandek használatával. Gyakori például a 4-irányú értékadás, ami a **top-right-bottom-left** iránysorrend szerint ad meg több értéket.
@@ -119,7 +115,6 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 * A `padding: 0;` mind a 4 oldalon 0-ra állítja a paddingot (nem szükséges mértékegység 0 esetén).
 
 !!! warning "Inline stílusok"
-
     Inline stílusokat csak kivételes esetekben használjunk, jellemzően programozottan (JavaScriptből) elfogadott lehet egy elem megjelenését ilyen módon állítani, de a nyers HTML-ben nem!
 
 ## Feladat 2. - CSS
@@ -147,7 +142,6 @@ Az `index.html` forráskódját egészítsük ki, a `<head>` elembe helyezzük e
 Ha frissítjük az oldalt (nem szükséges újraindítani a szervert, csak menteni a fájlt), akkor az elrendezés módosul: a listánkban a listaelemek egymás mellé kerülnek, és a listaelemet jelző pötty eltűnik.
 
 !!! warning "float: left"
-
     A `float: left;` tulajdonság állításával nem ugyanazt érjük el, mintha a listaelemet `display: inline-block;`-ra állítanánk, mert az `inline-block` megtartja az egymást követő elemek közötti whitespace-eket, a `float: left;` viszont nem.
 
 A float segítségével komplexebb elrendezéseket is el tudunk érni, viszont a float-olást meg kell tudnunk szüntetni. Ehhez a `clear: both;` értéket állíthatjuk be egy elemen. A float-olás azon kevés CSS tulajdonság egyike, ami az elemet sorban követő további testvérekre is közvetlenül hat.
@@ -214,7 +208,6 @@ A fájlt a HTML-ből az alábbi módon tudjuk linkelni: tegyük az oldal `<head>
 ```
 
 !!! example "BEADANDÓ (0.5 pont)"
-
     Képernyőképpel demonstrálja, hogy:
 
     * Az index.html letöltődését követően az index.css fájl is letöltődik. (`f2.1.png`)
@@ -244,7 +237,6 @@ A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik m
 Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
 !!! example "BEADANDÓ (0.5 pont)"
-
     Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve! (`f3.1.png, f3.2.png`)
 
 ## Feladat 4 (önálló) - CSS egy komplexebb feladatban (3.5 pont)
@@ -278,14 +270,13 @@ A logó mellett egy 2 elemből álló **menüsor** található, ahol az elemek �
 * Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
 
 !!! example "BEADANDÓ (1 pont)"
-
     Demonstrálja képernyőképpel a megoldást! `f4.1.png`
 
 ### Fő hír megjelenítése (1 pont)
 
 A fő hír megjelenését a `news.css` fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
 
-> ![Fő hír](assets/main.png)
+![Fő hír](assets/main.png)
 
 A kezdőoldalon a legfrissebb hír jelenik meg.
 
@@ -298,14 +289,13 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
 * Ügyeljen arra, hogy a szövegek tartsanak egységesen 16px távolságot a befoglaló elemektől. (Tipp: `padding`)
 
 !!! example "BEADANDÓ (1 pont)"
-
     Demonstrálja képernyőképpel a megoldást! `f4.2.png`
 
 ### Oldalsó sáv (1 pont)
 
 Az oldalsó sáv megjelenítését is a `news.css` fájlba készítse el.
 
-> ![Oldalsó sáv](assets/aside.png)
+![Oldalsó sáv](assets/aside.png)
 
 * Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg
   * Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)
@@ -316,7 +306,6 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítse el.
   * Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
 
 !!! example "BEADANDÓ (1 pont)"
-
     Demonstrálja képernyőképpel a megoldást! `f4.3.png`
 
 ### Reszponzivitás (0.5 pont)
@@ -332,5 +321,4 @@ Egészítse ki a `news.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk 
 * `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges.
 
 !!! example "BEADANDÓ (0.5 pont)"
-
     Demonstrálja képernyőképpel a megoldást! `f4.4.png`
