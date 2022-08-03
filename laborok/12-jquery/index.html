@@ -210,13 +210,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../08-http/" class="md-tabs__link">
+      <a href="../08-http/" class="md-tabs__link md-tabs__link--active">
         Webes Laborok
       </a>
     </li>
@@ -288,12 +290,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -366,6 +370,157 @@
 
             
           
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 12 - jQuery
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 12 - jQuery
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezetes" class="md-nav__link">
+    Bevezetés
+  </a>
+  
+    <nav class="md-nav" aria-label="Bevezetés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-projekt-inditasa" class="md-nav__link">
+    Git repository létrehozása és projekt indítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Git repository létrehozása és projekt indítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-jquery" class="md-nav__link">
+    A jQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery-pluginek" class="md-nav__link">
+    jQuery pluginek
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kiindulo-attekintese" class="md-nav__link">
+    Kiinduló áttekintése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-1-jatek-inditasa" class="md-nav__link">
+    Feladat 1 - Játék indítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Feladat 1 - Játék indítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jquery-es-ajax-kiprobalasa" class="md-nav__link">
+    jQuery és AJAX kipróbálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jatek-inditas-logika" class="md-nav__link">
+    Játék indítás logika
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-2-szerveroldali-api-hasznalata" class="md-nav__link">
+    Feladat 2 - Szerveroldali API használata
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-3-onallo-difficulty-es-category" class="md-nav__link">
+    Feladat 3 (Önálló) - Difficulty és Category
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-4-a-jatek-menete" class="md-nav__link">
+    Feladat 4 - A játék menete
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-5-onallo-tovabbi-jateklogika" class="md-nav__link">
+    Feladat 5 (Önálló) - További játéklogika
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -408,6 +563,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-projekt-inditasa" class="md-nav__link">
+    Git repository létrehozása és projekt indítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Git repository létrehozása és projekt indítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#a-jquery" class="md-nav__link">
     A jQuery
   </a>
@@ -421,64 +584,75 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#elokeszites" class="md-nav__link">
-    Előkészítés
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#feladat-1-2-pont" class="md-nav__link">
-    Feladat 1 (2 pont)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#szerveroldali-api-hasznalata" class="md-nav__link">
-    Szerveroldali API használata
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feladat-2-05-pont" class="md-nav__link">
-    Feladat 2 (0.5 pont)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feladat-3-05-pont" class="md-nav__link">
-    Feladat 3 (0.5 pont)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a-jatek-menete" class="md-nav__link">
-    A játék menete
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feladat-4-1-pont" class="md-nav__link">
-    Feladat 4 (1 pont)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feladat-5-1-pont" class="md-nav__link">
-    Feladat 5 (1 pont)
+  <a href="#kiindulo-attekintese" class="md-nav__link">
+    Kiinduló áttekintése
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-1-jatek-inditasa" class="md-nav__link">
+    Feladat 1 - Játék indítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Feladat 1 - Játék indítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jquery-es-ajax-kiprobalasa" class="md-nav__link">
+    jQuery és AJAX kipróbálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jatek-inditas-logika" class="md-nav__link">
+    Játék indítás logika
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-2-szerveroldali-api-hasznalata" class="md-nav__link">
+    Feladat 2 - Szerveroldali API használata
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-3-onallo-difficulty-es-category" class="md-nav__link">
+    Feladat 3 (Önálló) - Difficulty és Category
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-4-a-jatek-menete" class="md-nav__link">
+    Feladat 4 - A játék menete
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladat-5-onallo-tovabbi-jateklogika" class="md-nav__link">
+    Feladat 5 (Önálló) - További játéklogika
+  </a>
   
 </li>
       
@@ -501,61 +675,81 @@
                 
                 <h1 id="labor-12-jquery">Labor 12 - jQuery<a class="headerlink" href="#labor-12-jquery" title="Permanent link">&para;</a></h1>
 <h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Emlékeztetőként néhány gondolat a jQuery-ről:</p>
-<h3 id="a-jquery">A jQuery<a class="headerlink" href="#a-jquery" title="Permanent link">&para;</a></h3>
+<p>A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.</p>
+<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.</p>
+<h3 id="git-repository-letrehozasa-es-projekt-inditasa">Git repository létrehozása és projekt indítása<a class="headerlink" href="#git-repository-letrehozasa-es-projekt-inditasa" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
+<li>Várd meg, míg elkészül a repository, majd checkout-old ki.<ul>
+<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.</li>
+</ul>
+</li>
+<li>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</li>
+<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
+<li>Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -&gt; Open Folder)!</li>
+<li>Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: <code>http-server</code> (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az <code>index.html</code> megnyitása után, vagy F1 &gt; "Live Server: Open with Live Server")!</li>
+<li>Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!</li>
+</ol>
+<details class="note"><summary>Emlékeztetőként néhány gondolat a jQuery-ről</summary><h4 id="a-jquery">A jQuery<a class="headerlink" href="#a-jquery" title="Permanent link">&para;</a></h4>
 <p>A <a href="http://jquery.com">jQuery</a> egy "svájcibicska-szerű" JavaScript library. Jelentősége napjainkban az alkalmazásfejlesztő keretrendszerek javára egyre csökken, viszont az alapkoncepciók megértésére továbbra is hasznos eszköz. Elsősorban kiegészítésképpen használják különféle dinamikusan generált HTML tartalmakhoz történő dinamizmus hozzárendelésével, nem pedig teljes, önálló, kliensoldali alkalmazás fejlesztésére (de utóbbira is használható).</p>
-<p>A <a href="http://api.jquery.com/">jQuery API</a> a <code>$</code> (és ritkábban a <code>jQuery</code>) globális változón keresztül érhető el, alapvetően az alábbi módokon:
-- <code>const elements = $('ul li.active')</code>: a megadott CSS selectornak megfelelő DOM elemeket választja ki, és visszaadja egy <em>jQuery objektumban</em>. A bármilyen módon szerzett jQuery objektum hivatkozásokon az alábbihoz hasonló lehetőségeink vannak:
-  - A jQuery objektum példányai egyben tömbök, amik tartalmazzák a megtalált natív DOM elemeket (tehát iterálhatunk rajta), ill. a jQuery példányfüggvényeit tartalmazzák, amelyek elérik az illesztett DOM elemeket.</p>
-<hr />
+<p>A <a href="http://api.jquery.com/">jQuery API</a> a <code>$</code> (és ritkábban a <code>jQuery</code>) globális változón keresztül érhető el, alapvetően az alábbi módokon:</p>
 <ul>
+<li><code>const elements = $('ul li.active')</code>: a megadott CSS selectornak megfelelő DOM elemeket választja ki, és visszaadja egy <em>jQuery objektumban</em>. A bármilyen módon szerzett jQuery objektum hivatkozásokon az alábbihoz hasonló lehetőségeink vannak:</li>
+<li>A jQuery objektum példányai egyben tömbök, amik tartalmazzák a megtalált natív DOM elemeket (tehát iterálhatunk rajta), ill. a jQuery példányfüggvényeit tartalmazzák, amelyek elérik az illesztett DOM elemeket.</li>
 <li><code>.show()</code>, <code>.hide()</code>, <code>.toggle()</code>: az illesztett elemeket megjeleníti vagy elrejti azáltal, hogy az elemre inline <code>display: none</code> stílust helyezi,</li>
 <li><code>.append(e)</code>, <code>.appendTo(e)</code>, <code>.before(e)</code>, <code>.after(e)</code>, az elemhez/elé/után szúr be újabb elemeket (jQuery szelektorral elért elemeket, DOM elemeket vagy HTML tartalmat),</li>
 <li><code>.attr()</code>: gyakori, hogy egy függvény getter-setterként működik, ilyen az attr is. Ha egy paramétert adunk át, az adott attribútum értékét kapjuk vissza, ha kettőt, a második paraméter az első néven adott attribútum értéke lesz (minden illesztett elemre).</li>
-<li><code>.on()</code>: eseménykezelő feliratkoztatása az adott névvel. Két paraméter esetén ha a második paraméter a callback, úgy az hívódik meg az adott elemen; ha a callback előtt egy szelektort is megadunk, az "élő" feliratkozás lesz az illesztett elemen belüli leszármazott gyerekekre. Párja az <code>.off()</code>, amellyel eseménykezelőt iratkoztathatunk le, ezáltal elkerülve az esetleges memóriaszivárgást.<ul>
+<li><code>.on()</code>: eseménykezelő feliratkoztatása az adott névvel. Két paraméter esetén ha a második paraméter a callback, úgy az hívódik meg az adott elemen; ha a callback előtt egy szelektort is megadunk, az "élő" feliratkozás lesz az illesztett elemen belüli leszármazott gyerekekre. Párja az <code>.off()</code>, amellyel eseménykezelőt iratkoztathatunk le, ezáltal elkerülve az esetleges memóriaszivárgást.</li>
 <li><code>.click()</code>, <code>.submit()</code> stb.: az adott JavaScript események elsütése (paraméter nélkül) vagy feliratkozás az eseményre (callback megadásával) az illesztett elemeken. Elavult, ehelyett a fentebb leírt <code>.on()</code>-t használjuk feliratkozásra, a <code>.trigger()</code>-t pedig elsütésre.</li>
-</ul>
-</li>
 <li><code>.data(name)</code>: a DOM elem data-{name} attribútumában szereplő érték beállítására és lekérdezésére használhatjuk. A lekérdezés gyakorlatilag ekvivalens azzal, mintha az alábbit használnánk: <code>.attr("data-name").val()</code>. Emlékeztetőként, a CSS-ben attribútum alapján lekérdezni elemet az alábbi módon tudunk: <code>$("elem[data-my-value='value']")</code>. A <code>data-</code> attribútumok tetszőleges kulcs-érték párok tárolására szolgálnak a DOM-ban.</li>
 <li>Nagyon gyakori, hogy az egyes elemeken végzett műveleteket láncoljuk az alábbihoz hasonló módon: <code>$(".button").before(spinner).attr("disabled", true)</code>.</li>
 <li><code>$(function () { /*...*/ })</code>: az így megadott függvény a dokumentum betöltődését követően fut le. Ekvivalens a <code>$(document).ready(function () { /*...*/} )</code> hívással.</li>
 <li><code>$.ajax()</code>, <code>$.get()</code>, <code>$.post()</code> stb.: a globális jQuery objektumon elérhető statikus függvények függetlenek az egyes DOM elemektől, ezek pl. aszinkron AJAX kérések végrehajtására használhatók.</li>
 </ul>
-<h3 id="jquery-pluginek">jQuery pluginek<a class="headerlink" href="#jquery-pluginek" title="Permanent link">&para;</a></h3>
+<h4 id="jquery-pluginek">jQuery pluginek<a class="headerlink" href="#jquery-pluginek" title="Permanent link">&para;</a></h4>
 <p>A jQuery kiegészítéseképpen egyszerűbb és bonyolultabb plugineket használhatunk. Ezek a pluginek jellemzően a jQuery objektumra újabb függvényeket helyeznek el, amelyek segítségével a kiegészítő funkcionalitás elérhető. A Boostrap kétféle módon teszi elérhetővé a plugineket: data-attibútumok formájában és a jQuery API-n keresztül. A fontosabbak pl.: <code>.modal()</code> <code>.dropdown()</code>, <code>.tooltip()</code>, <code>.alert()</code>, <code>.collapse()</code>. <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/#components">Bővebben a Bootstrap jQuery pluginekről itt olvashat.</a></p>
 <p>Gyakran használt pluginokat ad még pl. a <a href="https://jqueryui.com/">jQuery UI</a>, amiben dátum- és időválasztó, dialógusablak, progressbar stb. "widgetek" találhatók.</p>
-</blockquote>
-<h3 id="elokeszites">Előkészítés<a class="headerlink" href="#elokeszites" title="Permanent link">&para;</a></h3>
+</details>
+<h3 id="kiindulo-attekintese">Kiinduló áttekintése<a class="headerlink" href="#kiindulo-attekintese" title="Permanent link">&para;</a></h3>
+<p>A laboron készülő alkalmazás egy egyszerű kvízjáték, amely az <a href="https://opentdb.com/">Open Trivia Database</a> publikus, ingyenesen elérhető <a href="https://opentdb.com/api_config.php">API-ját</a> használja. A játék menete az alábbi lesz:</p>
 <ul>
-<li>Töltsük le és tömörítsük ki a kiinduló projektet az alábbi <a href="downloads/labor12-start.zip">linkről</a> egy üres munkamappába!</li>
+<li>A játék opcióinak megadása a Let's play! gombra kattintva lehetséges.</li>
+<li>Az opcióknál megadható a kérdések száma (1 és 50 között), a kérdés kategóriája és nehézsége. Ezt követően a játék a Go! feliratú gombra kattintva indítható.</li>
+<li>A játék során a távoli API-tól lekérdezett kérdések fognak következni.</li>
+<li>Az aktuális kérdés sorszáma és az összes kérdés száma látható a kérdés oldalán, a kérdés kategóriája, a kérdés szövege, valamint a 4 válaszlehetőség, amelyek közül mindig pontosan egy lesz helyes.</li>
+<li>A 4 válaszlehetőség egyikére kattintva visszajelzés érkezik a válasz helyességéről. Ha a válasz helytelen volt, a helyes választ is jelzi az alkalmazás.</li>
+<li>A kérdések végére érve az alkalmazás jelzi, hány pontot értünk el a maximumból, majd új játék indítására van lehetőség.</li>
 </ul>
-<p>A laboron készülő alkalmazás egy egyszerű kvízjáték, amely az <a href="https://opentdb.com/">Open Trivia Database</a> publikus, ingyenesen elérhető <a href="https://opentdb.com/api_config.php">API-ját</a> használja. A játék menete az alábbi lesz:
-- A játék opcióinak megadása a Let's play! gombra kattintva lehetséges.
-- Az opcióknál megadható a kérdések száma (1 és 50 között), a kérdés kategóriája és nehézsége. Ezt követően a játék a Go! feliratú gombra kattintva indítható.
-- A játék során a távoli API-tól lekérdezett kérdések fognak következni.
-- Az aktuális kérdés sorszáma és az összes kérdés száma látható a kérdés oldalán, a kérdés kategóriája, a kérdés szövege, valamint a 4 válaszlehetőség, amelyek közül mindig pontosan egy lesz helyes.
-- A 4 válaszlehetőség egyikére kattintva visszajelzés érkezik a válasz helyességéről. Ha a válasz helytelen volt, a helyes választ is jelzi az alkalmazás.
-- A kérdések végére érve az alkalmazás jelzi, hány pontot értünk el a maximumból, majd új játék indítására van lehetőség.</p>
-<p>Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: <code>http-server</code> (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az <code>index.html</code> megnyitása után, vagy F1 &gt; "Live Server: Open with Live Server")! </p>
 <p>Említésre méltó még, hogy TypeScript támogatással a JavaScript kódunkban IntelliSense-t fogunk kapni (Visual Studio Code vagy Visual Studio használatával) a jQuery könyvtárhoz is!</p>
-<p>Az alkalmazás kiinduló kódját megvizsgálva az alábbi fájlokat találjuk:
-- index.html: a kiinduló HTML. A fájlt a feladatok megoldásához nem szükséges módosítani. Ha a fájlban módosít, dokumentálja a módosítását!
-- node_modules mappa: az npm csomagkezelővel letöltött jQuery típusdefiníciós fájlok JavaScript (TypeScript) IntelliSense támogatáshoz találhatók itt.
-- triviaut.js: egy üres JavaScript fájl, amely az index.html <code>&lt;head&gt;</code> részében került hivatkozásra. Az alkalmazás forráskódját ebbe a fájlba szükséges helyezni.
-- start-game-form-contents.html: egy részleges HTML fájl, amelyben a játék indításához szükséges opciók leírása található.
-- opentriviadb-logo.png: értelemszerűen a fentebb hivatkozott API logója.</p>
-<p>Vizsgáljuk meg az index.html tartalmát!</p>
-<p>A fájlban látható, hogy be vannak hivatkozva az alábbiak:
-- a saját JavaScript fájlunk, a <code>triviaut.js</code>,
-- a Bootstrap CSS és JavaScript fájljai,
-- a FontAwesome ikonkészlet CSS fájlja,
-- a jQuery osztálykönyvtár JS fájlja.</p>
+<p>Az alkalmazás kiinduló kódját megvizsgálva az alábbi fájlokat találjuk:</p>
+<ul>
+<li><strong>index.html</strong>: a kiinduló HTML. A fájlt a feladatok megoldásához nem szükséges módosítani. Ha a fájlban módosít, dokumentálja a módosítását!</li>
+<li><strong>node_modules mappa</strong>: az npm csomagkezelővel letöltött jQuery típusdefiníciós fájlok JavaScript (TypeScript) IntelliSense támogatáshoz találhatók itt.</li>
+<li><strong>triviaut.js</strong>: egy üres JavaScript fájl, amely az index.html <code>&lt;head&gt;</code> részében került hivatkozásra. Az alkalmazás forráskódját ebbe a fájlba szükséges helyezni.</li>
+<li><strong>start-game-form-contents.html</strong>: egy részleges HTML fájl, amelyben a játék indításához szükséges opciók leírása található.</li>
+<li><strong>opentriviadb-logo.png</strong>: értelemszerűen a fentebb hivatkozott API logója.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">node_modules</p>
+<p>A <code>node_modules</code> mappát nem szokás felcommitolni a repositoryba mert tipikusan nagyon nagyra nőhet. Most csak azért került bele a kiinduló projektbe, hogy ne az órán kelljen az <code>npm install</code> parancsot kiadni.</p>
+</div>
+<p>Vizsgáljuk meg az <code>index.html</code> tartalmát!</p>
+<p>A fájlban látható, hogy be vannak hivatkozva az alábbiak:</p>
+<ul>
+<li>a saját JavaScript fájlunk, a <code>triviaut.js</code>,</li>
+<li>a Bootstrap CSS és JavaScript fájljai,</li>
+<li>a FontAwesome ikonkészlet CSS fájlja,</li>
+<li>a jQuery osztálykönyvtár JS fájlja.</li>
+</ul>
 <p>Fontos, hogy a JavaScript fájl betöltődésekor az <em>addig a pontig</em> elkészült DOM-on képes manipulációt végezni.</p>
-<p>Ezen kívül láthatjuk, hogy a HTML fájlunkban egy <code>&lt;header&gt;</code> és egy <code>&lt;main&gt;</code> elem található. A <code>&lt;header&gt;</code> tartalma számunkra statikus. A <code>&lt;main&gt;</code>-ben három db <code>&lt;section&gt;</code> elemet láthatunk az alábbi ID-kkal ellátva: 
-- <code>lets-play-section</code>: a játék indítására (az opciók megjelenítésére) szánt gomb, 
-- <code>start-game-form-section</code>: a játék opcióit tartalmazó <code>&lt;form&gt;</code>, amely a <code>Loading...</code> szöveget tartalmazza - egyelőre el van rejtve a <code>style</code> attribútum <code>display: none</code> értéke alapján,
-- <code>game-section</code>: maga a játéktér, ahol a kérdések találhatók, szintén elrejtve található a DOM-ban.</p>
+<p>Ezen kívül láthatjuk, hogy a HTML fájlunkban egy <code>&lt;header&gt;</code> és egy <code>&lt;main&gt;</code> elem található. A <code>&lt;header&gt;</code> tartalma számunkra statikus. A <code>&lt;main&gt;</code>-ben három db <code>&lt;section&gt;</code> elemet láthatunk az alábbi ID-kkal ellátva:</p>
+<ul>
+<li><code>lets-play-section</code>: a játék indítására (az opciók megjelenítésére) szánt gomb, </li>
+<li><code>start-game-form-section</code>: a játék opcióit tartalmazó <code>&lt;form&gt;</code>, amely a <code>Loading...</code> szöveget tartalmazza - egyelőre el van rejtve a <code>style</code> attribútum <code>display: none</code> értéke alapján,</li>
+<li><code>game-section</code>: maga a játéktér, ahol a kérdések találhatók, szintén elrejtve található a DOM-ban.</li>
+</ul>
+<h2 id="feladat-1-jatek-inditasa">Feladat 1 - Játék indítása<a class="headerlink" href="#feladat-1-jatek-inditasa" title="Permanent link">&para;</a></h2>
+<h3 id="jquery-es-ajax-kiprobalasa">jQuery és AJAX kipróbálása<a class="headerlink" href="#jquery-es-ajax-kiprobalasa" title="Permanent link">&para;</a></h3>
 <p>Próbáljuk ki a jQuery könyvtárat az alábbi módon: a szerver indítását követően navigáljunk a böngészőben az oldalra! Az F12 eszköztáron nyissuk meg a Console-t, és futtassuk az alábbi parancsokat egyesével, sorrendben (közben figyeljük, mi történik a felületen):</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-section&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
 <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form-section&quot;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
@@ -571,11 +765,11 @@
 <p>Ha mindent jól csináltunk, az alábbi (vagy nagyon hasonló) hibát látjuk a konzolon az oldal betöltődését követően:</p>
 <div class="highlight"><pre><span></span><code>Uncaught ReferenceError: $ is not defined
 </code></pre></div>
-<p>A JavaScript fájlok betöltési sorrendje kiemelten fontos! A betöltődés sorrendje implikálja a függőségi sorrendet is, ugyanis végrehajtásuk a böngészőben alapértelmezetten az importálás sorrendjével megegyezik. Ha a saját fájlunkat előbb hivatkozzuk, mint a jQuery-t, úgy az ott futó kód <code>$</code> változóra történő (szinkron) hivatkozása hibát dob (mert ekkor még nem futott le a jQuery <code>$</code> objektumot definiáló kód). </p>
+<p>A JavaScript fájlok betöltési sorrendje kiemelten fontos! A betöltődés sorrendje implikálja a függőségi sorrendet is, ugyanis végrehajtásuk a böngészőben alapértelmezetten az importálás sorrendjével megegyezik. Ha a saját fájlunkat előbb hivatkozzuk, mint a jQuery-t, úgy az ott futó kód <code>$</code> változóra történő (szinkron) hivatkozása hibát dob (mert ekkor még nem futott le a jQuery <code>$</code> objektumot definiáló kód).</p>
 <p>A megoldás, hogy át kell mozgatnunk a saját JS fájlunk hivatkozását a HTML <code>&lt;head&gt;</code> elemben a jQuery hivatkozás után (érdemes minden külső függőség hivatkozása utánra, tehát a <code>&lt;head&gt;</code> végére tenni).</p>
 <p>A <code>$.get</code> statikus függvény a <code>$.ajax</code> hívás rövidítése, ahol a HTTP ige fixen a HTTP GET. Visszatérése egy Promise objektum, melyre a <code>.then</code> hívással iratkozunk fel, ami 3 callback paramétert vár (mindhárom opcionális): a sikeres teljesülést, a hibaágat, és mindet.</p>
 <p>A fenti hívás tehát behív a megadott URL-re, a kapott választ a konzolon megjeleníti, majd a <code>&lt;body&gt;</code> elem tartalmát szövegesen lecseréli a kapott tartalmat string formára konvertálva (a válasz ugyanis egy JSON objektum).</p>
-<p>Az alábbi formátumú válasz érkezik a távoli API-tól:
+<p>Az alábbi formátumú válasz érkezik a távoli API-tól:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;response_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -589,8 +783,9 @@
         <span class="p">},</span>
         <span class="err">...</span><span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div></p>
-<p>Indítsuk el a játékot! A triviaut.js fájl tartalmát cseréljük le az alábbira:</p>
+</code></pre></div>
+<h3 id="jatek-inditas-logika">Játék indítás logika<a class="headerlink" href="#jatek-inditas-logika" title="Permanent link">&para;</a></h3>
+<p>Indítsuk el a játékot! A <code>triviaut.js</code> fájl tartalmát cseréljük le az alábbira:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-button&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
     <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
@@ -604,12 +799,15 @@
     <span class="c1">// itt már elkészült a DOM!</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>A fenti tehát kiválasztja a document elemet a DOM-ból, tehát a teljes DOM gyökerét, aminek feliratkozik a <code>ready</code> pszeudo-eseményére (ilyen konkrét DOM esemény ugyanis nincsen). A fentivel ekvivalens megadás az alábbi:</p>
+<p>A fenti tehát kiválasztja a document elemet a DOM-ból, tehát a teljes DOM gyökerét, aminek feliratkozik a <code>ready</code> pszeudo-eseményére (ilyen konkrét DOM esemény ugyanis nincsen). A fentivel ekvivalens megadás az alábbi, ahol <em>arrow function</em>-t használunk:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// itt már elkészült a DOM!</span>
 <span class="p">});</span>
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Arrow function</p>
 <p>A fenti szintaxisban a <code>() =&gt; {}</code> kódrészlet szintén egy függvény deklarációja, melynek neve <em>arrow function</em>. Az arrow function szintaxis tömörebb, szintén paraméterezhető (<code>a =&gt; a + 10</code> vagy <code>(a, b) =&gt; { return a * b + 2; }</code>). További érdekessége, hogy a <code>function</code> kulcsszóval megadott függvényekkel ellentétben nem változtatja meg a <code>this</code> változó által reprezentált függvényt (objektumot) sem.</p>
+</div>
 <p>A kezdeti működésünket tehát elérhetjük az alábbi módon:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lets-play-button&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -622,11 +820,11 @@
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;start-game-form-contents.html&quot;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span> <span class="p">=&gt;</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#start-game-form&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">));</span>
 </code></pre></div>
-<hr />
-<h3 id="feladat-1-2-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 1 (2 pont)<a class="headerlink" href="#feladat-1-2-pont" title="Permanent link">&para;</a></h3>
-<p>Másoljon be egy teljes képernyős képernyőképet az opciók kezdeti állapotáról, ahol el van rejtve az indításra szolgáló gomb!</p>
-<hr />
-<h3 id="szerveroldali-api-hasznalata">Szerveroldali API használata<a class="headerlink" href="#szerveroldali-api-hasznalata" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (2 pont)</p>
+<p>Másoljon be egy teljes képernyős képernyőképet az opciók kezdeti állapotáról, ahol el van rejtve az indításra szolgáló gomb! (<code>f1.png</code>)</p>
+</div>
+<h2 id="feladat-2-szerveroldali-api-hasznalata">Feladat 2 - Szerveroldali API használata<a class="headerlink" href="#feladat-2-szerveroldali-api-hasznalata" title="Permanent link">&para;</a></h2>
 <p>Töltsük le a paramétereknek megfelelő elemeket a távoli API-ról! Ehhez szintén a <code>$.get</code> függvényt tudjuk használni:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// a globális névtérben deklaráljuk az alábbi változókat és függvényt:</span>
 <span class="kd">let</span> <span class="nx">remainingQuestions</span><span class="p">,</span> <span class="nx">totalQuestions</span><span class="p">,</span> <span class="nx">currentQuestion</span><span class="p">,</span> <span class="nx">correctAnswerIndex</span><span class="p">;</span>
@@ -648,17 +846,19 @@
     <span class="p">});</span>
 <span class="p">}));</span>
 </code></pre></div>
-<hr />
-<h3 id="feladat-2-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 2 (0.5 pont)<a class="headerlink" href="#feladat-2-05-pont" title="Permanent link">&para;</a></h3>
-<p>Készítsen képernyőképet a konzolon látható érkezett válaszokról! Legyen látható, hogy hány válasz érkezett, és ez a szám ne az alapértelmezett 10 legyen!</p>
-<hr />
-<h3 id="feladat-3-05-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 3 (0.5 pont)<a class="headerlink" href="#feladat-3-05-pont" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Készítsen képernyőképet a konzolon látható érkezett válaszokról! (<code>f2.png</code>) Legyen látható, hogy hány válasz érkezett, és ez a szám ne az alapértelmezett 10 legyen!</p>
+</div>
+<h2 id="feladat-3-onallo-difficulty-es-category">Feladat 3 (Önálló) - Difficulty és Category<a class="headerlink" href="#feladat-3-onallo-difficulty-es-category" title="Permanent link">&para;</a></h2>
 <p>Készítse el a maradék két paraméter elküldését is a <code>difficulty</code> és <code>category</code> releváns értékeinek megadásával! Használhatja a <a href="http://api.jquery.com/serializeArray/">$().serializeArray()</a> függvényt is!</p>
-<p>Az elkészült kódról és az érkező válaszról a konzolon készítsen képernyőképet!</p>
-<hr />
-<h3 id="a-jatek-menete">A játék menete<a class="headerlink" href="#a-jatek-menete" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Az érkező válaszról a konzolon készítsen képernyőképet! (<code>f3.png</code>)</p>
+</div>
+<h2 id="feladat-4-a-jatek-menete">Feladat 4 - A játék menete<a class="headerlink" href="#feladat-4-a-jatek-menete" title="Permanent link">&para;</a></h2>
 <p>A megérkezett válasz kezeléséhez a megfelelő mezőket ki kell töltenünk a HTML dokumentumban.</p>
-<p>A <code>getNextQuestion()</code> függvény kódjának kezdeménye az alábbi lehet:
+<p>A <code>getNextQuestion()</code> függvény kódjának kezdeménye az alábbi lehet:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">currentQuestion</span><span class="o">++</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">remainingQuestions</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">question</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
@@ -669,36 +869,44 @@
 <span class="kd">const</span> <span class="nx">answers</span> <span class="o">=</span> <span class="nx">question</span><span class="p">.</span><span class="nx">incorrect_answers</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
 <span class="nx">answers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">correctAnswerIndex</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">question</span><span class="p">.</span><span class="nx">correct_answer</span><span class="p">);</span>
 <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.answer .correct, .answer .incorrect, #next-question&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-</code></pre></div></p>
-<p>A függvény további részét az alábbi módon implementálja:
-- rejtse el az opciós űrlapot,
-- jelenítse meg a játékteret,
-- töltse ki a jelenlegi játék számlálóját,
-- töltse ki a kérdés kategóriáját (<code>atob(question.category)</code>),
-- töltse ki a kérdés szövegét (szintén használja az <code>atob()</code> függvényt a base64 szöveg dekódolásához),
-- vegye le az összes válaszlehetőségről (<code>.answer</code>) a <code>disabled</code> attribútumot (tipp: <a href="https://api.jquery.com/removeAttr/">$().removeAttr()</a>),
-- minden válaszlehetőség szövegének helyőrzőjében helyezze el a válasz szövegét (ügyeljen rá, hogy ne törölje ki a helyes/helytelen ikonokat, és itt is használja az <code>atob()</code> konverziót)!</p>
-<hr />
-<h3 id="feladat-4-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 4 (1 pont)<a class="headerlink" href="#feladat-4-1-pont" title="Permanent link">&para;</a></h3>
-<p>Készítsen képernyőképet az implementáció kódjáról!</p>
-<p>Készítsen képernyőképet a játéktéren megjelenő kérdésről, válaszlehetőségekről!</p>
-<hr />
-<p>A tanultak gyakorlásaképp készítse el az alábbi funkciókat:
-- A válaszlehetőségre kattintva a rendszer a válasz mellett található pipa ikonnal jelzi, hogy helyes válasz érkezett, vagy x-szel, ha helytelen. Utóbbi esetben a helyes válasz mellett egy pipa is megjelenik.
-  - A feliratkozáshoz használja az <code>$(".answer").on("click", e =&gt; { /* */ })</code> kezelőt!
-- A helyes válaszok számát tartsa nyilván!
-- Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott! Arra kattintva jelenjen meg a következő kérdés!
-- A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!
-- A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)! A legfelhasználóbarátabb élményért használhatja a Bootstrap modal megoldást is!</p>
-<hr />
-<h3 id="feladat-5-1-pont"><img alt="rep" src="assets/rep.png" title="Dokumentálandó" /> Feladat 5 (1 pont)<a class="headerlink" href="#feladat-5-1-pont" title="Permanent link">&para;</a></h3>
-<p>Képernyőképekkel és a releváns kódrészletekkel demonstrálja az alábbi eseteket:
-- a játékos helyesen válaszolt a kérdésre,
-- a játékos helytelenül válaszolt a kérdésre,
-- a válaszadás előtt nem, utána látható a továbblépéshez használt gomb,
-- az aktuális kérdés számlálója növekszik,
-- megjelenik a felhasználó által elért pontszám!</p>
-<hr />
+</code></pre></div>
+<p>A függvény további részét az alábbi módon implementálja:</p>
+<ul>
+<li>rejtse el az opciós űrlapot,</li>
+<li>jelenítse meg a játékteret,</li>
+<li>töltse ki a jelenlegi játék számlálóját,</li>
+<li>töltse ki a kérdés kategóriáját (<code>atob(question.category)</code>),</li>
+<li>töltse ki a kérdés szövegét (szintén használja az <code>atob()</code> függvényt a base64 szöveg dekódolásához),</li>
+<li>vegye le az összes válaszlehetőségről (<code>.answer</code>) a <code>disabled</code> attribútumot (tipp: <a href="https://api.jquery.com/removeAttr/">$().removeAttr()</a>),</li>
+<li>minden válaszlehetőség szövegének helyőrzőjében helyezze el a válasz szövegét (ügyeljen rá, hogy ne törölje ki a helyes/helytelen ikonokat, és itt is használja az <code>atob()</code> konverziót)!</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készítsen képernyőképet a játéktéren megjelenő kérdésről, válaszlehetőségekről! (<code>f4.png</code>)</p>
+</div>
+<h2 id="feladat-5-onallo-tovabbi-jateklogika">Feladat 5 (Önálló) - További játéklogika<a class="headerlink" href="#feladat-5-onallo-tovabbi-jateklogika" title="Permanent link">&para;</a></h2>
+<p>A tanultak gyakorlásaképp készítse el az alábbi funkciókat:</p>
+<ul>
+<li>A válaszlehetőségre kattintva a rendszer a válasz mellett található pipa ikonnal jelzi, hogy helyes válasz érkezett, vagy x-szel, ha helytelen. Utóbbi esetben a helyes válasz mellett egy pipa is megjelenik.<ul>
+<li>A feliratkozáshoz használja az <code>$(".answer").on("click", e =&gt; { /* */ })</code> kezelőt!</li>
+</ul>
+</li>
+<li>A helyes válaszok számát tartsa nyilván!</li>
+<li>Jelenítse meg a továbblépéshez használt gombot, ha a felhasználó választ adott! Arra kattintva jelenjen meg a következő kérdés!</li>
+<li>A játék befejeztével, amikor elfogynak az aktuális kérdések, jelenítse meg, hány pontot ért el a felhasználó a maximumból!</li>
+<li>A játék befejeztével lehessen újratöltés (F5) nélkül új játékot indítani! Hozhat létre új gombot, vagy átírhatja a következő kérdésre szolgáló gomb szövegét (ekkor viszont ügyeljen rá, hogy ezt követően ne felejtse visszaállítani azt)! A legfelhasználóbarátabb élményért használhatja a Bootstrap modal megoldást is!</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Képernyőképekkel és a releváns kódrészletekkel demonstrálja az alábbi eseteket:</p>
+<ul>
+<li>a játékos helyesen válaszolt a kérdésre, (<code>f5.1.png</code>)</li>
+<li>a játékos helytelenül válaszolt a kérdésre, (<code>f5.2.png</code>)</li>
+<li>a válaszadás előtt nem, utána látható a továbblépéshez használt gomb, (<code>f5.3.png</code>)</li>
+<li>az aktuális kérdés számlálója növekszik, (<code>f5.4.png</code>)</li>
+<li>megjelenik a felhasználó által elért pontszám! (<code>f5.5.png</code>)</li>
+</ul>
+</div>
                 
               
               
@@ -719,6 +927,26 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../11-js/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 11 - JavaScript alapok" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Labor 11 - JavaScript alapok
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

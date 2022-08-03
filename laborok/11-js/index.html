@@ -411,13 +411,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#a-javascriptrol-diohejban" class="md-nav__link">
-    A JavaScriptről dióhéjban
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -455,6 +448,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
     </li>
   
 
@@ -504,13 +511,6 @@
           <li class="md-nav__item">
   <a href="#git-repository-letrehozasa-es-projekt-inditasa" class="md-nav__link">
     Git repository létrehozása és projekt indítása
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a-javascriptrol-diohejban" class="md-nav__link">
-    A JavaScriptről dióhéjban
   </a>
   
 </li>
@@ -582,8 +582,7 @@
 <li>Indítsuk el a Terminal (<strong>Ctrl+ö</strong> vagy <strong>View &gt; Integrated Terminal</strong>) ablakból a http-server-t: <code>http-server</code></li>
 <li>Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!</li>
 </ol>
-<h3 id="a-javascriptrol-diohejban">A JavaScriptről dióhéjban<a class="headerlink" href="#a-javascriptrol-diohejban" title="Permanent link">&para;</a></h3>
-<p>A korábban megismert HTML és CSS adják a weboldalunk vázát, alapműködését és kinézetét, viszont a korai dokumentum-alapú weboldalaktól áttértünk a dinamikus weboldalakra, melyek futás időben módosítják az aktuális dokumentumot (a DOM-ot), így interakciót kezelhetünk, és a weboldalunkra (a kliens oldalra) önálló alkalmazásként tekintünk.</p>
+<details class="note"><summary>A JavaScriptről dióhéjban</summary><p>A korábban megismert HTML és CSS adják a weboldalunk vázát, alapműködését és kinézetét, viszont a korai dokumentum-alapú weboldalaktól áttértünk a dinamikus weboldalakra, melyek futás időben módosítják az aktuális dokumentumot (a DOM-ot), így interakciót kezelhetünk, és a weboldalunkra (a kliens oldalra) önálló alkalmazásként tekintünk.</p>
 <p>Az alkalmazásainkhoz dinamizmust (időbeni változást) szkripteléssel rendelünk, erre JavaScriptet használunk. A JavaScript egy dinamikusan típusos, interpretált szkriptnyelv, a hozzá tartozó futtatókörnyezetek végrehajtó egységei pedig alapvetően egyszálúak, így nincsen kölcsönös kizárási problémánk.</p>
 <p>Érdemes továbbá megemlíteni a felhasználandó típusokat (<code>function</code>, <code>object</code>, <code>string</code>, <code>number</code>, <code>undefined</code>, <code>boolean</code>, <code>symbol</code>), az ezek közötti szabad konverziót és a JavaScript eseményhurkot (<strong>event loop</strong>). Az event loop a JavaScriptet folyamatosan befejeződésig futtatja (<strong>"Run-to-completion"</strong>), amíg a futás be nem fejeződik, majd aszinkron eseményre vár. Az események bekövetkeztével az eseményhez regisztrált eseménykezelők lefutnak. Az események lehetnek:</p>
 <ul>
@@ -605,6 +604,7 @@
 <p class="admonition-title">Note</p>
 <p>Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.</p>
 </div>
+</details>
 <h2 id="feladat-1-egyszeru-esemenykezeles">Feladat 1 - Egyszerű eseménykezelés<a class="headerlink" href="#feladat-1-egyszeru-esemenykezeles" title="Permanent link">&para;</a></h2>
 <p>A laboron egy egyszerű "offline" To-Do alkalmazást készítünk.</p>
 <p>Az alkalmazás alapjaként egy egyszerű HTML oldal szolgál, amihez a saját JavaScriptünket írjuk. A JS kódot HTML-ben is elhelyezhetnénk, viszont az nem karbantartható és alapvetően nem best practice, úgyhogy a saját <code>todo.js</code> fájlba fogjuk tenni a kódot, amit behivatkozunk. A stílusozást Bootstrappel oldjuk meg.</p>
@@ -913,6 +913,21 @@
           </div>
         </a>
       
+      
+        
+        <a href="../12-jquery/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 12 - jQuery" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 12 - jQuery
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
