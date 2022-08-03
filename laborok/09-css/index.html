@@ -473,6 +473,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -651,9 +665,11 @@ Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (<a href
 <p><img alt="4. lépés" src="assets/index-1-step-4.png" /></p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (0.5 pont)</p>
-<p>Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:
-* Mekkora a <strong>margin</strong>, <strong>padding</strong> és <strong>border</strong> értéke az <code>&lt;ul&gt;</code> elemnek? <code>f1.1.png</code>
-* Hány pixel a (függőleges) távolság a <code>&lt;h1&gt;</code> és <code>&lt;h2&gt;</code> elemek tartalma között (ügyelve az átfedő margókra)? <code>f1.2.png</code></p>
+<p>Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:</p>
+<ul>
+<li>Mekkora a <strong>margin</strong>, <strong>padding</strong> és <strong>border</strong> értéke az <code>&lt;ul&gt;</code> elemnek? <code>f1.1.png</code></li>
+<li>Hány pixel a (függőleges) távolság a <code>&lt;h1&gt;</code> és <code>&lt;h2&gt;</code> elemek tartalma között (ügyelve az átfedő margókra)? <code>f1.2.png</code></li>
+</ul>
 </div>
 <details class="note"><summary>Emlékeztető a CSS szabályok definiálásához</summary><p>Saját CSS szabályokat többféle módon tudunk az oldalunkhoz rendelni:</p>
 <ul>
@@ -662,11 +678,13 @@ Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (<a href
 <li>inline, a HTML elemek <code>style</code> attribútumának beállításával.</li>
 </ul>
 <p>Ütköző CSS szabályok közül az érvényesül, amelynek nagyobb a specificitása (megegyező specificitás esetében az utoljára definiált).</p>
-<p>Emlékeztetőként a szabályok specificitási sorrendje:
-- inline stílus (<code>&lt;div style="..."&gt;</code>),
-- ID-k száma (<code>#azonosito</code>),
-- osztályok, attribútumok és pszeudo-osztályok száma (<code>.osztaly</code>, <code>[attributum]</code>, <code>[attributum="ertek"]</code>, <code>:hover</code>),
-- pszeudo-elemek (<code>:before</code>, <code>:after</code>).</p>
+<p>Emlékeztetőként a szabályok specificitási sorrendje:</p>
+<ul>
+<li>inline stílus (<code>&lt;div style="..."&gt;</code>),</li>
+<li>ID-k száma (<code>#azonosito</code>),</li>
+<li>osztályok, attribútumok és pszeudo-osztályok száma (<code>.osztaly</code>, <code>[attributum]</code>, <code>[attributum="ertek"]</code>, <code>:hover</code>),</li>
+<li>pszeudo-elemek (<code>:before</code>, <code>:after</code>).</li>
+</ul>
 <p>A sorrendhez hozzátartozik az <code>!important</code> kulcsszó, ami önmagában a fentiektől specifikusabb, viszont az <code>!important</code> szabályokra a fenti specificitási sorrend szintén érvényesül.</p>
 <p>A szabályok definiálása:</p>
 <p><img alt="Egyszerű CSS selectorok" src="assets/selectors-1.png" />
@@ -822,12 +840,16 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 <p><img alt="Fő hír" src="assets/main.png" /></p>
 <p>A kezdőoldalon a legfrissebb hír jelenik meg.</p>
 <ul>
-<li>A hírnek van egy fejléce amiben megtalálható a <strong>cím</strong>, <strong>szerző</strong>, <strong>szerző profil képe</strong>, <strong>publikálási dátum</strong>.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!</li>
+<li>A hírnek van egy fejléce amiben megtalálható a <strong>cím</strong>, <strong>szerző</strong>, <strong>szerző profil képe</strong>, <strong>publikálási dátum</strong>.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!<ul>
 <li>A szerző profil képe 80px x 80px. Ezek mellett jelenik meg a cím, a szerző neve, és a publikálás dátuma.</li>
 <li>A profilkép és a szöveg között legyen 10px távolság.</li>
 <li>A cím, szerző neve és publikálás dátumánál úgy állítsa át a betűméretet és a margókat, hogy azok olyan magasak legyenek mint a kép.</li>
-<li>A hír törzse egy <strong>bevezető</strong>, <strong>kép</strong> majd <strong>további tartalomból</strong> áll.</li>
+</ul>
+</li>
+<li>A hír törzse egy <strong>bevezető</strong>, <strong>kép</strong> majd <strong>további tartalomból</strong> áll.<ul>
 <li>A hírhez tartozó kép legyen középre igazítva.</li>
+</ul>
+</li>
 <li>Ügyeljen arra, hogy a szövegek tartsanak egységesen 16px távolságot a befoglaló elemektől. (Tipp: <code>padding</code>)</li>
 </ul>
 <div class="admonition example">
@@ -838,13 +860,15 @@ Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat,
 <p>Az oldalsó sáv megjelenítését is a <code>news.css</code> fájlba készítse el.</p>
 <p><img alt="Oldalsó sáv" src="assets/aside.png" /></p>
 <ul>
-<li>Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg</li>
+<li>Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg<ul>
 <li>Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: <code>width: calc(100% - oldalság szélessége - paddingok)</code>)</li>
 <li>Az oldalsáv háttérszíne legyen világosszürke.</li>
 <li>Ha a fő hír magasabb mint az oldalsáv, akkor is érjen le az oldalsáv a láblécig. (Tipp: <code>position: absolute</code>)</li>
 <li>Ha az oldalsáv magasabb, akkor pedig jelenjen meg a scrollbar az oldalsávon. (Tipp: <code>overflow: auto</code>)</li>
 <li>Az egyes hírek között legyen egy elválasztó vonal (Tipp: <code>border-bottom</code>)</li>
 <li>Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: <code>:last-child</code>)</li>
+</ul>
+</li>
 </ul>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
