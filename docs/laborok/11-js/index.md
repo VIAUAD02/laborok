@@ -17,28 +17,27 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 6. Indítsuk el a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból a http-server-t: `http-server`
 7. Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!
 
-### A JavaScriptről dióhéjban
+??? note "A JavaScriptről dióhéjban"
+    A korábban megismert HTML és CSS adják a weboldalunk vázát, alapműködését és kinézetét, viszont a korai dokumentum-alapú weboldalaktól áttértünk a dinamikus weboldalakra, melyek futás időben módosítják az aktuális dokumentumot (a DOM-ot), így interakciót kezelhetünk, és a weboldalunkra (a kliens oldalra) önálló alkalmazásként tekintünk.
 
-A korábban megismert HTML és CSS adják a weboldalunk vázát, alapműködését és kinézetét, viszont a korai dokumentum-alapú weboldalaktól áttértünk a dinamikus weboldalakra, melyek futás időben módosítják az aktuális dokumentumot (a DOM-ot), így interakciót kezelhetünk, és a weboldalunkra (a kliens oldalra) önálló alkalmazásként tekintünk.
+    Az alkalmazásainkhoz dinamizmust (időbeni változást) szkripteléssel rendelünk, erre JavaScriptet használunk. A JavaScript egy dinamikusan típusos, interpretált szkriptnyelv, a hozzá tartozó futtatókörnyezetek végrehajtó egységei pedig alapvetően egyszálúak, így nincsen kölcsönös kizárási problémánk.
 
-Az alkalmazásainkhoz dinamizmust (időbeni változást) szkripteléssel rendelünk, erre JavaScriptet használunk. A JavaScript egy dinamikusan típusos, interpretált szkriptnyelv, a hozzá tartozó futtatókörnyezetek végrehajtó egységei pedig alapvetően egyszálúak, így nincsen kölcsönös kizárási problémánk.
+    Érdemes továbbá megemlíteni a felhasználandó típusokat (`function`, `object`, `string`, `number`, `undefined`, `boolean`, `symbol`), az ezek közötti szabad konverziót és a JavaScript eseményhurkot (**event loop**). Az event loop a JavaScriptet folyamatosan befejeződésig futtatja (**"Run-to-completion"**), amíg a futás be nem fejeződik, majd aszinkron eseményre vár. Az események bekövetkeztével az eseményhez regisztrált eseménykezelők lefutnak. Az események lehetnek:
 
-Érdemes továbbá megemlíteni a felhasználandó típusokat (`function`, `object`, `string`, `number`, `undefined`, `boolean`, `symbol`), az ezek közötti szabad konverziót és a JavaScript eseményhurkot (**event loop**). Az event loop a JavaScriptet folyamatosan befejeződésig futtatja (**"Run-to-completion"**), amíg a futás be nem fejeződik, majd aszinkron eseményre vár. Az események bekövetkeztével az eseményhez regisztrált eseménykezelők lefutnak. Az események lehetnek:
+    * felhasználói interakció,
+    * időzítés,
+    * IO műveletek eredménye (pl. AJAX, Websocket).
 
-* felhasználói interakció,
-* időzítés,
-* IO műveletek eredménye (pl. AJAX, Websocket).
+    !!! summary "A fontosabb kulcsgondolatok tehát röviden"
+        * interpretált futtatás,
+        * DOM dinamikus manipulációja,
+        * dinamikus típusosság és típuskonverzió,
+        * egyszálúság, event loop és aszinkronitás.
 
-!!! summary "A fontosabb kulcsgondolatok tehát röviden"
-    * interpretált futtatás,
-    * DOM dinamikus manipulációja,
-    * dinamikus típusosság és típuskonverzió,
-    * egyszálúság, event loop és aszinkronitás.
+    Említésre méltó még, hogy a JavaScript (klasszikus értelemben véve) nem objektum-orientált, az osztályok koncepciója a nyelvben később jelent meg; a nyelv a **prototipikus öröklés** módszerét alkalmazza az objektumorientált megközelítéshez. Ezen kívül különös sajátosságai vannak, a `this` kulcsszó pl. nem az aktuális *objektumra*, hanem az aktuális *függvényre* mutat (kivétel az *arrow syntax*, ami a `this`-t az eredeti értéken hagyja).
 
-Említésre méltó még, hogy a JavaScript (klasszikus értelemben véve) nem objektum-orientált, az osztályok koncepciója a nyelvben később jelent meg; a nyelv a **prototipikus öröklés** módszerét alkalmazza az objektumorientált megközelítéshez. Ezen kívül különös sajátosságai vannak, a `this` kulcsszó pl. nem az aktuális *objektumra*, hanem az aktuális *függvényre* mutat (kivétel az *arrow syntax*, ami a `this`-t az eredeti értéken hagyja).
-
-!!! note Lábjegyzet
-    Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
+    !!! note Lábjegyzet
+        Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
 
 ## Feladat 1 - Egyszerű eseménykezelés
 
@@ -86,7 +85,7 @@ console.log(tabs);
 
 !!! info "JavaScript változók"
     JavaScriptben három kulcsszóval deklarálhatunk lokális változót:
-    
+
     * `var`: az "eredeti" módja a változó deklarációjának, modern JS-ben érdemes kerülni. Engedi ugyanazon változó újradeklarációját, sőt, nem köti scope-hoz a változót.
     * `let`: scope-hoz köti a változót, ezért nem deklarálható újra és nem is "szivárog" át a scope-ok között.
     * `const`: konstans értékű/referenciájú "változót" (érdekes változónak nevezni, ha nem változhat) tárol. A változó nem kaphat új értéket (tehát ha referenciatípus, pl. objektum vagy tömb, akkor nem lehet új objektumot/értéket adni a változónak), de ha objektumot tárol, annak tagjai (vagy a tömb elemei) értelemszerűen változhatnak.
