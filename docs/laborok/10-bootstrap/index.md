@@ -62,6 +62,7 @@ Figyeljük meg, hogy négy különböző CSS állományt töltünk be, egy kivé
 
 !!! note "Betöltési lehetőségek"
     A CSS és JS könyvtárakat többféleképpen is be tudjuk tölteni:
+
     * CDN-ről, publikus webről tölti le a CSS fájlt, amit most is használunk,
     * van lehetőségünk csomagkezelőt (npm, bower) használni letöltésre és magunk kiszolgálni a fájlt,
     * akár saját magunk kézzel is letölthetjük a megfelelő fájlokat, ebben az esetben is a saját webszerverünk szolgálja ki ezeket a fájlokat.

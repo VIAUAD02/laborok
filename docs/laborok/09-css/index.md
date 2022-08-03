@@ -69,6 +69,7 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 
 !!! example "BEADANDÓ (0.5 pont)"
     Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:
+
     * Mekkora a **margin**, **padding** és **border** értéke az `<ul>` elemnek? `f1.1.png`
     * Hány pixel a (függőleges) távolság a `<h1>` és `<h2>` elemek tartalma között (ügyelve az átfedő margókra)? `f1.2.png`
 
@@ -82,10 +83,11 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
     Ütköző CSS szabályok közül az érvényesül, amelynek nagyobb a specificitása (megegyező specificitás esetében az utoljára definiált).
 
     Emlékeztetőként a szabályok specificitási sorrendje:
-    - inline stílus (`<div style="..."> `),
-    - ID-k száma (`#azonosito`),
-    - osztályok, attribútumok és pszeudo-osztályok száma (`.osztaly`, `[attributum]`, `[attributum="ertek"]`, `:hover`),
-    - pszeudo-elemek (`:before`, `:after`).
+
+    * inline stílus (`<div style="..."> `),
+    * ID-k száma (`#azonosito`),
+    * osztályok, attribútumok és pszeudo-osztályok száma (`.osztaly`, `[attributum]`, `[attributum="ertek"]`, `:hover`),
+    * pszeudo-elemek (`:before`, `:after`).
 
     A sorrendhez hozzátartozik az `!important` kulcsszó, ami önmagában a fentiektől specifikusabb, viszont az `!important` szabályokra a fenti specificitási sorrend szintén érvényesül.
 
@@ -281,11 +283,11 @@ A fő hír megjelenését a `news.css` fájlba készítse el, amit először lé
 A kezdőoldalon a legfrissebb hír jelenik meg.
 
 * A hírnek van egy fejléce amiben megtalálható a **cím**, **szerző**, **szerző profil képe**, **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
-  * A szerző profil képe 80px x 80px. Ezek mellett jelenik meg a cím, a szerző neve, és a publikálás dátuma.
-  * A profilkép és a szöveg között legyen 10px távolság.
-  * A cím, szerző neve és publikálás dátumánál úgy állítsa át a betűméretet és a margókat, hogy azok olyan magasak legyenek mint a kép.
+    * A szerző profil képe 80px x 80px. Ezek mellett jelenik meg a cím, a szerző neve, és a publikálás dátuma.
+    * A profilkép és a szöveg között legyen 10px távolság.
+    * A cím, szerző neve és publikálás dátumánál úgy állítsa át a betűméretet és a margókat, hogy azok olyan magasak legyenek mint a kép.
 * A hír törzse egy **bevezető**, **kép** majd **további tartalomból** áll.
-  * A hírhez tartozó kép legyen középre igazítva.
+    * A hírhez tartozó kép legyen középre igazítva.
 * Ügyeljen arra, hogy a szövegek tartsanak egységesen 16px távolságot a befoglaló elemektől. (Tipp: `padding`)
 
 !!! example "BEADANDÓ (1 pont)"
@@ -298,12 +300,12 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítse el.
 ![Oldalsó sáv](assets/aside.png)
 
 * Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg
-  * Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)
-  * Az oldalsáv háttérszíne legyen világosszürke.
-  * Ha a fő hír magasabb mint az oldalsáv, akkor is érjen le az oldalsáv a láblécig. (Tipp: `position: absolute`)
-  * Ha az oldalsáv magasabb, akkor pedig jelenjen meg a scrollbar az oldalsávon. (Tipp: `overflow: auto`)
-  * Az egyes hírek között legyen egy elválasztó vonal (Tipp: `border-bottom`)
-  * Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
+    * Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)
+    * Az oldalsáv háttérszíne legyen világosszürke.
+    * Ha a fő hír magasabb mint az oldalsáv, akkor is érjen le az oldalsáv a láblécig. (Tipp: `position: absolute`)
+    * Ha az oldalsáv magasabb, akkor pedig jelenjen meg a scrollbar az oldalsávon. (Tipp: `overflow: auto`)
+    * Az egyes hírek között legyen egy elválasztó vonal (Tipp: `border-bottom`)
+    * Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
 
 !!! example "BEADANDÓ (1 pont)"
     Demonstrálja képernyőképpel a megoldást! `f4.3.png`
