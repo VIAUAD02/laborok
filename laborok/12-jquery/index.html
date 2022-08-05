@@ -512,14 +512,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#git-repository-letrehozasa-es-projekt-inditasa" class="md-nav__link">
-    Git repository létrehozása és projekt indítása
-  </a>
-  
-    <nav class="md-nav" aria-label="Git repository létrehozása és projekt indítása">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#a-jquery" class="md-nav__link">
     A jQuery
   </a>
@@ -533,8 +525,10 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
   
 </li>
         
@@ -670,14 +664,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#git-repository-letrehozasa-es-projekt-inditasa" class="md-nav__link">
-    Git repository létrehozása és projekt indítása
-  </a>
-  
-    <nav class="md-nav" aria-label="Git repository létrehozása és projekt indítása">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#a-jquery" class="md-nav__link">
     A jQuery
   </a>
@@ -691,8 +677,10 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
   
 </li>
         
@@ -783,20 +771,6 @@
                 <h1 id="labor-12-jquery">Labor 12 - jQuery<a class="headerlink" href="#labor-12-jquery" title="Permanent link">&para;</a></h1>
 <h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">&para;</a></h2>
 <p>A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.</p>
-<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.</p>
-<h3 id="git-repository-letrehozasa-es-projekt-inditasa">Git repository létrehozása és projekt indítása<a class="headerlink" href="#git-repository-letrehozasa-es-projekt-inditasa" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
-<li>Várd meg, míg elkészül a repository, majd checkout-old ki.<ul>
-<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.</li>
-</ul>
-</li>
-<li>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</li>
-<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
-<li>Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -&gt; Open Folder)!</li>
-<li>Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: <code>http-server</code> (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot, ahová a kiinduló projektet csomagoltuk ki), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az <code>index.html</code> megnyitása után, vagy F1 &gt; "Live Server: Open with Live Server")!</li>
-<li>Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!</li>
-</ol>
 <details class="note"><summary>Emlékeztetőként néhány gondolat a jQuery-ről</summary><h4 id="a-jquery">A jQuery<a class="headerlink" href="#a-jquery" title="Permanent link">&para;</a></h4>
 <p>A <a href="http://jquery.com">jQuery</a> egy "svájcibicska-szerű" JavaScript library. Jelentősége napjainkban az alkalmazásfejlesztő keretrendszerek javára egyre csökken, viszont az alapkoncepciók megértésére továbbra is hasznos eszköz. Elsősorban kiegészítésképpen használják különféle dinamikusan generált HTML tartalmakhoz történő dinamizmus hozzárendelésével, nem pedig teljes, önálló, kliensoldali alkalmazás fejlesztésére (de utóbbira is használható).</p>
 <p>A <a href="http://api.jquery.com/">jQuery API</a> a <code>$</code> (és ritkábban a <code>jQuery</code>) globális változón keresztül érhető el, alapvetően az alábbi módokon:</p>
@@ -817,6 +791,20 @@
 <p>A jQuery kiegészítéseképpen egyszerűbb és bonyolultabb plugineket használhatunk. Ezek a pluginek jellemzően a jQuery objektumra újabb függvényeket helyeznek el, amelyek segítségével a kiegészítő funkcionalitás elérhető. A Boostrap kétféle módon teszi elérhetővé a plugineket: data-attibútumok formájában és a jQuery API-n keresztül. A fontosabbak pl.: <code>.modal()</code> <code>.dropdown()</code>, <code>.tooltip()</code>, <code>.alert()</code>, <code>.collapse()</code>. <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/#components">Bővebben a Bootstrap jQuery pluginekről itt olvashat.</a></p>
 <p>Gyakran használt pluginokat ad még pl. a <a href="https://jqueryui.com/">jQuery UI</a>, amiben dátum- és időválasztó, dialógusablak, progressbar stb. "widgetek" találhatók.</p>
 </details>
+<h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">&para;</a></h3>
+<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát <a href="../../tudnivalok/github/GitHub/">Github</a>.</p>
+<ol>
+<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
+<li>Várd meg, míg elkészül a repository, majd checkout-old ki.<ul>
+<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../tudnivalok/github/GitHub-credentials/">itt</a>), és próbáld újra.</li>
+</ul>
+</li>
+<li>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</li>
+<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
+<li>Nyissuk meg a Visual Studio Code-dal leklónozott repository <code>feladat</code> mappáját (File -&gt; Open Folder)!</li>
+<li>Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: <code>http-server</code> (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az <code>index.html</code> megnyitása után, vagy F1 &gt; "Live Server: Open with Live Server")!</li>
+<li>Ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!</li>
+</ol>
 <h3 id="kiindulo-attekintese">Kiinduló áttekintése<a class="headerlink" href="#kiindulo-attekintese" title="Permanent link">&para;</a></h3>
 <p>A laboron készülő alkalmazás egy egyszerű kvízjáték, amely az <a href="https://opentdb.com/">Open Trivia Database</a> publikus, ingyenesen elérhető <a href="https://opentdb.com/api_config.php">API-ját</a> használja. A játék menete az alábbi lesz:</p>
 <ul>
