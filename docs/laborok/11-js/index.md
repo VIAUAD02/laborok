@@ -15,16 +15,16 @@ A laborok során a hallgatók laborvezetői segítséggel, majd önállóan vég
     * időzítés,
     * IO műveletek eredménye (pl. AJAX, Websocket).
 
-    !!! summary "A fontosabb kulcsgondolatok tehát röviden"
-        * interpretált futtatás,
-        * DOM dinamikus manipulációja,
-        * dinamikus típusosság és típuskonverzió,
-        * egyszálúság, event loop és aszinkronitás.
+    A fontosabb kulcsgondolatok tehát röviden:
+
+    * interpretált futtatás,
+    * DOM dinamikus manipulációja,
+    * dinamikus típusosság és típuskonverzió,
+    * egyszálúság, event loop és aszinkronitás.
 
     Említésre méltó még, hogy a JavaScript (klasszikus értelemben véve) nem objektum-orientált, az osztályok koncepciója a nyelvben később jelent meg; a nyelv a **prototipikus öröklés** módszerét alkalmazza az objektumorientált megközelítéshez. Ezen kívül különös sajátosságai vannak, a `this` kulcsszó pl. nem az aktuális *objektumra*, hanem az aktuális *függvényre* mutat (kivétel az *arrow syntax*, ami a `this`-t az eredeti értéken hagyja).
 
-    !!! note Lábjegyzet
-        Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
+    Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
 
 ### Git repository létrehozása és letöltése
 
