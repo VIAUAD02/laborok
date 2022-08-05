@@ -63,7 +63,12 @@ plugins:
       prebuild_index: true
 
 nav:
-  - index.md
+  - "Tudnivalók":
+      - index.md
+      - tudnivalok/github/GitHub.md
+      - tudnivalok/github/GitHub-Actions.md
+      - tudnivalok/github/GitHub-credentials.md
+      - tudnivalok/laborvezetoknek/index.md
   - "Webes Laborok":
       - laborok/08-http/index.md
       - laborok/09-css/index.md

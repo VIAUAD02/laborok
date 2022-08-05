@@ -475,10 +475,9 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 
 A kliens oldalon tárolt logikát helyezze át a szerver oldalra a `Backend` mappában lévő `GuessWS.sln` ASP.NET Core 6-os projektbe!
 
-!!! attention ".NET 6"
+!!! important "Projekt indítása"
     Az iMSc feladathoz telepítve kell lennie a [.NET **SDK**](https://dotnet.microsoft.com/download/dotnet/6.0) legalább 6.0-s verziójának is a gépre (ez Visual Studio 2022-vel is települ).
 
-!!! important "Projekt indítása"
     A projekt elindításához elegendő a megszokott Visual Studio-s _Debug_ vagy _Start without debugging_ funkciót választani. Ilyenkor a backend alkalmazásunk elindul viszont szüksége lenne a kliens részekre is. Ezt úgy oldjuk meg jelenleg, hogy a kliens alkalmazás futtatására továbbra is szükségünk lesz (pl VS Code-ban `npm start`), és a backend a statikus fájlok (html, js, css) kiszolgálására átproxyza a kéréseket a webpack szerver felé. Ez a `Program` osztályban került definiálásra:
 
     ```cs
