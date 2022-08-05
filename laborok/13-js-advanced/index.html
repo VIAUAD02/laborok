@@ -200,11 +200,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
-      Web-labor
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
 
       
         
@@ -276,10 +280,99 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Web-labor
+        Tárgy ismertető
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/laborvezetoknek/" class="md-nav__link">
+        Laborvezetőknek
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1102,12 +1195,9 @@ export class Game {
 </div>
 <h2 id="feladat-6-imsc-szerver-oldali-logika-2-imsc-pont">Feladat 6 iMSc - Szerver oldali logika (2 iMSc pont)<a class="headerlink" href="#feladat-6-imsc-szerver-oldali-logika-2-imsc-pont" title="Permanent link">&para;</a></h2>
 <p>A kliens oldalon tárolt logikát helyezze át a szerver oldalra a <code>Backend</code> mappában lévő <code>GuessWS.sln</code> ASP.NET Core 6-os projektbe!</p>
-<div class="admonition attention">
-<p class="admonition-title">.NET 6</p>
-<p>Az iMSc feladathoz telepítve kell lennie a <a href="https://dotnet.microsoft.com/download/dotnet/6.0">.NET <strong>SDK</strong></a> legalább 6.0-s verziójának is a gépre (ez Visual Studio 2022-vel is települ).</p>
-</div>
 <div class="admonition important">
 <p class="admonition-title">Projekt indítása</p>
+<p>Az iMSc feladathoz telepítve kell lennie a <a href="https://dotnet.microsoft.com/download/dotnet/6.0">.NET <strong>SDK</strong></a> legalább 6.0-s verziójának is a gépre (ez Visual Studio 2022-vel is települ).</p>
 <p>A projekt elindításához elegendő a megszokott Visual Studio-s <em>Debug</em> vagy <em>Start without debugging</em> funkciót választani. Ilyenkor a backend alkalmazásunk elindul viszont szüksége lenne a kliens részekre is. Ezt úgy oldjuk meg jelenleg, hogy a kliens alkalmazás futtatására továbbra is szükségünk lesz (pl VS Code-ban <code>npm start</code>), és a backend a statikus fájlok (html, js, css) kiszolgálására átproxyza a kéréseket a webpack szerver felé. Ez a <code>Program</code> osztályban került definiálásra:</p>
 <div class="highlight"><pre><span></span><code>app.UseSpa(spa =&gt;
 {
