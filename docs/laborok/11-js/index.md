@@ -4,19 +4,6 @@
 
 A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.
-
-### Git repository létrehozása és projekt indítása
-
-1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
-2. Várd meg, míg elkészül a repository, majd checkout-old ki.
-    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.
-3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
-4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
-5. Nyissuk meg a Visual Studio Code-dal a létrehozott könyvtárat (File -> Open Folder)!
-6. Indítsuk el a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból a http-server-t: `http-server`
-7. Ellenőrizzük, hogy a megfelelő könyvtárban indítottuk-e el a szervert!
-
 ??? note "A JavaScriptről dióhéjban"
     A korábban megismert HTML és CSS adják a weboldalunk vázát, alapműködését és kinézetét, viszont a korai dokumentum-alapú weboldalaktól áttértünk a dinamikus weboldalakra, melyek futás időben módosítják az aktuális dokumentumot (a DOM-ot), így interakciót kezelhetünk, és a weboldalunkra (a kliens oldalra) önálló alkalmazásként tekintünk.
 
@@ -38,6 +25,19 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 
     !!! note Lábjegyzet
         Az Internet Explorer elhíresült arról, hogy a fejlesztés rá jelentősen nehézkesebb, mint bármely alternatívára. Ma már a Microsoft is hivatalosan is az új, Chromium alapú Edge böngészőt támogatja, amely - a már nem is támogatott - Windows 7 OS-en is működik, így új weboldalakat Internet Explorer támogatással már nem kell készítenünk.
+
+### Git repository létrehozása és letöltése
+
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+5. Nyissuk meg a Visual Studio Code-dal leklónozott repository `feladat` mappáját (File -> Open Folder)!
+6. Az alkalmazás futtatásához adjuk ki a Terminalban (Ctrl+ö) az alábbi parancsot: `http-server` (ügyeljünk arra, hogy a helyes útvonalon adjuk ki a parancsot), vagy használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az `index.html` megnyitása után, vagy F1 > "Live Server: Open with Live Server")!
+7. Ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
 
 ## Feladat 1 - Egyszerű eseménykezelés
 

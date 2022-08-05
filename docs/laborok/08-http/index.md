@@ -22,13 +22,13 @@ Amelyik laboron ezeken felül további eszközökre lesz szükség, ott a labor 
 
 ## Előkészület
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
 
 ### Git repository létrehozása és letöltése
 
 1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 2. Várd meg, míg elkészül a repository, majd checkout-old ki.
-    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.
+    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
@@ -181,7 +181,7 @@ A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" f
 
 **Fontos**, hogy a HTML-ben vétett esetleges hibák **csendes** hibák, az esetleges hibás elhelyezések vagy helytelen formázás/szintaxis következtében a böngésző meg fogja jeleníteni az oldalt, amennyire a HTML alapján azt meg tudja tenni. Egy lemaradt `</lezáró tag>` pl. nem minden esetben rontja el a HTML oldal kinézetét, de okozhat nemkívánatos mellékhatásokat.
 
-![./assets/semantic-outline.png](Szemantikus web áttekintés)
+![Szemantikus web áttekintés](/assets/semantic-outline.png)
 
 Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
@@ -205,9 +205,9 @@ A kód könnyen értelmezhető, az egyes elemek nyitó és záró tag-je közöt
 
 5. A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
 
-    ![assets/example-style.png](A böngésző beépített stílusainak vizsgálata F12 eszközökkel)
+    ![A böngésző beépített stílusainak vizsgálata F12 eszközökkel](assets/example-style.png)
 
-    ![./assets/semantic-flowchart.png](Szemantikus web elemek folyamatábrája)
+    ![Szemantikus web elemek folyamatábrája](./assets/semantic-flowchart.png)
 
     Forrás: https://internetingishard.com/html-and-css/semantic-html/
 

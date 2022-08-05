@@ -4,8 +4,6 @@
 
 A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát TODO LINK.
-
 ### Modern JavaScript funkciók és eszközök
 
 A JavaScript nyelv napjainkban rohamosan (talán lassan csökkenő ütemben) fejlődik, de a böngészőgyártók lassan felvették az iramot ECMAScript szabványosítási folyamattal. A manapság támogatandó böngészők legtöbbje szinte az összes ECMAScript 5 és 6 funkciót támogatja. Az Internet Explorer egy elavult, manapság kerülendő böngésző, ami támogat bizonyos ES5 funkciókat, de új funkciófrissítéseket nem kap. Kevés érv maradt a használata mellett, ugyanis a Microsoft Edge böngésző esetében is áttért a Chromium motorra, ami még Windows 7 OS-en is elérhető. Kirívó eset gyakran néhány kevésbé elterjedt mobil böngésző (pl. Opera Mini), valamint a Safari iOS és Mac verziói is hagynak némi kívánni valót maguk után (a különféle JavaScript funkciók támogatása terén). Ezzel azt mondhatjuk, hogy modern JavaScript alapú alkalmazások fejlesztésekor elegendő az ún. "örökzöld" böngészőket támogatnunk, amik naprakészen tartják magukat folyamatos frissítésekkel.
@@ -74,9 +72,11 @@ Fontosabb modern JS képességek:
 
 A laboron készítendő alkalmazás egy **kisebb/nagyobb barkóba** lesz. A "gép" gondol egy számra, majd a felhasználó dolga kitalálni a számot. A tippre a válasz mindig "kisebb", "nagyobb" vagy "talált".
 
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
+
 1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 2. Várd meg, míg elkészül a repository, majd checkout-old ki.
-    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd itt), és próbáld újra.
+    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 5. Nyissuk meg a Visual Studio Code-dal a repository `feladat\ClientApp` mappáját (File -> Open Folder)!
