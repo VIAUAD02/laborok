@@ -50,7 +50,7 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
 
     Ha konzolt használnál, az alábbi parancs klónozza a repository-t (ha a `git` parancs elérhető): `git clone <repository link>`
 
-1. Ha sikerült a klónozás, **MÉG NE KEZDJ EL DOLGOZNI!** A megoldást _ne_ a repository `master` ágán készítsd el. Hozz létre egy új ágat (branch) `megoldas` néven.
+1. Ha sikerült a klónozás, **MÉG NE KEZDJ EL DOLGOZNI!** A megoldást _ne_ a repository `master`/`main` ágán készítsd el. Hozz létre egy új ágat (branch) `megoldas` néven.
 
     GitHub Desktop-ban a _Branch_ menüben teheted ezt meg.
 
@@ -58,7 +58,7 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
 
     Ha konzolt használsz, az új ág elkészíthető ezzel a paranccsal: `git checkout -b megoldas`
 
-1. Ezen a megoldás ágon dolgozva készítsd el a beadandókat. Akárhányszor kommitolhatsz és pusholhatsz.
+1. Ezen a megoldás ágon dolgozva készítsd el a beadandókat. Akárhányszor kommitolhatsz és pusholhatsz. A megoldás része a forráskód és a feladatokban elvárt képernyőképek. Ha a feladat képernyőképet vár el, akkor azt a repository gyökerébe commitold az elvárt néven.
 
     !!! note "Egyetemi laborban"
         Laborgépeken mindig ellenőrízd, hogy a megfelelő névvel és email címmel kommitolsz-e. Ezt a következő command line paranccsal tudod megtenni.
