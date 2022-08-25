@@ -1,8 +1,8 @@
 site_name: BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
-site_author: Tóth Tibor
+site_author: Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László
 copyright: Copyright &copy; BME VIK AUT
-repo_name: viauac00/web-labor
-repo_url: https://github.com/viauac00/web-labor
+repo_name: viauac00/laborok
+repo_url: https://github.com/viauac00/laborok
 
 theme:
   name: material
@@ -68,6 +68,8 @@ nav:
       - tudnivalok/github/GitHub.md
       - tudnivalok/github/GitHub-Actions.md
       - tudnivalok/github/GitHub-credentials.md
+  - "Mobil Laborok":
+      - laborok/01-kotlin-hello-world/index.md
   - "Webes Laborok":
       - laborok/08-http/index.md
       - laborok/09-css/index.md
