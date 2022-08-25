@@ -46,7 +46,7 @@ A kiértékelés eredményéről a GitHub-on kapsz szöveges visszajelzést (lá
 
 **Más munkájának lemásolása:** A BME etikai kódexe és a TVSZ szabályozza. Komolyan vesszük.
 
-**Egy labor csak 2 óra, nem?** Nem. A tárgy 4 kredit, amely a félév során megközelítőleg 120 munkaóra befektetését igényli. A labor tehát nem csak a teremben eltöltött 2 óra, hanem az előzetes felkészülés és a feladat befejezése / otthoni elvégzése is.
+**Egy labor csak 2 óra, nem?** Nem. A tárgy 5 kredit, amely a félév során megközelítőleg 150 munkaóra befektetését igényli. A labor tehát nem csak a teremben eltöltött 2 óra, hanem az előzetes felkészülés és a feladat befejezése / otthoni elvégzése is.
 
 **Egy apró elírás miatt nem működött a kódom, és nem értékeltétek.** A laborok során működő programot, kódot, kódrészletet kell készíteni. Azért számítógép laborban vagy otthon készítjük a feladatot, mert így tudod magad ellenőrizni. Minimum elvárás, hogy a beadott kód leforduljon, lefusson. Ha a viselkedés nem teljesen helyes, azt értékeljük. De ha egyáltalán nem működik, nem értékeljük a megoldást.
 
