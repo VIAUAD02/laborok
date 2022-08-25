@@ -1,4 +1,4 @@
-# Mobil- és Webes szoftverek - Webes laborok
+# Mobil- és Webes szoftverek - Laborok
 
 ![Build docs](https://github.com/bmeviauac01/laborok/workflows/Build%20docs/badge.svg?branch=master)
 
