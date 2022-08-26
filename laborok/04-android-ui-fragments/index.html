@@ -1,0 +1,1492 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-04-felhasznaloi-felulet-keszitese-fragmentek-chartok" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-android-hello-world/" class="md-tabs__link md-tabs__link--active">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-android-ui/" class="md-nav__link">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-pontok" class="md-nav__link">
+    IMSc pontok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ertekeles" class="md-nav__link">
+    Értékelés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projekt-letrehozasa" class="md-nav__link">
+    Projekt létrehozása
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fomenu-kepernyo" class="md-nav__link">
+    Főmenü képernyő
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profil-kepernyo-elkeszitese" class="md-nav__link">
+    Profil képernyő elkészítése
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#szabadsag-kepernyo-elkeszitese" class="md-nav__link">
+    Szabadság képernyő elkészítése
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datumvalaszto-megvalositasa" class="md-nav__link">
+    Dátumválasztó megvalósítása
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onallo-feladat" class="md-nav__link">
+    Önálló feladat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-feladat" class="md-nav__link">
+    iMSc feladat
+  </a>
+  
+    <nav class="md-nav" aria-label="iMSc feladat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fizetes-menupont-megvalositasa" class="md-nav__link">
+    Fizetés menüpont megvalósítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-android-sqlite/" class="md-nav__link">
+        Labor 05 - Rajzoló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-android-room/" class="md-nav__link">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-android-network/" class="md-nav__link">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-js-advanced/" class="md-nav__link">
+        Labor 13 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-pontok" class="md-nav__link">
+    IMSc pontok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ertekeles" class="md-nav__link">
+    Értékelés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projekt-letrehozasa" class="md-nav__link">
+    Projekt létrehozása
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fomenu-kepernyo" class="md-nav__link">
+    Főmenü képernyő
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profil-kepernyo-elkeszitese" class="md-nav__link">
+    Profil képernyő elkészítése
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#szabadsag-kepernyo-elkeszitese" class="md-nav__link">
+    Szabadság képernyő elkészítése
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datumvalaszto-megvalositasa" class="md-nav__link">
+    Dátumválasztó megvalósítása
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onallo-feladat" class="md-nav__link">
+    Önálló feladat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-feladat" class="md-nav__link">
+    iMSc feladat
+  </a>
+  
+    <nav class="md-nav" aria-label="iMSc feladat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fizetes-menupont-megvalositasa" class="md-nav__link">
+    Fizetés menüpont megvalósítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/04-android-ui-fragments/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-04-felhasznaloi-felulet-keszitese-fragmentek-chartok">Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok<a class="headerlink" href="#labor-04-felhasznaloi-felulet-keszitese-fragmentek-chartok" title="Permanent link">&para;</a></h1>
+<h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
+<p>A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fő témája a Fragmentekkel való felületkészítés lesz.</p>
+<p align="center">
+<img src="./assets/menu.png" width="160">
+<img src="./assets/profile1.png" width="160">
+<img src="./assets/profile2.png" width="160">
+<img src="./assets/holiday1.png" width="160">
+<img src="./assets/datepicker.png" width="160">
+</p>
+
+<h2 id="imsc-pontok">IMSc pontok<a class="headerlink" href="#imsc-pontok" title="Permanent link">&para;</a></h2>
+<p>A laborfeladatok sikeres befejezése után az IMSc feladatot megoldva 2 IMSc pont szerezhető.</p>
+<h2 id="ertekeles">Értékelés<a class="headerlink" href="#ertekeles" title="Permanent link">&para;</a></h2>
+<p>Osztályzás:
+- Főmenü képernyő: 1 pont
+- Profil képernyő: 1 pont
+- Szabadság képernyő: 1 pont
+- Dátumválasztó, napok csökkentése: 1 pont
+- Önálló feladat (szabadság továbbfejlesztése): 1 pont</p>
+<p>IMSc: Fizetés menüpont megvalósítása
+- Kördiagram: 1 IMSc pont
+- Oszlopdiagram: 1 IMSc pont</p>
+<h2 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h2>
+<p>Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen <code>WorkplaceApp</code>, a Package name pedig <code>hu.bme.aut.workplaceapp</code>.</p>
+<p>Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.</p>
+<p>Az első Activity-nk legyen egy Empty Activity, és nevezzük el <code>MenuActivity</code>-nek. A hozzá tartozó layout fájl automatikusan megkapja az <code>activity_menu.xml</code> nevet.</p>
+<p>Előzetesen töltsük le az alkalmazás képeit tartalmazó <a href="downloads/res.zip">tömörített fájlt</a> és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva <code>Ctrl+V</code>).</p>
+<h2 id="fomenu-kepernyo">Főmenü képernyő<a class="headerlink" href="#fomenu-kepernyo" title="Permanent link">&para;</a></h2>
+<p>Az első Activity amit elkészítünk a navigációért lesz felelős. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.</p>
+<p>A projekt készítésekor már létrejött <code>activity_menu.xml</code> tartalmát cseréljük ki az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_margin=</span><span class="s">&quot;16dp&quot;</span>
+    <span class="na">android:gravity=</span><span class="s">&quot;center&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;FrameLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/FrameLayout&gt;</span>
+
+        <span class="nt">&lt;FrameLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/FrameLayout&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;FrameLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/FrameLayout&gt;</span>
+
+        <span class="nt">&lt;FrameLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/FrameLayout&gt;</span>
+
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>Egy függőleges LinearLayout-ba tettünk bele 2 vízszintes LinearLayout-ot, mindkettő 2 gombot fog tartalmazni. Súlyozás segítségével 2 részre osztottuk a vízszintes LinearLayout-okat.
+A gombon a háttér és a felirat elhelyezéséhez a korábbi laboron már látotthoz hasonlóan FrameLayout-ot fogunk használni.</p>
+<p>Az első gombot például így készíthetjük el (a <code>FrameLayout</code> tagbe írjuk):
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ImageButton</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/btnProfile&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:adjustViewBounds=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">android:scaleType=</span><span class="s">&quot;fitCenter&quot;</span>
+    <span class="na">android:src=</span><span class="s">&quot;@drawable/profile&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;TextView</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
+    <span class="na">android:text=</span><span class="s">&quot;Profile&quot;</span>
+    <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div></p>
+<p>A további 3 gombot ennek a mintájára készítsük el ezekkel az értékekkel:</p>
+<table>
+<thead>
+<tr>
+<th>Szöveg</th>
+<th>ID</th>
+<th>Kép</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Holiday</td>
+<td><code>@+id/btnHoliday</code></td>
+<td><code>@drawable/holiday</code></td>
+</tr>
+<tr>
+<td>Payment</td>
+<td><code>@+id/btnPayment</code></td>
+<td><code>@drawable/payment</code></td>
+</tr>
+<tr>
+<td>Cafeteria</td>
+<td><code>@+id/btnCafeteria</code></td>
+<td><code>@drawable/cafeteria</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ne felejtsük el a szövegeket kiszervezni erőforrásba! (a szövegen állva <code>Alt+Enter</code>)</p>
+<p>Hozzunk létre a két új Empty Activity-t (<code>ProfileActivity</code> és <code>HolidayActivity</code>)</p>
+<p>Hivatkozzuk be a projekthez a view binding-ot. A modul szintű gradle fájlba addjuk hozzá:</p>
+<div class="highlight"><pre><span></span><code>android {
+    ...
+    buildFeatures {
+        viewBinding true
+    }
+}
+</code></pre></div>
+<p>Használjuk a view binding-ot a MenuActivity-ben:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span> <span class="p">:</span> <span class="n">ActivityMenuBinding</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityMenuBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>A MenuActivity Kotlin fájljában (<code>MenuActivity.kt</code>) rendeljünk a gombok lenyomásához eseménykezelőt az onCreate metódusban:</p>
+<div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">btnProfile</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="nv">profileIntent</span> <span class="o">=</span> <span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">ProfileActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+    <span class="n">startActivity</span><span class="p">(</span><span class="n">profileIntent</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">binding</span><span class="p">.</span><span class="na">btnHoliday</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span> 
+    <span class="kd">val</span> <span class="nv">holidayIntent</span> <span class="o">=</span> <span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">HolidayActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+    <span class="n">startActivity</span><span class="p">(</span><span class="n">holidayIntent</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Activity-kbe.</p>
+<h2 id="profil-kepernyo-elkeszitese">Profil képernyő elkészítése<a class="headerlink" href="#profil-kepernyo-elkeszitese" title="Permanent link">&para;</a></h2>
+<p>A Profil képernyő két lapozható oldalból fog állni, ezen a név, email, lakcím (első oldal), illetve a személyigazolvány szám, TAJ szám, adószám és törzsszám (második oldal) fognak megjelenni.</p>
+<p>Hozzunk létre egy <code>data</code> package-et, azon belül egy <code>Person</code> adatosztályt, ebben fogjuk tárolni az oldalakon megjelenő adatokat.
+Az adat típusú osztályok esetében a Kotlin automatikusan deklarál gyakran használt függvényeket, mint például az <code>equals()</code> és <code>hashCode()</code> függvényeket különböző objektumok összehasonlításához, illetve egy <code>toString()</code> függvényt, mely visszaadja a tárolt változók értékét.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">socialSecurityNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">taxId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">registrationId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>A Person osztály példányának elérésére hozzunk létre egy <code>DataManager</code> osztályt (szintén a <code>data</code> package-en belül), ezzel fogjuk szimulálni a valós adatelérést (Singleton mintát használunk, hogy az alkalmazás minden részéből egyszerűen elérhető legyen, ehhez a Kotlin által biztosított <code>object</code> kulcsszót használjuk):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span> <span class="nc">DataManager</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="nv">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span>
+        <span class="s">&quot;Test User&quot;</span><span class="p">,</span> <span class="s">&quot;testuser@domain.com&quot;</span><span class="p">,</span>
+        <span class="s">&quot;1234 Test, Random Street 1.&quot;</span><span class="p">,</span>
+        <span class="s">&quot;123456AB&quot;</span><span class="p">,</span>
+        <span class="s">&quot;123456789&quot;</span><span class="p">,</span>
+        <span class="s">&quot;1234567890&quot;</span><span class="p">,</span>
+        <span class="s">&quot;0123456789&quot;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre egy új <code>fragments</code> package-ben a két Fragmentet (New -&gt; Kotlin Class), ezek neve legyen <code>MainProfileFragment</code> és <code>DetailsProfileFragment</code>.</p>
+<p>A két Fragmentben származzunk le a Fragment osztályból (androidx-es verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.</p>
+<p><code>MainProfileFragment.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">MainProfileFragment</span> <span class="p">:</span> <span class="n">Fragment</span><span class="p">(){</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ProfileMainBinding</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateView</span><span class="p">(</span><span class="n">inflater</span><span class="p">:</span> <span class="n">LayoutInflater</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">ViewGroup?,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">View? </span><span class="p">{</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">ProfileMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span> <span class="n">container</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+
+        <span class="kd">val</span> <span class="nv">person</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">.</span><span class="na">person</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvName</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">name</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvEmail</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">email</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvAddress</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">address</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><code>DetailsProfileFragment.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsProfileFragment</span> <span class="p">:</span> <span class="n">Fragment</span><span class="p">(){</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ProfileDetailBinding</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateView</span><span class="p">(</span><span class="n">inflater</span><span class="p">:</span> <span class="n">LayoutInflater</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">ViewGroup?,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">View? </span><span class="p">{</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">ProfileDetailBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span> <span class="n">container</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+
+        <span class="kd">val</span> <span class="nv">person</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">.</span><span class="na">person</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvId</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">id</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvSSN</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">socialSecurityNumber</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvTaxId</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">taxId</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvRegistrationId</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="na">registrationId</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Készítsük el a megfelelő layout-okat a Fragmentekhez (<code>profile_main.xml</code> és <code>profile_detail.xml</code>).</p>
+<p><code>profile_main.xml</code>:
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;16dp&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Name:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvName&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Email:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvEmail&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Address:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvAddress&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div></p>
+<p><code>profile_detail.xml</code>:
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;16dp&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;ID:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvId&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Social Security ID:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvSSN&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Tax ID:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvTaxId&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Registration ID:&quot;</span>
+        <span class="na">android:textAllCaps=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvRegistrationId&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginBottom=</span><span class="s">&quot;20dp&quot;</span>
+        <span class="na">android:textColor=</span><span class="s">&quot;#000000&quot;</span>
+        <span class="na">android:textSize=</span><span class="s">&quot;34sp&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div></p>
+<p>(Szervezzük ki a szövegeket erőforrásba)</p>
+<p>Már csak a lapozás megvalósítása maradt hátra, ezt a ViewPager osztállyal fogjuk megvalósítani.</p>
+<p>Az <code>activity_profile.xml</code> fájlba hozzunk létre egy <code>ViewPager</code>-t:
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.workplaceapp.ProfileActivity&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;androidx.viewpager.widget.ViewPager</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/vpProfile&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div></p>
+<p>A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy új <code>adapter</code> package-be egy PagerAdaptert a két Fragmentünkhöz.
+<code>ProfilePagerAdapter.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">ProfilePageAdapter</span><span class="p">(</span><span class="n">fm</span><span class="p">:</span> <span class="n">FragmentManager</span><span class="p">)</span> <span class="p">:</span> <span class="n">FragmentPagerAdapter</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span> <span class="n">BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getItem</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">):</span> <span class="n">Fragment</span> <span class="o">=</span> <span class="k">when</span><span class="p">(</span><span class="n">position</span><span class="p">){</span>
+        <span class="m">0</span> <span class="o">-&gt;</span> <span class="n">MainProfileFragment</span><span class="p">()</span>
+        <span class="m">1</span> <span class="o">-&gt;</span> <span class="n">DetailsProfileFragment</span><span class="p">()</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="n">MainProfileFragment</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getCount</span><span class="p">()</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">NUM_PAGES</span>
+
+    <span class="n">companion</span> <span class="n">object</span><span class="p">{</span>
+        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">NUM_PAGES</span> <span class="o">=</span> <span class="m">2</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>A ProfileActivity-ben rendeljük hozzá a ViewPagerhez a most elkészített adaptert (onCreate metódus): 
+<div class="highlight"><pre><span></span><code><span class="n">vpProfile</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">ProfilePageAdapter</span><span class="p">(</span><span class="n">supportFragmentManager</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Próbáljuk ki az alkalmazást. A Profile gombra kattinva megjelennek a felhasználó adatai és lehet lapozni is.</p>
+<h2 id="szabadsag-kepernyo-elkeszitese">Szabadság képernyő elkészítése<a class="headerlink" href="#szabadsag-kepernyo-elkeszitese" title="Permanent link">&para;</a></h2>
+<p>A Szabadság képernyőn egy kördiagramot fogunk megjeleníteni, ami mutatja, hogy mennyi szabadságot vettünk már ki és mennyi maradt. Ezen kívül egy gomb segítségével új szabadnap kivételét is megengedjük a felhasználónak.</p>
+<p>Először egészítsük ki a DataManager osztályunkat, hogy kezelje a szabadsághoz kapcsolódó adatokat is:
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="kd">val</span> <span class="nv">HOLIDAY_MAX_VALUE</span> <span class="o">=</span> <span class="m">20</span>
+<span class="kd">const</span> <span class="kd">val</span> <span class="nv">HOLIDAY_DEFAULT_VALUE</span> <span class="o">=</span> <span class="m">15</span>
+
+<span class="kd">var</span> <span class="nv">holidays</span> <span class="o">=</span> <span class="n">HOLIDAY_DEFAULT_VALUE</span>
+<span class="kd">val</span> <span class="nv">remainingHolidays</span> <span class="k">get</span><span class="p">()</span> <span class="o">=</span> <span class="n">HOLIDAY_MAX_VALUE</span> <span class="o">-</span> <span class="n">holidays</span>
+</code></pre></div></p>
+<p>A PieChart kirajzolásához az <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library-t fogjuk használni.</p>
+<p>settings.gradle:
+<div class="highlight"><pre><span></span><code><span class="n">allprojects</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;https://jitpack.io&quot;</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></p>
+<p>App szintű build.gradle:
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">implementation</span> <span class="s1">&#39;com.github.PhilJay:MPAndroidChart:v3.1.0&#39;</span>
+<span class="o">}</span>
+</code></pre></div></p>
+<p>Ezután kattinsunk az Android Studioban jobb fent megjelenő <code>Sync Now</code> feliratra vagy a fejlécen szereplő mérges gradle elefánt gombra, hogy a library fájljai letöltődjenek.</p>
+<p>Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (<code>activity_holiday.xml</code>):
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.workplaceapp.HolidayActivity&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;com.github.mikephil.charting.charts.PieChart</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/chartHoliday&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;Button</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/btnTakeHoliday&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;Take Holiday&quot;</span>
+        <span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div></p>
+<p>Írjuk meg az Activity kódját (<code>HolidayActivity.kt</code>):
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">HolidayActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span> <span class="p">:</span> <span class="n">ActivityHolidayBinding</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityHolidayBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+        <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+
+        <span class="n">binding</span><span class="p">.</span><span class="na">btnTakeHoliday</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+            <span class="c1">//TODO: DatePickerDialogFragment megjelenítése</span>
+        <span class="p">}</span>
+        <span class="n">loadHolidays</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">loadHolidays</span><span class="p">(){</span>
+        <span class="kd">val</span> <span class="nv">entries</span> <span class="o">=</span> <span class="n">listOf</span><span class="p">(</span>
+            <span class="n">PieEntry</span><span class="p">(</span><span class="n">DataManager</span><span class="p">.</span><span class="na">holidays</span><span class="p">.</span><span class="na">toFloat</span><span class="p">(),</span> <span class="s">&quot;Taken&quot;</span><span class="p">),</span>
+            <span class="n">PieEntry</span><span class="p">(</span><span class="n">DataManager</span><span class="p">.</span><span class="na">remainingHolidays</span><span class="p">.</span><span class="na">toFloat</span><span class="p">(),</span> <span class="s">&quot;Remaining&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="kd">val</span> <span class="nv">dataSet</span> <span class="o">=</span> <span class="n">PieDataSet</span><span class="p">(</span><span class="n">entries</span><span class="p">,</span> <span class="s">&quot;Holidays&quot;</span><span class="p">)</span>
+        <span class="n">dataSet</span><span class="p">.</span><span class="na">colors</span> <span class="o">=</span> <span class="n">ColorTemplate</span><span class="p">.</span><span class="na">MATERIAL_COLORS</span><span class="p">.</span><span class="na">toList</span><span class="p">()</span>
+
+        <span class="kd">val</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">PieData</span><span class="p">(</span><span class="n">dataSet</span><span class="p">)</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">chartHoliday</span><span class="p">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">chartHoliday</span><span class="p">.</span><span class="na">invalidate</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Próbáljuk ki az alkalmazást! A PieChart most már megjelenik, de a gomb még nem kell, hogy működjön.</p>
+<h2 id="datumvalaszto-megvalositasa">Dátumválasztó megvalósítása<a class="headerlink" href="#datumvalaszto-megvalositasa" title="Permanent link">&para;</a></h2>
+<p>A következő lépésben a Take Holiday gombra megjelenő dátumválasztó működését fogjuk megvalósítani. A gomb lenyomására megjelenik egy dátumválasztó és a dátum kiválasztása után a szabad napok eggyel csökkennek.</p>
+<p>Hozzunk létre egy DatePickerDialogFragment osztályt:
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DatePickerDialogFragment</span> <span class="p">:</span> <span class="n">DialogFragment</span><span class="p">(),</span> <span class="n">DatePickerDialog</span><span class="p">.</span><span class="na">OnDateSetListener</span><span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">onDateSelectedListener</span><span class="p">:</span> <span class="n">OnDateSelectedListener</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">context</span> <span class="k">!is</span> <span class="n">OnDateSelectedListener</span><span class="p">){</span>
+            <span class="k">throw</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;The activity does not implement the OnDateSelectedListener interface&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">onDateSelectedListener</span> <span class="o">=</span> <span class="n">context</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateDialog</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">Dialog</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">c</span> <span class="o">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="na">getInstance</span><span class="p">()</span>
+        <span class="kd">val</span> <span class="nv">year</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Calendar</span><span class="p">.</span><span class="na">YEAR</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="nv">month</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Calendar</span><span class="p">.</span><span class="na">MONTH</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="nv">day</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Calendar</span><span class="p">.</span><span class="na">DAY_OF_MONTH</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DatePickerDialog</span><span class="p">(</span><span class="n">requireContext</span><span class="p">(),</span> <span class="k">this</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onDateSet</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">DatePicker?,</span> <span class="n">year</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">dayOfMonth</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">onDateSelectedListener</span><span class="p">.</span><span class="na">onDateSelected</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">dayOfMonth</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">interface</span> <span class="nc">OnDateSelectedListener</span> <span class="p">{</span>
+        <span class="kd">fun</span> <span class="nf">onDateSelected</span><span class="p">(</span><span class="n">year</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">day</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Az importoknál a <code>java.util</code>-t válasszuk a Calendarhoz, a Fragment-hez pedig az <code>androidx</code>-es verziót.</p>
+<p>A laborvezetővel vizsgáljuk meg az <code>OnDateSelectedListener</code> interface működését. Az osztályt használóknak ezt az interface-t kell implementálnia és a megvalósított <code>onDateSelected</code> metódus kapja meg a dátumot.</p>
+<p>Állítsuk be a gomb eseménykezelőjét a HolidayActivity-ben, hogy lenyomáskor jelenítse meg a dátumválasztót:
+<div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">btnTakeHoliday</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+            <span class="n">DatePickerDialogFragment</span><span class="p">().</span><span class="na">show</span><span class="p">(</span><span class="n">supportFragmentManager</span><span class="p">,</span> <span class="s">&quot;DATE_TAG&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+</code></pre></div></p>
+<p>A kiválasztott dátum feldolgozásához implementáljuk az OnDateSelectedListener-t a HolidayActivity-ben:
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">HolidayActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">(),</span> <span class="n">DatePickerDialogFragment</span><span class="p">.</span><span class="na">OnDateSelectedListener</span> <span class="p">{</span>
+<span class="p">...</span>
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onDateSelected</span><span class="p">(</span><span class="n">year</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">day</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="nv">numHolidays</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">.</span><span class="na">holidays</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">DataManager</span><span class="p">.</span><span class="na">remainingHolidays</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">){</span>
+        <span class="n">DataManager</span><span class="p">.</span><span class="na">holidays</span> <span class="o">=</span> <span class="n">numHolidays</span> <span class="o">+</span> <span class="m">1</span>
+    <span class="p">}</span>
+    <span class="n">loadHolidays</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön, a napok számának is csökkennie kell a diagramon.</p>
+<h2 id="onallo-feladat">Önálló feladat<a class="headerlink" href="#onallo-feladat" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi.</li>
+<li>Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva.</li>
+</ul>
+<h2 id="imsc-feladat">iMSc feladat<a class="headerlink" href="#imsc-feladat" title="Permanent link">&para;</a></h2>
+<h3 id="fizetes-menupont-megvalositasa">Fizetés menüpont megvalósítása<a class="headerlink" href="#fizetes-menupont-megvalositasa" title="Permanent link">&para;</a></h3>
+<p>A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewPager-rel és 2 Fragment-tel (A Profile menüponthoz hasonlóan):
+- <code>PaymentTaxesFragment</code>: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
+- <code>MonthlyPaymentFragment</code>: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni</p>
+<p><a href="https://github.com/PhilJay/MPAndroidChart/wiki">Segítség</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../03-android-ui-adv/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 03 - Felhasználói felület tervezése és készítése Android platformon" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../05-android-sqlite/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 05 - Rajzoló alkalmazás készítése" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 05 - Rajzoló alkalmazás készítése
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

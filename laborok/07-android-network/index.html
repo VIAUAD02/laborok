@@ -1,0 +1,1904 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 07 - Weather Info alkalmazás készítése - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-07-weather-info-alkalmazas-keszitese" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 07 - Weather Info alkalmazás készítése
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-android-hello-world/" class="md-tabs__link md-tabs__link--active">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-android-ui/" class="md-nav__link">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-android-ui-fragments/" class="md-nav__link">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-android-sqlite/" class="md-nav__link">
+        Labor 05 - Rajzoló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-android-room/" class="md-nav__link">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 07 - Weather Info alkalmazás készítése
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
+    Az alkalmazás specifikációja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projekt-letrehozasa" class="md-nav__link">
+    Projekt létrehozása
+  </a>
+  
+    <nav class="md-nav" aria-label="Projekt létrehozása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openweathermap-api-kulcs" class="md-nav__link">
+    OpenWeatherMap API kulcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-varoslista-megvalositasa-1-pont" class="md-nav__link">
+    1. Városlista megvalósítása (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont" class="md-nav__link">
+    2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-halozati-kommunikacio-megvalositasa-1-pont" class="md-nav__link">
+    3. Hálózati kommunikáció megvalósítása (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Hálózati kommunikáció megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modell-osztalyok-letrehozasa" class="md-nav__link">
+    Modell osztályok létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-halozati-reteg-megvalositasa" class="md-nav__link">
+    A hálózati réteg megvalósítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-a-halozati-reteg-bekotese-a-reszletezo-nezetbe-1-pont" class="md-nav__link">
+    4. A hálózati réteg bekötése a részletező nézetbe (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. A hálózati réteg bekötése a részletező nézetbe (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletezo-nezetek-tovabbfejlesztese" class="md-nav__link">
+    A részletező nézetek továbbfejlesztése
+  </a>
+  
+    <nav class="md-nav" aria-label="A részletező nézetek továbbfejlesztése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailsmainfragment" class="md-nav__link">
+    DetailsMainFragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailsmorefragment" class="md-nav__link">
+    DetailsMoreFragment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#halozati-hivas-bekotese" class="md-nav__link">
+    Hálózati hívás bekötése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-onallo-feladat-varos-listabol-torles-megvalositasa-1-pont" class="md-nav__link">
+    5. Önálló feladat: város listából törlés megvalósítása (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-js-advanced/" class="md-nav__link">
+        Labor 13 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
+    Az alkalmazás specifikációja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projekt-letrehozasa" class="md-nav__link">
+    Projekt létrehozása
+  </a>
+  
+    <nav class="md-nav" aria-label="Projekt létrehozása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openweathermap-api-kulcs" class="md-nav__link">
+    OpenWeatherMap API kulcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-varoslista-megvalositasa-1-pont" class="md-nav__link">
+    1. Városlista megvalósítása (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont" class="md-nav__link">
+    2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-halozati-kommunikacio-megvalositasa-1-pont" class="md-nav__link">
+    3. Hálózati kommunikáció megvalósítása (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Hálózati kommunikáció megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modell-osztalyok-letrehozasa" class="md-nav__link">
+    Modell osztályok létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-halozati-reteg-megvalositasa" class="md-nav__link">
+    A hálózati réteg megvalósítása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-a-halozati-reteg-bekotese-a-reszletezo-nezetbe-1-pont" class="md-nav__link">
+    4. A hálózati réteg bekötése a részletező nézetbe (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. A hálózati réteg bekötése a részletező nézetbe (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletezo-nezetek-tovabbfejlesztese" class="md-nav__link">
+    A részletező nézetek továbbfejlesztése
+  </a>
+  
+    <nav class="md-nav" aria-label="A részletező nézetek továbbfejlesztése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailsmainfragment" class="md-nav__link">
+    DetailsMainFragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailsmorefragment" class="md-nav__link">
+    DetailsMoreFragment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#halozati-hivas-bekotese" class="md-nav__link">
+    Hálózati hívás bekötése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-onallo-feladat-varos-listabol-torles-megvalositasa-1-pont" class="md-nav__link">
+    5. Önálló feladat: város listából törlés megvalósítása (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/07-android-network/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-07-weather-info-alkalmazas-keszitese">Labor 07 - Weather Info alkalmazás készítése<a class="headerlink" href="#labor-07-weather-info-alkalmazas-keszitese" title="Permanent link">&para;</a></h1>
+<h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
+<p>A labor során egy időjárás információkat megjelenítő alkalmazás elkészítése a feladat. A korábban látott UI elemek használata mellett láthatunk majd példát hálózati kommunkáció hatékony megvalósítására is a <a href="https://square.github.io/retrofit/"><code>Retrofit</code></a> library felhasználásával.</p>
+<p>Az alkalmazás városok listáját jeleníti meg egy <a href="https://developer.android.com/guide/topics/ui/layout/recyclerview"><code>RecyclerView</code></a>-ban, egy kiválasztott város részletes időjárás adatait pedig az <a href="https://openweathermap.org/">OpenWeatherMap</a> REST API-jának segítségével kérdezi le. A részletező nézeten egy <a href="https://developer.android.com/training/animation/screen-slide"><code>ViewPager</code></a>-ben két <a href="https://developer.android.com/guide/components/fragments"><code>Fragment</code></a>-en lehet megtekinteni a részleteket. Új város hozzáadására egy  <a href="https://developer.android.com/guide/topics/ui/floating-action-button"><code>FloatingActionButton</code></a> megnyomásával van lehetőség. </p>
+<blockquote>
+<p>REST = <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">**Re**presentational **S**tate **T**ransfer</a></p>
+</blockquote>
+<p align="center">
+<img src="./assets/list.png">
+<img src="./assets/main.png">
+<img src="./assets/details.png">
+</p>
+
+<p>Felhasznált technológiák: </p>
+<ul>
+<li><a href="https://developer.android.com/guide/components/activities/intro-activities"><code>Activity</code></a></li>
+<li><a href="https://developer.android.com/guide/components/fragments"><code>Fragment</code></a></li>
+<li><a href="https://developer.android.com/guide/topics/ui/layout/recyclerview"><code>RecyclerView</code></a></li>
+<li><a href="https://developer.android.com/training/animation/screen-slide"><code>ViewPager</code></a></li>
+<li><a href="https://square.github.io/retrofit/"><code>Retrofit</code></a></li>
+<li><a href="https://github.com/google/gson"><code>Gson</code></a></li>
+<li><a href="https://github.com/bumptech/glide"><code>Glide</code></a></li>
+</ul>
+<h2 id="feltoltes">Feltöltés<a class="headerlink" href="#feltoltes" title="Permanent link">&para;</a></h2>
+<p>Az elkészült megoldást <code>.zip</code> formátumban (File... -&gt; Export to Zip File...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.</p>
+<h2 id="az-alkalmazas-specifikacioja">Az alkalmazás specifikációja<a class="headerlink" href="#az-alkalmazas-specifikacioja" title="Permanent link">&para;</a></h2>
+<p>Az alkalmazás két <code>Activity</code>-ből áll. </p>
+<p>Az alkalmazás indulásakor megjelenő <code>Activity</code> a felhasználó által felvett városok listáját jeleníti meg. Minden lista elemhez tartozik egy <em>Remove</em> gomb, aminek a megnyomására az adott város törlődik a listából. Új várost a nézet jobb alsó sarkában található <code>FloatingActionButton</code> megnyomásával lehet felvenni.</p>
+<p>Egy városra való kattintás hatására megnyílik egy új <code>Activity</code> két <code>Fragment</code>-tel, amik között <code>ViewPager</code>-rel lehet váltani. Az első <code>Fragment</code> a kiválasztott város időjárásának leírását és az ahhoz tartozó ikont jeleníti meg. A második <code>Fragment</code>-en a városban mért átlagos, minimum és maximum hőmérséklet, a légnyomás és a páratartalom értéke látható.</p>
+<h2 id="laborfeladatok">Laborfeladatok<a class="headerlink" href="#laborfeladatok" title="Permanent link">&para;</a></h2>
+<p>A labor során az alábbi feladatokat a laborvezető segítségével, illetve a jelölt feladatokat önállóan kell megvalósítani.</p>
+<ol>
+<li>Város lista megvalósítása: 1 pont</li>
+<li>Részletező nézet létrehozása és bekötése a navigációba: 1 pont</li>
+<li>Hálózati kommunikáció megvalósítása: 1 pont</li>
+<li>A hálózati réteg bekötése a részletező nézetbe: 1 pont</li>
+<li>Önálló feladat: város listából törlés megvalósítása: 1 pont</li>
+</ol>
+<p>A labor során egy komplex időjárás alkalmazás készül el. A labor szűkös időkerete miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljünk a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél a bemutatott kódok megértése és a felhasznált libraryk használatának elsajátítása.</p>
+<p><em>Elnézést kérünk  az eddigieknél nagyobb kód blokkokért, de egy ilyen, bemutató jellegű feladat kisebb méretben nem oldható meg, illetve a labor elveszítené a lényegét, ha csak egy „hello world” hálózati kommunikációs lekérést valósítanánk meg. Köszönjük a megértést.</em></p>
+<h3 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h3>
+<p>Hozzunk létre egy projektet Android Studioban. Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a <strong>Phone and Tablet</strong> lehetőséget, <code>No Activity</code> opcióval! Az alkalmazást <code>WeatherInfo</code> néven hozzuk létre, a <em>package name</em> legyen <code>hu.bme.aut.weatherinfo</code>!  minimum SDK-nak pedig válasszuk az alapértelmezett <strong>API 21</strong>-et! Első <code>Activity</code>-ként hozzunk létre egy <em>Basic Activityt</em>, és nevezzük el <code>CityActivity</code>-nek, legyen ez a <strong>Launcher Activity</strong>-nk majd kattintsunk a <em>Finish</em> gombra!</p>
+<p>Mindenek előtt kapcsoljuk be a <code>ViewBinding</code>-ot. Ehhez az <code>app</code> modulhoz tartozó <code>build.gradle</code> fájlban az <code>android</code> blokkon belülre illesszük be az engedélyező kódrészletet (majd kattintsunk a jobb felül megjelenő <code>Sync Now</code> gombra).</p>
+<div class="highlight"><pre><span></span><code><span class="n">buildFeatures</span> <span class="o">{</span>
+    <span class="n">viewBinding</span> <span class="kc">true</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Töltsük le és tömörítsük ki <a href="assets/drawables.zip">az alkalmazáshoz szükséges erőforrásokat</a> , majd másoljuk be őket a projekt <em>app/src/main/res</em> mappájába (Studio-ban a <em>res</em> mappa kijelölése után <em>Ctrl+V</em>)!</p>
+<p>Az <em>app</em> modulhoz tartozó <code>build.gradle</code> fájlban a <code>dependencies</code> blokkhoz adjuk hozzá a <code>Retrofit</code> és <code>Glide</code> libraryket:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="o">{</span>
+    <span class="c1">//...</span>
+    <span class="kt">def</span> <span class="n">retrofit_version</span> <span class="o">=</span> <span class="s2">&quot;2.9.0&quot;</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.squareup.retrofit2:retrofit:$retrofit_version&quot;</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.squareup.retrofit2:converter-gson:$retrofit_version&quot;</span>
+    <span class="n">implementation</span> <span class="s1">&#39;com.github.bumptech.glide:glide:4.12.0&#39;</span>
+    <span class="n">annotationProcessor</span> <span class="s1">&#39;com.github.bumptech.glide:compiler:4.12.0&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> gombra.</p>
+<blockquote>
+<p>A <code>Retrofit</code> a fejlesztő által leírt egyszerű, megfelelően annotált interfészek alapján kódgenerálással állít elő HTTP hivásokat lebonyolító implementációt. Kezeli az URL-ben inline módon adott paramétereket, az URL queryket, stb. Támogatja a legnépszerűbb szerializáló/deszerializáló megoldásokat is (pl.: <a href="https://github.com/google/gson"><code>Gson</code></a>, <a href="https://github.com/square/moshi"><code>Moshi</code></a>, <a href="simple.sourceforge.net"><code>Simple XML</code></a>, stb.), amikkel Java/Kotlin objektumok, és JSON vagy XML formátumú adatok közötti kétirányú átalakítás valósítható meg. A laboron ezek közül a Gsont fogjuk használni a JSON-ban érkező időjárás adatok konvertálására.</p>
+<p>A <code>Glide</code>  egy hatékony képbetöltést és -cache-elést megvalósító library Androidra. Egyszerű interfésze és hatékonysága miatt használjuk.</p>
+</blockquote>
+<p>Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az <code>AndroidManifest.xml</code> állományban az <em>Internet permission</em>-t az <code>application</code> tagen <em>kívülre</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A <em>normal</em> csoportba tartozó engedélyeket elég felvenni az <code>AndroidManifest.xml</code> fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A <em>dangerous</em> csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a <a href="https://developer.android.com/guide/topics/permissions/overview">developer.android.com</a> oldalon lehet tájékozódni</p>
+</blockquote>
+<p>Vegyük fel az alábbi szöveges erőforrásokat a <code>res/values/strings.xml</code>-be:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>WeatherInfo<span class="nt">&lt;/string&gt;</span>
+
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;action_settings&quot;</span><span class="nt">&gt;</span>Settings<span class="nt">&lt;/string&gt;</span>
+
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;title_activity_city&quot;</span><span class="nt">&gt;</span>Cities<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;remove&quot;</span><span class="nt">&gt;</span>Remove<span class="nt">&lt;/string&gt;</span>
+
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;new_city&quot;</span><span class="nt">&gt;</span>New city<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;new_city_hint&quot;</span><span class="nt">&gt;</span>City<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;ok&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;cancel&quot;</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/string&gt;</span>
+
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;title_activity_details&quot;</span><span class="nt">&gt;</span>DetailsActivity<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;weather&quot;</span><span class="nt">&gt;</span>Weather<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;temperature&quot;</span><span class="nt">&gt;</span>Temperature<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;min_temperature&quot;</span><span class="nt">&gt;</span>Min temperature<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;max_temperature&quot;</span><span class="nt">&gt;</span>Max temperature<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;pressure&quot;</span><span class="nt">&gt;</span>Pressure<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;humidity&quot;</span><span class="nt">&gt;</span>Humidity<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span>Main<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;details&quot;</span><span class="nt">&gt;</span>Details<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<h4 id="openweathermap-api-kulcs">OpenWeatherMap API kulcs<a class="headerlink" href="#openweathermap-api-kulcs" title="Permanent link">&para;</a></h4>
+<p>Regisztráljunk saját felhasználót az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon, és hozzunk létre egy API kulcsot, aminek a segítségével használhatjuk majd a szolgáltatást az alkalmazásunkban! </p>
+<ol>
+<li>Kattintsunk a <em>Sign in</em> majd a <em>Create an account</em> gombra.</li>
+<li>Töltsük ki a regisztrációs formot</li>
+<li>A <em>Company</em> mező értéke legyen "BME", a <em>Purpose</em> értéke legyen "Education/Science"</li>
+<li>Sikeres regisztráció után az <em>API keys</em> tabon található az alapértelmezettként létrehozott API kulcs.</li>
+</ol>
+<p>A kapott API kulcsra később szükségünk lesz az időjárás adatokat lekérő API hívásnál.</p>
+<h3 id="1-varoslista-megvalositasa-1-pont">1. Városlista megvalósítása (1 pont)<a class="headerlink" href="#1-varoslista-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
+<p>Valósítsuk meg az egy <code>RecyclerView</code>-ból álló, városok listáját megjelenítő <code>CityActivity</code>-t! </p>
+<p>A város nevére kattintva jelenik majd meg egy részletező nézet (<em>DetailsAcitivity</em>), ahol az időjárás információk letöltése fog történni. Új város felvételére egy <em>FloatingActionButton</em> fog szolgálni.</p>
+<p>Cseréljük le az  <code>activity_city.xml</code> tartalmát egy <code>RecyclerView</code>-ra és egy <code>FloatingActionButton</code>-re:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">tools:context=</span><span class="s">&quot;.CityActivity&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;androidx.recyclerview.widget.RecyclerView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/mainRecyclerView&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">app:layout_behavior=</span><span class="s">&quot;@string/appbar_scrolling_view_behavior&quot;</span>
+        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+        <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&quot;parent&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;com.google.android.material.floatingactionbutton.FloatingActionButton</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/fab&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_gravity=</span><span class="s">&quot;bottom|end&quot;</span>
+        <span class="na">android:layout_margin=</span><span class="s">&quot;24dp&quot;</span>
+        <span class="na">android:src=</span><span class="s">&quot;@drawable/ic_add_white_36dp&quot;</span>
+        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</code></pre></div>
+<p>Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. Előfordulhat, hogy a másolások miatt az Android Studio nem ismeri fel egyből a package szerkezetet, így ha ilyen problémánk lenne, az osztály néven állva Alt+Enter után állítassuk be a megfelelő package nevet.</p>
+<p>A <code>hu.bme.aut.weatherinfo</code> package-ben hozzunk létre egy <code>feature</code> nevű package-et. A <code>feature</code> package-ben hozzunk létre egy <code>city</code> nevű package-et. <em>Drag and drop</em> módszerrel helyezzük át a <code>CityActivity</code>-t a <code>city</code> <em>package</em>-be, a felugró dialógusban pedig kattintsunk a <em>Refactor</em> gombra.</p>
+<p>Töröljük a generált két Fragment-et és a hozzájuk tartozó layout file-okat, valamint a res/navigation mappa tartalmát.</p>
+<p>A <code>CityActivity</code> kódját cseréljük le a következőre:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CityActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">(),</span> <span class="n">CityAdapter</span><span class="p">.</span><span class="na">OnCitySelectedListener</span><span class="p">,</span>
+    <span class="n">AddCityDialogFragment</span><span class="p">.</span><span class="na">AddCityDialogListener</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityCityBinding</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">adapter</span><span class="p">:</span> <span class="n">CityAdapter</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityCityBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+        <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+        <span class="n">initFab</span><span class="p">()</span>
+        <span class="n">initRecyclerView</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">initFab</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+            <span class="c1">// TODO: Show new city dialog</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">initRecyclerView</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">mainRecyclerView</span><span class="p">.</span><span class="na">layoutManager</span> <span class="o">=</span> <span class="n">LinearLayoutManager</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">CityAdapter</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="n">adapter</span><span class="p">.</span><span class="na">addCity</span><span class="p">(</span><span class="s">&quot;Budapest&quot;</span><span class="p">)</span>
+        <span class="n">adapter</span><span class="p">.</span><span class="na">addCity</span><span class="p">(</span><span class="s">&quot;Debrecen&quot;</span><span class="p">)</span>
+        <span class="n">adapter</span><span class="p">.</span><span class="na">addCity</span><span class="p">(</span><span class="s">&quot;Sopron&quot;</span><span class="p">)</span>
+        <span class="n">adapter</span><span class="p">.</span><span class="na">addCity</span><span class="p">(</span><span class="s">&quot;Szeged&quot;</span><span class="p">)</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">mainRecyclerView</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">adapter</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCitySelected</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Todo: Start DetailsActivity with the selected city</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCityAdded</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">adapter</span><span class="p">.</span><span class="na">addCity</span><span class="p">(</span><span class="n">city</span><span class="o">!!</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A <code>city</code> package-ben hozzuk létre a <code>CityAdapter</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CityAdapter</span><span class="p">(</span><span class="kd">private</span> <span class="kd">val</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">OnCitySelectedListener</span><span class="p">)</span> <span class="p">:</span> <span class="n">RecyclerView</span><span class="p">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">CityAdapter</span><span class="p">.</span><span class="na">CityViewHolder</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">cities</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">()</span>
+
+    <span class="kd">interface</span> <span class="nc">OnCitySelectedListener</span> <span class="p">{</span>
+        <span class="kd">fun</span> <span class="nf">onCitySelected</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">ViewGroup</span><span class="p">,</span> <span class="n">viewType</span><span class="p">:</span> <span class="kt">Int</span><span class="p">):</span> <span class="n">CityViewHolder</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">view</span> <span class="o">=</span> <span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="na">context</span><span class="p">).</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">item_city</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CityViewHolder</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">CityViewHolder</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">item</span> <span class="o">=</span> <span class="n">cities</span><span class="o">[</span><span class="n">position</span><span class="o">]</span>
+        <span class="n">holder</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getItemCount</span><span class="p">():</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">cities</span><span class="p">.</span><span class="na">size</span>
+
+    <span class="kd">fun</span> <span class="nf">addCity</span><span class="p">(</span><span class="n">newCity</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cities</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">newCity</span><span class="p">)</span>
+        <span class="n">notifyItemInserted</span><span class="p">(</span><span class="n">cities</span><span class="p">.</span><span class="na">size</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">removeCity</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cities</span><span class="p">.</span><span class="na">removeAt</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="n">notifyItemRemoved</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">cities</span><span class="p">.</span><span class="na">size</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">notifyItemRangeChanged</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">cities</span><span class="p">.</span><span class="na">size</span> <span class="o">-</span> <span class="n">position</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">inner</span> <span class="kd">class</span> <span class="nc">CityViewHolder</span><span class="p">(</span><span class="kd">private</span> <span class="kd">val</span> <span class="nv">itemView</span><span class="p">:</span> <span class="n">View</span><span class="p">)</span> <span class="p">:</span> <span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">(</span><span class="n">itemView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">binding</span> <span class="o">=</span> <span class="n">ItemCityBinding</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">itemView</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span>
+
+        <span class="k">init</span> <span class="p">{</span>
+            <span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span> <span class="n">listener</span><span class="p">.</span><span class="na">onCitySelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">fun</span> <span class="nf">bind</span><span class="p">(</span><span class="n">newCity</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">newCity</span>
+            <span class="n">binding</span><span class="p">.</span><span class="na">CityItemNameTextView</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Hozzuk létre a <code>res/layout</code> mappában az  <code>item_city.xml</code> layoutot:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span>
+    <span class="na">android:paddingBottom=</span><span class="s">&quot;8dp&quot;</span>
+    <span class="na">android:paddingLeft=</span><span class="s">&quot;16dp&quot;</span>
+    <span class="na">android:paddingRight=</span><span class="s">&quot;16dp&quot;</span>
+    <span class="na">android:paddingTop=</span><span class="s">&quot;8dp&quot;</span>
+    <span class="na">android:weightSum=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/CityItemNameTextView&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;2&quot;</span>
+        <span class="na">tools:text=</span><span class="s">&quot;Budapest&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;Button</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/CityItemRemoveButton&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;@string/remove&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>Igény szerint vizsgáljuk meg a laborvezetővel a <code>CityAdapter</code> osztályban az alábbiakat:
+- Hogyan történik a lista tartalmi elemeinek kezelése?
+- Hogyan épül fel egy lista elem?
+- Hogyan történik a lista elemen a kiválasztás események kezelése? Hogyan értesítjük a <code>CityActivity</code>-t egy elem kiválasztásáról?
+- Hogyan kerültek megvalósításra az <code>addCity(...)</code> és <code>removeCity(…)</code> metódusok!</p>
+<p>A <code>CityActivity</code>-vel kapcsolatos következő lépés az új város nevét bekérő dialógus (<code>DialogFragment</code>) megvalósítása és bekötése.</p>
+<p>Hozzunk létre egy <code>dialog_new_city.xml</code> nevű layout fájlt a <code>res/layout</code> mappában a következő tartalommal:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;24dp&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;EditText</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/NewCityDialogEditText&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:hint=</span><span class="s">&quot;@string/new_city_hint&quot;</span>
+        <span class="na">android:inputType=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>A <code>city</code> package-ben hozzuk létre az <code>AddCityDialogFragment</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">AddCityDialogFragment</span> <span class="p">:</span> <span class="n">AppCompatDialogFragment</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">DialogNewCityBinding</span>
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">AddCityDialogListener</span>
+
+    <span class="kd">interface</span> <span class="nc">AddCityDialogListener</span> <span class="p">{</span>
+        <span class="kd">fun</span> <span class="nf">onCityAdded</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">DialogNewCityBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">listener</span> <span class="o">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">targetFragment</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">targetFragment</span> <span class="k">as</span> <span class="n">AddCityDialogListener</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">activity</span> <span class="k">as</span> <span class="n">AddCityDialogListener</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">ClassCastException</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateDialog</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">Dialog</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">AlertDialog</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">requireContext</span><span class="p">())</span>
+            <span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">new_city</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">setView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">ok</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
+                <span class="n">listener</span><span class="p">.</span><span class="na">onCityAdded</span><span class="p">(</span>
+                    <span class="n">binding</span><span class="p">.</span><span class="na">NewCityDialogEditText</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+                <span class="p">)</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="na">setNegativeButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cancel</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">create</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Igény szerint vizsgáljuk meg a laborvezetővel az <code>AddCityDialogFragment</code> implementációjában az alábbiakat:
+- Hogyan ellenőrizzük azt, hogy az <code>Activity</code>, amihez a <code>DialogFragment</code> felcsatolódott implementálja-e az <code>AddCityDialogListener</code> interfészt?
+- Hogyan kerül beállításra az egyedi layout a <code>DialogFragment</code>-ben?
+- Hogyan térünk vissza a beírt városnévvel?</p>
+<blockquote>
+<p>Szorgalmi feladat otthonra: az alkalmazás ne engedje a város létrehozását, ha a városnév mező üres!
+Tipp: <a href="http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked">http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked</a></p>
+</blockquote>
+<p>Végül egészítsük ki a <code>CityActivity</code> <code>initFab(…)</code> függvényét úgy, hogy a gombra kattintva jelenjen meg az új dialógus:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">initFab</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+            <span class="n">AddCityDialogFragment</span><span class="p">().</span><span class="na">show</span><span class="p">(</span><span class="n">supportFragmentManager</span><span class="p">,</span> <span class="n">AddCityDialogFragment</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">.</span><span class="na">simpleName</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Indítsuk el az alkalmazást, amely már képes városnevek bekérésére és megjelenítésére.</p>
+<h3 id="2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont">2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)<a class="headerlink" href="#2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont" title="Permanent link">&para;</a></h3>
+<p>A következő lépésben a <code>hu.bme.aut.weatherinfo.feature</code>  package-en belül hozzunk létre egy <code>details</code> nevű packaget.</p>
+<p>A <code>details</code> package-ben hozzunk létre egy <em>Empty Activity</em> típusú <code>Activity</code>-t  <code>DetailsActivity</code> néven.</p>
+<p>A hozzá tartozó <code>activity_details.xml</code> layout kódja:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:paddingBottom=</span><span class="s">&quot;@dimen/activity_vertical_margin&quot;</span>
+    <span class="na">android:paddingLeft=</span><span class="s">&quot;@dimen/activity_horizontal_margin&quot;</span>
+    <span class="na">android:paddingRight=</span><span class="s">&quot;@dimen/activity_horizontal_margin&quot;</span>
+    <span class="na">android:paddingTop=</span><span class="s">&quot;@dimen/activity_vertical_margin&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;com.google.android.material.tabs.TabLayout</span> 
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tabLayout&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_gravity=</span><span class="s">&quot;top&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;androidx.viewpager2.widget.ViewPager2</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/mainViewPager&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>Hozzunk létre a hiányzó <em>dimen</em> erőforrásokat (<em>Alt+Enter</em> -&gt; <em>Create dimen value...</em>), értékük legyen <em>16dp</em>!</p>
+<p>A felület gyakorlatilag egy <code>ViewPager</code>-t tartalmaz, melyben két <code>Fragment</code>-et fogunk megjeleníteni. A <code>TabLayout</code> biztosítja a <em>Tab</em> jellegű fejlécet.</p>
+<p>A <code>DetailsActivity.kt</code>  kódja legyen a következő:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityDetailsBinding</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">city</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span>
+
+    <span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
+        <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">TAG</span> <span class="o">=</span> <span class="s">&quot;DetailsActivity&quot;</span>
+        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">EXTRA_CITY_NAME</span> <span class="o">=</span> <span class="s">&quot;extra.city_name&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityDetailsBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+        <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+
+        <span class="n">city</span> <span class="o">=</span> <span class="n">intent</span><span class="p">.</span><span class="na">getStringExtra</span><span class="p">(</span><span class="n">EXTRA_CITY_NAME</span><span class="p">)</span>
+
+        <span class="n">supportActionBar</span><span class="o">?.</span><span class="na">title</span> <span class="o">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">weather</span><span class="p">,</span> <span class="n">city</span><span class="p">)</span>
+        <span class="n">supportActionBar</span><span class="o">?.</span><span class="na">setDisplayHomeAsUpEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onResume</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span> <span class="o">==</span> <span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">home</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">finish</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Cseréljük le a <code>strings.xml</code>-ben a <em>weather</em> szöveges erőforrást:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;weather&quot;</span><span class="nt">&gt;</span>Weather in %s <span class="nt">&lt;/string&gt;</span>
+</code></pre></div>
+<p>A string erőforrásba írt <em>%s</em> jelölő használatával lehetővé válik egy <em>String argumentum</em> beillesztése a stringbe, ahogy a fenti kódrészletben láthatjuk.</p>
+<blockquote>
+<p>Figyeljük meg, hogy a <code>DetailsActivity</code> hogyan állítja be az <code>ActionBar</code> címét a paraméterül kapott város nevével, illetve és azt, hogy az <code>ActionBar</code> bal felső sarkában a <em>vissza gomb</em> kezelése hogyan került megvalósításra.</p>
+</blockquote>
+<p>Valósítsuk meg a <code>CityActivity</code> <code>onCitySelected(…)</code> függvényében azt, hogy egy városnév kiválasztásakor a <code>DetailsActivity</code> megfelelően felparaméterezve induljon el:</p>
+<div class="highlight"><pre><span></span><code>    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCitySelected</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">showDetailsIntent</span> <span class="o">=</span> <span class="n">Intent</span><span class="p">()</span>
+        <span class="n">showDetailsIntent</span><span class="p">.</span><span class="na">setClass</span><span class="p">(</span><span class="k">this</span><span class="nd">@CityActivity</span><span class="p">,</span> <span class="n">DetailsActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+        <span class="n">showDetailsIntent</span><span class="p">.</span><span class="na">putExtra</span><span class="p">(</span><span class="n">DetailsActivity</span><span class="p">.</span><span class="na">EXTRA_CITY_NAME</span><span class="p">,</span> <span class="n">city</span><span class="p">)</span>
+        <span class="n">startActivity</span><span class="p">(</span><span class="n">showDetailsIntent</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>Próbáljuk ki az alkalmazást, kattintsunk egy város nevére!</p>
+<h3 id="3-halozati-kommunikacio-megvalositasa-1-pont">3. Hálózati kommunikáció megvalósítása (1 pont)<a class="headerlink" href="#3-halozati-kommunikacio-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
+<h4 id="modell-osztalyok-letrehozasa">Modell osztályok létrehozása<a class="headerlink" href="#modell-osztalyok-letrehozasa" title="Permanent link">&para;</a></h4>
+<p>A modell osztályok számára a <code>hu.bme.aut.weatherinfo</code> package-ben hozzunk létre új package-et <code>model</code> néven. </p>
+<p>A <code>model</code> package-ben hozzunk létre egy új osztályt <code>WeatherData</code> néven:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">WeatherData</span> <span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">coord</span><span class="p">:</span> <span class="n">Coord</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">weather</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Weather</span><span class="o">&gt;?</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">main</span><span class="p">:</span> <span class="n">MainWeatherData? </span><span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">visibility</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">wind</span><span class="p">:</span> <span class="n">Wind? </span><span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">clouds</span><span class="p">:</span> <span class="n">Cloud</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">dt</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">sys</span><span class="p">:</span> <span class="n">Sys</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">timezone</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">cod</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Az időjárás szolgáltatástól kapott <em>JSON</em> válasz alapján egy ilyen <code>WeatherData</code> példány fog létrejönni a <code>Retrofit</code> és a <code>Gson</code> együttműködésének köszönhetően.</p>
+<p>A <code>model</code> package-ben hozzuk létre a <code>Weather</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Weather</span> <span class="p">(</span>
+    <span class="kd">val</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">main</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Szintén a <code>model</code> package-ben hozzuk létre a <code>MainWeatherData</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">MainWeatherData</span> <span class="p">(</span>
+    <span class="kd">val</span> <span class="nv">temp</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">pressure</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">humidity</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">temp_min</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">temp_max</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Szintén a <code>model</code> package-ben hozzuk létre a <code>Coord</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Coord</span> <span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">lon</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">lat</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Szintén a <code>model</code> package-ben hozzuk létre a <code>Cloud</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Cloud</span> <span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">all</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">0</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Szintén a <code>model</code> package-ben hozzuk létre a <code>Sys</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Sys</span> <span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">country</span><span class="p">:</span> <span class="kt">String?</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">sunrise</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">sunset</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">0</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Végül hozzuk létre a <code>Wind</code> osztályt is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Wind</span> <span class="p">(</span>
+    <span class="kd">val</span> <span class="nv">speed</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="nv">deg</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0f</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>A <code>details</code> <em>package</em>-ben hozzuk létre a <code>WeatherDataHolder</code> interfészt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span> <span class="nc">WeatherDataHolder</span> <span class="p">{</span>
+    <span class="kd">fun</span> <span class="nf">getWeatherData</span><span class="p">():</span> <span class="n">WeatherData?</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A <code>WeatherDataHolder</code> -en keresztül fogják lekérni a <code>Fragment</code>-ek az <code>Activity</code>-től az időjárás adatokat.</p>
+<p>Vegyünk fel egy <code>WeatherData</code> típusú tagváltozót a <code>DetailsActiviy</code>-be:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">var</span> <span class="nv">weatherData</span><span class="p">:</span> <span class="n">WeatherData? </span><span class="o">=</span> <span class="kc">null</span>
+</code></pre></div>
+<p>Módosítsuk úgy a <code>DetailsActivity</code> -t, hogy implementálja a <code>WeatherDataHolder</code> interfészt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">(),</span> <span class="n">WeatherDataHolder</span> <span class="p">{</span>
+</code></pre></div>
+<p>Implementáljuk a szükséges függvényt:</p>
+<div class="highlight"><pre><span></span><code>    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getWeatherData</span><span class="p">():</span> <span class="n">WeatherData? </span><span class="p">{</span>
+        <span class="k">return</span> <span class="n">weatherData</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>A használt <code>weatherData</code> változónak fogunk később értéket adni, amikor visszaérkezett az értéke a hálózati hívás eredményeként. A <code>ViewPager</code> két lapján levő <code>Fragment</code>-ek a <code>WeatherDataHolder</code> interfészen keresztül fogják lekérni az <code>Activity</code>-től a <code>weatherData</code> objekutmot a megjelenítéshez.</p>
+<h4 id="a-halozati-reteg-megvalositasa">A hálózati réteg megvalósítása<a class="headerlink" href="#a-halozati-reteg-megvalositasa" title="Permanent link">&para;</a></h4>
+<p>A <code>hu.bme.aut.weatherinfo</code> package-ben hozzuk létre egy <code>network</code> nevű package-et, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. </p>
+<p>A <code>network</code> package-en belül hozzuk létre egy <code>WeatherApi</code> nevű interfészt. </p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span> <span class="nc">WeatherApi</span> <span class="p">{</span>
+    <span class="nd">@GET</span><span class="p">(</span><span class="s">&quot;/data/2.5/weather&quot;</span><span class="p">)</span>
+    <span class="kd">fun</span> <span class="nf">getWeather</span><span class="p">(</span>
+        <span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">)</span> <span class="n">cityName</span><span class="p">:</span> <span class="kt">String?</span><span class="p">,</span>
+        <span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;units&quot;</span><span class="p">)</span> <span class="n">units</span><span class="p">:</span> <span class="kt">String?</span><span class="p">,</span>
+        <span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;appid&quot;</span><span class="p">)</span> <span class="n">appId</span><span class="p">:</span> <span class="kt">String?</span>
+    <span class="p">):</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Látható, hogy <em>annotációk</em> alkalmazásával tuduk jelezni, hogy az adott függvényhívás milyen hálózati hívásnak fog megfelelni. A <code>@GET</code> annotáció <em>HTTP GET</em> kérést jelent, a paraméterként adott string pedig azt jelzi, hogy hogy a szerver alap <em>URL</em>-éhez képest melyik végpontra szeretnénk küldeni a kérést.</p>
+<blockquote>
+<p>Hasonló módon tudjuk leírni a többi HTTP kérés típust is: @POST, @UPDATE, @PATCH, @DELETE</p>
+</blockquote>
+<p>A függvény paremétereit a <code>@Query</code> annotációval láttuk el. Ez azt jelenti, hogy a <code>Retrofit</code> az adott paraméter értékét a kéréshez fűzi <em>query paraméterként</em> az annotációban megadott kulccsal.</p>
+<blockquote>
+<p>További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field</p>
+</blockquote>
+<p>A hálózati hívást jelölő interfész függvény visszatérési értéke egy<code>Call&lt;WeatherData&gt;</code> típusú objektum lesz. Ez egy olyan hálózati hívást ír le, aminek a válasza <code>WeatherData</code> típusú objektummá alakítható.</p>
+<p>Hozzunk létre a <code>network</code> package-ben egy <code>NetworkManager</code> osztályt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span> <span class="nc">NetworkManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">retrofit</span><span class="p">:</span> <span class="n">Retrofit</span>
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">weatherApi</span><span class="p">:</span> <span class="n">WeatherApi</span>
+
+    <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">SERVICE_URL</span> <span class="o">=</span> <span class="s">&quot;https://api.openweathermap.org&quot;</span>
+    <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">APP_ID</span> <span class="o">=</span> <span class="s">&quot;ide_jon_a_token&quot;</span>
+
+    <span class="k">init</span> <span class="p">{</span>
+        <span class="n">retrofit</span> <span class="o">=</span> <span class="n">Retrofit</span><span class="p">.</span><span class="na">Builder</span><span class="p">()</span>
+            <span class="p">.</span><span class="na">baseUrl</span><span class="p">(</span><span class="n">SERVICE_URL</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">client</span><span class="p">(</span><span class="n">OkHttpClient</span><span class="p">.</span><span class="na">Builder</span><span class="p">().</span><span class="na">build</span><span class="p">())</span>
+            <span class="p">.</span><span class="na">addConverterFactory</span><span class="p">(</span><span class="n">GsonConverterFactory</span><span class="p">.</span><span class="na">create</span><span class="p">())</span>
+            <span class="p">.</span><span class="na">build</span><span class="p">()</span>
+        <span class="n">weatherApi</span> <span class="o">=</span> <span class="n">retrofit</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">WeatherApi</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="kt">String?</span><span class="p">):</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">weatherApi</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="s">&quot;metric&quot;</span><span class="p">,</span> <span class="n">APP_ID</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. Egyetlen példányra lesz szükségünk belőle, így <a href="https://en.wikipedia.org/wiki/Singleton_pattern">singleton</a>ként implementáltuk. Konstansokban tároljuk a szerver alap címét, valamint a szolgáltatás használatához szükséges API kulcsot.</p>
+<p>A <code>Retrofit.Builder()</code> hívással kérhetünk egy pareméterehzető <code>Builder</code> példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt (<a href="http://square.github.io/okhttp/">OkHttp</a>), valamint a JSON és objektum reprezentációk közötti konvertert (Gson).</p>
+<p>A <code>WeatherApi</code> interfészből a <code>Builder</code>-rel létrehozott <code>Retrofit</code> példány segítségével tudjuk elkérni a fordítási időben generált, paraméterezett implementációt.</p>
+<p>A <code>retrofit.create(WeatherApi.class)</code> hívás eredményeként kapott objektum megvalósítja a <code>WeatherApi</code> interfészt.  Ha ezen az objektumon meghívjuk a <code>getWeather(...)</code> függvényt, akkor megtörténik az általunk az interfészben definiált hálózati hívás. </p>
+<p>Az <code>APP_ID</code> paramétert elfedjük az időjárást lekérdező osztályok elől, ezért a <code>NetworkManager</code> is tartalmaz egy <code>getWeather(...)</code> függvényt, ami a <code>WeatherApi</code> implementációba hív tovább.</p>
+<p><strong>Cseréljük le</strong> az <code>APP_ID</code> értékét az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon kapott saját API kulcsunkra!</p>
+<h3 id="4-a-halozati-reteg-bekotese-a-reszletezo-nezetbe-1-pont">4. A hálózati réteg bekötése a részletező nézetbe (1 pont)<a class="headerlink" href="#4-a-halozati-reteg-bekotese-a-reszletezo-nezetbe-1-pont" title="Permanent link">&para;</a></h3>
+<p>A modell elemek és a hálózati réteg megvalósítása után a részletező nézetet fogjuk a specifikációnak megfelelően implementálni, majd bekötjük a hálózati réteget is.</p>
+<h4 id="a-reszletezo-nezetek-tovabbfejlesztese">A részletező nézetek továbbfejlesztése<a class="headerlink" href="#a-reszletezo-nezetek-tovabbfejlesztese" title="Permanent link">&para;</a></h4>
+<p>A <code>ViewPager</code> megfelelő működéséhez létre kell hoznunk egy <code>FragmentStateAdapter</code>-ből származó osztályt a <code>details</code> package-ben, ami az eddig látott adapterekhez hasonlóan azt határozza meg, hogy milyen elemek jelenjenek meg a hozzájuk tartozó nézeten (jelen esetben az elemek <code>Fragment</code>-ek lesznek):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsPagerAdapter</span><span class="p">(</span><span class="n">fragmentActivity</span><span class="p">:</span> <span class="n">FragmentActivity</span><span class="p">)</span> <span class="p">:</span> <span class="n">FragmentStateAdapter</span><span class="p">(</span><span class="n">fragmentActivity</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
+        <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">NUM_PAGES</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="m">2</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">createFragment</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">):</span> <span class="n">Fragment</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+            <span class="m">0</span> <span class="o">-&gt;</span> <span class="n">DetailsMainFragment</span><span class="p">()</span>
+            <span class="m">1</span> <span class="o">-&gt;</span> <span class="n">DetailsMoreFragment</span><span class="p">()</span>
+            <span class="k">else</span> <span class="o">-&gt;</span> <span class="n">DetailsMainFragment</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getItemCount</span><span class="p">():</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">NUM_PAGES</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Implementáljuk a hiányzó <code>Fragment</code>-eket a hozzájuk tartozó nézetekkel együtt:</p>
+<h5 id="detailsmainfragment">DetailsMainFragment<a class="headerlink" href="#detailsmainfragment" title="Permanent link">&para;</a></h5>
+<p><code>res/layout/fragment_details_main.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span>
+    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;16dp&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvMain&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">tools:text=</span><span class="s">&quot;Clear&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/tvDescription&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dp&quot;</span>
+        <span class="na">tools:text=</span><span class="s">&quot;Clear sky&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;ImageView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/ivIcon&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dp&quot;</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>A <code>details</code> package-ben a <code>DetailsMainFragment</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsMainFragment</span> <span class="p">:</span> <span class="n">Fragment</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">FragmentDetailsMainBinding</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">weatherDataHolder</span><span class="p">:</span> <span class="n">WeatherDataHolder? </span><span class="o">=</span> <span class="kc">null</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="n">weatherDataHolder</span> <span class="o">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">activity</span> <span class="k">is</span> <span class="n">WeatherDataHolder</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">activity</span> <span class="k">as</span> <span class="n">WeatherDataHolder?</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">RuntimeException</span><span class="p">(</span>
+                <span class="s">&quot;Activity must implement WeatherDataHolder interface!&quot;</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateView</span><span class="p">(</span><span class="n">inflater</span><span class="p">:</span> <span class="n">LayoutInflater</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">ViewGroup?,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle? </span><span class="p">):</span> <span class="n">View? </span><span class="p">{</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">FragmentDetailsMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">weatherDataHolder</span><span class="o">?.</span><span class="na">getWeatherData</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">displayWeatherData</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">displayWeatherData</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">weather</span> <span class="o">=</span> <span class="n">weatherDataHolder</span><span class="o">?.</span><span class="na">getWeatherData</span><span class="p">()</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">first</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvMain</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weather</span><span class="o">?.</span><span class="na">main</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvDescription</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weather</span><span class="o">?.</span><span class="na">description</span>
+
+        <span class="n">Glide</span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">weather</span><span class="o">?.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">transition</span><span class="p">(</span><span class="n">DrawableTransitionOptions</span><span class="p">().</span><span class="na">crossFade</span><span class="p">())</span>
+            <span class="p">.</span><span class="na">into</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">ivIcon</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Figyeljük meg, hogy hogy használjuk a kódban a <code>Glide</code> libraryt!</p>
+<blockquote>
+<p>Az <em>OpenWeatherMap</em> API-tól a képek lekérhetők a visszakapott adatok alapján, pl: <a href="http://openweathermap.org/img/w/10d.png">https://openweathermap.org/img/w/10d.png</a> </p>
+</blockquote>
+<h5 id="detailsmorefragment">DetailsMoreFragment<a class="headerlink" href="#detailsmorefragment" title="Permanent link">&para;</a></h5>
+<p><code>res/layout/fragment_details_more.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;TableLayout</span>
+    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;16dp&quot;</span>
+    <span class="na">android:stretchColumns=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;TableRow&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@string/temperature&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/tvTemperature&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;25 °C&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/TableRow&gt;</span>
+    <span class="nt">&lt;TableRow&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@string/min_temperature&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/tvMinTemp&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;24 °C&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/TableRow&gt;</span>
+    <span class="nt">&lt;TableRow&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@string/max_temperature&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/tvMaxTemp&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;26 °C&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/TableRow&gt;</span>
+    <span class="nt">&lt;TableRow&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@string/pressure&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/tvPressure&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;100 Pa&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/TableRow&gt;</span>
+    <span class="nt">&lt;TableRow&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;@string/humidity&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/tvHumidity&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;50 %&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/TableRow&gt;</span>
+<span class="nt">&lt;/TableLayout&gt;</span>
+</code></pre></div>
+<p>A <code>details</code> package-ben a <code>DetailsMoreFragment</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DetailsMoreFragment</span> <span class="p">:</span> <span class="n">Fragment</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">FragmentDetailsMoreBinding</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">weatherDataHolder</span><span class="p">:</span> <span class="n">WeatherDataHolder? </span><span class="o">=</span> <span class="kc">null</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="n">weatherDataHolder</span> <span class="o">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">activity</span> <span class="k">is</span> <span class="n">WeatherDataHolder</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">activity</span> <span class="k">as</span> <span class="n">WeatherDataHolder?</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Activity must implement WeatherDataHolder interface!&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateView</span><span class="p">(</span><span class="n">inflater</span><span class="p">:</span> <span class="n">LayoutInflater</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">ViewGroup?,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">View? </span><span class="p">{</span>
+        <span class="n">binding</span> <span class="o">=</span> <span class="n">FragmentDetailsMoreBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">weatherDataHolder</span><span class="o">?.</span><span class="na">getWeatherData</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">showWeatherData</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">showWeatherData</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">weatherData</span> <span class="o">=</span> <span class="n">weatherDataHolder</span><span class="o">!!</span><span class="p">.</span><span class="na">getWeatherData</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvTemperature</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvMinTemp</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_min</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvMaxTemp</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_max</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvPressure</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">pressure</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+        <span class="n">binding</span><span class="p">.</span><span class="na">tvHumidity</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">humidity</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Figyeljük meg, hogyan ellenőrzi a <code>DetailsMainFragment</code> és a <code>DetailsMoreFragment</code> azt, hogy az <code>Activity</code> implementálja-e a <code>WeatherDataHolder</code> interfészt. Fontos, hogy ezt a két <code>Fragment</code> majd csak azután kerül a <code>DetailsActivity</code>-re a <code>ViewPager</code>-en keresztül, amikor az adatokat lekérő hálózati kérés már adott vissza eredményt.</p>
+<p>Ideiglenesen a <code>DetailsActivity</code> <code>onResume()</code> függvénye legyen az alábbi:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onResume</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="nv">detailsPagerAdapter</span> <span class="o">=</span> <span class="n">DetailsPagerAdapter</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="n">binding</span><span class="p">.</span><span class="na">mainViewPager</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">detailsPagerAdapter</span>
+
+    <span class="n">TabLayoutMediator</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">tabLayout</span><span class="p">,</span> <span class="n">binding</span><span class="p">.</span><span class="na">mainViewPager</span><span class="p">)</span> <span class="p">{</span> <span class="n">tab</span><span class="p">,</span> <span class="n">position</span> <span class="o">-&gt;</span>
+        <span class="n">tab</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="k">when</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+            <span class="m">0</span> <span class="o">-&gt;</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">main</span><span class="p">)</span>
+            <span class="m">1</span> <span class="o">-&gt;</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">details</span><span class="p">)</span>
+            <span class="k">else</span> <span class="o">-&gt;</span> <span class="s">&quot;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}.</span><span class="na">attach</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Próbáljuk ki az alkalmazást, kattintsunk egy városra! jelenleg még nem jelennek meg valós adatok, mivel még nem kötöttük be a az adatok lekéréséért felelős hívást.</p>
+<h4 id="halozati-hivas-bekotese">Hálózati hívás bekötése<a class="headerlink" href="#halozati-hivas-bekotese" title="Permanent link">&para;</a></h4>
+<p>Az időjárás adatok lekérdezésének bekötéséhez implementáljunk egy <code>loadWeatherData()</code> nevű függvényt a <code>DetailsActivity</code>-ben:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">loadWeatherData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">NetworkManager</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">)</span><span class="o">?.</span><span class="na">enqueue</span><span class="p">(</span><span class="k">object</span> <span class="p">:</span> <span class="nc">Callback</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span> <span class="p">{</span>
+        <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onResponse</span><span class="p">(</span>
+            <span class="n">call</span><span class="p">:</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span>
+        <span class="p">)</span> <span class="p">{</span>
+            <span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;onResponse: &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="p">.</span><span class="na">code</span><span class="p">())</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">isSuccessful</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">displayWeatherData</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">())</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@DetailsActivity</span><span class="p">,</span> <span class="s">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="p">.</span><span class="na">message</span><span class="p">(),</span> <span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_LONG</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onFailure</span><span class="p">(</span>
+            <span class="n">call</span><span class="p">:</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+            <span class="n">throwable</span><span class="p">:</span> <span class="n">Throwable</span>
+        <span class="p">)</span> <span class="p">{</span>
+            <span class="n">throwable</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+            <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@DetailsActivity</span><span class="p">,</span> <span class="s">&quot;Network request error occured, check LOG&quot;</span><span class="p">,</span> <span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_LONG</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Implementáljuk a hiányzó <code>displayWeatherData(...)</code> függvényt, ami sikeres API hívás esetén megjeleníti az eredményt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">displayWeatherData</span><span class="p">(</span><span class="n">receivedWeatherData</span><span class="p">:</span> <span class="n">WeatherData?)</span> <span class="p">{</span>
+    <span class="n">weatherData</span> <span class="o">=</span> <span class="n">receivedWeatherData</span>
+    <span class="kd">val</span> <span class="nv">detailsPagerAdapter</span> <span class="o">=</span> <span class="n">DetailsPagerAdapter</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="n">binding</span><span class="p">.</span><span class="na">mainViewPager</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">detailsPagerAdapter</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A <code>DetailsActivity</code> <code>onResume()</code> függvényében hívjuk meg a <code>loadWeatherData()</code> függvényt:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onResume</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+    <span class="p">...</span>
+    <span class="n">loadWeatherData</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Futtassuk az alkalmazást és figyeljük meg a működését! Próbáljuk ki azt is, hogy mi történik akkor, ha megszakítjuk a futtató eszköz internet kapcsolatát és megpróbáljuk megnyitni a részletező nézetet!</p>
+<h3 id="5-onallo-feladat-varos-listabol-torles-megvalositasa-1-pont">5. Önálló feladat: város listából törlés megvalósítása (1 pont)<a class="headerlink" href="#5-onallo-feladat-varos-listabol-torles-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
+<p>Valósítsuk meg a városok törlését a <em>Remove</em> gomb megnyomásának hatására.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../06-android-room/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 06 - Bevásárló alkalmazás készítése" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Labor 06 - Bevásárló alkalmazás készítése
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../08-http/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 08 - HTTP, HTML" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 08 - HTTP, HTML
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

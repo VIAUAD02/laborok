@@ -1,0 +1,1408 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 03 - Felhasználói felület tervezése és készítése Android platformon - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-03-felhasznaloi-felulet-tervezese-es-keszitese-android-platformon" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-android-hello-world/" class="md-tabs__link md-tabs__link--active">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-android-ui/" class="md-nav__link">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#felkeszules-a-laborra" class="md-nav__link">
+    Felkészülés a laborra
+  </a>
+  
+    <nav class="md-nav" aria-label="Felkészülés a laborra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#felhasznalt-technologiak" class="md-nav__link">
+    Felhasznált technológiák:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ertekeles" class="md-nav__link">
+    Értékelés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-elkeszitendo-megoldas" class="md-nav__link">
+    Az elkészítendő megoldás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kezdo-projekt-letrehozasa" class="md-nav__link">
+    Kezdő projekt létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#az-elso-futtatas" class="md-nav__link">
+    Az első futtatás
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-elkeszitese" class="md-nav__link">
+    Menü elkészítése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beviteli-resz-megvalositasa" class="md-nav__link">
+    Beviteli rész megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egy-listaelem-xml-enek-osszeallitasa-a-kesobbi-inflate-eleshez" class="md-nav__link">
+    Egy listaelem XML-ének összeállítása a későbbi inflate-eléshez
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-kotlin-kod" class="md-nav__link">
+    A Kotlin kód
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tovabbi-onallo-feladatok" class="md-nav__link">
+    További Önálló feladatok
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-android-ui-fragments/" class="md-nav__link">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-android-sqlite/" class="md-nav__link">
+        Labor 05 - Rajzoló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-android-room/" class="md-nav__link">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-android-network/" class="md-nav__link">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-js-advanced/" class="md-nav__link">
+        Labor 13 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#felkeszules-a-laborra" class="md-nav__link">
+    Felkészülés a laborra
+  </a>
+  
+    <nav class="md-nav" aria-label="Felkészülés a laborra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#felhasznalt-technologiak" class="md-nav__link">
+    Felhasznált technológiák:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ertekeles" class="md-nav__link">
+    Értékelés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-elkeszitendo-megoldas" class="md-nav__link">
+    Az elkészítendő megoldás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kezdo-projekt-letrehozasa" class="md-nav__link">
+    Kezdő projekt létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#az-elso-futtatas" class="md-nav__link">
+    Az első futtatás
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-elkeszitese" class="md-nav__link">
+    Menü elkészítése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beviteli-resz-megvalositasa" class="md-nav__link">
+    Beviteli rész megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egy-listaelem-xml-enek-osszeallitasa-a-kesobbi-inflate-eleshez" class="md-nav__link">
+    Egy listaelem XML-ének összeállítása a későbbi inflate-eléshez
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-kotlin-kod" class="md-nav__link">
+    A Kotlin kód
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tovabbi-onallo-feladatok" class="md-nav__link">
+    További Önálló feladatok
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/03-android-ui-adv/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-03-felhasznaloi-felulet-tervezese-es-keszitese-android-platformon">Labor 03 - Felhasználói felület tervezése és készítése Android platformon<a class="headerlink" href="#labor-03-felhasznaloi-felulet-tervezese-es-keszitese-android-platformon" title="Permanent link">&para;</a></h1>
+<h2 id="felkeszules-a-laborra">Felkészülés a laborra<a class="headerlink" href="#felkeszules-a-laborra" title="Permanent link">&para;</a></h2>
+<p>A labor célja egy egyszerű felhasználói felület tervezése, kivitelezése. A labor elején a
+laborvezető röviden bemutatja az alkalmazás részeit majd ezután önállóan a jelen
+dokumentáció segítségével kell elkészíteni az alkalmazást.</p>
+<h3 id="felhasznalt-technologiak">Felhasznált technológiák:<a class="headerlink" href="#felhasznalt-technologiak" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Activity</li>
+<li>LinearLayout, TextView, ImageView, EditText, Button, ToggleButton</li>
+<li>LayoutInflater</li>
+</ul>
+<h2 id="feltoltes">Feltöltés<a class="headerlink" href="#feltoltes" title="Permanent link">&para;</a></h2>
+<p>Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build
+mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
+Ehhez használhatjuk az Android Studio <code>File -&gt; Export to ZIP file...</code> funkcióját. 
+(Az elkészült zip file ~10MB vagy annál kevesebb lesz.)</p>
+<h2 id="ertekeles">Értékelés<a class="headerlink" href="#ertekeles" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Beviteli rész: 1 pont</li>
+<li>Listaelemek layoutja: 1 pont</li>
+<li>Listaelemek inflate-elése: 1 pont</li>
+<li>Toast üzenetek helyett SnackBar (önálló): 1 pont</li>
+<li>Összegző mező megjelenítése (önálló): 0,5 pont</li>
+<li>Összegző mező helyes működése (önálló): 0,5 pont</li>
+</ul>
+<h2 id="az-elkeszitendo-megoldas">Az elkészítendő megoldás<a class="headerlink" href="#az-elkeszitendo-megoldas" title="Permanent link">&para;</a></h2>
+<p>A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészítése
+AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
+tudja venni egy listába a kiadásait, bevételeit, vagy törölni tudja az egész lista tartalmát.</p>
+<p>A képernyő mintaképe: </p>
+<p><img alt="" src="assets/sample_screen.png" /></p>
+<p>Az alkalmazás felépítése és működése a következő:</p>
+<ul>
+<li>Kezdőképernyő a listával illetve egy beviteli résszel, amelyen a felhasználó
+beír egy megnevezést és egy összeget, megadja a pénzforgalom irányát, és el
+tudja menteni a listába a tranzakcióját. Amennyiben itt bármelyik mező
+üres, a mentést meg kell akadályoznunk.</li>
+<li>Egy listaelem felépítése:</li>
+<li>Ikon a pénzforgalom irányától függően.</li>
+<li>A megadott megnevezés és alatta az összeg.</li>
+<li>A Toolbaron egy menüpont a lista teljes törlésére.</li>
+<li>A lista görgethető kell legyen (a későbbi laborokban a profi lista kezelésre
+majd a RecyclerView komponenst fogjuk használni).</li>
+</ul>
+<h2 id="laborfeladatok">Laborfeladatok<a class="headerlink" href="#laborfeladatok" title="Permanent link">&para;</a></h2>
+<p>A labor során az alábbi feladatokat kell megvalósítani a laborvezető
+segítségével, illetve a jelölt feladatoknál önállóan.</p>
+<h3 id="kezdo-projekt-letrehozasa">Kezdő projekt létrehozása<a class="headerlink" href="#kezdo-projekt-letrehozasa" title="Permanent link">&para;</a></h3>
+<p>Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
+- File-&gt;New-&gt;New Project
+- válasszuk az Empty Activity-t;
+- Application name: AndroidWallet;
+- package name: hu.bme.aut.androidwallet ;
+- Minumum API level: 21; 
+- Finish, és várjuk meg amíg a Studio mindent legenerál, ez első alkalomkor
+valamivel hosszabb időt vesz igénybe.</p>
+<p><img alt="" src="assets/activity.png" /></p>
+<h3 id="az-elso-futtatas">Az első futtatás<a class="headerlink" href="#az-elso-futtatas" title="Permanent link">&para;</a></h3>
+<p>A Studio a generálást követően a activity_main.xml fájlt hozza be, ebből töröljük a TextView komponenst.</p>
+<p>Az előkészületeink után egy első futtatást ki is próbálhatunk, akinél van kábel akár saját
+készüléken, vagy az előre telepített emulátoron (érdemes a laborgépek korlátozott erőforrásai miatt
+saját készüléket használni).</p>
+<p><img alt="" src="assets/app_screen.png" /></p>
+<h3 id="menu-elkeszitese">Menü elkészítése<a class="headerlink" href="#menu-elkeszitese" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>res/values/strings.xml</code>: egy új stringet veszünk fel a már ott megtalálhatókhoz hasonlóan
+action_delete_all néven és Delete All tartalommal.</li>
+</ul>
+<p><img alt="" src="assets/resources.png" /></p>
+<ul>
+<li>A <code>res</code> könyvtáron jobb gombos menüből hozzunk létre új <code>Android Resource File</code> elemet.</li>
+</ul>
+<p><img alt="" src="assets/menu.png" /></p>
+<ul>
+<li>Ennek a tartalma legyen az alábbi:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">android:id=</span><span class="s">&quot;@+id/delete_all&quot;</span>
+        <span class="na">android:title=</span><span class="s">&quot;@string/action_delete_all&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/menu&gt;</span>
+</code></pre></div>
+<ul>
+<li>Most még a <code>MainActivity</code>-ből fel kell fújjuk a menüt, és le kell majd kezeljük a
+kattintásokat, ehhez vegyük fel az alábbi kódot:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">Menu?)</span><span class="p">:</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="n">menuInflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_main</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">delete_all</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="c1">// TODO: itt fogjuk kezelni a kattintást</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="beviteli-resz-megvalositasa">Beviteli rész megvalósítása<a class="headerlink" href="#beviteli-resz-megvalositasa" title="Permanent link">&para;</a></h3>
+<p>Az alkalmazás működéséhez szükség lesz két <code>EditTextre</code>, amelyekben a felhasználó a megnevezést
+és az összeget adhatja meg. Szükséges továbbá egy kapcsoló működésű gomb, például a ToggleButton,
+amellyel a pénzforgalom irányát állíthatja, illetve mentés gombra, amelyet egy egyszerű
+Button fog megvalósítani.</p>
+<p>Egy XML fájlt megnyitva két lehetőségünk van: vagy a beépített grafikus szerkesztőn drag and
+drop módszerrel összerakjuk a felületet, vagy kézzel XML-ben írjuk meg a komponenseket és a
+tulajdonságaikat. Előbbi a tanulási fázisban nagyon hasznos, mert könnyen tudunk puskázni,
+viszont később sok fejfájást okozhat, ezért az XML leírás plusz előnézettel fogjuk
+megvalósítani a feladatot.</p>
+<p>Mivel a feladatunk lineárisan összerakható elemekből épül fel, ezért érdemes egy ilyen
+magvalósításban gondolkodnunk.
+- Nyissuk meg a <code>res/layout/activity_main.xml</code> fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot).
+- Módosítsuk az előre legenerált ConstraintLayoutot LinearLayoutra,
+(Az Android Studio már kezeli, hogy ha a kezdő XML taget módosítjuk, akkor a zárót is átírja automatikusan) és adjuk hozzá
+az android:orientation="vertical" attribútomot.
+- Szükségünk lesz másik három LinearLayout-ra:
+  - A név és összeg mezőnek, horizontális elrendezéssel
+  - A kiadás/bevétel kapcsolónak és mentés gombnak, szintén horizontális elrendezéssel
+  - A tényleges listának, amely esetében mivel a lista elemek vertikálisan követik egymást így vertikálisra állítjuk.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span> 
+    <span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.androidwallet.MainActivity&quot;</span>
+    <span class="na">tools:showIn=</span><span class="s">&quot;@layout/activity_main&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:gravity=</span><span class="s">&quot;end&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<ul>
+<li>Az első nem gyökér LinearLayoutba felvesszük a két EditTextet, id-t adunk nekik,
+hogy a kotlin kódból is egyszerűen elérjük őket, beállítjuk az elhelyezkedésüket súlyozás
+alapján.  Mindkettő legyen singleLine, így nem fog szétcsúszni a UI, illetve érdemes a
+megnevezés EditTextnek egy actionNext imeOptionst adni, így a felhasználó
+billentyűzete a következő EditTextre fog ugrani az Enter/Ok billentyűre.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;EditText</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/salary_name&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;0.6&quot;</span>
+            <span class="na">android:imeOptions=</span><span class="s">&quot;actionNext&quot;</span>
+            <span class="na">android:inputType=</span><span class="s">&quot;textCapWords&quot;</span>
+            <span class="na">android:singleLine=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;EditText</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/salary_amount&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_weight=</span><span class="s">&quot;0.4&quot;</span>
+            <span class="na">android:singleLine=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<ul>
+<li>A gombokat tartalmazó LinearLayout gravity-jét end értékre állítjuk így a két gombot
+az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI.
+Felvesszük a ToggleButtont, id-t adunk neki, hasonlóan a sima Buttont, illetve itt
+beállítjuk a megjelenített feliratot a text paraméter segítségével. Amennyiben
+itt a szöveget adjuk meg nyersen, az Android Studio egyből fel is ajánlja,
+hogy kiszervezi nekünk egy
+string erőforrásba a szövegünket, ezt használjuk is ki. Az Alt + Enter billentyűkombinációt
+használva, válasszuk az Extract string resource opciót, ahol már csak az
+erőforrás nevét kell megadnunk.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:gravity=</span><span class="s">&quot;end&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;ToggleButton</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/expense_or_income&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;Button</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/save_button&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:text=</span><span class="s">&quot;Save&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<ul>
+<li>Mivel erre is van lehetőség bármi kódolás nélkül, érdemes már most beállítani a
+ToggleButton két állapotának feliratát a textOn illetve textOff attribútomokkal,
+amelyhez az INCOME illetve EXPENSE string erőforrásokat kell felvennünk. Használjuk
+ismét a kiszervezés opciót.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ToggleButton</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/expense_or_income&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:textOff=</span><span class="s">&quot;INCOME&quot;</span>
+    <span class="na">android:textOn=</span><span class="s">&quot;EXPENSE&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<h3 id="egy-listaelem-xml-enek-osszeallitasa-a-kesobbi-inflate-eleshez">Egy listaelem XML-ének összeállítása a későbbi inflate-eléshez<a class="headerlink" href="#egy-listaelem-xml-enek-osszeallitasa-a-kesobbi-inflate-eleshez" title="Permanent link">&para;</a></h3>
+<p>Az inflate-elés („felfújás”) során gyakorlatilag az operációs rendszer egy olyan
+szolgáltatását kérjük el, amelyet egyéb elemeknél, például Toolbar, automatikusan
+elvégez, viszont mi egy előre meghatározott komponenst, ami a listánk egy eleme,
+csak bizonyos esetben, mentés hatására szeretnénk hozzáadni a felhasználói felülethez.
+Fontos megjegyezni hogy a későbbiekben majd a profi lista kezeléshez a RecyclerView
+komponenst fogjuk használni. LineraLayoutot lista jellegű viselkedésre használni
+csak akkor javasolt ha néhány elem kezelése szükséges csak.</p>
+<p>A listaelemünk felépítése szintén teljesen lineáris elrendezéssel kivitelezhető
+tehát a LinearLayoutot használjuk.</p>
+<ul>
+<li>res/layout mappán jobb gomb, new -&gt; XML -&gt;  Layout XML File file, <code>salary_row</code> néven LinerLayout root elemmel.</li>
+</ul>
+<p><img alt="" src="assets/layout.png" /></p>
+<p>Az XML szerkezete: 
+- Egy horizontális LinearLayout mivel az icon és a feliratok egymás mellett helyezkednek el.
+Mivel ez csak egy listaelem lesz, ezért wrap_contentre kell vennünk a szélességét magasságát.
+- Egy ImageView az ikonnak id-val.
+- Egy beágyazott LinearLayout, amelyben függőlegesen helyezkedik el a két felirat:
+  - egy TextView a megnevezésnek id-val,
+  - egy TextView az összegnek id-val.
+- Mivel igényes kinézetet szeretnénk, ezért a megfelelő marginokat illetve paddingeket hozzáadjuk a különböző elemeinkhez:
+  - a gyökérre 4dp padding,
+  - a beágyazottra marginStart illetve marginLeft attribútumok 16dp értékkel, illetve layout_gravity paramétert
+  center_verticalra állítjuk, így biztosítva a gyerekelemek középre rendezését.
+- Beállítjuk az ikon méretét, ezt igény és ízlés szerint szabadon lehet a későbbi otthoni kísérletezés
+alkalmával, most a magasság és szélesség is 40dp legyen.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span>
+    <span class="na">android:padding=</span><span class="s">&quot;4dp&quot;</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/salary_row&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;ImageView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/salary_direction_icon&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;40dp&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;40dp&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_gravity=</span><span class="s">&quot;center_vertical&quot;</span>
+        <span class="na">android:layout_marginStart=</span><span class="s">&quot;16dp&quot;</span>
+        <span class="na">android:layout_marginLeft=</span><span class="s">&quot;16dp&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/row_salary_name&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;hétszőnyű&quot;</span> <span class="nt">/&gt;</span>
+
+        <span class="nt">&lt;TextView</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/row_salary_amount&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;kapanyányimonyók&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<p>Megjegyzés: a „tools” névtérnek csak a preview-ra van hatása, tervezés közben
+beírhatunk oda bármit a lefordított alkalmazásban sehol nem fog látszani.</p>
+<h3 id="a-kotlin-kod">A Kotlin kód<a class="headerlink" href="#a-kotlin-kod" title="Permanent link">&para;</a></h3>
+<p>Mostanra minden összetevőnk készen áll, már csak a mögöttes logikát kell megvalósítanunk. 
+A kódban szükségünk lesz a mezők elérésére, illetve a kapcsolónk állapotának
+vizsgálatára a kattintás pillanatában. Ezeket a részeket a SAVE gombunk kattintás eseménykezelőjében
+fogjuk megvalósítani. Továbbá az említett inflate-elendő komponensünk
+inflate-elését is itt kell végrehajtanunk a kapott adatok alapján. Toast üzenetben jelezzük,
+ha valamelyik mező nincs kitöltve!</p>
+<ul>
+<li>Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként,
+ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha
+Kotlinban készítünk Android alkalmazást, akkor a layoutban definiált komponenseket az ID-jükkel
+el tudjuk érni. Ehhez először meg kell csinálnunk a viewBinding-ot az activity-n. Nem szabad elfelejteni,
+hogy a modul szintű build.gradle fájlban fel kell vennünk a viewBinding buildFeature-t. </li>
+</ul>
+<div class="highlight"><pre><span></span><code>buildFeatures {
+    viewBinding true
+}
+</code></pre></div>
+<p>Ezt követően az activity:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityMainBinding</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+
+    <span class="n">binding</span><span class="p">.</span><span class="na">saveButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+        <span class="c1">// TODO: ide jön az eseménykezelő kód</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Először a kitöltöttség ellenőrzését végezzük el, ehhez egy hibaüzenetet is meg kell adnunk,
+és ezt a jó gyakorlatnak megfelelően a <code>strings.xml</code> fájlba szervezzük ki. A hibaüzenet legyen
+mondjuk <code>Hiányos adatok!</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">salaryName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">||</span> <span class="n">binding</span><span class="p">.</span><span class="na">salaryAmount</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">warn_message</span><span class="p">,</span> <span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_LONG</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
+    <span class="k">return</span><span class="nd">@setOnClickListener</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Vegyünk fel egy osztály szintű tagváltozót:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">rowBinding</span><span class="p">:</span> <span class="n">SalaryRowBinding</span>
+</code></pre></div>
+<ul>
+<li>Ezután egy row itemet inflate-elünk a korábban elkészített XML-ből az OnCreate metódus eseménykezelőjében:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">rowBinding</span> <span class="o">=</span> <span class="n">SalaryRowBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Az Itemnek a különböző részeit, tehát az ikont, nevet, összeget kitöltjük.
+Az ikont a ToggleButton állapota alapján kell kitöltenünk, és ehhez az
+<a href="income.png">income.png</a> és <a href="expense.png">expense.png</a> képeket a drawable
+mappába is be kell illesztenünk.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">rowBinding</span><span class="p">.</span><span class="na">salaryDirectionIcon</span><span class="p">.</span><span class="na">setImageResource</span><span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">expenseOrIncome</span><span class="p">.</span><span class="na">isChecked</span><span class="p">)</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">expense</span> <span class="k">else</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">income</span><span class="p">)</span>
+<span class="n">rowBinding</span><span class="p">.</span><span class="na">rowSalaryName</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">salaryName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<span class="n">rowBinding</span><span class="p">.</span><span class="na">rowSalaryAmount</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">salaryAmount</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+</code></pre></div>
+<ul>
+<li>Végül hozzáadjuk a listához (LinearLayout) az új view-okat, de ehhez a LinearLayoutnak egy
+ID-t is kell adnunk, hogy hivatkozni tudjunk rá:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;LinearLayout</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/list_of_rows&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">listOfRows</span><span class="p">.</span><span class="na">addView</span><span class="p">(</span><span class="n">rowBinding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+</code></pre></div>
+<p>És ezen a ponton akár futtathatjuk is az alkalmazásunk. Próbáljuk is ki! </p>
+<p>Miután rájöttünk, hogy milyen jó nekünk, hogy hozzá tudunk adni mindent, amit csak
+akarunk, azt is felismerhetjük, hogy két helyen még nem vagyunk készen. Nem lehet törölni
+a teljes listánkat, illetve ha elég sok elemet veszünk fel, észrevesszük, hogy nem férnek
+ki, viszont görgetni nem tudunk. Az előbbi probléma megoldását már előkészítettük,
+erre fog szolgálni a „Delete All”-ra átalakított menüpontunk, amely megjelenni már
+helyesen jelenik de még nem csinál semmit. Az eseménykezelő vázát már elkészítettük
+az <code>onOptionsItemSelected()</code> metódusban, most ezt szükséges kiegészítenünk az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">delete_all</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">binding</span><span class="p">.</span><span class="na">listOfRows</span><span class="p">.</span><span class="na">removeAllViews</span><span class="p">()</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Próbáljuk ki a törlés funkciót! </p>
+<p>Utóbbi problémánkra nagyon egyszerű a megoldás, a listánkat tartalmazó LinearLayoutot
+egy ScrollView-ba kell foglalnunk és már működik is.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ScrollView</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;LinearLayout</span>
+            <span class="na">android:id=</span><span class="s">&quot;@+id/list_of_rows&quot;</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="nt">&lt;/ScrollView&gt;</span>
+</code></pre></div>
+<h3 id="tovabbi-onallo-feladatok">További Önálló feladatok<a class="headerlink" href="#tovabbi-onallo-feladatok" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi,
+a <a href="https://material.io/develop/android/components/snackbar/">SnackBar</a>. Cseréljük le a Toast figyelmeztetést SnackBarra!</li>
+<li>Vegyünk fel egy összegző mezőt a gombok alá, amely minden bevitt érték után frissül.
+Figyeljünk rá, hogy ha még nincs egy bejegyzés sem, akkor ne jelenjen meg semmi, illetve
+hogy a felhasználó nem fog mínusz karaktert beírni tehát a kapcsoló alapján kell eldöntenünk,
+hogy ez pozitív vagy negatív érték. Az egyszerűség kedvéért megengedjük, hogy az összeg
+mező <code>inputType</code>-ját <code>numberDecimal</code>-ra állítsuk, így a felhasználó nem tud betűket beírni.</li>
+<li>Bonus: vizsgáljuk meg mi történik, ha az EditTextet (TextInputEditTextet) TextInputLayoutal használjuk.</li>
+<li><a href="https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html">https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html</a> </li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../02-android-ui/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 02 - Felhasználói felület készítés" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Labor 02 - Felhasználói felület készítés
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../04-android-ui-fragments/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

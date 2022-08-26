@@ -1,0 +1,1334 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 01 - Hello World - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-01-hello-world" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 01 - Hello World
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 01 - Hello World
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 01 - Hello World
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#altalanos-tudnivalok" class="md-nav__link">
+    Általános tudnivalók
+  </a>
+  
+    <nav class="md-nav" aria-label="Általános tudnivalók">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imsc-pontok" class="md-nav__link">
+    iMSC pontok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laborok-ertekelese" class="md-nav__link">
+    Laborok értékelése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beugro" class="md-nav__link">
+    Beugró
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kis-zh-k" class="md-nav__link">
+    Kis ZH-k
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-alapok" class="md-nav__link">
+    Android alapok
+  </a>
+  
+    <nav class="md-nav" aria-label="Android alapok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forditas-menete-android-platformon" class="md-nav__link">
+    Fordítás menete Android platformon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-es-konyvtarai" class="md-nav__link">
+    SDK és könyvtárai
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd-es-sdk-manager" class="md-nav__link">
+    AVD és SDK manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd" class="md-nav__link">
+    AVD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fejlesztoi-kornyezet" class="md-nav__link">
+    Fejlesztői környezet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    Hello World
+  </a>
+  
+    <nav class="md-nav" aria-label="Hello World">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-studio" class="md-nav__link">
+    Android Studio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billentyukombinaciok" class="md-nav__link">
+    Billentyűkombinációk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eszkozok-szerkesztok" class="md-nav__link">
+    Eszközök, szerkesztők
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hasznos-beallitasok" class="md-nav__link">
+    Hasznos beállítások
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalhato-elemek" class="md-nav__link">
+    Generálható elemek
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-profiler" class="md-nav__link">
+    Android Profiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladatok" class="md-nav__link">
+    Feladatok:
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-android-ui/" class="md-nav__link">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-android-ui-fragments/" class="md-nav__link">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-android-sqlite/" class="md-nav__link">
+        Labor 05 - Rajzoló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-android-room/" class="md-nav__link">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-android-network/" class="md-nav__link">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-js-advanced/" class="md-nav__link">
+        Labor 13 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#altalanos-tudnivalok" class="md-nav__link">
+    Általános tudnivalók
+  </a>
+  
+    <nav class="md-nav" aria-label="Általános tudnivalók">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imsc-pontok" class="md-nav__link">
+    iMSC pontok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laborok-ertekelese" class="md-nav__link">
+    Laborok értékelése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beugro" class="md-nav__link">
+    Beugró
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kis-zh-k" class="md-nav__link">
+    Kis ZH-k
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-alapok" class="md-nav__link">
+    Android alapok
+  </a>
+  
+    <nav class="md-nav" aria-label="Android alapok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forditas-menete-android-platformon" class="md-nav__link">
+    Fordítás menete Android platformon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-es-konyvtarai" class="md-nav__link">
+    SDK és könyvtárai
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd-es-sdk-manager" class="md-nav__link">
+    AVD és SDK manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd" class="md-nav__link">
+    AVD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fejlesztoi-kornyezet" class="md-nav__link">
+    Fejlesztői környezet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    Hello World
+  </a>
+  
+    <nav class="md-nav" aria-label="Hello World">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-studio" class="md-nav__link">
+    Android Studio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billentyukombinaciok" class="md-nav__link">
+    Billentyűkombinációk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eszkozok-szerkesztok" class="md-nav__link">
+    Eszközök, szerkesztők
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hasznos-beallitasok" class="md-nav__link">
+    Hasznos beállítások
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalhato-elemek" class="md-nav__link">
+    Generálható elemek
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-profiler" class="md-nav__link">
+    Android Profiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feladatok" class="md-nav__link">
+    Feladatok:
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/01-android-hello-world/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-01-hello-world">Labor 01 - Hello World<a class="headerlink" href="#labor-01-hello-world" title="Permanent link">&para;</a></h1>
+<h2 id="altalanos-tudnivalok">Általános tudnivalók<a class="headerlink" href="#altalanos-tudnivalok" title="Permanent link">&para;</a></h2>
+<h3 id="imsc-pontok">iMSC pontok<a class="headerlink" href="#imsc-pontok" title="Permanent link">&para;</a></h3>
+<p>iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron nem szerezhető iMSc pont. A későbbi laborokon, ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásait a <a href="https://edu.vik.bme.hu/">Moodle</a> portálra kell feltölteni ugyanúgy a megfelelő labor alá, de érdemes megjegyzésként odaírni, hogy mely iMSc feladatok lettek megoldva. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).</p>
+<h3 id="laborok-ertekelese">Laborok értékelése<a class="headerlink" href="#laborok-ertekelese" title="Permanent link">&para;</a></h3>
+<p>Minden labor leírása tartalmazza, hogy mi a megoldandó feladat. A megoldásokat minden esetben a <a href="https://edu.vik.bme.hu/">Moodle</a> portálra kell feltölteni.</p>
+<h3 id="beugro">Beugró<a class="headerlink" href="#beugro" title="Permanent link">&para;</a></h3>
+<p>Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labor teljesítésének.</p>
+<h3 id="kis-zh-k">Kis ZH-k<a class="headerlink" href="#kis-zh-k" title="Permanent link">&para;</a></h3>
+<p>A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át. A KisZH kiváltja a beugró szerepét.</p>
+<p>A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjük. A mostani Labor 01-en nincs kisZH.</p>
+<h2 id="android-alapok">Android alapok<a class="headerlink" href="#android-alapok" title="Permanent link">&para;</a></h2>
+<p>A labor célja, hogy bemutassa az Android fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Ismertetjük egy Hello World alkalmazás elkészítésének módját és labor során a laborvezető részletesen bemutatja az eszközöket.</p>
+<p>A labor az alábbi témákat érinti:</p>
+<ul>
+<li>Az Android platform alapfogalmainak ismerete</li>
+<li>Android Studio fejlesztőkörnyezet alapok</li>
+<li>Android Emulátor tulajdonságai</li>
+<li>Android projekt létrehozása és futtatása emulátoron</li>
+<li>Manifest állomány felépítése</li>
+<li>Android Profiler</li>
+</ul>
+<h3 id="forditas-menete-android-platformon">Fordítás menete Android platformon<a class="headerlink" href="#forditas-menete-android-platformon" title="Permanent link">&para;</a></h3>
+<p>A projekt létrehozása után a forráskód az <code>src</code> könyvtárban, míg a felhasználói felület leírására szolgáló XML állományok a <code>res</code> könyvtárban találhatók. Az erőforrás állományokat egy <code>R.java</code> állomány köti össze a forráskóddal, így könnyedén elérhetjük Java/Kotlin oldalról az XML-ben definiált felületi elemeket. Az Android projekt fordításának eredménye egy APK állomány, melyet közvetlenül telepíthetünk mobil eszközre.</p>
+<ol>
+<li>
+<p>A fejlesztő elkészíti a Kotlin forráskódot, valamint az XML alapú felhasználói felület leírást a szükséges erőforrás állományokkal.</p>
+</li>
+<li>
+<p>A fejlesztőkörnyezet az erőforrás állományokból folyamatosan naprakészen tartja az <code>R.java</code> erőforrás fájlt a fejlesztéshez és a fordításhoz. <strong>FONTOS: az <code>R.java</code> állomány generált, kézzel SOHA ne módosítsuk!</strong> (Az Android Studio egyébként nem is hagyja.)</p>
+</li>
+<li>
+<p>A fejlesztő a Manifest állományban beállítja az alkalmazás hozzáférési jogosultságait (pl. Internet elérés, szenzorok használata, stb.), illetve ha futás idejű jogosultságok szükségesek, ezt kezeli.</p>
+</li>
+<li>
+<p>A fordító a forráskódból, az erőforrásokból és a külső könyvtárakból előállítja a Dalvik/<a href="https://hu.wikipedia.org/wiki/Android_Runtime"><strong>ART</strong></a> virtuális gép gépi kódját.</p>
+</li>
+<li>
+<p>A gépi kódból és az erőforrásokból előáll a nem aláírt APK állomány.</p>
+</li>
+<li>
+<p>Végül a rendszer végrehajtja az aláírást és előáll a készülékekre telepíthető, aláírt APK.</p>
+</li>
+</ol>
+<p><img src="./assets/lab-1-compile.jpg" width= "630" align="middle"></p>
+<p><em>Fordítás menete Android platformon</em></p>
+<p>Az Android Studio a <a href="https://gradle.org/">Gradle</a> build rendszert használja ezeknek a lépéseknek az elvégézéséhez.</p>
+<p><strong>Megjegyzések:</strong></p>
+<ul>
+<li>
+<p>A teljes folyamat a fejlesztői gépen megy végbe, a készülékekre már csak bináris állomány jut el.</p>
+</li>
+<li>
+<p>A külső könyvtárak általában JAR állományként, vagy egy másik projekt hozzáadásával illeszthetők az aktuális projekthez (de ezt nem kell kézzel megtennünk, a függőségek kezelésében is a Gradle fog segíteni).</p>
+</li>
+<li>
+<p>Az APK állomány leginkább a Java világban ismert JAR állományokhoz hasonlítható.</p>
+</li>
+<li>
+<p>A Manifest állományban meg kell adni a támogatni kívánt Android verziót, mely felfele kompatibilis az újabb verziókkal, ennél régebbi verzióra azonban az alkalmazás már nem telepíthető.</p>
+</li>
+<li>
+<p>Az Android folyamatosan frissülő verzióival folymatosan lépést kell tartaniuk a fejlesztőknek.</p>
+</li>
+<li>
+<p>Az Android alkalmazásokat tipikusan a Google Play Store-ban szokták publikálni, így az APK formátumban való terjesztés nem annyira elterjedt.</p>
+</li>
+</ul>
+<h3 id="sdk-es-konyvtarai">SDK és könyvtárai<a class="headerlink" href="#sdk-es-konyvtarai" title="Permanent link">&para;</a></h3>
+<p>A <a href="https://developer.android.com/studio">developer.android.com/studio</a> oldalról letölthető az IDE és az SDK. Ennek fontosabb mappáit, eszközeit tekintsék át a laborvezető segítségével!</p>
+<p><img alt="" src="assets/ide_android.jpg" /></p>
+<p>SDK szerkezet:</p>
+<ul>
+<li><code>docs:</code> Dokumentáció</li>
+<li><code>extras:</code> Különböző extra szoftverek helye. Maven repository, support libes anyagok, analytics SDK, Google <a href="https://developer.android.com/studio/run/win-usb.html">Android USB driver</a> (amennyiben SDK managerrel ezt is letöltöttük) stb.</li>
+<li><code>platform-tools:</code> Fastboot és ADB binárisok helye (legtöbbet használt eszközök)</li>
+<li><code>platforms</code>, <code>samples</code>, <code>sources</code>, <code>system-images:</code> Minden API levelhez külön almappában a platform anyagok, források, példaprojektek, OS image-ek</li>
+<li><code>tools:</code> Fordítást és tesztelést segítő eszközök, SDK manager, 9Patch drawer, emulátor binárisok stb.</li>
+</ul>
+<h3 id="avd-es-sdk-manager">AVD és SDK manager<a class="headerlink" href="#avd-es-sdk-manager" title="Permanent link">&para;</a></h3>
+<p>Az SDK kezelésére az SDK managert használjuk, ezzel lehet letölteni és frissen tartani az eszközeinket. Indítása az Android Studion keresztül lehetséges.</p>
+<p>Az SDK Manager ikonja a fenti toolbaron:</p>
+<p><img alt="" src="assets/sdk_manager_icon.jpg" /></p>
+<p>SDK manager felülete:</p>
+<p><img alt="" src="assets/sdk_manager.jpg" /></p>
+<p><em>Megjegyzés: Korábban létezett egy standalone SDK manager de ennek használata mára deprecated lett. Ha online forrásokban ilyet látunk ne lepődjünk meg.</em></p>
+<p>Indítsuk el, és vizsgáljuk meg a laborvezetővel, rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.</p>
+<h3 id="avd">AVD<a class="headerlink" href="#avd" title="Permanent link">&para;</a></h3>
+<p>Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül lehetséges (illetve parancssorból is, de ennek a használatára csak speciális esetekben van szükség).</p>
+<p>Az AVD Manager ikonja:</p>
+<p><img alt="" src="assets/avd_icon.jpg" /></p>
+<p><img alt="" src="assets/avd.jpg" /></p>
+<p>A fenti képen bal oldalon a létező virtuális eszközök listáját találjuk, jobb oldalon pedig az ún. eszköz definíciókét. Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S4). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.</p>
+<ol>
+<li>A bal oldali ablakon, kattintsunk a bal alsó sarokban található <em>Create Virtual Device...</em> gombra!</li>
+<li>Válasszunk az előre definiált készülék sablonokból (pl. <em>Nexus 5X</em>), majd nyomjuk meg a <em>Next</em> gombot.</li>
+<li>Döntsük el, hogy milyen Android verziójú emulátort kívánunk használni. CPU/ABI alapvetően x86_64 legyen, mivel ezekhez kapunk <a href="https://developer.android.com/studio/run/emulator-acceleration">hardveres gyorsítást</a> is. Itt válasszunk a rendelkezésre állók közül egyet, majd <em>Next</em>.</li>
+<li>
+<p>Az eszköz részletes konfigurációja.</p>
+<ul>
+<li>A virtuális eszköz neve legyen például <code>Labor_0</code>.</li>
+<li>Válasszuk ki az alapértelmezett orientációt, tetszés szerint kapcsoljuk ki vagy be a készülék keretének megjelenítését.</li>
+</ul>
+<p>A <em>Show Advanced Settings</em> alatt további opciókat találunk:</p>
+<ul>
+<li>Kamera opciók:<ul>
+<li><em>WebcamX</em>, hardveres kamera, ami a számítógépre van csatlakoztatva</li>
+<li><em>Emulated</em>, egy egyszerű szoftveres megoldás, <strong>most legalább az egyik kamera legyen ilyen</strong>.</li>
+<li><em>VirtualScene</em>, egy kifinomultabb szoftveres megoldás, amelyben egy 3D világban mozgathatjuk a kamerát.</li>
+</ul>
+</li>
+<li><em>Boot Option</em>: Nemrég jelent meg az Android emulátor állapotáról való pillanatkép elmentésének lehetősége. Ez azt takarja, hogy a virtuális operációs rendszer csak felfüggesztésre kerül az emulátor bezáráskor (például a megnyitott alkalmazás is megmarad, a teljes állapotával), és <em>Quick boot</em> esetben a teljes OS indítása helyett másodperceken belül elindul az emulált rendszer. <em>Cold Boot</em> esetben minden alkalommal leállítja és újra indítja a virtális eszköz teljes operációs rendszerét.</li>
+<li>
+<p>Memória és tárhely: </p>
+<ul>
+<li>RAM: Ha kevés a rendszermemóriánk, nem érdemes 768 MB-nál többet adni, mert könnyen futhatunk problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra ezt az értéket. 8 GB vagy több rendszermemória mellett nyugodtan állíthatjuk az emulátor memóriáját 1024, 1536, vagy 2048 MB-ra.</li>
+<li>VM heap: az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.</li>
+<li>Belső flash memória és SD kártya mérete, alapvetően jók az alapértelmezett beállításai.</li>
+</ul>
+</li>
+<li>
+<p>Ha mindent rendben talál az ablak, akkor <em>Finish</em>!</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img alt="" src="assets/avd_create.jpg" /></p>
+<p>Az Android Virtual Device Manager-ben megjelent az imént létrehozott eszközünk. Itt lehetőség van a korábban megadott paraméterek szerkesztésére, a "készülékről" a felhasználói adatok törlésére (<em>Wipe Data</em> - Teljes visszaállítás), illetve az emulátor példány duplikálására vagy törlésére.</p>
+<p>A Play gombbal indítsuk el az új emulátort!</p>
+<p>Az elindított emulátoron próbáljuk ki az <em>API Demos</em> és <em>Dev Tools</em> alkalmazásokat!</p>
+<p>Megjegyzés: A gyári emulátoron kívül több alternatíva is létezik, a <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> ezek közül az egyik legjobb, viszont a Google féle emulátor a legelterjedtebb, így amennyiben ezzel nem jelentkeznek problémáink, maradjunk ennél.</p>
+<p>Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi képen látható plusz funkciókat is adja. Lehetőség van többek között egyedi hely beállítására, bejövő hívás szimulálására, stb. A panelt a futó emulátor jobb oldalán található vezérlő gombok közül a <em>...</em> gombbal lehet megnyitni:</p>
+<p><img alt="" src="assets/avd_extras.jpg" /></p>
+<h2 id="fejlesztoi-kornyezet">Fejlesztői környezet<a class="headerlink" href="#fejlesztoi-kornyezet" title="Permanent link">&para;</a></h2>
+<p>Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a <em>Tip of the day</em>, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a <em>Settings -&gt; Appeareance &amp; Behavior -&gt; System Settings -&gt; Reopen last project on startup</em> opcióval ki is kapcsolhatjuk.)</p>
+<h2 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h2>
+<p>A laborvezető segítségével készítsenek egy egyszerű Hello World alkalmazást, a varázsló nézeten az <em>Include Kotlin support</em> legyen bepipálva!</p>
+<h3 id="android-studio">Android Studio<a class="headerlink" href="#android-studio" title="Permanent link">&para;</a></h3>
+<p>Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-t, és szeretnék megismerni a különbségeket az Android Studio-hoz képest.</p>
+<ul>
+<li><strong>Import régi projektekből:</strong> Android Studioban lehetséges a projekt
+    importálása régebbi verziójú projektekből és a régi Eclipse
+    projektekből is.</li>
+<li>
+<p><strong>Projektstruktúra:</strong> A Studio Gradle-lel fordít, és más felépítést
+    használ. Projekten belül:</p>
+<ul>
+<li><code>.idea</code>: IDE fájlok</li>
+<li><code>app</code>: forrás<ul>
+<li><code>build</code>: fordított állományok</li>
+<li><code>libs</code>: libraryk</li>
+<li><code>src</code>: forráskód, azon belül is külön projekt a tesztnek, és azon belül pedig <code>res</code> könyvtár, illetve <code>java</code>. Utóbbin belül már a csomagok vannak.</li>
+</ul>
+</li>
+<li><code>gradle</code>: Gradle fájlok</li>
+</ul>
+</li>
+<li>
+<p><strong>Hasznos funkciók:</strong></p>
+<ul>
+<li>IntelliSense, fejlett refaktorálás támogatás</li>
+<li>Ha egy sorban színre, vagy képi erőforrásra hivatkozunk, a sor elejére kitesz egy miniatűr változatot.</li>
+<li>Ha közvetve hivatkozott erőforrást (akár <code>resources.get...</code>, akár <code>R...</code>) adunk meg, összecsukja a hivatkozást és a tényleges értéket mutatja. Ha rávisszük az egeret felfedi, ha kattintunk kibontja a hivatkozást.</li>
+<li>Névtelen belső osztályokkal is hasonlót tud, javítva a kód olvashatóságát.</li>
+<li>Kódkiegészítésnél szabad a kereső, a szótöredéket keresi, nem pedig a szóval kezdődő lehetőségeket (lásd képen)</li>
+<li>Változónév ajánlás: amikor változónévre van szükségünk, nyomjunk <em>Ctrl+Space</em>-t. Ha adottak a körülmények, a Studio egész jó neveket tud felajánlani.</li>
+<li>Szigorú lint. A Studio megengedi a warningot. Ezért szigorúbb a lint, több mindenre figyelmeztet (olyan apróságra is, hogy egy View egyik oldalán van padding, a másikon nincs)</li>
+<li>Layout szerkesztés. A grafikus layout építés lehetséges.</li>
+<li>CTRL-t lenyomva navigálhatunk a kódban, pl. osztályra, metódushívásra kattintva. Ezt a navigációt (és az egyszerű másik osztályba kattintást is) rögzíti, és a historyban előre-hátra gombokkal lehet lépkedni. Ha van az egerünkön/billentyűzetünkön ilyen gomb, és netes böngészés közben aktívan használjuk, ezt a funkciót nagyon hasznosnak fogjuk találni.</li>
+<li>Szín ikonja a sor elején; kiemelve jobb oldalon, hogy melyik nézeten vagyunk; szabadszavas kiegészítés; a "Hello world" igazából <code>@string/very_very_very_long_hello_world</code>.*</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="assets/nice_studio.jpg" /></p>
+<h3 id="billentyukombinaciok">Billentyűkombinációk<a class="headerlink" href="#billentyukombinaciok" title="Permanent link">&para;</a></h3>
+<ul>
+<li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>L</kbd>: Kódformázás</li>
+<li><kbd>CTRL</kbd> + <kbd>SPACE</kbd>: Kódkiegészítés</li>
+<li><kbd>SHIFT</kbd> + <kbd>F6</kbd> Átnevezés (Mindenhol)</li>
+<li><kbd>F2</kbd>: A következő error-ra ugrik. Ha nincs error, akkor warningra.</li>
+<li><kbd>CTRL</kbd> + <kbd>Z</kbd> illetve <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd>: Visszavonás és Mégis</li>
+<li><kbd>CTRL</kbd> + <kbd>P</kbd>: Paraméterek mutatása</li>
+<li><kbd>ALT</kbd> + <kbd>INSERT</kbd>: Metódus generálása</li>
+<li><kbd>CTRL</kbd> + <kbd>O</kbd>: Metódus felüldefiniálása</li>
+<li><kbd>CTRL</kbd> + <kbd>F9</kbd>: Fordítás</li>
+<li><kbd>SHIFT</kbd> + <kbd>F10</kbd>: Fordítás és futtatás</li>
+<li><kbd>SHIFT</kbd> <kbd>SHIFT</kbd>: Keresés mindenhol</li>
+<li><kbd>CTRL</kbd> + <kbd>N</kbd>: Keresés osztályokban</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Keresés fájlokban</li>
+<li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Keresés szimbólumokban (például függvények, property-k)</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Keresés a beállításokban, kiadható parancsokban.</li>
+</ul>
+<h3 id="eszkozok-szerkesztok">Eszközök, szerkesztők<a class="headerlink" href="#eszkozok-szerkesztok" title="Permanent link">&para;</a></h3>
+<p>A <em>View</em> menü <em>Tool Windows</em> menüpontjában lehetőség van különböző ablakok ki- és bekapcsolására. Laborvezető segítségével tekintsék át az alábbi eszközöket!</p>
+<ul>
+<li>Project</li>
+<li>Structure</li>
+<li>TODO</li>
+<li>Logcat</li>
+<li>Terminal</li>
+<li>Event Log</li>
+<li>Gradle</li>
+</ul>
+<p>Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal, <em>Split Vertically/Horizontally</em>!</p>
+<h3 id="hasznos-beallitasok">Hasznos beállítások<a class="headerlink" href="#hasznos-beallitasok" title="Permanent link">&para;</a></h3>
+<p>A laborvezető segítségével állítsák be a következő hasznos funkciókat:</p>
+<ul>
+<li>"laptop mód" ki- és bekapcsolása (<em>File -&gt; Power Save Mode</em>)</li>
+<li>sorszámozás bekapcsolása (kód melletti részen bal oldalt: jobb egérgomb, <em>Show Line Numbers</em>)</li>
+<li>beírás közbeni autoimport bekapcsolása (settingsben keresés: import, utána Editor/Auto import)</li>
+</ul>
+<h3 id="generalhato-elemek">Generálható elemek<a class="headerlink" href="#generalhato-elemek" title="Permanent link">&para;</a></h3>
+<p>A Studio sok sablont tartalmaz, röviden tekintsék át a lehetőségeket:</p>
+<ul>
+<li>Projektfában, projektre jobb gombbal kattintva -&gt; New -&gt; Module</li>
+<li>Projektfában, modulon belül, "java"-ra kattintva jobb gombbal -&gt; New</li>
+<li>Forráskódban <kbd>ALT</kbd>+<kbd>INSERT</kbd> billentyűkombinációra</li>
+</ul>
+<h2 id="android-profiler">Android Profiler<a class="headerlink" href="#android-profiler" title="Permanent link">&para;</a></h2>
+<p>A készülék erőforráshasználata <a href="https://developer.android.com/studio/profile/android-profiler">monitorozható</a> ezen a felületen, amelyet az említett <em>View -&gt; Tool Windows</em>-ból érhetünk el.</p>
+<p><img alt="" src="assets/ap.jpg" /></p>
+<p>Például részletes információt kaphatunk a memória használatról:</p>
+<p><img alt="" src="assets/ap_memory.jpg" /></p>
+<h2 id="feladatok">Feladatok:<a class="headerlink" href="#feladatok" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Az új alkalmazást futtassák emulátoron (akinek saját készüléke van, az is próbálja ki)!</li>
+<li>Helyezzenek breakpointot a kódba, és debug módban indítsák az alkalmazást! (Érdemes megyfigyelni, hogy most másik Gradle Task fut a képernyő alján.)</li>
+<li>Indítsanak hívást és küldjenek SMS-t az emulátorra! Mit tapasztalnak?</li>
+<li>Indítsanak hívást és küldjenek SMS-t az emulátorról! Mit tapasztalnak?</li>
+<li>Tekintse át az Android Profiler nézet funkcióit a laborvezető segítségével!</li>
+<li>Változtassa a készülék pozícióját az emulátor megfelelő paneljének segítségével!</li>
+<li>Vizsgálja meg az elindított <code>HelloWorld</code> projekt nyitott szálait, memóriafoglalását!</li>
+<li>Vizsgálja meg a Logcat panel tartalmát!</li>
+<li>Vizsgálja meg az Analyze -&gt; Inspect code eredményét!</li>
+<li>Keresse ki a létrehozott <code>HelloWorld</code> projekt mappáját és a build könyvtáron belül vizsgálja meg az <code>.apk</code> állomány tartalmát! Hol található a lefordított kód? </li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../../tudnivalok/github/GitHub-credentials/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Egyetemi laborokban: GitHub belépés" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Egyetemi laborokban: GitHub belépés
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../02-android-ui/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 02 - Felhasználói felület készítés" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 02 - Felhasználói felület készítés
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

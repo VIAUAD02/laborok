@@ -1,0 +1,1695 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Labor 05 - Rajzoló alkalmazás készítése - BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-05-rajzolo-alkalmazas-keszitese" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 05 - Rajzoló alkalmazás készítése
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-android-hello-world/" class="md-tabs__link md-tabs__link--active">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC00 - Mobil- és webes szoftverek - Webes laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauac00/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-android-ui/" class="md-nav__link">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-android-ui-fragments/" class="md-nav__link">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 05 - Rajzoló alkalmazás készítése
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 05 - Rajzoló alkalmazás készítése
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-projekt-elokeszitese" class="md-nav__link">
+    A projekt előkészítése
+  </a>
+  
+    <nav class="md-nav" aria-label="A projekt előkészítése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-projekt-letrehozasa" class="md-nav__link">
+    A projekt létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-resource-ok-hozzaadasa" class="md-nav__link">
+    A resource-ok hozzáadása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allo-layout-kikenyszeritese" class="md-nav__link">
+    Álló layout kikényszerítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-feladat-a-kezdo-layout-letrehozasa-1-pont" class="md-nav__link">
+    1. feladat: A kezdő layout létrehozása (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-feladat-stilusvalaszto-2-pont" class="md-nav__link">
+    2. feladat: Stílusválasztó (2 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-feladat-a-drawingview-osztaly-implementalasa" class="md-nav__link">
+    3. feladat: A DrawingView osztály implementálása
+  </a>
+  
+    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-modellek-letrehozasa" class="md-nav__link">
+    A modellek létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-rajzolasi-stilus-beallitasa" class="md-nav__link">
+    A rajzolási stílus beállítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicializalasok" class="md-nav__link">
+    Inicializálások
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gesztusok-kezelese" class="md-nav__link">
+    Gesztusok kezelése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-rajzolas" class="md-nav__link">
+    A rajzolás
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont" class="md-nav__link">
+    4. feladat: Perzisztencia megvalósítása SQLite adatbázis segítségével (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. feladat: Perzisztencia megvalósítása SQLite adatbázis segítségével (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tablak-definialasa" class="md-nav__link">
+    Táblák definiálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-segedosztalyok-letrehozasa" class="md-nav__link">
+    A segédosztályok létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-drawingview-kiegeszitese" class="md-nav__link">
+    A DrawingView kiegészítése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-drawingactivity-kiegeszitese" class="md-nav__link">
+    A DrawingActivity kiegészítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-onallo-feladat-a-vaszon-torlese-1-pont" class="md-nav__link">
+    5. (önálló) feladat: A vászon törlése (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kiegeszito-imsc-feladat-2-imsc-pont" class="md-nav__link">
+    Kiegészítő iMSc feladat (2 iMSc pont)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-android-room/" class="md-nav__link">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-android-network/" class="md-nav__link">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-jquery/" class="md-nav__link">
+        Labor 12 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-js-advanced/" class="md-nav__link">
+        Labor 13 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feltoltes" class="md-nav__link">
+    Feltöltés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-projekt-elokeszitese" class="md-nav__link">
+    A projekt előkészítése
+  </a>
+  
+    <nav class="md-nav" aria-label="A projekt előkészítése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-projekt-letrehozasa" class="md-nav__link">
+    A projekt létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-resource-ok-hozzaadasa" class="md-nav__link">
+    A resource-ok hozzáadása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allo-layout-kikenyszeritese" class="md-nav__link">
+    Álló layout kikényszerítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laborfeladatok" class="md-nav__link">
+    Laborfeladatok
+  </a>
+  
+    <nav class="md-nav" aria-label="Laborfeladatok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-feladat-a-kezdo-layout-letrehozasa-1-pont" class="md-nav__link">
+    1. feladat: A kezdő layout létrehozása (1 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-feladat-stilusvalaszto-2-pont" class="md-nav__link">
+    2. feladat: Stílusválasztó (2 pont)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-feladat-a-drawingview-osztaly-implementalasa" class="md-nav__link">
+    3. feladat: A DrawingView osztály implementálása
+  </a>
+  
+    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-modellek-letrehozasa" class="md-nav__link">
+    A modellek létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-rajzolasi-stilus-beallitasa" class="md-nav__link">
+    A rajzolási stílus beállítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicializalasok" class="md-nav__link">
+    Inicializálások
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gesztusok-kezelese" class="md-nav__link">
+    Gesztusok kezelése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-rajzolas" class="md-nav__link">
+    A rajzolás
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont" class="md-nav__link">
+    4. feladat: Perzisztencia megvalósítása SQLite adatbázis segítségével (1 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. feladat: Perzisztencia megvalósítása SQLite adatbázis segítségével (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tablak-definialasa" class="md-nav__link">
+    Táblák definiálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-segedosztalyok-letrehozasa" class="md-nav__link">
+    A segédosztályok létrehozása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-drawingview-kiegeszitese" class="md-nav__link">
+    A DrawingView kiegészítése
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-drawingactivity-kiegeszitese" class="md-nav__link">
+    A DrawingActivity kiegészítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-onallo-feladat-a-vaszon-torlese-1-pont" class="md-nav__link">
+    5. (önálló) feladat: A vászon törlése (1 pont)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kiegeszito-imsc-feladat-2-imsc-pont" class="md-nav__link">
+    Kiegészítő iMSc feladat (2 iMSc pont)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/05-android-sqlite/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="labor-05-rajzolo-alkalmazas-keszitese">Labor 05 - Rajzoló alkalmazás készítése<a class="headerlink" href="#labor-05-rajzolo-alkalmazas-keszitese" title="Permanent link">&para;</a></h1>
+<h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
+<p>A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az alkalmazással egy vászonra lehet vonalakat vagy pontokat rajzolni. Ezen kívül szükséges a rajzolt ábrát perzisztensen elmenteni, hogy az alkalmazás újraindítása után is visszatöltődjön.</p>
+<p align="center">
+<img src="./assets/main_screen.png" width="160">
+<img src="./assets/color_selector.png" width="160">
+<img src="./assets/style_selector.png" width="160">
+</p>
+
+<h2 id="feltoltes">Feltöltés<a class="headerlink" href="#feltoltes" title="Permanent link">&para;</a></h2>
+<p>Az elkészült megoldást <code>.zip</code> formátumban (File -&gt; Export to zip file...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.</p>
+<h2 id="a-projekt-elokeszitese">A projekt előkészítése<a class="headerlink" href="#a-projekt-elokeszitese" title="Permanent link">&para;</a></h2>
+<h3 id="a-projekt-letrehozasa">A projekt létrehozása<a class="headerlink" href="#a-projekt-letrehozasa" title="Permanent link">&para;</a></h3>
+<p>Hozzunk létre egy új Android projektet, <em>Add no Activity</em> opcióval. Az <em>Application name</em> mezőben adjuk meg a <code>Simple Drawer</code> nevet. A <em>Package</em> név legyen <code>hu.bme.aut.android.simpledrawer</code>. Nyelvnek a Kotlin legyen kiválasztva, a minimum SDK szintje legyen API 21. Ezután nyomjunk a <strong>Finish</strong> gombra.</p>
+<p>Adjunk a projekthez egy új <em>Empty activity</em> osztályt. <em>Activity name</em>-nek adjuk meg, hogy <code>DrawingActivity</code>, és hagyjuk bepipálva azt, hogy generáljon <em>layout</em> fájlt, valamint pipáljuk be a <em>Launcher Activity</em> opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a <strong>Finish</strong>-re.</p>
+<p>Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.</p>
+<h3 id="a-resource-ok-hozzaadasa">A resource-ok hozzáadása<a class="headerlink" href="#a-resource-ok-hozzaadasa" title="Permanent link">&para;</a></h3>
+<p>Először töltsük le <a href="downloads/res.zip">az alkalmazás képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha <em>Android Studio</em>-ban bal fent a szokásos <em>Android</em> nézetről a <em>Project</em> nézetre váltunk erre az időre).</p>
+<p>Az alábbi, alkalmazáshoz szükséges <em>string resource</em>-okat másoljuk be a <code>res/values/strings.xml</code> fájlba:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>Simple Drawer<span class="nt">&lt;/string&gt;</span>
+
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;style&quot;</span><span class="nt">&gt;</span>Stílus<span class="nt">&lt;/string&gt;</span>
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>Vonal<span class="nt">&lt;/string&gt;</span>
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;point&quot;</span><span class="nt">&gt;</span>Pont<span class="nt">&lt;/string&gt;</span>
+
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;are_you_sure_want_to_exit&quot;</span><span class="nt">&gt;</span>Biztosan ki akarsz lépni?<span class="nt">&lt;/string&gt;</span>
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;ok&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/string&gt;</span>
+   <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;cancel&quot;</span><span class="nt">&gt;</span>Mégse<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<h3 id="allo-layout-kikenyszeritese">Álló layout kikényszerítése<a class="headerlink" href="#allo-layout-kikenyszeritese" title="Permanent link">&para;</a></h3>
+<p>Az alkalmazásunkban az egyszerűség kedvéért most csak az álló módot támogatjuk. Ehhez az <code>AndroidManifest.xml</code>-ben a <code>DrawingActivity</code> nyitótagjához kell hozzáadni egy sort a következő módon:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;activity</span>
+    <span class="na">android:name=</span><span class="s">&quot;.DrawingActivity&quot;</span>
+    <span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">android:screenOrientation=</span><span class="s">&quot;portrait&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+<h2 id="laborfeladatok">Laborfeladatok<a class="headerlink" href="#laborfeladatok" title="Permanent link">&para;</a></h2>
+<p>A labor során a következő feladatokat kell megvalósítani a laborvezető segítségével, illetve bizonyos feladatokat önállóan. A labor végén lehetőség van <strong>iMSc</strong> pontokat is szerezni a jelölt feladatok megoldásával.</p>
+<h3 id="1-feladat-a-kezdo-layout-letrehozasa-1-pont">1. feladat: A kezdő layout létrehozása (1 pont)<a class="headerlink" href="#1-feladat-a-kezdo-layout-letrehozasa-1-pont" title="Permanent link">&para;</a></h3>
+<p>Első lépésként hozzunk létre egy új <em>package</em>-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül, aminek adjuk a <code>view</code> nevet. Ebben hozzunk létre egy új osztályt, amit nevezzünk el <code>DrawingView</code>-nak, és származzon le a <code>View</code> osztályból (<code>android.view.View</code>).</p>
+<p>Hozzuk létre a szükséges konstruktort ezen belül:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DrawingView</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context?,</span> <span class="n">attrs</span><span class="p">:</span> <span class="n">AttributeSet?)</span> <span class="p">:</span> <span class="n">View</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>Miután létrehoztuk a <code>DrawingView</code>-t, nyissuk meg a <code>res/layout/activity_drawing.xml</code>-t, és hozzunk létre gyökérelemként egy <code>RelativeLayout</code>-ot, azon belül pedig felülre a frissen létrehozott <code>DrawingView</code>-nkból helyezzünk el egy példányt fekete háttérrel, alulra pedig egy <code>Toolbar</code>-t rakjunk ki. Végezetül a layoutnak így kell kinéznie:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;RelativeLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;hu.bme.aut.android.simpledrawer.view.DrawingView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/canvas&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_above=</span><span class="s">&quot;@+id/toolbar&quot;</span>
+        <span class="na">android:background=</span><span class="s">&quot;@android:color/black&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;androidx.appcompat.widget.Toolbar</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/toolbar&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_alignParentBottom=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:background=</span><span class="s">&quot;?android:colorPrimary&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/RelativeLayout&gt;</span>
+</code></pre></div>
+<h3 id="2-feladat-stilusvalaszto-2-pont">2. feladat: Stílusválasztó (2 pont)<a class="headerlink" href="#2-feladat-stilusvalaszto-2-pont" title="Permanent link">&para;</a></h3>
+<p>Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős <code>Toolbar</code>-t, hozzuk létre a menüt, amivel be lehet állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új <em>Android resource directory</em>-t <code>menu</code> néven a <code>res</code> mappában, és <em>Resource type</em>-nak is válasszuk azt, hogy <code>menu</code>. Ezen belül hozzunk létre egy új <em>Menu resource file</em>-t <code>menu_toolbar.xml</code> néven. Ebben hozzunk létre az alábbi hierarchiát:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/menu_style&quot;</span>
+        <span class="na">android:checkableBehavior=</span><span class="s">&quot;single&quot;</span>
+        <span class="na">android:icon=</span><span class="s">&quot;@drawable/ic_style&quot;</span>
+        <span class="na">android:title=</span><span class="s">&quot;@string/style&quot;</span>
+        <span class="na">app:showAsAction=</span><span class="s">&quot;ifRoom&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;menu&gt;</span>
+            <span class="nt">&lt;group</span> <span class="na">android:checkableBehavior=</span><span class="s">&quot;single&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;item</span>
+                    <span class="na">android:id=</span><span class="s">&quot;@+id/menu_style_line&quot;</span>
+                    <span class="na">android:checked=</span><span class="s">&quot;true&quot;</span>
+                    <span class="na">android:title=</span><span class="s">&quot;@string/line&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;item</span>
+                    <span class="na">android:id=</span><span class="s">&quot;@+id/menu_style_point&quot;</span>
+                    <span class="na">android:checked=</span><span class="s">&quot;false&quot;</span>
+                    <span class="na">android:title=</span><span class="s">&quot;@string/point&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/group&gt;</span>
+        <span class="nt">&lt;/menu&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/menu&gt;</span>
+</code></pre></div>
+<p>Ezután kössük be a menüt, hogy megjelenjen a <code>Toolbar</code>-on.
+Ahhoz, hogy elérjük a létrehozott erőforrásokat kódból, view binding-ra lesz szükségünk. A modul szintű gradle file-ba fegyük fel a következő elemet. <strong><em>Ne felejtsünk</em></strong> el a <code>Sync</code> now gombra kattintani a módosítást követően.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">android</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">buildFeatures</span> <span class="o">{</span>
+        <span class="n">viewBinding</span> <span class="kc">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+Ezután hozzunk létre egy binding adattagot a <code>DrawingActivity</code>-n belül <code>toolbarBinding</code> néven és inicializáljuk az <code>onCreate</code> függvényben.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityDrawingBinding</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityDrawingBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Már csak annyi van hátra, hogy a <code>DrawingActivity</code>-ben felüldefiniáljuk  az <em>Activity</em> <code>onCreateOptionsMenu()</code> és <code>onOptionsItemSelected()</code> függvényét az alábbi módon:</p>
+<p><div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">Menu?)</span><span class="p">:</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="nv">toolbarMenu</span><span class="p">:</span> <span class="n">Menu</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">.</span><span class="na">menu</span>
+    <span class="n">menuInflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_toolbar</span><span class="p">,</span> <span class="n">toolbarMenu</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">0</span> <span class="n">until</span> <span class="n">toolbarMenu</span><span class="p">.</span><span class="na">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">menuItem</span><span class="p">:</span> <span class="n">MenuItem</span> <span class="o">=</span> <span class="n">toolbarMenu</span><span class="p">.</span><span class="na">getItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">menuItem</span><span class="p">.</span><span class="na">setOnMenuItemClickListener</span> <span class="p">{</span> <span class="n">item</span> <span class="o">-&gt;</span> <span class="n">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">menuItem</span><span class="p">.</span><span class="na">hasSubMenu</span><span class="p">())</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="nv">subMenu</span><span class="p">:</span> <span class="n">SubMenu</span> <span class="o">=</span> <span class="n">menuItem</span><span class="p">.</span><span class="na">subMenu</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="k">in</span> <span class="m">0</span> <span class="n">until</span> <span class="n">subMenu</span><span class="p">.</span><span class="na">size</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">subMenu</span><span class="p">.</span><span class="na">getItem</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                    <span class="p">.</span><span class="na">setOnMenuItemClickListener</span> <span class="p">{</span> <span class="n">item</span> <span class="o">-&gt;</span> <span class="n">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="na">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">menu_style_line</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">item</span><span class="p">.</span><span class="na">isChecked</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">menu_style_point</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">item</span><span class="p">.</span><span class="na">isChecked</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="3-feladat-a-drawingview-osztaly-implementalasa">3. feladat: A <code>DrawingView</code> osztály implementálása<a class="headerlink" href="#3-feladat-a-drawingview-osztaly-implementalasa" title="Permanent link">&para;</a></h3>
+<h4 id="a-modellek-letrehozasa">A modellek létrehozása<a class="headerlink" href="#a-modellek-letrehozasa" title="Permanent link">&para;</a></h4>
+<p>A rajzprogramunk, ahogy az már az előző feladatban is kiderült, kétféle rajzolási stílust fog támogatni. Nevezetesen a pont- és vonalrajzolást. Ahhoz, hogy a rajzolt alakzatokat el tudjuk tárolni szükségünk lesz két új típusra, modellre, amihez hozzunk létre egy új <em>package</em>-et a <code>hu.bme.aut.android.simpledrawer</code>-en belül <code>model</code> néven.</p>
+<p>Ezen belül először hozzunk létre egy <code>Point</code> osztályt, ami értelemszerűen a pontokat fogja reprezentálni. Kétparaméteres konstruktort fogunk  létrehozni, amihez alapértékeket rendelünk.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Point</span><span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0F</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="m">0F</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Miután ezzel megvagyunk, hozzunk létre egy <code>Line</code> osztályt. Mivel egy vonalat a két végpontjának megadásával ki tudunk 
+rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztálynak.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span> <span class="kd">class</span> <span class="nc">Line</span><span class="p">(</span>
+    <span class="kd">var</span> <span class="nv">start</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nv">end</span><span class="p">:</span> <span class="n">Point</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="a-rajzolasi-stilus-beallitasa">A rajzolási stílus beállítása<a class="headerlink" href="#a-rajzolasi-stilus-beallitasa" title="Permanent link">&para;</a></h4>
+<p>Most, hogy megvannak a modelljeink el lehet kezdeni magának a rajzolás funkciójának fejlesztését. Ehhez a <code>DrawingView</code> osztályt fogjuk ténylegesen is elkészíteni. Először vegyünk fel az osztályon belül egy <code>companion object</code>-et, amiben a rajzolási stílus konstansait fogjuk meghatározni. Ehhez kapcsolódóan vegyünk fel egy új <code>field</code>-et az osztályunkba, amiben eltároljuk, hogy jelenleg milyen stílus van kiválasztva. </p>
+<div class="highlight"><pre><span></span><code><span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
+        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DRAWING_STYLE_LINE</span> <span class="o">=</span> <span class="m">1</span>
+        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DRAWING_STYLE_POINT</span> <span class="o">=</span> <span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">currentDrawingStyle</span> <span class="o">=</span> <span class="n">DRAWING_STYLE_LINE</span>
+</code></pre></div>
+<p>Ha ezek megvannak, akkor egészítsük ki a <code>DrawingActivity</code>-ben a menükezelést, úgy, hogy a megfelelő függvények hívódjanak meg. Az <code>onOptionsItemSelected()</code> függvény megfelelő <code>case</code> ágában meg kell hívnunk a <code>canvas</code>-ra a <code>setDrawingStyle()</code> függvényt a megfelelő paraméterrel.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">menu_style_line</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">binding</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">currentDrawingStyle</span> <span class="o">=</span> <span class="n">DrawingView</span><span class="p">.</span><span class="na">DRAWING_STYLE_LINE</span>
+            <span class="n">item</span><span class="p">.</span><span class="na">isChecked</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">menu_style_point</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">binding</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">currentDrawingStyle</span> <span class="o">=</span> <span class="n">DrawingView</span><span class="p">.</span><span class="na">DRAWING_STYLE_POINT</span>
+            <span class="n">item</span><span class="p">.</span><span class="na">isChecked</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="inicializalasok">Inicializálások<a class="headerlink" href="#inicializalasok" title="Permanent link">&para;</a></h4>
+<p>A rajzolási funkció megvalósításához fel kell vennünk néhány további <code>field</code>-et a <code>DrawingView</code> osztályban, amiket a konstruktorban inicializálnunk kell. A paint objektumhoz hozzáadjuk a <code>lateinit</code> kulcsszót, hogy elég legyen az <code>init</code> blokkban inicializálnunk. A <code>Point</code> osztály import-ja során használjuk a korábban definiált osztályunkat.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">paint</span><span class="p">:</span> <span class="n">Paint</span>
+
+<span class="kd">private</span> <span class="kd">var</span> <span class="nv">startPoint</span><span class="p">:</span> <span class="n">Point? </span><span class="o">=</span> <span class="kc">null</span>
+
+<span class="kd">private</span> <span class="kd">var</span> <span class="nv">endPoint</span><span class="p">:</span> <span class="n">Point? </span><span class="o">=</span> <span class="kc">null</span>
+
+<span class="kd">var</span> <span class="nv">lines</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nv">points</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
+
+<span class="k">init</span> <span class="p">{</span>
+    <span class="n">initPaint</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">initPaint</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">paint</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()</span>
+    <span class="n">paint</span><span class="p">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">GREEN</span>
+    <span class="n">paint</span><span class="p">.</span><span class="na">style</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">.</span><span class="na">Style</span><span class="p">.</span><span class="na">STROKE</span>
+    <span class="n">paint</span><span class="p">.</span><span class="na">strokeWidth</span> <span class="o">=</span> <span class="m">5F</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="gesztusok-kezelese">Gesztusok kezelése<a class="headerlink" href="#gesztusok-kezelese" title="Permanent link">&para;</a></h4>
+<p>Ahhoz, hogy vonalat vagy pontot tudjunk rajzolni a <code>View</code>-nkra, kezelnünk kell a felhasználótól kapott gesztusokat, mint például amikor hozzáér a kijelzőhöz, elhúzza rajta vagy felemeli róla az ujját. Szerencsére ezeket a gesztusokat nem szükséges manuálisan felismernünk és lekezelnünk, a <code>View</code> ősosztály <code>onTouchEvent()</code> függvényének felüldefiniálásával egyszerűen megolható a feladat.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@SuppressLint</span><span class="p">(</span><span class="s">&quot;ClickableViewAccessibility&quot;</span><span class="p">)</span>
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onTouchEvent</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">MotionEvent</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="n">endPoint</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+    <span class="k">when</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_DOWN</span> <span class="o">-&gt;</span> <span class="n">startPoint</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+        <span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_MOVE</span> <span class="o">-&gt;</span> <span class="p">{</span>
+        <span class="p">}</span>
+        <span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_UP</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="k">when</span> <span class="p">(</span><span class="n">currentDrawingStyle</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">DRAWING_STYLE_POINT</span> <span class="o">-&gt;</span> <span class="n">addPointToTheList</span><span class="p">(</span><span class="n">endPoint</span><span class="o">!!</span><span class="p">)</span>
+                <span class="n">DRAWING_STYLE_LINE</span> <span class="o">-&gt;</span> <span class="n">addLineToTheList</span><span class="p">(</span><span class="n">startPoint</span><span class="o">!!</span><span class="p">,</span> <span class="n">endPoint</span><span class="o">!!</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">startPoint</span> <span class="o">=</span> <span class="kc">null</span>
+            <span class="n">endPoint</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+    <span class="n">invalidate</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">addPointToTheList</span><span class="p">(</span><span class="n">startPoint</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">points</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">startPoint</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">addLineToTheList</span><span class="p">(</span><span class="n">startPoint</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">endPoint</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lines</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">startPoint</span><span class="p">,</span> <span class="n">endPoint</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ahogy a fenti kódrészletből is látszik minden gesztusnál elmentjük az adott <code>TouchEvent</code> pontját, mint a rajzolás végpontját, illetve ha <code>MotionEvent.ACTION_DOWN</code> történt, tehát a felhasználó hozzáért a <code>View</code>-hoz, elmentjük ezt kezdőpontként is. Amíg a felhasználó mozgatja az ujját a <code>View</code>-n (<code>MotionEvent.ACTION_MOVE</code>), addig nem csinálunk semmit, de amint felemeli (<code>MotionEvent.ACTION_UP</code>), elmentjük az adott elemet a korábban már definiált listákba. Ezen kívül minden egyes alkalommal meghívjuk az <code>invalidate()</code> függvényt, ami kikényszeríti a <code>View</code> újrarajzolását.</p>
+<h4 id="a-rajzolas">A rajzolás<a class="headerlink" href="#a-rajzolas" title="Permanent link">&para;</a></h4>
+<p>A rajzolás megvalósításához a <code>View</code> ősosztály <code>onDraw()</code> metódusát kell felüldefiniálnunk. Egyrészt ki kell rajzolnunk a már meglévő objektumokat (amiket a <code>MotionEvent.ACTION_UP</code> eseménynél beleraktunk a listába), valamint ki kell rajzolnunk az aktuális kezdőpont (a <code>MotionEvent.ACTION_DOWN</code> eseménytől) és a felhasználó ujja közötti vonalat.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">point</span> <span class="k">in</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">drawPoint</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">line</span> <span class="k">in</span> <span class="n">lines</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">start</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">end</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">when</span> <span class="p">(</span><span class="n">currentDrawingStyle</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DRAWING_STYLE_POINT</span> <span class="o">-&gt;</span> <span class="n">drawPoint</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">endPoint</span><span class="p">)</span>
+        <span class="n">DRAWING_STYLE_LINE</span> <span class="o">-&gt;</span> <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">startPoint</span><span class="p">,</span> <span class="n">endPoint</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">drawPoint</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">point</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="na">drawPoint</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="na">x</span><span class="p">,</span> <span class="n">point</span><span class="p">.</span><span class="na">y</span><span class="p">,</span> <span class="n">paint</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">,</span> <span class="n">startPoint</span><span class="p">:</span> <span class="n">Point?,</span> <span class="n">endPoint</span><span class="p">:</span> <span class="n">Point?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">startPoint</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">endPoint</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span>
+        <span class="n">startPoint</span><span class="p">.</span><span class="na">x</span><span class="p">,</span>
+        <span class="n">startPoint</span><span class="p">.</span><span class="na">y</span><span class="p">,</span>
+        <span class="n">endPoint</span><span class="p">.</span><span class="na">x</span><span class="p">,</span>
+        <span class="n">endPoint</span><span class="p">.</span><span class="na">y</span><span class="p">,</span>
+        <span class="n">paint</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont">4. feladat: Perzisztencia megvalósítása <em>SQLite</em> adatbázis segítségével (1 pont)<a class="headerlink" href="#4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont" title="Permanent link">&para;</a></h3>
+<p>Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy <em>SQLite</em> adatbázisban. </p>
+<p>Hozzunk létre egy új <em>package</em>-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül, aminek adjuk az <code>sqlite</code> nevet.</p>
+<h4 id="tablak-definialasa">Táblák definiálása<a class="headerlink" href="#tablak-definialasa" title="Permanent link">&para;</a></h4>
+<p>Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkiptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új <em>singleton</em> osztályt az <code>object</code> kulcsszóval az <code>sqlite</code> <em>package</em>-en belül <code>DbConstants</code> néven. </p>
+<p>Ezen belül először is konstansként felvesszük az adatbázis nevét és verzióját is. Ha az adatbázisunk sémáján szeretnénk változtatni, akkor ez utóbbit kell inkrementálnunk, így elkerülhetjük az inkompatibilitás miatti nem kívánatos hibákat.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span> <span class="nc">DbConstants</span> <span class="p">{</span>
+
+    <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_NAME</span> <span class="o">=</span> <span class="s">&quot;simpledrawer.db&quot;</span>
+    <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_VERSION</span> <span class="o">=</span> <span class="m">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Point</code> osztályhoz a konstansokat. Az osztályokon belül létrehozunk egy <code>enum</code>-ot is, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását szolgáló <em>SQL utasítást</em> valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla létrehozásakor, illetve upgrade-elésekor kell meghívni:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span> <span class="nc">DbConstants</span> <span class="p">{</span>
+
+    <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_NAME</span> <span class="o">=</span> <span class="s">&quot;simpledrawer.db&quot;</span>
+    <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_VERSION</span> <span class="o">=</span> <span class="m">1</span>
+
+    <span class="kd">object</span> <span class="nc">Points</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_TABLE</span> <span class="o">=</span> <span class="s">&quot;points&quot;</span>
+
+        <span class="kd">enum</span> <span class="kd">class</span> <span class="nc">Columns</span> <span class="p">{</span>
+            <span class="n">ID</span><span class="p">,</span> <span class="n">COORD_X</span><span class="p">,</span> <span class="n">COORD_Y</span>
+        <span class="p">}</span>
+
+        <span class="kd">private</span> <span class="kd">val</span> <span class="nv">DATABASE_CREATE</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;create table if not exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s"> (</span>
+<span class="s">            </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> integer primary key autoincrement,</span>
+<span class="s">            </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">            </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="si">}</span><span class="s"> real not null</span>
+<span class="s">            );&quot;&quot;&quot;</span>
+
+        <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_DROP</span> <span class="o">=</span> <span class="s">&quot;drop table if exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s">;&quot;</span>
+
+        <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_CREATE</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="kd">fun</span> <span class="nf">onUpgrade</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">,</span> <span class="n">oldVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">newVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Log</span><span class="p">.</span><span class="na">w</span><span class="p">(</span>
+                <span class="n">Points</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+                <span class="s">&quot;Upgrading from version </span><span class="si">$</span><span class="n">oldVersion</span><span class="s"> to </span><span class="si">$</span><span class="n">newVersion</span><span class="s">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_DROP</span><span class="p">)</span>
+            <span class="n">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Figyeljük meg, hogy a <code>DbConstants</code> osztályon belül létrehoztunk egy belső <code>Points</code> nevű osztályt, amiben a <code>Points</code> entitásokat tároló táblához tartozó konstans értékeket tároljuk. Amennyiben az alkalmazásunk több entitást is adatbázisban tárol, akkor érdemes az egyes osztályokhoz tartozó konstansokat külön-külön belső osztályokban tárolni. Így sokkal átláthatóbb és karbantarthatóbb lesz a kód, mint ha ömlesztve felvennénk a DbConstants-ba az összes tábla összes konstansát. Ezek a belső osztályok praktikusan ugyanolyan névvel léteznek, mint az entitás osztályok. Vegyük tehát fel hasonló módon a <code>Lines</code> nevű osztályt is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span> <span class="nc">Lines</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_TABLE</span> <span class="o">=</span> <span class="s">&quot;lines&quot;</span>
+
+    <span class="kd">enum</span> <span class="kd">class</span> <span class="nc">Columns</span> <span class="p">{</span>
+        <span class="n">ID</span><span class="p">,</span> <span class="n">START_X</span><span class="p">,</span> <span class="n">START_Y</span><span class="p">,</span> <span class="n">END_X</span><span class="p">,</span> <span class="n">END_Y</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">DATABASE_CREATE</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;create table if not exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s"> (</span>
+<span class="s">    </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> integer primary key autoincrement,</span>
+<span class="s">    </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">    </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">    </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">    </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="si">}</span><span class="s"> real not null</span>
+
+<span class="s">    );&quot;&quot;&quot;</span>
+
+    <span class="kd">private</span> <span class="kd">const</span> <span class="kd">val</span> <span class="nv">DATABASE_DROP</span> <span class="o">=</span> <span class="s">&quot;drop table if exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s">;&quot;</span>
+
+    <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_CREATE</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">onUpgrade</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">,</span> <span class="n">oldVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">newVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">w</span><span class="p">(</span>
+            <span class="n">Lines</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+            <span class="s">&quot;Upgrading from version </span><span class="si">$</span><span class="n">oldVersion</span><span class="s"> to </span><span class="si">$</span><span class="n">newVersion</span><span class="s">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_DROP</span><span class="p">)</span>
+        <span class="n">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Érdemes megfigyelni továbbá azt is, hogy az osztályokat nem a class kulcsszóval deklaráltuk. Helyette az <code>object</code>-et használjuk, amivel a Kotlin nyelv azt biztosítja számunkra, hogy a <code>DbConstants</code> és a benne lévő <code>Points</code> és <code>Lines</code> osztály is singletonként viselkednek, azaz az alkalmazás futtatásakor létrejön belőlük egy példány, további példányokat pedig nem lehet létrehozni belőlük.</p>
+<h4 id="a-segedosztalyok-letrehozasa">A segédosztályok létrehozása<a class="headerlink" href="#a-segedosztalyok-letrehozasa" title="Permanent link">&para;</a></h4>
+<p>Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a <code>DBHelper</code> osztály, ami az <code>SQLiteOpenHelper</code> osztályból származik. Vegyük fel ezt is az <code>sqlite</code> <em>package</em>-be.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DbHelper</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">SQLiteOpenHelper</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_NAME</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_VERSION</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">)</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onUpgrade</span><span class="p">(</span>
+        <span class="n">sqLiteDatabase</span><span class="p">:</span> <span class="n">SQLiteDatabase</span><span class="p">,</span>
+        <span class="n">oldVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+        <span class="n">newVersion</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">onUpgrade</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">,</span> <span class="n">oldVersion</span><span class="p">,</span> <span class="n">newVersion</span><span class="p">)</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">onUpgrade</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">,</span> <span class="n">oldVersion</span><span class="p">,</span> <span class="n">newVersion</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ezen kívül szükségünk van még egy olyan segédosztályra is, ami ezt az egészet összefogja, és amivel egyszerűen tudjuk kezelni az adatbázisunkat. Ez lesz a <code>PersistentDataHelper</code> továbbra is az <code>sqlite</code> <em>package</em>-ben. Ebben olyan függényeket fogunk megvalósítani, mint pl. az <code>open()</code> és a <code>close()</code>, amikkel az adatbáziskapcsolatot nyithatjuk meg, illetve zárhatjuk le. Ezen kívül ebben az osztályban valósítjuk meg azokat a függvényeket is, amik az adatok adatbázisba való kiírásáért, illetve az onnan való kiolvasásáért felelősek. Figyeljünk rá, hogy a saját Point osztályunkat válasszuk az <em>import</em> során.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">PersistentDataHelper</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">database</span><span class="p">:</span> <span class="n">SQLiteDatabase? </span><span class="o">=</span> <span class="kc">null</span>
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">dbHelper</span><span class="p">:</span> <span class="n">DbHelper</span> <span class="o">=</span> <span class="n">DbHelper</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">pointColumns</span> <span class="o">=</span> <span class="n">arrayOf</span><span class="p">(</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">name</span>
+    <span class="p">)</span>
+
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">lineColumns</span> <span class="o">=</span> <span class="n">arrayOf</span><span class="p">(</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+        <span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">name</span>
+
+    <span class="p">)</span>
+
+    <span class="nd">@Throws</span><span class="p">(</span><span class="n">SQLiteException</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+    <span class="kd">fun</span> <span class="nf">open</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="n">dbHelper</span><span class="p">.</span><span class="na">writableDatabase</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">close</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">dbHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">persistPoints</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">clearPoints</span><span class="p">()</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">point</span> <span class="k">in</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="nv">values</span> <span class="o">=</span> <span class="n">ContentValues</span><span class="p">()</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">point</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">point</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+            <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">restorePoints</span><span class="p">():</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">points</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">()</span>
+        <span class="kd">val</span> <span class="nv">cursor</span><span class="p">:</span> <span class="n">Cursor</span> <span class="o">=</span>
+            <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="n">pointColumns</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="na">moveToFirst</span><span class="p">()</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">cursor</span><span class="p">.</span><span class="na">isAfterLast</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="nv">point</span><span class="p">:</span> <span class="n">Point</span> <span class="o">=</span> <span class="n">cursorToPoint</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+            <span class="n">points</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">points</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">clearPoints</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">cursorToPoint</span><span class="p">(</span><span class="n">cursor</span><span class="p">:</span> <span class="n">Cursor</span><span class="p">):</span> <span class="n">Point</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">()</span>
+        <span class="n">point</span><span class="p">.</span><span class="na">x</span> <span class="o">=</span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+        <span class="n">point</span><span class="p">.</span><span class="na">y</span> <span class="o">=</span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">point</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">persistLines</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">clearLines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">line</span> <span class="k">in</span> <span class="n">lines</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="nv">values</span> <span class="o">=</span> <span class="n">ContentValues</span><span class="p">()</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+            <span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+            <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">restoreLines</span><span class="p">():</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">lines</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">()</span>
+        <span class="kd">val</span> <span class="nv">cursor</span><span class="p">:</span> <span class="n">Cursor</span> <span class="o">=</span>
+            <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="n">lineColumns</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="na">moveToFirst</span><span class="p">()</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">cursor</span><span class="p">.</span><span class="na">isAfterLast</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="nv">line</span><span class="p">:</span> <span class="n">Line</span> <span class="o">=</span> <span class="n">cursorToLine</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+            <span class="n">lines</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">lines</span>
+    <span class="p">}</span>
+
+    <span class="kd">fun</span> <span class="nf">clearLines</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">fun</span> <span class="nf">cursorToLine</span><span class="p">(</span><span class="n">cursor</span><span class="p">:</span> <span class="n">Cursor</span><span class="p">):</span> <span class="n">Line</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="nv">startPoint</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="kd">val</span> <span class="nv">endPoint</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+            <span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Line</span><span class="p">(</span><span class="n">startPoint</span><span class="p">,</span> <span class="n">endPoint</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="a-drawingview-kiegeszitese">A <code>DrawingView</code> kiegészítése<a class="headerlink" href="#a-drawingview-kiegeszitese" title="Permanent link">&para;</a></h4>
+<p>Ahhoz, hogy a rajzolt objektumainkat el tudjuk menteni az adatbázisba, fel kell készíteni a <code>DrawingView</code> osztályunkat arra, hogy átadja, illetve meg lehessen adni neki kívülről is őket. Ehhez a következő függvényeket kell felvennünk:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="nf">restoreObjects</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;?</span><span class="p">,</span> <span class="n">lines</span><span class="p">:</span> <span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;?</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">points</span><span class="o">?.</span><span class="na">also</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="na">points</span> <span class="o">=</span> <span class="nb">it</span> <span class="p">}</span>
+    <span class="n">lines</span><span class="o">?.</span><span class="na">also</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="na">lines</span> <span class="o">=</span> <span class="nb">it</span> <span class="p">}</span>
+    <span class="n">invalidate</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="a-drawingactivity-kiegeszitese">A <code>DrawingActivity</code> kiegészítése<a class="headerlink" href="#a-drawingactivity-kiegeszitese" title="Permanent link">&para;</a></h4>
+<p>A perzisztencia megvalósításához már csak egy feladatunk maradt hátra, mégpedig az, hogy bekössük a frissen létrehozott osztályainkat a <code>DrawingActivity</code>-nkbe. Ehhez először is példányosítanunk kell a <code>PersistentDataHelper</code> osztályunkat. Mivel az adatbázishozzáférés drága erőforrás, ezért ne felejtsük el az <code>Activity</code> <code>onResume()</code> függvényében megnyitni, az <code>onPause()</code> függvényében pedig lezárni a vele való kapcsolatot:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">dataHelper</span><span class="p">:</span> <span class="n">PersistentDataHelper</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityDrawingBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+
+    <span class="n">dataHelper</span> <span class="o">=</span> <span class="n">PersistentDataHelper</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">open</span><span class="p">()</span>
+    <span class="n">restorePersistedObjects</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onResume</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">open</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onPause</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+    <span class="k">super</span><span class="p">.</span><span class="na">onPause</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">restorePersistedObjects</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">binding</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">restoreObjects</span><span class="p">(</span><span class="n">dataHelper</span><span class="p">.</span><span class="na">restorePoints</span><span class="p">(),</span> <span class="n">dataHelper</span><span class="p">.</span><span class="na">restoreLines</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen meg, hogy biztos kilép-e, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az alkalmazásból. Ehhez felül kell definiálnunk az <code>Activity</code> <code>onBackPressed()</code> függvényét. Az <em>AlertDialog</em>-nál válasszuk az <em>anroidx.appcompat.app</em>-ba tartozó verziót.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onBackPressed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">AlertDialog</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">setMessage</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">are_you_sure_want_to_exit</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">ok</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">onExit</span><span class="p">()</span> <span class="p">}</span>
+        <span class="p">.</span><span class="na">setNegativeButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cancel</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="p">.</span><span class="na">show</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">onExit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">persistPoints</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">points</span><span class="p">)</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">persistLines</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">lines</span><span class="p">)</span>
+    <span class="n">dataHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+    <span class="n">finish</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="5-onallo-feladat-a-vaszon-torlese-1-pont">5. (önálló) feladat: A vászon törlése (1 pont)<a class="headerlink" href="#5-onallo-feladat-a-vaszon-torlese-1-pont" title="Permanent link">&para;</a></h3>
+<p>Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!</p>
+<h2 id="kiegeszito-imsc-feladat-2-imsc-pont">Kiegészítő iMSc feladat (2 iMSc pont)<a class="headerlink" href="#kiegeszito-imsc-feladat-2-imsc-pont" title="Permanent link">&para;</a></h2>
+<p>Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a rajzolás színét a 3 fő szín között (<em>RGB</em>).</p>
+<p><strong>Figyelem:</strong> az adatbázisban is el kell menteni az adott objektum színét!</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
+      
+        
+        <a href="../04-android-ui-fragments/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../06-android-room/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 06 - Bevásárló alkalmazás készítése" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              Labor 06 - Bevásárló alkalmazás készítése
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
