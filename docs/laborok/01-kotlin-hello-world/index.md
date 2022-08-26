@@ -1,1 +1,0 @@
-# Labor 01 - Hello World
