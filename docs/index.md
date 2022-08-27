@@ -12,14 +12,40 @@ A laborok sorrendjét és a beadások határidejét Moodle-ben találod.
 
     Az anyagok a tárgy keretében oktatott kontextusban értelmezhetőek. Az anyagokért egyéb felhasználás esetén a szerző(k) felelősséget nem vállalnak.
 
-## Laborok megoldásainak beadása
 
-A webes laborok megoldását egy személyre szóló git repository-ban kell beadni. Ennek pontos [folyamatát lásd itt](tudnivalok/github/GitHub.md). Kérünk, hogy alaposan olvasd végig a leírást!
+## Általános tudnivalók
+
+### Laborok megoldásainak beadása
+
+A laborok megoldását egy személyre szóló git repository-ban kell beadni. Ennek pontos [folyamatát lásd itt](tudnivalok/github/GitHub.md). Kérünk, hogy alaposan olvasd végig a leírást!
 
 !!! danger "FONTOS"
     A laborok elkészítése és beadása során az itt leírtak szerint **kell** eljárnod. A nem ilyen formában beadott megoldásokat nem értékeljük.
 
     A beadás során a munkafolyamati hibákért (pl. nem megfelelő emberhez hozzárendelése, hozzárendelés elfelejtése) pontot vonunk le.
+
+### Laborok értékelése
+
+Minden labort külön jeggyel értékelünk. A teljesítés feltétele a határidőig történő beadás. A jegy (1-5 skálán) a labor feladatokon megszerezhető 5 pont alapján történik. A feladatok beadásához minden esetben a GitHub platformot használjuk. 
+
+A feladatok kiértékelése egyes laborok esetén részben **automatikusan** történik. A futtatható kódokat valóban le fogjuk futtatni, ezért minden esetben fontos a feladatleírások pontos követése (kiinduló kód váz használata, csak a megengedett fájlok változtatása, stb.)!
+
+A kiértékelés eredményéről a GitHub-on kapsz szöveges visszajelzést (lásd [itt](tudnivalok/github/GitHub.md)). Ha ennél több információra van szükséged, a _GitHub Actions_ webes felülete segítségül szolgálhat. Erről [itt](tudnivalok/github/GitHub-Actions.md) találsz egy rövid ismertetőt.
+
+### iMSC pontok
+
+iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron nem szerezhető iMSc pont. A későbbi laborokon, ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásait a sima labormegoldásokkal együtt kell feltölteni. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
+
+### Beugró
+
+Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labor teljesítésének.
+
+### Kis ZH-k
+
+A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át. A KisZH kiváltja a beugró szerepét.
+
+A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjük. A mostani Labor 01-en nincs kisZH.
+
 
 ## Képernyőképek
 
@@ -28,15 +54,6 @@ A laborok kérik, hogy készíts képernyőképet a megoldás egy-egy részérő
 !!! info ""
     A képernyőképeket a megoldás részeként kell beadni, így felkerülnek a git repository tartalmával együtt. Mivel a repository privát, azt az oktatókon kívül más nem látja. Amennyiben olyan tartalom kerül a képernyőképre, amit nem szeretnél feltölteni, kitakarhatod a képről.
 
-## Értékelés
-
-Minden labort külön jeggyel értékelünk. A teljesítés feltétele a határidőig történő beadás. A jegy (1-5 skálán) a labor feladatokon megszerezhető 5 pont alapján történik.
-
-Az iMSc feladat megoldása opcionális, a többi feladat értékelésébe nem számít bele. Az iMsc feladat sikeres a feladatban megadott iMsc pont szerezhető. A pont csak jeles eredmény esetén kapható meg.
-
-A feladatok kiértékelése egyes laborok esetén részben **automatikusan** történik. A futtatható kódokat valóban le fogjuk futtatni, ezért minden esetben fontos a feladatleírások pontos követése (kiinduló kód váz használata, csak a megengedett fájlok változtatása, stb.)!
-
-A kiértékelés eredményéről a GitHub-on kapsz szöveges visszajelzést (lásd [itt](tudnivalok/github/GitHub.md)). Ha ennél több információra van szükséged, a _GitHub Actions_ webes felülete segítségül szolgálhat. Erről [itt](tudnivalok/github/GitHub-Actions.md) találsz egy rövid ismertetőt.
 
 ## Elvárásaink a munkával kapcsolatban
 
