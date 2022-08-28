@@ -304,3 +304,5 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 
 !!! example "BEADANDÓ"
 	A labor teljesítéséhez a fenti feladatokat kell végrehajtani és az eredményeket dokumentálni. Ezt minden egyes feladatnál egy képernyőképpel és rövid, néhány mondatos magyarázattal kell megtenni. A jegyzőkönyvet a repository-ban lévő `README.md` fájlban kell elkészíteni.
+
+	A dokumentációnak a képekkel együtt helyesen kell megjelenniük a GitHub webes felületén is! Ezt ellenőrizd a beadás során: nyisd meg a repository-d webes felületét, váltsd át a megfelelő ágra, és a GitHub automatikusan renderelni fogja a README.md fájlt a képekkel együtt.
