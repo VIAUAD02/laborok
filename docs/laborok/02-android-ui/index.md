@@ -833,13 +833,13 @@ Ebből még az alábbi kedvezményeket adjuk:
 ### Különböző bérlet napi árak (1 IMSc pont)
 
 !!!example "BEADANDÓ (1 IMSc pont)"
-	Készíts egy**képernyőképet**, amelyen látszik egy **több napos bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletárakkal kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f8.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik egy **több napos bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletárakkal kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f8.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ### Százalékos kedvezmények ( 1 IMSc pont)
 
 !!!example "BEADANDÓ (1 IMSc pont)"
-	Készíts egy**képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f9.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f9.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
