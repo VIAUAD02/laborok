@@ -6,7 +6,7 @@ ___
 
 # Laborok
 
-A tárgy alapképzés (BSc) 5. félévében kötelező tárgy. Ezt azt jelenti, hogy a hallgatók szoftverfejlesztési alapismeretekkel rendelkeznek, mivel a megelőző félévben teljesítették a _Szoftvertechnikák_ c. tárgyat. A tárgyunk célja a webes tudás alapszintű ismereteinek megismerése és gyakorlása. A laborok során új technológiákkal foglalkozunk.
+A tárgy alapképzés (BSc) 5. félévében kötelező tárgy. Ezt azt jelenti, hogy a hallgatók szoftverfejlesztési alapismeretekkel rendelkeznek, mivel a megelőző félévben teljesítették a _Szoftvertechnikák_ c. tárgyat. A tárgyunk célja a mobil tudás alapszintű ismereteinek megismerése és gyakorlása. A laborok során új technológiákkal foglalkozunk.
 
 ## Oktatás módja
 
