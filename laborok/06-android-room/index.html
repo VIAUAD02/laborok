@@ -527,13 +527,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#feltoltes" class="md-nav__link">
-    Feltöltés
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
     Az alkalmazás specifikációja
   </a>
@@ -547,13 +540,6 @@
   
     <nav class="md-nav" aria-label="Laborfeladatok">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#imsc-pontok" class="md-nav__link">
-    IMSc pontok
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#projekt-letrehozasa" class="md-nav__link">
@@ -604,11 +590,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lista-megjeleniteserecyclerview-val-2-pont" class="md-nav__link">
-    Lista megjelenítéseRecyclerView-val (2 pont)
+  <a href="#lista-megjelenitese-recyclerview-val-2-pont" class="md-nav__link">
+    Lista megjelenítése RecyclerView-val (2 pont)
   </a>
   
-    <nav class="md-nav" aria-label="Lista megjelenítéseRecyclerView-val (2 pont)">
+    <nav class="md-nav" aria-label="Lista megjelenítése RecyclerView-val (2 pont)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -858,13 +844,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#feltoltes" class="md-nav__link">
-    Feltöltés
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
     Az alkalmazás specifikációja
   </a>
@@ -878,13 +857,6 @@
   
     <nav class="md-nav" aria-label="Laborfeladatok">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#imsc-pontok" class="md-nav__link">
-    IMSc pontok
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#projekt-letrehozasa" class="md-nav__link">
@@ -935,11 +907,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lista-megjeleniteserecyclerview-val-2-pont" class="md-nav__link">
-    Lista megjelenítéseRecyclerView-val (2 pont)
+  <a href="#lista-megjelenitese-recyclerview-val-2-pont" class="md-nav__link">
+    Lista megjelenítése RecyclerView-val (2 pont)
   </a>
   
-    <nav class="md-nav" aria-label="Lista megjelenítéseRecyclerView-val (2 pont)">
+    <nav class="md-nav" aria-label="Lista megjelenítése RecyclerView-val (2 pont)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1028,17 +1000,18 @@
 <h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
 <p>A labor során egy bevásárló lista alkalmazás elkészítése a feladat. Az alkalmazásban fel lehet venni megvásárolni kívánt termékeket, valamint  megvásároltnak lehet jelölni és törölni lehet meglévőket.</p>
 <p>Az alkalmazás a termékek listáját <a href="https://developer.android.com/guide/topics/ui/layout/recyclerview"><code>RecyclerView</code></a>-ban jeleníti meg, a lista elemeket és azok állapotát a <a href="https://developer.android.com/topic/libraries/architecture/room"><code>Room</code></a> nevű ORM library segítségével tárolja perzisztensen. Új elem felvételére egy <a href="https://developer.android.com/guide/topics/ui/floating-action-button"><code>FloatingActionButton</code></a> megnyomásával van lehetőség.</p>
-<blockquote>
+<div class="admonition info">
+<p class="admonition-title">ORM</p>
 <p>ORM = <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a></p>
-</blockquote>
-<p>Felhasznált technológiák:
-- <a href="https://developer.android.com/guide/components/activities/intro-activities"><code>Activity</code></a>
-- <a href="https://developer.android.com/guide/components/fragments"><code>Fragment</code></a>
-- <a href="https://developer.android.com/guide/topics/ui/layout/recyclerview"><code>RecyclerView</code></a>
-- <a href="https://developer.android.com/guide/topics/ui/floating-action-button"><code>FloatingActionButton</code></a> 
-- <a href="https://developer.android.com/topic/libraries/architecture/room"><code>Room</code></a></p>
-<h2 id="feltoltes">Feltöltés<a class="headerlink" href="#feltoltes" title="Permanent link">&para;</a></h2>
-<p>Az elkészült megoldást <code>.zip</code> formátumban (teljes Android Studio projekt – build mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.</p>
+</div>
+<p>Felhasznált technológiák:</p>
+<ul>
+<li><a href="https://developer.android.com/guide/components/activities/intro-activities"><code>Activity</code></a>  </li>
+<li><a href="https://developer.android.com/guide/components/fragments"><code>Fragment</code></a>  </li>
+<li><a href="https://developer.android.com/guide/topics/ui/layout/recyclerview"><code>RecyclerView</code></a>  </li>
+<li><a href="https://developer.android.com/guide/topics/ui/floating-action-button"><code>FloatingActionButton</code></a>   </li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/room"><code>Room</code></a>  </li>
+</ul>
 <h2 id="az-alkalmazas-specifikacioja">Az alkalmazás specifikációja<a class="headerlink" href="#az-alkalmazas-specifikacioja" title="Permanent link">&para;</a></h2>
 <p>Az alkalmazás egy <code>Activity</code>-ből áll, ami bevásárlólista elemeket jelenít meg. Új elemet a jobb alsó sarokban található <code>FloatingActionButton</code> segítségével vehetünk fel. Erre kattintva egy dialógus jelenik meg, amin megadhatjuk a vásárolni kívánt áru nevét, leírását, kategóriáját és becsült árát.
 A dialóguson az <em>OK</em> gombra kattintva a dialógus eltűnik, a benne megadott adatokkal létrejön egy lista elem a listában. Az egyes lista elemeken <code>CheckBox</code> segítségével jelezhetjük, hogy már megvásároltuk őket. A kuka ikonra kattintva törölhetjük az adott elemet.
@@ -1052,20 +1025,16 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 <p>A labor során az alábbi feladatokat a laborvezető segítségével, illetve a jelölt feladatokat önállóan kell megvalósítani.</p>
 <ol>
 <li>Perzisztens adattárolás megvalósítása: 1 pont</li>
-<li>Lista megjelenítése<code>RecyclerView</code>-val: 2 pont</li>
+<li>Lista megjelenítése <code>RecyclerView</code>-val: 2 pont</li>
 <li>Dialógus megvalósítása új elem hozzáadásához: 1 pont</li>
 <li><strong>Önálló feladat</strong> (törlés megvalósítása): 1 pont</li>
 </ol>
-<h3 id="imsc-pontok">IMSc pontok<a class="headerlink" href="#imsc-pontok" title="Permanent link">&para;</a></h3>
-<p>A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc pont szerezhető:</p>
-<ul>
-<li>
-<p>Megerősítő dialógus: 1 pont</p>
-</li>
-<li>
-<p>Elemek szerkesztése: 1 pont</p>
-</li>
-</ul>
+<div class="admonition warning">
+<p class="admonition-title">IMSc</p>
+<p>A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc pont szerezhető:<br />
+    Megerősítő dialógus: 1 pont<br />
+    Elemek szerkesztése: 1 pont</p>
+</div>
 <h3 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Első lépésként indítsuk el az Android Studio-t, majd:
 1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.
@@ -1104,8 +1073,11 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 }
 </code></pre></div>
 Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> gombra.</p>
+<div class="admonition info">
+<p class="admonition-title">Room</p>
 <p>A  <code>Room</code> egy kényelmes adatbazáskezelést lehetővé tevő API-t nyújt a platform szintű SQLite implementáció fölé. Megspórolható vele a korábban látott sok újra és újra megírandó kód, például a táblák adatait és létrehozó scriptjét tartalmazó <em>Table osztályok, a DBHelper és a PersistentDataHelper</em>. Ezeket és más segédosztályokat a <code>Room</code> <em>annotation</em> alapú kódgenerálással hozza létre a <em>build</em> folyamat részeként.</p>
 <p>A <code>Room</code> alapvető komponenseinek, architektúrájának és használatának leírása megtalálható a megfelelő <a href="https://developer.android.com/training/data-storage/room/">developer.android.com</a> oldalon.</p>
+</div>
 <h4 id="egy-modell-osztaly-letrehozasa">Egy modell osztály létrehozása<a class="headerlink" href="#egy-modell-osztaly-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>A <code>hu.bme.aut.android.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>data</code> néven. A <code>data</code> package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingItem</code>:
 <div class="highlight"><pre><span></span><code><span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;shoppingitem&quot;</span><span class="p">)</span>
@@ -1144,13 +1116,15 @@ Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> 
 </code></pre></div>
 Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő <em>enum</em> osztály függvényein <em>annotációkat</em> helyeztünk el. Az <code>@Entity</code> jelzi a <code>Room</code> kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A <code>@ColumnInfo</code> <em>annotációval</em> megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. <code>@PrimaryKey</code>-jel jelöljük a tábla egyszerű kulcs attribútumát.</p>
 <p>Az osztályban létrehoztunk egy <code>enum</code>-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, <code>@TypeConverter</code> annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva. Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmStatic</code> annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.</p>
-<blockquote>
+<div class="admonition info">
+<p class="admonition-title">data class</p>
 <p>Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.</p>
-</blockquote>
+</div>
 <h4 id="egy-dao-osztaly-letrehozasa">Egy DAO osztály létrehozása<a class="headerlink" href="#egy-dao-osztaly-letrehozasa" title="Permanent link">&para;</a></h4>
-<blockquote>
+<div class="admonition info">
+<p class="admonition-title">DAO</p>
 <p>DAO = <a href="https://en.wikipedia.org/wiki/Data_access_object">Data Access Object</a></p>
-</blockquote>
+</div>
 <p>A <code>data</code> package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  <code>ShoppingItemDao</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Dao</span>
 <span class="kd">interface</span> <span class="nc">ShoppingItemDao</span> <span class="p">{</span>
@@ -1189,7 +1163,7 @@ Látható, hogy az osztályon, az osztály változóin, valamint az osztályon b
 </code></pre></div>
 <p>A <code>@Database</code> <em>annotációval</em> lehet jelezni a kódgenerátornak, hogy egy osztály egy adatbázist fog reprezentálni. Az ilyen osztálynak <em>absztraktnak</em> kell lennie, valamint a <code>RoomDatabase</code>-ből kell származnia. Az <em>annotáció</em> <code>entities</code> paraméterének egy listát kell átadni, ami az adatbázis tábláknak megfelelő <code>@Entity</code>-vel jelzett osztályokat tartalmazza. A <code>version</code> paraméter értéke a lokális adatbázis verzió. A <code>@TypeConverters</code> <em>annotációval</em> lehet megadni a <code>Room</code>-nak olyan osztályokat, amik <code>@TypeConverter</code>-rel ellátott függvényeket tartalmaznak, ezzel támogatva a típuskonverziót adatbázis és objektum modell között. A <code>ShoppingListDatabase</code> osztály felelős a megfelelő DAO osztályok elérhetőségéért is.</p>
 <p>Ezen kívül van még egy statikus <em>getDatabase</em> függvény, ami azt írja le, hogyan kell létrehozni az adatbázist (melyik osztályból, milyen néven). Ez a függvény az alkalmazás kontextusát várja paraméterül.</p>
-<h3 id="lista-megjeleniteserecyclerview-val-2-pont">Lista megjelenítése<code>RecyclerView</code>-val (2 pont)<a class="headerlink" href="#lista-megjeleniteserecyclerview-val-2-pont" title="Permanent link">&para;</a></h3>
+<h3 id="lista-megjelenitese-recyclerview-val-2-pont">Lista megjelenítése <code>RecyclerView</code>-val (2 pont)<a class="headerlink" href="#lista-megjelenitese-recyclerview-val-2-pont" title="Permanent link">&para;</a></h3>
 <h4 id="a-lista-adapter-letrehozasa">A lista adapter létrehozása<a class="headerlink" href="#a-lista-adapter-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a <code>RecyclerView</code>-nak.</p>
 <p>A <code>hu.bme.aut.android.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>adapter</code> néven!</p>
@@ -1328,9 +1302,10 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
     <span class="n">notifyDataSetChanged</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
-<blockquote>
+<div class="admonition info">
+<p class="admonition-title">RecyclerView notify</p>
 <p>A RecyclerView megírásánál figyeltek arra, hogy hatékony legyen, ezért az adathalmaz változásakor csak azokat a nézeteket frissíti, amit feltétlen szükséges. Azonban szintén hatékonyság miatt, nem az adapter fogja kiszámolni a változást, hanem ezt a programozónak kell kézzel jeleznie. Erre szolgál a <code>notify***</code> függvénycsalád, aminek két tagja fent látható. Az alsó hatására a teljes adathalmaz lecserélődik, és újrarajzolódik minden. Az első hatására viszont a már létező elemek nem módosulnak, csak egy újonnan beszúrt elem lesz kirajzolva.</p>
-</blockquote>
+</div>
 <h4 id="a-recyclerview-es-az-adatok-megjelenitese">A <code>RecyclerView</code> és az adatok megjelenítése<a class="headerlink" href="#a-recyclerview-es-az-adatok-megjelenitese" title="Permanent link">&para;</a></h4>
 <p>Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbiakkal:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;</span><span class="nt">&gt;</span>
@@ -1595,10 +1570,13 @@ Látható, hogy felveszünk egy <code>string-array</code>-t is, ezeket a szöveg
     <span class="n">isBought</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">cbAlreadyPurchased</span><span class="p">.</span><span class="na">isChecked</span>
 <span class="p">)</span>
 </code></pre></div>
-<blockquote>
+<div class="admonition note">
 <p>A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Elvis operátor</p>
 <p>Egy másik érdekesség a <code>?:</code>, avagy az <a href="https://kotlinlang.org/docs/null-safety.html#elvis-operator">Elvis operátor</a>. Ez azt csinálja, hogy amennyiben a bal oldali kifejezés nem null-ra értékelődik ki, akkor értékül a bal oldali kifejezést adja, ha pedig null-ra értékelődik ki, akkor a jobb oldali kifejezést. Így egyszerű null értéktől függő értékadást tömören le lehet írni.</p>
-</blockquote>
+</div>
 <p>A <code>MainActivity</code> <code>onCreate()</code> függvényében frissítsük a <code>FloatingActionButton</code> <code>OnClickListener</code>-jét, hogy az a fentebb megvalósított dialógust dobja fel:
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">{</span>
     <span class="n">NewShoppingItemDialogFragment</span><span class="p">().</span><span class="na">show</span><span class="p">(</span>
@@ -1623,19 +1601,22 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre></div></p>
-<blockquote>
+<div class="admonition note">
 <p>Figyeljük meg, hogy ebben az esetben is <code>thread</code>-be csomagolva futtatunk adatbázis műveletet. A <code>Room</code> tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a <em>user experience (UX)</em> is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.</p>
 <p>Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.</p>
-</blockquote>
+</div>
 <p>Próbáljuk ki az alkalmazást!</p>
 <h3 id="onallo-feladat-torles-megvalositasa-1-pont">Önálló feladat: törlés megvalósítása (1 pont)<a class="headerlink" href="#onallo-feladat-torles-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
-<p>Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására:
-- Gomb eseménykezelőjének megvalósítása
-- Interfész kibővítése
-- Interfész függvény megvalósítása
-- Törlés az adatbázisból
-- Törlés az adapterből
-- <code>RecyclerView</code> frissítése</p>
+<p>Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.</p>
+<details class="success"><summary>Megoldás</summary><ul>
+<li>Gomb eseménykezelőjének megvalósítása</li>
+<li>Interfész kibővítése</li>
+<li>Interfész függvény megvalósítása</li>
+<li>Törlés az adatbázisból</li>
+<li>Törlés az adapterből</li>
+<li><code>RecyclerView</code> frissítése</li>
+</ul>
+</details>
 <h3 id="imsc-feladatok">IMSc feladatok<a class="headerlink" href="#imsc-feladatok" title="Permanent link">&para;</a></h3>
 <h4 id="megerosito-dialogus-1-pont">Megerősítő dialógus (1 pont)<a class="headerlink" href="#megerosito-dialogus-1-pont" title="Permanent link">&para;</a></h4>
 <p>Implementáljunk egy <em>Remove all</em> feliratú menüpontot és a hozzá tartozó funkciót!</p>
