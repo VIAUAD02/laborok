@@ -5,17 +5,17 @@ A labor során egy bevásárló lista alkalmazás elkészítése a feladat. Az a
 
 Az alkalmazás a termékek listáját [`RecyclerView`](https://developer.android.com/guide/topics/ui/layout/recyclerview)-ban jeleníti meg, a lista elemeket és azok állapotát a [`Room`](https://developer.android.com/topic/libraries/architecture/room) nevű ORM library segítségével tárolja perzisztensen. Új elem felvételére egy [`FloatingActionButton`](https://developer.android.com/guide/topics/ui/floating-action-button) megnyomásával van lehetőség.
 
-> ORM = [Object-relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping)
+!!!info "ORM"
+    ORM = [Object-relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping)
 
 Felhasznált technológiák:
-- [`Activity`](https://developer.android.com/guide/components/activities/intro-activities)
-- [`Fragment`](https://developer.android.com/guide/components/fragments)
-- [`RecyclerView`](https://developer.android.com/guide/topics/ui/layout/recyclerview)
-- [`FloatingActionButton`](https://developer.android.com/guide/topics/ui/floating-action-button) 
-- [`Room`](https://developer.android.com/topic/libraries/architecture/room)
 
-## Feltöltés
-Az elkészült megoldást `.zip` formátumban (teljes Android Studio projekt – build mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
+- [`Activity`](https://developer.android.com/guide/components/activities/intro-activities)  
+- [`Fragment`](https://developer.android.com/guide/components/fragments)  
+- [`RecyclerView`](https://developer.android.com/guide/topics/ui/layout/recyclerview)  
+- [`FloatingActionButton`](https://developer.android.com/guide/topics/ui/floating-action-button)   
+- [`Room`](https://developer.android.com/topic/libraries/architecture/room)  
+
 
 ## Az alkalmazás specifikációja
 Az alkalmazás egy `Activity`-ből áll, ami bevásárlólista elemeket jelenít meg. Új elemet a jobb alsó sarokban található `FloatingActionButton` segítségével vehetünk fel. Erre kattintva egy dialógus jelenik meg, amin megadhatjuk a vásárolni kívánt áru nevét, leírását, kategóriáját és becsült árát.
@@ -31,17 +31,16 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 A labor során az alábbi feladatokat a laborvezető segítségével, illetve a jelölt feladatokat önállóan kell megvalósítani.
 
 1. Perzisztens adattárolás megvalósítása: 1 pont
-2. Lista megjelenítése`RecyclerView`-val: 2 pont
+2. Lista megjelenítése `RecyclerView`-val: 2 pont
 3. Dialógus megvalósítása új elem hozzáadásához: 1 pont
 4. **Önálló feladat** (törlés megvalósítása): 1 pont
 
-### IMSc pontok
 
-A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc pont szerezhető:
+!!! warning "IMSc"
+	A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc pont szerezhető:  
+        Megerősítő dialógus: 1 pont  
+        Elemek szerkesztése: 1 pont
 
-* Megerősítő dialógus: 1 pont
-
-* Elemek szerkesztése: 1 pont
 
 ### Projekt létrehozása
 
@@ -92,9 +91,10 @@ dependencies {
 ```
 Ezután kattintsunk a jobb felső sarokban megjelenő **Sync now** gombra.
 
-A  `Room` egy kényelmes adatbazáskezelést lehetővé tevő API-t nyújt a platform szintű SQLite implementáció fölé. Megspórolható vele a korábban látott sok újra és újra megírandó kód, például a táblák adatait és létrehozó scriptjét tartalmazó *Table osztályok, a DBHelper és a PersistentDataHelper*. Ezeket és más segédosztályokat a `Room` *annotation* alapú kódgenerálással hozza létre a *build* folyamat részeként.
+!!!info "Room"
+    A  `Room` egy kényelmes adatbazáskezelést lehetővé tevő API-t nyújt a platform szintű SQLite implementáció fölé. Megspórolható vele a korábban látott sok újra és újra megírandó kód, például a táblák adatait és létrehozó scriptjét tartalmazó *Table osztályok, a DBHelper és a PersistentDataHelper*. Ezeket és más segédosztályokat a `Room` *annotation* alapú kódgenerálással hozza létre a *build* folyamat részeként.
 
-A `Room` alapvető komponenseinek, architektúrájának és használatának leírása megtalálható a megfelelő [developer.android.com](https://developer.android.com/training/data-storage/room/) oldalon.
+    A `Room` alapvető komponenseinek, architektúrájának és használatának leírása megtalálható a megfelelő [developer.android.com](https://developer.android.com/training/data-storage/room/) oldalon.
 
 #### Egy modell osztály létrehozása
 A `hu.bme.aut.android.shoppinglist` package-ben hozzunk létre egy új package-et `data` néven. A `data` package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingItem`:
@@ -137,11 +137,13 @@ Látható, hogy az osztályon, az osztály változóin, valamint az osztályon b
 
 Az osztályban létrehoztunk egy `enum`-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, `@TypeConverter` annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva. Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic` annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.
 
-> Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.
+!!!info "data class"
+    Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.
 
 #### Egy DAO osztály létrehozása
 
-> DAO = [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object)
+!!!info "DAO"
+    DAO = [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object)
 
 A `data` package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  `ShoppingItemDao`:
 
@@ -192,7 +194,7 @@ A `@Database` *annotációval* lehet jelezni a kódgenerátornak, hogy egy oszt�
 
 Ezen kívül van még egy statikus *getDatabase* függvény, ami azt írja le, hogyan kell létrehozni az adatbázist (melyik osztályból, milyen néven). Ez a függvény az alkalmazás kontextusát várja paraméterül.
 
-### Lista megjelenítése`RecyclerView`-val (2 pont)
+### Lista megjelenítése `RecyclerView`-val (2 pont)
 
 #### A lista adapter létrehozása
 Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a `RecyclerView`-nak.
@@ -347,7 +349,8 @@ fun update(shoppingItems: List<ShoppingItem>) {
 	notifyDataSetChanged()
 }
 ```
->A RecyclerView megírásánál figyeltek arra, hogy hatékony legyen, ezért az adathalmaz változásakor csak azokat a nézeteket frissíti, amit feltétlen szükséges. Azonban szintén hatékonyság miatt, nem az adapter fogja kiszámolni a változást, hanem ezt a programozónak kell kézzel jeleznie. Erre szolgál a `notify***` függvénycsalád, aminek két tagja fent látható. Az alsó hatására a teljes adathalmaz lecserélődik, és újrarajzolódik minden. Az első hatására viszont a már létező elemek nem módosulnak, csak egy újonnan beszúrt elem lesz kirajzolva.
+!!!info "RecyclerView notify"
+    A RecyclerView megírásánál figyeltek arra, hogy hatékony legyen, ezért az adathalmaz változásakor csak azokat a nézeteket frissíti, amit feltétlen szükséges. Azonban szintén hatékonyság miatt, nem az adapter fogja kiszámolni a változást, hanem ezt a programozónak kell kézzel jeleznie. Erre szolgál a `notify***` függvénycsalád, aminek két tagja fent látható. Az alsó hatására a teljes adathalmaz lecserélődik, és újrarajzolódik minden. Az első hatására viszont a már létező elemek nem módosulnak, csak egy újonnan beszúrt elem lesz kirajzolva.
 
 #### A `RecyclerView` és az adatok megjelenítése
 
@@ -649,9 +652,12 @@ private fun getShoppingItem() = ShoppingItem(
     isBought = binding.cbAlreadyPurchased.isChecked
 )
 ```
->A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.
 
->Egy másik érdekesség a `?:`, avagy az [Elvis operátor](https://kotlinlang.org/docs/null-safety.html#elvis-operator). Ez azt csinálja, hogy amennyiben a bal oldali kifejezés nem null-ra értékelődik ki, akkor értékül a bal oldali kifejezést adja, ha pedig null-ra értékelődik ki, akkor a jobb oldali kifejezést. Így egyszerű null értéktől függő értékadást tömören le lehet írni.
+!!!note ""
+    A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.
+
+!!!info "Elvis operátor"
+    Egy másik érdekesség a `?:`, avagy az [Elvis operátor](https://kotlinlang.org/docs/null-safety.html#elvis-operator). Ez azt csinálja, hogy amennyiben a bal oldali kifejezés nem null-ra értékelődik ki, akkor értékül a bal oldali kifejezést adja, ha pedig null-ra értékelődik ki, akkor a jobb oldali kifejezést. Így egyszerű null értéktől függő értékadást tömören le lehet írni.
 
 A `MainActivity` `onCreate()` függvényében frissítsük a `FloatingActionButton` `OnClickListener`-jét, hogy az a fentebb megvalósított dialógust dobja fel:
 ```kotlin
@@ -679,20 +685,23 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
 		}
 	}
 ```
-> Figyeljük meg, hogy ebben az esetben is `thread`-be csomagolva futtatunk adatbázis műveletet. A `Room` tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a *user experience (UX)* is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.
 
-> Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.
+!!!note ""
+    Figyeljük meg, hogy ebben az esetben is `thread`-be csomagolva futtatunk adatbázis műveletet. A `Room` tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a *user experience (UX)* is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.
+
+    Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.
 
 Próbáljuk ki az alkalmazást!
 
 ### Önálló feladat: törlés megvalósítása (1 pont)
-Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására:
-- Gomb eseménykezelőjének megvalósítása
-- Interfész kibővítése
-- Interfész függvény megvalósítása
-- Törlés az adatbázisból
-- Törlés az adapterből
-- `RecyclerView` frissítése
+Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.
+???success "Megoldás"
+      - Gomb eseménykezelőjének megvalósítása
+      - Interfész kibővítése
+      - Interfész függvény megvalósítása
+      - Törlés az adatbázisból
+      - Törlés az adapterből
+      - `RecyclerView` frissítése
 
 ### IMSc feladatok
 #### Megerősítő dialógus (1 pont)
