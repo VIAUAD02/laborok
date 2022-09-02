@@ -1,8 +1,9 @@
+
 # Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
 
 ## Bevezető
 
-A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fő témája a Fragmentekkel való felületkészítés lesz.
+A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fő témája a Fragmentekkel való felületkészítés, illetve a Navigation Component használata lesz.
 
 <p align="center">
 <img src="./assets/menu.png" width="160">
@@ -12,9 +13,9 @@ A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhaszn�
 <img src="./assets/datepicker.png" width="160">
 </p>
 
-## IMSc pontok
 
-A laborfeladatok sikeres befejezése után az IMSc feladatot megoldva 2 IMSc pont szerezhető.
+!!! warning "IMSc"
+	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
 
 ## Értékelés
 
@@ -29,21 +30,104 @@ IMSc: Fizetés menüpont megvalósítása
 - Kördiagram: 1 IMSc pont
 - Oszlopdiagram: 1 IMSc pont
 
+## Előkészületek
+
+A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
+
+### Git repository létrehozása és letöltése
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+
+    !!! tip ""
+        Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+
+4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.workplaceapp`.
+Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.workplaceapp`.
 
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.
 
-Az első Activity-nk legyen egy Empty Activity, és nevezzük el `MenuActivity`-nek. A hozzá tartozó layout fájl automatikusan megkapja az `activity_menu.xml` nevet.
-
 Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
 
+## Képernyők kezelése Android alkalmazásokban
+A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
+
+-  *Activity alapú megközelítés*: Minden képernyő egy **Activity**. Mivel az **Activity** egy rendszerszintű komponense az Androidnak, ezért ennek kezeléséért is az operációs rendszer a felelős. Mi közvetlenül sose példányosítjuk, hanem **Intent**-et küldünk a rendszer felé. A navigációért is a rendszer felel, bizonyos opciókat *flagek* segítségével tudunk beállítani.
+- *Fragment alapú megközelítés*: Ez esetben a képernyőink egy vagy több **Fragment**-ből épülnek fel. Ezeknek kezelése az alkalmazás szintjén történik meg, emiatt mindenképp szükséges egy **Activity**, mely a megjelenítésért felel. A megjelenítést, illetve a navigációt a **FragmentManager** osztály végzi.
+- *Egyéb egyedi megoldás*: Külső vagy saját könyvtár használata a megjelenítéshez, mely tipikusan az alap **View** osztályból származik le. Ilyen például a régi *Conductor*, illetve az újabb *Jetpack Compose*.
+
+Régebben az alkalmazások az Activity alapú megközelítést használták, később azonban áttértek a Fragmentekre. Az ilyen alkalmazásoknál összesen egy fő **Activity** van, mely tartalmazza azt a **FragmentManager** példányt, amit a későbbiekben a **Fragment** alapú képernyők megjelenítésére használunk.
+
+Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez részleteiben meg kellett ismerni a **FragmentManager** működését, különben könnyen hibákba futhattunk. Ennek a megoldására fejlesztette ki a Google a *Navigation Component* csomagot, mellyel az Android Studió környezetében egy grafikus eszközzel könnyen létre tudjuk hozni az oldalak közötti navigációt, illetve ezt a kódból egyszerűen el tudjuk indítani. 
+
+## Navigation Component inicializálás
+Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle` fájlban a `dependencies` részhez vegyük fel a következő függőségeket:
+```
+ def nav_version =  "2.5.1"
+ 
+ implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" 
+ implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+```
+Illetve engedélyezzük a *View Binding*-ot az `android` részben:
+```
+buildFeatures {
+    viewBinding true
+}
+```
+
+A Navigation Component egy *navigációs gráfot* használ a képernyők, illetve a közöttük lévő kapcsolatok definiálására. Ezt a gráfot a többi erőforráshoz hasonlóan egy `.xml` kiterjesztésű fájlban tudjuk megadni. Hozzuk létre ezt a fájlt:
+
+1. A `res` mappán jobb gombbal kattintva válasszuk ki a **New &rarr; Android Resource Directory** opciót, majd a *Resource Type* mezőben válasszuk ki a *navigation* lehetőséget.
+2. Az így létrejött `navigation` mappán jobb klikkelve válasszuk ki a **new &rarr; Navigation Resource File** opciót, legyen a fájl neve *nav_graph*.
+
+Ahhoz, hogy a létrehozott navigációs gráf által működjön az alkalmazásunk, fel kell vennünk az alkalmazásunkban is. Ehhez módosítanunk kell az üres Activity példányunkat. Nyissuk meg az `activity_main.xml` fájlt, és írjuk felül a tartalmát az alábbi kóddal:
+```
+<?xml version="1.0" encoding="utf-8"?>  
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+  xmlns:app="http://schemas.android.com/apk/res-auto"  
+  xmlns:tools="http://schemas.android.com/tools"  
+  android:layout_width="match_parent"  
+  android:layout_height="match_parent"  
+  tools:context=".MainActivity">  
+      
+  <androidx.fragment.app.FragmentContainerView  
+	  android:id="@+id/nav_host_fragment"  
+	  android:name="androidx.navigation.fragment.NavHostFragment"  
+	  android:layout_width="0dp"  
+	  android:layout_height="0dp"  
+	  app:layout_constraintLeft_toLeftOf="parent"  
+	  app:layout_constraintRight_toRightOf="parent"  
+	  app:layout_constraintTop_toTopOf="parent"  
+	  app:layout_constraintBottom_toBottomOf="parent"  
+  
+	  app:defaultNavHost="true"  
+	  app:navGraph="@navigation/nav_graph" />  
+  
+  
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+A most hozzáadott `FragmentContainerView` lesz az a nézet, melyben a navigációs gráfban felvett képernyők meg fognak jelenni. A `navGraph` paraméterrel tudjuk megadni az aktuális navigációs gráfot, míg a `defaultNavHost`-al tudjuk jelezni, hogy a rendszer vissza gombját alapértelmezetten ennek a nézetnek kell lekezelnie.
+
+!!!info "Több navigációs gráf"
+    Bár a Navigation Component támogatja, hogy több különböző navigáció gráfot is létrehozzunk az alkalmazásunkban, a legtöbb alkalmazásnál elegendő egy darab.
+
+Próbáljuk meg futtatni az alkalmazást! Az indulás után az alkalmazásunk crashelni fog, mivel még nem vettünk fel képernyőket a navigáció gráfban, az Activity semmit se tud megjeleníteni, hibára fut.
+
 ## Főmenü képernyő
+Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
 
-Az első Activity amit elkészítünk a navigációért lesz felelős. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
-
-A projekt készítésekor már létrejött `activity_menu.xml` tartalmát cseréljük ki az alábbira:
+Nyissuk meg a `nav_graph.xml` fájlt, és kattintsunk a *New Destination* gombra (bal felső gomb), majd a *Create new destination* gombra:
+<p align="center"> 
+<img src="./assets/new_destination.png" width="640">
+</p>
+Válasszuk ki a *Fragment (Blank)* gombot, és legyen az oldal neve *MenuFragment*. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a *Home Destination* jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
+A létrejött `fragment_menu.xml` tartalmát cseréljük ki az alábbira:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -129,47 +213,42 @@ A további 3 gombot ennek a mintájára készítsük el ezekkel az értékekkel:
 
 Ne felejtsük el a szövegeket kiszervezni erőforrásba! (a szövegen állva `Alt+Enter`)
 
-Hozzunk létre a két új Empty Activity-t (`ProfileActivity` és `HolidayActivity`)
+Valósítsuk meg a navigációt a két oldalra. Hozzunk létre két új *Fragment (Blank)* képernyőt (`ProfileFragment` és `HolidayFragment`). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A két akció létrehozása után így fog kinézni a navigációs gráf:
 
-Hivatkozzuk be a projekthez a view binding-ot. A modul szintű gradle fájlba addjuk hozzá:
+<p align="center"> 
+<img src="./assets/actions.png" width="640">
+</p>
 
-```
-android {
-    ...
-    buildFeatures {
-        viewBinding true
-    }
-}
-```
-
-Használjuk a view binding-ot a MenuActivity-ben:
+Az akciók meghívásához használjuk a view binding-ot a `MenuFragment`-ben:
 
 ```kotlin
-private lateinit var binding : ActivityMenuBinding
+class MenuFragment : Fragment() {  
+	private lateinit var binding : FragmentMenuBinding  
 
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMenuBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-        
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {  
+        binding = FragmentMenuBinding.inflate(inflater, container, false)  
+        return binding.root;  
+    }  
+  
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
+        super.onViewCreated(view, savedInstanceState)  
+  
+        binding.btnProfile.setOnClickListener {
+	        findNavController().navigate(R.id.action_menuFragment_to_profileFragment)  
+        }  
+        binding.btnHoliday.setOnClickListener {
+	        findNavController().navigate(R.id.action_menuFragment_to_holidayFragment)  
+        }  
+    }  
 }
 ```
+A `findNavController()` függvénnyel érhetjük el a **NavController** osztály aktuális példányát, mellyel a navigációt tudjuk megvalósítani. A navigációhoz használt akciókhoz automatikusan generálódik egy azonosító, de ezeket a szerkesztőben módosíthatjuk, ha szeretnénk.
 
-A MenuActivity Kotlin fájljában (`MenuActivity.kt`) rendeljünk a gombok lenyomásához eseménykezelőt az onCreate metódusban:
-
-```kotlin
-binding.btnProfile.setOnClickListener {
-    val profileIntent = Intent(this, ProfileActivity::class.java)
-    startActivity(profileIntent)
-}
-
-binding.btnHoliday.setOnClickListener { 
-    val holidayIntent = Intent(this, HolidayActivity::class.java)
-    startActivity(holidayIntent)
-}
-```
-
-Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Activity-kbe.
+Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Fragment-kbe.
 
 ## Profil képernyő elkészítése
 
@@ -204,18 +283,24 @@ object DataManager {
     )
 }
 ```
+A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy **ViewPager**-t fogunk használni, mely Fragment oldalak között képes ilyen interakciót megvalósítani.
 
-Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre egy új `fragments` package-ben a két Fragmentet (New -> Kotlin Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
+Hozzunk létre egy új *package*-et `profile` néven, majd mozgassuk át ebbe a `ProfileFragment` osztályunkat. A mozgatás után a következő helyeken javítani kell a fájl útvonalát:
+- `fragment_profile.xml` context rész
+- `nav_graph.xml` megfelelő tag `name` paramétere
+- `R` importálása a `ProfileFragment` fájlban.
+
+Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre a `profile` package-ben a két Fragmentet (New -> Kotlin Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
 
 A két Fragmentben származzunk le a Fragment osztályból (androidx-es verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
 
 `MainProfileFragment.kt`:
 ```kotlin
 class MainProfileFragment : Fragment(){
-    private lateinit var binding: ProfileMainBinding
+    private lateinit var binding: FragmentProfileMainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = ProfileMainBinding.inflate(inflater, container, false)
+        binding = FragmentProfileMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -233,10 +318,10 @@ class MainProfileFragment : Fragment(){
 `DetailsProfileFragment.kt`:
 ```kotlin
 class DetailsProfileFragment : Fragment(){
-    private lateinit var binding: ProfileDetailBinding
+    private lateinit var binding: FragmentProfileDetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = ProfileDetailBinding.inflate(inflater, container, false)
+        binding = FragmentProfileDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -387,43 +472,64 @@ Készítsük el a megfelelő layout-okat a Fragmentekhez (`profile_main.xml` és
 
 Már csak a lapozás megvalósítása maradt hátra, ezt a ViewPager osztállyal fogjuk megvalósítani.
 
-Az `activity_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
+A `fragment_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hu.bme.aut.workplaceapp.ProfileActivity">
+    tools:context="hu.bme.aut.workplaceapp.profile.ProfileFragment">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
 ```
+!!!info "ViewPager2"
+	A ViewPager2 osztály egy teljes újraírása az eredeti ViewPager osztálynak, a RecyclerView-re alapozva.
 
-A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy új `adapter` package-be egy PagerAdaptert a két Fragmentünkhöz.
+A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy új  PagerAdaptert a két Fragmentünkhöz.
 `ProfilePagerAdapter.kt`:
 ```kotlin
-class ProfilePageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    override fun getItem(position: Int): Fragment = when(position){
-        0 -> MainProfileFragment()
-        1 -> DetailsProfileFragment()
-        else -> MainProfileFragment()
-    }
-
-    override fun getCount() : Int = NUM_PAGES
-
-    companion object{
-        const val NUM_PAGES = 2
-    }
+class ProfilePageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {  
+  
+  override fun getItemCount(): Int = NUM_PAGES  
+  
+  override fun createFragment(position: Int): Fragment = when(position){  
+      0 -> MainProfileFragment()  
+      1 -> DetailsProfileFragment()  
+      else -> MainProfileFragment()  
+  }  
+  
+  companion object{  
+      const val NUM_PAGES = 2  
+  }  
 }
 ```
 
-A ProfileActivity-ben rendeljük hozzá a ViewPagerhez a most elkészített adaptert (onCreate metódus): 
+A ProfileFragment-ben rendeljük hozzá a ViewPagerhez a most elkészített adaptert: 
 ```kotlin
-vpProfile.adapter = ProfilePageAdapter(supportFragmentManager)
+class ProfileFragment : Fragment() {  
+      
+    private lateinit var binding: FragmentProfileBinding  
+  
+  override fun onCreateView(  
+        inflater: LayoutInflater,   
+        container: ViewGroup?,   
+        savedInstanceState: Bundle?  
+    ): View {  
+        binding = FragmentProfileBinding.inflate(inflater, container, false)  
+        return binding.root  
+  }  
+  
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
+        super.onViewCreated(view, savedInstanceState)  
+      
+        binding.vpProfile.adapter = ProfilePageAdapter(this)  
+    }  
+}
 ```
 
 Próbáljuk ki az alkalmazást. A Profile gombra kattinva megjelennek a felhasználó adatai és lehet lapozni is.
@@ -445,7 +551,7 @@ A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAnd
 
 settings.gradle:
 ```groovy
-allprojects {
+dependencyResolutionManagement {
     repositories {
         ...
         maven { url "https://jitpack.io" }
@@ -463,7 +569,7 @@ dependencies {
 
 Ezután kattinsunk az Android Studioban jobb fent megjelenő `Sync Now` feliratra vagy a fejlécen szereplő mérges gradle elefánt gombra, hogy a library fájljai letöltődjenek.
 
-Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (`activity_holiday.xml`):
+Ha a library fájljai letöltődtek, akkor írjuk meg a Fragment layout-ját (`fragment_holiday.xml`):
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -471,7 +577,7 @@ Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (`
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="hu.bme.aut.workplaceapp.HolidayActivity">
+    tools:context="hu.bme.aut.workplaceapp.HolidayFragment">
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chartHoliday"
@@ -489,15 +595,23 @@ Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (`
 </LinearLayout>
 ```
 
-Írjuk meg az Activity kódját (`HolidayActivity.kt`):
+Írjuk meg a Fragment kódját (`HolidayFragment.kt`):
 ```kotlin
-class HolidayActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityHolidayBinding
+class HolidayFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHolidayBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private lateinit var binding : FragmentHolidayBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHolidayBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnTakeHoliday.setOnClickListener {
             //TODO: DatePickerDialogFragment megjelenítése
@@ -530,16 +644,6 @@ A következő lépésben a Take Holiday gombra megjelenő dátumválasztó műk�
 Hozzunk létre egy DatePickerDialogFragment osztályt:
 ```kotlin
 class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetListener{
-    private lateinit var onDateSelectedListener: OnDateSelectedListener
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    
-        if (context !is OnDateSelectedListener){
-            throw RuntimeException("The activity does not implement the OnDateSelectedListener interface")
-        }
-        onDateSelectedListener = context
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val c = Calendar.getInstance()
@@ -548,27 +652,28 @@ class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetLis
         val day = c.get(Calendar.DAY_OF_MONTH)
         return DatePickerDialog(requireContext(), this, year, month, day)
     }
-    
+
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        onDateSelectedListener.onDateSelected(year, month, dayOfMonth)
-    }
-    
-    interface OnDateSelectedListener {
-        fun onDateSelected(year: Int, month: Int, day: Int)
+        //TODO: return result
     }
 }
 ```
 
 Az importoknál a `java.util`-t válasszuk a Calendarhoz, a Fragment-hez pedig az `androidx`-es verziót.
 
-A laborvezetővel vizsgáljuk meg az `OnDateSelectedListener` interface működését. Az osztályt használóknak ezt az interface-t kell implementálnia és a megvalósított `onDateSelected` metódus kapja meg a dátumot.
+Vegyük fel a dialógust a navigációs gráfba! Ehhez kattintsunk a **New Destination** gombra, és válasszuk ki a most létrehozott DatePickerDialogFragment osztályt.
 
-Állítsuk be a gomb eseménykezelőjét a HolidayActivity-ben, hogy lenyomáskor jelenítse meg a dátumválasztót:
+!!!note "Dialog a navigációs gráfban"
+	A kiválasztásnál észrevehetjük, hogy a típusnál a *Fragment (dialog)* van megadva, míg a többi képernyőnél csak *Fragment*. Ez azért van, mert az osztály a **DialogFragment**-ből származik le, ami a navigációs gráf máshogy kezel, mivel ez nem egy teljes képernyős nézet. Ha átváltunk a kód nézetbe, ott is látható, hogy `dialog` taggel van felvéve ez az útvonal.
+
+Adjunk hozzá a navigációhoz egy akciót, mely a **HolidayFragment**-ből a **DatePickerDialogFragment**-re mutat. Állítsuk be a gomb eseménykezelőjét a HolidayFragment-ben, hogy lenyomáskor jelenítse meg a dátumválasztót:
 ```kotlin
 binding.btnTakeHoliday.setOnClickListener {
-            DatePickerDialogFragment().show(supportFragmentManager, "DATE_TAG")
-        }
+    findNavController().navigate(R.id.action_holidayFragment_to_datePickerDialogFragment)
+}
 ```
+
+Próbáljuk ki az alkalmazást! Mostmár megjelenik a dialógus egy kisebb ablakban, de még a dátumválasztás eredménye nem jut vissza a kiinduló képernyőre. 
 
 A kiválasztott dátum feldolgozásához implementáljuk az OnDateSelectedListener-t a HolidayActivity-ben:
 ```kotlin
@@ -582,6 +687,78 @@ override fun onDateSelected(year: Int, month: Int, day: Int) {
 	loadHolidays()
 }
 ```
+
+## Fragmentek közötti kommunikáció a Navigation Component segítségével
+
+Ahogy láthattuk az eddigi feladatok megoldásaiból, a Navigation Component a használata során maga kezeli a Fragmenteket, ő felelős a példányosításért. Ennek köszönhetően ha kommunikálni akarunk a képernyők között, akkor azt is a Navigation Component segítségével tudjuk megtenni.
+Kommunikáció során alapvetően két irányről beszélhetünk:
+
+- A hívó fél szeretne valamilyen paramétert átadni az új oldalnak.
+- Az új, jelenleg látható oldal szeretne valamilyen értéket visszaadni az előző oldalnak.
+
+!!!note "Több oldalon keresztüli navigáció"
+	A Navigation Component csak a szomszédos oldalak közötti navigációt teszi lehetővé. Több oldal esetén érdemesebb valamilyen egész alkalmazásra vonatkozó állapotkezelési megoldást használni.
+
+Az új oldalnak való paraméterátadás esetében a felületi szerkesztőben a megfelelő oldalt kiválasztva tudunk felvenni új paramétereket. Itt megadhatjuk a paraméter nevét, típusát, illetve pár egyéb opcionális beállítást. Ezekből a *Safe Args* csomag segítségével minden akcióhoz egy segédosztály fog generálódni, melyet példányosítva meg tudjuk adni a paramétereket, és ezt átadva a **NavController** `navigate()` függvényének, át tudunk navigálni az új oldalra. Az új oldalon pedig a `by navArgs()` használatával el tudunk kérni egy olyan objektumot, mely tartalmazni fogja ezeket a paramétereket. Ezen a laboron erre nem lesz szükségünk.
+
+Az érték visszaadására a Navigation Component egy elsőre bonyolultnak tűnő megoldást ad, viszont erre szükség van, mivel nincsen garantálva, hogy visszatéréskor az előző Fragment objektum még létezik. A Navigation Component minden képernyőjéhez egy **[`NavBackStackEntry`](https://developer.android.com/reference/androidx/navigation/NavBackStackEntry)**-t rendel, mely többek között tartalmaz egy tárolásra alkalmas objektumot ([`SavedStateHandle`](https://developer.android.com/reference/androidx/lifecycle/SavedStateHandle)). Az új oldal ebbe tud küldeni egy új értéket, míg az eredeti oldal meg tudja figyelni az ezeken történő változásokat.
+!!!note "Lifecycle"
+	A `SavedStateHandle` épít az Androidban elterjedt **Lifecycle** koncepcióra, ennek részletes bemutatása azonban túlmutat a labor anyagán, elég csak magát a kommunikáció módját érteni.
+
+Valósítsuk meg a dátumválasztó felület kommunikációját! Először vizsgáljuk meg a dátumválasztás oldalát. 
+Vegyünk fel egy új kulcsot a `HolidayFragment` osztályba, mellyel az eredményt tudjuk azonosítani a fogadóoldalon:
+```kotlin
+companion object {
+    const val DATE_SELECTED_KEY = "date_selected"
+}
+```
+Hozzunk létre a egy új osztályt a  `DatePickerDialogFragment`-en belül, mely az eredményt fogja tárolni:
+```kotlin
+data class DatePickerResult(
+    val year: Int,
+    val month: Int,
+    val dayOfMonth: Int,
+) : Serializable
+```
+!!!info "Serializable"
+	A Navigation Component kommunikációja a **Bundle** osztályt használja, ezért nem lehet tetszőleges objektumot átadni neki. A **Serializable** interfész használata egy könnyű megoldást biztosít erre.
+
+Majd készítsük el a dátumkiválasztás függvényét:
+```kotlin
+override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+    val result = DatePickerResult(year, month, dayOfMonth)
+    findNavController()
+        .previousBackStackEntry
+        ?.savedStateHandle
+        ?.set(HolidayFragment.DATE_SELECTED_KEY, result)
+}
+```
+
+Vizsgáljuk meg, hogyan működik a kommunikáció! Mivel az előző oldalnak akarok értéket visszaadni, a `previousBackStackEntry` paramétert használom, mely így a `HolidayFragment`-hez fog tartozni. Ennek a **SavedStateHandle** objektumán a `set()` metódushívással tudok paramétert átadni.
+
+Készítsük el a fogadó fél oldalát is. Ehhez az **HolidayFragment** `onViewCreated()` metódusában fel kell iratkoznunk a megfelelő eredmény objektumra:
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    binding.btnTakeHoliday.setOnClickListener {
+        findNavController().navigate(R.id.action_holidayFragment_to_datePickerDialogFragment)
+    }
+    findNavController()
+        .currentBackStackEntry
+        ?.savedStateHandle
+        ?.getLiveData<DatePickerDialogFragment.DatePickerResult>(DATE_SELECTED_KEY)
+        ?.observe(viewLifecycleOwner) {
+            val numHolidays = DataManager.holidays
+            if (DataManager.remainingHolidays > 0){
+                DataManager.holidays = numHolidays + 1
+            }
+            loadHolidays()
+        }
+    loadHolidays()
+}
+```
+Itt az `observe()` metódusnak átadott callback metódus (a kapcsos zárójel közötti rész) minden alkalommal meg fog hívodni, amikor valamilyen változás történik az eredményben.
 
 Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön, a napok számának is csökkennie kell a diagramon.
 
