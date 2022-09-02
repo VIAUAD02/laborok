@@ -14,6 +14,24 @@ A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az a
 
 Az elkészült megoldást `.zip` formátumban (File -> Export to zip file...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
 
+## Előkészületek
+
+A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
+
+### Git repository létrehozása és letöltése
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+
+    !!! tip ""
+        Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+
+4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+
+
 ## A projekt előkészítése
 
 ### A projekt létrehozása
