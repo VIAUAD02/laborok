@@ -231,9 +231,9 @@ Még egy dolgunk van ezen a képernyőn, az input ellenőrzése. Ezt a `LoginAct
 	}
 	```
 
-	Azonban a `findViewById` hívásnak számos problémája [van](https://developer.android.com/topic/libraries/view-binding#findviewbyid). Ezekről bővebben az előadáson lesz szó (pl.: *Null safety*, *type safety*). Ezért e helyett "nézetkötést", azaz `ViewBinding`-ot fogunk használni.
+	Azonban a `findViewById` hívásnak számos problémája [van](https://developer.android.com/topic/libraries/view-binding#findviewbyid). Ezekről bővebben az előadáson lesz szó (pl.: *Null safety*, *type safety*). Ezért ehelyett "nézetkötést", azaz `ViewBinding`-ot fogunk használni.
 
-A [`ViewBinding`](https://developer.android.com/topic/libraries/view-binding) a kódítást könnyíti meg számunkra. Amennyiben ezt használjuk, az automatikusan generálódó *binding* osztályokon keresztül közvetlen referencián keresztül tudunk elérni minden *ID*-val rendelkező erőforrást az `XML` fájljainkban.
+A [`ViewBinding`](https://developer.android.com/topic/libraries/view-binding) a kódírást könnyíti meg számunkra. Amennyiben ezt használjuk, az automatikusan generálódó *binding* osztályokon keresztül közvetlen referencián keresztül tudunk elérni minden *ID*-val rendelkező erőforrást az `XML` fájljainkban.
 
 Először is be kell kapcsolnunk a modulunkra a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
 
@@ -247,7 +247,7 @@ android {
 
 ```
 
-Ezzel után már a teljes modulunkban automatikusan elérhetővé vált a `ViewBinging`. 
+Ezzel után már a teljes modulunkban automatikusan elérhetővé vált a `ViewBinding`. 
 
 !!! info "ViewBinding"
 	Ebben az esetben a modul minden egyes XML layout fájljához generálódik egy úgynevezett binding osztály. Minden binding osztály tartalmaz referenciát az adott XML layout erőforrás gyökér elemére és az összes ID-val rendelkező view-ra. A generált osztály neve úgy áll elő, hogy az XML layout nevét Pascal formátumba alakítja a rendszer és a végére illeszti, hogy `Binding`. Azaz például a `result_profile.xml` erőforrásfájlból az alábbi binding osztály generálódik: `ResultProfileBinding`.
@@ -595,7 +595,7 @@ class ListActivity : AppCompatActivity() {
 ```
 
 !!!info "static"
-	A Kotlin egy nagy eltérése az eddig ismert, megszokott OOP nyelvektől, hogy nincs benne `static` kulcsszó, és így nincsenek statikus változók vagy függvények sem. Ehelyett minden osztályhoz lehet definiálni egy [`companion object`-et](https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects), ami egy olyan singleton-t definiál, ami az olytály összes példányán keresztül elérhető. Röviden, minden `companion object`-en belül definiált konstans, változó, függvény úgy viselkedik, mintha statikus lenne.
+	A Kotlin egy nagy eltérése az eddig ismert, megszokott OOP nyelvektől, hogy nincs benne `static` kulcsszó, és így nincsenek statikus változók vagy függvények sem. Ehelyett minden osztályhoz lehet definiálni egy [`companion object`-et](https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects), ami egy olyan singleton-t definiál, ami az osztály összes példányán keresztül elérhető. Röviden, minden `companion object`-en belül definiált konstans, változó, függvény úgy viselkedik, mintha statikus lenne.
 
 Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a `DetailsActivity`-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a `ViewBinding`beállítása után:
 
@@ -658,7 +658,7 @@ Próbáljuk ki az alkalmazást! A `DetailsActivity`-ben meg kell jelennie a hozz
 
 ## A bérlet (1 pont)
 
-Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletetet.
+Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.
 
 <p align="center"> 
 <img src="./assets/pass.png" width="320">
@@ -806,20 +806,20 @@ Korábban a részletes nézetben egy fix árat írtunk ki a képernyőre. Írjuk
 
 Az árazás a következő módon működjön:
 
-| Közlekedési eszköz | Bérlet ára naponta|
-| -- | -- |
-| Bicikli | 700 |
-| Busz | 1000 |
-| Vonat | 1500 |
-| Hajó | 2500 |
+| Közlekedési eszköz | Bérlet ára naponta |
+| ------------------ | ------------------ |
+| Bicikli            | 700                |
+| Busz               | 1000               |
+| Vonat              | 1500               |
+| Hajó               | 2500               |
 
 Ebből még az alábbi kedvezményeket adjuk:
 
-| Árkategória | Kedvezmény mértéke |
-| -- | -- |
-| Teljes árú | 0% |
-| Nyugdíjas | 90% |
-| Közalkalmazott | 50% |
+| Árkategória    | Kedvezmény mértéke |
+| -------------- | ------------------ |
+| Teljes árú     | 0%                 |
+| Nyugdíjas      | 90%                |
+| Közalkalmazott | 50%                |
 
 !!!tip "Tipp"
 	A számolásokhoz és az eseménykezeléshez a [`Calendar`][calendar] osztályt, a `DatePicker` osztály [`init`][picker-init-link] függvényét, illetve a `RadioGroup` osztály [`setOnCheckedChangeListener`][radio-checked-changed] osztályát érdemes használni.
