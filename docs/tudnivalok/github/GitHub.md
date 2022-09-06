@@ -50,6 +50,13 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
 
     Ha konzolt használnál, az alábbi parancs klónozza a repository-t (ha a `git` parancs elérhető): `git clone <repository link>`
 
+    !!! note "Sikertelen klónozás"
+        Amennyiben a bejelentkezés sikertelen felhasználónév/jelszó párossal a "Clone with HTTPS" esetén, (régebb óta használt felhasználónál) érdemes ellenőrizni a git-en található Personal Access token lejárati dátumát. 
+        
+        `Jobb felső sarokban a profilkép melletti lefelé mutató nyil > Settings > bal oldalon (legalsó) Developer settings > ugyanitt Personal access tokens.`
+        
+		*Alternatív módszerként: HTTP klónozás helyett, SSH kulcs használatához, angol nyelvű instrukciók [itt](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls) találhatóak.*
+
 1. Ha sikerült a klónozás, **MÉG NE KEZDJ EL DOLGOZNI!** A megoldást _ne_ a repository `master`/`main` ágán készítsd el. Hozz létre egy új ágat (branch) `megoldas` néven.
 
     GitHub Desktop-ban a _Branch_ menüben teheted ezt meg.
@@ -67,9 +74,9 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
         git config user.name
         git config user.email
         ```
-
+        
         Ha ez nem megfelelő lenne, akkor add ki az alábbi parancsokat a git repository mappájában. Ezzel az adott repository-ra fogod beállítani a kívánt nevet és email címet. (Érdemes olyan email címet, megadni ami a github useretekhez van rendelve)
-
+        
         ```bash
         git config user.name "John Doe"
         git config user.email "john@doe.org"
@@ -91,16 +98,16 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
     ```bash
     # Ellenőrizd az ágat, és hogy milyen fájlok módosultak
     git status
-
+    
     # Minden változtatást előkészít kommitolásra
     git add .
-
+    
     # Kommit
     git commit -m "f1"
-
+    
     # Push első alkalommal az új ág publikálásához
     git push --set-upstream origin megoldas
-
+    
     # Push a továbbiakban, amikor az ág már nem új
     git push
     ```
@@ -145,9 +152,9 @@ Alább részletesen bemutatjuk a beadás menetét. Itt egy rövid összefoglaló
         Ha úgy látod, hogy a megoldásodat még javítani akarod, és nem szeretnéd, hogy mindig lefusson az értékelés, akkor állítsd át a pull request-et a webes felületen **draft** állapotra.
 
         ![GitHub create pull request](./assets/github-convert-pr-to-draft.png)
-
+        
         Ezzel az állapottal jelzed, hogy még dolgozol. Kommitolj és pusholj. Ilyenkor nem fog futni kiértékelés. Ha végeztél, akkor vissza **kell** állítanod a pull request-et: menj a PR aljára és kattints a "Ready for review" gombra. Ennek hatására visszaáll a PR és le fog futni az automata értékelés.
-
+        
         ![GitHub create pull request](./assets/github-draft-pr-ready.png)
 
     !!! info "Maximum 5"
