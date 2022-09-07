@@ -821,6 +821,12 @@
 <p>A git repository kezeléséhez tetszőleges klienst használhatsz. Ha nincs kedvenced még, akkor legegyszerűbb a <a href="https://desktop.github.com/">GitHub Desktop</a>. Ebben az alkalmazásban közvetlenül tudod listázni a repository-kat GitHub-ról, vagy használhatod az URL-t is a klónozáshoz.</p>
 <p><img alt="GitHub Desktop repository clone" src="../assets/github-desktop-clone.png" /></p>
 <p>Ha konzolt használnál, az alábbi parancs klónozza a repository-t (ha a <code>git</code> parancs elérhető): <code>git clone &lt;repository link&gt;</code></p>
+<div class="admonition note">
+<p class="admonition-title">Sikertelen klónozás</p>
+<p>Amennyiben a bejelentkezés sikertelen felhasználónév/jelszó párossal a "Clone with HTTPS" esetén, (régebb óta használt felhasználónál) érdemes ellenőrizni a git-en található Personal Access token lejárati dátumát. </p>
+<p><code>Jobb felső sarokban a profilkép melletti lefelé mutató nyil &gt; Settings &gt; bal oldalon (legalsó) Developer settings &gt; ugyanitt Personal access tokens.</code></p>
+<p><em>Alternatív módszerként: HTTP klónozás helyett, SSH kulcs használatához, angol nyelvű instrukciók <a href="https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls">itt</a> találhatóak.</em></p>
+</div>
 </li>
 <li>
 <p>Ha sikerült a klónozás, <strong>MÉG NE KEZDJ EL DOLGOZNI!</strong> A megoldást <em>ne</em> a repository <code>master</code>/<code>main</code> ágán készítsd el. Hozz létre egy új ágat (branch) <code>megoldas</code> néven.</p>
