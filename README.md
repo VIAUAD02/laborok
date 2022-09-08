@@ -10,8 +10,8 @@ A jegyzetek MkDocs segítségével készülnek és GitHub Pages-en kerülnek pub
 
 1. Powershell konzol nyitása a repository gyökerébe
 
-1. `docker run -it --rm -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:7.3.6`
+2. `docker run -it --rm -p 8000:8000 -v "%cd%":/docs squidfunk/mkdocs-material:7.3.6`
 
-1. <http://localhost:8000> megnyitása böngészőből.
+3. <http://localhost:8000> megnyitása böngészőből.
 
-1. Markdown szerkesztése és mentése után automatikusan frissül a weboldal
+4. Markdown szerkesztése és mentése után automatikusan frissül a weboldal
