@@ -843,3 +843,12 @@ Ebből még az alábbi kedvezményeket adjuk:
 	Készíts egy **képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f9.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+### Labor átírása Jetpack Compose-ra (2 IMSc pont az fenti IMSc feladatok IMSc pontjai HELYETT)
+
+A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra.
+
+!!!example "BEADANDÓ (2 IMSc pont)"
+    Készíts négy **teljes képernyőképet**, amelyen látszik a labor utolsó képernyője, módosított dátummal és a kiválasztott utazási eszközzel. Valahol látszódjön a ***NEPTUN kód*** is a képernyőképeken, lehet ez a kódodban kommentként, vagy pl. az `R.strings`-ben az `app_name`-et kicserélve az AppBar-on title-ként. A képet a megoldásban a repository-ba f9.png néven töltsd föl.
+
+    A képernyőkép szükséges feltétele a pontszám megszerzésének.
