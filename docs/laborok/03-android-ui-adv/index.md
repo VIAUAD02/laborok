@@ -418,4 +418,4 @@ Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `Text
 
 ### Bonus 2.0
 
-A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra.
+A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. A feladat egy IMSC feladat, azonban IMSC pont nem jár érte.
