@@ -844,11 +844,17 @@ Ebből még az alábbi kedvezményeket adjuk:
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### Labor átírása Jetpack Compose-ra (2 IMSc pont az fenti IMSc feladatok IMSc pontjai HELYETT)
+### Bonus: Labor átírása Jetpack Compose-ra
+
+<p align="center">
+<img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
+<img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
+<img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
+<img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
+<img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
+</p>
 
 A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra.
 
-!!!example "BEADANDÓ (2 IMSc pont)"
-    Készíts négy **teljes képernyőképet**, amelyen látszik a labor utolsó képernyője, módosított dátummal és a kiválasztott utazási eszközzel. Valahol látszódjön a ***NEPTUN kód*** is a képernyőképeken, lehet ez a kódodban kommentként, vagy pl. az `R.strings`-ben az `app_name`-et kicserélve az AppBar-on title-ként. A képet a megoldásban a repository-ba f9.png néven töltsd föl.
-
-    A képernyőkép szükséges feltétele a pontszám megszerzésének.
+!!!example "BEADANDÓ (opcionális)"
+    Készíts egy **teljes képernyőképet**, amelyen látszik a labor utolsó képernyője, módosított dátummal és a kiválasztott utazási eszközzel. Valahol látszódjön a ***NEPTUN kód*** is a képernyőképeken, lehet ez a kódodban kommentként, vagy pl. az `R.strings`-ben az `app_name`-et kicserélve az AppBar-on title-ként. A képet a megoldásban a repository-ba bonus.png néven töltsd föl.
