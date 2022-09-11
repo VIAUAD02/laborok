@@ -1,10 +1,12 @@
-# Labor 02 IMSC - Jetpackkel az égbe ☁ 🚀 ✨
+# Labor 02 Extra - Jetpackkel az égbe ☁ 🚀 ✨
 
 ***Szerző: Püspök-Kiss Balázs***
 
+Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
+
 ## Bevezető
 
-Az IMSC feladat célja, hogy bemutasson egy megoldást, ami a legmodernebb eszközöket alkalmazza a
+Az Extra feladat célja, hogy bemutasson egy megoldást, ami a legmodernebb eszközöket alkalmazza a
 fejlesztés során. A motiváció a laborok átdolgozása mögött az, hogy szerintem a jelenlegi laborok
 többnyire elavult technológiákat használnak, amik egy kötelező rossz az ipar számára. A régi
 technológiák támogatása szükséges, azonban mindig érdemes a jövőre figyelni, ott bővíteni a
@@ -874,7 +876,7 @@ legenerálja a [Parcelable] által kért metódusokat az adott osztályhoz.
 
 ## Végszó ✨ 🚀 💫
 
-Az IMSC feladat dokumentálása közben próbáltam ügyelni arra, hogy 4 fájl-ra 4 kódot kelljen csak
+Az Extra feladat dokumentálása közben próbáltam ügyelni arra, hogy 4 fájl-ra 4 kódot kelljen csak
 bemásolni, viszont maximalizálni szerettem volna a bónusz hasznos információkat, hogy az elszánt
 kolléga minél több tudást és jó szokást könyvelhessen el magának. Valamint szerettem volna csinálni
 egy cheat sheet-et azoknak akik [Jetpack Compose]-ban szeretnék a háziaikat írni 🥰.

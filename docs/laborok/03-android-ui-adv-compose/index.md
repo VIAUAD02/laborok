@@ -1,10 +1,12 @@
-# Labor 03 IMSC - Jetpackkel az égbe és tovább ✨ 🚀 🌌
+# Labor 03 Extra - Jetpackkel az égbe és tovább ✨ 🚀 🌌
 
 ***Szerző: Püspök-Kiss Balázs***
 
+Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
+
 ## Bevezető
 
-Az IMSC feladat célja, hogy bemutasson egy megoldást, ami a legmodernebb eszközöket alkalmazza a
+Az Extra feladat célja, hogy bemutasson egy megoldást, ami a legmodernebb eszközöket alkalmazza a
 fejlesztés során. A motiváció a laborok átdolgozása mögött az, hogy szerintem a jelenlegi laborok
 többnyire elavult technológiákat használnak, amik egy kötelező rossz az ipar számára. A régi
 technológiák támogatása szükséges, azonban mindig érdemes a jövőre figyelni, ott bővíteni a
@@ -21,7 +23,7 @@ Ez a feladat sok bónusz infót tartalmaz, aminek a használata a való életben
 valószínűleg nem lesz számonkérve. A legjobb tudásom ellenére is azt kérem, hogy keressétek fel
 gyakran a [Jetpack Compose] dokumentációját a hivatalos oldalán, sokkal több mindenről esik szó ott,
 amire nekem nincs időm kitérni. StackOverflow is hasznos olykor, keresni a Google-ön egyet, ha
-rögtön nem működik valami. Az előző labor (`PublicTransport`) IMSC feladatánál sok olyan hasznos
+rögtön nem működik valami. Az előző labor (`PublicTransport`) Extra feladatánál sok olyan hasznos
 dolgot elmagyaráztam, amit ennél a labornál nem fogok kifejteni. Viszont ennek ismerete nem
 feltétel a labor elvégzéséhez feltétlenül. Önálló feladat során inkább a hivatalos dokumentációkra
 és Google-re lehet támaszkodni. Kreatív feladatokat próbáltam tervezni, mintsem nagyon érthetetlen
@@ -55,7 +57,7 @@ A kezdő projekt az [`AndroidWallet.zip`](downloads/AndroidWallet.zip) fájlba v
 (ha be van valahova csomagolva). Egy projekt setup-olása és felkonfigurálása fontos, de nem a
 világot szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad.
 Mindenesetre megjegyzek néhány dolgot. *Át lehet ugrani idő hiányában a Setup részt, de ez nem
-lesz hosszú. A setup kb. ugyanaz, mint a 2. labor IMSC feladatánál, azonban van néhány különbség.
+lesz hosszú. A setup kb. ugyanaz, mint a 2. labor Extra feladatánál, azonban van néhány különbség.
 
 ### [Proguard], R8 és [MaterialIcons]
 

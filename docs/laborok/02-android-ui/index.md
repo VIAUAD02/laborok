@@ -844,7 +844,7 @@ Ebből még az alábbi kedvezményeket adjuk:
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### Bonus: Labor átírása Jetpack Compose-ra
+### Extra feladat: Labor átírása Jetpack Compose-ra
 
 <p align="center">
 <img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
@@ -856,5 +856,4 @@ Ebből még az alábbi kedvezményeket adjuk:
 
 A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra.
 
-!!!example "BEADANDÓ (opcionális)"
-    Készíts egy **teljes képernyőképet**, amelyen látszik a labor utolsó képernyője, módosított dátummal és a kiválasztott utazási eszközzel. Valahol látszódjön a ***NEPTUN kód*** is a képernyőképeken, lehet ez a kódodban kommentként, vagy pl. az `R.strings`-ben az `app_name`-et kicserélve az AppBar-on title-ként. A képet a megoldásban a repository-ba bonus.png néven töltsd föl.
+Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
