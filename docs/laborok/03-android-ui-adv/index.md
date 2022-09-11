@@ -423,6 +423,6 @@ Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `Text
 <img alt="SnackBar shows correctly" src="assets/SnackBarShowsCorrectly.png" width="40%"/>
 </p>
 
-A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. A feladat egy IMSC feladat, azonban IMSC pont nem jár érte.
+A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. A feladat egy IMSC feladat, azonban IMSC pont nem jár érte. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
 
 Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
