@@ -1,8 +1,8 @@
 # Labor 02 Extra - Jetpackkel az égbe ☁ 🚀 ✨
 
-***Szerző: Püspök-Kiss Balázs***
+**_Szerző: Püspök-Kiss Balázs_**
 
-Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
+Ha bármi probléma lenne az extra laborral, **_Püspök-Kiss Balázs_**-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
 
 ## Bevezető
 
@@ -30,29 +30,29 @@ rögtön nem működik valami.
 A kezdő projekt a [`PublicTransport.zip`](downloads/PublicTransport.zip) fájlba van becsomagolva
 (ha bevan valahova csomagolva). Egy projekt setup-olása és felkonfigurálása fontos, de nem a világot
 szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad. Mindenesetre
-megjegyzek néhány dolgot. *Át lehet ugrani idő hiányában a Setup részt, de a sigma grind nem állhat
-meg, érdekes dolgokról van szó.*
+megjegyzek néhány dolgot. _Át lehet ugrani idő hiányában a Setup részt, de a sigma grind nem állhat
+meg, érdekes dolgokról van szó._
 
-*A `PublicTransport` starter projekt teljesen angol!*
+_A `PublicTransport` starter projekt teljesen angol!_
 
 ### Erősen ajánlott pluginek
 
 Mindenekelőtt ajánlanék néhány linter plugint, amikkel toppon lehet tartani a kód minőségét:
 
-* [Detekt] - A root mappában található `detekt-config.yml` fájllal fel lehet konfigurálni, egy
-linter, ami figyelmeztet adott formai dolgokra.
-* [ktlint] - van egy unofficial pluginja JetBrains Marketplacen, ami telepítehető Android Studio-ra
-is, hasznos a built-in formatterje.
-* [SonarLint] - nagyon sok mindenre beszól a kódodnál, jó szokás halgatni rá.
+- [Detekt] - A root mappában található `detekt-config.yml` fájllal fel lehet konfigurálni, egy
+  linter, ami figyelmeztet adott formai dolgokra.
+- [ktlint] - van egy unofficial pluginja JetBrains Marketplacen, ami telepítehető Android Studio-ra
+  is, hasznos a built-in formatterje.
+- [SonarLint] - nagyon sok mindenre beszól a kódodnál, jó szokás halgatni rá.
 
 ### 4 darab Activity
 
 Lennie kellene 4 darab Activity fájlnak a projektben:
 
-* `LoginActivity.kt`
-* `ListActivity.kt`
-* `DetailsActivity.kt`
-* `PassActivity.kt`
+- `LoginActivity.kt`
+- `ListActivity.kt`
+- `DetailsActivity.kt`
+- `PassActivity.kt`
 
 Minden (kivéve 1) itteni Activity a [ComponentActivity]-ből származik le, ez a
 default [Jetpack Compose]-nál, nem kell meglepődni. Ennek egyik leszármazottja
@@ -75,7 +75,7 @@ Egyébként **nem sikerülne betölteni** a [DateRangePicker]-t, crashelne az ap
 **Import-tal nem kell foglalkozni**, minden be van rakva a `res` mappába. Nagy szokás adott
 Stringeket beégetni a kódba, szerintem undorítóbb dolog nincs e kerek Földön. Igényes emberek
 vagyunk, késsel-villával eszünk, `strings.xml`-ből nyerjük ki a szükséges szöveget, stb..
-Windows-on ***ALT+ENTER***, egyébként jobb klikk a raw String-re és rá kell nyomni
+Windows-on **_ALT+ENTER_**, egyébként jobb klikk a raw String-re és rá kell nyomni
 az `Extract string resource` menüre. Ekkor feljön egy dialog, hogy milyen kulccsal lehessen elérni
 azt és automatikusan hozzáadja a szöveged a `strings.xml` fájlhoz, valamint refactorlálja a kódod a
 legjobb tudása alapján az Android Studio (általában wrappeli így:
@@ -158,10 +158,10 @@ Röviden:
 
 1. `LoginActivity`-nél `TextField`-et vizsgálunk, hogy beírt e a felhasználó valamit.
 2. `ListActivity`-nél a kiválasztott listaelemtől függően különböző adatot továbbítunk a
-`DetailActivity`-nek.
+   `DetailActivity`-nek.
 3. `DetailsActivity`-nél a `ListActivity` által küldött adatot dolgozzuk fel, valamint lehet
-választani, milyen hosszú ideig és ki számára állítsunk ki egy béretet. Az ár dinamikusan változik
-a napoktól függően. A napokat egy modern [DateRangePicker] által választhatjuk ki.
+   választani, milyen hosszú ideig és ki számára állítsunk ki egy béretet. Az ár dinamikusan változik
+   a napoktól függően. A napokat egy modern [DateRangePicker] által választhatjuk ki.
 4. `PassActivity` megjeleníti az átvett adatok alapján a végső bérletet.
 
 ### Login 📲 ⏳ ⌛ ✅
@@ -174,16 +174,16 @@ oldal egész jól összeszedi a dolgokat.
 Másik fontos dolog Compose-nál, az a `Modifier`. `Modifier`-ek lényeges adatot hordozhatnak arról,
 hogyan is viselkedjen a UI elem.
 
-* Töltse ki a számára adott helyet?
-* Csak vízszintesen?
-* Mennyi legyen az elem körül a padding?
-* Milyen távolság legyen az elemeim között egy `Column`-nál?
+- Töltse ki a számára adott helyet?
+- Csak vízszintesen?
+- Mennyi legyen az elem körül a padding?
+- Milyen távolság legyen az elemeim között egy `Column`-nál?
 
 Ez csak néhány példa a több százból, amire képes a `Modifier`. Általában egy elemhez át lehet
 adni egy `Modifier`-t a `modifier` paraméterén keresztül.
 
-Egyébként erről jut eszembe, van 
-[ez a fantasztikus honlap][What is the euivalent of X in Jetpack Compose], ami megmondja adott
+Egyébként erről jut eszembe, van
+[ez a fantasztikus honlap][what is the euivalent of x in jetpack compose], ami megmondja adott
 dolgoknak a Compose alternatíváját. Innen könnyebb lehet átírni a labort manuálisan, de inkább
 használjátok a snippeteket, amiket adok nektek, ígérem, bőkezű leszek!
 
@@ -198,23 +198,23 @@ mindegyik parser támogatja).
 <img alt="LoginScreenLayout" src="assets/LoginScreenLayout.png" width="40%"/>
 </p>
 
-A *`LoginScreen`* és layout-ja így nézne ki. Minden egyes Composable-re, mint a `Text`, `TextField`
+A _`LoginScreen`_ és layout-ja így nézne ki. Minden egyes Composable-re, mint a `Text`, `TextField`
 és `Button` rá lehet keresni Google-ön, hogy hogyan működik pontosan, hogyan kell és érdemes őket
 használni. Olyan sok mindent testre lehet szabni ezeknél az elemeknél, hogy el mehetne vele egy
 egész labor, nem érnénk a végére ennek a három elemnek. Szerencsére open-source és [részletesen
-dokumentált][Compose Layouts] minden, amit használtam, így könnyen utána lehet járni a dolgoknak.
+dokumentált][compose layouts] minden, amit használtam, így könnyen utána lehet járni a dolgoknak.
 
 #### ⚠ Figyelem! ⚠
 
-***Figyelni kell arra, hogy Material Design 3 elveket követtem a labor során, ez annyi különbséget
-jelent, hogy pl. a `Button` az a [`androidx.compose.material3`][Androidx Compose Material 3]
-könyvtárból származik, nem pedig a [`androidx.compose.material`][Androidx Compose Material]-ból.
+**_Figyelni kell arra, hogy Material Design 3 elveket követtem a labor során, ez annyi különbséget
+jelent, hogy pl. a `Button` az a [`androidx.compose.material3`][androidx compose material 3]
+könyvtárból származik, nem pedig a [`androidx.compose.material`][androidx compose material]-ból.
 Ha nem nézne ki úgy a UI, ahogy a képen, akkor figyelj arra, hogy a
-[`androidx.compose.material3`][Androidx Compose Material 3] könyvtárból importáld a `Button`-t!***
+[`androidx.compose.material3`][androidx compose material 3] könyvtárból importáld a `Button`-t!_**
 
-A [`androidx.compose.material`][Androidx Compose Material] könyvtár is szükséges eleme a projektnek,
+A [`androidx.compose.material`][androidx compose material] könyvtár is szükséges eleme a projektnek,
 enélkül a Theme nem lehetne olyan amilyen és ez azt vonzza magával, hogy nem lehetne megnyitni a
-[`DateRangePicker`][DateRangePicker]-t.
+[`DateRangePicker`][daterangepicker]-t.
 
 #### LoginScreen
 
@@ -292,8 +292,9 @@ fun LoginScreen() {
             label = { Text(passwordLabel) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
+                keyboardType = KeyboardType.NumberPassword
             ),
+            visualTransformation = PasswordVisualTransformation(),
             singleLine = true,
             isError = isPasswordWrong
         )
@@ -328,7 +329,7 @@ fun LoginScreen() {
 }
 ```
 
-#### *remember* és *mutableStateOf*, [State and Jetpack Compose] és [Lifecycle of composables]
+#### _remember_ és _mutableStateOf_, [State and Jetpack Compose] és [Lifecycle of composables]
 
 Compose-ban nagyon egyszerű a state handling. Minden változó, aminek a változását reflektálni
 szeretnénk, becsomagoljuk egy ilyen `remember { mutableStateOf(/* Initial state */) }` blokkba,
@@ -343,7 +344,7 @@ tudtok olvasni.
 A `context` egy picit máshogy működik Compose-ban, mint ahogy fragmenseknél. Ha kell a `context`,
 akkor vagy megkapod azt, mint paraméter, vagy lekéred `LocalContext.current` hívással. Ez általában
 ahhoz kellhet, ha valami lokalizált String-et akarsz megkapni szövekből, ha éppen nem tudod
-meghívni a *`stringResource()`*-t.
+meghívni a _`stringResource()`_-t.
 
 #### State change
 
@@ -378,7 +379,7 @@ formatter. Ha már itt vagyunk ajánlom, hogy kapcsoljátok be az `Other` tabon 
 
 Fontos dolog, amit innen kiemelnék, az, hogy a laborok általában nem szokták mindig követni ezeket,
 (még Ekler se 😲) ami persze teljesen érthető az idő szűkében, viszont ez az ami nekem a különbséget
-jelenti egy okés, jó ember és egy ***Android Isten Sigma Male/Female*** között. Ha figyeltek ezekre
+jelenti egy okés, jó ember és egy **_Android Isten Sigma Male/Female_** között. Ha figyeltek ezekre
 a konvenciókra, akkor más is sokkal jobban fogja értékelni a munkátokat, mások munkáját is jobban
 fogjátok tudni megítélni.
 
@@ -502,10 +503,10 @@ fun TravelTypeText(
 
 Itt több különálló Composable-re szedtem a UI elemeket, hogy kevesebb
 legyen a boilerplate (felesleges) kód. Boilerplate kód (duplikált, kötelezően rossz kód) több
-programozási alapelvet megsért, köztük sokszor az *Open-Closed Principle-t* (OCP),
-a *Single-Responsibility Principle-t* (SRP) és *Single Choice Principle-t* (SCP) valamint elkerüli
-a jó szokásokat, mint a *Don't Repeat Yourself* (DRY) a temérdek más Principle-ökön kívül, amit
-felsorolhatnék. Helyette ajánlom az ***[Objektumorientált Szoftvertervezés]*** tárgyat. (Ajánlom,
+programozási alapelvet megsért, köztük sokszor az _Open-Closed Principle-t_ (OCP),
+a _Single-Responsibility Principle-t_ (SRP) és _Single Choice Principle-t_ (SCP) valamint elkerüli
+a jó szokásokat, mint a _Don't Repeat Yourself_ (DRY) a temérdek más Principle-ökön kívül, amit
+felsorolhatnék. Helyette ajánlom az **_[Objektumorientált Szoftvertervezés]_** tárgyat. (Ajánlom,
 hogyha van egy olyan barátotok aki OO-n van most, akkor tőle kérjetek el a diákat,
 [vik.wiki]-n eléggé outdated az anyag amit találtam, azt nem ajánlom. Dr. Simon Balázs
 angol diái menők.)
@@ -516,11 +517,11 @@ A kódkommentelésről is elrejtettem néhány jó tippet, a legjobb, ha önmag�
 azonban egy-két komment sokat segíthet egy bonyolultabb, komplexebb mechanizmus megértésében.
 Ennek a módja is megvan Kotlin-nál, nagyon okosan bele lehet égetni "referenciákat" adott
 osztályokra a kommentekbe `[...]` használatával. Persze a Java-like módon is lehet kommentezni.
-Ez a fajta mód ***[KDoc]***-ot képes generálni, ami a `Javadoc`-ra hajaz erősen.
+Ez a fajta mód **_[KDoc]_**-ot képes generálni, ami a `Javadoc`-ra hajaz erősen.
 
 ### Details 📃
 
-Ennél a fejezetnél rendesen bele megyünk a ***RÉSZLETEK***be (kihagyhatatlan pun intended 😂).
+Ennél a fejezetnél rendesen bele megyünk a **_RÉSZLETEK_**be (kihagyhatatlan pun intended 😂).
 Több, advanced Kotlin feature-t is bemutatok röviden, ami lehetőve tette, hogy működjön boilerplate
 nélkül a kód.
 
@@ -774,7 +775,7 @@ gondolni, hogy a függvény automatikusan fel tudja ismerni, milyen típusú vá
 castolni esetleges callback-eket, ha valamilyen generikus observer/listener mintájú mechanizmust
 szerenténk lekódolni.
 
-A snippet alján vannak a `DetailsRadioGroup` ilyen template metódusok, ahol ***NEM KELL*** explicit
+A snippet alján vannak a `DetailsRadioGroup` ilyen template metódusok, ahol **_NEM KELL_** explicit
 leírni, hogy `DetailsRadioGroup<String>("...")`, ha épp azt szeretnénk, hogy `String` legyen az
 `Option` típus 😌. Boilerplate code: eliminálva.
 
@@ -784,7 +785,7 @@ Szerencsére nagyon egyszerű az interoperability [Jetpack Compose] és a régeb
 az [Interoperability APIs] segítségével. Lényegében nagyobb probléma nélkül lehet régi, Fragment és
 XML-es appba Compose alapú UI-t írni, valamint Compose-ba egy régi, még a Compose-ban nem jelenlévő
 elemet tenni. Utóbbi egyébként szerintem egy jó módszer arra, hogy komplex, de kész régi eszközöket
-fel lehessen használni Compose-ban, úgynevezet *Wrapping* segítségével. Konkrétan egy *Composable*
+fel lehessen használni Compose-ban, úgynevezet _Wrapping_ segítségével. Konkrétan egy _Composable_
 function-be helyezünk egy [AndroidView]-t vagy [AndroidViewBinding]-ot használva.
 
 Ez a módszer lehetővé teszi a fejlesztőket, hogy régi appokat felújítsanak, valamint az új
@@ -826,7 +827,7 @@ valamint egy date intervallumot reprezentáló String-et adunk át az Intentben.
 </p>
 
 Végső soron elértünk a `PassActivity`-hez! Irreálisan hosszú ez a labor, szerencsére nem maradt sok
-a végére. Ezt a kódot kellene *`copypasta`*-zni `PassActivity` alá, `PassScreen`-t helyettesítve.
+a végére. Ezt a kódot kellene _`copypasta`_-zni `PassActivity` alá, `PassScreen`-t helyettesítve.
 
 ```kotlin
 @Preview(showBackground = true)
@@ -891,64 +892,34 @@ ha rá szeretnétek nézni, mit-hogyan csinálok a legjobb tudásom szerint, akk
 legyen, GitHub-on temérdek sok open-source példa áll rendelkezésére az embernek, amiből ihletet
 meríthet.
 
-[ComponentActivity]: https://developer.android.com/reference/androidx/activity/ComponentActivity
-
-[Jetpack Compose]: https://developer.android.com/jetpack/compose
-
-[AppCompatActivity]: https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity
-
-[Activity]: https://developer.android.com/reference/android/app/Activity
-
-[DateRangePicker]: https://material.io/components/date-pickers/android
-
-[Instant]: https://developer.android.com/reference/java/time/Instant
-
+[componentactivity]: https://developer.android.com/reference/androidx/activity/ComponentActivity
+[jetpack compose]: https://developer.android.com/jetpack/compose
+[appcompatactivity]: https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity
+[activity]: https://developer.android.com/reference/android/app/Activity
+[daterangepicker]: https://material.io/components/date-pickers/android
+[instant]: https://developer.android.com/reference/java/time/Instant
 [ktlint]: https://ktlint.github.io/
-
-[Detekt]: https://detekt.dev/
-
-[SonarLint]: https://www.sonarsource.com/products/sonarlint/
-
-[What is the euivalent of X in Jetpack Compose]: https://www.jetpackcompose.app/What-is-the-equivalent-of-X-in-Jetpack-Compose
-
-[Compose Layouts]: https://developer.android.com/jetpack/compose/layouts
-
-[Androidx Compose Material 3]: https://developer.android.com/jetpack/androidx/releases/compose-material3
-
-[Androidx Compose Material]: https://developer.android.com/jetpack/androidx/releases/compose-material
-
-[State and Jetpack Compose]: https://developer.android.com/jetpack/compose/state
-
-[Lifecycle of composables]: https://developer.android.com/jetpack/compose/lifecycle
-
-[Kotlin Coding Conventions]: https://kotlinlang.org/docs/coding-conventions.html
-
-[Objektumorientált Szoftvertervezés]: https://edu.vik.bme.hu/course/view.php?id=5217
-
+[detekt]: https://detekt.dev/
+[sonarlint]: https://www.sonarsource.com/products/sonarlint/
+[what is the euivalent of x in jetpack compose]: https://www.jetpackcompose.app/What-is-the-equivalent-of-X-in-Jetpack-Compose
+[compose layouts]: https://developer.android.com/jetpack/compose/layouts
+[androidx compose material 3]: https://developer.android.com/jetpack/androidx/releases/compose-material3
+[androidx compose material]: https://developer.android.com/jetpack/androidx/releases/compose-material
+[state and jetpack compose]: https://developer.android.com/jetpack/compose/state
+[lifecycle of composables]: https://developer.android.com/jetpack/compose/lifecycle
+[kotlin coding conventions]: https://kotlinlang.org/docs/coding-conventions.html
+[objektumorientált szoftvertervezés]: https://edu.vik.bme.hu/course/view.php?id=5217
 [vik.wiki]: https://vik.wiki
-
-[KDoc]: https://kotlinlang.org/docs/kotlin-doc.html
-
-[Interoperability APIs]: https://developer.android.com/jetpack/compose/interop/interop-apis
-
-[AndroidView]: https://developer.android.com/reference/kotlin/androidx/compose/ui/viewinterop/package-summary#AndroidView(kotlin.Function1,androidx.compose.ui.Modifier,kotlin.Function1)
-
-[AndroidViewBinding]: https://developer.android.com/reference/kotlin/androidx/compose/ui/viewinterop/package-summary#AndroidViewBinding(kotlin.Function3,androidx.compose.ui.Modifier,kotlin.Function1)
-
-[DatePicker]: https://material.io/components/date-pickers
-
-[Material Design 2]: https://material.io/
-
-[Material Design 3]: https://m3.material.io/
-
-[Compose Navigation]: https://developer.android.com/jetpack/compose/navigation
-
-[Navigation Component]: https://developer.android.com/guide/navigation
-
-[Compose Destinations]: https://composedestinations.rafaelcosta.xyz/
-
-[Parcelable]: https://developer.android.com/reference/android/os/Parcelable
-
-[Parcelize]: https://developer.android.com/kotlin/parcelize
-
-[Jay]: https://github.com/HLCaptain/jay-android/tree/feature-compose
+[kdoc]: https://kotlinlang.org/docs/kotlin-doc.html
+[interoperability apis]: https://developer.android.com/jetpack/compose/interop/interop-apis
+[androidview]: https://developer.android.com/reference/kotlin/androidx/compose/ui/viewinterop/package-summary#AndroidView(kotlin.Function1,androidx.compose.ui.Modifier,kotlin.Function1)
+[androidviewbinding]: https://developer.android.com/reference/kotlin/androidx/compose/ui/viewinterop/package-summary#AndroidViewBinding(kotlin.Function3,androidx.compose.ui.Modifier,kotlin.Function1)
+[datepicker]: https://material.io/components/date-pickers
+[material design 2]: https://material.io/
+[material design 3]: https://m3.material.io/
+[compose navigation]: https://developer.android.com/jetpack/compose/navigation
+[navigation component]: https://developer.android.com/guide/navigation
+[compose destinations]: https://composedestinations.rafaelcosta.xyz/
+[parcelable]: https://developer.android.com/reference/android/os/Parcelable
+[parcelize]: https://developer.android.com/kotlin/parcelize
+[jay]: https://github.com/HLCaptain/jay-android/tree/feature-compose
