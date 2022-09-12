@@ -854,6 +854,6 @@ Ebből még az alábbi kedvezményeket adjuk:
 <img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
 </p>
 
-A tárgy egyik fiatal laborvezetője által átírásra került ez a labor Jetpack Compose-ra, vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. A labor feladat során kell dolgozni, viszont a célja a Jetpack Compose és modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
+A labor a tárgy egyik fiatal laborvezetője által átírásra került [`Jetpack Compose`](https://developer.android.com/jetpack/compose)-ra. A labor feladat célja a `Jetpack Compose` és a modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. Az útmutató vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. Elvégzése extra munkával jár. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
 
 Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
