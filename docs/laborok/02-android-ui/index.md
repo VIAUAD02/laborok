@@ -843,3 +843,17 @@ Ebből még az alábbi kedvezményeket adjuk:
 	Készíts egy **képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f9.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+### Extra feladat: Labor átírása Jetpack Compose-ra
+
+<p align="center">
+<img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
+<img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
+<img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
+<img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
+<img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
+</p>
+
+A labor a tárgy egyik fiatal laborvezetője által átírásra került [`Jetpack Compose`](https://developer.android.com/jetpack/compose)-ra. A labor feladat célja a `Jetpack Compose` és a modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. Az útmutató vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. Elvégzése extra munkával jár. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
+
+Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
