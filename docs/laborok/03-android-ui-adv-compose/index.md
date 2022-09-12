@@ -208,30 +208,15 @@ Előző laborban nagy szerepet kapott, viszont a [Material Design 3] az Android 
 kihagyhatatlan egy ilyen felsorolásból. Aki eddig nem használta, használja, sokkal szebb lesz az
 applikációtok, ami szerintem sokat számít!
 
-Ez ilyen
-
-<p align="center">
-<img alt="Material Design 2 fans vs Material Design 3 enjoyers" src="assets/Chad.png" width="40%"/>
-</p>
-
-dolog.
-
 Azért vannak hiányosságai [Material Design 3]-nak [Material Design 2]-vel szemben, de a Google
 az utóbbi időben elkezdett sok mindent átportolni [Compose Material 3]-ra és a régi UI elemeket
 Design 3-ra.
 
-## Jó, jut eszembe..
+## Végszó
 
-A fenti [Compose Material 3] fejezet adott egy kis inspirációt.
-
-<p align="center">
-<img alt="Interop 💯 😌" src="assets/Interop.png" width="49%"/>
-<img alt="Beismerem, lehet egy picit elszállt velem a 🐎" src="assets/Me.png" width="49%"/>
-<img alt="Nem hiába volt az egyik első Android neve az, hogy Eclair" src="assets/Eclair.png" width="49%"/>
-<img alt="Köszi, hogy végigszenvedtétek ezt velem, próbáltam a maxot kihozni az egészből, sokat
+Köszi, hogy végigszenvedtétek ezt velem, próbáltam a maxot kihozni az egészből, sokat
 számít nekem nagyon hogy itt voltatok, tudom, néha cringe lehettem, meg nem mentem bele a végletekig
-dolgokba, de próbáltam egy hasznos, egyedibb, viccesebb, emészthetőbb anyagot kihozni az egészből." src="assets/Kutya.png" width="49%"/>
-</p>
+dolgokba, de próbáltam egy hasznos, egyedibb, viccesebb, emészthetőbb anyagot kihozni az egészből.
 
 [Jetpack Compose]: https://developer.android.com/jetpack/compose
 
