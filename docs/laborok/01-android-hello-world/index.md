@@ -296,7 +296,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 3.  Indítsanak hívást és küldjenek SMS-t az emulátorra! Mit tapasztalnak?
 4.  Indítsanak hívást és küldjenek SMS-t az emulátorról! Mit tapasztalnak?
 5.  Tekintse át az Android Profiler nézet funkcióit a laborvezető segítségével!
-6.  Változtassa a készülék pozícióját az emulátor megfelelő paneljének segítségével!
+6.  Változtassa meg a készülék tartózkodási helyét az emulátor megfelelő paneljének segítségével!
 7.  Vizsgálja meg az elindított `HelloWorld` projekt nyitott szálait, memóriafoglalását!
 8.  Vizsgálja meg a Logcat panel tartalmát!
 9.  Vizsgálja meg az Analyze -> Inspect code eredményét!
