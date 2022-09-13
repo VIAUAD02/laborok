@@ -640,7 +640,7 @@ private fun getTypeString(transportType: Int): String {
 ```
 
 !!!info "when"
-	Egy másik nagy eltérése a Kotlin-nak a megszokott nyelvektől, hogy nincs benne `switch`. Helyette a Kotlin egy [`when`](https://kotlinlang.org/docs/reference/control-flow.html#when-expression) nevű szerkezetet használ, ami egyrészről egy kifejetés (látható, hogy az értéke vissza van adva), másrészről pedig sokkal sokoldalúbb feltételeket kínál, mint a hagyományos *case*.
+	Egy másik nagy eltérése a Kotlin-nak a megszokott nyelvektől, hogy nincs benne `switch`. Helyette a Kotlin egy [`when`](https://kotlinlang.org/docs/reference/control-flow.html#when-expression) nevű szerkezetet használ, ami egyrészről egy kifejezés (látható, hogy az értéke vissza van adva), másrészről pedig sokkal sokoldalúbb feltételeket kínál, mint a hagyományos *case*.
 
 Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a szövegének a függvény által visszaadott értéket (készítsük el a `ViewBindingot` is):
 
