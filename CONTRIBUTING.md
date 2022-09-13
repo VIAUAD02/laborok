@@ -35,14 +35,49 @@ Amennyiben a hozzájárulásod meg tudod valósítani indíts pull requestet
 
 Ezek a stílusok a tárgyban ajánlott editorokban könnyen beállíthatóak.
 
-<!--TODO ezt a könnyű beállítást dokumentálni for ease of use.-->
+### VSCode
+
+Ajánlott extensionök:
+
+- [`yzhang.markdown-all-in-one`](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one): MD szinkronizált live preview
+- [`DavidAnson.vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint): MD formázás, szabályok stb.
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): HTML+CSS formázó
+- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens): Kiemeli a hibákat hogy gyorsabben megtaláljuk őket
+
+Az editor beállításához nyisd meg a repo-t a gyökerében VSCode-al. A VSCode fel fogja ajánlani a két markdown extension-t.
+<!--TODO Képeket készíteni-->
+Ha ez megtörtént, nyiss meg egy markdown dokumentumot, lés használd a <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> shortcutot, a command palette megnyitásához.
+> A command palette a VSCode parancsaihoz nyújt hozzáférést, autocompleteeli a parancsokat és egy minimális GUI-t is biztosít.
+
+A command palette-be keressük meg a `Format Document With...` menüpontot és válasszuk ki.
+Ekkor egy almenübe dob az editor és kiválaszthatjuk hogy melyik formázóval formázzuk a MD dokumentumokat.
+Legalul lesz egy `Configure Default Formatter`, válasszuk ezt.
+Ezután válasszuk a `markdownlint` extensiont, és készen vagyunk.
+> **FONTOS!**
+> Ne válaszd ki a prettiert formatterként, mert eltöri a szövegbuborékokat.
+
+Ezen felül érdemes lehet bekapcsolni a mentés előtti formázást.
+
+A <kbd>CTRL</kbd>+<kbd>,</kbd> shortcuttal megnyitjuk a beállításokat, és rákeresünk arra, hogy format on save.
+Itt kipipáljuk a checkboxot és készen vagyunk.
+
+Ha ehhez nem lenne törelmed, itt a json amit a `settings.json`-ba illesztve beállítódik minden.
+
+```json
+{
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.formatOnSave": true
+  }
+}
+```
 
 ## Ajánlások
 
 ### Android
 
 - Az androidos Kotlin és XML fileokat illetve kódrészleteket Android Studioban formázva érdemes hozzáadni az anyaghoz
-- Ahhoz hogy biztosan formázva legyenek a fileok használd a `ctrl+alt+L` shortcutot <!-- TODO MacOS shortcut -->
+- Ahhoz hogy biztosan formázva legyenek a fileok használd a `ctrl+alt+L` shortcutot
 
 ### Markdown Fileok
 
