@@ -120,6 +120,10 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
+!!!warning "SDK verzió"
+    Az Android a 31-es SDK verzió óta támogat egy [splash screen API](https://developer.android.com/develop/ui/views/launch/splash-screen)-t,
+    így a labron bemutatott megoldás az alapértelmezett 33-as SDK verziójú emulátorokon nem fog működni.
+
 Most már futtathatjuk az alkalmazást, és betöltés közben látnunk kell a berakott képet. A splash képernyő általában akkor hasznos, ha az alkalmazás inicializálása sokáig tart. Mivel a mostani alkalmazásunk még nagyon gyorsan indul el, szimulálhatunk egy kis töltési időt az alábbi módon:
 
 ```kotlin
