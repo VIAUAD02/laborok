@@ -1491,7 +1491,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">when</p>
-<p>Egy másik nagy eltérése a Kotlin-nak a megszokott nyelvektől, hogy nincs benne <code>switch</code>. Helyette a Kotlin egy <a href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"><code>when</code></a> nevű szerkezetet használ, ami egyrészről egy kifejetés (látható, hogy az értéke vissza van adva), másrészről pedig sokkal sokoldalúbb feltételeket kínál, mint a hagyományos <em>case</em>.</p>
+<p>Egy másik nagy eltérése a Kotlin-nak a megszokott nyelvektől, hogy nincs benne <code>switch</code>. Helyette a Kotlin egy <a href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"><code>when</code></a> nevű szerkezetet használ, ami egyrészről egy kifejezés (látható, hogy az értéke vissza van adva), másrészről pedig sokkal sokoldalúbb feltételeket kínál, mint a hagyományos <em>case</em>.</p>
 </div>
 <p>Végül pedig az <code>onCreate</code> függvénybe visszatérve meg kell keresnünk a megfelelő <code>TextView</code>-t, és beállítani a szövegének a függvény által visszaadott értéket (készítsük el a <code>ViewBindingot</code> is):</p>
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">tvTicketType</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">getTypeString</span><span class="p">(</span><span class="n">transportType</span><span class="p">)</span>
