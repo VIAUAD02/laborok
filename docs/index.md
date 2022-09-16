@@ -7,6 +7,8 @@ A laborok sorrendjét és a beadások határidejét Moodle-ben találod.
 !!! note "Javítás az anyagban"
     A tárgy hallgatóinak az anyagban történő javításért, kiegészítésért plusz pontot adunk! Ha hibát találsz, vagy kiegészítenéd/pontosítanád a feladatleírásokat, nyiss egy _pull request_-et! A repository linkjét a jobb felső sarokban találod.
 
+    A javítás menetéről és formájáról bővebben a ["Hozzájárulás az anyaghoz"](tudnivalok/github/contributing.md) dokumentumban olvashatsz bővebben.
+
 !!! quote "Felhasználási feltételek"
     Az itt található oktatási segédanyagok a BMEVIAUAC00 tárgy hallgatóinak készültek. Az anyagok oly módú felhasználása, amely a tárgy oktatásához nem szorosan kapcsolódik, csak a szerző(k) és a forrás megjelölésével történhet.
 
