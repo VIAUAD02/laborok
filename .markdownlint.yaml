@@ -11,9 +11,7 @@ MD004:
 
 MD033:
   allowed_elements:
-    - "img"
-    - "div"
-    - "kbd"
+    - "figure"
 
 MD046: false
 
