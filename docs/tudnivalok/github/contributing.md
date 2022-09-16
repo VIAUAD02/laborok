@@ -90,7 +90,7 @@ Az editor beállításához nyisd meg a repo-t a gyökerében VSCode-al. A VSCod
   ![VSCode recommended extensions](assets/vscode-recommended.png)
 </figure>
 
-Ha ez megtörtént, nyiss meg egy markdown dokumentumot, és használd a <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> shortcutot, a command palette megnyitásához.
+Ha ez megtörtént, nyiss meg egy markdown dokumentumot, és használd a ++ctrl+shift+p++ shortcutot, a command palette megnyitásához.
 
 !!! tip
 
