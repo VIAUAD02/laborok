@@ -27,7 +27,7 @@ theme:
     - navigation.tabs
     - navigation.instant
     - navigation.top
-    - search.suggest   
+    - search.suggest
   logo: logo-bme-aut.png
   favicon: favicon.ico
 
@@ -57,6 +57,8 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tabbed
   - pymdownx.tilde
+  - md_in_html
+  - pymdownx.keys
 
 plugins:
   - search:
@@ -68,6 +70,7 @@ nav:
       - tudnivalok/github/GitHub.md
       - tudnivalok/github/GitHub-Actions.md
       - tudnivalok/github/GitHub-credentials.md
+      - tudnivalok/github/contributing.md
   - "Mobil Laborok":
       - laborok/01-android-hello-world/index.md
       - laborok/02-android-ui/index.md
