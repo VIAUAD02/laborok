@@ -186,7 +186,7 @@ Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi 
 
 A laborvezető segítségével készítsenek egy egyszerű Hello World alkalmazást, a varázsló nézeten az *Include Kotlin support* legyen bepipálva! 
 
-!!! warning "FILE PATH"
+!!!warning "FILE PATH"
 	A projekt a repository-ban lévő HelloWorld könyvtárba kerüljön!
 
 ### Android Studio

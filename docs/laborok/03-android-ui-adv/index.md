@@ -55,6 +55,9 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 - Minumum API level: 21
 - Finish, és várjuk meg amíg a Studio mindent legenerál. (Ez első alkalomkor valamivel hosszabb időt vesz igénybe.)
 
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
 ## Menü elkészítése
 
 Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent kis is tudunk választani:
