@@ -295,6 +295,7 @@ fun LoginScreen() {
                 keyboardType = KeyboardType.Password
             ),
             singleLine = true,
+            visualTransformation = PasswordVisualTransformation(),
             isError = isPasswordWrong
         )
 
