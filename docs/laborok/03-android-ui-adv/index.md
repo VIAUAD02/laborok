@@ -418,14 +418,3 @@ Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték 
 ### Bonus
 
 Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `TextInputLayout`-tal használjuk. (https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)
-
-### Extra feladat: Labor átírása Jetpack Compose-ra
-
-<p align="center">
-<img alt="MainScreen layout" src="assets/MainActivityLayout.png" width="40%"/>
-<img alt="SnackBar shows correctly" src="assets/SnackBarShowsCorrectly.png" width="40%"/>
-</p>
-
-A labor a tárgy egyik fiatal laborvezetője által átírásra került [`Jetpack Compose`](https://developer.android.com/jetpack/compose)-ra. A labor feladat célja a `Jetpack Compose` és a modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. Az útmutató vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. Elvégzése extra munkával jár. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
-
-Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂
