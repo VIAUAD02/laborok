@@ -60,7 +60,7 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
 ## Menü elkészítése
 
-Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent kis is tudunk választani:
+Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
 
 ![](assets/menu.png)
 
