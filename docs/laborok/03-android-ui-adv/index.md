@@ -83,19 +83,19 @@ Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a `MainActiv
 
 ```kotlin
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return super.onCreateOptionsMenu(menu)
+}
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_delete_all -> {
-                // TODO: itt fogjuk kezelni a kattintást
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return when (item.itemId) {
+        R.id.action_delete_all -> {
+            // TODO: itt fogjuk kezelni a kattintást
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
+}
 ```
 
 ## Beviteli rész megvalósítása (1 pont)
@@ -394,10 +394,10 @@ Utóbbi problémánkra pedig nagyon egyszerű a megoldás, a listánkat tartalma
 
 ### Snack bar (1 pont)
 
-A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a [SnackBar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést SnackBarra!
+A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a [Snackbar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést Snackbarra!
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **a SnackBar használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik **a Snackbar használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
