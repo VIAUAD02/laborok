@@ -60,7 +60,7 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
 ## Menü elkészítése
 
-Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent kis is tudunk választani:
+Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
 
 ![](assets/menu.png)
 
@@ -172,7 +172,7 @@ Az első (nem gyökér) `LinearLayout`-ba vegyük fel a két `EditText`-et, adju
 </LinearLayout>
 ```
 
-A középső, gombokat tartalmazó `LinearLayout`-ban a gombokat jobbra szeretnénk igazítani, ezért a `LinearLayout`*gravity*-jét *end* értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A `LinearLayout`-ba felvesszük a `ToggleButton`-t, a sima `Button`-t és *id*-t adunk nekik.  A mentés gombon beállítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!
+A középső, gombokat tartalmazó `LinearLayout`-ban a gombokat jobbra szeretnénk igazítani, ezért a `LinearLayout`*gravity*-jét *end* értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A `LinearLayout`-ba felvesszük a `ToggleButton`-t, a sima `Button`-t és *id*-t adunk nekik.  A mentés gombon állítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!
 
 ```xml
 <LinearLayout
