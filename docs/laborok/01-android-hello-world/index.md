@@ -299,7 +299,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 6.  Változtassa meg a készülék tartózkodási helyét az emulátor megfelelő paneljének segítségével!
 7.  Vizsgálja meg az elindított `HelloWorld` projekt nyitott szálait, memóriafoglalását!
 8.  Vizsgálja meg a Logcat panel tartalmát!
-9.  Vizsgálja meg az Analyze -> Inspect code eredményét!
+9.  Vizsgálja meg az Code -> Inspect code eredményét!
 10.  Keresse ki a létrehozott `HelloWorld` projekt mappáját és a build könyvtáron belül vizsgálja meg az `.apk` állomány tartalmát! Hol található a lefordított kód? 
 
 !!! example "BEADANDÓ"
