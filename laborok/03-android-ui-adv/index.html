@@ -1004,7 +1004,7 @@
 <p>A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
 <h2 id="menu-elkeszitese">Menü elkészítése<a class="headerlink" href="#menu-elkeszitese" title="Permanent link">&para;</a></h2>
-<p>Első lépésben készítsük el a menüt. Bal oldalon a <code>res</code> könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új <code>Android Resource File</code> elemet. Itt a varázslóban mindent kis is tudunk választani:</p>
+<p>Első lépésben készítsük el a menüt. Bal oldalon a <code>res</code> könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új <code>Android Resource File</code> elemet. Itt a varázslóban mindent ki is tudunk választani:</p>
 <p><img alt="" src="assets/menu.png" /></p>
 <p>A <code>menu_main</code> tartalma legyen az alábbi:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -1097,7 +1097,7 @@
         <span class="na">android:singleLine=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/LinearLayout&gt;</span>
 </code></pre></div>
-<p>A középső, gombokat tartalmazó <code>LinearLayout</code>-ban a gombokat jobbra szeretnénk igazítani, ezért a <code>LinearLayout</code><em>gravity</em>-jét <em>end</em> értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A <code>LinearLayout</code>-ba felvesszük a <code>ToggleButton</code>-t, a sima <code>Button</code>-t és <em>id</em>-t adunk nekik.  A mentés gombon beállítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!</p>
+<p>A középső, gombokat tartalmazó <code>LinearLayout</code>-ban a gombokat jobbra szeretnénk igazítani, ezért a <code>LinearLayout</code><em>gravity</em>-jét <em>end</em> értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A <code>LinearLayout</code>-ba felvesszük a <code>ToggleButton</code>-t, a sima <code>Button</code>-t és <em>id</em>-t adunk nekik.  A mentés gombon állítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;LinearLayout</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
     <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
