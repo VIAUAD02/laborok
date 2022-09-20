@@ -603,7 +603,7 @@ class ListActivity : AppCompatActivity() {
 Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a `DetailsActivity`-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a `ViewBinding`beállítása után:
 
 ```kotlin
-lateinit var binding: ActivityListBinding
+private lateinit var binding: ActivityListBinding
 
 ...
 
