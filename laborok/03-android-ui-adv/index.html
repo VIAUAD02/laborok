@@ -1019,19 +1019,19 @@
 </div>
 <p>Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a <code>MainActivity</code>-ből fel kell "fújjuk" azt, és le kell kezelnünk a kattintásokat.Ezt az <code>onCreateOptionsMenu</code> és az <code>onOptionsItemSelected</code> függvényekkel tudjuk megtenni:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="n">Menu</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
-        <span class="n">menuInflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_main</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="na">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
-    <span class="p">}</span>
+    <span class="n">menuInflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_main</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="na">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="p">}</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_delete_all</span> <span class="o">-&gt;</span> <span class="p">{</span>
-                <span class="c1">// TODO: itt fogjuk kezelni a kattintást</span>
-                <span class="kc">true</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">MenuItem</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_delete_all</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="c1">// TODO: itt fogjuk kezelni a kattintást</span>
+            <span class="kc">true</span>
         <span class="p">}</span>
+        <span class="k">else</span> <span class="o">-&gt;</span> <span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
     <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <h2 id="beviteli-resz-megvalositasa-1-pont">Beviteli rész megvalósítása (1 pont)<a class="headerlink" href="#beviteli-resz-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>Az alkalmazás működéséhez szükség lesz két <code>EditText</code>-re, amelyekben a felhasználó a megnevezést és az összeget adhatja meg. Szükséges továbbá egy kapcsoló működésű gomb, például egy <code>ToggleButton</code>, amellyel a pénzforgalom iránya állítható, illetve kell egy mentés gomb, amelyet egy egyszerű <code>Button</code> fog megvalósítani.</p>
@@ -1269,10 +1269,10 @@ Az ikont a <code>ToggleButton</code> állapota alapján kell kitöltenünk. Az i
 </div>
 <h2 id="onallo-feladatok">Önálló feladatok<a class="headerlink" href="#onallo-feladatok" title="Permanent link">&para;</a></h2>
 <h3 id="snack-bar-1-pont">Snack bar (1 pont)<a class="headerlink" href="#snack-bar-1-pont" title="Permanent link">&para;</a></h3>
-<p>A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a <a href="https://material.io/develop/android/components/snackbar/">SnackBar</a>. Cseréljük le a Toast figyelmeztetést SnackBarra!</p>
+<p>A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a <a href="https://material.io/develop/android/components/snackbar/">Snackbar</a>. Cseréljük le a Toast figyelmeztetést Snackbarra!</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
-<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik <strong>a SnackBar használata</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), <strong>a kódja</strong>, valamint a <strong>neptun kódoddal a termék neveként</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl.</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik <strong>a Snackbar használata</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), <strong>a kódja</strong>, valamint a <strong>neptun kódoddal a termék neveként</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl.</p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h3 id="osszegzo-mezo-1-pont">Összegző mező (1 pont)<a class="headerlink" href="#osszegzo-mezo-1-pont" title="Permanent link">&para;</a></h3>
