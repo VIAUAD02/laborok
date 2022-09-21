@@ -561,37 +561,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fomenu-kepernyo" class="md-nav__link">
-    Főmenü képernyő
+  <a href="#fomenu-kepernyo-1-pont" class="md-nav__link">
+    Főmenü képernyő (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profil-kepernyo-elkeszitese" class="md-nav__link">
-    Profil képernyő elkészítése
+  <a href="#profil-kepernyo-elkeszitese-1-pont" class="md-nav__link">
+    Profil képernyő elkészítése (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#szabadsag-kepernyo-elkeszitese" class="md-nav__link">
-    Szabadság képernyő elkészítése
+  <a href="#szabadsag-kepernyo-elkeszitese-1-pont" class="md-nav__link">
+    Szabadság képernyő elkészítése (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#datumvalaszto-megvalositasa" class="md-nav__link">
-    Dátumválasztó megvalósítása
+  <a href="#datumvalaszto-megvalositasa-1-pont" class="md-nav__link">
+    Dátumválasztó megvalósítása (1 pont)
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Dátumválasztó megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel" class="md-nav__link">
     Fragmentek közötti kommunikáció a Navigation Component segítségével
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -880,37 +886,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fomenu-kepernyo" class="md-nav__link">
-    Főmenü képernyő
+  <a href="#fomenu-kepernyo-1-pont" class="md-nav__link">
+    Főmenü képernyő (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profil-kepernyo-elkeszitese" class="md-nav__link">
-    Profil képernyő elkészítése
+  <a href="#profil-kepernyo-elkeszitese-1-pont" class="md-nav__link">
+    Profil képernyő elkészítése (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#szabadsag-kepernyo-elkeszitese" class="md-nav__link">
-    Szabadság képernyő elkészítése
+  <a href="#szabadsag-kepernyo-elkeszitese-1-pont" class="md-nav__link">
+    Szabadság képernyő elkészítése (1 pont)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#datumvalaszto-megvalositasa" class="md-nav__link">
-    Dátumválasztó megvalósítása
+  <a href="#datumvalaszto-megvalositasa-1-pont" class="md-nav__link">
+    Dátumválasztó megvalósítása (1 pont)
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Dátumválasztó megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel" class="md-nav__link">
     Fragmentek közötti kommunikáció a Navigation Component segítségével
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1007,6 +1019,10 @@
 <p>Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen <code>WorkplaceApp</code>, a Package name pedig <code>hu.bme.aut.workplaceapp</code>.</p>
 <p>Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.</p>
 <p>Előzetesen töltsük le az alkalmazás képeit tartalmazó <a href="downloads/res.zip">tömörített fájlt</a> és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva <code>Ctrl+V</code>).</p>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>A projekt a repository-ban lévő PublicTransport könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
+</div>
 <h2 id="kepernyok-kezelese-android-alkalmazasokban">Képernyők kezelése Android alkalmazásokban<a class="headerlink" href="#kepernyok-kezelese-android-alkalmazasokban" title="Permanent link">&para;</a></h2>
 <p>A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:</p>
 <ul>
@@ -1064,7 +1080,9 @@ A most hozzáadott <code>FragmentContainerView</code> lesz az a nézet, melyben 
 <p>Bár a Navigation Component támogatja, hogy több különböző navigáció gráfot is létrehozzunk az alkalmazásunkban, a legtöbb alkalmazásnál elegendő egy darab.</p>
 </div>
 <p>Próbáljuk meg futtatni az alkalmazást! Az indulás után az alkalmazásunk crashelni fog, mivel még nem vettünk fel képernyőket a navigáció gráfban, az Activity semmit se tud megjeleníteni, hibára fut.</p>
-<h2 id="fomenu-kepernyo">Főmenü képernyő<a class="headerlink" href="#fomenu-kepernyo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>A képernyőkép szükséges feltétele a pontszám megszerzésének.
+</code></pre></div>
+<h2 id="fomenu-kepernyo-1-pont">Főmenü képernyő (1 pont)<a class="headerlink" href="#fomenu-kepernyo-1-pont" title="Permanent link">&para;</a></h2>
 <p>Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.</p>
 <p>Nyissuk meg a <code>nav_graph.xml</code> fájlt, és kattintsunk a <em>New Destination</em> gombra (bal felső gomb), majd a <em>Create new destination</em> gombra:</p>
 <p align="center"> 
@@ -1201,7 +1219,11 @@ A gombon a háttér és a felirat elhelyezéséhez a korábbi laboron már láto
 </code></pre></div>
 A <code>findNavController()</code> függvénnyel érhetjük el a <strong>NavController</strong> osztály aktuális példányát, mellyel a navigációt tudjuk megvalósítani. A navigációhoz használt akciókhoz automatikusan generálódik egy azonosító, de ezeket a szerkesztőben módosíthatjuk, ha szeretnénk.</p>
 <p>Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Fragment-kbe.</p>
-<h2 id="profil-kepernyo-elkeszitese">Profil képernyő elkészítése<a class="headerlink" href="#profil-kepernyo-elkeszitese" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>elkészült főoldal kép</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
+</div>
+<h2 id="profil-kepernyo-elkeszitese-1-pont">Profil képernyő elkészítése (1 pont)<a class="headerlink" href="#profil-kepernyo-elkeszitese-1-pont" title="Permanent link">&para;</a></h2>
 <p>A Profil képernyő két lapozható oldalból fog állni, ezen a név, email, lakcím (első oldal), illetve a személyigazolvány szám, TAJ szám, adószám és törzsszám (második oldal) fognak megjelenni.</p>
 <p>Hozzunk létre egy <code>data</code> package-et, azon belül egy <code>Person</code> adatosztályt, ebben fogjuk tárolni az oldalakon megjelenő adatokat.
 Az adat típusú osztályok esetében a Kotlin automatikusan deklarál gyakran használt függvényeket, mint például az <code>equals()</code> és <code>hashCode()</code> függvényeket különböző objektumok összehasonlításához, illetve egy <code>toString()</code> függvényt, mely visszaadja a tárolt változók értékét.</p>
@@ -1458,7 +1480,11 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
 <span class="p">}</span>
 </code></pre></div></p>
 <p>Próbáljuk ki az alkalmazást. A Profile gombra kattinva megjelennek a felhasználó adatai és lehet lapozni is.</p>
-<h2 id="szabadsag-kepernyo-elkeszitese">Szabadság képernyő elkészítése<a class="headerlink" href="#szabadsag-kepernyo-elkeszitese" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>profil oldal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), melyben az egyik mező helyére a <strong>neptun kódod</strong> van kírva, illetve a <strong>ProfilePageAdapter</strong> kódrészlete. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
+</div>
+<h2 id="szabadsag-kepernyo-elkeszitese-1-pont">Szabadság képernyő elkészítése (1 pont)<a class="headerlink" href="#szabadsag-kepernyo-elkeszitese-1-pont" title="Permanent link">&para;</a></h2>
 <p>A Szabadság képernyőn egy kördiagramot fogunk megjeleníteni, ami mutatja, hogy mennyi szabadságot vettünk már ki és mennyi maradt. Ezen kívül egy gomb segítségével új szabadnap kivételét is megengedjük a felhasználónak.</p>
 <p>Először egészítsük ki a DataManager osztályunkat, hogy kezelje a szabadsághoz kapcsolódó adatokat is:
 <div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="kd">val</span> <span class="nv">HOLIDAY_MAX_VALUE</span> <span class="o">=</span> <span class="m">20</span>
@@ -1546,7 +1572,11 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
 <span class="p">}</span>
 </code></pre></div></p>
 <p>Próbáljuk ki az alkalmazást! A PieChart most már megjelenik, de a gomb még nem kell, hogy működjön.</p>
-<h2 id="datumvalaszto-megvalositasa">Dátumválasztó megvalósítása<a class="headerlink" href="#datumvalaszto-megvalositasa" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>elkészült szabadság képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
+</div>
+<h2 id="datumvalaszto-megvalositasa-1-pont">Dátumválasztó megvalósítása (1 pont)<a class="headerlink" href="#datumvalaszto-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>A következő lépésben a Take Holiday gombra megjelenő dátumválasztó működését fogjuk megvalósítani. A gomb lenyomására megjelenik egy dátumválasztó és a dátum kiválasztása után a szabad napok eggyel csökkennek.</p>
 <p>Hozzunk létre egy DatePickerDialogFragment osztályt:
 <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DatePickerDialogFragment</span> <span class="p">:</span> <span class="n">DialogFragment</span><span class="p">(),</span> <span class="n">DatePickerDialog</span><span class="p">.</span><span class="na">OnDateSetListener</span><span class="p">{</span>
@@ -1587,7 +1617,7 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
     <span class="n">loadHolidays</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h2 id="fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel">Fragmentek közötti kommunikáció a Navigation Component segítségével<a class="headerlink" href="#fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel" title="Permanent link">&para;</a></h2>
+<h3 id="fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel">Fragmentek közötti kommunikáció a Navigation Component segítségével<a class="headerlink" href="#fragmentek-kozotti-kommunikacio-a-navigation-component-segitsegevel" title="Permanent link">&para;</a></h3>
 <p>Ahogy láthattuk az eddigi feladatok megoldásaiból, a Navigation Component a használata során maga kezeli a Fragmenteket, ő felelős a példányosításért. Ennek köszönhetően ha kommunikálni akarunk a képernyők között, akkor azt is a Navigation Component segítségével tudjuk megtenni.
 Kommunikáció során alapvetően két irányről beszélhetünk:</p>
 <ul>
@@ -1654,17 +1684,37 @@ Hozzunk létre a egy új osztályt a  <code>DatePickerDialogFragment</code>-en b
 </code></pre></div>
 Itt az <code>observe()</code> metódusnak átadott callback metódus (a kapcsos zárójel közötti rész) minden alkalommal meg fog hívodni, amikor valamilyen változás történik az eredményben.</p>
 <p>Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön, a napok számának is csökkennie kell a diagramon.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>dátumválasztó kép</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f4a.png néven töltsd föl. <strong>Emellett</strong>  készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>dátumválasztás eredménye a szabadság képernyőn</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>a kommunikációhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f4b.png néven töltsd föl.</p>
+</div>
 <h2 id="onallo-feladat">Önálló feladat<a class="headerlink" href="#onallo-feladat" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi.</li>
-<li>Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva.</li>
+<li>Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)</li>
+<li>Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)</li>
 </ul>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>dátumválasztó oldal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>későbbi napok tiltásához tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f5a.png néven töltsd föl.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (0.5 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>letiltott gomb</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f5b.png néven töltsd föl.</p>
+</div>
 <h2 id="imsc-feladat">iMSc feladat<a class="headerlink" href="#imsc-feladat" title="Permanent link">&para;</a></h2>
 <h3 id="fizetes-menupont-megvalositasa">Fizetés menüpont megvalósítása<a class="headerlink" href="#fizetes-menupont-megvalositasa" title="Permanent link">&para;</a></h3>
 <p>A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewPager-rel és 2 Fragment-tel (A Profile menüponthoz hasonlóan):
 - <code>PaymentTaxesFragment</code>: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
 - <code>MonthlyPaymentFragment</code>: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni</p>
 <p><a href="https://github.com/PhilJay/MPAndroidChart/wiki">Segítség</a></p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>aktuális fizetés és nettó jövedelem a levont adókkal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f6.png néven töltsd föl.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>12 oszlop a havi fizetési adatokkal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f7.png néven töltsd föl.</p>
+</div>
                 
               
               
