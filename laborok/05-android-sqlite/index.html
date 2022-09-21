@@ -1156,6 +1156,10 @@
 <p>Hozzunk létre egy új Android projektet, <em>Add no Activity</em> opcióval. Az <em>Application name</em> mezőben adjuk meg a <code>Simple Drawer</code> nevet. A <em>Package</em> név legyen <code>hu.bme.aut.android.simpledrawer</code>. Nyelvnek a Kotlin legyen kiválasztva, a minimum SDK szintje legyen API 21. Ezután nyomjunk a <strong>Finish</strong> gombra.</p>
 <p>Adjunk a projekthez egy új <em>Empty activity</em> osztályt. <em>Activity name</em>-nek adjuk meg, hogy <code>DrawingActivity</code>, és hagyjuk bepipálva azt, hogy generáljon <em>layout</em> fájlt, valamint pipáljuk be a <em>Launcher Activity</em> opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a <strong>Finish</strong>-re.</p>
 <p>Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.</p>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>A projekt a repository-ban lévő SimpleDrawer könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
+</div>
 <h3 id="a-resource-ok-hozzaadasa">A resource-ok hozzáadása<a class="headerlink" href="#a-resource-ok-hozzaadasa" title="Permanent link">&para;</a></h3>
 <p>Először töltsük le <a href="downloads/res.zip">az alkalmazás képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha <em>Android Studio</em>-ban bal fent a szokásos <em>Android</em> nézetről a <em>Project</em> nézetre váltunk erre az időre).</p>
 <p>Az alábbi, alkalmazáshoz szükséges <em>string resource</em>-okat másoljuk be a <code>res/values/strings.xml</code> fájlba:</p>
