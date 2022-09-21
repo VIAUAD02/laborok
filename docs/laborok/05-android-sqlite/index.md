@@ -42,6 +42,9 @@ Adjunk a projekthez egy új _Empty activity_ osztályt. _Activity name_-nek adju
 
 Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
 
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő SimpleDrawer könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
 ### A resource-ok hozzáadása
 
 Először töltsük le [az alkalmazás képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha _Android Studio_-ban bal fent a szokásos _Android_ nézetről a _Project_ nézetre váltunk erre az időre).
