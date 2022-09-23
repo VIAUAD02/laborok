@@ -266,7 +266,7 @@ A `salary_row.xml` végleges kódja:
 	A „tools” névtérnek csak a preview-ra van hatása, tervezés közben beírhatunk oda bármit a lefordított alkalmazásban sehol nem fog látszani.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **egy sor layout-ja** (*previewként*), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik **egy sor layout-ja** (*previewként*), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
