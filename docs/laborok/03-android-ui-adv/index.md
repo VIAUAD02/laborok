@@ -52,7 +52,7 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 - Application name: AndroidWallet
 - package name: hu.bme.aut.android.androidwallet
 - a mentési hely a kicheckoutolt repository-n belül az AndroidWallet mappa
-- Minumum API level: 21
+- Minimum API level: 21
 - Finish, és várjuk meg amíg a Studio mindent legenerál. (Ez első alkalomkor valamivel hosszabb időt vesz igénybe.)
 
 ## Menü elkészítése
@@ -76,7 +76,7 @@ Ne felejtsük el kiszervezni a string erőforrást! Ezt egyszerűen megtehetjük
 !!!note ""
 	Láthatjuk, hogy Android platformon a menüt is egyszerű XML erőforrásból tudjuk felvenni. A fenti esetben egyetlen elemet tettünk a menübe, amelyet majd az `action_delete_all` id-val tudunk hivatkozni.
 
-Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a `MainActivity`-ből fel kell "fújjuk" azt, és le kell kezelnünk a kattintásokat.Ezt az `onCreateOptionsMenu` és az `onOptionsItemSelected` függvényekkel tudjuk megtenni:
+Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a `MainActivity`-ből fel kell "fújjuk" azt, és le kell kezelnünk a kattintásokat. Ezt az `onCreateOptionsMenu` és az `onOptionsItemSelected` függvényekkel tudjuk megtenni:
 
 ```kotlin
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -101,7 +101,7 @@ Az alkalmazás működéséhez szükség lesz két `EditText`-re, amelyekben a f
 
 Egy XML fájlt megnyitva két lehetőségünk van: vagy a beépített grafikus szerkesztőn drag and drop módszerrel összerakjuk a felületet, vagy kézzel XML-ben írjuk meg a komponenseket és a tulajdonságaikat. Előbbi a tanulási fázisban nagyon hasznos, mert könnyen tudunk puskázni, viszont később sok fejfájást okozhat, ezért az XML leírás plusz előnézettel fogjuk megvalósítani a feladatot.
 
-Mivel a feladatunk lineárisan összerakható elemekből épül fel, ezért érdemes egy ilyen magvalósításban gondolkodnunk. Nyissuk meg a `res/layout/activity_main.xml` fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot.) Módosítsuk az előre legenerált `ConstraintLayoutot` `LinearLayoutra`, és adjuk hozzá az `android:orientation="vertical"` attribútomot.
+Mivel a feladatunk lineárisan összerakható elemekből épül fel, ezért érdemes egy ilyen magvalósításban gondolkodnunk. Nyissuk meg a `res/layout/activity_main.xml` fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot.) Módosítsuk az előre legenerált `ConstraintLayoutot` `LinearLayoutra`, és adjuk hozzá az `android:orientation="vertical"` attribútumot.
 
 Szükségünk lesz másik három LinearLayout-ra:
 
@@ -218,7 +218,7 @@ Egy-egy ilyen elem felhasználásakor példányosítanunk kell a felületi eleme
 
 Rakjuk össze először a felületi erőforrást. A listaelemünk felépítése, az előzőekhez hasonlóan, kivitelezhető teljesen lineáris elrendezéssel, így ismét a `LinearLayout`-ot használjuk. Adjunk hozzá a projektünkhöz a `salary_row.xml`-t. (res/layout mappán jobb klikk, New -> Layout Resource File)
 
-Egy horizontális `LinearLayout`-tal kezdünk, mivel az *icon* és a feliratok egymás mellett helyezkednek el. Mivel ez csak egy listaelem lesz, ezért `wrap_content`-re kell vennünk a szélességét magasságát. Adjunk neki *id*-t is. Ebbe a `LinearLayout`-ba bal oldalra kerül az `ImageView`. A méretét állítsuk be 40x40-re, illetve adjunk neki *id*-t is. Az `ImageView` mellett egy függőleges `LinearLayout` kövezkezik, amiben egymás alatt helyezkedik el a tétel neve és összege. A `LinearLayout` szélessége legyen `match_parent`, magassága `wrap_content`, a `TextView`-knak pedig mindenképpen adjunk *id*-t. 
+Egy horizontális `LinearLayout`-tal kezdünk, mivel az *icon* és a feliratok egymás mellett helyezkednek el. Mivel ez csak egy listaelem lesz, ezért `wrap_content`-re kell vennünk a szélességét magasságát. Adjunk neki *id*-t is. Ebbe a `LinearLayout`-ba bal oldalra kerül az `ImageView`. A méretét állítsuk be 40x40-re, illetve adjunk neki *id*-t is. Az `ImageView` mellett egy függőleges `LinearLayout` következik, amiben egymás alatt helyezkedik el a tétel neve és összege. A `LinearLayout` szélessége legyen `match_parent`, magassága `wrap_content`, a `TextView`-knak pedig mindenképpen adjunk *id*-t. 
 
 Mivel igényes kinézetet szeretnénk, a megfelelő *marginokat* illetve *paddingeket* adjuk hozzá a különböző elemeinkhez: a gyökérre 4dp *padding,* a beágyazottra `marginStart` attribútum *16dp* értékkel, illetve `layout_gravity` paramétert `center_vertical`-ra állítjuk, így biztosítva a gyerekelemek középre rendezését.
 
@@ -266,7 +266,7 @@ A `salary_row.xml` végleges kódja:
 	A „tools” névtérnek csak a preview-ra van hatása, tervezés közben beírhatunk oda bármit a lefordított alkalmazásban sehol nem fog látszani.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **egy sor layout-ja** (*previewként*), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik **egy sor layout-ja** (*preview-ként*), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
@@ -348,9 +348,9 @@ Most, hogy megvagyunk a példányosítással és az adatok feltöltésével, hoz
 binding.listOfRows.addView(rowBinding.root)
 ```
 
-És ezen a ponton akár futtathatjuk is az alkalmazásunkut. Próbáljuk is ki! 
+És ezen a ponton akár futtathatjuk is az alkalmazásunkat. Próbáljuk is ki! 
 
-Ezen a ponton már majdnem készen is vagyunk: hozzá tudunk adni adni elemeket a listánkhoz. Azonban két helyen még hiányos az alkalmazásunk. Nem lehet törölni a teljes listát, illetve ha elég sok elemet veszünk fel észrevesszük, hogy nem férnek ki, viszont görgetni nem tudunk. Az előbbi probléma megoldását már előkészítettük, erre fog szolgálni a „Delete All”-ra átalakított menüpontunk, amely megjelenni már helyesen jelenik de még nem csinál semmit. Az eseménykezelő vázát már elkészítettük az `onOptionsItemSelected()` metódusban, most ezt kell kiegészítenünk az alábbira:
+Ezen a ponton már majdnem készen is vagyunk: hozzá tudunk adni elemeket a listánkhoz. Azonban két helyen még hiányos az alkalmazásunk. Nem lehet törölni a teljes listát, illetve ha elég sok elemet veszünk fel észrevesszük, hogy nem férnek ki, viszont görgetni nem tudunk. Az előbbi probléma megoldását már előkészítettük, erre fog szolgálni a „Delete All”-ra átalakított menüpontunk, amely megjelenni már helyesen jelenik de még nem csinál semmit. Az eseménykezelő vázát már elkészítettük az `onOptionsItemSelected()` metódusban, most ezt kell kiegészítenünk az alábbira:
 
 ```kotlin
 override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -407,7 +407,7 @@ Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték 
 	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (-0.5 pont)
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **az összegző mező használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódod valameilyik termék neveként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik **az összegző mező használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódod valamelyik termék neveként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
