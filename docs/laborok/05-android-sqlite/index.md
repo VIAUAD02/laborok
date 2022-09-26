@@ -10,6 +10,9 @@ A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az a
 <img src="./assets/style_selector.png" width="160">
 </p>
 
+!!!info "Android Room"
+    A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.
+
 ## Feltöltés
 
 Az elkészült megoldást `.zip` formátumban (File -> Export to zip file...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
@@ -116,7 +119,11 @@ Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawi
 </RelativeLayout>
 ```
 
-### 2. feladat: Stílusválasztó (2 pont)
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **elkészült oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+
+### 2. feladat: Stílusválasztó (1 pont)
 
 Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `Toolbar`-t, hozzuk létre a menüt, amivel be lehet állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven a `res` mappában, és _Resource type_-nak is válasszuk azt, hogy `menu`. Ezen belül hozzunk létre egy új _Menu resource file_-t `menu_toolbar.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
 
@@ -205,7 +212,10 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 }
 ```
 
-### 3. feladat: A `DrawingView` osztály implementálása
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **elkészült menü kinyitva** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+
+### 3. feladat: A `DrawingView` osztály implementálása (1 pont)
 
 #### A modellek létrehozása
 
@@ -364,6 +374,10 @@ private fun drawLine(canvas: Canvas, startPoint: Point?, endPoint: Point?) {
     )
 }
 ```
+
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült kirajzolás** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
 
 ### 4. feladat: Perzisztencia megvalósítása _SQLite_ adatbázis segítségével (1 pont)
 
@@ -662,12 +676,28 @@ private fun onExit() {
 }
 ```
 
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **kilépő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a perzisztens mentéshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
+
 ### 5. (önálló) feladat: A vászon törlése (1 pont)
 
 Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!
+
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **törlés gomb** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlést elvégző kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl. 
 
 ## Kiegészítő iMSc feladat (2 iMSc pont)
 
 Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a rajzolás színét a 3 fő szín között (_RGB_).
 
 **Figyelem:** az adatbázisban is el kell menteni az adott objektum színét!
+
+
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **rajzoló oldal a különböző színekkel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f6.png néven töltsd föl.
+	
+	
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **különböző színek mentését végző kódrészletet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl. 
