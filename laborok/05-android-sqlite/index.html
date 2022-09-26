@@ -603,18 +603,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-feladat-stilusvalaszto-2-pont" class="md-nav__link">
-    2. feladat: Stílusválasztó (2 pont)
+  <a href="#2-feladat-stilusvalaszto-1-pont" class="md-nav__link">
+    2. feladat: Stílusválasztó (1 pont)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-feladat-a-drawingview-osztaly-implementalasa" class="md-nav__link">
-    3. feladat: A DrawingView osztály implementálása
+  <a href="#3-feladat-a-drawingview-osztaly-implementalasa-1-pont" class="md-nav__link">
+    3. feladat: A DrawingView osztály implementálása (1 pont)
   </a>
   
-    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása">
+    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása (1 pont)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -989,18 +989,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-feladat-stilusvalaszto-2-pont" class="md-nav__link">
-    2. feladat: Stílusválasztó (2 pont)
+  <a href="#2-feladat-stilusvalaszto-1-pont" class="md-nav__link">
+    2. feladat: Stílusválasztó (1 pont)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-feladat-a-drawingview-osztaly-implementalasa" class="md-nav__link">
-    3. feladat: A DrawingView osztály implementálása
+  <a href="#3-feladat-a-drawingview-osztaly-implementalasa-1-pont" class="md-nav__link">
+    3. feladat: A DrawingView osztály implementálása (1 pont)
   </a>
   
-    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása">
+    <nav class="md-nav" aria-label="3. feladat: A DrawingView osztály implementálása (1 pont)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1129,6 +1129,10 @@
 <img src="./assets/style_selector.png" width="160">
 </p>
 
+<div class="admonition info">
+<p class="admonition-title">Android Room</p>
+<p>A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.</p>
+</div>
 <h2 id="feltoltes">Feltöltés<a class="headerlink" href="#feltoltes" title="Permanent link">&para;</a></h2>
 <p>Az elkészült megoldást <code>.zip</code> formátumban (File -&gt; Export to zip file...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.</p>
 <h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
@@ -1212,7 +1216,11 @@
         <span class="na">android:background=</span><span class="s">&quot;?android:colorPrimary&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/RelativeLayout&gt;</span>
 </code></pre></div>
-<h3 id="2-feladat-stilusvalaszto-2-pont">2. feladat: Stílusválasztó (2 pont)<a class="headerlink" href="#2-feladat-stilusvalaszto-2-pont" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>elkészült oldal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
+</div>
+<h3 id="2-feladat-stilusvalaszto-1-pont">2. feladat: Stílusválasztó (1 pont)<a class="headerlink" href="#2-feladat-stilusvalaszto-1-pont" title="Permanent link">&para;</a></h3>
 <p>Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős <code>Toolbar</code>-t, hozzuk létre a menüt, amivel be lehet állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új <em>Android resource directory</em>-t <code>menu</code> néven a <code>res</code> mappában, és <em>Resource type</em>-nak is válasszuk azt, hogy <code>menu</code>. Ezen belül hozzunk létre egy új <em>Menu resource file</em>-t <code>menu_toolbar.xml</code> néven. Ebben hozzunk létre az alábbi hierarchiát:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
@@ -1288,7 +1296,11 @@ Ezután hozzunk létre egy binding adattagot a <code>DrawingActivity</code>-n be
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h3 id="3-feladat-a-drawingview-osztaly-implementalasa">3. feladat: A <code>DrawingView</code> osztály implementálása<a class="headerlink" href="#3-feladat-a-drawingview-osztaly-implementalasa" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>elkészült menü kinyitva</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
+</div>
+<h3 id="3-feladat-a-drawingview-osztaly-implementalasa-1-pont">3. feladat: A <code>DrawingView</code> osztály implementálása (1 pont)<a class="headerlink" href="#3-feladat-a-drawingview-osztaly-implementalasa-1-pont" title="Permanent link">&para;</a></h3>
 <h4 id="a-modellek-letrehozasa">A modellek létrehozása<a class="headerlink" href="#a-modellek-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>A rajzprogramunk, ahogy az már az előző feladatban is kiderült, kétféle rajzolási stílust fog támogatni. Nevezetesen a pont- és vonalrajzolást. Ahhoz, hogy a rajzolt alakzatokat el tudjuk tárolni szükségünk lesz két új típusra, modellre, amihez hozzunk létre egy új <em>package</em>-et a <code>hu.bme.aut.android.simpledrawer</code>-en belül <code>model</code> néven.</p>
 <p>Ezen belül először hozzunk létre egy <code>Point</code> osztályt, ami értelemszerűen a pontokat fogja reprezentálni. Kétparaméteres konstruktort fogunk  létrehozni, amihez alapértékeket rendelünk.</p>
@@ -1420,6 +1432,10 @@ rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztályn
     <span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült kirajzolás</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
+</div>
 <h3 id="4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont">4. feladat: Perzisztencia megvalósítása <em>SQLite</em> adatbázis segítségével (1 pont)<a class="headerlink" href="#4-feladat-perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont" title="Permanent link">&para;</a></h3>
 <p>Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy <em>SQLite</em> adatbázisban. </p>
 <p>Hozzunk létre egy új <em>package</em>-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül, aminek adjuk az <code>sqlite</code> nevet.</p>
@@ -1682,11 +1698,27 @@ rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztályn
     <span class="n">finish</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>kilépő dialógus</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>a perzisztens mentéshez tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl. </p>
+</div>
 <h3 id="5-onallo-feladat-a-vaszon-torlese-1-pont">5. (önálló) feladat: A vászon törlése (1 pont)<a class="headerlink" href="#5-onallo-feladat-a-vaszon-torlese-1-pont" title="Permanent link">&para;</a></h3>
 <p>Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>törlés gomb</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>törlést elvégző kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f5.png néven töltsd föl. </p>
+</div>
 <h2 id="kiegeszito-imsc-feladat-2-imsc-pont">Kiegészítő iMSc feladat (2 iMSc pont)<a class="headerlink" href="#kiegeszito-imsc-feladat-2-imsc-pont" title="Permanent link">&para;</a></h2>
 <p>Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a rajzolás színét a 3 fő szín között (<em>RGB</em>).</p>
 <p><strong>Figyelem:</strong> az adatbázisban is el kell menteni az adott objektum színét!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>rajzoló oldal a különböző színekkel</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f6.png néven töltsd föl.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>különböző színek mentését végző kódrészletet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f7.png néven töltsd föl. </p>
+</div>
                 
               
               
