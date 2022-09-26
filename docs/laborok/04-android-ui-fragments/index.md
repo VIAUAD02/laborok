@@ -122,8 +122,6 @@ A most hozzáadott `FragmentContainerView` lesz az a nézet, melyben a navigáci
 
 Próbáljuk meg futtatni az alkalmazást! Az indulás után az alkalmazásunk crashelni fog, mivel még nem vettünk fel képernyőket a navigáció gráfban, az Activity semmit se tud megjeleníteni, hibára fut.
 
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-
 ## Főmenü képernyő (1 pont)
 Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
 
@@ -345,9 +343,9 @@ class DetailsProfileFragment : Fragment(){
 }
 ```
 
-Készítsük el a megfelelő layout-okat a Fragmentekhez (`profile_main.xml` és `profile_detail.xml`).
+Készítsük el a megfelelő layout-okat a Fragmentekhez (`fragment_profile_main.xml` és `fragment_profile_detail.xml`).
 
-`profile_main.xml`:
+`fragment_profile_main.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -404,7 +402,7 @@ Készítsük el a megfelelő layout-okat a Fragmentekhez (`profile_main.xml` és
 </LinearLayout>
 ```
 
-`profile_detail.xml`:
+`fragment_profile_detail.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -688,19 +686,6 @@ binding.btnTakeHoliday.setOnClickListener {
 ```
 
 Próbáljuk ki az alkalmazást! Mostmár megjelenik a dialógus egy kisebb ablakban, de még a dátumválasztás eredménye nem jut vissza a kiinduló képernyőre. 
-
-A kiválasztott dátum feldolgozásához implementáljuk az OnDateSelectedListener-t a HolidayActivity-ben:
-```kotlin
-class HolidayActivity : AppCompatActivity(), DatePickerDialogFragment.OnDateSelectedListener {
-...
-override fun onDateSelected(year: Int, month: Int, day: Int) {
-	val numHolidays = DataManager.holidays
-	if (DataManager.remainingHolidays > 0){
-		DataManager.holidays = numHolidays + 1
-	}
-	loadHolidays()
-}
-```
 
 ### Fragmentek közötti kommunikáció a Navigation Component segítségével
 
