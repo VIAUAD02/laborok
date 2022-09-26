@@ -20,6 +20,7 @@ A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhaszn�
 ## Értékelés
 
 Osztályzás:
+
 - Főmenü képernyő: 1 pont
 - Profil képernyő: 1 pont
 - Szabadság képernyő: 1 pont
@@ -27,6 +28,7 @@ Osztályzás:
 - Önálló feladat (szabadság továbbfejlesztése): 1 pont
 
 IMSc: Fizetés menüpont megvalósítása
+
 - Kördiagram: 1 IMSc pont
 - Oszlopdiagram: 1 IMSc pont
 
