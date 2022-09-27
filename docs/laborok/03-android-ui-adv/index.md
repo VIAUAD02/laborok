@@ -55,9 +55,12 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 - Minimum API level: 21
 - Finish, és várjuk meg amíg a Studio mindent legenerál. (Ez első alkalomkor valamivel hosszabb időt vesz igénybe.)
 
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
 ## Menü elkészítése
 
-Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent kis is tudunk választani:
+Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
 
 ![](assets/menu.png)
 
@@ -80,19 +83,19 @@ Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a `MainActiv
 
 ```kotlin
 override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return super.onCreateOptionsMenu(menu)
+}
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_delete_all -> {
-                // TODO: itt fogjuk kezelni a kattintást
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return when (item.itemId) {
+        R.id.action_delete_all -> {
+            // TODO: itt fogjuk kezelni a kattintást
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
+}
 ```
 
 ## Beviteli rész megvalósítása (1 pont)
@@ -169,7 +172,7 @@ Az első (nem gyökér) `LinearLayout`-ba vegyük fel a két `EditText`-et, adju
 </LinearLayout>
 ```
 
-A középső, gombokat tartalmazó `LinearLayout`-ban a gombokat jobbra szeretnénk igazítani, ezért a `LinearLayout`*gravity*-jét *end* értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A `LinearLayout`-ba felvesszük a `ToggleButton`-t, a sima `Button`-t és *id*-t adunk nekik.  A mentés gombon beállítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!
+A középső, gombokat tartalmazó `LinearLayout`-ban a gombokat jobbra szeretnénk igazítani, ezért a `LinearLayout`*gravity*-jét *end* értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A `LinearLayout`-ba felvesszük a `ToggleButton`-t, a sima `Button`-t és *id*-t adunk nekik.  A mentés gombon állítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!
 
 ```xml
 <LinearLayout
@@ -391,10 +394,10 @@ Utóbbi problémánkra pedig nagyon egyszerű a megoldás, a listánkat tartalma
 
 ### Snack bar (1 pont)
 
-A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a [SnackBar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést SnackBarra!
+A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a [Snackbar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést Snackbarra!
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **a SnackBar használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik **a Snackbar használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
@@ -415,14 +418,3 @@ Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték 
 ### Bonus
 
 Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `TextInputLayout`-tal használjuk. (https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)
-
-### Extra feladat: Labor átírása Jetpack Compose-ra
-
-<p align="center">
-<img alt="MainScreen layout" src="assets/MainActivityLayout.png" width="40%"/>
-<img alt="SnackBar shows correctly" src="assets/SnackBarShowsCorrectly.png" width="40%"/>
-</p>
-
-A labor a tárgy egyik fiatal laborvezetője által átírásra került [`Jetpack Compose`](https://developer.android.com/jetpack/compose)-ra. A labor feladat célja a `Jetpack Compose` és a modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. Az útmutató vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. Elvégzése extra munkával jár. ***Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.***
-
-Ha bármi probléma lenne az extra laborral, ***Püspök-Kiss Balázs***-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂

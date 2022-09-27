@@ -20,6 +20,7 @@ A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhaszn�
 ## Értékelés
 
 Osztályzás:
+
 - Főmenü képernyő: 1 pont
 - Profil képernyő: 1 pont
 - Szabadság képernyő: 1 pont
@@ -27,6 +28,7 @@ Osztályzás:
 - Önálló feladat (szabadság továbbfejlesztése): 1 pont
 
 IMSc: Fizetés menüpont megvalósítása
+
 - Kördiagram: 1 IMSc pont
 - Oszlopdiagram: 1 IMSc pont
 
@@ -54,6 +56,9 @@ Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmaz
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.
 
 Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
+
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 ## Képernyők kezelése Android alkalmazásokban
 A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
@@ -119,7 +124,7 @@ A most hozzáadott `FragmentContainerView` lesz az a nézet, melyben a navigáci
 
 Próbáljuk meg futtatni az alkalmazást! Az indulás után az alkalmazásunk crashelni fog, mivel még nem vettünk fel képernyőket a navigáció gráfban, az Activity semmit se tud megjeleníteni, hibára fut.
 
-## Főmenü képernyő
+## Főmenü képernyő (1 pont)
 Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
 
 Nyissuk meg a `nav_graph.xml` fájlt, és kattintsunk a *New Destination* gombra (bal felső gomb), majd a *Create new destination* gombra:
@@ -250,7 +255,10 @@ A `findNavController()` függvénnyel érhetjük el a **NavController** osztály
 
 Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Fragment-kbe.
 
-## Profil képernyő elkészítése
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **elkészült főoldal kép** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+
+## Profil képernyő elkészítése (1 pont)
 
 A Profil képernyő két lapozható oldalból fog állni, ezen a név, email, lakcím (első oldal), illetve a személyigazolvány szám, TAJ szám, adószám és törzsszám (második oldal) fognak megjelenni.
 
@@ -337,9 +345,9 @@ class DetailsProfileFragment : Fragment(){
 }
 ```
 
-Készítsük el a megfelelő layout-okat a Fragmentekhez (`profile_main.xml` és `profile_detail.xml`).
+Készítsük el a megfelelő layout-okat a Fragmentekhez (`fragment_profile_main.xml` és `fragment_profile_detail.xml`).
 
-`profile_main.xml`:
+`fragment_profile_main.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -396,7 +404,7 @@ Készítsük el a megfelelő layout-okat a Fragmentekhez (`profile_main.xml` és
 </LinearLayout>
 ```
 
-`profile_detail.xml`:
+`fragment_profile_detail.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -534,7 +542,10 @@ class ProfileFragment : Fragment() {
 
 Próbáljuk ki az alkalmazást. A Profile gombra kattinva megjelennek a felhasználó adatai és lehet lapozni is.
 
-## Szabadság képernyő elkészítése
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **profil oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), melyben az egyik mező helyére a **neptun kódod** van kírva, illetve a **ProfilePageAdapter** kódrészlete. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+
+## Szabadság képernyő elkészítése (1 pont)
 
 A Szabadság képernyőn egy kördiagramot fogunk megjeleníteni, ami mutatja, hogy mennyi szabadságot vettünk már ki és mennyi maradt. Ezen kívül egy gomb segítségével új szabadnap kivételét is megengedjük a felhasználónak.
 
@@ -636,8 +647,11 @@ class HolidayFragment : Fragment() {
 ```
 
 Próbáljuk ki az alkalmazást! A PieChart most már megjelenik, de a gomb még nem kell, hogy működjön.
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **elkészült szabadság képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
  
-## Dátumválasztó megvalósítása
+## Dátumválasztó megvalósítása (1 pont)
 
 A következő lépésben a Take Holiday gombra megjelenő dátumválasztó működését fogjuk megvalósítani. A gomb lenyomására megjelenik egy dátumválasztó és a dátum kiválasztása után a szabad napok eggyel csökkennek.
 
@@ -675,20 +689,7 @@ binding.btnTakeHoliday.setOnClickListener {
 
 Próbáljuk ki az alkalmazást! Mostmár megjelenik a dialógus egy kisebb ablakban, de még a dátumválasztás eredménye nem jut vissza a kiinduló képernyőre. 
 
-A kiválasztott dátum feldolgozásához implementáljuk az OnDateSelectedListener-t a HolidayActivity-ben:
-```kotlin
-class HolidayActivity : AppCompatActivity(), DatePickerDialogFragment.OnDateSelectedListener {
-...
-override fun onDateSelected(year: Int, month: Int, day: Int) {
-	val numHolidays = DataManager.holidays
-	if (DataManager.remainingHolidays > 0){
-		DataManager.holidays = numHolidays + 1
-	}
-	loadHolidays()
-}
-```
-
-## Fragmentek közötti kommunikáció a Navigation Component segítségével
+### Fragmentek közötti kommunikáció a Navigation Component segítségével
 
 Ahogy láthattuk az eddigi feladatok megoldásaiból, a Navigation Component a használata során maga kezeli a Fragmenteket, ő felelős a példányosításért. Ennek köszönhetően ha kommunikálni akarunk a képernyők között, akkor azt is a Navigation Component segítségével tudjuk megtenni.
 Kommunikáció során alapvetően két irányről beszélhetünk:
@@ -762,10 +763,19 @@ Itt az `observe()` metódusnak átadott callback metódus (a kapcsos zárójel k
 
 Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön, a napok számának is csökkennie kell a diagramon.
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **dátumválasztó kép** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4a.png néven töltsd föl. **Emellett**  készíts egy **képernyőképet**, amelyen látszik a **dátumválasztás eredménye a szabadság képernyőn** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a kommunikációhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4b.png néven töltsd föl.
+
 ## Önálló feladat
 
-- Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi.
-- Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva.
+- Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)
+- Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)
+
+!!!example "BEADANDÓ (0.5 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **dátumválasztó oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **későbbi napok tiltásához tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5a.png néven töltsd föl.
+	
+!!!example "BEADANDÓ (0.5 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **letiltott gomb** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5b.png néven töltsd föl.
 
 ## iMSc feladat
 
@@ -776,3 +786,10 @@ A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewP
 - `MonthlyPaymentFragment`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
 
 [Segítség](https://github.com/PhilJay/MPAndroidChart/wiki)
+
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **aktuális fizetés és nettó jövedelem a levont adókkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f6.png néven töltsd föl.
+	
+
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **12 oszlop a havi fizetési adatokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl.

@@ -186,7 +186,7 @@ Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi 
 
 A laborvezető segítségével készítsenek egy egyszerű Hello World alkalmazást, a varázsló nézeten az *Include Kotlin support* legyen bepipálva! 
 
-!!! warning "FILE PATH"
+!!!warning "FILE PATH"
 	A projekt a repository-ban lévő HelloWorld könyvtárba kerüljön!
 
 ### Android Studio
@@ -299,7 +299,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 6.  Változtassa meg a készülék tartózkodási helyét az emulátor megfelelő paneljének segítségével!
 7.  Vizsgálja meg az elindított `HelloWorld` projekt nyitott szálait, memóriafoglalását!
 8.  Vizsgálja meg a Logcat panel tartalmát!
-9.  Vizsgálja meg az Analyze -> Inspect code eredményét!
+9.  Vizsgálja meg az Code -> Inspect code eredményét!
 10.  Keresse ki a létrehozott `HelloWorld` projekt mappáját és a build könyvtáron belül vizsgálja meg az `.apk` állomány tartalmát! Hol található a lefordított kód? 
 
 !!! example "BEADANDÓ"

@@ -47,6 +47,9 @@ Első lépésként indítsuk el az Android Studio-t, majd:
 4. A minimum API szint legyen API21: Android 5.0.
 5. Az instant app támogatást, valamint a *Use legacy android.support libraries* pontot **ne** pipáljuk be.
 
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő PublicTransport könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
 !!!info ""
 	A projekt létrehozásakor, a fordító keretrendszernek rengeteg függőséget kell letöltenie. Amíg ez nem történt meg, addig a projektben nehézkes navigálni, hiányzik a kódkiegészítés, stb... Éppen ezért ezt tanácsos kivárni, azonban ez akár 5 percet is igénybe vehet az első alkalommal! Az ablak alján látható információs sávot kell figyelni.
 

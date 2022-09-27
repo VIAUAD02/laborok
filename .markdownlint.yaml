@@ -1,0 +1,24 @@
+default: true
+extends: null
+
+# Mivel az editorok nagy része támogatja a sortörést, egszerűsítjük vele a feladatunkat.
+# Később, ha sok időnk lesz rá be lehet állítani
+MD013: false
+
+# A plain HTML elemek nem mindig szépek, de a Markdownban nem mindig lehet őket kicserélni.
+MD004:
+  style: "dash"
+
+MD033:
+  allowed_elements:
+    - "figure"
+
+MD046: false
+
+# Emphasized text is surrounded by underscores, not asterisks.
+MD049:
+  style: "underscore"
+
+# Strong emphasis is surrounded by asterisks not underscores.
+MD050:
+  style: "asterisk"
