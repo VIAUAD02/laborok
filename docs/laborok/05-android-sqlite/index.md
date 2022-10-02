@@ -175,7 +175,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 Már csak annyi van hátra, hogy a `DrawingActivity`-ben felüldefiniáljuk  az _Activity_ `onCreateOptionsMenu()` és `onOptionsItemSelected()` függvényét az alábbi módon:
 
 ```kotlin
-override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+override fun onCreateOptionsMenu(menu: Menu): Boolean {
     val toolbarMenu: Menu = binding.toolbar.menu
     menuInflater.inflate(R.menu.menu_toolbar, toolbarMenu)
     for (i in 0 until toolbarMenu.size()) {
