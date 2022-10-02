@@ -13,10 +13,6 @@ A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az a
 !!!info "Android Room"
     A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.
 
-## Feltöltés
-
-Az elkészült megoldást `.zip` formátumban (File -> Export to zip file...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
-
 ## Előkészületek
 
 A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
