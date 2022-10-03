@@ -42,14 +42,36 @@ A labor során az alábbi feladatokat a laborvezető segítségével, illetve a 
         Elemek szerkesztése: 1 pont
 
 
+## Előkészületek
+
+A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
+
+
+### Git repository létrehozása és letöltése
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+
+    !!! tip ""
+        Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+
+4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+
+
 ### Projekt létrehozása
 
-Első lépésként indítsuk el az Android Studio-t, majd:
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
-2. A projekt neve legyen `ShoppingList`, a kezdő package pedig `hu.bme.aut.android.shoppinglist`
-3. Nyelvnek válasszuk a *Kotlin*-t.
-4. A minimum API szint legyen **API21: Android 5.0**.
-5. A *Use legacy android.support libraries* pontot **ne** pipáljuk be.
+Első lépésként indítsuk el az Android Studio-t, majd:  
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.  
+2. A projekt neve legyen `ShoppingList`, a kezdő package pedig `hu.bme.aut.  android.shoppinglist`  
+3. Nyelvnek válasszuk a *Kotlin*-t.  
+4. A minimum API szint legyen **API21: Android 5.0**.  
+5. A *Use legacy android.support libraries* pontot **ne** pipáljuk be. 
+
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 Amint elkészült a projektünk, kapcsoljuk is be a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
 ```gradle
@@ -62,6 +84,8 @@ android {
 ```
 
 A kezdő Activity neve maradhat MainActivity, valamint töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](https://github.com/VIAUAC00/Android-labor-kotlin/tree/master/Labor06/downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
+
+
 
 ### Perzisztens adattárolás megvalósítása (1 pont)
 Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
@@ -135,7 +159,8 @@ data class ShoppingItem(
 ```
 Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő *enum* osztály függvényein *annotációkat* helyeztünk el. Az `@Entity` jelzi a `Room` kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A `@ColumnInfo` *annotációval* megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. `@PrimaryKey`-jel jelöljük a tábla egyszerű kulcs attribútumát.
 
-Az osztályban létrehoztunk egy `enum`-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, `@TypeConverter` annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva. Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic` annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.
+Az osztályban létrehoztunk egy `enum`-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, `@TypeConverter` annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva.   
+Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic` annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.
 
 !!!info "data class"
     Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.
@@ -193,6 +218,11 @@ abstract class ShoppingListDatabase : RoomDatabase() {
 A `@Database` *annotációval* lehet jelezni a kódgenerátornak, hogy egy osztály egy adatbázist fog reprezentálni. Az ilyen osztálynak *absztraktnak* kell lennie, valamint a `RoomDatabase`-ből kell származnia. Az *annotáció* `entities` paraméterének egy listát kell átadni, ami az adatbázis tábláknak megfelelő `@Entity`-vel jelzett osztályokat tartalmazza. A `version` paraméter értéke a lokális adatbázis verzió. A `@TypeConverters` *annotációval* lehet megadni a `Room`-nak olyan osztályokat, amik `@TypeConverter`-rel ellátott függvényeket tartalmaznak, ezzel támogatva a típuskonverziót adatbázis és objektum modell között. A `ShoppingListDatabase` osztály felelős a megfelelő DAO osztályok elérhetőségéért is.
 
 Ezen kívül van még egy statikus *getDatabase* függvény, ami azt írja le, hogyan kell létrehozni az adatbázist (melyik osztályból, milyen néven). Ez a függvény az alkalmazás kontextusát várja paraméterül.
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **database osztály kódja**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ### Lista megjelenítése `RecyclerView`-val (2 pont)
 
@@ -490,6 +520,11 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ```
 Ezen a ponton az alkalmazásunk már meg tudja jeleníteni az adatbázisban tárolt vásárolni valókat, azonban sajnos még egy elemünk sincs, mivel lehetőségünk sem volt felvenni őket. A következő lépés az új elem létrehozását biztosító funkció implementálása.
 
+!!!example "BEADANDÓ (2 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
 ### Dialógus megvalósítása új elem hozzáadásához (1 pont)
 A dialógus megjelenítéséhez `DialogFragment`-et fogunk használni.
 
@@ -653,8 +688,8 @@ private fun getShoppingItem() = ShoppingItem(
 )
 ```
 
-!!!note ""
-    A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.
+
+A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.
 
 !!!info "Elvis operátor"
     Egy másik érdekesség a `?:`, avagy az [Elvis operátor](https://kotlinlang.org/docs/null-safety.html#elvis-operator). Ez azt csinálja, hogy amennyiben a bal oldali kifejezés nem null-ra értékelődik ki, akkor értékül a bal oldali kifejezést adja, ha pedig null-ra értékelődik ki, akkor a jobb oldali kifejezést. Így egyszerű null értéktől függő értékadást tömören le lehet írni.
@@ -686,12 +721,17 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
 	}
 ```
 
-!!!note ""
-    Figyeljük meg, hogy ebben az esetben is `thread`-be csomagolva futtatunk adatbázis műveletet. A `Room` tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a *user experience (UX)* is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.
 
-    Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.
+Figyeljük meg, hogy ebben az esetben is `thread`-be csomagolva futtatunk adatbázis műveletet. A `Room` tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a *user experience (UX)* is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.
+
+Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.
 
 Próbáljuk ki az alkalmazást!
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **dialógus ablak** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ### Önálló feladat: törlés megvalósítása (1 pont)
 Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.
@@ -703,11 +743,23 @@ Elem törlése egyesével, az elemeken található szemetes ikonra kattintás ha
       - Törlés az adapterből
       - `RecyclerView` frissítése
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **üres lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a törléshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
 ### IMSc feladatok
 #### Megerősítő dialógus (1 pont)
 Implementáljunk egy *Remove all* feliratú menüpontot és a hozzá tartozó funkciót!
 
 Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a *Remove all* menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (*OK* és *Cancel*). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
 
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **megerősítő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f6.png néven töltsd föl.
+	
+
 #### Elemek szerkesztése (1 pont)
 Teremtsük meg a lista elemek szerkesztésének lehetőségét. A lista elemre helyezzünk egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az *OK* gomb hatására a meglévő lista elem módosuljon az adatbázisban és a nézeten is.
+
+!!!example "BEADANDÓ (1 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **szerkesztési dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl.
