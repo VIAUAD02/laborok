@@ -552,8 +552,22 @@
     Laborfeladatok
   </a>
   
-    <nav class="md-nav" aria-label="Laborfeladatok">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszuletek" class="md-nav__link">
+    Előkészületek
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészületek">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#projekt-letrehozasa" class="md-nav__link">
@@ -869,8 +883,22 @@
     Laborfeladatok
   </a>
   
-    <nav class="md-nav" aria-label="Laborfeladatok">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszuletek" class="md-nav__link">
+    Előkészületek
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészületek">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#projekt-letrehozasa" class="md-nav__link">
@@ -1049,13 +1077,37 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
     Megerősítő dialógus: 1 pont<br />
     Elemek szerkesztése: 1 pont</p>
 </div>
+<h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
+<p>A feladatok megoldása során ne felejtsd el követni a <a href="../../tudnivalok/github/GitHub/">feladat beadás folyamatát</a>.</p>
+<h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</p>
+</li>
+<li>
+<p>Várd meg, míg elkészül a repository, majd checkout-old ki.</p>
+<div class="admonition tip">
+<p>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../tudnivalok/github/GitHub-credentials/">itt</a>), és próbáld újra.</p>
+</div>
+</li>
+<li>
+<p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
+</li>
+<li>
+<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+</li>
+</ol>
 <h3 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h3>
-<p>Első lépésként indítsuk el az Android Studio-t, majd:
-1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.
-2. A projekt neve legyen <code>ShoppingList</code>, a kezdő package pedig <code>hu.bme.aut.android.shoppinglist</code>
-3. Nyelvnek válasszuk a <em>Kotlin</em>-t.
-4. A minimum API szint legyen <strong>API21: Android 5.0</strong>.
-5. A <em>Use legacy android.support libraries</em> pontot <strong>ne</strong> pipáljuk be.</p>
+<p>Első lépésként indítsuk el az Android Studio-t, majd:<br />
+1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.<br />
+2. A projekt neve legyen <code>ShoppingList</code>, a kezdő package pedig <code>hu.bme.aut.  android.shoppinglist</code><br />
+3. Nyelvnek válasszuk a <em>Kotlin</em>-t.<br />
+4. A minimum API szint legyen <strong>API21: Android 5.0</strong>.<br />
+5. A <em>Use legacy android.support libraries</em> pontot <strong>ne</strong> pipáljuk be. </p>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
+</div>
 <p>Amint elkészült a projektünk, kapcsoljuk is be a <code>ViewBinding</code>-ot. Az <code>app</code> modulhoz tartozó <code>build.gradle</code> fájlban az <code>android</code> tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a <code>Sync Now</code> gombra.):
 <div class="highlight"><pre><span></span><code>android {
     ...
@@ -1129,7 +1181,8 @@ Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> 
 <span class="p">}</span>
 </code></pre></div>
 Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő <em>enum</em> osztály függvényein <em>annotációkat</em> helyeztünk el. Az <code>@Entity</code> jelzi a <code>Room</code> kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A <code>@ColumnInfo</code> <em>annotációval</em> megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. <code>@PrimaryKey</code>-jel jelöljük a tábla egyszerű kulcs attribútumát.</p>
-<p>Az osztályban létrehoztunk egy <code>enum</code>-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, <code>@TypeConverter</code> annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva. Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmStatic</code> annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.</p>
+<p>Az osztályban létrehoztunk egy <code>enum</code>-ot is, amivel egy kategóriát akarunk kódolni. Az enum-nak van két statikus metódusa, <code>@TypeConverter</code> annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva. <br />
+Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmStatic</code> annotációval is. Erre azért van szükség, mert alapvetően, amikor a companion object-ek Jvm bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben Category) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a Room működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.</p>
 <div class="admonition info">
 <p class="admonition-title">data class</p>
 <p>Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.</p>
@@ -1177,6 +1230,11 @@ Látható, hogy az osztályon, az osztály változóin, valamint az osztályon b
 </code></pre></div>
 <p>A <code>@Database</code> <em>annotációval</em> lehet jelezni a kódgenerátornak, hogy egy osztály egy adatbázist fog reprezentálni. Az ilyen osztálynak <em>absztraktnak</em> kell lennie, valamint a <code>RoomDatabase</code>-ből kell származnia. Az <em>annotáció</em> <code>entities</code> paraméterének egy listát kell átadni, ami az adatbázis tábláknak megfelelő <code>@Entity</code>-vel jelzett osztályokat tartalmazza. A <code>version</code> paraméter értéke a lokális adatbázis verzió. A <code>@TypeConverters</code> <em>annotációval</em> lehet megadni a <code>Room</code>-nak olyan osztályokat, amik <code>@TypeConverter</code>-rel ellátott függvényeket tartalmaznak, ezzel támogatva a típuskonverziót adatbázis és objektum modell között. A <code>ShoppingListDatabase</code> osztály felelős a megfelelő DAO osztályok elérhetőségéért is.</p>
 <p>Ezen kívül van még egy statikus <em>getDatabase</em> függvény, ami azt írja le, hogyan kell létrehozni az adatbázist (melyik osztályból, milyen néven). Ez a függvény az alkalmazás kontextusát várja paraméterül.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>database osztály kódja</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
 <h3 id="lista-megjelenitese-recyclerview-val-2-pont">Lista megjelenítése <code>RecyclerView</code>-val (2 pont)<a class="headerlink" href="#lista-megjelenitese-recyclerview-val-2-pont" title="Permanent link">&para;</a></h3>
 <h4 id="a-lista-adapter-letrehozasa">A lista adapter létrehozása<a class="headerlink" href="#a-lista-adapter-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a <code>RecyclerView</code>-nak.</p>
@@ -1439,6 +1497,11 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 <span class="p">}</span>
 </code></pre></div>
 Ezen a ponton az alkalmazásunk már meg tudja jeleníteni az adatbázisban tárolt vásárolni valókat, azonban sajnos még egy elemünk sincs, mivel lehetőségünk sem volt felvenni őket. A következő lépés az új elem létrehozását biztosító funkció implementálása.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (2 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>lista</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
 <h3 id="dialogus-megvalositasa-uj-elem-hozzaadasahoz-1-pont">Dialógus megvalósítása új elem hozzáadásához (1 pont)<a class="headerlink" href="#dialogus-megvalositasa-uj-elem-hozzaadasahoz-1-pont" title="Permanent link">&para;</a></h3>
 <p>A dialógus megjelenítéséhez <code>DialogFragment</code>-et fogunk használni.</p>
 <p>Hozzuk létre a dialógushoz tartozó <em>layoutot</em> <code>dialog_new_shopping_item.xml</code>, majd másoljuk be a dialógushoz tartozó layoutot:</p>
@@ -1584,9 +1647,7 @@ Látható, hogy felveszünk egy <code>string-array</code>-t is, ezeket a szöveg
     <span class="n">isBought</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">cbAlreadyPurchased</span><span class="p">.</span><span class="na">isChecked</span>
 <span class="p">)</span>
 </code></pre></div>
-<div class="admonition note">
 <p>A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.</p>
-</div>
 <div class="admonition info">
 <p class="admonition-title">Elvis operátor</p>
 <p>Egy másik érdekesség a <code>?:</code>, avagy az <a href="https://kotlinlang.org/docs/null-safety.html#elvis-operator">Elvis operátor</a>. Ez azt csinálja, hogy amennyiben a bal oldali kifejezés nem null-ra értékelődik ki, akkor értékül a bal oldali kifejezést adja, ha pedig null-ra értékelődik ki, akkor a jobb oldali kifejezést. Így egyszerű null értéktől függő értékadást tömören le lehet írni.</p>
@@ -1615,11 +1676,14 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre></div></p>
-<div class="admonition note">
 <p>Figyeljük meg, hogy ebben az esetben is <code>thread</code>-be csomagolva futtatunk adatbázis műveletet. A <code>Room</code> tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a <em>user experience (UX)</em> is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.</p>
 <p>Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.</p>
-</div>
 <p>Próbáljuk ki az alkalmazást!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>dialógus ablak</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
 <h3 id="onallo-feladat-torles-megvalositasa-1-pont">Önálló feladat: törlés megvalósítása (1 pont)<a class="headerlink" href="#onallo-feladat-torles-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
 <p>Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.</p>
 <details class="success"><summary>Megoldás</summary><ul>
@@ -1631,12 +1695,25 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
 <li><code>RecyclerView</code> frissítése</li>
 </ul>
 </details>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>üres lista</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>a törléshez tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
 <h3 id="imsc-feladatok">IMSc feladatok<a class="headerlink" href="#imsc-feladatok" title="Permanent link">&para;</a></h3>
 <h4 id="megerosito-dialogus-1-pont">Megerősítő dialógus (1 pont)<a class="headerlink" href="#megerosito-dialogus-1-pont" title="Permanent link">&para;</a></h4>
 <p>Implementáljunk egy <em>Remove all</em> feliratú menüpontot és a hozzá tartozó funkciót!</p>
 <p>Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a <em>Remove all</em> menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (<em>OK</em> és <em>Cancel</em>). A pozitív gomb lenyomásakor törlődjenek csak az elemek.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>megerősítő dialógus</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f6.png néven töltsd föl.</p>
+</div>
 <h4 id="elemek-szerkesztese-1-pont">Elemek szerkesztése (1 pont)<a class="headerlink" href="#elemek-szerkesztese-1-pont" title="Permanent link">&para;</a></h4>
 <p>Teremtsük meg a lista elemek szerkesztésének lehetőségét. A lista elemre helyezzünk egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az <em>OK</em> gomb hatására a meglévő lista elem módosuljon az adatbázisban és a nézeten is.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>szerkesztési dialógus</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f7.png néven töltsd föl.</p>
+</div>
                 
               
               
