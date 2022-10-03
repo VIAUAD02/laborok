@@ -2,23 +2,23 @@
 
 ## Bevezetés
 
-A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+A labor során laborvezetői segítséggel, majd önállóan készítesz el feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
-A félév során felhasznált eszközök:
+A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerése, a HTTP kérések és válaszok vizsgálata, valamint HTML oldalak készítésének gyakorlása.
 
-* [Telerik Fiddler](https://www.telerik.com/download/fiddler),
-    * használható az OS X / Linux verzión is futtatható Fiddler Everywhere verzió is, ekkor viszont a különbségekből fakadó esetleges kellemetlenségekért nem vállalunk felelősséget,
-    * közvetlen link: [FiddlerSetup.exe](https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe),
-* webböngészők beépített hibakereső eszközei,
+### Félév során használt eszközök
+
+* Webböngésző (Chorme, Edge vagy Firefox) és a beépített hibakereső eszközei,
 * [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-    * otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet,
+    * otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet, de a laborokban a VS Code-ot használjuk.
+    * A laborban előre telepítésre kerültek az alábbi kiegészítők a VS Code-hoz,
+        * [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) - C# és .NET Core támogatás.
+        * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló.
+        * [Live Saas Compiler](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass) - SCSS fájlokból CSS-t tud generálni.
+        * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Statikus kódelemző JS-hez.
+        * [IntelliSense for Css class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) - CSS osztály nevekhez automatikus kiegészítés.
 * npm, a [NodeJS](https://nodejs.org/en/download/) csomagkezelője,
-    * a [http-server](https://www.npmjs.com/package/http-server) npm csomag, ami egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló
-    * ha a gépen nincsen telepítve a http-server, azt az ```npm install -g http-server``` paranccsal lehet telepíteni a NodeJS telepítését követően, majd parancssorban a `http-server` parancs kiadásával egy új HTTP szerver indul, ami az aktuális munkamappa tartalmát szolgálja ki.
-
-Az npm parancs futtatásához telepített NodeJS-re is szükség van.
-
-Amelyik laboron ezeken felül további eszközökre lesz szükség, ott a labor bevezetőjében ezt jelezzük.
+    * Az npm parancs futtatásához telepített NodeJS-re is szükség van.
 
 ## Előkészület
 
@@ -32,217 +32,363 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
-## Feladat 1 - HTTP hibakeresés
-
-A Fiddler a Telerik cég ingyenes terméke, az egyik leggyakrabban használt webes hibakereső (debugger) eszköz. A Fiddler egy közbeékelődéses „támadást” (man in the middle attack) játszik el a gazda számítógépen azáltal, hogy proxy-ként viselkedik. A számítógépről kifelé induló HTTP kéréseinket elkapja, naplózza azokat feldolgozás és a felületen történő megjelenítés céljából, majd elküldi az eredeti címzett felé. Ugyanezt a sorozatot játssza el a visszairányban is, amikor a gépünk a hálózatról kap adatot.
-
-1. Indítsuk el a Fiddler alkalmazást!
-2. Ne zárjuk be a Fiddler alkalmazást! Indítsuk el a Windows beépített proxy beállító felületét!
-3. Indítsuk el a Windows beépített proxy beállító felületét! A Windows billentyűt nyomjuk le, a Start menü megnyílása után gépeljük be: "proxy", és nyissuk meg a proxybeállításokat!
-
-!!! example "BEADANDÓ (0.5 pont)"
-    Másoljon be egy képernyőképet arról `f1a.png` néven, hogyan módosítja a Fiddler a proxy beállításokat a Windows proxy beállításai között és a Telerik Fiddler Options > Connections fülön!
-
-Ha bezárjuk a Fiddlert, láthatjuk, hogy visszaállítja a proxybeállításokat a kiinduló állapotra. Indítsuk el ismét, hogy meg tudjuk vizsgálni a hálózati forgalmat!
-
-Mielőtt használjuk az eszközt, szükséges lehet a HTTPS forgalom feloldása, amihez egy egyedi tanúsítványt kell telepítenünk a gépünkre. Ezt a Tools -> Options -> HTTPS lehetőségnél kezdeményezhetjük.
-
-A Fiddler futása közben indítsunk el egy böngészőt, és navigáljunk a https://www.aut.bme.hu címre (**figyelem, pontosan írjuk/másoljuk be!**)! Tekintsük át a program felületét az így keletkező HTTP kérések alapján!
-
-A Fiddler alapvető felépítése az alábbi: ![A Telerik Fiddler áttekintése](./assets/fiddler.png)
-
-1. HTTP kérések időrendi listája: itt látjuk, hogy milyen kéréseink mentek ki a hálózatra. A **protokoll** HTTP vagy HTTPS lehet, a **Result** a válaszüzenetben érkező HTTP **státuszkódot** jelzi. A **Body** mezőben láthatjuk, hogy a válasz hány bájt méretű volt. A bal oldali listában bármely **kérést** kiválasztva annak **részleteit jobb oldalon láthatjuk**.
-    * Jobb egérgombbal a lista elemein lehetőségünk van azok **újrajátszására**.
-    * Lehetőségünk van a listában aktív szűrő beállítására pl. alkalmazás (process ID) vagy host alapján.
-2. A jobb oldali fülön alapértelmezés szerint az **Inspectors** fül van kiválasztva, ami az _aktuálisan kiválasztott_ HTTP **kérés-válasz párost** részletezi. A **felső** panel a **kimenő kérés** panelje. A tabok során váltogatva az üzenetet különböző **formázásokkal** is megvizsgálhatjuk, a fontosabbak:
-    * **Headers**: itt láthatjuk a HTTP fejléc legfontosabb elemeit, úgy mint a HTTP igét és protokollt, csoportokba szervezve a HTTP üzenet tartalmát.
-    * **TextView**: szöveges nézet.
-    * **WebForms**: űrlapok küldése esetén a paraméterek nevét és értékét tartalmazza.
-    * **Cookies**: a felküldött/fogadott sütik megjelenítése.
-    * **Raw**: a nyers HTTP üzenet megjelenítése.
-    * **JSON/XML**: az üzenet megjelenítése JSON/XML objektumokként (csak megfelelő formátum esetén).
-3. A jobb oldali panelen az **Inspector**t választva az alsó részen a válaszból kinyerhető adatok találhatók meg, ezek jelentős része analóg a kérés formátumával és a Request panelen található adatokkal.
-4. Egy fontos eszköz lehet még számunkra a **Composer**, amellyel teljes HTTP kérést tudunk összeállítani és elküldeni.
-
-### Kérések vizsgálata
-
-Elemezzük a böngésző által generált kéréseket!
-
-A böngészőbe a weboldal címének beírása után egy HTTP kérés indult meg a www.aut.bme.hu szerver irányába (esetleg HTTP átirányítást követően, ami a www nélküli variáns vagy a nem HTTPS variáns esetén a megfelelő oldalra irányít át). A Fiddlerben megvizsgálva következtetéseket vonhatunk le a kérés-válasz adatai alapján. 
-
-Laborgépeken elképzelhető, hogy a tanúsítvány nincsen telepítve és nincsen jogunk a telepítéshez. Ebben az esetben haladjunk a laborral a leírtaknak megfelelően, de minden esetben a HTTPS URL-ek helyett HTTP-t használjunk! A válasz ezekben az esetekben egy átirányítás lesz a szokásos 200 OK válasz helyett.
-
-Az első kérés az általunk beírt webcímre került kiküldésre az alábbi formában:
-
-```HTTP
-GET https://www.aut.bme.hu/ HTTP/1.1
-Accept: text/html, application/xhtml+xml, image/jxr, */*
-Accept-Language: en-US,en;q=0.7,hu;q=0.3
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063
-Accept-Encoding: gzip, deflate
-Host: www.aut.bme.hu
-Connection: Keep-Alive
-```
-
-* A kérés GET igét használt, ezért nem tartozik hozzá törzs (body) a küldött HTTP üzenetben.
-* A **HTTP üzenet egyszerű szöveges formátumú**, ember által is olvasható.
-* A böngésző kulcs-érték párok formájában további adatokat küldött a szerver felé, mint pl. a böngészőt azonosító karakterláncot (**User-Agent**), a várt adat formátumát (**Accept**, **Accept-Encoding**), eltárolt sütiket (**Cookie**) stb.
-    * Érdekesség, hogy bizonyos kulcsok többször előfordulhatnak egy HTTP üzenetben, ekkor az összes ugyanolyan kulcshoz tartozó értékek egy kollekcióként/tömbként értelmezhetők.
-    * Az első elküldött üzenet után további HTTP kérések indultak el a stíluslapok (CSS), képek és szkriptek (JavaScript) letöltéséért. Ennek az az oka, hogy a böngésző felépíti a HTML oldalt, amiben a további linkek további HTTP kéréseket indukálnak.
-
-A kérésünkre az alábbi válasz érkezett:
-
-``` HTTP
-HTTP/1.1 200 OK
-Cache-Control: no-cache
-Pragma: no-cache
-Content-Type: text/html; charset=utf-8
-Expires: -1
-Vary: Accept-Encoding
-Server: Microsoft-IIS/8.0
-X-AspNet-Version: 4.0.30319
-Set-Cookie: AaitC=3495d86d-2b52-4b73-b020-80eb90069465; path=/; HttpOnly
-X-Powered-By: ASP.NET
-X-Frame-Options: deny
-Date: Wed, 18 Oct 2017 10:40:05 GMT
-Content-Length: 26940
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>...</head>
-<body>...</body>
-</html>
-```
-
-* A kérés sikeres volt, ezt a fejléc elején található státuszkódból és státusz üzenetéből látjuk.
-* A válasz formátuma megegyezik a kérés formátumával: üzenet címe, fejlécek kulcs-érték párokként, üres sor, és egy opcionális törzs.
-* A fejlécekben található fontosabb elemek a szerver típusa (Server), szerveridő (Date), a küldött adat típusa (Content-Type) és mérete bájtban (Content-Length). Ezen kívül a szerver a Set-Cookie headerrel két sütit állít be a kliensen, ill. különböző fejlécekben definiálja a gyorsítótárazáshoz (cache) szükséges szabályokat.
-* A fejléceket egy üres sor követi, majd a HTTP üzenet törzse következik, ami egy HTML5 dokumentum.
-
-!!! example "BEADANDÓ (1 pont)"
-    Másoljon be egy képernyőképet `f1b.png` néven a kérésről, amelyet a böngésző a www.aut.bme.hu címre küldött és az ehhez tartozó válaszról! A válasz és a kérés is nyers (Raw) formátumban legyen látható!
-
-Vegyük észre, hogy a HTTP kérésünkhöz tartozó válasz kizárólag a korábban elküldött kérésünkben megtalálható információk alapján készült el! Ez jelenti azt, hogy **a HTTP állapotmentes**: az általunk elküldött kérés alapján kapjuk meg a választ, további állapoinformációkat nem feltételezhetünk a szerver részéről. Ez **nem összekeverendő azzal, hogy a szerver vagy kliens tárol-e állapotot vagy sem**: napjainkban mindkét oldalon tárolunk információt az állapotunkkal kapcsolatban, viszont a kérésben található meg minden olyan információ, ami alapján a szerver azonosítani tudja a kérőt és a kérési igényt, ami alapján összeállítja a választ.
-
-### Kérések indítása
-
-Állítsunk össze egy egyszerű HTTP kérést a Fiddlerből!
-
-Navigáljunk a jobb oldali panelen a **Composer** fülre! Itt lehetőségünk van összeállítani egy HTTP üzenetet. A Parsed 
-lehetőség kicsit szofisztikáltabb, nekünk most megfelelő lesz a **Raw** (nyers) összeállítás is. Küldjük el az alábbi HTTP
-üzenetet és vizsgáljuk meg az erre érkező választ:
-
-``` HTTP
-GET http://www.aut.bme.hu/ HTTP/1.1
-
-
-```
-
-**Fontos**, hogy a fenti kérésben egy üres sor legyen a fejléc után, tehát két Entert is kell ütnünk.
-
-!!! example "BEADANDÓ (0.5 pont)"
-    Készítsen képernyőképet a nyers HTTP válaszról `f1c.png` néven!
-
-A fenti kérésünk formailag helyes HTTP üzenet: csak a HTTP ige, cím, és protokoll megadása kötelező, az összes fejléc opcionális, a törzs GET kérésnél pedig nem szabványos.
-
-Ha megvizsgáljuk a kérésünkre érkező válaszokat, és összehasonlítjuk a korábban a böngészőnek küldött válasszal (erre lehetőségünk van a két releváns üzenetváltást kijelölve, majd a Compare lehetőséget használva), akkor láthatjuk, hogy a kérésünkre nem rögtön egy 200 OK válasz érkezik, hanem előtte egy átirányítást kapunk a HTTPS végpontra.
-
-## Feladat 2 - Hibakereső eszközök
+## Böngésző hibakereső eszközei
 
 Weboldalak készítésekor szükség lehet a HTTP forgalom megvizsgálására, viszont az esetek jelentős részében elegendő lehet, ha a böngésző forgalmát meg tudjuk vizsgálni. A mai böngészők mindegyike tartalmaz eszközöket, amellyel a weboldalak hibakeresése nagyon egyszerűen kezelhetővé válik.
 
-A böngészők Inspector nézetét a böngészőben általában az **F12** billentyűvel nyithatjuk meg.
+Nyissuk meg a laborvezető által kijelölt böngészőben a https://www.bme.hu oldalt, majd nyissuk meg a Developer tools nézetét az **F12** billentyűvel.
 
-Vizsgáljuk meg, mit kínálnak a böngészőkbe épített hibakereső eszközök!
+Vizsgáljuk meg, mit kínálnak az egyes böngészőkbe épített hibakereső eszközök!
 
-A laborvezető által kijelölt böngészőn navigáljunk a [www.aut.bme.hu](https://www.aut.bme.hu) oldalra és vizsgáljuk meg az oldal felépítését! Nyissuk meg a hibakeresési eszköztárat az F12-vel, nézzük meg, milyen lehetőségeink vannak! 
+<figure markdown>
+  ![A BME AUT kezdőlapja - Chrome](./assets/aut-bme-hu-chrome.png)
+  <figcaption>BME AUT kezdőlapja - Chrome Dev Toolbars</figcaption>
+</figure>
 
-![A BME AUT kezdőlapja](./assets/aut-bme-hu.png)
+??? info "További böngészőkben található Dev Toolbarok"
+    <figure markdown>
+    ![A BME AUT kezdőlapja - Edge](./assets/aut-bme-hu-edge.png)
+    <figcaption>BME AUT kezdőlapja - Edge Dev Toolbars</figcaption>
+    </figure>
 
-A Chrome, Internet Explorer, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől eltekintve megegyezik, a leggyakoribb funkciók az alábbiak:
+    <figure markdown>
+    ![A BME AUT kezdőlapja - FireFox](./assets/aut-bme-hu-firefox.png)
+    <figcaption>BME AUT kezdőlapja - FireFox Dev Toolbars</figcaption>
+    </figure>
+
+A Chrome, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől eltekintve megegyezik, a leggyakoribb funkciók az alábbiak:
 
 * A dokkolás módja megadható: az ablak alsó részére vagy oldalára is (Chrome, Firefox) dokkolható az eszköztár, ill. kivehető a saját ablakába.
-* **DOM vizsgálata (DOM Explorer, Elements, Inspector)**: a dokumentumfa felépítését tudjuk megvizsgálni, látható a kirajzolt HTML tartalom. Lehetőségünk van szerkeszteni az elemeket, beszúrni attribútumokat, elemeket, törölni őket. Kiválasztható egy DOM elem egérrel a kirajzolt oldalon vagy a szöveges megjelenítőben is. Egy elemet kiválasztva jobb oldalon az elemre illeszkedő stíluslap-szabályok (CSS) láthatók, ezek is szerkeszthetők.
+* **DOM vizsgálata (DOM Explorer, Elements, Inspector)**: a dokumentumfa felépítését tudjuk megvizsgálni, látható a kirajzolt HTML tartalom. Lehetőségünk van szerkeszteni az elemeket, beszúrni attribútumokat, elemeket, törölni őket. Kiválasztható egy DOM elem egérrel a kirajzolt oldalon vagy a szöveges megjelenítőben is. Egy elemet kiválasztva jobb oldalon az elemre illeszkedő stíluslap-szabályok (CSS) láthatók, ezek is szerkeszthetők. CSS készítésekor egy nagyon hasznos eszköz.
 * **JavaScript konzol (Console)**: a JavaScript standard outputja a konzol, az alkalmazások által írt tartalmak itt láthatók. Lehetőségünk van kód futtatására is a konzol ablakban, ami azonnal kiértékelődik.
-* **Hálózat (Network)**: a Fiddlerhez hasonlóan láthatjuk a kimenő kéréseket és a rájuk érkező válaszokat. Előnye, hogy csak a konkrét oldalhoz tartozik, nem a teljes böngészőhöz, így könnyebb leszűrnünk, melyik kérések tartoznak melyik alkalmazáshoz/oldalhoz. Láthatók a pontos időzítések is, HTTP kérések indítását viszont nem lehetséges kézzel megejtenünk a beépített lehetőségekkel.
-* **Hibakereső (Debugger)**: az oldalhoz betöltött JavaScript forráskód hibakeresését teszi lehetővé.
-* **Teljesítménymérők**: különböző teljesítménymérő eszközök állnak rendelkezésünkre a weboldalak elemzéséhez, amik jellemzően a memória- és processzorhasználatot mérik.
-* **Emuláció**: a böngészőkbe épített emulációs lehetőségek korlátozottak, általában csak a user agent string cseréjét és a kirajzoló terület felbontását állítják át (magát a böngészőmotort természetesen nem cserélik le futási időben, ami a valódi hibák jelentős részéért felelős).
+* **Források (Sources)**: Itt látható, hogy a teljes weboldal betöltéséhez honnan és mit töltött le a böngésző. Ha itt kiválasztunk egy JS fájlt, akkor annak a teljes kódját láthatjuk, sőt töréspontokat is tehetünk bele, így lehetővé téve a JS fájlok debuggolását.
+* **Hálózat (Network)**: itt láthatjuk a kimenő kéréseket és a rájuk érkező válaszokat. Előnye, hogy csak a konkrét oldalhoz tartozik, nem a teljes böngészőhöz, így könnyebb leszűrnünk, melyik kérések tartoznak melyik alkalmazáshoz/oldalhoz. Láthatók a pontos időzítések is, HTTP kérések indítását viszont nem lehetséges kézzel megejtenünk a beépített lehetőségekkel.
+* **Teljesítménymérők (Performance)**: különböző teljesítménymérő eszközök állnak rendelkezésünkre a weboldalak elemzéséhez, amik jellemzően a memória- és processzorhasználatot mérik.
+* **Alkalmazás (Application)**: az alkalmazás által a különbőző tárolókban - Local Storage, Session Storage, Cookies, ... - tárolt kulcs-érték párokat tudjuk megtekinteni.
 
 Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.
 
-## Feladat 3 - Szemantikus HTML
+## 1. Feladat 
+
+### HTTP kérések
+
+A hálózati kéréseket csak akkor rögzíti a Network fül, ha a Dev Toolbart korábban nyitjuk meg, minthogy az oldalt betöltenénk.
+Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt a hálózat fül.
+
+<figure markdown>
+  ![Network tab](./assets/network-tab.png)
+  <figcaption>Network tab</figcaption>
+</figure>
+
+**Disable cache**: bekapcsolása nagyon fontos JS és HTML kód debuggolása során, ugyanis a böngészők elég aggresszívan gyorsítotárazzák ezeket a kéréseket. Fontos azonban tudni, hogy a gyorsítótár csak addig van letiltva amíg a Dev Toolban meg van nyitva és csak arra az egy oldalra (fülre) vonatkozik.
+
+**Preserve log**: bekapcsolásával lehetőségünk van a logok megőrzésére navigációkor is. Azonban ezt a pipát óvatosan használjuk, mert a sok log nagyon be tudja lassítani a böngészőt.
+
+### Közös feladat
+
+1. Nyissuk meg a böngészőben a https://www.aut.bme.hu oldalt úgy, hogy a Dev Toolbar Network füle már meg van nyitva.
+2. Keressük meg és kattintsunk arra a kérésre, amiben a HTML tartalom letöltődik.
+3. A megjelenő ablakban láthatók a HTTP kérés fejlécei
+    * **General**: A legfontosabb adatokat láthatjuk itt a kérésről és a válaszról.
+        * Request URL: https://www.aut.bme.hu/ 
+        * HTTP Method: GET
+        * Status Code: 200
+    * **Response Headers**: Itt találjuk a HTTP válasz fejléceit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintba meg tudjuk nézni a nyers adatokat is.
+    * **Request Headers**: Itt találjuk a HTTP kérés fejléc mezőit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintba meg tudjuk nézni a nyers adatokat is.
+
+    <figure markdown>
+        ![Http kérés-válasz](./assets/http-request-response.png)
+        <figcaption>HTTP kérés-válaszok fejlécei</figcaption>
+    </figure>
+
+    ??? info "Hogyan másoljuk ki egy kéréshez tartozó fejléc adatokat"
+        A kérésen kattints jobb egérgombbal majd ott válaszd a Copy menüpontból, hogy mit szeretnénk másolni.
+        <figure markdown>
+            ![Request headers](./assets/copy-request-headers.png)
+            <figcaption>HTTP kérés-válaszok fejlécek másolása</figcaption>
+        </figure>
+
+4. Nézzük meg, hogy milyen HTTP kérés ment ki az oldal letöltéséhez.
+    ``` http
+    GET / HTTP/1.1
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+    Accept-Encoding: gzip, deflate, br
+    Accept-Language: hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7
+    Host: www.aut.bme.hu
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+    ```
+5. Nézzük meg a kérésre kapott választ.
+    ``` http
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache, no-store
+    Pragma: no-cache
+    Content-Type: text/html; charset=utf-8
+    Content-Encoding: gzip
+    Expires: -1
+    Vary: Accept-Encoding
+    Server: Microsoft-IIS/8.0
+    X-AspNet-Version: 4.0.30319
+    X-Powered-By: ASP.NET
+    X-Frame-Options: deny
+    Date: Mon, 03 Oct 2022 05:54:57 GMT
+    Content-Length: 11344
+    ```
+
+### Önálló feladat beadandó
+
+!!! example "1. feladat beadandó (0.5 pont)"
+    * Nyisd meg a böngészőben a http://www.aut.bme.hu oldalt. **HTTP kérés nem HTTPS**
+    * Keresd meg az azt a kérést, ami a http://www.aut.bme.hu -ra érkezett és vizsgáld meg a kapott HTTP választ.
+    * Készíts képernyőképet a Dev Toolbar Network füléről ahol látszódnak a kérés fejlécei. (General, Request Headers, Response Headers)
+    * A készített képernyőképet add be **`f1.png`** néven a repository gyökerében!
+
+## 2. Feladat 
+
+### Postman
+
+Postman segítségével egyszerűen tudunk HTTP kéréseket indítani és a kapott válaszokat vizsgálni.
+Leggyakrabban akkor használjuk ha egy REST API-t kell kipróbálni vagy tesztelni.
+
+Webes és desktopos verzó is létezik belőle.
+
+* A webes felület regisztráció után használható a https://www.postman.com/ oldalon.
+* Az asztali verziót a https://www.postman.com/downloads/ oldalról lehet letölteni.
+
+A labor gépekre az asztali verzió fel van telepítve, így azt fogjuk használni.
+Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadott REST API-t használunk melynek leírása a https://petstore.swagger.io/ oldalon érhető el. A legfontosabb végpontok az alábbi swagger ábrán is látható.
+
+<figure markdown>
+  ![PetStore REST API](./assets/petstore.png)
+  <figcaption>PetStore REST API</figcaption>
+</figure>
+
+### Keresés státusz alapján
+
+1. Indítsuk el a Postmant
+2. Bal oldalon hozzunk létre egy új kategóriát és nevezzük át MobWeb-re.
+3. Állítsunk össze egy kérést, ami státusz alapján kérdez le kutyákat. A leírása a swagger oldalon található. (Akár onnan is ki lehet próbálni.)
+    * Method: **GET**
+    * URL: **https://petstore.swagger.io/v2/pet/findByStatus**
+    * Query paramétert a Params fülön tudunk felvenni (vagy beírhatjuk az URL-be is)
+        * Key: **status**
+        * Value: **sold**
+4. Küldjük el a kérést a Send gombra kattintva és ellenőrizzük a visszakapott adatokat.
+5. Mentsük el a jobb felső sarokban lévő Save gombbal a MobWeb kategórába.
+
+<figure markdown>
+  ![Postman](./assets/postman-filter.png)
+  <figcaption>Postman - Filter kérés összeállítása</figcaption>
+</figure>
+
+### Új elem létrehozása
+
+1. Állítsunk össze egy kérést, ami egy új kutyát hoz létre. Ehhez a /pet URL-re kell egy POST kérést küldeni a Body-ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leíás a swagger oldalon érhető el.
+    * Method: **POST**
+    * URL: **https://petstore.swagger.io/v2/pet**
+2. Válasszuk ki a Body fület, ott a raw opciót és adjuk meg hogy JSON adat lesz a bodyban.
+3. A body legyen az alábbi
+    ``` json
+    {
+        "id": 0,
+        "name": "MyDog",
+        "status": "available"
+    }
+    ```
+4. Ha minden jól megy a válaszban visszakapjuk a létrehozott kutyát, amiből az ID lesz számunkra fontos
+    ``` json
+    {
+        "id": 9223372036854248826,
+        "name": "MyDog",
+        "photoUrls": [],
+        "tags": [],
+        "status": "available"
+    }
+    ```
+
+### Közös feladat beadandó
+
+!!! example "2. a) Feladat beadandó (0.5 pont)"
+    * A kutya létrehozásához összeállított kérés sikeres lefuttatásáról készíts egy képernyőképet.
+    * A képernyőképet add be **`f2a.png`** néven a repository gyökerében! 
+
+### Önálló feladat beadandó
+
+1. Készíts kérést, ami módosítja a közösen létrehozott azonosítójú kutya állapotát (`status`) `sold`-ra.
+2. Készíts kérést, ami törli a korábban módosított kutyát.
+
+!!! example "2. b) Önálló feladat beadandó (1 pont)"
+    * Készíts képernyőképet a sikeresen lefuttatott módosításról és törlésről.
+    * A képernyőképeket add be **`f2b.png`** és **`f2c.png`** néven a repository gyökerében! 
+
+## 3. Feladat 
+
+### HTML alapok
 
 A HTML (HyperText Markup Language) a web nyelve. A böngészők elsősorban HTTP-n keresztül eljuttatott HTML tartalom  kirajzolásáért és feldolgozásáért felelősek.
 
 A HTML egy XML-szerű nyelv, amelyben elemek (tag) írják le a dokumentumunkat. Az egyes elemeknek lehetnek tulajdonságai, amiket attribútumoknak (attribute) nevezünk. Az attribútum értéke leggyakrabban szám, szöveg, korlátozott értékkészletű szöveg (enumeráció), ritkábban felsorolás vagy objektum lehet. A HTML-ben bizonyos szabályrendszernek kell eleget tennünk: megkötések vonatkoznak arra, hogy milyen jellegű elemeket milyen más elemekben helyezhetünk el.
 
-A szemantikus web alapelve, hogy a HTML elemeink ne csak klasszikus "tároló" funkcionalitást lássanak el, hanem jelentést is hordozzanak. Előnye kettős: gépi és emberi feldolgozása egyaránt egyszerűbb.
-
-**Fontos**, hogy a HTML-ben vétett esetleges hibák **csendes** hibák, az esetleges hibás elhelyezések vagy helytelen formázás/szintaxis következtében a böngésző meg fogja jeleníteni az oldalt, amennyire a HTML alapján azt meg tudja tenni. Egy lemaradt `</lezáró tag>` pl. nem minden esetben rontja el a HTML oldal kinézetét, de okozhat nemkívánatos mellékhatásokat.
-
-![Szemantikus web áttekintés](/assets/semantic-outline.png)
-
-Forrás: https://internetingishard.com/html-and-css/semantic-html/
-
-Nézzük meg, miként javítja a HTML szemantikus felépítése az alkalmazásunkat!
-
-1. Nyissuk meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyissuk meg a VS Code szerkesztőben! A `feladat3/index.html` fájlban dolgozzunk és a `megoldas` ágra pusholjunk.
-
 A kód könnyen értelmezhető, az egyes elemek nyitó és záró tag-je között találhatók a hozzárendelt gyerekelemek. A whitespace-ek, behúzások csak az olvashatóságot segítik.
 
-1. Nyissuk meg VS Code-ban a Terminalt (Ctrl+ö, vagy View > Terminal), ami egy beépített Powershell futtatókörnyezetet ad. Itt adjuk ki az alábbi parancsot:
+!!! tip "Fontos"
+    A HTML-ben vétett esetleges hibák **csendes** hibák, az esetleges hibás elhelyezések vagy helytelen formázás/szintaxis következtében a böngésző meg fogja jeleníteni az oldalt, amennyire a HTML alapján azt meg tudja tenni. Egy lemaradt `</lezáró tag>` pl. nem minden esetben rontja el a HTML oldal kinézetét, de okozhat nemkívánatos mellékhatásokat.
 
-    ```cmd
-    http-server
-    ```
+### Szemantikus web
 
-2. Navigáljunk a böngészőben a http://localhost:8080/ URL-re, és teszteljük le, mit látunk!
+Mielőtt belevágnánk a feladatba érdemes feleleveníteni a szemantikus HTML tageket, amit a `div`-ek helyett használunk a kódban, ezzel jelölve a nagyobb logikai egységeket.
 
-3. Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen ill. a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, ill. a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. 
+![Szemantikus web áttekintés](./assets/semantic-outline.png)
+Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
-4. Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (`<h1>`, `<h2>`) mezők, ill. ezért törik a `<div>` (ami blockszintű elem), és marad folyószöveg a `<span>` (ami inline).
+!!! info "Info"
+    Ha még nem tetted volna meg, nyisd meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyisd meg a VS Code szerkesztőben! A `index.html` fájlban dolgozzunk és a `megoldas` ágra pusholjunk.
 
-5. A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
+### Feladat
 
-    ![A böngésző beépített stílusainak vizsgálata F12 eszközökkel](assets/example-style.png)
+1. Nyisd meg az `index.html` fájlt és jobb gommbal kattints bele, majd választ az **Open with Live Server** opciót. Ezzel elindul egy fejlesztő webszerver a 5500-as porton és az alapértelmezett böngészőt is megnyitja a kiválasztott oldal tartalmával. (http://127.0.0.1:5500/index.html)
 
-    ![Szemantikus web elemek folyamatábrája](./assets/semantic-flowchart.png)
+    !!! tip  Fontos
+        Ez az opció csak könyvtárakra működik, tehát ha csak simán a fájlt nyitod meg (nem a projekt könyvtárát) akkor nem fog működni.
 
-    Forrás: https://internetingishard.com/html-and-css/semantic-html/
+2. Egyszerű HTML elemek áttekintése
 
-6. Módosítsa a HTML dokumentum tartalmát úgy, hogy szemantikus elemeket használ a nemszemantikus (pl. div) elemek helyett! A szükséges elemek: `article`, `aside`, `figure`, `figcaption`, `footer`, `header`, `main`, `nav`, `section`
+    A kiinduló kódban már megtalálható ez a részlet így csak a viselkedésüket kell megvizsgálni. Láthatjuk, hogy egy-egy elemnek van egy alapértelmezett kinézete, amit a böngésző definiál. A későbbiekben ezt a Dev Toolbar segítségével közelebbről is megnézzük.
 
-7. Szemléltesse az így elkészült dokumentum részletes szemantikus körvonalát! https://hoyois.github.io/html5outliner/
+    * `div` - blokk elem (új sorban kezdődik)
+    * `span` - inline elem (nem kezd új sort)
+    * `p` - bekezdés
+    * `b` vagy`strong` vagy `em` - kiemelt szöveg
+    * `i` - dőlt betűs
+    * `br` - sortörés
 
-!!! example "BEADANDÓ (1.5 pont)"
-     Az így készült outline-ról készített képernyőképet adja be `f3.png` néven a repository gyökerében!
-     
-     Az `index.html` módosításait is commitolja!
+3. A következő pontokban az `index.html` oldalban található `TODO` elemek helyére készítsd el a szükséges HTML kódrészletet.
 
-## Feladat 4 - HTML űrlapok
+4. Fejléc
+    * A megfelelő szemantikus HTML taget használd.
+    * A megfelelő heading-ben jelenítsd meg a "Mobil- és Webes szoftverek fejlesztése" szöveget.
+
+5. Navigációs linkek
+    * A megfelelő szemantikus HTML taget használd.
+    * Az alábbi két linket hozd létre
+        * Főoldal az az `index.html`-re mutat
+        * Form ami a `form.html`-re mutat.
+    
+    ??? info "Segítség"
+        * `a` - hyperlink készítése a nyitó és záró tag közé kerül a megjelenített szöveg.
+        * `href` - az `a` tag attibútuma, hova kell navigálni 
+        * `target` - az `a` tag attribútuma, hol nyissa meg a linket (új tab, vagy ebben az ablakban)
+
+6. Fő tartalmi blokk
+    Az alább felsorolt blokkokat kell létrehozni. Minden blokk előtt legyen egy megfelelő heading és alatta a szükséges kódrészlet.
+    
+    * **Felsorolások** 
+        Egy heading-ben jelezd, hogy ez a rész a "Felsorolások", majd készíts egy bullet pointos listát és egy sorszámozott listát 2-2 elemmel.
+
+        ??? info "Segítség"
+            * `ul` - bullet pointos felsorolás
+            * `ol` - számozott felsorolás
+            * `li` - lista elem
+    * **Táblázatok** 
+        Egy heading-ben jelezd, hogy ez a rész a "Táblázatok", majd készítsd el az alábbi képen látható táblázatot.
+        
+        ![Táblázat](./assets/table.png)
+
+        ??? info "Segítség"
+            * `table` - táblázat
+            * `thead` - táblázat fejléce (legelső sor)
+            * `tbody` - táblázat törzse
+            * `tfoot` - táblázat lábléce (legalsó sor)
+            * `tr` - táblázat sor
+            * `td` - táblázat cella
+            * `th` - táblázat fejléc oszlop
+            * `colspan` - oszlopok összevonása (attribútum a td-re)
+            * `rowspan` - sorok összevonása (attribútum a td-re)
+            * `border` - táblázat keret vastagsága (attribútum a table-re )
+    * **Kép kezelése képaláítással**:
+        * Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.
+        * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternating textet is.
+
+        ??? info "Segítség"
+            * `figure` - tag ami összefogja a képet és képaláírást.
+            * `img` - maga a kép
+            * `figcaption` - Képaláírá
+    * **Formázott szöveg**:
+        * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
+        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is.
+
+7. Készítsünk egy a tartalomtól független rész a szerzőről
+    * Szerző neve a megfelelő heading típussal
+    * Egy kép a szerzőről. (Az assets-ben van hozzá egy kép ha nem találsz mást.)
+    * Egy bekezdés szöveg, amihez a https://www.lipsum.com/ oldalt használhatjuk.
+
+8. Készítsük el a láblécet, amibe az évszám és a BME AUT felirat kerüljön.
+
+### Beadandó
+!!! example "3. feladat beadandó (1.5 pont)"
+    * Az `index.html` módosításait commitolja!
+    * Az elkészült weboldal képernyőképet adja be `f3.png` néven a repository gyökerében!
+
+## 4. Feladat 
+
+### HTML oldal vizsgálata
+
+Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen ill. a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, ill. a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. 
+
+Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (`<h1>`, `<h2>`) mezők, ill. ezért törik a `<div>` (ami blockszintű elem), és marad folyószöveg a `<span>` (ami inline).
+
+A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
+
+<figure markdown>
+  ![A böngésző beépített stílusainak vizsgálata F12 eszközökkel](./assets/beepitett-stilusok.png)
+  <figcaption>A böngésző beépített stílusainak vizsgálata F12 eszközökkel</figcaption>
+</figure>
+
+### Beadandó
+
+!!! example "4. feladat beadandó (0.5 pont)"
+    Készítsen képernyőképet, ahol látható, hogy a `h3` tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet adja be `f4.png` néven a repository gyökerében!
+
+## 5. Feladat 
+
+### HTML űrlapok
 
 A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak számunkra a felhasználóval való kommunikációra. 
 
-Az előadáson elhangzottak gyakorlásaként állítson össze egy űrlapot a `feladat5/form.html` fájlba, mely megfelel az alábbi feltételeknek:
+Állíts össze egy űrlapot a repositoryban található `form.html` fájlba, az alábbiak szerint.
 
 * Az űrlap az alábbi adatokat kéri be a felületen a felhasználótól (a *-gal jelölt mezők kötelezően kitöltendők):
-    * Név*: szöveges mező
-    * Jelszó*: jelszó mező (nem látható karakterek – használja a "mobweb" jelszót szemléltetésre)
-    * Leírás: szöveges mező, többsoros
-    * Születési dátum*: dátum
-    * Nem: fiú/lány/egyéb, legördülő menüből
-    * Lábméret: szám, 0.5-ös léptékkel
-    * Kutya: igen/nem, jelölőnégyzettel megadható
+    * **Név***: szöveges mező
+    * **Jelszó***: jelszó mező (nem látható karakterek – használja a "mobweb" jelszót szemléltetésre)
+    * **Leírás**: szöveges mező, többsoros
+    * **Születési dátum***: dátum
+    * **Nem**: fiú/lány/egyéb, legördülő menüből
+    * **Lábméret**: szám, 0.5-ös léptékkel
+
 * Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe (használja az `id` és `for` attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!
-* Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi a /postform.html URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!
+* Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi a **/postform.html** URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!
 
-!!! note "Tipp:"
-    Szükséges elemek: `form`, `input`, `label`, `option`, `select`, `textarea`. 
+??? info "Segítség"
+    * Szükséges elemek
+        * `form` - maga az űrlap
+        * `input` - beviteli mező, aminek a `type` attribútuma adja meg, hogy milyen típusú.
+        * `label` - címke ahol a `for` attribútum adja meg, hogy melyik beviteli mezőhöz tartozik.
+        * `option` - Legördülő lista.
+        * `select` - Legördülő lista elem.
+        * `textarea` - többsoros beviteli mező.
+    * Szükséges attribútumok
+        * `action` - az `form` milyen URL-re irányítson át.
+        * `for` - a `label` melyik `input`-hoz tartozik.
+        * `id` - a tag egyedi azonosítója.
+        * `method` - A `form` elküldésekor milyen HTTP method-ot használjon (GET / POST)
+        * `name` - a tag neve. Ha nincs megadva az `input`-nál, akkor nem tudja a szerverre elküldeni az inputban lévő adatot.
+        * `required` - kötelező `input` mező.
+        * `step` - szám típusú `input` esetén a fel/le nyílra kattintva mennyivel változzon az érték.
+        * `type` - az `input` típusa
+        * `value` - az `input`-ban szereplő kezdeti érték.
 
-    Szükséges attribútumok: `action`, `for`, `id`, `method`, `name`, `required`, `step`, `type`, `value`.
+### Beadandó
 
-!!! example "BEADANDÓ (1.5 pont)"
-    * Commitolja a `form.html` módosított tartalmát!
-    * Készítsen képernyőképet `f5a.png` néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
-    * Demonstrálja Fiddlerrel és a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET `f5b.png` és POST `f5c.png` igék használatával is!
+!!! example "BEADANDÓ (1 pont)"
+    * Commitold a `form.html` módosított tartalmát!
+    * Készíts képernyőképet `f5a.png` néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
+    * Demonstráld a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET `f5b.png` és POST `f5c.png` igék használatával is!
