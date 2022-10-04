@@ -653,7 +653,7 @@ private fun restorePersistedObjects() {
 }
 ```
 
-Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen meg, hogy biztos kilép-e, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az alkalmazásból. Ehhez felül kell definiálnunk az `Activity` `onBackPressed()` függvényét. Az _AlertDialog_-nál válasszuk az _anroidx.appcompat.app_-ba tartozó verziót.
+Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen meg, hogy biztos kilép-e, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az alkalmazásból. Ehhez felül kell definiálnunk az `Activity` `onBackPressed()` függvényét. Az _AlertDialog_-nál válasszuk az _androidx.appcompat.app_-ba tartozó verziót.
 
 ```kotlin
 override fun onBackPressed() {
