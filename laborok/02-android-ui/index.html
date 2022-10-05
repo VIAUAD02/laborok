@@ -1453,7 +1453,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <p>A Kotlin egy nagy eltérése az eddig ismert, megszokott OOP nyelvektől, hogy nincs benne <code>static</code> kulcsszó, és így nincsenek statikus változók vagy függvények sem. Ehelyett minden osztályhoz lehet definiálni egy <a href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects"><code>companion object</code>-et</a>, ami egy olyan singleton-t definiál, ami az osztály összes példányán keresztül elérhető. Röviden, minden <code>companion object</code>-en belül definiált konstans, változó, függvény úgy viselkedik, mintha statikus lenne.</p>
 </div>
 <p>Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a <code>DetailsActivity</code>-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a <code>ViewBinding</code>beállítása után:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityListBinding</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityListBinding</span>
 
 <span class="p">...</span>
 
