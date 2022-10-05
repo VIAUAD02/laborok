@@ -1047,6 +1047,11 @@
     <span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">SDK verzió</p>
+<p>Az Android a 31-es SDK verzió óta támogat egy <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">splash screen API</a>-t,
+így a labron bemutatott megoldás az alapértelmezett 33-as SDK verziójú emulátorokon nem fog működni.</p>
+</div>
 <p>Most már futtathatjuk az alkalmazást, és betöltés közben látnunk kell a berakott képet. A splash képernyő általában akkor hasznos, ha az alkalmazás inicializálása sokáig tart. Mivel a mostani alkalmazásunk még nagyon gyorsan indul el, szimulálhatunk egy kis töltési időt az alábbi módon:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
     <span class="k">try</span> <span class="p">{</span>
