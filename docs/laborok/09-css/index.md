@@ -2,7 +2,11 @@
 
 ## Bevezetés
 
-A laborok során a hallgatók laborvezetői segítséggel, majd önállóan végeznek feladatokat a webes technológiák gyakorlati megismerése érdekében.
+A labor során laborvezetői segítséggel, majd önállóan készítesz el feladatokat a webes technológiák gyakorlati megismerése érdekében.
+
+A labor célja, CSS alapjainak elsajátítása és a CSS debuggolására használt eszközök gyakorlása.
+
+## Előkészület
 
 A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
 
@@ -14,7 +18,9 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
-## Feladat 1 - Stíluslapok, inline stílusok
+## 1. Feladat
+
+### Stíluslapok, inline stílusok
 
 Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 
@@ -23,39 +29,38 @@ Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 
 A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formázatlanok, viszont bizonyos szabályokat a böngésző alapértelmezetten illeszt az egyes elemekre, az elem típusa szerint.
 
-Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2, az A és a B elemekre!
+Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2 és egyéb elemekre!
 
-Nyissuk meg a Visual Studio Code-ban a leklónozott repositorynkat, és dolgozzunk a `feladat1-3` mappában lévő `index.html`-ben.
+Nyissuk meg a Visual Studio Code-ban a leklónozott repositorynkat, és a gyökér könyvtárba található `index.html` fájlba dolgozzunk.
 
-Szükségünk lesz egy webszerverre, ami ki tudja szolgálni nekünk a fájlokat. Futtassuk az alábbi parancsot a Terminal (**Ctrl+ö** vagy **View > Integrated Terminal**) ablakból: `http-server`
-
-!!! warning "Figyelem!"
-    **Ügyeljen rá, hogy a parancsot a megfelelő munkakönyvtárban adja ki, ahol a szerkesztett fájl is található!**
-    Ez elindít nekünk egy egyszerű HTTP szervert a gép 8080-as portján (http://localhost:8080/), ahonnan egyszerűen ki tudjuk szolgálni a mappában levő fájlokat, ill. index.html fájl hiányában egy fájllistázó főoldalt kapunk.
-
-Navigáljunk a http://localhost:8080/ URL-re a böngészőben! Nyissuk meg az itt látható **index.html** fájlt! Az alábbit kell látnunk:
-
-![1. lépés](assets/index-1-step-1.png)
+Ahhoz, hogy böngészőben is lássuk a weboldalt az `index.html`-en kattintsunk jobb gombbal és válasszuk az **Open with Live Server** opciót, ami elindítja a fejlesztői webszervert és az alapértelmezett böngészőben megnyitja az oldal.
 
 Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.
 
 Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 
-Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect Element**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
+Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
 
-![2. lépés](assets/index-1-step-2.png)
+<figure markdown>
+  ![A HTML alapértelmezett megjelenése a böngészőben](./assets/1-inspector.png)
+  <figcaption>A HTML alapértelmezett megjelenése a böngészőben</figcaption>
+</figure>
 
-**Fontos!** A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
+!!! tip "Fontos"
+    A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
 
 Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
 
-A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS fájlunk linkelve és CSS szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített **user agent stylesheet**-je érvényesül. Itt láthatjuk a **CSS Box model**t is, ami az elem **tartalma**, a hozzá tartozó **padding**, **border** és **margin** értékek egymásra halmozását jelenti a *2 dimenziós téglalap* oldalaihoz mérten.
+A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS fájlunk linkelve és CSS szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített **user agent stylesheet**-je érvényesül. Itt láthatjuk a **CSS Box model**-t is, ami az elem **tartalma**, a hozzá tartozó **padding**, **border** és **margin** értékek egymásra halmozását jelenti a *2 dimenziós téglalap* oldalaihoz mérten.
 
 A CSS feloldásában a `cascading`, azaz "egymásba ágyazható" rész szerint több stíluslap létezik a származás szempontjából; mi most a *böngészőbe beépített*, ún. `user agent stylesheet`-et látjuk.
 
-A user agent stylesheet alapértelmezetten nem biztos, hogy látható a felületen, a Computed fülön van lehetőségünk ezek megtekintését bekapcsolni ("Browser styles"/"Show all" stb. lehetőségek):
+A Computed fülön lenyitva az egyes szabályokat látható, hogy honnan származik az a stílus, sőt az is, hogy egy érték beállítása pontosan melyik szabályból származik, azaz melyik szabály melyiket írta felül.
 
-![3. lépés](assets/index-1-step-3.png)
+<figure markdown>
+  ![Chrome computed fül](./assets/1-computed-chrome.png)
+  <figcaption>Chrome computed fül</figcaption>
+</figure>
 
 A fenti szűrőt használva van lehetőségünk az alkalmazott CSS szabályok között keresni is.
 
@@ -65,13 +70,23 @@ A **html**, **body**, **div**, **h1**, **h2** elemek `display` tulajdonsága `bl
 
 Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 irányban:
 
-![4. lépés](assets/index-1-step-4.png)
+<figure markdown>
+  ![Margók vizsgálata](./assets/1-body-margin.png)
+  <figcaption>Margók vizsgálata</figcaption>
+</figure>
 
-!!! example "BEADANDÓ (0.5 pont)"
+### Beadandó
+
+!!! example "1. feladat beadandó (0.5 pont)"
     Egy-egy képernyőképpel alátámasztva demonstrálja az alábbi kérdéseket:
 
-    * Mekkora a **margin**, **padding** és **border** értéke az `<ul>` elemnek? `f1.1.png`
-    * Hány pixel a (függőleges) távolság a `<h1>` és `<h2>` elemek tartalma között (ügyelve az átfedő margókra)? `f1.2.png`
+    * Mekkora a **margin**, **padding** és **border** értéke az `<ol>` elemnek?
+    * Hány pixel a (függőleges) távolság a `<h1>` és `<h2>` elemek tartalma között (ügyelve az átfedő margókra)?
+    * A készített képernyőképet másold **`f1-1.png`** és **`f1-2.png`** néven a repository gyökerébe!
+
+## 2. Feladat
+
+### Megjelenés módosítása futási időben
 
 ??? note "Emlékeztető a CSS szabályok definiálásához"
     Saját CSS szabályokat többféle módon tudunk az oldalunkhoz rendelni:
@@ -96,10 +111,7 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
     ![Egyszerű CSS selectorok](assets/selectors-1.png)
     ![Összetett selectorok](assets/selectors-2.png)
 
-Módosítsuk az oldal megjelenését futási időben!
-
-* Rejtsük el a böngésző beépített stílusait, és láthatjuk, hogy kizárólag az üres inline stílus illeszkedik így az elemre. Itt hozzá tudunk adni új inline stílust az elemhez.
-* Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**zel).
+* Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**-kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**-zel).
 * Vegyük fel a `<h1>` elemhez az alábbi CSS tulajdonságot:
 
     ```css
@@ -111,17 +123,53 @@ Módosítsuk az oldal megjelenését futási időben!
 
 Lehetőség van esetenként több szabály aggregált megadására is ún. shorthandek használatával. Gyakori például a 4-irányú értékadás, ami a **top-right-bottom-left** iránysorrend szerint ad meg több értéket.
 
-* A `padding: 50px 30px 10px 5px;` szabály mind a négy értéket beállítja a fenti sorrend szerint.
-* A `padding: 10% 1mm;` szabály a fenti-lenti értékeket 10%-ra, a jobb-balt 1 mm-re (a padding-top).
-    * A százalékos értékek a szülő elem *szélességéhez* viszonyítottak (ha `padding-top`-ot vagy `margin-bottom`-ot adunk meg, akkor is szélességhez).
+* A `padding: 50px 30px 10px 5px;` szabály mind a négy értéket beállítja a fenti sorrendben.
+* A `padding: 10% 1mm;` szabály a fenti-lenti értékeket 10%-ra, a jobb-balt 1 mm-re.
 * A `padding: 0;` mind a 4 oldalon 0-ra állítja a paddingot (nem szükséges mértékegység 0 esetén).
+
+!!! tip "Fontos"
+    Ha százalékban adjuk meg a paddingot vagy a margót akkor az a **szülő elem szélességének** a százalékát jelenti. Még akkor is ha `margin-top`, vagy `margin-bottom`-ot állítunk be! 
+    
+    Forrás: https://www.w3.org/TR/CSS21/box.html#margin-properties 
 
 !!! warning "Inline stílusok"
     Inline stílusokat csak kivételes esetekben használjunk, jellemzően programozottan (JavaScriptből) elfogadott lehet egy elem megjelenését ilyen módon állítani, de a nyers HTML-ben nem!
 
-## Feladat 2. - CSS
+* Vegyünk fel egy új szabályt, amiben megadjuk, hogy a táblázat cellák `td` paddingja 1rem legyen minden irányba. Ehhez a Syles fülön a jobb oldalon található + jelre kell kattintani és akkor létrejön egy új szabály ahol megadhatjuk a selectort és a beállításokat is.
+    ``` css
+    td {
+        padding: 1rem;
+    }
+    ```
+    <figure markdown>
+    ![Új szabály létrehozása](./assets/2-new-style.png)
+    <figcaption>Új szabály létrehozása</figcaption>
+    </figure>
 
-Az oldalhoz alapvetően kétféle módon van lehetőségünk stíluslapot rendelni: külső CSS fájlból vagy az oldalban definiált `<style>` tagben.
+* Az új szabály mellett azt látjuk, hogy az *inspector-stylesheet*-ben jött létre. Tehát a háttérben a böngésző létrehoz egy CSS fájlt és abban tárolja a létrehozott stílusokat, amit meg is tudunk nézni ha rákattintunk az *inspector-stylesheet*-re.
+* Az így létrehzott szabályok csak az oldal újratöltéséig maradnak meg.
+* Figyeljük meg a fenti képernyőn, hogy az új szabállyal nem egy cellára állítottuk be a padding-ot hanem minden cellára.
+* Az új szabály alatt egyébként látható a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.
+
+### Beadandó
+
+!!! example "2. feladat beadandó (0.5 pont)"
+    * Hozz létre egy új szabályt a `table`-re ahol beállítod az alábbi szabályt
+    ``` css
+    table {
+        border: solid 1px red;
+        border-collapse: collapse;
+    }
+    ```
+    * Hozz létre egy új szabályt, amiben a `th` tagekre beállítod, hogy a háttérszín fekete legyen, a betű színe fehér, a padding pedig 1rem.
+    * Az első sor utolsó cellájának tartalmát (de csak azt az egyet) igazítsd középre. Tipp: `text-align: center`
+    * Készíts egy képernyőképek amin látható az összes fenti módosítás és a készített képernyőképet másold **`f2.png`** néven a repository gyökerébe!
+
+## 3. Feladat - CSS alapok
+
+A HTML oldalhoz kétféle tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal `head` tagjében definiált `<style>` tagben.
+
+### Float használata
 
 Az `index.html` forráskódját egészítsük ki, a `<head>` elembe helyezzük el az alábbi kódot:
 
@@ -141,14 +189,23 @@ Az `index.html` forráskódját egészítsük ki, a `<head>` elembe helyezzük e
 </style>
 ```
 
-Ha frissítjük az oldalt (nem szükséges újraindítani a szervert, csak menteni a fájlt), akkor az elrendezés módosul: a listánkban a listaelemek egymás mellé kerülnek, és a listaelemet jelző pötty eltűnik.
+Ha frissítjük az oldalt (nem szükséges újraindítani a szervert, csak menteni a fájlt), akkor az elrendezés módosul.
+
+* A listaelemet jelző pötty eltűnik.
+* A listánkban a listaelemek egymás mellé kerülnek
+* A felsorolás után következő elem felcsúszott a listával egy sorba.
+
+<figure markdown>
+  ![Float](./assets/3-float.png)
+  <figcaption>Float</figcaption>
+</figure>
 
 !!! warning "float: left"
     A `float: left;` tulajdonság állításával nem ugyanazt érjük el, mintha a listaelemet `display: inline-block;`-ra állítanánk, mert az `inline-block` megtartja az egymást követő elemek közötti whitespace-eket, a `float: left;` viszont nem.
 
 A float segítségével komplexebb elrendezéseket is el tudunk érni, viszont a float-olást meg kell tudnunk szüntetni. Ehhez a `clear: both;` értéket állíthatjuk be egy elemen. A float-olás azon kevés CSS tulajdonság egyike, ami az elemet sorban követő további testvérekre is közvetlenül hat.
 
-Az alábbi szabályt használhatjuk a float-olás megszüntetéséhez, ekkor az `<article>` elemre a `clearfix` osztályt alkalmazva az már új sorba is kerül.
+Az alábbi szabályt használhatjuk a float-olás megszüntetéséhez, ekkor az `<ol>` elemre a `clearfix` osztályt alkalmazva az már új sorba is kerül.
 
 ```css
 .clearfix {
@@ -157,10 +214,25 @@ Az alábbi szabályt használhatjuk a float-olás megszüntetéséhez, ekkor az 
 ```
 
 ```html
-<article class="clearfix">
+<ol class="clearfix">
   <!-- ... -->
-</article>
+</ol>
 ```
+
+<figure markdown>
+  ![Float megtörése a clear segítségével](./assets/3-clearfix.png)
+  <figcaption>Float megtörése a clear segítségével</figcaption>
+</figure>
+
+Vegyük észre, hogy az oldal alján is volt egy felsorolás, és sajnos olyan általános szabályt sikerült íni, hogy az ott lévő felsorolásra is érvényre jutott.
+
+<figure markdown>
+  ![Túl általános szabály](./assets/3-general-rule.png)
+  <figcaption>Túl általános szabály</figcaption>
+</figure>
+
+
+### Specifikus szabályok
 
 A CSS szabályainknak az esetek nagy többségében nem tesz jót, ha túl általánosak. A fenti szabályok minden listaelemre általánosan illeszkedni fognak, ami ebben a konkrét esetben nem jó döntés, ugyanis valahol az oldal törzsében lehet, hogy szeretnénk használni a "klasszikus" listás megjelenítést is. Ezért a szabályunkat át kell gondolnunk, specifikusabb szabályt érdemes írni:
 
@@ -180,6 +252,8 @@ ul.menu > li {
 
 A fenti osztállyal megkülönböztettük a `menu` osztállyal ellátott `ul` elemeket azoktól, amiken nincs rajta az osztály.
 
+### Pszeudo osztályok
+
 A pszeudoosztályok használatával az elemek különböző állapotainak különböző stílust tudunk adni. Ha a listaelemek kijelölése a felhasználó számára speciális állapot, ezt érdemes jeleznünk a felületen. Használjuk az alábbi szabályt:
 
 ```css
@@ -193,13 +267,14 @@ ul.menu > li:focus {
 
 ```html
 <ul class="menu">
-    <li tabindex="1">Item 1</li>
-    <li tabindex="2">Item 2</li>
-    <li tabindex="3">Item 3</li>
+    <li tabindex="1">Első elem</li>
+    <li tabindex="2">Mádosik elem</li>
 </ul>
 ```
 
 Ezután lehetséges az egér kattintással vagy a Tab billentyű használatával kijelölni az elemet.
+
+### CSS külön fájlban
 
 A HTML-be ágyazott CSS-sel a probléma, hogy ugyanaz a stílus nem újrahasznosítható a különböző oldalaink között. Ezért érdemes kiszervezni a CSS tartalmainkat a saját dedikált CSS fájljainkba. A CSS tartalmát mozgassuk át a HTML `<head>` részéből egy új fájlba az `index.html` mellett, legyen a neve `index.css`.
 
@@ -209,14 +284,7 @@ A fájlt a HTML-ből az alábbi módon tudjuk linkelni: tegyük az oldal `<head>
 <link rel="stylesheet" type="text/css" href="index.css">
 ```
 
-!!! example "BEADANDÓ (0.5 pont)"
-    Képernyőképpel demonstrálja, hogy:
-
-    * Az index.html letöltődését követően az index.css fájl is letöltődik. (`f2.1.png`)
-    * Az `<ul>` lista elemei egymás mellett helyezkednek el. (`f2.2.png`) Ehhez a HTML-t módosítani szükséges és commitolni.
-    * Az egyik listaelem kijelölt állapotában a betűszín zöld lesz, a karakterek félkövérek. (`f2.3.png`)
-
-## Feladat 3 - Reszponzív elrendezés
+### Reszponzív elrendezés
 
 A weboldalakat különböző képernyőméretű és felbontású eszközökről szoktuk látogatni. A túl részletes táblázatok, hosszú, meg nem törő sorok nem felhasználóbarátak kisebb méretű kijelzőkön, még ha az eszköz felbontása kellően nagy is. A mobil eszközök ezért szorzókat alkalmaznak a valós és a hasznos felbontás közötti megkülönböztetésképpen.
 
@@ -238,89 +306,204 @@ A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik m
 
 Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
-!!! example "BEADANDÓ (0.5 pont)"
-    Képernyőképekkel demonstrálja, hogy a fenti szabályt tetszőleges elemekre alkalmazva azok az ablak méretének függvényében láthatók vagy el vannak rejtve! (`f3.1.png, f3.2.png`)
+### Beadandó
 
-## Feladat 4 (önálló) - CSS egy komplexebb feladatban (3.5 pont)
+!!! example "3. feladat beadandó (1 pont)"
+    * Commitolja a módosított HTML fájlt és a létrehozott CSS fájlt a repositoryba!
+    
+    * Készítsen képernyőképet **`f3-1.png`** névvel és másolja a repository gyökerébe, amin az egyik listaelem kijelölt állapotban van. A képernyőképen az érvényre jutott CSS szabály is legyen látható. (Styles a dev toolbarban).
 
-Mostantól a `Feladat4` mappában lévő állományokkal dolgozzon.
+    * Képernyőképekkel demonstrálja, hogy a fenti szabályt a table elemre alkalmazva a táblázat az ablak méretének függvényében látható vagy el van rejtve! **`f3-2.png`**, **`f3-3.png`**
 
-Készítse el a kiinduló HTML oldal designját, mely megközelíti a lenti képeken látható elrendezést és megjelenést!
-Figyeljen rá, hogy a megvalósítás során nem alkalmazhat inline stílusokat, és kerülje a HTML fájl módosítását.
+## 4. Feladat 
 
-![Magas felbontáson](assets/hirportal.png)
+Mostantól a `Feladat4` mappában lévő állományokkal dolgozz.
 
-![900px alatt](assets/hirportal-small.png)
+Készítsd el az alábbi ábrán látható HTML oldal designját. Figyelj rá, hogy a megvalósítás során nem alkalmazhatsz inline stílusokat, és kerüld a HTML fájl módosítását.
 
-### Fejléc (1 pont)
+<figure markdown>
+  ![Magas felbontáson](./assets/4-feladat-fullscreen.png)
+  <figcaption>Magas felbontáson</figcaption>
+</figure>
 
-A fejléc megjelenését a `navbar.css` fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
+<figure markdown>
+  ![900px alatt](./assets/4-feladat-small.png)
+  <figcaption>900px alatt</figcaption>
+</figure>
 
-![Fejléc](assets/header.png)
+### 4.1 Layout vizsgálata
 
-Az oldalon fix fejléc található (tehát a fejléc nem tűnik el, ha kigörgetünk a tartalomból).
+Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a **`css/main.css`** fájlban találhatók, melyekből a lefontosabbakat tekintük is át.
 
-* Ügyeljen rá, hogy a fejléc ne takarja ki az oldal központi tartalmát! (Tipp: `padding`)
-* A fejléc magassága 60px és a háttere bordó!
+* A `html` és `body` tagen nincs margin és padding sem és itt adtuk meg a betűtípust is.
+* A hivatkozások `a` tagek nincsennek aláhúzva.
+* Van egy `.container` CSS osztály, amiben megadtuk, hogy a tartalmi rész 1200px széles legyen és  középre igazítottuk.
+    * Itt a `margin-left: auto` és `margin-right: auto` segítségével igazítjuk a tartalmat  középre.
+    * Figyeljük meg, hogy a `position: relative` beállítás is szerepel, hogy az abszolút pozícionált elemek ehhez képest legyenek igazítva. 
+* Mivel fix fejlécet szeretnénk ezért a fő tartalmi részre `main` tag beállítottunk egy 76px-es paddingot. 60px a fejléc magassága és 16px távolságot szeretnénk a fejléc és a tartalmi rész között.
+* Az `aside` jobb oldalra van igazítva.
+    * Mivel a végső cél az, hogy teljesen függetlenül tudjuk görgetni és akor is teljes magasságú legyen ha a mellette lévő fő tartalmi rész kevés, ezért `position: absolute` segítségével pozítionáljuk a `container` tetejékez és jobb oldalra (`top: 60px` és `right: 0`).
+    * Ezen felül megadtuk, hogy 450px széles legyen, a hátterét és egy bal oldali margót.
+* A láblécben lévő szöveget középre igazítottuk, kapott egy első margót és a betű színe és mérete is beállításra került.
 
-A logó mellett egy 2 elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészítenie)!
+Mint láthatjuk tényleg van egy alapvető beállítás, de nagyon sok formázást még be kell állítani, hogy elérjük a kívánt eredményt.
 
-* A menüsort `<ul>` és `<li>` elemek használatával strukturálja. (Tipp: `display: inline-block`)
-* A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín valamelyest * tétebbé válik.
+### 4.2 Fejléc
+
+A fejléc megjelenését a `navbar.css` fájlba készítsd el, amit megtalálsz a repository `feladat4/css` könyvtárában.
+
+A fejlécnek így kell kinéznie
+
+<figure markdown>
+  ![A megvalósítandó fejléc](./assets/4-header.png)
+  <figcaption>A megvalósítandó fejléc</figcaption>
+</figure>
+
+A logó mellett két elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészíteni)!
+
+* A menüsort `<ul>` és `<li>` elemek használatával strukturáld. (Tipp: `display: inline-block`)
+* A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín legyen szürke.
 * A menüpontok szövege legyen függőlegesen középre igazítva. (Tipp: `line-height`)
-* A fejlécben jobbra igazítva található egy Bejelentkezés gomb (Tipp: `float`).
 * Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
 
-!!! example "BEADANDÓ (1 pont)"
-    Demonstrálja képernyőképpel a megoldást! `f4.1.png`
+#### Megvalósítás lépései
 
-### Fő hír megjelenítése (1 pont)
+1. A fejléchez alapvető kinézetének beállítása.
+    * Készíts egy `.page-header` CSS osztályt amit tegyél rá az első `header` tagre.
+    * A page-header CSS osztályban az alábbiakat állítsd be:
+        * Legyen 100% széles
+        * A magassága 60px legyen
+        * A háttér legyen bordó
+        * A fejléc legyen fix (nem tűnik el, ha kigörgetünk a tartalomból)
+        * Mivel fix a fejléc ezért be kell majd állítani, hogy a fő tartalmi blokk lentebb kezdődjön. Most rálóg és ha majd padding-ot állítunk be akkor is rá fog lógni, tehát be kell állítani, hogy a fejléc legyen fentebb, mert egyébként nem fogja érzékeli ha fölé visszük az egeret. Tipp: `z-index`
+
+    ??? info "Segítség"
+        A fenti beállításokhoz az alábbi CSS osztályt kell létrehozni.
+        ``` css
+        header.page-header {
+            width: 100%;
+            height: 60px;
+            background-color: #A60010;
+            position: fixed;
+            z-index: 1;
+        }
+        ```
+
+2. Fejlécen belüli layout kialakítása.
+    * Készíts egy `.logo` CSS osztályt, amit rendelj a fejlécben lévő képhez.
+    * A CSS osztályan igazítsd balra a képet úgy, hogy mellé fel tudjon csúszni felsorolás.
+    ??? info "Segítség"
+        A fenti beállításokhoz az alábbi CSS osztályt kell létrehozni.
+        ``` css
+            .logo {
+                float: left;
+            }
+        ```
+
+3. A navigációban lévő linkből menüpont készítése.
+    * Ne hozz létre CSS osztályt, hanem a HTML tagekhez rendeld a szabályokat.
+    * Csak a nagigáción belüli felsorolás nézzen így ki.
+    * Az `ul` tagre állítsd be, hogy ne legyen margó és ne legyenek előtte pöttyök
+    * Az `li` tagekre állítsd be, hogy egymás mellé kerüljenek (`inline-block`), legyen köztük 40px távolság és függőlegesen középre legyenek igazítva.
+
+    ??? info "Segítség"
+        * Két szabályt kell létrehozni `nav ul` és `nav ul li`
+        * A felsorolás pöttyeit az `ul`-en lehet megadni a `list-style` segítségével
+        * Az `li`-ket `inline-block`-ként érdemes megjeleníteni
+        * Az egyes elemek közötti távolságokra a `padding`-ot érdemes használni.
+        * Függőleges igazításhoz a `line-height`-t kell beállítani a fejléc magasságára. (60px)
+
+4. Navigációs linkek színének beállítása
+    * A fejlécben lévő navigációs linkek legyenek fehér színűek, a betűméter pedig 1.1em
+    * Ha egy menupont (link) fölé visszük az egeret, akkor a betű színe legyen szürke.
+
+#### Beadandó
+
+!!! example "4. feladat - Fejléc beadandó (1 pont)"
+    Commitolja a `index.html` és `navbar.css` fájlokat a repositoryba!
+
+    Demonstrálja képernyőképpel a megoldást! **`f4-2.png`**
+
+### 4.3 Fő hír megjelenítése
 
 A fő hír megjelenését a `news.css` fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
 
-![Fő hír](assets/main.png)
+<figure markdown>
+  ![Fő hír megjelenítése](./assets/4-main-news.png)
+  <figcaption>Fő hír megjelenítése</figcaption>
+</figure>
 
 A kezdőoldalon a legfrissebb hír jelenik meg.
 
-* A hírnek van egy fejléce amiben megtalálható a **cím**, **szerző**, **szerző profil képe**, **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
-    * A szerző profil képe 80px x 80px. Ezek mellett jelenik meg a cím, a szerző neve, és a publikálás dátuma.
-    * A profilkép és a szöveg között legyen 10px távolság.
-    * A cím, szerző neve és publikálás dátumánál úgy állítsa át a betűméretet és a margókat, hogy azok olyan magasak legyenek mint a kép.
+* A hírnek van egy fejléce amiben megtalálható a **szerző profil képe**, **cím**, **szerző** és a **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
+    * A szerző profil képe 
+        * 80px x 80px legyen. Akkor is állítsuk ezt be a CSS-ben ha a kép pont ekkora. 
+        * Igazítsuk balra, hogy a cím, szerző és dátum mellé kerüljön.
+        * A kép és a szöveg között legyen 1rem távolság.
+    * A címnek csak alsó margója legyen `.75rem`
+    * A név legyen félkövér és az alsó paddingja `.25rem`
+    * A pulbikálás dátuma legyen szürke, dőlt betűvel és a betűmérete legyen `.75rem`
+
+* Állítsd be, hogy a hír elem 1rem távolságot tartson a befoglaló elemektől. (Tipp: `padding`)
 * A hír törzse egy **bevezető**, **kép** majd **további tartalomból** áll.
-    * A hírhez tartozó kép legyen középre igazítva.
-* Ügyeljen arra, hogy a szövegek tartsanak egységesen 16px távolságot a befoglaló elemektől. (Tipp: `padding`)
+* A hírhez tartozó képek legyen középre igazítva. Ehhez a beállítást az `.image` CSS osztályon érdemes beállítani.
+* Egy kép maximálus szélessége 250px legyen, de csak azok, amik az `.images` alatt vannak.
 
-!!! example "BEADANDÓ (1 pont)"
-    Demonstrálja képernyőképpel a megoldást! `f4.2.png`
+* Állítsd be, hogy a fő tartalmi rész `main` tag szélességét úgy, hogy ne lógjon be az oldalsó hasáb alá, de úgy, hogy reszponzív maradjon. Mivel ez a módosítás a layoutot érinti ezért a **`main.css`** -be végezd el.
 
-### Oldalsó sáv (1 pont)
+??? info "Segítség"
+    * Az egyik megoldás, hogy a fő tartalmi rész `main` tagre beállítasz egy jobb oldali margót, ami éppen akkora mint a jobb oldali hasáb, így az oldalsó sáv csak a margót fogja kitakarni.
+    * A másik megoldás, hogy a szélsség megadásánál a `calc` segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.
+        * Így a `width: calc(100% - 450px` tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.
+    * Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding nem számolódjon bele. Tipp: `box-sizing`
 
-Az oldalsó sáv megjelenítését is a `news.css` fájlba készítse el.
+#### Beadandó
 
-![Oldalsó sáv](assets/aside.png)
+!!! example "4. feladat - Hír szövege beadandó (1 pont)"
+    Demonstrálja képernyőképpel a megoldást! **`f4-3.png`**
 
-* Az oldal alján található korábbi híreket rendezze úgy, hogy a fő hír jobb oldalán jelenjenek meg
-    * Az oldalsáv szélessége fixen 350px legyen, a fő hír pedig a fennmaradó helyet töltse ki (Tipp: `width: calc(100% - oldalság szélessége - paddingok)`)
-    * Az oldalsáv háttérszíne legyen világosszürke.
-    * Ha a fő hír magasabb mint az oldalsáv, akkor is érjen le az oldalsáv a láblécig. (Tipp: `position: absolute`)
-    * Ha az oldalsáv magasabb, akkor pedig jelenjen meg a scrollbar az oldalsávon. (Tipp: `overflow: auto`)
-    * Az egyes hírek között legyen egy elválasztó vonal (Tipp: `border-bottom`)
-    * Ügyeljen rá, hogy az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
+### 4.4 Oldalsó sáv
 
-!!! example "BEADANDÓ (1 pont)"
-    Demonstrálja képernyőképpel a megoldást! `f4.3.png`
+Az oldalsó sáv megjelenítését is a `news.css` fájlba készítsd el.
 
-### Reszponzivitás (0.5 pont)
+<figure markdown>
+  ![Oldalsó sáv](./assets/4-aside.png)
+  <figcaption>Oldalsó sáv</figcaption>
+</figure>
 
-Egészítse ki a `news.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk az ablakot, akkor a jobb oldali sáv tűnjön el, és a teljes oldalt a fő hír foglalja el. (Tipp: `@media( max-width: 900px )`)
+* Az oldalsó sávban lévő cikkek címének betűmérete legyen `1rem`, és az alsó margója legyen `.5rem` a többi legyen `0`.
+* Készíts CSS szabályt, hogy az egyes hírek között (csak ami az oldalsó sávban van) legyen egy elválasztó vonal és `1rem` távolság a következő elemtől.
+* Az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
 
-**Tippek a megoldáshoz:**
+* Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállíás ezért a **`main.css`** -be állítsd be az `aside` tagen.
+    * A magasságot a `calc` segítségével lehet kiszámolni, de ez robosztusság szempontjából azért nem a legjobb megoldás, mert ha változik a fix rész (fejléc, lábléc, margók...) akkor módosítani kell ezt a szabályt is.
+    * A másik megoldás egy jelenleg *experimental* fázisban lévő megoldás használata. Hivatalosan a `height: stretch` érték lenne, de ez még ezen a néven nem támogatott. Viszont a Chromium alapú böngészők a `height: -webkit-fill-available` névvel támogatják. Ez a beállítás azt jelenti, hogy az elem magassága annyi legyen amennyi hely rendelkezésre áll. (Részletek a támogatottságról: https://caniuse.com/mdn-css_properties_height_stretch)
+    * Ezen felül még be kell állítani, hogy a szöveg ne lógjon ki az elemből, azaz automatikusan jelenjen meg a scroll, ha szükséges.
 
-* Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek.
-* Ha egy elemnek ki kell töltenie a rendelkezésre álló szélességet, akkor minden ősének a fában ki kell töltenie a rendelkezésre álló szélességet, amíg az szükséges. Pl. a `width: 100%;` csak a közvetlen ősre vonatkozik blokkszintű elemeknél, ha az `position: relative` vagy nincs beállítva.
-* Az elrendezésnél érdemes figyelembe venni, hogy a `position: absolute;` érték a DOM-ban az elemhez legközelebbi olyan őshöz pozícionál, mely `position: relative;`. Ezután a `top`, `right`, `bottom` és `left` tulajdonságokat tudja beállítani pl. pixel vagy százalék érték alapján, így az adott őshöz pozícionálja az elemet.
-* Használhatja a `calc()` függvényt, mely egyszerű konstans értékek számítására használható, pl. `width: calc(50% - 100px);`. Fontos, hogy a számítandó értékek között mindenképpen szükséges szóközt tennie.
-* `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges.
+#### Beadandó
 
-!!! example "BEADANDÓ (0.5 pont)"
-    Demonstrálja képernyőképpel a megoldást! `f4.4.png`
+!!! example "4. feladat - Oldalsó sáv beadandó (1 pont)"
+    Demonstrálja képernyőképpel a megoldást! **`f4-4.png`**
+
+#### IMSc Beadandó
+!!! example "4. feladat - Oldalsó sáv beadandó (1 IMSc pont)"
+    * Ha az oldalsó hír címe rövid, akkor a tartalmi rész felcsúszik alá a `float` miatt. Készítsd szabályt, ami a HTML módosítása nélkül az oldalsó sávban lévő hírek fejléce után törli a floatolást.
+    * Használt a `::after` -t a megoldáshoz
+    Demonstrálja képernyőképpel a megoldást! **`f4-4-iMsc.png`**
+
+### 4.5 Reszponzivitás
+
+Egészítse ki a `main.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk az ablakot, akkor a jobb oldali sáv tűnjön el, és a teljes oldalt a fő hír foglalja el. (Tipp: `@media( max-width: 900px )`)
+
+**Tippek a megoldáshoz**
+
+* Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek, így könnyen kideríthatő, hogy kisebb ablak méretnél mit kell módosítani.
+* A megoldás attól függ, hogy szélességet, vagy margót állítottál annak érdekében, hogy a jobb oldali hasáb ne takarja ki a tartamat, hiszen pont ezt az értéket kell majd átállítani ha nem látszódik a jobb oldali hasáb
+* Elsőként el kell rejteni a teljes jobb oldali hasábot.
+* Be kell állítani alapértelmezettre a szélességet / jobb oldali margót, hogy ha nem látszódik a jobb oldali hasáb, akkor a teljes képernyőt kitöltse a fő tartalmi rész.
+* `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges, bár ebben a megoldásban erre nem lesz szükség.
+
+#### Beadandó
+
+!!! example "4 Feladat - Reszponzivitás beadandó (0.5 pont)"
+    Demonstrálja képernyőképpel **`f4-5.png`**, hogy 900px alatt nem látszódik a jobb oldali hasáb.
