@@ -134,6 +134,10 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
     Content-Length: 11344
     ```
 
+
+!!! info "Info"
+    Ha még nem tetted volna meg, nyisd meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyisd meg a VS Code szerkesztőben! A `index.html` fájlban dolgozzunk és a `megoldas` ágra pusholjunk.
+
 ### Önálló feladat beadandó
 
 !!! example "1. feladat beadandó (0.5 pont)"
@@ -186,11 +190,11 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
     * Method: **POST**
     * URL: **https://petstore.swagger.io/v2/pet**
 2. Válasszuk ki a Body fület, ott a raw opciót és adjuk meg hogy JSON adat lesz a bodyban.
-3. A body legyen az alábbi
+3. A body-t az alábbiak szerint állítsd össze. A kutya neve legyen a neptunkódod.
     ``` json
     {
         "id": 0,
-        "name": "MyDog",
+        "name": "Z2I8RG",
         "status": "available"
     }
     ```
@@ -198,7 +202,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
     ``` json
     {
         "id": 9223372036854248826,
-        "name": "MyDog",
+        "name": "Z2I8RG",
         "photoUrls": [],
         "tags": [],
         "status": "available"
@@ -239,9 +243,6 @@ Mielőtt belevágnánk a feladatba érdemes feleleveníteni a szemantikus HTML t
 
 ![Szemantikus web áttekintés](./assets/semantic-outline.png)
 Forrás: https://internetingishard.com/html-and-css/semantic-html/
-
-!!! info "Info"
-    Ha még nem tetted volna meg, nyisd meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyisd meg a VS Code szerkesztőben! A `index.html` fájlban dolgozzunk és a `megoldas` ágra pusholjunk.
 
 ### Feladat
 
