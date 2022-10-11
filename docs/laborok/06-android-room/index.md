@@ -637,7 +637,7 @@ class NewShoppingItemDialogFragment : DialogFragment() {
         binding = DialogNewShoppingItemBinding.inflate(LayoutInflater.from(context))
         binding.spCategory.adapter = ArrayAdapter(
             requireContext(),
-            R.layout.support_simple_spinner_dropdown_item,
+            android.R.layout.simple_spinner_dropdown_item,
             resources.getStringArray(R.array.category_items)
         )
 
