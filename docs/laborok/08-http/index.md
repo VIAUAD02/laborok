@@ -140,7 +140,7 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
     * Nyisd meg a böngészőben a http://www.aut.bme.hu oldalt. **HTTP kérés nem HTTPS**
     * Keresd meg az azt a kérést, ami a http://www.aut.bme.hu -ra érkezett és vizsgáld meg a kapott HTTP választ.
     * Készíts képernyőképet a Dev Toolbar Network füléről ahol látszódnak a kérés fejlécei. (General, Request Headers, Response Headers)
-    * A készített képernyőképet add be **`f1.png`** néven a repository gyökerében!
+    * A készített képernyőképet másold be **`f1.png`** néven a repository gyökerébe!
 
 ## 2. Feladat 
 
@@ -155,7 +155,7 @@ Webes és desktopos verzó is létezik belőle.
 * Az asztali verziót a https://www.postman.com/downloads/ oldalról lehet letölteni.
 
 A labor gépekre az asztali verzió fel van telepítve, így azt fogjuk használni.
-Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadott REST API-t használunk melynek leírása a https://petstore.swagger.io/ oldalon érhető el. A legfontosabb végpontok az alábbi swagger ábrán is látható.
+Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadott REST API-t használunk melynek leírása a **https://petstore.swagger.io/** oldalon érhető el. A legfontosabb végpontok az alábbi swagger ábrán is látható.
 
 <figure markdown>
   ![PetStore REST API](./assets/petstore.png)
@@ -164,7 +164,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 
 ### Keresés státusz alapján
 
-1. Indítsuk el a Postmant
+1. Indítsuk el a Postmant.
 2. Bal oldalon hozzunk létre egy új kategóriát és nevezzük át MobWeb-re.
 3. Állítsunk össze egy kérést, ami státusz alapján kérdez le kutyákat. A leírása a swagger oldalon található. (Akár onnan is ki lehet próbálni.)
     * Method: **GET**
@@ -172,8 +172,8 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
     * Query paramétert a Params fülön tudunk felvenni (vagy beírhatjuk az URL-be is)
         * Key: **status**
         * Value: **sold**
-4. Küldjük el a kérést a Send gombra kattintva és ellenőrizzük a visszakapott adatokat.
-5. Mentsük el a jobb felső sarokban lévő Save gombbal a MobWeb kategórába.
+4. Küldjük el a kérést a **Send** gombra kattintva és ellenőrizzük a visszakapott adatokat.
+5. Mentsük el a jobb felső sarokban lévő **Save** gombbal a MobWeb kategórába.
 
 <figure markdown>
   ![Postman](./assets/postman-filter.png)
@@ -182,7 +182,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 
 ### Új elem létrehozása
 
-1. Állítsunk össze egy kérést, ami egy új kutyát hoz létre. Ehhez a /pet URL-re kell egy POST kérést küldeni a Body-ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leíás a swagger oldalon érhető el.
+1. Állítsunk össze egy új kérést, ami egy kutyát hoz létre. Ehhez a */pet* URL-re kell egy *POST* kérést küldeni a *Body* -ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leíás a swagger oldalon érhető el.
     * Method: **POST**
     * URL: **https://petstore.swagger.io/v2/pet**
 2. Válasszuk ki a Body fület, ott a raw opciót és adjuk meg hogy JSON adat lesz a bodyban.
@@ -209,16 +209,16 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 
 !!! example "2. a) Feladat beadandó (0.5 pont)"
     * A kutya létrehozásához összeállított kérés sikeres lefuttatásáról készíts egy képernyőképet.
-    * A képernyőképet add be **`f2a.png`** néven a repository gyökerében! 
+    * A képernyőképet másold be **`f2a.png`** néven a repository gyökerébe! 
 
 ### Önálló feladat beadandó
 
-1. Készíts kérést, ami módosítja a közösen létrehozott azonosítójú kutya állapotát (`status`) `sold`-ra.
-2. Készíts kérést, ami törli a korábban módosított kutyát.
+1. Készíts egy új kérést, ami módosítja a közösen létrehozott azonosítójú kutya állapotát (`status`) `sold`-ra.
+2. Készíts egy új kérést, ami törli a korábban módosított kutyát.
 
 !!! example "2. b) Önálló feladat beadandó (1 pont)"
     * Készíts képernyőképet a sikeresen lefuttatott módosításról és törlésről.
-    * A képernyőképeket add be **`f2b.png`** és **`f2c.png`** néven a repository gyökerében! 
+    * A képernyőképeket másold be **`f2b.png`** és **`f2c.png`** néven a repository gyökerébe! 
 
 ## 3. Feladat 
 
@@ -261,7 +261,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
     * `i` - dőlt betűs
     * `br` - sortörés
 
-3. A következő pontokban az `index.html` oldalban található `TODO` elemek helyére készítsd el a szükséges HTML kódrészletet.
+3. A következő pontokban az `index.html` oldalban található *TODO* elemek helyére készítsd el a szükséges HTML kódrészletet.
 
 4. Fejléc
     * A megfelelő szemantikus HTML taget használd.
@@ -275,8 +275,8 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
     
     ??? info "Segítség"
         * `a` - hyperlink készítése a nyitó és záró tag közé kerül a megjelenített szöveg.
-        * `href` - az `a` tag attibútuma, hova kell navigálni 
-        * `target` - az `a` tag attribútuma, hol nyissa meg a linket (új tab, vagy ebben az ablakban)
+        * `href` - az `a` tag attibútuma, hova kell navigálni.
+        * `target` - az `a` tag attribútuma, hol nyissa meg a linket (új tab, vagy ebben az ablakban).
 
 6. Fő tartalmi blokk
     Az alább felsorolt blokkokat kell létrehozni. Minden blokk előtt legyen egy megfelelő heading és alatta a szükséges kódrészlet.
@@ -285,9 +285,9 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
         Egy heading-ben jelezd, hogy ez a rész a "Felsorolások", majd készíts egy bullet pointos listát és egy sorszámozott listát 2-2 elemmel.
 
         ??? info "Segítség"
-            * `ul` - bullet pointos felsorolás
-            * `ol` - számozott felsorolás
-            * `li` - lista elem
+            * `ul` - bullet pointos felsorolás.
+            * `ol` - számozott felsorolás.
+            * `li` - lista elem.
     * **Táblázatok** 
         Egy heading-ben jelezd, hogy ez a rész a "Táblázatok", majd készítsd el az alábbi képen látható táblázatot.
         
@@ -311,32 +311,33 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
         ??? info "Segítség"
             * `figure` - tag ami összefogja a képet és képaláírást.
             * `img` - maga a kép
-            * `figcaption` - Képaláírá
+            * `alt` - az `img` tagnek attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.
+            * `figcaption` - Képaláírás
     * **Formázott szöveg**:
         * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
-        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is.
+        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrája ezt a viselkedést.
 
 7. Készítsünk egy a tartalomtól független rész a szerzőről
-    * Szerző neve a megfelelő heading típussal
-    * Egy kép a szerzőről. (Az assets-ben van hozzá egy kép ha nem találsz mást.)
-    * Egy bekezdés szöveg, amihez a https://www.lipsum.com/ oldalt használhatjuk.
+    * Szerző neve a megfelelő heading típussal.
+    * Egy kép a szerzőről, vagy keress egy képet és azt is tedd a repositoryba vagy használd a https://via.placeholder.com/80x80 placeholdert.
+    * Egy bekezdés szöveg, amit legegyszerűbben a https://www.lipsum.com/ oldal segítségével generálhatunk.
 
 8. Készítsük el a láblécet, amibe az évszám és a BME AUT felirat kerüljön.
 
 ### Beadandó
 !!! example "3. feladat beadandó (1.5 pont)"
-    * Az `index.html` módosításait commitolja!
-    * Az elkészült weboldal képernyőképet adja be `f3.png` néven a repository gyökerében!
+    * Az `index.html` módosításait commitold!
+    * Az elkészült weboldal képernyőképet másold be `f3.png` néven a repository gyökerébe!
 
 ## 4. Feladat 
 
 ### HTML oldal vizsgálata
 
-Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen ill. a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, ill. a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. 
+Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen illetve a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, illetve a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. 
 
 Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (`<h1>`, `<h2>`) mezők, ill. ezért törik a `<div>` (ami blockszintű elem), és marad folyószöveg a `<span>` (ami inline).
 
-A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali panel Computed fülén az ábrán jelölt ikonra kattintva (ne legyen engedélyezve a 'Display user styles only' lehetőség).
+A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS szabály mellett látható a "user agent stylesheet" jelzi, hogy a böngésző beépített stíluslapjában található ez a formázás.
 
 <figure markdown>
   ![A böngésző beépített stílusainak vizsgálata F12 eszközökkel](./assets/beepitett-stilusok.png)
@@ -346,7 +347,7 @@ A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve a jobb oldali 
 ### Beadandó
 
 !!! example "4. feladat beadandó (0.5 pont)"
-    Készítsen képernyőképet, ahol látható, hogy a `h3` tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet adja be `f4.png` néven a repository gyökerében!
+    Készíts egy képernyőképet, ahol látható, hogy a `h3` tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet másold be `f4.png` néven a repository gyökerébe!
 
 ## 5. Feladat 
 
@@ -364,8 +365,8 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
     * **Nem**: fiú/lány/egyéb, legördülő menüből
     * **Lábméret**: szám, 0.5-ös léptékkel
 
-* Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe (használja az `id` és `for` attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!
-* Legyen egy Küldés feliratú gomb, amely az adatokat a saját szerverünknek küldi a **/postform.html** URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!
+* Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe (használd az `id` és `for` attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!
+* Legyen egy *Küldés* feliratú gomb, amely az adatokat a saját szerverünknek küldi a **/postform.html** URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!
 
 ??? info "Segítség"
     * Szükséges elemek
@@ -391,4 +392,4 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
 !!! example "BEADANDÓ (1 pont)"
     * Commitold a `form.html` módosított tartalmát!
     * Készíts képernyőképet `f5a.png` néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
-    * Demonstráld a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET `f5b.png` és POST `f5c.png` igék használatával is!
+    * Demonstráld a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET `f5b.png` és POST `f5c.png` igék használatával is! Fontos, hogy a képen láthatóak legyenek az elküldött paraméterek.
