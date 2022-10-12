@@ -4,7 +4,7 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 
 ## Követelmények
 
--	Legalább 4 technológia használata (pl. UI, egyedi nézetek, fragmentek, perzisztens adattárolás, animációk, Stílusok/témák, RecyclerView, hálózati kommunikáció, Service, BroadcastReceiver, Content Provider, Intent, stb.)
+-	Legalább 4 technológia használata (pl. UI, egyedi nézetek, fragmentek, perzisztens adattárolás, animációk, stílusok/témák, RecyclerView, hálózati kommunikáció, Service, BroadcastReceiver, Content Provider, Intent, stb.)
 -	Kotlin nyelven kell készülnie
 -	Önálló alkalmazás legalább 3-4 képernyővel/nézettel
 -	Bármilyen külső könyvtár használható a fejlesztéshez, hogy még látványosabb alkalmazások készüljenek:
@@ -31,12 +31,11 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 		-	[https://github.com/toddmotto/public-apis](https://github.com/toddmotto/public-apis)
 		-	[https://github.com/Kikobeats/awesome-api](https://github.com/Kikobeats/awesome-api)
 		-	[https://github.com/abhishekbanthia/Public-APIs](https://github.com/abhishekbanthia/Public-APIs)
-		
--	A házi feladat használhat felhő megoldást is, pl. Firebase, Amazon, stb.
+	-	A házi feladat használhat felhő megoldást is, pl. Firebase, Amazon, stb.
 
 ## Beadás módja
 
-	!!! danger "neptin.txt"
+	!!!danger "neptun.txt"
 	Az első és legfontosabb, hogy az eddigiekhez hasonlóan töltsd ki a neptun.txt fájlt, hogy a rendszer azonosítani tudjon.
 
 ### Specifikáció
@@ -66,7 +65,7 @@ A házi feladat pótlásához mindenképpen tartozik **pót házi feladat védé
 
 A házi feladatot a specifikáción túl dokumentálni nem szükséges.
 
-### iMSc pontok
+## iMSc pontok
 
 A házi feladat minimumkövetelményeinek túlteljesítéséért, extra funkciókért, igényes felületért, kiemelkedő kódminőségért a laborvezetővel egyeztetve maximum 10 iMSc pont szerezhető.
 iMSc pont szerzéséhez az elkészült alkalmazásról rövid dokumentációt kell készíteni a README.md fájlba. (A specifikáció után.) Ebben röviden ismertetni kell az elkészült alkalmazás funkcionalitását és az érdekesebb megoldásokat.
