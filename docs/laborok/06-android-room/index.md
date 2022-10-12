@@ -83,7 +83,7 @@ android {
 }
 ```
 
-A kezdő Activity neve maradhat MainActivity, valamint töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](https://github.com/VIAUAC00/Android-labor-kotlin/tree/master/Labor06/downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
+A kezdő Activity neve maradhat MainActivity, valamint töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](https://github.com/VIAUAC00/laborok/raw/master/docs/laborok/06-android-room/downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
 
 
 
@@ -637,7 +637,7 @@ class NewShoppingItemDialogFragment : DialogFragment() {
         binding = DialogNewShoppingItemBinding.inflate(LayoutInflater.from(context))
         binding.spCategory.adapter = ArrayAdapter(
             requireContext(),
-            R.layout.support_simple_spinner_dropdown_item,
+            android.R.layout.simple_spinner_dropdown_item,
             resources.getStringArray(R.array.category_items)
         )
 
