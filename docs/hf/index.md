@@ -35,7 +35,7 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 
 ## Beadás módja
 
-	!!!danger "neptun.txt"
+!!!danger "neptun.txt"
 	Az első és legfontosabb, hogy az eddigiekhez hasonlóan töltsd ki a neptun.txt fájlt, hogy a rendszer azonosítani tudjon.
 
 ### Specifikáció
