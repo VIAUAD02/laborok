@@ -1116,7 +1116,7 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
     }
 }
 </code></pre></div></p>
-<p>A kezdő Activity neve maradhat MainActivity, valamint töltsük le és tömörítsük ki <a href="https://github.com/VIAUAC00/Android-labor-kotlin/tree/master/Labor06/downloads/res.zip">az alkalmazáshoz szükséges erőforrásokat</a>, majd másoljuk be őket a projekt <em>app/src/main/res</em> mappájába (Studio-ban a <em>res</em> mappán állva <em>Ctrl+V</em>)!</p>
+<p>A kezdő Activity neve maradhat MainActivity, valamint töltsük le és tömörítsük ki <a href="https://github.com/VIAUAC00/laborok/raw/master/docs/laborok/06-android-room/downloads/res.zip">az alkalmazáshoz szükséges erőforrásokat</a>, majd másoljuk be őket a projekt <em>app/src/main/res</em> mappájába (Studio-ban a <em>res</em> mappán állva <em>Ctrl+V</em>)!</p>
 <h3 id="perzisztens-adattarolas-megvalositasa-1-pont">Perzisztens adattárolás megvalósítása (1 pont)<a class="headerlink" href="#perzisztens-adattarolas-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
 <p>Az adatok perzisztens tárolásához a <code>Room</code> könyvtárat fogjuk használni.</p>
 <h4 id="room-hozzaadasa-a-projekthez">Room hozzáadása a projekthez<a class="headerlink" href="#room-hozzaadasa-a-projekthez" title="Permanent link">&para;</a></h4>
@@ -1606,7 +1606,7 @@ Látható, hogy felveszünk egy <code>string-array</code>-t is, ezeket a szöveg
         <span class="n">binding</span> <span class="o">=</span> <span class="n">DialogNewShoppingItemBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
         <span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">ArrayAdapter</span><span class="p">(</span>
             <span class="n">requireContext</span><span class="p">(),</span>
-            <span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">support_simple_spinner_dropdown_item</span><span class="p">,</span>
+            <span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">simple_spinner_dropdown_item</span><span class="p">,</span>
             <span class="n">resources</span><span class="p">.</span><span class="na">getStringArray</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">array</span><span class="p">.</span><span class="na">category_items</span><span class="p">)</span>
         <span class="p">)</span>
 
