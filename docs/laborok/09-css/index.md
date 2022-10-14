@@ -108,8 +108,8 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 
     A szabályok definiálása:
 
-    ![Egyszerű CSS selectorok](assets/selectors-1.png)
-    ![Összetett selectorok](assets/selectors-2.png)
+    ![Egyszerű CSS selectorok](./assets/selectors-1.png)
+    ![Összetett selectorok](./assets/selectors-2.png)
 
 * Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**-kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**-zel).
 * Vegyük fel a `<h1>` elemhez az alábbi CSS tulajdonságot:
