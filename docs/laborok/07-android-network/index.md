@@ -6,7 +6,8 @@ A labor során egy időjárás információkat megjelenítő alkalmazás elkész
 
 Az alkalmazás városok listáját jeleníti meg egy [`RecyclerView`](https://developer.android.com/guide/topics/ui/layout/recyclerview)-ban, egy kiválasztott város részletes időjárás adatait pedig az [OpenWeatherMap](https://openweathermap.org/) REST API-jának segítségével kérdezi le. A részletező nézeten egy [`ViewPager`](https://developer.android.com/training/animation/screen-slide)-ben két [`Fragment`](https://developer.android.com/guide/components/fragments)-en lehet megtekinteni a részleteket. Új város hozzáadására egy  [`FloatingActionButton`](https://developer.android.com/guide/topics/ui/floating-action-button) megnyomásával van lehetőség. 
 
-> REST = [**Re**presentational **S**tate **T**ransfer](https://en.wikipedia.org/wiki/Representational_state_transfer)
+!!!info "REST"
+    REST = [Representational State Transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)
 
 <p align="center">
 <img src="./assets/list.png">
@@ -23,10 +24,6 @@ Felhasznált technológiák:
 - [`Retrofit`](https://square.github.io/retrofit/)
 - [`Gson`](https://github.com/google/gson)
 - [`Glide`](https://github.com/bumptech/glide)
-
-## Feltöltés
-
-Az elkészült megoldást `.zip` formátumban (File... -> Export to Zip File...) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
 
 ## Az alkalmazás specifikációja
 
@@ -50,11 +47,40 @@ A labor során egy komplex időjárás alkalmazás készül el. A labor szűkös
 
 *Elnézést kérünk  az eddigieknél nagyobb kód blokkokért, de egy ilyen, bemutató jellegű feladat kisebb méretben nem oldható meg, illetve a labor elveszítené a lényegét, ha csak egy „hello world” hálózati kommunikációs lekérést valósítanánk meg. Köszönjük a megértést.*
 
+## Előkészületek
+
+A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
+
+
+### Git repository létrehozása és letöltése
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+
+    !!! tip ""
+        Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+
+4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+
+
 ### Projekt létrehozása
 
-Hozzunk létre egy projektet Android Studioban. Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a **Phone and Tablet** lehetőséget, `No Activity` opcióval! Az alkalmazást `WeatherInfo` néven hozzuk létre, a *package name* legyen `hu.bme.aut.weatherinfo`!  minimum SDK-nak pedig válasszuk az alapértelmezett **API 21**-et! Első `Activity`-ként hozzunk létre egy *Basic Activityt*, és nevezzük el `CityActivity`-nek, legyen ez a **Launcher Activity**-nk majd kattintsunk a *Finish* gombra!
+Első lépésként indítsuk el az Android Studio-t, majd:  
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.  
+2. A projekt neve legyen `WeatherInfo`, a kezdő package pedig `hu.bme.aut.  android.weatherinfo`  
+3. Nyelvnek válasszuk a *Kotlin*-t.  
+4. A minimum API szint legyen **API21: Android 5.0**.  
+5. A *Use legacy android.support libraries* pontot **ne** pipáljuk be. 
 
-Mindenek előtt kapcsoljuk be a `ViewBinding`-ot. Ehhez az `app` modulhoz tartozó `build.gradle` fájlban az `android` blokkon belülre illesszük be az engedélyező kódrészletet (majd kattintsunk a jobb felül megjelenő `Sync Now` gombra).
+!!!danger "FILE PATH"
+	A projekt a repository-ban lévő WeatherInfo könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
+Nevezzük át a generált Activityt `CityActivity`, a hozzá tartozó layout fájlt pedig `   activity_city` névre.
+
+Kapcsoljuk be a `ViewBinding`-ot. Ehhez az `app` modulhoz tartozó `build.gradle` fájlban az `android` blokkon belülre illesszük be az engedélyező kódrészletet (majd kattintsunk a jobb felül megjelenő `Sync Now` gombra).
 
 ```groovy
 buildFeatures {
@@ -72,16 +98,19 @@ dependencies{
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    def glide_version = "4.14.2"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 }
 ```
 
 Ezután kattintsunk a jobb felső sarokban megjelenő **Sync now** gombra.
 
->  A `Retrofit` a fejlesztő által leírt egyszerű, megfelelően annotált interfészek alapján kódgenerálással állít elő HTTP hivásokat lebonyolító implementációt. Kezeli az URL-ben inline módon adott paramétereket, az URL queryket, stb. Támogatja a legnépszerűbb szerializáló/deszerializáló megoldásokat is (pl.: [`Gson`](https://github.com/google/gson), [`Moshi`](https://github.com/square/moshi), [`Simple XML`](simple.sourceforge.net), stb.), amikkel Java/Kotlin objektumok, és JSON vagy XML formátumú adatok közötti kétirányú átalakítás valósítható meg. A laboron ezek közül a Gsont fogjuk használni a JSON-ban érkező időjárás adatok konvertálására.
+!!!info "Retrofit"
+    A `Retrofit` a fejlesztő által leírt egyszerű, megfelelően annotált interfészek alapján kódgenerálással állít elő HTTP hivásokat lebonyolító implementációt. Kezeli az URL-ben inline módon adott paramétereket, az URL queryket, stb. Támogatja a legnépszerűbb szerializáló/deszerializáló megoldásokat is (pl.: [`Gson`](https://github.com/google/gson), [`Moshi`](https://github.com/square/moshi), [`Simple XML`](simple.sourceforge.net), stb.), amikkel Java/Kotlin objektumok, és JSON vagy XML formátumú adatok közötti kétirányú átalakítás valósítható meg. A laboron ezek közül a Gsont fogjuk használni a JSON-ban érkező időjárás adatok konvertálására.
 
-> A `Glide`  egy hatékony képbetöltést és -cache-elést megvalósító library Androidra. Egyszerű interfésze és hatékonysága miatt használjuk.
+!!!info "Glide"
+    A `Glide`  egy hatékony képbetöltést és -cache-elést megvalósító library Androidra. Egyszerű interfésze és hatékonysága miatt használjuk.
 
 Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az `AndroidManifest.xml` állományban az *Internet permission*-t az `application` tagen *kívülre*:
 
@@ -89,7 +118,8 @@ Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az `Androi
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-> Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A *normal* csoportba tartozó engedélyeket elég felvenni az `AndroidManifest.xml` fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A *dangerous* csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a [developer.android.com](https://developer.android.com/guide/topics/permissions/overview) oldalon lehet tájékozódni
+!!!info "Engedélyek"
+    Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A *normal* csoportba tartozó engedélyeket elég felvenni az `AndroidManifest.xml` fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A *dangerous* csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a [developer.android.com](https://developer.android.com/guide/topics/permissions/overview) oldalon lehet tájékozódni.
 
 Vegyük fel az alábbi szöveges erőforrásokat a `res/values/strings.xml`-be:
 
@@ -173,9 +203,7 @@ Cseréljük le az  `activity_city.xml` tartalmát egy `RecyclerView`-ra és egy 
 
 Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. Előfordulhat, hogy a másolások miatt az Android Studio nem ismeri fel egyből a package szerkezetet, így ha ilyen problémánk lenne, az osztály néven állva Alt+Enter után állítassuk be a megfelelő package nevet.
 
-A `hu.bme.aut.weatherinfo` package-ben hozzunk létre egy `feature` nevű package-et. A `feature` package-ben hozzunk létre egy `city` nevű package-et. *Drag and drop* módszerrel helyezzük át a `CityActivity`-t a `city` *package*-be, a felugró dialógusban pedig kattintsunk a *Refactor* gombra.
-
-Töröljük a generált két Fragment-et és a hozzájuk tartozó layout file-okat, valamint a res/navigation mappa tartalmát.
+A `hu.bme.aut.android.weatherinfo` package-ben hozzunk létre egy `feature` nevű package-et. A `feature` package-ben hozzunk létre egy `city` nevű package-et. *Drag and drop* módszerrel helyezzük át a `CityActivity`-t a `city` *package*-be, a felugró dialógusban pedig kattintsunk a *Refactor* gombra.
 
 A `CityActivity` kódját cseréljük le a következőre:
 
@@ -303,11 +331,11 @@ Hozzuk létre a `res/layout` mappában az  `item_city.xml` layoutot:
 </LinearLayout>
 ```
 
-Igény szerint vizsgáljuk meg a laborvezetővel a `CityAdapter` osztályban az alábbiakat:
-- Hogyan történik a lista tartalmi elemeinek kezelése?
-- Hogyan épül fel egy lista elem?
-- Hogyan történik a lista elemen a kiválasztás események kezelése? Hogyan értesítjük a `CityActivity`-t egy elem kiválasztásáról?
-- Hogyan kerültek megvalósításra az `addCity(...)` és `removeCity(…)` metódusok!
+Igény szerint vizsgáljuk meg a laborvezetővel a `CityAdapter` osztályban az alábbiakat:  
+- Hogyan történik a lista tartalmi elemeinek kezelése?  
+- Hogyan épül fel egy lista elem?  
+- Hogyan történik a lista elemen a kiválasztás események kezelése? Hogyan értesítjük a `CityActivity`-t egy elem kiválasztásáról?  
+- Hogyan kerültek megvalósításra az `addCity(...)` és `removeCity(…)` metódusok?  
 
 A `CityActivity`-vel kapcsolatos következő lépés az új város nevét bekérő dialógus (`DialogFragment`) megvalósítása és bekötése.
 
@@ -347,15 +375,8 @@ class AddCityDialogFragment : AppCompatDialogFragment() {
         super.onAttach(context)
         binding = DialogNewCityBinding.inflate(LayoutInflater.from(context))
         
-        try {
-            listener = if (targetFragment != null) {
-                targetFragment as AddCityDialogListener
-            } else {
-                activity as AddCityDialogListener
-            }
-        } catch (e: ClassCastException) {
-            throw RuntimeException(e)
-        }
+        listener = context as? AddCityDialogListener
+            ?: throw RuntimeException("Activity must implement the AddCityDialogListener interface!")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -373,13 +394,14 @@ class AddCityDialogFragment : AppCompatDialogFragment() {
 }
 ```
 
-Igény szerint vizsgáljuk meg a laborvezetővel az `AddCityDialogFragment` implementációjában az alábbiakat:
-- Hogyan ellenőrizzük azt, hogy az `Activity`, amihez a `DialogFragment` felcsatolódott implementálja-e az `AddCityDialogListener` interfészt?
-- Hogyan kerül beállításra az egyedi layout a `DialogFragment`-ben?
-- Hogyan térünk vissza a beírt városnévvel?
+Igény szerint vizsgáljuk meg a laborvezetővel az `AddCityDialogFragment` implementációjában az alábbiakat:  
+- Hogyan ellenőrizzük azt, hogy az `Activity`, amihez a `DialogFragment` felcsatolódott implementálja-e az `AddCityDialogListener` interfészt?  
+- Hogyan kerül beállításra az egyedi layout a `DialogFragment`-ben?  
+- Hogyan térünk vissza a beírt városnévvel?  
 
-> Szorgalmi feladat otthonra: az alkalmazás ne engedje a város létrehozását, ha a városnév mező üres!
-> Tipp: [http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked](http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked)
+!!!note ""
+    Szorgalmi feladat otthonra: az alkalmazás ne engedje a város létrehozását, ha a városnév mező üres!
+    Tipp: [http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked](http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked)
 
 Végül egészítsük ki a `CityActivity` `initFab(…)` függvényét úgy, hogy a gombra kattintva jelenjen meg az új dialógus:
 
@@ -393,9 +415,14 @@ private fun initFab() {
 
 Indítsuk el az alkalmazást, amely már képes városnevek bekérésére és megjelenítésére.
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **városnevek listája egy újonnan hozzáadott várossal**, az **AddCityDialogFragment** kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
 ### 2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
 
-A következő lépésben a `hu.bme.aut.weatherinfo.feature`  package-en belül hozzunk létre egy `details` nevű packaget.
+A következő lépésben a `hu.bme.aut.android.weatherinfo.feature`  package-en belül hozzunk létre egy `details` nevű packaget.
 
 A `details` package-ben hozzunk létre egy *Empty Activity* típusú `Activity`-t  `DetailsActivity` néven.
 
@@ -477,7 +504,8 @@ Cseréljük le a `strings.xml`-ben a *weather* szöveges erőforrást:
 
 A string erőforrásba írt *%s* jelölő használatával lehetővé válik egy *String argumentum* beillesztése a stringbe, ahogy a fenti kódrészletben láthatjuk.
 
-> Figyeljük meg, hogy a `DetailsActivity` hogyan állítja be az `ActionBar` címét a paraméterül kapott város nevével, illetve és azt, hogy az `ActionBar` bal felső sarkában a *vissza gomb* kezelése hogyan került megvalósításra.
+!!!note ""
+    Figyeljük meg, hogy a `DetailsActivity` hogyan állítja be az `ActionBar` címét a paraméterül kapott város nevével, illetve és azt, hogy az `ActionBar` bal felső sarkában a *vissza gomb* kezelése hogyan került megvalósításra.
 
 Valósítsuk meg a `CityActivity` `onCitySelected(…)` függvényében azt, hogy egy városnév kiválasztásakor a `DetailsActivity` megfelelően felparaméterezve induljon el:
 
@@ -492,11 +520,16 @@ Valósítsuk meg a `CityActivity` `onCitySelected(…)` függvényében azt, hog
 
 Próbáljuk ki az alkalmazást, kattintsunk egy város nevére!
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **üres részletes nézet a megfelelő fejléccel**, a **DetailsActivity** kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
 ### 3. Hálózati kommunikáció megvalósítása (1 pont)
 
 #### Modell osztályok létrehozása 
 
-A modell osztályok számára a `hu.bme.aut.weatherinfo` package-ben hozzunk létre új package-et `model` néven. 
+A modell osztályok számára a `hu.bme.aut.android.weatherinfo` package-ben hozzunk létre új package-et `model` néven. 
 
 A `model` package-ben hozzunk létre egy új osztályt `WeatherData` néven:
 
@@ -615,7 +648,7 @@ A használt `weatherData` változónak fogunk később értéket adni, amikor vi
 
 #### A hálózati réteg megvalósítása
 
-A `hu.bme.aut.weatherinfo` package-ben hozzuk létre egy `network` nevű package-et, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. 
+A `hu.bme.aut.android.weatherinfo` package-ben hozzuk létre egy `network` nevű package-et, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. 
 
 A `network` package-en belül hozzuk létre egy `WeatherApi` nevű interfészt. 
 
@@ -632,13 +665,15 @@ interface WeatherApi {
 
 Látható, hogy *annotációk* alkalmazásával tuduk jelezni, hogy az adott függvényhívás milyen hálózati hívásnak fog megfelelni. A `@GET` annotáció *HTTP GET* kérést jelent, a paraméterként adott string pedig azt jelzi, hogy hogy a szerver alap *URL*-éhez képest melyik végpontra szeretnénk küldeni a kérést.
 
-> Hasonló módon tudjuk leírni a többi HTTP kérés típust is: @POST, @UPDATE, @PATCH, @DELETE
+!!!note ""
+    Hasonló módon tudjuk leírni a többi HTTP kérés típust is: @POST, @UPDATE, @PATCH, @DELETE
 
 A függvény paremétereit a `@Query` annotációval láttuk el. Ez azt jelenti, hogy a `Retrofit` az adott paraméter értékét a kéréshez fűzi *query paraméterként* az annotációban megadott kulccsal.
 
-> További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field
+!!!note ""
+    További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field
 
-A hálózati hívást jelölő interfész függvény visszatérési értéke egy`Call<WeatherData>` típusú objektum lesz. Ez egy olyan hálózati hívást ír le, aminek a válasza `WeatherData` típusú objektummá alakítható.
+A hálózati hívást jelölő interfész függvény visszatérési értéke egy`Call<WeatherData>` típusú objektum lesz. (A retrofites Callt importáljuk a megjelenő lehetőségek közül.) Ez egy olyan hálózati hívást ír le, aminek a válasza `WeatherData` típusú objektummá alakítható.
 
 Hozzunk létre a `network` package-ben egy `NetworkManager` osztályt:
 
@@ -667,7 +702,7 @@ object NetworkManager {
 
 Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. Egyetlen példányra lesz szükségünk belőle, így [singleton](https://en.wikipedia.org/wiki/Singleton_pattern)ként implementáltuk. Konstansokban tároljuk a szerver alap címét, valamint a szolgáltatás használatához szükséges API kulcsot.
 
-A `Retrofit.Builder()` hívással kérhetünk egy pareméterehzető `Builder` példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt ([OkHttp](http://square.github.io/okhttp/)), valamint a JSON és objektum reprezentációk közötti konvertert (Gson).
+A `Retrofit.Builder()` hívással kérhetünk egy pareméterezhető `Builder` példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt ([OkHttp](http://square.github.io/okhttp/)), valamint a JSON és objektum reprezentációk közötti konvertert (Gson).
 
 A `WeatherApi` interfészből a `Builder`-rel létrehozott `Retrofit` példány segítségével tudjuk elkérni a fordítási időben generált, paraméterezett implementációt.
 
@@ -676,6 +711,11 @@ A `WeatherApi` interfészből a `Builder`-rel létrehozott `Retrofit` példány 
 Az `APP_ID` paramétert elfedjük az időjárást lekérdező osztályok elől, ezért a `NetworkManager` is tartalmaz egy `getWeather(...)` függvényt, ami a `WeatherApi` implementációba hív tovább.
 
 **Cseréljük le** az `APP_ID` értékét az [OpenWeatherMap](https://openweathermap.org/) oldalon kapott saját API kulcsunkra!
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszanak a **Project nézetben a létrehozott modell osztályok**, az editorban a **WeatherApi** osztály kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ### 4. A hálózati réteg bekötése a részletező nézetbe (1 pont)
 
@@ -705,8 +745,6 @@ class DetailsPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAda
 ```
 
 Implementáljuk a hiányzó `Fragment`-eket a hozzájuk tartozó nézetekkel együtt:
-
-##### DetailsMainFragment
 
 `res/layout/fragment_details_main.xml`:
 
@@ -788,9 +826,8 @@ class DetailsMainFragment : Fragment() {
 
 Figyeljük meg, hogy hogy használjuk a kódban a `Glide` libraryt!
 
-> Az *OpenWeatherMap* API-tól a képek lekérhetők a visszakapott adatok alapján, pl: [https://openweathermap.org/img/w/10d.png](http://openweathermap.org/img/w/10d.png) 
-
-##### DetailsMoreFragment
+!!!note ""
+    Az *OpenWeatherMap* API-tól a képek lekérhetők a visszakapott adatok alapján, pl: [https://openweathermap.org/img/w/10d.png](http://openweathermap.org/img/w/10d.png) 
 
 `res/layout/fragment_details_more.xml`:
 
@@ -977,6 +1014,16 @@ override fun onResume() {
 
 Futtassuk az alkalmazást és figyeljük meg a működését! Próbáljuk ki azt is, hogy mi történik akkor, ha megszakítjuk a futtató eszköz internet kapcsolatát és megpróbáljuk megnyitni a részletező nézetet!
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszanak az emulátoron a **betöltött adatok**, a **DetailsActivity** kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
 ### 5. Önálló feladat: város listából törlés megvalósítása (1 pont)
 
 Valósítsuk meg a városok törlését a *Remove* gomb megnyomásának hatására.
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az emulátoron a **városok listája CSAK Budapesttel**, a **törlés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl. 
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
