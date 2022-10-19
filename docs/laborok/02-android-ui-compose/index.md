@@ -26,8 +26,8 @@ rögtön nem működik valami.
 
 ## Setup ⚙
 
-A kezdő projekt a [`PublicTransport.zip`](downloads/PublicTransport.zip) fájlba van becsomagolva
-(ha bevan valahova csomagolva). Egy projekt setup-olása és felkonfigurálása fontos, de nem a világot
+A kezdő projekt a [PublicTransportCompose](https://github.com/VIAUAC00/PublicTransportCompose) GitHub repository-ban van.
+Egy projekt setup-olása és felkonfigurálása fontos, de nem a világot
 szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad. Mindenesetre
 megjegyzek néhány dolgot. *Át lehet ugrani idő hiányában a Setup részt, de a sigma grind nem állhat
 meg, érdekes dolgokról van szó.*

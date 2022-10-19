@@ -29,8 +29,8 @@ feltétele a labor elvégzésének. Önálló feladat során inkább a hivatalos
 
 ## Setup ⚙
 
-A kezdő projekt az [`AndroidWallet.zip`](downloads/AndroidWallet.zip) fájlba van becsomagolva
-(ha be van valahova csomagolva). Egy projekt setup-olása és felkonfigurálása fontos, de nem a
+A kezdő projekt az [AndroidWalletCompose](https://github.com/VIAUAC00/AndroidWalletCompose) GitHub repository-ban van.
+Egy projekt setup-olása és felkonfigurálása fontos, de nem a
 világot szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad.
 Mindenesetre megjegyzek néhány dolgot. Át lehet ugrani idő hiányában a Setup részt, de ez nem
 lesz hosszú. A setup kb. ugyanaz, mint a 2. labor Extra feladatánál, azonban van néhány különbség.
