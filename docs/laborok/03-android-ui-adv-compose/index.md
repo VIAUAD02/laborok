@@ -30,14 +30,13 @@ feltétele a labor elvégzésének. Önálló feladat során inkább a hivatalos
 ## Setup ⚙
 
 A kezdő projekt az [AndroidWalletCompose](https://github.com/VIAUAC00/AndroidWalletCompose) GitHub repository-ban van.
-Egy projekt setup-olása és felkonfigurálása fontos, de nem a
-világot szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad.
+Egy projekt setup-olása és felkonfigurálása fontos, viszont erre most nem igazán fogok kitérni részletekben.
 Mindenesetre megjegyzek néhány dolgot. Át lehet ugrani idő hiányában a Setup részt, de ez nem
 lesz hosszú. A setup kb. ugyanaz, mint a 2. labor Extra feladatánál, azonban van néhány különbség.
 
 ### [Proguard], R8 és [MaterialIcons]
 
-A Module `build.gradle` fájlban feltűnik néhány különbség a default-hoz képest. `minifyEnabled`
+A Module `build.gradle` fájlban feltűnik néhány különbség az alap filehoz képest. `minifyEnabled`
 lehetővé teszi a felesleges kód eltávolítását, a kód obfuszkációját, valamint optimalizálja azt.
 `shrinkResources` eltávolítja a nem használt resource fájlokat, ezzel is helyet spórolva. A meglévő
 fájlok minősége nem romlik! Ezeket a kulcsszavakat egyébként a [Proguard] és R8 biztosítja
@@ -62,7 +61,7 @@ android {
 benne kihasználatlanul. [Proguard] és R8 segít a fel nem használt részeket kihagyni az
 alkalmazásból, ezáltal az gyorsabban települ és fut. Egyébként [MaterialIcons] extended verziója
 a [Google Icons] teljes kínálatával fel van szerelve, így egy pici idő lehet, míg betölti a built-in
-linter a dolgokat a suggestion-öknél, viszont minden elérhető programmatikusan, `ImageVector`-okban.
+linter a dolgokat a suggestion-öknél, viszont minden ikon elérhető programmatikusan, `ImageVector`-ként.
 
 ```groovy
 dependencies {
@@ -132,14 +131,15 @@ belsejét. Egyedileg testre tudjátok szabni, tudtok kísérletezni, hogy hogyan
 az `imageVector`-t és `color`-t felhasználó UI komponensek az `ElevatedCard`-on belül.
 A fenti kép ad egy példát, hogy mit kellene alkotni, hogyan nézhet ki egy végleges layout.
 Ezeknél a részeknél többnyire nincs rossz megoldás, csak legyenek megjelenítve az elvárt
-információk, mint a `Transaction` neve (`name`) és értéke (`worth`).
+információk, mint a `Transaction` neve (`name`) és értéke (`worth`). Ha van bármi plussz
+amit hozzá szeretnétek adni, csak bíztatni tudlak titeket! 😊
 
 ## Határ a csillagos ég 🌉 🌃 🌌
 
 Egyelőre ezt a két (`PublicTransport` és `AndroidWallet`) labort írtam át [Jetpack Compose]ra,
-hogy példát mutassak, hogyan lehetne akár egy háziban felhasználni őket. Egy kicsi tréningnek
-szántam ezt a labort, hogy gyakoroljátok, miként is lehet UI-t írni XML nélkül. Remélem jó kis
-introduction projektek voltak ezek, lehet látni a különbséget és azt is, hogy elég sok kódot meg lehet spórolni [Jetpack Compose]zal.
+hogy példát mutassak, hogyan lehetne akár egy háziban felhasználni ezt a technológiát. Egy kicsi tréningnek
+szántam ezt a labort, hogy gyakoroljátok, miként is lehet UI-t írni XML nélkül. Remélem jó és hasznos
+introduction projektek voltak ezek, lehet látni, hogy olykor elég sok kódot meg lehet spórolni [Jetpack Compose]zal.
 
 ## Néhány hasznos [Jetpack Compose] lib
 
@@ -150,10 +150,10 @@ rendelkezésetekre egy esetleges házi megírásához.
 
 [Navigation Component] szerintem nagyon jó ha az ember XML-t és Fragment-eket használ, azonban
 a Compose változatát elég nehéz használni. NavComponent használatáról a [Navigating with Compose]
-cikkben olvashattok. Mindenesetre van egy nagyon menő alternatívája, konkrétan egy wrapper a
+cikkben olvashattok. Mindenesetre van egy nagyon jó alternatívája, ami egy wrapper a
 NavComponent köré, ez pedig nem más, mint a [Compose Destinations]. Destinations annotációkkal
-oldja meg a munka többségét, ami egy elég manuális munka lenne NavComponent esetén. Szerintem
-egy nagyon egyszerű és kényelmes megoldás a navigáció megoldására.
+oldja meg a munka többségét, ami egy elég manuális munka lenne NavComponent esetén. Az annotációk segítségével generálódnak ki a navigációt megvalósító kódok compile időben. Szerintem ez
+egy nagyon egyszerű és kényelmes megoldás a navigáció problémájára.
 
 ### [Accompanist]
 
@@ -164,8 +164,7 @@ még nagyon sok minden!
 ### [Coil]
 
 Ha XML-t használtok, valószínűleg szó fog esni [Glide]ról. Mint ahogy a [Glide], ez is egy képeket
-betöltő és automatikusan cache-elő könyvtár, ami `Kotlin Coroutine`-okat használ. Nagyon
-`lightweight`, könnyű használni, van Compose implementációja is, míg [Glide] oldalán nem találok
+betöltő és automatikusan cache-elő könyvtár, ami `Kotlin Coroutine`-okat használ. `Lightweight`,könnyű használni, van Compose implementációja is. Sajnos [Glide] oldalán nem találok
 hivatalos információt, hogy lenne.
 
 ### [Hilt with Compose]
@@ -182,9 +181,7 @@ Azért vannak hiányosságai [Material Design 3]-nak [Material Design 2]-vel sze
 
 ## Végszó
 
-Köszi, hogy végigszenvedtétek ezt velem, próbáltam a maxot kihozni az egészből, sokat
-számít nekem nagyon hogy itt voltatok, tudom, néha cringe lehettem, meg nem mentem bele a végletekig
-dolgokba, de próbáltam egy hasznos, egyedibb, viccesebb, emészthetőbb anyagot kihozni az egészből.
+Köszönöm szépen, hogy részt vettetek ezen az extra laboron, remélem egy pozitív első élményt adtam a [Jetpack Compose] használatáról és a jövőben is fel tudjátok használni az itt tanultakat. Ha bármilyen visszajelzésetek lenne a laborral kapcsolatban, írjatok rám, Teams-en elérhető vagyok, örülök mind negatív, mind pozitív visszajelzésnek, szívesen segítek a háziban is, ha a Compose mellett rakjátok le a voksaitokat 😊.
 
 [Jetpack Compose]: https://developer.android.com/jetpack/compose
 
@@ -220,7 +217,7 @@ dolgokba, de próbáltam egy hasznos, egyedibb, viccesebb, emészthetőbb anyago
 
 [Material Design 3]: https://m3.material.io/
 
-[Material Design 2]: https://material.io/
+[Material Design 2]: https://m2.material.io/
 
 [Hilt with Compose]: https://developer.android.com/jetpack/compose/libraries#hilt
 

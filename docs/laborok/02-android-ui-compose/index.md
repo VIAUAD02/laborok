@@ -29,20 +29,18 @@ rögtön nem működik valami.
 A kezdő projekt a [PublicTransportCompose](https://github.com/VIAUAC00/PublicTransportCompose) GitHub repository-ban van.
 Egy projekt setup-olása és felkonfigurálása fontos, de nem a világot
 szeretném megváltani, úgyhogy annak az elmagyarázása majd egy másik napra marad. Mindenesetre
-megjegyzek néhány dolgot. *Át lehet ugrani idő hiányában a Setup részt, de a sigma grind nem állhat
-meg, érdekes dolgokról van szó.*
+megjegyzek néhány dolgot. *Át lehet ugrani idő hiányában a Setup részt, de nem érdemes, érdekes dolgokról van szó.*
 
 *A `PublicTransport` starter projekt teljesen angol!*
 
 ### Erősen ajánlott pluginek
 
-Mindenekelőtt ajánlanék néhány linter plugint, amikkel toppon lehet tartani a kód minőségét:
+Mindenekelőtt ajánlanék néhány plugint, amik segítenek abban, hogy minél szebb és jobb minőségű kód kerüljön ki a kezeitek közül:
 
 * [Detekt] - A root mappában található `detekt-config.yml` fájllal fel lehet konfigurálni, egy
 linter, ami figyelmeztet adott formai dolgokra.
-* [ktlint] - van egy unofficial pluginja JetBrains Marketplacen, ami telepítehető Android Studio-ra
-is, hasznos a built-in formatterje.
-* [SonarLint] - nagyon sok mindenre beszól a kódodnál, jó szokás halgatni rá.
+* [ktlint] - van egy unofficial pluginja JetBrains Marketplacen, ami telepítehető Android Studio-ra is, hasznos a built-in formatterje.
+* [SonarLint] - egy statikus kódelemző. Szintén elérhető JetBrains Marketplacen, erősen ajánlom hogy telepítsétek, jó tippeket ad.
 
 ### 4 darab Activity
 
@@ -54,12 +52,12 @@ Lennie kellene 4 darab Activity fájlnak a projektben:
 * `PassActivity.kt`
 
 Minden (kivéve 1) itteni Activity a [ComponentActivity]-ből származik le, ez a
-default [Jetpack Compose]-nál, nem kell meglepődni. Ennek egyik leszármazottja
+default [Jetpack Compose]-nál. Ennek egyik leszármazottja
 az [AppCompatActivity], amit gyakrabban használnak XML-es Activity-knél. Mindkettő az
 alap [Activity]-ből származik le.
 
 A `DetailsActivity` az [AppCompatActivity]-ből származik le, ami fontos szerepet fog játszani mikor
-a dátumokat válasszuk ki a rendelni kívánt jegyhez.
+a dátumokat válasszuk ki a megvenni kívánt jegyhez.
 
 ### Manifest és Theme
 
@@ -71,25 +69,21 @@ Egyébként **nem sikerülne betölteni** a [DateRangePicker]-t, crashelne az ap
 
 ### Resources
 
-**Import-tal nem kell foglalkozni**, minden be van rakva a `res` mappába. Nagy szokás adott
-Stringeket beégetni a kódba, szerintem undorítóbb dolog nincs e kerek Földön. Igényes emberek
-vagyunk, késsel-villával eszünk, `strings.xml`-ből nyerjük ki a szükséges szöveget, stb..
+**Import-tal nem kell foglalkozni**, minden be van rakva a `res` mappába. Ahelyett, hogy beégetnénk a szöveget a kódba, azt ajánlom, hogy `strings.xml`-ből nyerjük ki a szükséges kifejezéseket.
 Windows-on <kbd>ALT</kbd>+<kbd>ENTER</kbd>, egyébként jobb klikk a raw String-re és rá kell nyomni
 az `Extract string resource` menüre. Ekkor feljön egy dialog, hogy milyen kulccsal lehessen elérni
 azt és automatikusan hozzáadja a szöveged a `strings.xml` fájlhoz, valamint refactorlálja a kódod a
 legjobb tudása alapján az Android Studio (általában wrappeli így:
 `stringResource(R.strings.my_string)`). Én úgy szoktam, hogy beírom raw string-ként, majd ezzel az
-módszerrel be is rakom `strings.xml`-be. Key-nél érdemes követni a `snake_case`-t.
+módszerrel be is rakom `strings.xml`-be. Key elnevezésénél érdemes követni a `snake_case`-t.
 
 ### Project `build.gradle`
 
-Itt van meghatározva a [Jetpack Compose] verziója, valamint a használt Kotlin verziója is. Nincs
-nyulka-piszka, mert fura üzeneteket dobhat, hogy ez a dolog még nem volt tesztelve azzal a dologgal
-és nem fog lebuildelni, csak ha beírsz egy lorem ipsum hosszú command line paramétert, vagy valami
-más miatt átkoz meg. Néha vannak ilyenek, nem lehet mindig a cutting-edge dolgokat használni. Még
-annyit megjegyzek, hogy itt definiálva van egy `compose_version` érték, ami a [Jetpack Compose]
+Itt van meghatározva a [Jetpack Compose] verziója, valamint a használt Kotlin verziója is.
+**Ne módosítsátok**, mert fura hibákat dobhat és nem fog lebuildelni a projekt, csak ha beírsz egy hosszú command line paramétert. Néha vannak ilyenek, nem lehet mindig a cutting-edge dolgokat használni.
+Még annyit megjegyzek, hogy itt definiálva van egy `compose_version` érték, ami a [Jetpack Compose]
 könyvtárak verzióját hivatott jellemezni. A Compose compiler-rének általában más a verziója, ezt
-kézzel át kell írni egy real project során.
+kézzel át kell írni egy igazi project során.
 
 ### Module `build.gradle`
 
@@ -122,13 +116,13 @@ dependencies {
 `buildFeatures`-nél jelezni kell egy `compose true`-val, hogy Compose-t használunk. Compose compiler
 verzióját kézileg be kell állítani, ideális, ha a `compose_version` <= `compose_compiler_version`.
 
-Aztán van egy desugaring könyvtár, ami az új, modern dolgokat backportolja egy régebbi platformra,
-hogy több készüléket tudjunk támogatni. Pl. van az [Instant] osztály, ami `API 26`-ban jött ki,
-viszont ezzel a lib-bel lemehetünk legalább `API 21`-ig (ennyi a `minSdk` a projektnél).
-Ha kikommentezzük a `coreLibraryDesugaringEnabled true` sort, akkor ordítani fog az Android Studio,
+Aztán van egy úgynevezett desugaring könyvtár, ami az új, modern dolgokat elérhetővé teszi egy régebbi platformon,
+így több készüléket tudunk támogatni ugyanazzal a kóddal. Pl. van az [Instant] osztály, ami `API 26`-ban jött ki,
+viszont a desugaring használatával lemehetünk legalább `API 21`-ig (ennyi a `minSdk` a projektnél).
+Ha kikommentezzük a `coreLibraryDesugaringEnabled true` sort, akkor rátok fog szólni az Android Studio,
 hogy nem csekkolod azt, hogy `API 26` vagy annál modernebb készüléket használsz e, mikor
 [Instant]-ot használsz a `DetailsActivity`-ben. A feladat végén kikommentezheted, hogy lásd
-(gradle sync-elni kell, aztán látod).
+(gradle sync-elni kell, aztán látod). `< API 26` készülékeken desugaring nélkül crashelne az app, ha használnátok az `API 26`-tól elérhető funkciókat.
 
 #### The more you know
 
@@ -175,13 +169,13 @@ hogyan is viselkedjen a UI elem.
 
 * Töltse ki a számára adott helyet?
 * Csak vízszintesen?
-* Mennyi legyen az elem körül a padding?
-* Milyen távolság legyen az elemeim között egy `Column`-nál?
+* Mennyi legyen az elem körül a `padding`?
+* Milyen távolság legyen az elemeim között egy `Column`-ban?
 
 Ez csak néhány példa a több százból, amire képes a `Modifier`. Általában egy elemhez át lehet
 adni egy `Modifier`-t a `modifier` paraméterén keresztül.
 
-Egyébként erről jut eszembe, van 
+Egyébként erről jut eszembe, van
 [ez a fantasztikus honlap][What is the euivalent of X in Jetpack Compose], ami megmondja adott
 dolgoknak a Compose alternatíváját. Innen könnyebb lehet átírni a labort manuálisan, de inkább
 használjátok a snippeteket, amiket adok nektek, ígérem, bőkezű leszek!
@@ -205,7 +199,7 @@ dokumentált][Compose Layouts] minden, amit használtam, így könnyen utána le
 
 #### ⚠ Figyelem! ⚠
 
-***Figyelni kell arra, hogy Material Design 3 elveket követtem a labor során, ez annyi különbséget
+***Figyelni kell arra, hogy Material Design 3 könyvtárat használtam a labor során, ez annyi különbséget
 jelent, hogy pl. a `Button` az a [`androidx.compose.material3`][Androidx Compose Material 3]
 könyvtárból származik, nem pedig a [`androidx.compose.material`][Androidx Compose Material]-ból.
 Ha nem nézne ki úgy a UI, ahogy a képen, akkor figyelj arra, hogy a
@@ -339,10 +333,10 @@ tudtok olvasni.
 
 #### Context
 
-A `context` egy picit máshogy működik Compose-ban, mint ahogy fragmenseknél. Ha kell a `context`,
-akkor vagy megkapod azt, mint paraméter, vagy lekéred `LocalContext.current` hívással. Ez általában
+A `context` egy picit máshogy működik Compose-ban, mint ahogy Fragment-eknél. Ha kell a `context`,
+akkor lekéred `LocalContext.current` hívással. Ez általában
 ahhoz kellhet, ha valami lokalizált String-et akarsz megkapni szövekből, ha éppen nem tudod
-meghívni a *`stringResource()`*-t.
+meghívni a *`stringResource()`*-t, ami egy metódus, amit Composable scope-jában tudsz hívni.
 
 #### State change
 
@@ -366,17 +360,16 @@ utazást képviselnek.
 <img alt="ListActivity" src="assets/ListActivity.png" width="40%"/>
 </p>
 
-#### Kotlin Coding Conventions (Biblia)
+#### Kotlin Coding Conventions
 
 Van néhány konvenció, néhány szabály, amit komolyan kell venni, hogy szép, konzisztens kódot tudjon
 írni az ember. Ebben segít a [Kotlin Coding Conventions]! A dokumentációban lévő elveket segít
 betartatni az Android Studio, a beállításoknál az `Editor` ➡ `Coding Style` ➡ `Kotlin` ➡
-`Load/Save` tabon, lehet látni, hogy a [Kotlin Coding Conventions]-ból meríti az alapokat a built-in
+`Load/Save` tabon, lehet látni, hogy a [Kotlin Coding Conventions]-re alapszik a built-in
 formatter. Ha már itt vagyunk ajánlom, hogy kapcsoljátok be az `Other` tabon a `Use trailing comma`
 ✅ opciót. A [Kotlin Coding Conventions] dokumentációban le van írva, miért jó.
 
-Fontos dolog, amit innen kiemelnék, az, hogy nem mindenki követi ezeket az elveket, ami teljesen érthető, viszont ez az ami nekem a különbséget
-jelenti egy okés, jó ember és egy ***Android Isten Sigma Male/Female*** között. Ha figyeltek ezekre
+Fontos dolog, amit innen kiemelnék, az, hogy nem mindenki követi ezeket az elveket, ami teljesen érthető, viszont szerintem nagyon sok különbséget jelent a használatuk, *madarat tolláról, informatikust kódjáról ismerni*. Ha figyeltek ezekre
 a konvenciókra, akkor más is sokkal jobban fogja értékelni a munkátokat, mások munkáját is jobban
 fogjátok tudni megítélni.
 
@@ -499,22 +492,17 @@ fun TravelTypeText(
 #### Boilerplate megelőzése
 
 Itt több különálló Composable-re szedtem a UI elemeket, hogy kevesebb
-legyen a boilerplate (felesleges) kód. Boilerplate kód (duplikált, kötelezően rossz kód) több
+legyen a boilerplate (felesleges) kód. Boilerplate kód (duplikált, felesleges kód) több
 programozási alapelvet megsért, köztük sokszor az *Open-Closed Principle-t* (OCP),
 a *Single-Responsibility Principle-t* (SRP) és *Single Choice Principle-t* (SCP) valamint elkerüli
 a jó szokásokat, mint a *Don't Repeat Yourself* (DRY) a temérdek más Principle-ökön kívül, amit
-felsorolhatnék. Helyette ajánlom az ***[Objektumorientált Szoftvertervezés]*** tárgyat. (Ajánlom,
-hogyha van egy olyan barátotok aki OO-n van most, akkor tőle kérjetek el a diákat,
-[vik.wiki]-n eléggé outdated az anyag amit találtam, azt nem ajánlom. Dr. Simon Balázs
-angol diái menők.)
+felsorolhatnék. Meg szeretném említeni itt az ***[Objektumorientált Szoftvertervezés]*** tárgyat, ami jobban részletezi ezeket az elveket és még többet a jó programozási szokásokról. Dr. Simon Balázs előadó diáiból szerintem nagyon meg lehet érteni ezeket, melegszívvel ajánlom.
 
 #### Kommentelés
 
 A kódkommentelésről is elrejtettem néhány jó tippet, a legjobb, ha önmagát dokumentálja a kód,
 azonban egy-két komment sokat segíthet egy bonyolultabb, komplexebb mechanizmus megértésében.
-Ennek a módja is megvan Kotlin-nál, nagyon okosan bele lehet égetni "referenciákat" adott
-osztályokra a kommentekbe `[...]` használatával. Persze a Java-like módon is lehet kommentezni.
-Ez a fajta mód ***[KDoc]***-ot képes generálni, ami a `Javadoc`-ra hajaz erősen.
+Kotlin biztosít számunkra néhány hasznos eszközt, mint a `[...]`, amivel meg lehet referálni osztályokat, paramétereket. Kotlin kommentelési mintái erősen hajaznak a Javáéra, ezért van egy erős kompatibilitás a Java felől. A Kotlin is rendelkezik egy fajta dokumentálási rendszerrel, mint a `Javadoc`, ez pedig a [KDoc].
 
 ### Details 📃
 
@@ -765,8 +753,7 @@ inline fun <reified Option : Any, reified NullableOption : Option?> DetailsRadio
 
 #### Template-ek jövője
 
-Amikor Programozás alapjai 2-ből megismertem a template-ket, Szebi csodás homlokára nyomtam egy
-cuppanós puszit, annyira ötültem neki (csak metafora 🙃). Szerencsére átélhettem Kotlinban ugyanezt
+Amikor Programozás alapjai 2-ből megismertem a template-eket, úgy érzetem, hogy egy teljesen új és nagyszerű világ nyílt meg előttem. Szerencsére átélhettem Kotlinban ugyanezt
 az érzést az `inline`, `reified` és `crossinline` kulcsszavak megismerésénél. Konkrétan arra kell
 gondolni, hogy a függvény automatikusan fel tudja ismerni, milyen típusú változót kap és nem kell
 castolni esetleges callback-eket, ha valamilyen generikus observer/listener mintájú mechanizmust
@@ -790,7 +777,7 @@ funkciókat már az újabb és jobb [Jetpack Compose]-ban írják.
 
 #### [DateRangePicker] részletesebben
 
-Papolok itt az [Interoperability APIs]-ról, de szerencsémre/szerencsétlenségemre volt egy probléma
+Beszélek itt az [Interoperability APIs]-ról, de szerencsémre/szerencsétlenségemre volt egy probléma
 amit modern, [Jetpack Compose] eszközökkel nehezen tudtam megoldani. [DatePicker] létezik
 Compose-ban, azonban amellett, hogy régi a fejlesztői interfésze, csak Dialog formában elérhető, és
 [Material Design 2]-vel, nem [Material Design 3]-mal. Valamint csak 1 dátumot lehet vele
@@ -798,10 +785,10 @@ kiválasztani, nem egy intervallumot. Szerencsére a [DateRangePicker]-rel már 
 választani, azonban a megjelenítése picit több munkát igényel, minthogy átadnánk neki egy
 `Context`-tet. Mivel nem csak egy `Dialog`-ról van szó, hanem egy teljes `Fragment`-ről (egy
 `FragmentDialog`-ról pontosabban), ezért szüksége van a `supportFragmentManager`-re. Ez a
-[ComponentActivity]-ben nincs meg, viszont az [AppCompatActivity]-ban már jelen van. Ezért kellett
+[ComponentActivity]-ben nincs meg, viszont az [AppCompatActivity]-ban már biztosítja ezt számunkra. Ezért kellett
 megváltoztatni a `DetailsActivity` ősét. Ez a változás azt is magával vonzotta, hogy a `Theme`-nek
 le kellett származnia egy `Theme.AppCompat` theme-ből. És onnan sem akármelyikből, hanem olyanból,
-aminek meg voltak adva adott attribútumai. Szerencsére a `Theme.Material3` megállta a helyét és
+aminek meg voltak adva adott attribútumai. Szerencsére a `Theme.Material3` implementálta ezeket és
 rendeltetésszerűen működött tovább az applikáció.
 
 #### Navigálás előre! 🗺
@@ -815,8 +802,7 @@ valamint egy date intervallumot reprezentáló String-et adunk át az Intentben.
 <img alt="PassActivity" src="assets/PassActivity.png" width="40%"/>
 </p>
 
-Végső soron elértünk a `PassActivity`-hez! Irreálisan hosszú ez a labor, szerencsére nem maradt sok
-a végére. Ezt a kódot kellene *`copypasta`*-zni `PassActivity` alá, `PassScreen`-t helyettesítve.
+Végső soron elértünk a `PassActivity`-hez! Ezt a kódot kellene *`copypasta`*-zni `PassActivity` alá, `PassScreen`-t helyettesítve.
 
 ```kotlin
 @Preview(showBackground = true)
@@ -853,16 +839,14 @@ fun PassScreen(
 
 #### Intentből adat kinyerése, [Parcelable], [Parcelize]
 
-Röviden: hasznos. Hosszabban, szerintem manapság elég ritkán indítunk Activity-t egy appon belül
-navigáció szempontjából, így annál nem szokás használni. Viszont mind a [Navigation Component],
+Röviden: hasznos. Hosszabban: `best practice` az, hogy az az ideális, ha csak egy Activity-je van az embernek egy appon belül, ezért nem igazán szoktak Intent-eket használni általános navigációra.
+Erre vannak jobb eszközök, amik `Fragment`-eket és `Composable`-öket vesznek igénybe. Mind a [Navigation Component],
 [Compose Navigation] és a (szerintem ennek a jobb Compose alternatívája) [Compose Destinations]
-között hasonlóan át kell adni egy egyszerűbb típusú objektumot, vagy [Parcelable]-t, hogy azt az
+között át kell adni egy egyszerűbb típusú objektumot, vagy [Parcelable]-t, hogy azt az
 úticél `Fragment` vagy `Composable` fel tudja dolgozni.
 
-Szerencsénkre létezik egy olyan menő plugin, amit úgy hívnak, hogy [Parcelize]. A plugin
-segítségével elérhetővé válik számunkra a `@Parcelize` annotáció, amit kábé bármely `data class`
-felé tudjuk biggyeszteni, hogy [Parcelable]-lé tudjuk alakítani könnyen. Konkrétan automatikusan
-legenerálja a [Parcelable] által kért metódusokat az adott osztályhoz.
+Amint az ember [Parcelable]lé akarja alakítani a `data class`-szát, rájön, hogy saját maga kell implementálnia a szerializációt elősegítő absztrakt metódusokat. Egy apró tapasz erre a sebre az, hogy Android Studio felajánlja, hogy implementálja ezeket a metódusokat automatikusan és legenerálja a kódot közvetlenül az osztály tagjaként. Létezik azonban egy olyan plugin, amit úgy hívnak, hogy [Parcelize]. A plugin
+segítségével elérhetővé válik számunkra a `@Parcelize` annotáció, amely segítségével automatikusan legenerálódnak ezek az implementációk. Nem kell hozzá az Android Studio segítségével legeneráltatni azokat, nincs plussz kód, amit meg kell érteni/amire figyelni kell.
 
 ## Végszó ✨ 🚀 💫
 
@@ -871,13 +855,12 @@ bemásolni, viszont maximalizálni szerettem volna a bónusz hasznos informáci�
 kolléga minél több tudást és jó szokást könyvelhessen el magának. Valamint szerettem volna csinálni
 egy cheat sheet-et azoknak akik [Jetpack Compose]-ban szeretnék a háziaikat írni 🥰.
 
-Tudom, nagyon hosszú ez így, viszont remélem, többször is előveszitek, nézegetitek a kódot,
-rálestek a hyperlinkekre, valamint ránéztek raw-ban a Markdown file-ra is. Ott is próbáltam ügyelni
-a tisztaságra 🧼 🧹 🧽.
+Remélem, többször is előveszitek, nézegetitek a kódot,
+rálestek a hyperlinkekre, módosítgatjátok a projekteket.
 
 Egyébként jelenleg szakdolgozatomat írom a 2022-es őszi félévben, aminek része egy Android app,
-ha rá szeretnétek nézni, mit-hogyan csinálok a legjobb tudásom szerint, akkor clone-ozzátok is
-[Jay]t 🐦 🥰. Van benne DevOps, SaaS (Firebase). Azért írom ezt ide, mert szeretném, ha minél több embernek egyedi házija
+ha rá szeretnétek nézni, mit-hogyan csinálok a legjobb tudásom szerint, akkor lessetek rá
+[Jay]re 🐦 🥰. Szeretném, ha minél több embernek egyedi házija
 legyen, GitHub-on temérdek sok open-source példa áll rendelkezésére, amiből ihletet
 meríthet az ember.
 
@@ -927,7 +910,7 @@ meríthet az ember.
 
 [DatePicker]: https://material.io/components/date-pickers
 
-[Material Design 2]: https://material.io/
+[Material Design 2]: https://m2.material.io/
 
 [Material Design 3]: https://m3.material.io/
 
