@@ -153,7 +153,7 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
 Postman segítségével egyszerűen tudunk HTTP kéréseket indítani és a kapott válaszokat vizsgálni.
 Leggyakrabban akkor használjuk ha egy REST API-t kell kipróbálni vagy tesztelni.
 
-Webes és desktopos verzó is létezik belőle.
+Webes és desktopos verzió is létezik belőle.
 
 * A webes felület regisztráció után használható a https://www.postman.com/ oldalon.
 * Az asztali verziót a https://www.postman.com/downloads/ oldalról lehet letölteni.
