@@ -8,7 +8,7 @@ A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerés
 
 ### Félév során használt eszközök
 
-* Webböngésző (Chorme, Edge vagy Firefox) és a beépített hibakereső eszközei,
+* Webböngésző (Chrome, Edge vagy Firefox) és a beépített hibakereső eszközei,
 * [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
     * otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet, de a laborokban a VS Code-ot használjuk.
     * A laborban előre telepítésre kerültek az alábbi kiegészítők a VS Code-hoz,
@@ -22,7 +22,7 @@ A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerés
 
 ## Előkészület
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [GitHub](../../tudnivalok/github/GitHub.md).
 
 ### Git repository létrehozása és letöltése
 
@@ -64,7 +64,7 @@ A Chrome, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől 
 * **Források (Sources)**: Itt látható, hogy a teljes weboldal betöltéséhez honnan és mit töltött le a böngésző. Ha itt kiválasztunk egy JS fájlt, akkor annak a teljes kódját láthatjuk, sőt töréspontokat is tehetünk bele, így lehetővé téve a JS fájlok debuggolását.
 * **Hálózat (Network)**: itt láthatjuk a kimenő kéréseket és a rájuk érkező válaszokat. Előnye, hogy csak a konkrét oldalhoz tartozik, nem a teljes böngészőhöz, így könnyebb leszűrnünk, melyik kérések tartoznak melyik alkalmazáshoz/oldalhoz. Láthatók a pontos időzítések is, HTTP kérések indítását viszont nem lehetséges kézzel megejtenünk a beépített lehetőségekkel.
 * **Teljesítménymérők (Performance)**: különböző teljesítménymérő eszközök állnak rendelkezésünkre a weboldalak elemzéséhez, amik jellemzően a memória- és processzorhasználatot mérik.
-* **Alkalmazás (Application)**: az alkalmazás által a különbőző tárolókban - Local Storage, Session Storage, Cookies, ... - tárolt kulcs-érték párokat tudjuk megtekinteni.
+* **Alkalmazás (Application)**: az alkalmazás által a különböző tárolókban - Local Storage, Session Storage, Cookies, ... - tárolt kulcs-érték párokat tudjuk megtekinteni.
 
 Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.
 
@@ -80,7 +80,7 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
   <figcaption>Network tab</figcaption>
 </figure>
 
-**Disable cache**: bekapcsolása nagyon fontos JS és HTML kód debuggolása során, ugyanis a böngészők elég aggresszívan gyorsítotárazzák ezeket a kéréseket. Fontos azonban tudni, hogy a gyorsítótár csak addig van letiltva amíg a Dev Toolban meg van nyitva és csak arra az egy oldalra (fülre) vonatkozik.
+**Disable cache**: bekapcsolása nagyon fontos JS és HTML kód debuggolása során, ugyanis a böngészők elég agresszívan gyorsítotárazzák ezeket a kéréseket. Fontos azonban tudni, hogy a gyorsítótár csak addig van letiltva amíg a Dev Toolban meg van nyitva és csak arra az egy oldalra (fülre) vonatkozik.
 
 **Preserve log**: bekapcsolásával lehetőségünk van a logok megőrzésére navigációkor is. Azonban ezt a pipát óvatosan használjuk, mert a sok log nagyon be tudja lassítani a böngészőt.
 
@@ -93,8 +93,8 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
         * Request URL: https://www.aut.bme.hu/ 
         * HTTP Method: GET
         * Status Code: 200
-    * **Response Headers**: Itt találjuk a HTTP válasz fejléceit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintba meg tudjuk nézni a nyers adatokat is.
-    * **Request Headers**: Itt találjuk a HTTP kérés fejléc mezőit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintba meg tudjuk nézni a nyers adatokat is.
+    * **Response Headers**: Itt találjuk a HTTP válasz fejléceit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintva meg tudjuk nézni a nyers adatokat is.
+    * **Request Headers**: Itt találjuk a HTTP kérés fejléc mezőit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintva meg tudjuk nézni a nyers adatokat is.
 
     <figure markdown>
         ![Http kérés-válasz](./assets/http-request-response.png)
@@ -177,7 +177,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
         * Key: **status**
         * Value: **sold**
 4. Küldjük el a kérést a **Send** gombra kattintva és ellenőrizzük a visszakapott adatokat.
-5. Mentsük el a jobb felső sarokban lévő **Save** gombbal a MobWeb kategórába.
+5. Mentsük el a jobb felső sarokban lévő **Save** gombbal a MobWeb kategóriába.
 
 <figure markdown>
   ![Postman](./assets/postman-filter.png)
@@ -186,7 +186,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 
 ### Új elem létrehozása
 
-1. Állítsunk össze egy új kérést, ami egy kutyát hoz létre. Ehhez a */pet* URL-re kell egy *POST* kérést küldeni a *Body* -ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leíás a swagger oldalon érhető el.
+1. Állítsunk össze egy új kérést, ami egy kutyát hoz létre. Ehhez a */pet* URL-re kell egy *POST* kérést küldeni a *Body* -ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leírás a swagger oldalon érhető el.
     * Method: **POST**
     * URL: **https://petstore.swagger.io/v2/pet**
 2. Válasszuk ki a Body fület, ott a raw opciót és adjuk meg hogy JSON adat lesz a bodyban.
@@ -246,7 +246,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
 ### Feladat
 
-1. Nyisd meg az `index.html` fájlt és jobb gommbal kattints bele, majd választ az **Open with Live Server** opciót. Ezzel elindul egy fejlesztő webszerver a 5500-as porton és az alapértelmezett böngészőt is megnyitja a kiválasztott oldal tartalmával. (http://127.0.0.1:5500/index.html)
+1. Nyisd meg az `index.html` fájlt és jobb gombbal kattints bele, majd választ az **Open with Live Server** opciót. Ezzel elindul egy fejlesztő webszerver a 5500-as porton és az alapértelmezett böngészőt is megnyitja a kiválasztott oldal tartalmával. (http://127.0.0.1:5500/index.html)
 
     !!! tip  Fontos
         Ez az opció csak könyvtárakra működik, tehát ha csak simán a fájlt nyitod meg (nem a projekt könyvtárát) akkor nem fog működni.
@@ -276,7 +276,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
     
     ??? info "Segítség"
         * `a` - hyperlink készítése a nyitó és záró tag közé kerül a megjelenített szöveg.
-        * `href` - az `a` tag attibútuma, hova kell navigálni.
+        * `href` - az `a` tag attribútuma, hova kell navigálni.
         * `target` - az `a` tag attribútuma, hol nyissa meg a linket (új tab, vagy ebben az ablakban).
 
 6. Fő tartalmi blokk
@@ -305,9 +305,9 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `colspan` - oszlopok összevonása (attribútum a td-re)
             * `rowspan` - sorok összevonása (attribútum a td-re)
             * `border` - táblázat keret vastagsága (attribútum a table-re )
-    * **Kép kezelése képaláítással**:
+    * **Kép kezelése képaláírással**:
         * Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.
-        * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternating textet is.
+        * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternative textet is.
 
         ??? info "Segítség"
             * `figure` - tag ami összefogja a képet és képaláírást.
@@ -316,7 +316,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `figcaption` - Képaláírás
     * **Formázott szöveg**:
         * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
-        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrája ezt a viselkedést.
+        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.
 
 7. Készítsünk egy a tartalomtól független rész a szerzőről
     * Szerző neve a megfelelő heading típussal.
@@ -374,8 +374,8 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
         * `form` - maga az űrlap
         * `input` - beviteli mező, aminek a `type` attribútuma adja meg, hogy milyen típusú.
         * `label` - címke ahol a `for` attribútum adja meg, hogy melyik beviteli mezőhöz tartozik.
-        * `option` - Legördülő lista.
-        * `select` - Legördülő lista elem.
+        * `select` - Legördülő lista.
+        * `option` - Legördülő lista elem.
         * `textarea` - többsoros beviteli mező.
     * Szükséges attribútumok
         * `action` - az `form` milyen URL-re irányítson át.
