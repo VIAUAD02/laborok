@@ -220,7 +220,7 @@ Alapvetően két irányba indulhatunk el
 </nav>
 ```
 
-* Figyeljük meg, hogy a `nav` tagen már rajta van a `navbar` és `navbar-expand-lg` osztály, viszont be kell állítani, hogy sötét témát használjon. Ehhez a `navbar-light` helyett a `navbar-dark` és `bg-dark` osztályt kell használni. Részletek: [Sötét téma használata](https://getbootstrap.com/docs/5.2/components/navbar/#color-schemes).
+* Figyeljük meg, hogy a `nav` tagen már rajta van a `navbar` és `navbar-expand-lg` osztály, viszont be kell állítani, hogy sötét témát használjon. Ehhez a `navbar-dark` és `bg-dark` osztályt kell használni. Részletek: [Sötét téma használata](https://getbootstrap.com/docs/5.2/components/navbar/#color-schemes).
 * A `nav` alatt lévő `div` tag szolgál arra, hogy megadhassuk milyen széles legyen a fejlécünk. Itt a `container` vagy `container-fluid` értékeket célszerű használni.
 * A következő elem a brand, ami a template-ben egy link, amiben csak sima szöveg található. 
     * A link a https://www.aut.bme.hu oldalra navigáljon.
