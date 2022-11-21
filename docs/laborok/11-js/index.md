@@ -214,7 +214,7 @@ Ezt követően készítük el a `renderTodos` függvényt, ami az összes Todo e
         todoList.innerHTML = ""; 
 
         // Bejárjuk a jelenlegi todo elemeket.
-        for(todo of todos)
+        for(let todo of todos)
         {
             const row = createElementFromHTML(
                 `<div class="row">
@@ -227,7 +227,7 @@ Ezt követően készítük el a `renderTodos` függvényt, ami az összes Todo e
                 </div>`);
 
             // A gomb modellek alapján legyártjuk a DOM gombokat.
-            for(button of buttons)
+            for(let button of buttons)
             {
                 const btn = createElementFromHTML(
                     `<button class="btn btn-outline-${button.type} fas fa-${button.icon}" title="${button.title}"></button>`
@@ -356,7 +356,8 @@ Amikor a gombokat gyártjuk a `renderTodos()` függvényben, az eseménykezelők
 
 ??? tip "Megvalósítás: Gomb eseménykezelők állapot változáshoz"
     ```js
-    // Feliratkozás a kattints eseményre (arrow function)
+    // Feliratkozás a kattints eseményre.
+    // A `btn.onclick = function() {` függvény helyett az arrow function-t használjuk.
     btn.onclick = () => { 
         // Törlést külön kell kezelni.
         if (button.action === "remove") { 
@@ -403,7 +404,7 @@ Tehát az eredeti `todos` tömböt a `filter` segítségével szűrjük úgy, ho
 ??? tip "Megvalósítás: lista szűrése"
     ```js
     const filtered = todos.filter(function(todo){ return todo.state === currentTab || currentTab === "all"; });
-    for(todo of filtered) { // ...
+    for(let todo of filtered) { // ...
     ```
 
 ??? tip "Alternatíva"
