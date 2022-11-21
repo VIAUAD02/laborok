@@ -1266,7 +1266,7 @@
     <span class="nx">todoList</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> 
 
     <span class="c1">// Bejárjuk a jelenlegi todo elemeket.</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">todo</span> <span class="k">of</span> <span class="nx">todos</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">todo</span> <span class="k">of</span> <span class="nx">todos</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kd">const</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">createElementFromHTML</span><span class="p">(</span>
             <span class="sb">`&lt;div class=&quot;row&quot;&gt;</span>
@@ -1279,7 +1279,7 @@
 <span class="sb">            &lt;/div&gt;`</span><span class="p">);</span>
 
         <span class="c1">// A gomb modellek alapján legyártjuk a DOM gombokat.</span>
-        <span class="k">for</span><span class="p">(</span><span class="nx">button</span> <span class="k">of</span> <span class="nx">buttons</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">button</span> <span class="k">of</span> <span class="nx">buttons</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kd">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">createElementFromHTML</span><span class="p">(</span>
                 <span class="sb">`&lt;button class=&quot;btn btn-outline-</span><span class="si">${</span><span class="nx">button</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb"> fas fa-</span><span class="si">${</span><span class="nx">button</span><span class="p">.</span><span class="nx">icon</span><span class="si">}</span><span class="sb">&quot; title=&quot;</span><span class="si">${</span><span class="nx">button</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">&quot;&gt;&lt;/button&gt;`</span>
@@ -1390,7 +1390,8 @@
 <li>A <code>remove</code> akciót külön kell kezelni. Egy megerősítés után (tipp: <code>confirm</code>) a <code>todos</code> tömbből kell kivenni az elemet.</li>
 <li>Az összes többi esetben csak az adott todo elem állapotát kell módosítani a gomb actionjére.</li>
 </ul>
-<details class="tip"><summary>Megvalósítás: Gomb eseménykezelők állapot változáshoz</summary><div class="highlight"><pre><span></span><code><span class="c1">// Feliratkozás a kattints eseményre (arrow function)</span>
+<details class="tip"><summary>Megvalósítás: Gomb eseménykezelők állapot változáshoz</summary><div class="highlight"><pre><span></span><code><span class="c1">// Feliratkozás a kattints eseményre.</span>
+<span class="c1">// A `btn.onclick = function() {` függvény helyett az arrow function-t használjuk.</span>
 <span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span> 
     <span class="c1">// Törlést külön kell kezelni.</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">button</span><span class="p">.</span><span class="nx">action</span> <span class="o">===</span> <span class="s2">&quot;remove&quot;</span><span class="p">)</span> <span class="p">{</span> 
@@ -1429,7 +1430,7 @@
 <p>Utolsó lépésként logikus, hogy az aktuális fül alapján szűrjük le az elemeket, ne mindig az összes látszódjon. Ezt a <code>renderTodos()</code> apró módosításával tudjuk megtenni. Szűrjük le a <code>todos</code> tömböt, majd a szűrés eredményén iteráljunk végig a <code>for..of</code> ciklussal.</p>
 <p>Tehát az eredeti <code>todos</code> tömböt a <code>filter</code> segítségével szűrjük úgy, hogy csak azok az elemek maradjanak a szűrt tömbben, ami az aktuális fülnek megfelel VAGY az "all" fülön vagyunk (tehát látszódjon minden).</p>
 <details class="tip"><summary>Megvalósítás: lista szűrése</summary><div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">filtered</span> <span class="o">=</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">todo</span><span class="p">){</span> <span class="k">return</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">currentTab</span> <span class="o">||</span> <span class="nx">currentTab</span> <span class="o">===</span> <span class="s2">&quot;all&quot;</span><span class="p">;</span> <span class="p">});</span>
-<span class="k">for</span><span class="p">(</span><span class="nx">todo</span> <span class="k">of</span> <span class="nx">filtered</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ...</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">todo</span> <span class="k">of</span> <span class="nx">filtered</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ...</span>
 </code></pre></div>
 </details>
 <details class="tip"><summary>Alternatíva</summary><p>Egy tömör megoldás, amit persze nem egyszerű megérteni, az alábbi:</p>
