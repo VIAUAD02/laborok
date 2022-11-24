@@ -1,4 +1,4 @@
-# Labor 12 - jQuery
+# Labor 13 - jQuery
 
 ## Bevezetés
 

@@ -1,4 +1,4 @@
-# Labor 13 - Haladó JavaScript
+# Labor 12 - Haladó JavaScript
 
 ## Bevezetés
 
