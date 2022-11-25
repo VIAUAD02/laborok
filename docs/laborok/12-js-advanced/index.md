@@ -312,7 +312,7 @@ export class Guesses {
 
 Már csak a felületről érkező tippet kell kezelnünk, ehhez egy Guess osztályt hozunk létre:
 
-```JS title="ClientApp\src\guess.js
+```js title="ClientApp\src\guess.js"
 export class Guess {
     constructor(game) {
         document.getElementById('guess-form').addEventListener('submit', e => {
@@ -466,7 +466,8 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 
 * a játék befejezését követően megjelenik a felületen egy *Restart* címkéjű gomb, melyet megnyomva új játék indul (ezt követően ismét eltűnik),
 * a felhasználó nevét bekérő űrlap újból engedélyezve lesz, a fókusz ide helyeződik, a felhasználónak lehetősége van átírni a nevét és új játékot indítani,
-* a jobb oldali táblázatban látható korábbi tippek ürülnek.
+* a bal oldali táblázatban látható korábbi tippek ürülnek.
+* a timer által jelzett érték eltűnik.
 
 !!! example "BEADANDÓ (1 pont)"
     Illesszen be képernyőképet a felületen dinamikusan elhelyezett gombról! (`f5.png`)
@@ -476,7 +477,7 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 A kliens oldalon tárolt logikát helyezze át a szerver oldalra a `Backend` mappában lévő `GuessWS.sln` ASP.NET Core 6-os projektbe!
 
 !!! important "Projekt indítása"
-    Az iMSc feladathoz telepítve kell lennie a [.NET **SDK**](https://dotnet.microsoft.com/download/dotnet/6.0) legalább 6.0-s verziójának is a gépre (ez Visual Studio 2022-vel is települ).
+    Az iMSc feladathoz telepítve kell lennie a [.NET **SDK**](https://dotnet.microsoft.com/download/dotnet/6.0) legalább 6.0-s (de még nem 7-es) verziójának is a gépre (ez Visual Studio 2022-vel is települ).
 
     A projekt elindításához elegendő a megszokott Visual Studio-s _Debug_ vagy _Start without debugging_ funkciót választani. Ilyenkor a backend alkalmazásunk elindul viszont szüksége lenne a kliens részekre is. Ezt úgy oldjuk meg jelenleg, hogy a kliens alkalmazás futtatására továbbra is szükségünk lesz (pl VS Code-ban `npm start`), és a backend a statikus fájlok (html, js, css) kiszolgálására átproxyza a kéréseket a webpack szerver felé. Ez a `Program` osztályban került definiálásra:
 
@@ -535,11 +536,11 @@ const server = new SocketServer();
 setTimeout(() => {
     server.send("setName", "John Doe");
 
-    server.send("startGame", "John Doe");
+    server.send("startGame");
 
     let guess = 0;
 
-    setInterval(() => server.send("guess", "John Doe", ++guess), 500);
+    setInterval(() => server.send("guess", undefined, ++guess), 500);
 }, 2000);
 ```
 
@@ -552,7 +553,7 @@ A szerver az alábbi kérésekre figyel:
 
 A szerver az alábbiakat küldi:
 
-* a toplistát az alábbi JSON-formátumban küldi a szerver: `{ name, guesses, timeInSeconds }`,
+* a toplistát az alábbi JSON-formátumban küldi a szerver: `[{ name, guesses, timeInSeconds }, ...]`,
 * egy tippre a szerver az összes klienst értesíti, az alábbi objektumot küldve: `{ name, guess, value, timeInSeconds }`.
 
 Valósítsa meg az alábbiakat:
