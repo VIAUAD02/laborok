@@ -1257,80 +1257,80 @@ Ennek az alap konfigurációja (amelyet akár projektfájlnak is tekinthetünk) 
 <span class="p">}</span>
 </code></pre></div>
 <p>Már csak a felületről érkező tippet kell kezelnünk, ehhez egy Guess osztályt hozunk létre:</p>
-<p>```JS title="ClientApp\src\guess.js
-export class Guess {
-    constructor(game) {
-        document.getElementById('guess-form').addEventListener('submit', e =&gt; {
-            e.preventDefault();
-            const value = parseInt(document.getElementById('guess-input').value);
-            if (!isNaN(value) &amp;&amp; value &gt; 0 &amp;&amp; value &lt;= 100)
-                game.onGuessing(value);
-            document.getElementById('guess-form').reset();
-        });
-        document.getElementById('guess-form').reset();
-        this.setEnabled(false);
-    }</p>
-<div class="highlight"><pre><span></span><code>setEnabled(value) {
-    this.enabled = !!value;
-    this.render();
-}
+<div class="highlight"><span class="filename">ClientApp\src\guess.js</span><pre><span></span><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">Guess</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">(</span><span class="nx">game</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+            <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mf">0</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">&lt;=</span> <span class="mf">100</span><span class="p">)</span>
+                <span class="nx">game</span><span class="p">.</span><span class="nx">onGuessing</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">reset</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-form&#39;</span><span class="p">).</span><span class="nx">reset</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span>
 
-render() {
-    for (let element of [document.getElementById(&#39;guess-input&#39;), document.getElementById(&#39;guess-button&#39;)]) {
-        element.disabled = !this.enabled;
-    }
+    <span class="nx">setEnabled</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">value</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    if (!this.enabled) {
-        document.getElementById(&#39;guess-input&#39;).focus();
-    }
-}
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">element</span> <span class="k">of</span> <span class="p">[</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-button&#39;</span><span class="p">)])</span> <span class="p">{</span>
+            <span class="nx">element</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>}
-<code>Össze kell kötnünk a játékot a logikával, ill. a korábbi tippek tárolásáért felelős objektummal, valamint kezelnünk kell a felületről, a felhasználó részéről érkező tippet. Frissítsük a `game.js` tartalmát az alábbira:</code>js title="ClientApp\src\game.js"
-import { Player } from './player';
-import { Timer } from './timer';
-import { Logic } from './logic';
-import { Guesses } from './guesses';
-import { Guess } from './guess';
+<p>Össze kell kötnünk a játékot a logikával, ill. a korábbi tippek tárolásáért felelős objektummal, valamint kezelnünk kell a felületről, a felhasználó részéről érkező tippet. Frissítsük a <code>game.js</code> tartalmát az alábbira:</p>
+<div class="highlight"><span class="filename">ClientApp\src\game.js</span><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Player</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./player&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Timer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./timer&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Logic</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./logic&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Guesses</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./guesses&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Guess</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./guess&#39;</span><span class="p">;</span>
 
-export class Game {
-    constructor() {
-        this.timer = new Timer();
-        this.player = new Player();
-        this.logic = new Logic(this);
-        this.guesses = new Guesses();
-        this.guess = new Guess(this);
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Game</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Timer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Player</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Logic</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Guesses</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guess</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Guess</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-        this.player.onNameSet.then(() =&gt; this.start());
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">onNameSet</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">());</span>
 
-        this.components = [this.timer, this.player, this.logic, this.guesses, this.guess];
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">];</span>
 
-        this.render();
-    }
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    render() {
-        this.components.map(c =&gt; c &amp;&amp; typeof (c.render) === 'function' &amp;&amp; c.render());
-    }
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="ow">typeof</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">());</span>
+    <span class="p">}</span>
 
-    start() {
-        this.timer.start();
-        this.guess.setEnabled(true);
-        this.logic.startGame();
-    }
+    <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">.</span><span class="nx">startGame</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    onGuessed(num, guess) {
-        this.guesses.addGuess(num, guess);
-        if (guess === 'correct') {
-            this.guess.setEnabled(false);
-            this.timer.stop();
-        }
-    }
+    <span class="nx">onGuessed</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">guesses</span><span class="p">.</span><span class="nx">addGuess</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="nx">guess</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">guess</span> <span class="o">===</span> <span class="s1">&#39;correct&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">guess</span><span class="p">.</span><span class="nx">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    onGuessing(num) {
-        this.logic.guess(num);
-    }
-}
-```</p>
+    <span class="nx">onGuessing</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">logic</span><span class="p">.</span><span class="nx">guess</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Másoljon be egy képernyőképet egy játék végeredményéről, ahol láthatók a leadott tippek és az eltelt idő! (<code>f3.png</code>)</p>
@@ -1399,7 +1399,8 @@ export class Game {
 <ul>
 <li>a játék befejezését követően megjelenik a felületen egy <em>Restart</em> címkéjű gomb, melyet megnyomva új játék indul (ezt követően ismét eltűnik),</li>
 <li>a felhasználó nevét bekérő űrlap újból engedélyezve lesz, a fókusz ide helyeződik, a felhasználónak lehetősége van átírni a nevét és új játékot indítani,</li>
-<li>a jobb oldali táblázatban látható korábbi tippek ürülnek.</li>
+<li>a bal oldali táblázatban látható korábbi tippek ürülnek.</li>
+<li>a timer által jelzett érték eltűnik.</li>
 </ul>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
@@ -1409,7 +1410,7 @@ export class Game {
 <p>A kliens oldalon tárolt logikát helyezze át a szerver oldalra a <code>Backend</code> mappában lévő <code>GuessWS.sln</code> ASP.NET Core 6-os projektbe!</p>
 <div class="admonition important">
 <p class="admonition-title">Projekt indítása</p>
-<p>Az iMSc feladathoz telepítve kell lennie a <a href="https://dotnet.microsoft.com/download/dotnet/6.0">.NET <strong>SDK</strong></a> legalább 6.0-s verziójának is a gépre (ez Visual Studio 2022-vel is települ).</p>
+<p>Az iMSc feladathoz telepítve kell lennie a <a href="https://dotnet.microsoft.com/download/dotnet/6.0">.NET <strong>SDK</strong></a> legalább 6.0-s (de még nem 7-es) verziójának is a gépre (ez Visual Studio 2022-vel is települ).</p>
 <p>A projekt elindításához elegendő a megszokott Visual Studio-s <em>Debug</em> vagy <em>Start without debugging</em> funkciót választani. Ilyenkor a backend alkalmazásunk elindul viszont szüksége lenne a kliens részekre is. Ezt úgy oldjuk meg jelenleg, hogy a kliens alkalmazás futtatására továbbra is szükségünk lesz (pl VS Code-ban <code>npm start</code>), és a backend a statikus fájlok (html, js, css) kiszolgálására átproxyza a kéréseket a webpack szerver felé. Ez a <code>Program</code> osztályban került definiálásra:</p>
 <div class="highlight"><pre><span></span><code>app.UseSpa(spa =&gt;
 {
@@ -1460,11 +1461,11 @@ export class Game {
 <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;setName&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">);</span>
 
-    <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;startGame&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">);</span>
+    <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;startGame&quot;</span><span class="p">);</span>
 
     <span class="kd">let</span> <span class="nx">guess</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
 
-    <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;guess&quot;</span><span class="p">,</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">,</span> <span class="o">++</span><span class="nx">guess</span><span class="p">),</span> <span class="mf">500</span><span class="p">);</span>
+    <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">server</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;guess&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="o">++</span><span class="nx">guess</span><span class="p">),</span> <span class="mf">500</span><span class="p">);</span>
 <span class="p">},</span> <span class="mf">2000</span><span class="p">);</span>
 </code></pre></div>
 <p>A szerver az alábbi kérésekre figyel:</p>
@@ -1476,7 +1477,7 @@ export class Game {
 </ul>
 <p>A szerver az alábbiakat küldi:</p>
 <ul>
-<li>a toplistát az alábbi JSON-formátumban küldi a szerver: <code>{ name, guesses, timeInSeconds }</code>,</li>
+<li>a toplistát az alábbi JSON-formátumban küldi a szerver: <code>[{ name, guesses, timeInSeconds }, ...]</code>,</li>
 <li>egy tippre a szerver az összes klienst értesíti, az alábbi objektumot küldve: <code>{ name, guess, value, timeInSeconds }</code>.</li>
 </ul>
 <p>Valósítsa meg az alábbiakat:</p>
