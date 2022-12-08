@@ -9,6 +9,7 @@ theme:
   language: hu
   palette:
     - media: "(prefers-color-scheme: light)"
+      scheme: aut
       primary: red
       accent: red
       toggle:

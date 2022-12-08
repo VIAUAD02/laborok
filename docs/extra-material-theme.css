@@ -12,3 +12,19 @@
 article ul ul ul {
 	list-style-type:  square !important;
 }
+
+[data-md-color-scheme="aut"] {
+	--md-primary-fg-color: #8a0026;
+	--md-typeset-a-color: #8a0026; /* link */
+	--md-accent-fg-color: #e53734; /* link hoover */
+}
+
+[data-md-color-scheme="slate"] {
+	--md-primary-fg-color: #8a0026;
+	--md-typeset-a-color: #ef5552; /* link */
+	--md-accent-fg-color: #e57171; /* link hoover*/
+}
+
+.md-tabs__link {
+	opacity: 0.85;
+}
