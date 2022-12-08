@@ -13,7 +13,7 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 	-	[https://github.com/nisrulz/android-tips-tricks](https://github.com/nisrulz/android-tips-tricks)
 	-	[https://blog.autsoft.hu/the-android-and-ios-alternative-library-collection](https://blog.autsoft.hu/the-android-and-ios-alternative-library-collection)
 
-	!!!tip "Néhány példa alkalmazás"
+!!!tip "Néhány példa alkalmazás"
 	-	Kiadás/bevétel nyomkövető figyelmeztető funkcióval és grafikonokkal
 	-	Turisztikai látványosságokat gyűjtő alkalmazás
 	-	Raktár kezelő alkalmazás
