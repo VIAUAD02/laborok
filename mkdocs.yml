@@ -65,6 +65,8 @@ markdown_extensions:
 plugins:
   - search:
       prebuild_index: true
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 nav:
   - "Tudnivalók":
