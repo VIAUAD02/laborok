@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Build docs
-        uses: docker://squidfunk/mkdocs-material:8.5.11
+        uses: ./DOCKERFILE
         with:
           args: build
 
