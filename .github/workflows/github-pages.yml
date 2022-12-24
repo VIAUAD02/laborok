@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Build docs
-        uses: ./DOCKERFILE
+        uses: ./
         with:
           args: build
 
