@@ -28,3 +28,59 @@ article ul ul ul {
 .md-tabs__link {
 	opacity: 0.85;
 }
+
+/* page contributors*/
+.md-source-file__fact {
+    align-items: center;
+    color: var(--md-default-fg-color--light);
+    display: inline-flex;
+    font-size: .68rem;
+    gap: .3rem;
+    margin-right: .6rem;
+}
+
+.md-typeset .md-author {
+    display: block;
+    flex-shrink: 0;
+    height: 1.6rem;
+    overflow: hidden;
+    position: relative;
+    transition: color 125ms,transform 125ms;
+    width: 1.6rem;
+}
+
+.md-source-file__fact .md-author {
+    float: left;
+}
+
+.md-typeset a.md-author {
+    transform: scale(1);
+}
+
+.md-typeset .md-author img {
+    border-radius: 100%;
+    display: block;
+}
+
+.md-typeset a.md-author img {
+    filter: grayscale(100%) opacity(75%);
+    transition: filter 125ms;
+}
+
+.md-typeset img, .md-typeset svg, .md-typeset video {
+    height: auto;
+    max-width: 100%;
+}
+
+.md-typeset a.md-author:is(:focus,:hover) {
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.md-typeset a.md-author:is(:focus,:hover) img {
+    filter: grayscale(0);
+}
+
+.md-source-file__fact .md-author {
+    margin-right: .2rem;
+}
