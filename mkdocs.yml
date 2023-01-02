@@ -8,6 +8,8 @@ theme:
   name: material
   custom_dir: overrides
   language: hu
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: aut
