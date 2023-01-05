@@ -14,21 +14,13 @@ Az MKDocs használatához [a hovatalos dokumentáció](https://squidfunk.github.
 
 A futtatáshoz Dockerre van szükség, amihez Windows-on a [Docker Desktop](https://www.docker.com/products/docker-desktop/) egy kényelmes választás.
 
-Windows-on a kellemesebb élmény érdekében ajánlott telepíteni a Windows Terminalt, ami egy modern terminál emulátor a Microsofttól. Használatával egy alkalmazáson belül nyithatunk PowerShell, CMD, WSL, Azure Shell stb. ablakokat. Letölthető a [Microsoft Store](https://www.microsoft.com/store/apps/9n0dx20hk701)-ból vagy winget használatával a konzolból:
-
-```powershell
-# Újabb Windows-okon elérhető a "winget" parancs, amivel konzolból tudunk telepíteni alkalmazásokat
-# Az alábbi parancsot adjuk ki PowerShellből vagy CMD-ből a Windows Terminal telepítéséhez:
-winget install --id Microsoft.WindowsTerminal
-```
-
 ### GitHub Codespaces fejlesztőkörnyezetben
 
-A GitHub Codespaces funkciója jelentős mennyiségű időt ad a felhasználók számára virtuális gép használat formájában, ahol GitHub repositoryk tartalmát tudjuk egy virtuális gépben fordítani és futtatni.
+A GitHub Codespaces funkciója jelentős mennyiségű virtuális gép időt ad a felhasználók számára, ahol GitHub repositoryk tartalmát tudjuk egy virtuális gépben fordítani és futtatni.
 
 Ehhez elegendő a repository (akár a forkon) Code gombját lenyitni majd létrehozni egy új codespace-t. Ez lényegében egy böngészős VSCode, ami egy konténerben fut, és az alkalmazás által nyitott portokat egy port forwardinggal el is érhetjük a böngészőnkből.
 
-### Dockerfile elindítása
+### Dockerfile elindítása (Helyi gépen van Codespaces-ben)
 
 A repository tartalmaz egy Dockerfile-t, ami at MKDocs keretrendszer és függőségeinek konfigurációját tartalmazza. Ezt a konténert le kell buildelni, majd futtatni, ami lebuildeli az MKDocs doksinkat, és egyben egy fejlesztési idejű webservert is elindít.
 
