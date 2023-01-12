@@ -10,8 +10,14 @@
         <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László">
       
       
+      
+        <link rel="prev" href="../05-android-sqlite/">
+      
+      
+        <link rel="next" href="../07-android-network/">
+      
       <link rel="icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
     
     
       
@@ -19,29 +25,34 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
         
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
       <link rel="stylesheet" href="../../extra-material-theme.css">
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
+    
     
     
   </head>
@@ -86,7 +97,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -108,20 +119,18 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
             </label>
           
         
           
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
             </label>
           
         
@@ -130,7 +139,7 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -138,13 +147,13 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Törlés" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -166,10 +175,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+        <a href="https://github.com/viauac00/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
   </div>
   <div class="md-source__repository">
     viauac00/laborok
@@ -287,10 +296,10 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/viauac00/laborok/" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+      <a href="https://github.com/viauac00/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
   </div>
   <div class="md-source__repository">
     viauac00/laborok
@@ -311,12 +320,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_1">
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="false">
           Tudnivalók
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -417,12 +427,13 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
           Mobil Laborok
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -740,12 +751,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
           Házi feladat
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -788,12 +800,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
           Webes Laborok
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -1086,13 +1099,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-<a href="https://github.com/viauac00/laborok/edit/master/docs/laborok/06-android-room/index.md" title="Oldal szerkesztése" class="md-content__button md-icon">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-</a>
+                  
+
+  
+  
 
 
 
@@ -1204,38 +1218,38 @@ Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> 
 </div>
 <h4 id="egy-modell-osztaly-letrehozasa">Egy modell osztály létrehozása<a class="headerlink" href="#egy-modell-osztaly-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>A <code>hu.bme.aut.android.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>data</code> néven. A <code>data</code> package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingItem</code>:
-<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;shoppingitem&quot;</span><span class="p">)</span>
-<span class="kd">data</span> <span class="kd">class</span> <span class="nc">ShoppingItem</span><span class="p">(</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="nd">@PrimaryKey</span><span class="p">(</span><span class="n">autoGenerate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Long?</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;name&quot;</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;description&quot;</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;category&quot;</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">category</span><span class="p">:</span> <span class="n">Category</span><span class="p">,</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;estimated_price&quot;</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">estimatedPrice</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-    <span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;is_bought&quot;</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">isBought</span><span class="p">:</span> <span class="kt">Boolean</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="kd">enum</span> <span class="kd">class</span> <span class="nc">Category</span> <span class="p">{</span>
-        <span class="n">FOOD</span><span class="p">,</span> <span class="n">ELECTRONIC</span><span class="p">,</span> <span class="n">BOOK</span><span class="p">;</span>
-        <span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
-            <span class="nd">@JvmStatic</span>
-            <span class="nd">@TypeConverter</span>
-            <span class="kd">fun</span> <span class="nf">getByOrdinal</span><span class="p">(</span><span class="n">ordinal</span><span class="p">:</span> <span class="kt">Int</span><span class="p">):</span> <span class="n">Category? </span><span class="p">{</span>
-                <span class="kd">var</span> <span class="nv">ret</span><span class="p">:</span> <span class="n">Category? </span><span class="o">=</span> <span class="kc">null</span>
-                <span class="k">for</span> <span class="p">(</span><span class="n">cat</span> <span class="k">in</span> <span class="n">values</span><span class="p">())</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="na">ordinal</span> <span class="o">==</span> <span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">ret</span> <span class="o">=</span> <span class="n">cat</span>
-                        <span class="k">break</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="k">return</span> <span class="n">ret</span>
-            <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shoppingitem&quot;</span><span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItem</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="nd">@PrimaryKey</span><span class="p">(</span><span class="n">autoGenerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;description&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;category&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">category</span><span class="p">:</span><span class="w"> </span><span class="n">Category</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;estimated_price&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">estimatedPrice</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;is_bought&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">isBought</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Category</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">FOOD</span><span class="p">,</span><span class="w"> </span><span class="n">ELECTRONIC</span><span class="p">,</span><span class="w"> </span><span class="n">BOOK</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">            </span><span class="nd">@JvmStatic</span>
+<span class="w">            </span><span class="nd">@TypeConverter</span>
+<span class="w">            </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getByOrdinal</span><span class="p">(</span><span class="n">ordinal</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">Category? </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nv">ret</span><span class="p">:</span><span class="w"> </span><span class="n">Category? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">cat</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">values</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="na">ordinal</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ordinal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat</span>
+<span class="w">                        </span><span class="k">break</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span>
+<span class="w">            </span><span class="p">}</span>
 
-            <span class="nd">@JvmStatic</span>
-            <span class="nd">@TypeConverter</span>
-            <span class="kd">fun</span> <span class="nf">toInt</span><span class="p">(</span><span class="n">category</span><span class="p">:</span> <span class="n">Category</span><span class="p">):</span> <span class="kt">Int</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="n">category</span><span class="p">.</span><span class="na">ordinal</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">            </span><span class="nd">@JvmStatic</span>
+<span class="w">            </span><span class="nd">@TypeConverter</span>
+<span class="w">            </span><span class="kd">fun</span><span class="w"> </span><span class="nf">toInt</span><span class="p">(</span><span class="n">category</span><span class="p">:</span><span class="w"> </span><span class="n">Category</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">category</span><span class="p">.</span><span class="na">ordinal</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő <em>enum</em> osztály függvényein <em>annotációkat</em> helyeztünk el. Az <code>@Entity</code> jelzi a <code>Room</code> kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A <code>@ColumnInfo</code> <em>annotációval</em> megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. <code>@PrimaryKey</code>-jel jelöljük a tábla egyszerű kulcs attribútumát.</p>
@@ -1252,38 +1266,38 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 </div>
 <p>A <code>data</code> package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  <code>ShoppingItemDao</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Dao</span>
-<span class="kd">interface</span> <span class="nc">ShoppingItemDao</span> <span class="p">{</span>
-    <span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT * FROM shoppingitem&quot;</span><span class="p">)</span>
-    <span class="kd">fun</span> <span class="nf">getAll</span><span class="p">():</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nc">ShoppingItemDao</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT * FROM shoppingitem&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAll</span><span class="p">():</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span>
 
-    <span class="nd">@Insert</span>
-    <span class="kd">fun</span> <span class="nf">insert</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">):</span> <span class="kt">Long</span>
+<span class="w">    </span><span class="nd">@Insert</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">):</span><span class="w"> </span><span class="kt">Long</span>
 
-    <span class="nd">@Update</span>
-    <span class="kd">fun</span> <span class="nf">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Update</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
 
-    <span class="nd">@Delete</span>
-    <span class="kd">fun</span> <span class="nf">deleteItem</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Delete</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">deleteItem</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Egy <code>@Dao</code> <em>annotációval</em> ellátott interfész a <code>Room</code> kódgenerátora számára azt jelzi, hogy generálni kell az interfészhez egy olyan implementációt, ami az interfész függvényeket az azokon lévő annotációk (<code>@Query</code>, <code>@Insert</code>, <code>@Update</code>, <code>@Delete</code>) alapján valósítja meg.</p>
 <p>Figyeljük meg, hogy az Android Studio a <code>@Query</code> <em>annotáció</em> paramétereként átadott SQLite scriptre is nyújt kódkiegészítést, hiba jelzést!</p>
 <h4 id="az-adatbazis-osztaly-letrehozasa">Az adatbázis osztály létrehozása<a class="headerlink" href="#az-adatbazis-osztaly-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>A <code>data</code> package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingListDatabase</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span> <span class="o">=</span> <span class="o">[</span><span class="n">ShoppingItem</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-<span class="nd">@TypeConverters</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="o">[</span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">)</span>
-<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ShoppingListDatabase</span> <span class="p">:</span> <span class="n">RoomDatabase</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">abstract</span> <span class="kd">fun</span> <span class="nf">shoppingItemDao</span><span class="p">():</span> <span class="n">ShoppingItemDao</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItem</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nd">@TypeConverters</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">)</span>
+<span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListDatabase</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RoomDatabase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">shoppingItemDao</span><span class="p">():</span><span class="w"> </span><span class="n">ShoppingItemDao</span>
 
-    <span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
-        <span class="kd">fun</span> <span class="nf">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span> <span class="n">ShoppingListDatabase</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span>
-                <span class="n">applicationContext</span><span class="p">,</span>
-                <span class="n">ShoppingListDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
-                <span class="s">&quot;shopping-list&quot;</span>
-            <span class="p">).</span><span class="na">build</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">):</span><span class="w"> </span><span class="n">ShoppingListDatabase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span>
+<span class="w">                </span><span class="n">applicationContext</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ShoppingListDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;shopping-list&quot;</span>
+<span class="w">            </span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A <code>@Database</code> <em>annotációval</em> lehet jelezni a kódgenerátornak, hogy egy osztály egy adatbázist fog reprezentálni. Az ilyen osztálynak <em>absztraktnak</em> kell lennie, valamint a <code>RoomDatabase</code>-ből kell származnia. Az <em>annotáció</em> <code>entities</code> paraméterének egy listát kell átadni, ami az adatbázis tábláknak megfelelő <code>@Entity</code>-vel jelzett osztályokat tartalmazza. A <code>version</code> paraméter értéke a lokális adatbázis verzió. A <code>@TypeConverters</code> <em>annotációval</em> lehet megadni a <code>Room</code>-nak olyan osztályokat, amik <code>@TypeConverter</code>-rel ellátott függvényeket tartalmaznak, ezzel támogatva a típuskonverziót adatbázis és objektum modell között. A <code>ShoppingListDatabase</code> osztály felelős a megfelelő DAO osztályok elérhetőségéért is.</p>
@@ -1298,25 +1312,25 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <p>Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a <code>RecyclerView</code>-nak.</p>
 <p>A <code>hu.bme.aut.android.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>adapter</code> néven!</p>
 <p>Az <code>adapter</code> package-ben hozzunk létre egy új Kotlin osztályt <code>ShoppingAdapter</code> néven:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">ShoppingAdapter</span><span class="p">(</span><span class="kd">private</span> <span class="kd">val</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">ShoppingItemClickListener</span><span class="p">)</span> <span class="p">:</span>
-    <span class="n">RecyclerView</span><span class="p">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingViewHolder</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingAdapter</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemClickListener</span><span class="p">)</span><span class="w"> </span><span class="p">:</span>
+<span class="w">    </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingViewHolder</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">items</span> <span class="o">=</span> <span class="n">mutableListOf</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span><span class="p">()</span>
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">ViewGroup</span><span class="p">,</span> <span class="n">viewType</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">ShoppingViewHolder</span><span class="p">(</span>
-        <span class="n">ItemShoppingListBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="na">context</span><span class="p">),</span> <span class="n">parent</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
-    <span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span><span class="w"> </span><span class="n">ViewGroup</span><span class="p">,</span><span class="w"> </span><span class="n">viewType</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingViewHolder</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ItemShoppingListBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="na">context</span><span class="p">),</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">ShoppingViewHolder</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// TODO implementation</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingViewHolder</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// TODO implementation</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">getItemCount</span><span class="p">():</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">items</span><span class="p">.</span><span class="na">size</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getItemCount</span><span class="p">():</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="na">size</span>
 
-    <span class="kd">interface</span> <span class="nc">ShoppingItemClickListener</span> <span class="p">{</span>
-        <span class="kd">fun</span> <span class="nf">onItemChanged</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">interface</span><span class="w"> </span><span class="nc">ShoppingItemClickListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onItemChanged</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">inner</span> <span class="kd">class</span> <span class="nc">ShoppingViewHolder</span><span class="p">(</span><span class="kd">val</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ItemShoppingListBinding</span><span class="p">)</span> <span class="p">:</span> <span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">inner</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingViewHolder</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ItemShoppingListBinding</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A listát <code>RecyclerView</code> segítségével szeretnénk megjeleníteni, ezért az adapter a <code>RecyclerView.Adapter</code> osztályból származik. Az adapter a modell elemeket egy listában tárolja. A rendszer a <code>RecyclerView</code>-val való hatékony lista megjelenítéshez a <a href="https://developer.android.com/training/improving-layouts/smooth-scrolling#java"><em>ViewHolder</em> tervezési mintát</a> valósítja meg, ezért szükség van egy <code>ViewHolder</code> osztály megadására is. <code>ViewHolder</code>-eken keresztül érhetjük majd el a lista elemekhez tartozó <code>View</code>-kat. Mivel a <code>ViewHolder</code> osztály példányai az Adapterhez lesznek csatolva (azért, hogy elérjék a belső változóit), <code>inner class</code> osztályként kell definiálni.</p>
@@ -1324,112 +1338,112 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <p>A <code>ShoppingAdapter</code>-ben definiáltunk egy <code>ShoppingItemClickListener</code> nevű interfészt is, aminek a segítségével jelezhetjük az alkalmazás többi része felé, hogy esemény történt egy lista elemen.</p>
 <p>Az ItemShoppingListBinding-ra hibát jelez a fordító, hiszen még nem hoztuk létre a hozzá tartozó layout erőforrást. Ezt tegyük is meg: Hozzuk létre <code>item_shopping_list.xml</code> néven és cseréljük le a fájl tartalmát az alábbira:
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
-    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-    <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span>
-    <span class="na">android:paddingBottom=</span><span class="s">&quot;8dp&quot;</span>
-    <span class="na">android:paddingLeft=</span><span class="s">&quot;16dp&quot;</span>
-    <span class="na">android:paddingRight=</span><span class="s">&quot;16dp&quot;</span>
-    <span class="na">android:paddingTop=</span><span class="s">&quot;8dp&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;LinearLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">    </span><span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span>
+<span class="w">    </span><span class="na">android:paddingBottom=</span><span class="s">&quot;8dp&quot;</span>
+<span class="w">    </span><span class="na">android:paddingLeft=</span><span class="s">&quot;16dp&quot;</span>
+<span class="w">    </span><span class="na">android:paddingRight=</span><span class="s">&quot;16dp&quot;</span>
+<span class="w">    </span><span class="na">android:paddingTop=</span><span class="s">&quot;8dp&quot;</span><span class="nt">&gt;</span>
 
-    <span class="nt">&lt;CheckBox</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/cbIsBought&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_gravity=</span><span class="s">&quot;center_vertical&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/bought&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;CheckBox</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/cbIsBought&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center_vertical&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/bought&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;ImageView</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/ivIcon&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;64dp&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;64dp&quot;</span>
-        <span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
-        <span class="na">tools:src=</span><span class="s">&quot;@drawable/open_book&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ImageView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/ivIcon&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;64dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;64dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
+<span class="w">        </span><span class="na">tools:src=</span><span class="s">&quot;@drawable/open_book&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;LinearLayout</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
-        <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
-        <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;LinearLayout</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
 
-        <span class="nt">&lt;TextView</span>
-            <span class="na">android:id=</span><span class="s">&quot;@+id/tvName&quot;</span>
-            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;Apple&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;TextView</span>
+<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvName&quot;</span>
+<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;Apple&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;TextView</span>
-            <span class="na">android:id=</span><span class="s">&quot;@+id/tvDescription&quot;</span>
-            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;My favorite fruit&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;TextView</span>
+<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvDescription&quot;</span>
+<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;My favorite fruit&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;TextView</span>
-            <span class="na">android:id=</span><span class="s">&quot;@+id/tvCategory&quot;</span>
-            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;Food&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;TextView</span>
+<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvCategory&quot;</span>
+<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;Food&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;TextView</span>
-            <span class="na">android:id=</span><span class="s">&quot;@+id/tvPrice&quot;</span>
-            <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;20 Ft&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="w">        </span><span class="nt">&lt;TextView</span>
+<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvPrice&quot;</span>
+<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;20 Ft&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/LinearLayout&gt;</span>
 
-    <span class="nt">&lt;ImageButton</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/ibRemove&quot;</span>
-        <span class="na">style=</span><span class="s">&quot;@style/Widget.AppCompat.Button.Borderless&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;50dp&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;50dp&quot;</span>
-        <span class="na">android:layout_gravity=</span><span class="s">&quot;center_vertical&quot;</span>
-        <span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
-        <span class="na">android:src=</span><span class="s">&quot;@drawable/ic_delete_grey600_48dp&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ImageButton</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/ibRemove&quot;</span>
+<span class="w">        </span><span class="na">style=</span><span class="s">&quot;@style/Widget.AppCompat.Button.Borderless&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;50dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;50dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center_vertical&quot;</span>
+<span class="w">        </span><span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
+<span class="w">        </span><span class="na">android:src=</span><span class="s">&quot;@drawable/ic_delete_grey600_48dp&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/LinearLayout&gt;</span>
 </code></pre></div>
 Hozzuk létre a <code>@string/bought</code> erőforrást! Kattintsunk rá az erőforrás hivatkozásra, majd <em>Alt + Enter</em> lenyomása után válasszuk a <em>„Create string value resource ’bought’”</em> lehetőséget! A felugró ablakban az erőforrás értékének adjuk a <code>Bought</code> értéket!</p>
 <p>Térjünk vissza az <code>ShoppingAdapter</code>-hez, és írjuk meg <code>onBindViewHolder</code>-ben az adatok megjelenítésének logikáját. Érdemes megfigyelni a <code>getImageResource</code> függvényt, ami az enum-hoz társítja a megfelelő képi erőforrást.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">ShoppingViewHolder</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="nv">shoppingItem</span> <span class="o">=</span> <span class="n">items</span><span class="o">[</span><span class="n">position</span><span class="o">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingViewHolder</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="o">[</span><span class="n">position</span><span class="o">]</span>
 
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">ivIcon</span><span class="p">.</span><span class="na">setImageResource</span><span class="p">(</span><span class="n">getImageResource</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">category</span><span class="p">))</span>
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">cbIsBought</span><span class="p">.</span><span class="na">isChecked</span> <span class="o">=</span> <span class="n">shoppingItem</span><span class="p">.</span><span class="na">isBought</span>
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvName</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">shoppingItem</span><span class="p">.</span><span class="na">name</span>
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvDescription</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">shoppingItem</span><span class="p">.</span><span class="na">description</span>
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvCategory</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">shoppingItem</span><span class="p">.</span><span class="na">category</span><span class="p">.</span><span class="na">name</span>
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvPrice</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">${</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">estimatedPrice</span><span class="si">}</span><span class="s"> Ft&quot;</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">ivIcon</span><span class="p">.</span><span class="na">setImageResource</span><span class="p">(</span><span class="n">getImageResource</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">category</span><span class="p">))</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">cbIsBought</span><span class="p">.</span><span class="na">isChecked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">isBought</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvName</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">name</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvDescription</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">description</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvCategory</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">category</span><span class="p">.</span><span class="na">name</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">tvPrice</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">estimatedPrice</span><span class="si">}</span><span class="s"> Ft&quot;</span>
 
-    <span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">cbIsBought</span><span class="p">.</span><span class="na">setOnCheckedChangeListener</span> <span class="p">{</span> <span class="n">buttonView</span><span class="p">,</span> <span class="n">isChecked</span> <span class="o">-&gt;</span>
-        <span class="n">shoppingItem</span><span class="p">.</span><span class="na">isBought</span> <span class="o">=</span> <span class="n">isChecked</span>
-        <span class="n">listener</span><span class="p">.</span><span class="na">onItemChanged</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">binding</span><span class="p">.</span><span class="na">cbIsBought</span><span class="p">.</span><span class="na">setOnCheckedChangeListener</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">buttonView</span><span class="p">,</span><span class="w"> </span><span class="n">isChecked</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">isBought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isChecked</span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onItemChanged</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>
 
 <span class="nd">@DrawableRes</span><span class="p">()</span>
-<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">getImageResource</span><span class="p">(</span><span class="n">category</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">):</span> <span class="kt">Int</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">category</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">FOOD</span> <span class="o">-&gt;</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">groceries</span>
-        <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">ELECTRONIC</span> <span class="o">-&gt;</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">lightning</span>
-        <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">BOOK</span> <span class="o">-&gt;</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">open_book</span>
-    <span class="p">}</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getImageResource</span><span class="p">(</span><span class="n">category</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">category</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">FOOD</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">groceries</span>
+<span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">ELECTRONIC</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">lightning</span>
+<span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">BOOK</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">open_book</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektum <em>binding</em> attribútumán keresztül érjük el, innen tudjuk használni a <em>resource id</em>-kat.</p>
 <p>Biztosítsuk egy elem hozzáadásának, valamint a teljes lista frissítésének lehetőségét az alábbi függvényekkel:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="nf">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">items</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-    <span class="n">notifyItemInserted</span><span class="p">(</span><span class="n">items</span><span class="p">.</span><span class="na">size</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">items</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="w">    </span><span class="n">notifyItemInserted</span><span class="p">(</span><span class="n">items</span><span class="p">.</span><span class="na">size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">fun</span> <span class="nf">update</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">items</span><span class="p">.</span><span class="na">clear</span><span class="p">()</span>
-    <span class="n">items</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">)</span>
-    <span class="n">notifyDataSetChanged</span><span class="p">()</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">items</span><span class="p">.</span><span class="na">clear</span><span class="p">()</span>
+<span class="w">    </span><span class="n">items</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">shoppingItems</span><span class="p">)</span>
+<span class="w">    </span><span class="n">notifyDataSetChanged</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="admonition info">
@@ -1438,120 +1452,120 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
 </div>
 <h4 id="a-recyclerview-es-az-adatok-megjelenitese">A <code>RecyclerView</code> és az adatok megjelenítése<a class="headerlink" href="#a-recyclerview-es-az-adatok-megjelenitese" title="Permanent link">&para;</a></h4>
 <p>Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbiakkal:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;windowActionBar&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/item&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
-    ...
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowActionBar&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span>...
 
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
 <p>Szeretnék, hogy a bevásárlólista alkalmazás egyetlen <code>Activity</code>-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az <code>activity_main.xml</code> tartalmát az alábbiakra:</p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout</span> 
-    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
-    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
-    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">tools:context=</span><span class="s">&quot;.MainActivity&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout</span><span class="w"> </span>
+<span class="w">    </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.MainActivity&quot;</span><span class="nt">&gt;</span>
 
-    <span class="nt">&lt;com.google.android.material.appbar.AppBarLayout</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;com.google.android.material.appbar.AppBarLayout</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">&gt;</span>
 
-        <span class="nt">&lt;androidx.appcompat.widget.Toolbar</span>
-            <span class="na">android:id=</span><span class="s">&quot;@+id/toolbar&quot;</span>
-            <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-            <span class="na">android:layout_height=</span><span class="s">&quot;?attr/actionBarSize&quot;</span>
-            <span class="na">android:background=</span><span class="s">&quot;?attr/colorSecondary&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;androidx.appcompat.widget.Toolbar</span>
+<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/toolbar&quot;</span>
+<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;?attr/actionBarSize&quot;</span>
+<span class="w">            </span><span class="na">android:background=</span><span class="s">&quot;?attr/colorSecondary&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;/com.google.android.material.appbar.AppBarLayout&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/com.google.android.material.appbar.AppBarLayout&gt;</span>
 
-    <span class="nt">&lt;androidx.recyclerview.widget.RecyclerView</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/rvMain&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_marginTop=</span><span class="s">&quot;?attr/actionBarSize&quot;</span>
-        <span class="na">tools:listitem=</span><span class="s">&quot;@layout/item_shopping_list&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;androidx.recyclerview.widget.RecyclerView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/rvMain&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;?attr/actionBarSize&quot;</span>
+<span class="w">        </span><span class="na">tools:listitem=</span><span class="s">&quot;@layout/item_shopping_list&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;com.google.android.material.floatingactionbutton.FloatingActionButton</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/fab&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_gravity=</span><span class="s">&quot;bottom|end&quot;</span>
-        <span class="na">android:layout_margin=</span><span class="s">&quot;24dp&quot;</span>
-        <span class="na">app:srcCompat=</span><span class="s">&quot;@drawable/ic_add_white_36dp&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;com.google.android.material.floatingactionbutton.FloatingActionButton</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/fab&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;bottom|end&quot;</span>
+<span class="w">        </span><span class="na">android:layout_margin=</span><span class="s">&quot;24dp&quot;</span>
+<span class="w">        </span><span class="na">app:srcCompat=</span><span class="s">&quot;@drawable/ic_add_white_36dp&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/androidx.coordinatorlayout.widget.CoordinatorLayout&gt;</span>
 </code></pre></div>
 Megfigyelhető, hogy a témában kikapcsoltuk az ActionBar megjelenését, helyette az xml fájlban szerepel egy <a href="https://developer.android.com/reference/android/widget/Toolbar">Toolbar</a> típusú elem, egy AppBarLayout-ba csomagolva. Mostanában tanácsos nem a beépített ActionBar-t használni, hanem helyette egy Toolbar-t lehelyezni, mert ez több, hasznos funkciót is támogat, például integrálódni tud egy NavigationDrawer-rel, vagy az újabb navigációs komponenssel (amit ebből a tárgyból nem veszünk).</p>
 <p>A <code>tools:listitem</code> paraméter segítségével az Android Studio layout megjelenítő felületén megjelenik a paraméterben átadott listaelem.</p>
 <p>Adjuk hozzá az alábbi változókat a <code>MainActivity</code>-hez és cseréljük le a projekt létrehozásakor generált <code>onCreate()</code> függvényt:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">ActivityMainBinding</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ActivityMainBinding</span>
 
-<span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">database</span><span class="p">:</span> <span class="n">ShoppingListDatabase</span>
-<span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">adapter</span><span class="p">:</span> <span class="n">ShoppingAdapter</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">database</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingListDatabase</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingAdapter</span>
 
-<span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
-    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
-    <span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">    </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
 
-    <span class="n">database</span> <span class="o">=</span> <span class="n">ShoppingListDatabase</span><span class="p">.</span><span class="na">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">)</span>
+<span class="w">    </span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingListDatabase</span><span class="p">.</span><span class="na">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">)</span>
 
-    <span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
-        <span class="c1">//TODO</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//TODO</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A <code>MainActivity</code>-hez adjuk hozzá a  <code>RecyclerView</code>-t inicializáló kódrészletet: 
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">initRecyclerView</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">adapter</span> <span class="o">=</span> <span class="n">ShoppingAdapter</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-        <span class="n">binding</span><span class="p">.</span><span class="na">rvMain</span><span class="p">.</span><span class="na">layoutManager</span> <span class="o">=</span> <span class="n">LinearLayoutManager</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-        <span class="n">binding</span><span class="p">.</span><span class="na">rvMain</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">adapter</span>
-        <span class="n">loadItemsInBackground</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">initRecyclerView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingAdapter</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+<span class="w">        </span><span class="n">binding</span><span class="p">.</span><span class="na">rvMain</span><span class="p">.</span><span class="na">layoutManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LinearLayoutManager</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+<span class="w">        </span><span class="n">binding</span><span class="p">.</span><span class="na">rvMain</span><span class="p">.</span><span class="na">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adapter</span>
+<span class="w">        </span><span class="n">loadItemsInBackground</span><span class="p">()</span>
 <span class="p">}</span>
 
-<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">loadItemsInBackground</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">thread</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="nv">items</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">getAll</span><span class="p">()</span>
-        <span class="n">runOnUiThread</span> <span class="p">{</span>
-            <span class="n">adapter</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">loadItemsInBackground</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">getAll</span><span class="p">()</span>
+<span class="w">        </span><span class="n">runOnUiThread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">adapter</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 Mivel az adatbázis kérés nem történhet az alkalmazás főszálán, a Kotlin által biztosított <code>thread()</code> segédfüggvénnyel létrehozunk egy új szálat, a kiolvasott listát pedig az Activity által biztosított <code>runOnUiThread</code> függvény segítségével a főszálon adjuk át az adapternek.
 Ez nem tökéletes megoldás, mivel ha elhagynánk az activity-t a kiolvasás során, a thread életben maradna, ami akár memóriaszivárgást is okozhat.
 Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-guide.html">Kotlin Coroutine</a> támogatása, ennek bemutatására azonban sajnos a labor keretei között nincsen idő.</p>
 <p>A <code>ShoppingAdapter</code> létrehozásakor a <code>MainActivity</code>-t adjuk át az adapter konstruktor paramétereként, de a <code>MainActivity</code> még nem implementálja a szükséges interfészt. Pótoljuk a hiányosságot:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">(),</span> <span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingItemClickListener</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">(),</span><span class="w"> </span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingItemClickListener</span><span class="w"> </span><span class="p">{</span>
 
 <span class="c1">//...</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onItemChanged</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">thread</span> <span class="p">{</span> 
-            <span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">update</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-            <span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;MainActivity&quot;</span><span class="p">,</span> <span class="s">&quot;ShoppingItem update was successful&quot;</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onItemChanged</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">thread</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">update</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;MainActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ShoppingItem update was successful&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Hívjuk meg az <code>initRecyclerView()</code> függvényt az <code>onCreate()</code> függvény utolsó lépéseként:</p>
-<p><div class="highlight"><pre><span></span><code><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-    <span class="n">binding</span> <span class="o">=</span> <span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
-    <span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
-    <span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
+<p><div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">    </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
 
-    <span class="n">database</span> <span class="o">=</span> <span class="n">ShoppingListDatabase</span><span class="p">.</span><span class="na">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">)</span>
+<span class="w">    </span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingListDatabase</span><span class="p">.</span><span class="na">getDatabase</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">)</span>
 
-    <span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
-        <span class="c1">//TODO</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//TODO</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">initRecyclerView</span><span class="p">()</span>
+<span class="w">    </span><span class="n">initRecyclerView</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 Ezen a ponton az alkalmazásunk már meg tudja jeleníteni az adatbázisban tárolt vásárolni valókat, azonban sajnos még egy elemünk sincs, mivel lehetőségünk sem volt felvenni őket. A következő lépés az új elem létrehozását biztosító funkció implementálása.</p>
@@ -1565,144 +1579,144 @@ Ezen a ponton az alkalmazásunk már meg tudja jeleníteni az adatbázisban tár
 <p>Hozzuk létre a dialógushoz tartozó <em>layoutot</em> <code>dialog_new_shopping_item.xml</code>, majd másoljuk be a dialógushoz tartozó layoutot:</p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;LinearLayout</span>
-    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
-    <span class="na">android:padding=</span><span class="s">&quot;24dip&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+<span class="w">    </span><span class="na">android:padding=</span><span class="s">&quot;24dip&quot;</span><span class="nt">&gt;</span>
 
-    <span class="nt">&lt;TextView</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/name&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;EditText</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/etName&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EditText</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/etName&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;TextView</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/description&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/description&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;EditText</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/etDescription&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EditText</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/etDescription&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;TextView</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/category&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/category&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;Spinner</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/spCategory&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Spinner</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/spCategory&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;TextView</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/estimated_price&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;16dip&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/estimated_price&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;EditText</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/etEstimatedPrice&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:inputType=</span><span class="s">&quot;numberDecimal&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;EditText</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/etEstimatedPrice&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:inputType=</span><span class="s">&quot;numberDecimal&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;CheckBox</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/cbAlreadyPurchased&quot;</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-        <span class="na">android:text=</span><span class="s">&quot;@string/already_purchased&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;CheckBox</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/cbAlreadyPurchased&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;@string/already_purchased&quot;</span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/LinearLayout&gt;</span>
 </code></pre></div>
 Vegyük fel a hiányzó szöveges erőforrásokat a <code>strings.xml</code>-ben:
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
-    ...
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Description<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;category&quot;</span><span class="nt">&gt;</span>Category<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;estimated_price&quot;</span><span class="nt">&gt;</span>Estimated Price<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;already_purchased&quot;</span><span class="nt">&gt;</span>Already purchased<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;new_shopping_item&quot;</span><span class="nt">&gt;</span>New Shopping Item<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;button_ok&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;button_cancel&quot;</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Description<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;category&quot;</span><span class="nt">&gt;</span>Category<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;estimated_price&quot;</span><span class="nt">&gt;</span>Estimated<span class="w"> </span>Price<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;already_purchased&quot;</span><span class="nt">&gt;</span>Already<span class="w"> </span>purchased<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;new_shopping_item&quot;</span><span class="nt">&gt;</span>New<span class="w"> </span>Shopping<span class="w"> </span>Item<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;button_ok&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;button_cancel&quot;</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/string&gt;</span>
 
-    <span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">&quot;category_items&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;item&gt;</span>Food<span class="nt">&lt;/item&gt;</span>
-        <span class="nt">&lt;item&gt;</span>Electronic<span class="nt">&lt;/item&gt;</span>
-        <span class="nt">&lt;item&gt;</span>Book<span class="nt">&lt;/item&gt;</span>
-    <span class="nt">&lt;/string-array&gt;</span>
-    ...
+<span class="w">    </span><span class="nt">&lt;string-array</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;category_items&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item&gt;</span>Food<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item&gt;</span>Electronic<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item&gt;</span>Book<span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/string-array&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre></div>
 Látható, hogy felveszünk egy <code>string-array</code>-t is, ezeket a szövegeket a Spinnerben fogjuk megjeleníteni.</p>
 <p>A <code>hu.bme.aut.android.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>fragments</code> néven. A <code>fragments</code> package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>NewShoppingItemDialogFragment</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">NewShoppingItemDialogFragment</span> <span class="p">:</span> <span class="n">DialogFragment</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">interface</span> <span class="nc">NewShoppingItemDialogListener</span> <span class="p">{</span>
-        <span class="kd">fun</span> <span class="nf">onShoppingItemCreated</span><span class="p">(</span><span class="n">newItem</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">NewShoppingItemDialogFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DialogFragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">interface</span><span class="w"> </span><span class="nc">NewShoppingItemDialogListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onShoppingItemCreated</span><span class="p">(</span><span class="n">newItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">NewShoppingItemDialogListener</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">NewShoppingItemDialogListener</span>
 
-    <span class="kd">private</span> <span class="kd">lateinit</span> <span class="kd">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="n">DialogNewShoppingItemBinding</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">DialogNewShoppingItemBinding</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">.</span><span class="na">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-        <span class="n">listener</span> <span class="o">=</span> <span class="n">context</span> <span class="k">as?</span> <span class="n">NewShoppingItemDialogListener</span>
-            <span class="o">?:</span> <span class="k">throw</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Activity must implement the NewShoppingItemDialogListener interface!&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onAttach</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="w">        </span><span class="n">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="k">as?</span><span class="w"> </span><span class="n">NewShoppingItemDialogListener</span>
+<span class="w">            </span><span class="o">?:</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Activity must implement the NewShoppingItemDialogListener interface!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreateDialog</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span><span class="p">:</span> <span class="n">Dialog</span> <span class="p">{</span>
-        <span class="n">binding</span> <span class="o">=</span> <span class="n">DialogNewShoppingItemBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
-        <span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">adapter</span> <span class="o">=</span> <span class="n">ArrayAdapter</span><span class="p">(</span>
-            <span class="n">requireContext</span><span class="p">(),</span>
-            <span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">simple_spinner_dropdown_item</span><span class="p">,</span>
-            <span class="n">resources</span><span class="p">.</span><span class="na">getStringArray</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">array</span><span class="p">.</span><span class="na">category_items</span><span class="p">)</span>
-        <span class="p">)</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateDialog</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="p">:</span><span class="w"> </span><span class="n">Dialog</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DialogNewShoppingItemBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+<span class="w">        </span><span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayAdapter</span><span class="p">(</span>
+<span class="w">            </span><span class="n">requireContext</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">simple_spinner_dropdown_item</span><span class="p">,</span>
+<span class="w">            </span><span class="n">resources</span><span class="p">.</span><span class="na">getStringArray</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">array</span><span class="p">.</span><span class="na">category_items</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">AlertDialog</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">requireContext</span><span class="p">())</span>
-            <span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">new_shopping_item</span><span class="p">)</span>
-            <span class="p">.</span><span class="na">setView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
-            <span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_ok</span><span class="p">)</span> <span class="p">{</span> <span class="n">dialogInterface</span><span class="p">,</span> <span class="n">i</span> <span class="o">-&gt;</span>
-                <span class="c1">// TODO implement item creation</span>
-            <span class="p">}</span>
-            <span class="p">.</span><span class="na">setNegativeButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_cancel</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="p">.</span><span class="na">create</span><span class="p">()</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AlertDialog</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">requireContext</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">new_shopping_item</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">setView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dialogInterface</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="c1">// TODO implement item creation</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="na">setNegativeButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_cancel</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">create</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">companion</span> <span class="kd">object</span> <span class="err">{</span>
-        <span class="kd">const</span> <span class="kd">val</span> <span class="nv">TAG</span> <span class="o">=</span> <span class="s">&quot;NewShoppingItemDialogFragment&quot;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">TAG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;NewShoppingItemDialogFragment&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A <code>DialogFragment</code>-et az <code>androidx.fragment.app</code> csomagból, az <code>AlertDialog</code>-ot pedig az <code>androidx.appcompat.app</code> csomagból importáljuk! Ha az auto-import beimportálja az android.R package-t, azt töröljük ki.</p>
 <p>Az osztályban definiáltunk egy <code>NewShoppingItemDialogListener</code> nevű <em>callback interface</em>-t, amelyen keresztül a dialógust megjelenítő <code>Activity</code> értesülhet az új elem létrehozásáról.</p>
 <p>A megjelenő dialógust az <code>onCreateDialog()</code> függvényben állítjuk össze. Ehhez az <code>AlertDialog.Builder</code> osztályt használjuk fel. Az új elemet az <em>OK</em> gomb <code>ClickListener</code>-jében fogjuk létrehozni, amennyiben a bevitt adatok érvényesek. Jelen esetben az érvényesség a név mező kitöltöttségét jelenti.</p>
 <p>Implementáljuk a dialógus pozitív gombjának eseménykezelőjét a <code>NewShoppingItemDialogFragment</code> osztály <code>onCreateDialog</code> függvényén belül:</p>
-<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_ok</span><span class="p">)</span> <span class="p">{</span> <span class="n">dialogInterface</span><span class="p">,</span> <span class="n">i</span> <span class="o">-&gt;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isValid</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">listener</span><span class="p">.</span><span class="na">onShoppingItemCreated</span><span class="p">(</span><span class="n">getShoppingItem</span><span class="p">())</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">button_ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dialogInterface</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onShoppingItemCreated</span><span class="p">(</span><span class="n">getShoppingItem</span><span class="p">())</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Implementáljuk a hiányzó függvényeket:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">isValid</span><span class="p">()</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">etName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">isValid</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">etName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">()</span>
 
-<span class="kd">private</span> <span class="kd">fun</span> <span class="nf">getShoppingItem</span><span class="p">()</span> <span class="o">=</span> <span class="n">ShoppingItem</span><span class="p">(</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">etName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">etDescription</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span>
-    <span class="n">estimatedPrice</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">etEstimatedPrice</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">toIntOrNull</span><span class="p">()</span> <span class="o">?:</span> <span class="m">0</span><span class="p">,</span>
-    <span class="n">category</span> <span class="o">=</span> <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">getByOrdinal</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">selectedItemPosition</span><span class="p">)</span>
-            <span class="o">?:</span> <span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">BOOK</span><span class="p">,</span>
-    <span class="n">isBought</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">cbAlreadyPurchased</span><span class="p">.</span><span class="na">isChecked</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getShoppingItem</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">etName</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">etDescription</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">estimatedPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">etEstimatedPrice</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">getByOrdinal</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">selectedItemPosition</span><span class="p">)</span>
+<span class="w">            </span><span class="o">?:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">BOOK</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isBought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">cbAlreadyPurchased</span><span class="p">.</span><span class="na">isChecked</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstruktor paramétereit (és Kotlinban általánosan bármely függvény paramétereit) név szerint is át lehet adni, így nem szükséges megjegyezni a paraméterek sorrendjét, ha esetleg sok paraméterünk lenne. Amennyiben a függvényparamétereknek még alapértelmezett értéket is adunk, úgy még kényelbesebbé válhat ez a funkció, hiszen csak az "érdekes" paraméterek kapnak értéket. Ez a módszer esetleg a Python nyelvből lehet ismerős.</p>
@@ -1712,27 +1726,27 @@ Látható, hogy felveszünk egy <code>string-array</code>-t is, ezeket a szöveg
 </div>
 <p>A <code>MainActivity</code> <code>onCreate()</code> függvényében frissítsük a <code>FloatingActionButton</code> <code>OnClickListener</code>-jét, hogy az a fentebb megvalósított dialógust dobja fel:
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">fab</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">{</span>
-    <span class="n">NewShoppingItemDialogFragment</span><span class="p">().</span><span class="na">show</span><span class="p">(</span>
-        <span class="n">supportFragmentManager</span><span class="p">,</span>
-        <span class="n">NewShoppingItemDialogFragment</span><span class="p">.</span><span class="na">TAG</span>
-    <span class="p">)</span>
+<span class="w">    </span><span class="n">NewShoppingItemDialogFragment</span><span class="p">().</span><span class="na">show</span><span class="p">(</span>
+<span class="w">        </span><span class="n">supportFragmentManager</span><span class="p">,</span>
+<span class="w">        </span><span class="n">NewShoppingItemDialogFragment</span><span class="p">.</span><span class="na">TAG</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban definiált interface-t:
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">(),</span> <span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingItemClickListener</span><span class="p">,</span>
-    <span class="n">NewShoppingItemDialogFragment</span><span class="p">.</span><span class="na">NewShoppingItemDialogListener</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">(),</span><span class="w"> </span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingItemClickListener</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NewShoppingItemDialogFragment</span><span class="p">.</span><span class="na">NewShoppingItemDialogListener</span><span class="w"> </span><span class="p">{</span>
 
 <span class="c1">//...</span>
 
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onShoppingItemCreated</span><span class="p">(</span><span class="n">newItem</span><span class="p">:</span> <span class="n">ShoppingItem</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">thread</span> <span class="p">{</span>
-            <span class="kd">val</span> <span class="nv">insertId</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">insert</span><span class="p">(</span><span class="n">newItem</span><span class="p">)</span>
-            <span class="n">newItem</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">insertId</span>
-            <span class="n">runOnUiThread</span> <span class="p">{</span> 
-                <span class="n">adapter</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">newItem</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onShoppingItemCreated</span><span class="p">(</span><span class="n">newItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">insertId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">database</span><span class="p">.</span><span class="na">shoppingItemDao</span><span class="p">().</span><span class="na">insert</span><span class="p">(</span><span class="n">newItem</span><span class="p">)</span>
+<span class="w">            </span><span class="n">newItem</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertId</span>
+<span class="w">            </span><span class="n">runOnUiThread</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                </span><span class="n">adapter</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">newItem</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div></p>
 <p>Figyeljük meg, hogy ebben az esetben is <code>thread</code>-be csomagolva futtatunk adatbázis műveletet. A <code>Room</code> tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a <em>user experience (UX)</em> is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.</p>
 <p>Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.</p>
@@ -1775,69 +1789,73 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>szerkesztési dialógus</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f7.png néven töltsd föl.</p>
 </div>
 
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Utolsó frissítés:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 12, 2022</span>
-      
-        <br>
-        Létrehozva:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2022</span>
-      
-    
-  </small>
-</div>
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2022. október 12. 09:06:28">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-10-12T09:06:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-12</span>
+      </span>
+    </span>
 
-              
-            </article>
-          </div>
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Létrehozva"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2022. augusztus 26. 12:44:28">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-08-26T12:44:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-08-26</span>
+      </span>
+    </span>
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
+          <img src="https://avatars.githubusercontent.com/u/22079595?size=72" alt="@kpomazi">
+        </a><a href="https://github.com/perryd01" target="_blank" rel="noopener noreferrer" class="md-author" title="@perryd01">
+          <img src="https://avatars.githubusercontent.com/u/46491285?size=72" alt="@perryd01">
+        </a><a href="https://github.com/zoli0" target="_blank" rel="noopener noreferrer" class="md-author" title="@zoli0">
+          <img src="https://avatars.githubusercontent.com/u/24962402?size=72" alt="@zoli0">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+          <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
+        </a></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Élőláb">
-      
-        
-        <a href="../05-android-sqlite/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Labor 05 - Rajzoló alkalmazás készítése" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Előző
-              </span>
-              Labor 05 - Rajzoló alkalmazás készítése
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../07-android-network/" class="md-footer__link md-footer__link--next" aria-label="Következő: Labor 07 - Weather Info alkalmazás készítése" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Következő
-              </span>
-              Labor 07 - Weather Info alkalmazás készítése
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1858,10 +1876,15 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "search.config.lang": "hu", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Keres\u00e9s", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.term.missing": "\u00dcres", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
       
     
   </body>
