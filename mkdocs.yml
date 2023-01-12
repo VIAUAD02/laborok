@@ -69,7 +69,7 @@ plugins:
   - search:
       prebuild_index: true
   - git-revision-date-localized:
-      enable_creation_date: true
+      enable_creation_date: false
       type: timeago
       timezone: Europe/Budapest
       locale: hu
