@@ -6,7 +6,10 @@ repo_url: https://github.com/viauac00/laborok
 
 theme:
   name: material
+  custom_dir: overrides
   language: hu
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: aut
@@ -67,6 +70,12 @@ plugins:
       prebuild_index: true
   - git-revision-date-localized:
       enable_creation_date: true
+      type: timeago
+      timezone: Europe/Budapest
+      locale: hu
+  - git-committers:
+      repository: VIAUAC00/laborok
+      branch: master
 
 nav:
   - "Tudnivalók":
