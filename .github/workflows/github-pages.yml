@@ -16,10 +16,13 @@ jobs:
           fetch-depth: 0
           
       # HOTFIX for https://github.com/actions/runner/issues/2033
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
+      # - name: Set ownership
+      #  run: |
+      #    # this is to fix GIT not liking owner of the checkout dir
+      #    chown -R $(id -u):$(id -g) $PWD
+          
+      - name: Fix git safe.directory in container
+        run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /github/workspace" > /home/runner/work/_temp/_github_home/.gitconfig
 
       - name: Build docs
         uses: ./
