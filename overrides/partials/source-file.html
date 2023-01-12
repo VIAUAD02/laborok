@@ -12,6 +12,7 @@
       </span>
     </span>
 
+    {% if page.meta.git_creation_date_localized %}
     <span class="md-source-file__fact">
       <span class="md-icon" title="{{ lang.t("source.file.date.created") }}"> <svg
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -24,6 +25,7 @@
         {{ page.meta.git_creation_date_localized }}
       </span>
     </span>
+    {% endif %}
 
     <span class="md-source-file__fact">
       <span class="md-icon" title="Szerzők">
