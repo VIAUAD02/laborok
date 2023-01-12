@@ -29,7 +29,7 @@ A repository tartalmaz egy Dockerfile-t, ami at MKDocs keretrendszer és függő
 
    ```cmd
    docker build -t mkdocs .
-   docker run -it --rm -p 8000:8000 -v $PWD:/docs mkdocs
+   docker run -it --rm -p 8000:8000 -v ${PWD}:/docs mkdocs
    ```
 
 3. <http://localhost:8000> vagy a codespace átirányított címének megnyitása böngészőből.
