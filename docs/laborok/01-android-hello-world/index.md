@@ -60,7 +60,7 @@ A feladatok megoldása során a dokumentációt markdown formátumban készítsd
 
 A projekt létrehozása után a forráskód az `src` könyvtárban, míg a felhasználói felület leírására szolgáló XML állományok a `res` könyvtárban találhatók. Az erőforrás állományokat egy `R.java` állomány köti össze a forráskóddal, így könnyedén elérhetjük Java/Kotlin oldalról az XML-ben definiált felületi elemeket. Az Android projekt fordításának eredménye egy APK állomány, melyet közvetlenül telepíthetünk mobil eszközre.
 
-<img src="./assets/lab-1-compile.png" width= "630" align="middle">
+![](assets/lab-1-compile.png)
 
 *Fordítás menete Android platformon*
 
@@ -97,7 +97,7 @@ Az Android Studio a [Gradle](https://gradle.org/) build rendszert használja eze
 
 ### SDK és könyvtárai
 
-A [developer.android.com/studio](https://developer.android.com/studio) oldalról letölthető az IDE és az SDK. Ennek fontosabb mappáit, eszközeit tekintsék át a laborvezető segítségével!
+A [developer.android.com/studio](https://developer.android.com/studio) oldalról letölthető az IDE és az SDK. Ennek fontosabb mappáit, eszközeit tekintsük át a laborvezető segítségével!
 
 ![](assets/ide_android.png)
 
@@ -113,7 +113,7 @@ SDK szerkezet:
 
 Az SDK kezelésére az SDK managert használjuk, ezzel lehet letölteni és frissen tartani az eszközeinket. Indítása az Android Studion keresztül lehetséges.
 
-Az SDK Manager ikonja a fenti toolbaron:
+Az SDK Manager ikonja a fenti toolbaron (vagy Tools -> SDK Manager):
 
 ![](assets/sdk_manager_icon.png)
 
@@ -134,16 +134,16 @@ Az AVD Manager ikonja:
 
 ![](assets/avd_icon.png)
 
-![](assets/avd.png)
+![](assets/avd_manager.png)
 
-A fenti képen bal oldalon a létező virtuális eszközök listáját találjuk, jobb oldalon pedig az ún. eszköz definíciókét. Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S4). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.
+A fenti képen jobb oldalon, a kinyíló panelben, a létező virtuális eszközök listáját találjuk, bal oldalon pedig az ún. eszköz definíciókét. Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S4). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.
 
-1. A bal oldali ablakon, kattintsunk a bal alsó sarokban található *Create Virtual Device...* gombra!
-2. Válasszunk az előre definiált készülék sablonokból (pl. *Nexus 5X*), majd nyomjuk meg a *Next* gombot.
+1. A jobb oldali panelon kattintsunk a fent található *Create Virtual Device...* gombra!
+2. Válasszunk az előre definiált készülék sablonokból (pl. *Pixel 7 Pro*), majd nyomjuk meg a *Next* gombot.
 3. Döntsük el, hogy milyen Android verziójú emulátort kívánunk használni. CPU/ABI alapvetően x86_64 legyen, mivel ezekhez kapunk [hardveres gyorsítást](https://developer.android.com/studio/run/emulator-acceleration) is. Itt válasszunk a rendelkezésre állók közül egyet, majd *Next*.
 4. Az eszköz részletes konfigurációja.
 
-    - A virtuális eszköz neve legyen például `Labor_0`.
+    - A virtuális eszköz neve legyen például `Labor_1`.
     - Válasszuk ki az alapértelmezett orientációt, tetszés szerint kapcsoljuk ki vagy be a készülék keretének megjelenítését.
 
     A *Show Advanced Settings* alatt további opciókat találunk:
@@ -181,10 +181,16 @@ Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi 
 
  Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a *Tip of the day*, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a *Settings -> Appeareance & Behavior -> System Settings -> Reopen last project on startup* opcióval ki is kapcsolhatjuk.)
 
+![](assets/studio_old.png)
+
+Az Android Studio Giraffe-ban megújult a környezet felhasználói felülete. Amint látható, jóval letisztultabb dizájnt választottak, sokkal kevesebb a figyelmet elvonó extra a képernyőn, sokkal inkább a kódon van a hangsúly. Ezek között a nézetek között egyszerűen válthatunk a Beállításokban, a New UI menüpontban.
+
+![](assets/studio_new.png)
+
 
 ## Hello World
 
-A laborvezető segítségével készítsenek egy egyszerű Hello World alkalmazást, a varázsló nézeten az *Include Kotlin support* legyen bepipálva! 
+A laborvezető segítségével készítsünk egy egyszerű Hello World alkalmazást, a varázsló nézeten az *Include Kotlin support* legyen bepipálva! 
 
 !!!warning "FILE PATH"
 	A projekt a repository-ban lévő HelloWorld könyvtárba kerüljön!
@@ -296,7 +302,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 3.  Indítsanak hívást és küldjenek SMS-t az emulátorra! Mit tapasztalnak?
 4.  Indítsanak hívást és küldjenek SMS-t az emulátorról! Mit tapasztalnak?
 5.  Tekintse át az Android Profiler nézet funkcióit a laborvezető segítségével!
-6.  Változtassa meg a készülék tartózkodási helyét az emulátor megfelelő paneljének segítségével!
+6.  Változtassa meg a készülék tartózkodási helyét (GPS) az emulátor megfelelő paneljének segítségével!
 7.  Vizsgálja meg az elindított `HelloWorld` projekt nyitott szálait, memóriafoglalását!
 8.  Vizsgálja meg a Logcat panel tartalmát!
 9.  Vizsgálja meg az Code -> Inspect code eredményét!

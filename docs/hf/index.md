@@ -1,4 +1,4 @@
-# Házi feladat információk
+# Házi feladat információk - TODO 2023
 
 A házi feladat célja, hogy az előadáson és laborokon bemutatott technológiák segítségével egy komplex alkalmazást készítsen a hallgató, önálló funkcionalitással.
 

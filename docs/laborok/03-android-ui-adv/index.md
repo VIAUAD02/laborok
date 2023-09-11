@@ -417,4 +417,4 @@ Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték 
 
 ### Bonus
 
-Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `TextInputLayout`-tal használjuk. (https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)
+Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `TextInputLayout`-tal használjuk. [https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)
