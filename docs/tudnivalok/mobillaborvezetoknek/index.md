@@ -10,7 +10,7 @@ A tárgy alapképzés (BSc) 5. félévében kötelező tárgy. Ezt azt jelenti, 
 
 ## Oktatás módja
 
-A laborokon elvárt a részvétel, de ezt is be lehet fejezni otthon. Minden laboron általában a ó szintig vezetett, ezen felül önálló munkát várunk el, és az elvégzett munka osztályzásra kerül. A laborok anyaga jelöli, mi a közös munka. A laborvezető segít elindulni a feladatokkal, átbeszélve a közös feladatokat, majd a hallgatók utána önállóan dolgoznak. Mivel a labor feladatok megoldására jegyet adunk, elvárjuk a hallgatótól az önálló munkavégzést.
+A laborokon elvárt a részvétel, de ezt is be lehet fejezni otthon. Minden laboron általában a jó szintig vezetett, ezen felül önálló munkát várunk el, és az elvégzett munka osztályzásra kerül. A laborok anyaga jelöli, mi a közös munka. A laborvezető segít elindulni a feladatokkal, átbeszélve a közös feladatokat, majd a hallgatók utána önállóan dolgoznak. Mivel a labor feladatok megoldására jegyet adunk, elvárjuk a hallgatótól az önálló munkavégzést.
 
 A laborokat mindig érdemes otthon előtte kipróbálni, aki bizonytalan az a laborterembe is be tud menni. A tanszéki adminisztrációtól vagy Kardos Gergőtől (Kardos.Gergely@aut.bme.hu) lehet megkérdezni, hogy melyik labor mikor szabad gyakorlásra.
 Labor soha nem maradhat el azért, mert a laborvezető elkésik/nem megy, ha valami közbejön és előre látható, legalább előtte egy héttel írj erre a Teams-en és kérj cserét.
@@ -40,7 +40,7 @@ Labor után kulcsot vigyük vissza az adminba.
 ### Beugró/kisZH
 A labor mindig vagy beugróval, vagy kisZH-val kezdődik. A kisZH kiváltja a beugrót. Mindkettőt a Moodle felületén írják meg.  
 Beugrón a maximum 2 pontból 1 szükséges a sikerességhez. 5 perc van rá, ez be van állítva a Moodle-ben. Ha mindenki végzett, hamarabb is el lehet kezdeni a labort.  
-KisZH-n a maximum 10 pontból 4 szükséges a sikerességhez. 15 perc van rá, ez be van állítva a Moodle-ben. Ha mindenki végzett, hamarabb is el lehet kezdeni a labort.  
+KisZH-n a maximum 10 pontból 4 szükséges a sikerességhez. 10 perc van rá, ez be van állítva a Moodle-ben. Ha mindenki végzett, hamarabb is el lehet kezdeni a labort.  
 A Beugró vagy KisZH után tartsunk egy névsorolvasást, hogy elkerüljük az esetleges távolról kitöltőket/csalókat.
 Az első héten nincs beugró.
 
@@ -53,7 +53,7 @@ Ha hibát, elgépelést találsz benne, arra kérünk, hogy javítsd: minden any
 A labor általában vezetett és önálló részből áll. Az elején érdemes pár percben elmondani mi lesz a labor témája, megmutatni mi fog a végére elkészülni.  
 A vezetett részt üljék végig a hallgatók, utána ha nagyon akar valaki, bemutathatja és elmehet.  
 Laborokról sokszor kapunk olyan visszajelzést, hogy sok a copy-paste, kérjük mindig copy-paste után magyarázzátok el a kódot, illetve érdemes szóban mondani ennek okát, hogy mi jót akarunk hogy a végén egy komplexebb app álljon elő. Ha mindent csak begépelnénk akkor alig jutna idő bármit is kipróbálni. Persze ha ez ügyben van bármi ötlet akkor írjatok nekünk nyugodtan.  
-Az első laboron PDF-et, a többi laboron az exportált projektet kell feltölteniuk a Moodle-be. Aki IMSc-s feladatot is csinált, töltse fel a munkáját a megfelelő iMSc számonkérés alá IS.
+Az első laboron markdown-t, a többi laboron néhány screenshotot és a forráskódot kell felpusholni a repository-ba. 
 
 ## Labor bezárása:
 * Minden ablakot csukjunk be és székek se legyenek össze-vissza, kérjük meg a hallgatókat a „rendrakásra”. Töröljük le a táblát.
@@ -83,8 +83,6 @@ A PR-eket egyesével kell megnyitni, és meg kell nézni a PR komment felületé
 ![PR conversation](../laborvezetoknek/images/hazi-github-pr-conversation-changes.png)
 
 Automatikus értékelés esetén (ami nem minden labornál van) a forráskódot nem szükséges betűről betűre megnézni - a részletes ellenőrzést elvégzi az automata. A laborvezető feladata a képernyőképek ellenőrzése, valamint annak eldöntése, hogy a forráskód konzisztens-e a kapott eredménnyel, és nincs-e benne olyan kódrészlet, amely ugyan működik, de kifejezetten rosszul oldja meg a problémát. Amely labornál nincs automata értékelés, ott több munka hárul a laborvezetőre, alaposabban meg kell nézni a megoldást.
-
-A feladatok minta megoldása itt érhető el: <https://github.com/viauac00?q=labor-megoldas>. Ezek csak lehetséges megoldások, a hallgató megoldása nem kell ezzel egyezzen.
 
 Az értékelés végeztével:
 
