@@ -117,6 +117,10 @@ Az SDK Manager ikonja a fenti toolbaron (vagy Tools -> SDK Manager):
 
 ![](assets/sdk_manager_icon.png)
 
+vagy
+
+![](assets/sdk_manager_icon_2.png)
+
 SDK manager felülete:
 
 ![](assets/sdk_manager.png)
@@ -133,6 +137,10 @@ Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is
 Az AVD Manager ikonja:
 
 ![](assets/avd_icon.png)
+
+vagy
+
+![](assets/avd_icon_2.png)
 
 ![](assets/avd_manager.png)
 
