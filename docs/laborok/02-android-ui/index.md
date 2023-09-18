@@ -5,10 +5,11 @@
 A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.
 
 <p align="center">
-<img src="./assets/login.png" width="160">
-<img src="./assets/list.png" width="160">
-<img src="./assets/details.png" width="160">
-<img src="./assets/pass.png" width="160">
+<img src="./assets/splash.png" width="19%">
+<img src="./assets/login.png" width="19%">
+<img src="./assets/list.png" width="19%">
+<img src="./assets/details.png" width="19%">
+<img src="./assets/pass.png" width="19%">
 </p>
 
 !!! warning "IMSc"
@@ -41,11 +42,11 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Első lépésként indítsuk el az Android Studio-t, majd:
 
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
-2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
-3. Nyelvnek válasszuk a *Kotlin*-t.
-4. A minimum API szint legyen API21: Android 5.0.
-5. Az instant app támogatást, valamint a *Use legacy android.support libraries* pontot **ne** pipáljuk be.
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
+1. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
+1. Nyelvnek válasszuk a *Kotlin*-t.
+1. A minimum API szint legyen API24: Android 7.0.
+1. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő PublicTransport könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
@@ -66,80 +67,178 @@ Az első Activity-nk a nevéhez híven a felhasználó bejelentkezéséért lesz
 <img src="./assets/splash.png" width="320">
 </p>
 
-Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
 
-Hozzunk létre egy új XML fájlt a `drawable` mappában `splash_background.xml` néven. Ez lesz a splash képernyőnkön megjelenő grafika. A tartalma az alábbi legyen:
+???info "Android 12 (API 31) alatt"
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	(A szükséges fájl [innen](./downloads/res.zip) elérhető)
+	
+	Hozzunk létre egy új XML fájlt a `drawable` mappában `splash_background.xml` néven. Ez lesz a splash képernyőnkön megjelenő grafika. A tartalma az alábbi legyen:
+	
+	```xml
+	<?xml version="1.0" encoding="utf-8"?>
+	<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	    <item>
+	        <bitmap
+	            android:gravity="fill_horizontal|clip_vertical"
+	            android:src="@drawable/splash_image"/>
+	    </item>
+	
+	</layer-list>
+	```
+	
+	Jelen esetben egyetlen képet teszünk ide, de további `item`-ek felvételével komplexebb dolgokat is összeállíthatnánk itt. Tipikus megoldás például egy egyszínű háttér beállítása, amin az alkalmazás ikonja látszik.
+	
+	Nyissuk meg a `values/themes.xml` fájlt. Ez definiálja az alkalmazásban használt különböző témákat. A splash képernyőhöz egy új témát fogunk létrehozni, amelyben az előbb létrehozott drawable-t állítjuk be az alkalmazásablakunk hátterének (mivel ez látszik valójában, amíg nem töltött be a UI többi része). Ezt így tehetjük meg:
+	
+	```xml
+	<style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+	    <item name="android:windowBackground">@drawable/splash_background</item>
+	</style>
+	```
+	
+	A fenti témát illesszük be a `night` minősítővel ellátott `themes.xml` fájlba is.
+	
+	
+	A téma használatához az alkalmazásunk manifest fájlját (`AndroidManifest.xml`) kell módosítanunk. Ezt megnyitva láthatjuk, hogy jelenleg a teljes alkalmazás az `AppTheme` nevű témát használja.
+	
+	```xml
+	<application
+	    ...
+	    android:theme="@style/Theme.PublicTransport" >
+	```
+	
+	Mi ezt nem akarjuk megváltoztatni, hanem csak a `LoginActivity`-nek akarunk egy új témát adni. Ezt így tehetjük meg:
+	
+	```xml
+	<activity
+	    android:name=".LoginActivity"
+	    android:theme="@style/SplashTheme">
+	    ...
+	</activity>
+	```
+	
+	Mivel a betöltés után már nem lesz szükségünk erre a háttérre, a `LoginActivity.kt` fájlban a betöltés befejeztével visszaállíthatjuk az eredeti témát, amely fehér háttérrel rendelkezik. Ezt az `onCreate` függvény elején tegyük meg, még a `super` hívás előtt:
+	
+	```kotlin
+	override fun onCreate(savedInstanceState: Bundle?) {
+	    setTheme(R.style.Theme_PublicTransport)
+	    ...
+	}
+	```
+		
+	Most már futtathatjuk az alkalmazást, és betöltés közben látnunk kell a berakott képet. A splash képernyő általában akkor hasznos, ha az alkalmazás inicializálása sokáig tart. Mivel a mostani alkalmazásunk még nagyon gyorsan indul el, szimulálhatunk egy kis töltési időt az alábbi módon:
+	
+	```kotlin
+	override fun onCreate(savedInstanceState: Bundle?) {
+	    try {
+	        Thread.sleep(1000)
+	    } catch (e: InterruptedException) {
+	        e.printStackTrace()
+	    }
+	    setTheme(R.style.Theme_PublicTransport);
+	    ...
+	}
+	```
 
-    <item>
-        <bitmap
-            android:gravity="fill_horizontal|clip_vertical"
-            android:src="@drawable/splash_image"/>
-    </item>
+API 31 felett bevezetésre került egy [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), most ezt fogjuk használni. Ehhez adjuk hozzá a szükséges függőséget az `app` modulhoz tartozó `build.gradle.kts` fájlunkban a *dependencies* szekcióhoz:
 
-</layer-list>
+```gradle
+dependencies {
+	...
+    implementation("androidx.core:core-splashscreen:1.0.0")
+}
 ```
 
-Jelen esetben egyetlen képet teszünk ide, de további `item`-ek felvételével komplexebb dolgokat is összeállíthatnánk itt. Tipikus megoldás például egy egyszínű háttér beállítása, amin az alkalmazás ikonja látszik.
+A függőség hozzáadása után nyomjuk meg a `Sync Now` gombot a felül megjelenő kék sávon. A Környezet ez után letölti amegfelelő könyvtárakat, és újraszinkronizálja a gradle fájlokat. Innentől kezdve már használható a frissen hozzáadott könyvtár.
 
-Nyissuk meg a `values/themes.xml` fájlt. Ez definiálja az alkalmazásban használt különböző témákat. A splash képernyőhöz egy új témát fogunk létrehozni, amelyben az előbb létrehozott drawable-t állítjuk be az alkalmazásablakunk hátterének (mivel ez látszik valójában, amíg nem töltött be a UI többi része). Ezt így tehetjük meg:
+Azonban először készítsünk egy ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített `Asset Studio` eszközét fogjuk használni. Bal oldalon a *Project* fül alatt nyissuk meg a `Resource Manager`-t, majd nyomjunk a + gombra, ott pedig az `Image Asset` lehetőségre. 
+
+1. Itt *Launcher Icon*-t szeretnénk majd generálni, tehát válasszuk azt. 
+1. A neve legyen *ic_transport*
+1. Az egyszerűség kedvéért most *Clip Art*-ból fogjuk elkészíteni az ikonunkat, így válasszuk azt, majd az alatta lévő gombnál válasszunk egy szimpatikusat (pl. a bus keressel).
+1. Ez után válasszunk egy szimpatikus színt.
+1. Ha akarunk, állíthatunk a méretezésen is.
+1. A `Background Layer` fülön beállíthatjuk a háttér színét is.
+1. A beállításoknál állítsuk át, hogy az ikonok *PNG* formábumban készüljenek el.
+1. Ez után nyomjunk a *Next* majd a *Finish* gombra.
+
+<p align="center"> 
+<img src="./assets/asset_studio.png">
+</p>
+
+Láthatjuk, hogy több féle ikon készült, több féle méretben. Ezekből a rendszer a konfiguráció függvényében fog választani.
+
+A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `themes.xml` fájlban.
 
 ```xml
-<style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_background</item>
-</style>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PublicTransport" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.PublicTransport" parent="Base.Theme.PublicTransport" />
+
+    <style name="Theme.PublicTransport.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/design_default_color_primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transport_foreground</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.PublicTransport</item>
+    </style>
+    
+</resources>
 ```
 
-A fenti témát illesszük be a `night` minősítővel ellátott `themes.xml` fájlba is.
+Az új stílusunk a `Theme.PublicTransport.Starting` nevet viseli, és a `Theme.SplashScreen` témából származik. Ezen kívül beállítottuk benne, hogy
 
+- `windowSplashScreenBackground`: a splash képernyő háttere a *primary color* legyen (természetesen más is választható),
+- `windowSplashScreenAnimatedIcon`: a középen megjelenő ikon a saját ikonunk legyen, annak is csak az előtere,
+- `android:windowSplashScreenIconBackgroundColor`: az ikonunk mögött milyen háttér legyen,
+- `postSplashScreenTheme`: a splash screen után milyen stílusra kell visszaváltania az alkalmazásnak.
 
-A téma használatához az alkalmazásunk manifest fájlját (`AndroidManifest.xml`) kell módosítanunk. Ezt megnyitva láthatjuk, hogy jelenleg a teljes alkalmazás az `AppTheme` nevű témát használja.
+!!!note
+	A Splash Screen API ennél jóval többet tud, akár animálhatjuk is a megjelenített képet, azonban ez sajnos túlmutat a labor keretein.
+
+Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk `LoginActivity`-re a `manifest.xml`-ben.
+ 
+```xml
+<application
+    ...
+	<activity
+        android:theme="@style/Theme.PublicTransport.Starting"
+        android:name=".LoginActivity"
+        android:exported="true">
+			...
+</application>
+```
+
+Ha már itt járunk, állítsuk be az alkalmazásunk ikonját is:
 
 ```xml
 <application
     ...
-    android:theme="@style/Theme.PublicTransport" >
+	android:icon="@mipmap/ic_transport"
+    android:roundIcon="@mipmap/ic_transport_round">
+	...
+</application>
 ```
 
-Mi ezt nem akarjuk megváltoztatni, hanem csak a `LoginActivity`-nek akarunk egy új témát adni. Ezt így tehetjük meg:
-
-```xml
-<activity
-    android:name=".LoginActivity"
-    android:theme="@style/SplashTheme">
-    ...
-</activity>
-```
-
-Mivel a betöltés után már nem lesz szükségünk erre a háttérre, a `LoginActivity.kt` fájlban a betöltés befejeztével visszaállíthatjuk az eredeti témát, amely fehér háttérrel rendelkezik. Ezt az `onCreate` függvény elején tegyük meg, még a `super` hívás előtt:
+Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate`-ben, hogy valójában elkészüljön a *splash screen*:
 
 ```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    setTheme(R.style.Theme_PublicTransport)
-    ...
+class LoginActivity : AppCompatActivity() {
+	override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+	}
 }
 ```
 
-!!!warning "SDK verzió"
-    Az Android a 31-es SDK verzió óta támogat egy [splash screen API](https://developer.android.com/develop/ui/views/launch/splash-screen)-t,
-    így a labron bemutatott megoldás az alapértelmezett 33-as SDK verziójú emulátorokon nem fog működni.
+Próbáljuk ki az alkalmazásunkat!
 
-Most már futtathatjuk az alkalmazást, és betöltés közben látnunk kell a berakott képet. A splash képernyő általában akkor hasznos, ha az alkalmazás inicializálása sokáig tart. Mivel a mostani alkalmazásunk még nagyon gyorsan indul el, szimulálhatunk egy kis töltési időt az alábbi módon:
-
-```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    try {
-        Thread.sleep(1000)
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
-    }
-    setTheme(R.style.Theme_PublicTransport);
-    ...
-}
-```
 
 !!!example "BEADANDÓ (0.5 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **splash képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
@@ -242,13 +341,13 @@ Még egy dolgunk van ezen a képernyőn, az input ellenőrzése. Ezt a `LoginAct
 
 A [`ViewBinding`](https://developer.android.com/topic/libraries/view-binding) a kódírást könnyíti meg számunkra. Amennyiben ezt használjuk, az automatikusan generálódó *binding* osztályokon keresztül közvetlen referencián keresztül tudunk elérni minden *ID*-val rendelkező erőforrást az `XML` fájljainkban.
 
-Először is be kell kapcsolnunk a modulunkra a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
+Először is be kell kapcsolnunk a modulunkra a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle.kts` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
 
 ```kotlin
 android {
     ...
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 
@@ -283,12 +382,7 @@ A `binding` példány működéséhez három dolgot kell tennünk:
 private lateinit var binding: ActivityLoginBinding
 
 override fun onCreate(savedInstanceState: Bundle?) {
-    try {
-        Thread.sleep(1000)
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
-    }
-    setTheme(R.style.Theme_PublicTransport)
+	installSplashScreen()
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
@@ -298,7 +392,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 !!!info "lateinit"
 	A [`lateinit`](https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables) kulcsszóval megjelölt property-ket a fordító megengedi inicializálatlanul hagyni az osztály konstruktorának lefutása utánig, anélkül, hogy nullable-ként kéne azokat megjelölnünk (ami később kényelmetlenné tenné a használatukat, mert mindig ellenőriznünk kéne, hogy `null`-e az értékük). Ez praktikus olyan esetekben, amikor egy osztály inicializálása nem a konstruktorában történik (például ahogy az `Activity`-k esetében az `onCreate`-ben), mert később az esetleges `null` eset lekezelése nélkül használhatjuk majd a property-t. A `lateinit` használatával átvállaljuk a felelősséget a fordítótól, hogy a property-t az első használata előtt inicializálni fogjuk - ellenkező esetben kivételt kapunk.
 
-Ezek után már be is állíthatjuk a gombunk eseménykezelőit:
+Ezek után már be is állíthatjuk a gombunk eseménykezelőit az `onCreate` függvényben:
 
 ```kotlin
 binding.btnLogin.setOnClickListener {
@@ -322,7 +416,7 @@ Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghív
 	A [`setOnClickListener`](https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener)) függvény valójában olyan objektumot vár paraméterként, ami megvalósítja a [`View.OnClickListener`](https://developer.android.com/reference/android/view/View.OnClickListener) interfészt. Ezt Java-ban anonim objektumokkal szokás megoldani, amit [meg lehet tenni](https://kotlinlang.org/docs/reference/object-declarations.html#object-expressions) Kotlin nyelven is.Ehelyett azonban érdemesebb kihasználni, hogy a Kotlin rendelkezik igazi függvény típusokkal, így megadható egy olyan [lambda kifejezés](https://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions), amelynek a fejléce megegyezik az elvárt interfész egyetlen függvényének fejlécével. Ez alapján pedig a [SAM conversion](https://kotlinlang.org/docs/reference/java-interop.html#sam-conversions) nevű nyelvi funkció a háttérben a lambda alapján létrehozza a megfelelő `View.OnClickListener` példányt.
 
 !!!example "BEADANDÓ (0.5 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **login képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az e-mail mezőbe begépelve**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik a **login képernyő egy input hibával** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az e-mail mezőbe begépelve**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
@@ -334,7 +428,9 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 <img src="./assets/list.png" width="320">
 </p>
 
-Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
+Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
+
+Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Views Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
 
 
 ```kotlin
@@ -724,43 +820,36 @@ Most már elkészíthetjük a `PassActivity`-t. Kezdjük a layout-jával (`activ
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PassActivity">
+    android:layout_margin="16dp"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTicketType"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        tools:text="Train pass" />
+
+    <TextView
+        android:id="@+id/tvDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:orientation="vertical">
+        tools:text="1999.11.22. - 2012.12.21." />
 
-        <TextView
-            android:id="@+id/tvTicketType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            tools:text="Train pass" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/qrcode" />
 
-        <TextView
-            android:id="@+id/tvDates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            tools:text="1999.11.22. - 2012.12.21." />
-
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:src="@drawable/qrcode" />
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
 ```
 
 Az Activity Kotlin kódjában pedig csak a két `TextView` szövegét kell az `Intent`-ben megkapott értékekre állítanunk az `onCreate` függvényben(illetve beállítani a `ViewBindingot`):
@@ -850,13 +939,3 @@ Ebből még az alábbi kedvezményeket adjuk:
 	Készíts egy **képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f9.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-
-### Extra feladat: Labor átírása Jetpack Compose-ra
-
-<p align="center">
-<img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
-<img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
-<img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
-<img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
-<img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
-</p>

@@ -199,6 +199,12 @@ Az Android Studio Giraffe-ban megújult a környezet felhasználói felülete. A
 ## Hello World
 
 A laborvezető segítségével készítsünk egy egyszerű Hello World alkalmazást, a varázsló nézeten az *Include Kotlin support* legyen bepipálva! 
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
+1. A projekt neve legyen `HelloWorld`, a kezdő package `hu.bme.aut.mobweb.helloworld`, a mentési hely pedig a kicheckoutolt repository-n belül a `HelloWorld` mappa.
+1. Nyelvnek válasszuk a *Kotlin*-t.
+1. A minimum API szint legyen API24: Android 7.0.
+1. A `Build configuration language` Kotlin DSL legyen.
+
 
 !!!warning "FILE PATH"
 	A projekt a repository-ban lévő HelloWorld könyvtárba kerüljön!
