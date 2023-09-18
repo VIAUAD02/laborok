@@ -596,13 +596,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#extra-feladat-labor-atirasa-jetpack-compose-ra" class="md-nav__link">
-    Extra feladat: Labor átírása Jetpack Compose-ra
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -985,13 +978,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#extra-feladat-labor-atirasa-jetpack-compose-ra" class="md-nav__link">
-    Extra feladat: Labor átírása Jetpack Compose-ra
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1020,10 +1006,11 @@
 <h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
 <p>A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.</p>
 <p align="center">
-<img src="./assets/login.png" width="160">
-<img src="./assets/list.png" width="160">
-<img src="./assets/details.png" width="160">
-<img src="./assets/pass.png" width="160">
+<img src="./assets/splash.png" width="19%">
+<img src="./assets/login.png" width="19%">
+<img src="./assets/list.png" width="19%">
+<img src="./assets/details.png" width="19%">
+<img src="./assets/pass.png" width="19%">
 </p>
 
 <div class="admonition warning">
@@ -1058,11 +1045,11 @@
 <h2 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h2>
 <p>Első lépésként indítsuk el az Android Studio-t, majd:</p>
 <ol>
-<li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.</li>
+<li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.</li>
 <li>A projekt neve legyen <code>PublicTransport</code>, a kezdő package <code>hu.bme.aut.android.publictransport</code>, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.</li>
 <li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
-<li>A minimum API szint legyen API21: Android 5.0.</li>
-<li>Az instant app támogatást, valamint a <em>Use legacy android.support libraries</em> pontot <strong>ne</strong> pipáljuk be.</li>
+<li>A minimum API szint legyen API24: Android 7.0.</li>
+<li>A <em>Build configuration language</em> Kotlin DSL legyen.</li>
 </ol>
 <div class="admonition danger">
 <p class="admonition-title">FILE PATH</p>
@@ -1081,7 +1068,9 @@
 <img src="./assets/splash.png" width="320">
 </p>
 
-<p>Először töltsük le <a href="downloads/res.zip">az alkalmazáshoz képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk &gt; Show in Explorer).</p>
+<details class="info">
+<summary>Android 12 (API 31) alatt</summary>
+<p>(A szükséges fájl <a href="downloads/res.zip">innen</a> elérhető)</p>
 <p>Hozzunk létre egy új XML fájlt a <code>drawable</code> mappában <code>splash_background.xml</code> néven. Ez lesz a splash képernyőnkön megjelenő grafika. A tartalma az alábbi legyen:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;layer-list</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
@@ -1119,11 +1108,6 @@
 <span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">SDK verzió</p>
-<p>Az Android a 31-es SDK verzió óta támogat egy <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">splash screen API</a>-t,
-így a labron bemutatott megoldás az alapértelmezett 33-as SDK verziójú emulátorokon nem fog működni.</p>
-</div>
 <p>Most már futtathatjuk az alkalmazást, és betöltés közben látnunk kell a berakott képet. A splash képernyő általában akkor hasznos, ha az alkalmazás inicializálása sokáig tart. Mivel a mostani alkalmazásunk még nagyon gyorsan indul el, szimulálhatunk egy kis töltési időt az alábbi módon:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
@@ -1135,6 +1119,88 @@
 <span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
+</details>
+<p>API 31 felett bevezetésre került egy <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a>, most ezt fogjuk használni. Ehhez adjuk hozzá a szükséges függőséget az <code>app</code> modulhoz tartozó <code>build.gradle.kts</code> fájlunkban a <em>dependencies</em> szekcióhoz:</p>
+<div class="highlight"><pre><span></span><code>dependencies {
+    ...
+    implementation(&quot;androidx.core:core-splashscreen:1.0.0&quot;)
+}
+</code></pre></div>
+<p>A függőség hozzáadása után nyomjuk meg a <code>Sync Now</code> gombot a felül megjelenő kék sávon. A Környezet ez után letölti amegfelelő könyvtárakat, és újraszinkronizálja a gradle fájlokat. Innentől kezdve már használható a frissen hozzáadott könyvtár.</p>
+<p>Azonban először készítsünk egy ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített <code>Asset Studio</code> eszközét fogjuk használni. Bal oldalon a <em>Project</em> fül alatt nyissuk meg a <code>Resource Manager</code>-t, majd nyomjunk a + gombra, ott pedig az <code>Image Asset</code> lehetőségre. </p>
+<ol>
+<li>Itt <em>Launcher Icon</em>-t szeretnénk majd generálni, tehát válasszuk azt. </li>
+<li>A neve legyen <em>ic_transport</em></li>
+<li>Az egyszerűség kedvéért most <em>Clip Art</em>-ból fogjuk elkészíteni az ikonunkat, így válasszuk azt, majd az alatta lévő gombnál válasszunk egy szimpatikusat (pl. a bus keressel).</li>
+<li>Ez után válasszunk egy szimpatikus színt.</li>
+<li>Ha akarunk, állíthatunk a méretezésen is.</li>
+<li>A <code>Background Layer</code> fülön beállíthatjuk a háttér színét is.</li>
+<li>A beállításoknál állítsuk át, hogy az ikonok <em>PNG</em> formábumban készüljenek el.</li>
+<li>Ez után nyomjunk a <em>Next</em> majd a <em>Finish</em> gombra.</li>
+</ol>
+<p align="center"> 
+<img src="./assets/asset_studio.png">
+</p>
+
+<p>Láthatjuk, hogy több féle ikon készült, több féle méretben. Ezekből a rendszer a konfiguráció függvényében fog választani.</p>
+<p>A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a <code>themes.xml</code> fájlban.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Base application theme. --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.PublicTransport&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight.NoActionBar&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Customize your light theme here. --&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.PublicTransport&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Base.Theme.PublicTransport&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.PublicTransport.Starting&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.SplashScreen&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowSplashScreenBackground&quot;</span><span class="nt">&gt;</span>@color/design_default_color_primary<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowSplashScreenAnimatedIcon&quot;</span><span class="nt">&gt;</span>@drawable/ic_transport_foreground<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;android:windowSplashScreenIconBackgroundColor&quot;</span><span class="nt">&gt;</span>@color/white<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;postSplashScreenTheme&quot;</span><span class="nt">&gt;</span>@style/Theme.PublicTransport<span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<p>Az új stílusunk a <code>Theme.PublicTransport.Starting</code> nevet viseli, és a <code>Theme.SplashScreen</code> témából származik. Ezen kívül beállítottuk benne, hogy</p>
+<ul>
+<li><code>windowSplashScreenBackground</code>: a splash képernyő háttere a <em>primary color</em> legyen (természetesen más is választható),</li>
+<li><code>windowSplashScreenAnimatedIcon</code>: a középen megjelenő ikon a saját ikonunk legyen, annak is csak az előtere,</li>
+<li><code>android:windowSplashScreenIconBackgroundColor</code>: az ikonunk mögött milyen háttér legyen,</li>
+<li><code>postSplashScreenTheme</code>: a splash screen után milyen stílusra kell visszaváltania az alkalmazásnak.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Splash Screen API ennél jóval többet tud, akár animálhatjuk is a megjelenített képet, azonban ez sajnos túlmutat a labor keretein.</p>
+</div>
+<p>Most már, hogy bekonfiguráltuk a <em>splash</em> képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk <code>LoginActivity</code>-re a <code>manifest.xml</code>-ben.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;application</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">    </span><span class="err">&lt;activity</span>
+<span class="w">        </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
+<span class="w">        </span><span class="na">android:name=</span><span class="s">&quot;.LoginActivity&quot;</span>
+<span class="w">        </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>...
+<span class="nt">&lt;/application&gt;</span>
+</code></pre></div>
+<p>Ha már itt járunk, állítsuk be az alkalmazásunk ikonját is:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;application</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">    </span><span class="na">android:icon=</span><span class="s">&quot;@mipmap/ic_transport&quot;</span>
+<span class="w">    </span><span class="na">android:roundIcon=</span><span class="s">&quot;@mipmap/ic_transport_round&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>...
+<span class="nt">&lt;/application&gt;</span>
+</code></pre></div>
+<p>Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>onCreate</code>-ben, hogy valójában elkészüljön a <em>splash screen</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">LoginActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">installSplashScreen</span><span class="p">()</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_login</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Próbáljuk ki az alkalmazásunkat!</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (0.5 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>splash képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
@@ -1223,11 +1289,11 @@
 <p>Azonban a <code>findViewById</code> hívásnak számos problémája <a href="https://developer.android.com/topic/libraries/view-binding#findviewbyid">van</a>. Ezekről bővebben az előadáson lesz szó (pl.: <em>Null safety</em>, <em>type safety</em>). Ezért ehelyett "nézetkötést", azaz <code>ViewBinding</code>-ot fogunk használni.</p>
 </div>
 <p>A <a href="https://developer.android.com/topic/libraries/view-binding"><code>ViewBinding</code></a> a kódírást könnyíti meg számunkra. Amennyiben ezt használjuk, az automatikusan generálódó <em>binding</em> osztályokon keresztül közvetlen referencián keresztül tudunk elérni minden <em>ID</em>-val rendelkező erőforrást az <code>XML</code> fájljainkban.</p>
-<p>Először is be kell kapcsolnunk a modulunkra a <code>ViewBinding</code>-ot. Az <code>app</code> modulhoz tartozó <code>build.gradle</code> fájlban az <code>android</code> tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a <code>Sync Now</code> gombra.):</p>
+<p>Először is be kell kapcsolnunk a modulunkra a <code>ViewBinding</code>-ot. Az <code>app</code> modulhoz tartozó <code>build.gradle.kts</code> fájlban az <code>android</code> tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a <code>Sync Now</code> gombra.):</p>
 <div class="highlight"><pre><span></span><code><span class="n">android</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">buildFeatures</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">viewBinding</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="n">viewBinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1255,12 +1321,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ActivityLoginBinding</span>
 
 <span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">InterruptedException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">setTheme</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">style</span><span class="p">.</span><span class="na">Theme_PublicTransport</span><span class="p">)</span>
+<span class="w">    </span><span class="n">installSplashScreen</span><span class="p">()</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
 <span class="w">    </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityLoginBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
 <span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
@@ -1270,7 +1331,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <p class="admonition-title">lateinit</p>
 <p>A <a href="https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables"><code>lateinit</code></a> kulcsszóval megjelölt property-ket a fordító megengedi inicializálatlanul hagyni az osztály konstruktorának lefutása utánig, anélkül, hogy nullable-ként kéne azokat megjelölnünk (ami később kényelmetlenné tenné a használatukat, mert mindig ellenőriznünk kéne, hogy <code>null</code>-e az értékük). Ez praktikus olyan esetekben, amikor egy osztály inicializálása nem a konstruktorában történik (például ahogy az <code>Activity</code>-k esetében az <code>onCreate</code>-ben), mert később az esetleges <code>null</code> eset lekezelése nélkül használhatjuk majd a property-t. A <code>lateinit</code> használatával átvállaljuk a felelősséget a fordítótól, hogy a property-t az első használata előtt inicializálni fogjuk - ellenkező esetben kivételt kapunk.</p>
 </div>
-<p>Ezek után már be is állíthatjuk a gombunk eseménykezelőit:</p>
+<p>Ezek után már be is állíthatjuk a gombunk eseménykezelőit az <code>onCreate</code> függvényben:</p>
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">btnLogin</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">etEmailAddress</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">binding</span><span class="p">.</span><span class="na">etEmailAddress</span><span class="p">.</span><span class="na">requestFocus</span><span class="p">()</span>
@@ -1292,7 +1353,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 </div>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (0.5 pont)</p>
-<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>login képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod az e-mail mezőbe begépelve</strong>. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>login képernyő egy input hibával</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod az e-mail mezőbe begépelve</strong>. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h2 id="lehetosegek-listaja-1-pont">Lehetőségek listája (1 pont)<a class="headerlink" href="#lehetosegek-listaja-1-pont" title="Permanent link">&para;</a></h2>
@@ -1301,7 +1362,8 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <img src="./assets/list.png" width="320">
 </p>
 
-<p>Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk &gt; New &gt; Activity &gt; Empty Activity), nevezzük el <code>ListActivity</code>-nek. Most, hogy ez már létezik, menjünk vissza a <code>LoginActivity</code> kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:</p>
+<p>Először töltsük le <a href="downloads/res.zip">az alkalmazáshoz képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk &gt; Show in Explorer).</p>
+<p>Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk &gt; New &gt; Activity &gt; Empty Views Activity), nevezzük el <code>ListActivity</code>-nek. Most, hogy ez már létezik, menjünk vissza a <code>LoginActivity</code> kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:</p>
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">btnLogin</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
@@ -1614,43 +1676,36 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 </div>
 <p>Most már elkészíthetjük a <code>PassActivity</code>-t. Kezdjük a layout-jával (<code>activity_pass.xml</code>), aminek már majdnem minden elemét használtuk, az egyetlen újdonság itt az <code>ImageView</code> használata.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;ScrollView</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="nt">&lt;LinearLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
 <span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
 <span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.PassActivity&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">android:layout_margin=</span><span class="s">&quot;16dp&quot;</span>
+<span class="w">    </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
 
-<span class="w">    </span><span class="nt">&lt;LinearLayout</span>
-<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvTicketType&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
 <span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
+<span class="w">        </span><span class="na">android:textSize=</span><span class="s">&quot;24sp&quot;</span>
+<span class="w">        </span><span class="na">tools:text=</span><span class="s">&quot;Train pass&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvDates&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
 <span class="w">        </span><span class="na">android:layout_margin=</span><span class="s">&quot;16dp&quot;</span>
-<span class="w">        </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="na">tools:text=</span><span class="s">&quot;1999.11.22. - 2012.12.21.&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-<span class="w">        </span><span class="nt">&lt;TextView</span>
-<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvTicketType&quot;</span>
-<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">            </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
-<span class="w">            </span><span class="na">android:textSize=</span><span class="s">&quot;24sp&quot;</span>
-<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;Train pass&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ImageView</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;300dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;300dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
+<span class="w">        </span><span class="na">android:src=</span><span class="s">&quot;@drawable/qrcode&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-<span class="w">        </span><span class="nt">&lt;TextView</span>
-<span class="w">            </span><span class="na">android:id=</span><span class="s">&quot;@+id/tvDates&quot;</span>
-<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">            </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
-<span class="w">            </span><span class="na">android:layout_margin=</span><span class="s">&quot;16dp&quot;</span>
-<span class="w">            </span><span class="na">tools:text=</span><span class="s">&quot;1999.11.22. - 2012.12.21.&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-
-<span class="w">        </span><span class="nt">&lt;ImageView</span>
-<span class="w">            </span><span class="na">android:layout_width=</span><span class="s">&quot;300dp&quot;</span>
-<span class="w">            </span><span class="na">android:layout_height=</span><span class="s">&quot;300dp&quot;</span>
-<span class="w">            </span><span class="na">android:layout_gravity=</span><span class="s">&quot;center&quot;</span>
-<span class="w">            </span><span class="na">android:src=</span><span class="s">&quot;@drawable/qrcode&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-
-<span class="w">    </span><span class="nt">&lt;/LinearLayout&gt;</span>
-
-<span class="nt">&lt;/ScrollView&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
 </code></pre></div>
 <p>Az Activity Kotlin kódjában pedig csak a két <code>TextView</code> szövegét kell az <code>Intent</code>-ben megkapott értékekre állítanunk az <code>onCreate</code> függvényben(illetve beállítani a <code>ViewBindingot</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">tvTicketType</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">getStringExtra</span><span class="p">(</span><span class="n">KEY_TYPE_STRING</span><span class="p">)</span>
@@ -1748,14 +1803,6 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik egy <strong>több napos kedvezményes bérlet részletes nézete az árral</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), <strong>a bérletkedvezményekkel kapcsolatos kóddal</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f9.png néven töltsd föl. </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
-<h3 id="extra-feladat-labor-atirasa-jetpack-compose-ra">Extra feladat: Labor átírása Jetpack Compose-ra<a class="headerlink" href="#extra-feladat-labor-atirasa-jetpack-compose-ra" title="Permanent link">&para;</a></h3>
-<p align="center">
-<img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
-<img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
-<img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
-<img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
-<img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
-</p>
 
     <hr>
   <div class="md-source-file">
@@ -1766,8 +1813,8 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
           </path>
         </svg>
       </span>
-      <span title="2023. szeptember 11. 04:20:35">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-11T04:20:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-11</span>
+      <span title="2023. szeptember 18. 03:32:40">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-18T03:32:40+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-18</span>
       </span>
     </span>
 
