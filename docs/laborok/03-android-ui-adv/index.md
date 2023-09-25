@@ -47,20 +47,32 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
-- File->New->New Project
-- válasszuk az Empty Activity-t
-- Application name: AndroidWallet
-- package name: hu.bme.aut.android.androidwallet
-- a mentési hely a kicheckoutolt repository-n belül az AndroidWallet mappa
-- Minimum API level: 21
-- Finish, és várjuk meg amíg a Studio mindent legenerál. (Ez első alkalomkor valamivel hosszabb időt vesz igénybe.)
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
+1. A projekt neve legyen `AndroidWallet`, a kezdő package `hu.bme.aut.android.androidwallet`, a mentési hely pedig a kicheckoutolt repository-n belül az AndroidWallet mappa.
+1. Nyelvnek válasszuk a *Kotlin*-t.
+1. A minimum API szint legyen API24: Android 7.0.
+1. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 ## Menü elkészítése
 
-Első lépésben készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
+Azt szeretnénk, ha az *ActionBar*on megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBar*ja. Ahhoz, hogy ezt visszahozzuk, nyissuk meg a `res/values/themes.xml-t`, ahol az alkalmazásunk étmája van definiálva. Itt láthatjuk, hogy a `Base.Theme.AndroidWallet` témánk a `Theme.Material3.DayNight.NoActionBar`-ból származik. Töröljük ki innen a `.NoActionBar`-t. Így tehát az új `themes.xml` kódja:
+
+```xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AndroidWallet" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.AndroidWallet" parent="Base.Theme.AndroidWallet" />
+</resources>
+```
+
+Az *ActionBar* felhelyezése után készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
 
 ![](assets/menu.png)
 
@@ -279,11 +291,11 @@ A `salary_row.xml` végleges kódja:
 Mostanra minden összetevőnk készen áll, már csak a mögöttes logikát kell megvalósítanunk. A kódban szükségünk lesz a mezők elérésére, illetve a kapcsolónk állapotának vizsgálatára a kattintás pillanatában. Ezeket a részeket a *Save* gombunk kattintás eseménykezelőjében
 fogjuk megvalósítani. Továbbá az említett *inflate*-elendő komponensünk példányosítását is itt kell végrehajtanunk a kapott adatok alapján. `Toast` üzenetben jelezzük, ha valamelyik mező nincs kitöltve!
 
-Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként, ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha Kotlinban készítünk Android alkalmazást, akkor a `layout`-ban definiált komponenseket az *id*-jükkel el tudjuk érni. Ehhez először meg kell csinálnunk a `viewBinding`-ot az `Activity`-n. Nem szabad elfelejteni, hogy a modul szintű `build.gradle` fájlban fel kell vennünk a `viewBinding`  `buildFeature`-t. 
+Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként, ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha Kotlinban készítünk Android alkalmazást, akkor a `layout`-ban definiált komponenseket az *id*-jükkel el tudjuk érni. Ehhez először meg kell csinálnunk a `viewBinding`-ot az `Activity`-n. Nem szabad elfelejteni, hogy a modul szintű `build.gradle.kts` fájlban fel kell vennünk a `viewBinding`  `buildFeature`-t. 
 
 ```
 buildFeatures {
-    viewBinding true
+    viewBinding = true
 }
 ```
 
