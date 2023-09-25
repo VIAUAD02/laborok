@@ -1062,21 +1062,30 @@
 </ol>
 <h2 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h2>
 <p>Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:</p>
-<ul>
-<li>File-&gt;New-&gt;New Project</li>
-<li>válasszuk az Empty Activity-t</li>
-<li>Application name: AndroidWallet</li>
-<li>package name: hu.bme.aut.android.androidwallet</li>
-<li>a mentési hely a kicheckoutolt repository-n belül az AndroidWallet mappa</li>
-<li>Minimum API level: 21</li>
-<li>Finish, és várjuk meg amíg a Studio mindent legenerál. (Ez első alkalomkor valamivel hosszabb időt vesz igénybe.)</li>
-</ul>
+<ol>
+<li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.</li>
+<li>A projekt neve legyen <code>AndroidWallet</code>, a kezdő package <code>hu.bme.aut.android.androidwallet</code>, a mentési hely pedig a kicheckoutolt repository-n belül az AndroidWallet mappa.</li>
+<li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
+<li>A minimum API szint legyen API24: Android 7.0.</li>
+<li>A <em>Build configuration language</em> Kotlin DSL legyen.</li>
+</ol>
 <div class="admonition danger">
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
 <h2 id="menu-elkeszitese">Menü elkészítése<a class="headerlink" href="#menu-elkeszitese" title="Permanent link">&para;</a></h2>
-<p>Első lépésben készítsük el a menüt. Bal oldalon a <code>res</code> könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új <code>Android Resource File</code> elemet. Itt a varázslóban mindent ki is tudunk választani:</p>
+<p>Azt szeretnénk, ha az *ActionBar*on megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBar*ja. Ahhoz, hogy ezt visszahozzuk, nyissuk meg a <code>res/values/themes.xml-t</code>, ahol az alkalmazásunk étmája van definiálva. Itt láthatjuk, hogy a <code>Base.Theme.AndroidWallet</code> témánk a <code>Theme.Material3.DayNight.NoActionBar</code>-ból származik. Töröljük ki innen a <code>.NoActionBar</code>-t. Így tehát az új <code>themes.xml</code> kódja:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources</span><span class="w"> </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Base application theme. --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.AndroidWallet&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Customize your light theme here. --&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.AndroidWallet&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Base.Theme.AndroidWallet&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<p>Az <em>ActionBar</em> felhelyezése után készítsük el a menüt. Bal oldalon a <code>res</code> könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új <code>Android Resource File</code> elemet. Itt a varázslóban mindent ki is tudunk választani:</p>
 <p><img alt="" src="assets/menu.png" /></p>
 <p>A <code>menu_main</code> tartalma legyen az alábbi:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -1260,9 +1269,9 @@
 <h2 id="a-listaelem-peldanyositasa-1-pont">A listaelem példányosítása (1 pont)<a class="headerlink" href="#a-listaelem-peldanyositasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>Mostanra minden összetevőnk készen áll, már csak a mögöttes logikát kell megvalósítanunk. A kódban szükségünk lesz a mezők elérésére, illetve a kapcsolónk állapotának vizsgálatára a kattintás pillanatában. Ezeket a részeket a <em>Save</em> gombunk kattintás eseménykezelőjében
 fogjuk megvalósítani. Továbbá az említett <em>inflate</em>-elendő komponensünk példányosítását is itt kell végrehajtanunk a kapott adatok alapján. <code>Toast</code> üzenetben jelezzük, ha valamelyik mező nincs kitöltve!</p>
-<p>Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként, ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha Kotlinban készítünk Android alkalmazást, akkor a <code>layout</code>-ban definiált komponenseket az <em>id</em>-jükkel el tudjuk érni. Ehhez először meg kell csinálnunk a <code>viewBinding</code>-ot az <code>Activity</code>-n. Nem szabad elfelejteni, hogy a modul szintű <code>build.gradle</code> fájlban fel kell vennünk a <code>viewBinding</code>  <code>buildFeature</code>-t. </p>
+<p>Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként, ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha Kotlinban készítünk Android alkalmazást, akkor a <code>layout</code>-ban definiált komponenseket az <em>id</em>-jükkel el tudjuk érni. Ehhez először meg kell csinálnunk a <code>viewBinding</code>-ot az <code>Activity</code>-n. Nem szabad elfelejteni, hogy a modul szintű <code>build.gradle.kts</code> fájlban fel kell vennünk a <code>viewBinding</code>  <code>buildFeature</code>-t. </p>
 <div class="highlight"><pre><span></span><code>buildFeatures {
-    viewBinding true
+    viewBinding = true
 }
 </code></pre></div>
 <p>Ezt követően az <code>Activity</code>:</p>
@@ -1370,8 +1379,8 @@ Az ikont a <code>ToggleButton</code> állapota alapján kell kitöltenünk. Az i
           </path>
         </svg>
       </span>
-      <span title="2023. szeptember 11. 04:20:35">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-11T04:20:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-11</span>
+      <span title="2023. szeptember 25. 12:36:58">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-25T12:36:58+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-25</span>
       </span>
     </span>
 
