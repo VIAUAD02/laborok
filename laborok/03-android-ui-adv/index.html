@@ -1074,7 +1074,7 @@
 <p>A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
 <h2 id="menu-elkeszitese">Menü elkészítése<a class="headerlink" href="#menu-elkeszitese" title="Permanent link">&para;</a></h2>
-<p>Azt szeretnénk, ha az *ActionBar*on megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBar*ja. Ahhoz, hogy ezt visszahozzuk, nyissuk meg a <code>res/values/themes.xml-t</code>, ahol az alkalmazásunk étmája van definiálva. Itt láthatjuk, hogy a <code>Base.Theme.AndroidWallet</code> témánk a <code>Theme.Material3.DayNight.NoActionBar</code>-ból származik. Töröljük ki innen a <code>.NoActionBar</code>-t. Így tehát az új <code>themes.xml</code> kódja:</p>
+<p>Azt szeretnénk, ha az <em>ActionBaron</em> megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs <em>ActionBarja.</em> Ahhoz, hogy ezt visszahozzuk, nyissuk meg a <code>res/values/themes.xml-t</code>, ahol az alkalmazásunk témája van definiálva. Itt láthatjuk, hogy a <code>Base.Theme.AndroidWallet</code> témánk a <code>Theme.Material3.DayNight.NoActionBar</code>-ból származik. Töröljük ki innen a <code>.NoActionBar</code>-t. Így tehát az új <code>themes.xml</code> kódja:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;resources</span><span class="w"> </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="cm">&lt;!-- Base application theme. --&gt;</span>
 <span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.AndroidWallet&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight&quot;</span><span class="nt">&gt;</span>
@@ -1379,8 +1379,8 @@ Az ikont a <code>ToggleButton</code> állapota alapján kell kitöltenünk. Az i
           </path>
         </svg>
       </span>
-      <span title="2023. szeptember 25. 12:36:58">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-25T12:36:58+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-25</span>
+      <span title="2023. szeptember 25. 15:40:05">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-25T15:40:05+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-25</span>
       </span>
     </span>
 
@@ -1403,6 +1403,8 @@ Az ikont a <code>ToggleButton</code> állapota alapján kell kitöltenünk. Az i
           <img src="https://avatars.githubusercontent.com/u/17516077?size=72" alt="@MartinKing01">
         </a><a href="https://github.com/fustosgergo" target="_blank" rel="noopener noreferrer" class="md-author" title="@fustosgergo">
           <img src="https://avatars.githubusercontent.com/u/32802459?size=72" alt="@fustosgergo">
+        </a><a href="https://github.com/gaborbsd" target="_blank" rel="noopener noreferrer" class="md-author" title="@gaborbsd">
+          <img src="https://avatars.githubusercontent.com/u/5345619?size=72" alt="@gaborbsd">
         </a><a href="https://github.com/Andromeda08" target="_blank" rel="noopener noreferrer" class="md-author" title="@Andromeda08">
           <img src="https://avatars.githubusercontent.com/u/44675974?size=72" alt="@Andromeda08">
         </a></nav>      
