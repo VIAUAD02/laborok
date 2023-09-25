@@ -58,7 +58,7 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
 ## Menü elkészítése
 
-Azt szeretnénk, ha az *ActionBar*on megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBar*ja. Ahhoz, hogy ezt visszahozzuk, nyissuk meg a `res/values/themes.xml-t`, ahol az alkalmazásunk étmája van definiálva. Itt láthatjuk, hogy a `Base.Theme.AndroidWallet` témánk a `Theme.Material3.DayNight.NoActionBar`-ból származik. Töröljük ki innen a `.NoActionBar`-t. Így tehát az új `themes.xml` kódja:
+Azt szeretnénk, ha az *ActionBaron* megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBarja.* Ahhoz, hogy ezt visszahozzuk, nyissuk meg a `res/values/themes.xml-t`, ahol az alkalmazásunk témája van definiálva. Itt láthatjuk, hogy a `Base.Theme.AndroidWallet` témánk a `Theme.Material3.DayNight.NoActionBar`-ból származik. Töröljük ki innen a `.NoActionBar`-t. Így tehát az új `themes.xml` kódja:
 
 ```xml
 <resources xmlns:tools="http://schemas.android.com/tools">
