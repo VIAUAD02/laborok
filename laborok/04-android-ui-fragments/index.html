@@ -1092,13 +1092,13 @@
 </li>
 </ol>
 <h2 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h2>
-<p>Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen <code>WorkplaceApp</code>, a Package name pedig <code>hu.bme.aut.workplaceapp</code>.</p>
-<p>Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.</p>
-<p>Előzetesen töltsük le az alkalmazás képeit tartalmazó <a href="downloads/res.zip">tömörített fájlt</a> és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva <code>Ctrl+V</code>).</p>
+<p>Hozzunk létre egy új Android projektet 'Empty Views Activity' sablonnal! Az alkalmazás neve legyen <code>WorkplaceApp</code>, a Package name pedig <code>hu.bme.aut.android.workplaceapp</code>.</p>
 <div class="admonition danger">
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
+<p>Használhatjuk az alapértelmezett 24-es minimum SDK szintet és a Kotlin DSL-t.</p>
+<p>Előzetesen töltsük le az alkalmazás képeit tartalmazó <a href="downloads/res.zip">tömörített fájlt</a> és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva <code>Ctrl+V</code>).</p>
 <h2 id="kepernyok-kezelese-android-alkalmazasokban">Képernyők kezelése Android alkalmazásokban<a class="headerlink" href="#kepernyok-kezelese-android-alkalmazasokban" title="Permanent link">&para;</a></h2>
 <p>A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:</p>
 <ul>
@@ -1110,14 +1110,14 @@
 <p>Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez részleteiben meg kellett ismerni a <strong>FragmentManager</strong> működését, különben könnyen hibákba futhattunk. Ennek a megoldására fejlesztette ki a Google a <em>Navigation Component</em> csomagot, mellyel az Android Studió környezetében egy grafikus eszközzel könnyen létre tudjuk hozni az oldalak közötti navigációt, illetve ezt a kódból egyszerűen el tudjuk indítani. </p>
 <h2 id="navigation-component-inicializalas">Navigation Component inicializálás<a class="headerlink" href="#navigation-component-inicializalas" title="Permanent link">&para;</a></h2>
 <p>Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű <code>build.gradle</code> fájlban a <code>dependencies</code> részhez vegyük fel a következő függőségeket:
-<div class="highlight"><pre><span></span><code> def nav_version =  &quot;2.5.1&quot;
+<div class="highlight"><pre><span></span><code>val nav_version = &quot;2.5.3&quot;
 
- implementation &quot;androidx.navigation:navigation-fragment-ktx:$nav_version&quot; 
- implementation &quot;androidx.navigation:navigation-ui-ktx:$nav_version&quot;
+implementation(&quot;androidx.navigation:navigation-fragment-ktx:$nav_version&quot;)
+implementation(&quot;androidx.navigation:navigation-ui-ktx:$nav_version&quot;)
 </code></pre></div>
 Illetve engedélyezzük a <em>View Binding</em>-ot az <code>android</code> részben:
 <div class="highlight"><pre><span></span><code>buildFeatures {
-    viewBinding true
+    viewBinding = true
 }
 </code></pre></div></p>
 <p>A Navigation Component egy <em>navigációs gráfot</em> használ a képernyők, illetve a közöttük lévő kapcsolatok definiálására. Ezt a gráfot a többi erőforráshoz hasonlóan egy <code>.xml</code> kiterjesztésű fájlban tudjuk megadni. Hozzuk létre ezt a fájlt:</p>
@@ -1324,10 +1324,7 @@ Az adat típusú osztályok esetében a Kotlin automatikusan deklarál gyakran h
 <span class="p">}</span>
 </code></pre></div>
 A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy <strong>ViewPager</strong>-t fogunk használni, mely Fragment oldalak között képes ilyen interakciót megvalósítani.</p>
-<p>Hozzunk létre egy új <em>package</em>-et <code>profile</code> néven, majd mozgassuk át ebbe a <code>ProfileFragment</code> osztályunkat. A mozgatás után a következő helyeken javítani kell a fájl útvonalát:
-- <code>fragment_profile.xml</code> context rész
-- <code>nav_graph.xml</code> megfelelő tag <code>name</code> paramétere
-- <code>R</code> importálása a <code>ProfileFragment</code> fájlban.</p>
+<p>Hozzunk létre egy új <em>package</em>-et <code>profile</code> néven, majd mozgassuk át ebbe a <code>ProfileFragment</code> osztályunkat. A mozgatás után töröljük az eredeti helyen maradt fájlt.</p>
 <p>Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre a <code>profile</code> package-ben a két Fragmentet (New -&gt; Kotlin Class), ezek neve legyen <code>MainProfileFragment</code> és <code>DetailsProfileFragment</code>.</p>
 <p>A két Fragmentben származzunk le a Fragment osztályból (androidx-es verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.</p>
 <p><code>MainProfileFragment.kt</code>:
@@ -1503,7 +1500,7 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
 <span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
 <span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
 <span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.workplaceapp.profile.ProfileFragment&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.android.workplaceapp.profile.ProfileFragment&quot;</span><span class="nt">&gt;</span>
 
 <span class="w">    </span><span class="nt">&lt;androidx.viewpager2.widget.ViewPager2</span>
 <span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/vpProfile&quot;</span>
@@ -1572,14 +1569,14 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
 <div class="highlight"><pre><span></span><code><span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="o">...</span>
-<span class="w">        </span><span class="n">maven</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="s2">&quot;https://jitpack.io&quot;</span><span class="w"> </span><span class="o">}</span>
+<span class="w">        </span><span class="n">maven</span><span class="o">(</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://jitpack.io&quot;</span><span class="o">)</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></p>
 <p>App szintű build.gradle:
 <div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.PhilJay:MPAndroidChart:v3.1.0&#39;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="o">(</span><span class="s2">&quot;com.github.PhilJay:MPAndroidChart:v3.1.0&quot;</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></p>
 <p>Ezután kattinsunk az Android Studioban jobb fent megjelenő <code>Sync Now</code> feliratra vagy a fejlécen szereplő mérges gradle elefánt gombra, hogy a library fájljai letöltődjenek.</p>
@@ -1590,7 +1587,7 @@ A profiloldalon az a célunk, hogy két külön részben megjelenítsük a norm�
 <span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
 <span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
 <span class="w">    </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
-<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.workplaceapp.HolidayFragment&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;hu.bme.aut.android.workplaceapp.HolidayFragment&quot;</span><span class="nt">&gt;</span>
 
 <span class="w">    </span><span class="nt">&lt;com.github.mikephil.charting.charts.PieChart</span>
 <span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/chartHoliday&quot;</span>
@@ -1788,8 +1785,8 @@ Itt az <code>observe()</code> metódusnak átadott callback metódus (a kapcsos 
           </path>
         </svg>
       </span>
-      <span title="2022. szeptember 27. 19:46:35">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-09-27T19:46:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-09-27</span>
+      <span title="2023. szeptember 27. 15:05:47">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-27T15:05:47+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-27</span>
       </span>
     </span>
 
@@ -1808,6 +1805,8 @@ Itt az <code>observe()</code> metódusnak átadott callback metódus (a kapcsos 
           <img src="https://avatars.githubusercontent.com/u/8405234?size=72" alt="@danim1130">
         </a><a href="https://github.com/MartinKing01" target="_blank" rel="noopener noreferrer" class="md-author" title="@MartinKing01">
           <img src="https://avatars.githubusercontent.com/u/17516077?size=72" alt="@MartinKing01">
+        </a><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
+          <img src="https://avatars.githubusercontent.com/u/22079595?size=72" alt="@kpomazi">
         </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
         </a></nav>      
