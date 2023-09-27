@@ -51,14 +51,14 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.workplaceapp`.
-
-Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 21-ös minimum SDK szintet.
-
-Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
+Hozzunk létre egy új Android projektet 'Empty Views Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.android.workplaceapp`.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
+Használhatjuk az alapértelmezett 24-es minimum SDK szintet és a Kotlin DSL-t.
+
+Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
 
 ## Képernyők kezelése Android alkalmazásokban
 A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
@@ -74,15 +74,15 @@ Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez
 ## Navigation Component inicializálás
 Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle` fájlban a `dependencies` részhez vegyük fel a következő függőségeket:
 ```
- def nav_version =  "2.5.1"
- 
- implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" 
- implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+val nav_version = "2.5.3"
+
+implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 ```
 Illetve engedélyezzük a *View Binding*-ot az `android` részben:
 ```
 buildFeatures {
-    viewBinding true
+    viewBinding = true
 }
 ```
 
@@ -293,10 +293,7 @@ object DataManager {
 ```
 A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy **ViewPager**-t fogunk használni, mely Fragment oldalak között képes ilyen interakciót megvalósítani.
 
-Hozzunk létre egy új *package*-et `profile` néven, majd mozgassuk át ebbe a `ProfileFragment` osztályunkat. A mozgatás után a következő helyeken javítani kell a fájl útvonalát:
-- `fragment_profile.xml` context rész
-- `nav_graph.xml` megfelelő tag `name` paramétere
-- `R` importálása a `ProfileFragment` fájlban.
+Hozzunk létre egy új *package*-et `profile` néven, majd mozgassuk át ebbe a `ProfileFragment` osztályunkat. A mozgatás után töröljük az eredeti helyen maradt fájlt.
 
 Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre a `profile` package-ben a két Fragmentet (New -> Kotlin Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
 
@@ -487,7 +484,7 @@ A `fragment_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hu.bme.aut.workplaceapp.profile.ProfileFragment">
+    tools:context="hu.bme.aut.android.workplaceapp.profile.ProfileFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpProfile"
@@ -565,7 +562,7 @@ settings.gradle:
 dependencyResolutionManagement {
     repositories {
         ...
-        maven { url "https://jitpack.io" }
+        maven(url = "https://jitpack.io")
     }
 }
 ```
@@ -574,7 +571,7 @@ App szintű build.gradle:
 ```groovy
 dependencies {
     ...
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
 ```
 
@@ -588,7 +585,7 @@ Ha a library fájljai letöltődtek, akkor írjuk meg a Fragment layout-ját (`f
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="hu.bme.aut.workplaceapp.HolidayFragment">
+    tools:context="hu.bme.aut.android.workplaceapp.HolidayFragment">
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chartHoliday"
