@@ -136,26 +136,26 @@ A specifikáció GO/NOGO értékelésű, szöveges megjegyzésben jelezhetjük, 
 
 ### NagyHF értékelési szempontok
 
-Maximum 15 pont szerezhető.
-* specifikáció szerinti, logikusan elvárt működés, (3 pont)
-* mennyire történt törekvés a jó funkcionalitás megvalósítására és nem csak a funkció látszat kivitelezése volt-e a cél, (2 pont)
-* igényesen kivitelezett felhasználói felület (stílusok, témák), (2 pont)
-* megfelelő hibakezelés, (2 pont)
-* hatékony működés (nincsenek felesleges ciklusok, számítások, újrarajzolások), (2 pont)
-* hibamentes futás, (2 pont)
-* erőforrások használata, szövegek erőforrásba szervezése. (2 pont)
+Maximum 15 pont szerezhető.  
+- specifikáció szerinti, logikusan elvárt működés, (3 pont)  
+- mennyire történt törekvés a jó funkcionalitás megvalósítására és nem csak a funkció látszat kivitelezése volt-e a cél, (2 pont)  
+- igényesen kivitelezett felhasználói felület (stílusok, témák), (2 pont)  
+- megfelelő hibakezelés, (2 pont)  
+- hatékony működés (nincsenek felesleges ciklusok, számítások, újrarajzolások), (2 pont)  
+- hibamentes futás, (2 pont)  
+- erőforrások használata, szövegek erőforrásba szervezése. (2 pont)  
 
 A NagyHF-t nem kell dokumentálni, csak a projektet kell a portálra feltölteni.
 
-NagyHF-n 10 IMSC pont szerezhető:
-* extra funkciók, (4 pont)
-* igényes, látványos felület  (3 pont)
-* kódminőség (tiszta kód követése, rövid osztályok, függvények, stb.). (3 pont)
-* Rövid dokumentáció feltöltése a ZIP-ben az IMSC-s részhez tartozó megoldásról és indoklása/bemutatása a fent felsorolt extra elemeknek (kötelező).
+NagyHF-n 10 IMSC pont szerezhető:  
+- extra funkciók, (4 pont)  
+- igényes, látványos felület  (3 pont)  
+- kódminőség (tiszta kód követése, rövid osztályok, függvények, stb.). (3 pont)  
+- Rövid dokumentáció feltöltése a ZIP-ben az IMSC-s részhez tartozó megoldásról és indoklása/bemutatása a fent felsorolt extra elemeknek (kötelező).  
 
 ### Android és MobWeb közös házi feladat
-Ha valaki a MobWebet és az Androidalapú szoftverfejlesztést is hallgatná a félévben, és felmerülne benne, hogy lehet-e közös házit csinálni:
-* Lehet, de ezt mindenképpen egyeztesse mindkét laborvezetőjével.
-* Ugyanazt a házit csak úgy adhatja le mindkét tárgyon, ha kicsit felülteljesíti a nehezebb követelményeket (vagyis az Androidalapú szf-t)
-* Tehát az Androidalapú szoftverfejlesztés követelményei szerint nem 5, hanem 6-7 technológiát kell használnia, ezt a komplexitásából majd a labvezek eldöntik.
+Ha valaki a MobWebet és az Androidalapú szoftverfejlesztést is hallgatná a félévben, és felmerülne benne, hogy lehet-e közös házit csinálni:  
+-Lehet, de ezt mindenképpen egyeztesse mindkét laborvezetőjével.  
+- Ugyanazt a házit csak úgy adhatja le mindkét tárgyon, ha kicsit felülteljesíti a nehezebb követelményeket (vagyis az Androidalapú szf-t)  
+- Tehát az Androidalapú szoftverfejlesztés követelményei szerint nem 5, hanem 6-7 technológiát kell használnia, ezt a komplexitásából majd a labvezek eldöntik.  
 
