@@ -69,11 +69,9 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 ### Projekt létrehozása
 
 Első lépésként indítsuk el az Android Studio-t, majd:  
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.  
-2. A projekt neve legyen `WeatherInfo`, a kezdő package pedig `hu.bme.aut.  android.weatherinfo`  
-3. Nyelvnek válasszuk a *Kotlin*-t.  
-4. A minimum API szint legyen **API21: Android 5.0**.  
-5. A *Use legacy android.support libraries* pontot **ne** pipáljuk be. 
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.  
+2. A projekt neve legyen `WeatherInfo`, a kezdő package pedig `hu.bme.aut.android.weatherinfo`  
+3. A többi beállítást hagyjuk érintetlenül.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő WeatherInfo könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
@@ -82,9 +80,9 @@ Nevezzük át a generált Activityt `CityActivity`, a hozzá tartozó layout fá
 
 Kapcsoljuk be a `ViewBinding`-ot. Ehhez az `app` modulhoz tartozó `build.gradle` fájlban az `android` blokkon belülre illesszük be az engedélyező kódrészletet (majd kattintsunk a jobb felül megjelenő `Sync Now` gombra).
 
-```groovy
+```kotlin
 buildFeatures {
-    viewBinding true
+    viewBinding = true
 }
 ```
 
@@ -92,15 +90,16 @@ Töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásoka
 
 Az *app* modulhoz tartozó `build.gradle` fájlban a `dependencies` blokkhoz adjuk hozzá a `Retrofit` és `Glide` libraryket:
 
-```groovy
+```kotlin
 dependencies{
     //...
-    def retrofit_version = "2.9.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    def glide_version = "4.14.2"
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+    val glideVersion = "4.16.0"
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    annotationProcessor("com.github.bumptech.glide:compiler:$glideVersion")
 }
 ```
 
@@ -422,9 +421,9 @@ Indítsuk el az alkalmazást, amely már képes városnevek bekérésére és me
 
 ### 2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
 
-A következő lépésben a `hu.bme.aut.android.weatherinfo.feature`  package-en belül hozzunk létre egy `details` nevű packaget.
+A következő lépésben a `hu.bme.aut.android.weatherinfo.feature`  package-en belül hozzunk létre egy `details` nevű packaget. (Ehhez a legegyszerűbb megoldás, ha a Project nézeten az Options-re (3 pötty) kattintva kiszedjük a pipát a Tree Appearance -> Compact Middle Packages elemnél.)
 
-A `details` package-ben hozzunk létre egy *Empty Activity* típusú `Activity`-t  `DetailsActivity` néven.
+A `details` package-ben hozzunk létre egy *Empty Views Activity* típusú `Activity`-t  `DetailsActivity` néven.
 
 A hozzá tartozó `activity_details.xml` layout kódja:
 
