@@ -64,21 +64,20 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 ### Projekt létrehozása
 
 Első lépésként indítsuk el az Android Studio-t, majd:  
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.  
-2. A projekt neve legyen `ShoppingList`, a kezdő package pedig `hu.bme.aut.  android.shoppinglist`  
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.  
+2. A projekt neve legyen `ShoppingList`, a kezdő package pedig `hu.bme.aut.android.shoppinglist`  
 3. Nyelvnek válasszuk a *Kotlin*-t.  
-4. A minimum API szint legyen **API21: Android 5.0**.  
-5. A *Use legacy android.support libraries* pontot **ne** pipáljuk be. 
+4. A minimum API szint legyen **API24: Android 7.0**.  
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő ShoppingList könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
-Amint elkészült a projektünk, kapcsoljuk is be a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
+Amint elkészült a projektünk, kapcsoljuk is be a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle.kts` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
 ```gradle
 android {
     ...
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 ```
@@ -92,25 +91,25 @@ Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
 
 #### Room hozzáadása a projekthez
 
-Kezdjük azzal, hogy az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírunk egy sort (bekapcsoljuk a Kotlin Annotation Processort - KAPT):
+Kezdjük azzal, hogy az app modulhoz tartozó `build.gradle.kts` fájlban a pluginokhoz hozzáírunk egy sort (bekapcsoljuk a Kotlin Annotation Processort - KAPT):
 ```gradle
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 //...
 ```
 
-Ezt követően, szintén ebben a `build.gradle` fájlban a `dependencies` blokkhoz adjuk hozzá a `Room` libraryt:
+Ezt követően, szintén ebben a `build.gradle.kts` fájlban a `dependencies` blokkhoz adjuk hozzá a `Room` libraryt:
 ```gradle
 dependencies {
     //...
-    def room_version = "2.3.0"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    val room_version = "2.3.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 }
 ```
 Ezután kattintsunk a jobb felső sarokban megjelenő **Sync now** gombra.
@@ -384,15 +383,21 @@ fun update(shoppingItems: List<ShoppingItem>) {
 
 #### A `RecyclerView` és az adatok megjelenítése
 
-Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbiakkal:
+Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbira:
 
 ```xml
-<style name="Theme.ShoppingList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    ...
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ShoppingList" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 
-</style>
+    <style name="Theme.ShoppingList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>
 ```
 
 Szeretnék, hogy a bevásárlólista alkalmazás egyetlen `Activity`-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az `activity_main.xml` tartalmát az alábbiakra:
