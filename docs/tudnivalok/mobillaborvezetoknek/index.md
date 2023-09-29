@@ -1,10 +1,10 @@
 # Mobil Laborvezetőknek
 
 Oktatói tudnivalók gyűjteménye.  
-Bármi kérdés esetén keressétek Ekler Pétert (<ekler.peter@vik.bme.hu>), vagy Pomázi Krisztiánt (<pomazi.krisztian@vik.bme.hu>).
+Bármi kérdés esetén keressétek Ekler Pétert (<ekler.peter@vik.bme.hu>), Pomázi Krisztiánt (<pomazi.krisztian@vik.bme.hu>) vagy Gazdi Lászlót (<gazdi.laszlo@vik.bme.hu>).
 ___
 
-# Laborok
+## Laborok
 
 A tárgy alapképzés (BSc) 5. félévében kötelező tárgy. Ezt azt jelenti, hogy a hallgatók szoftverfejlesztési alapismeretekkel rendelkeznek, mivel a megelőző félévben teljesítették a _Szoftvertechnikák_ c. tárgyat. A tárgyunk célja a mobil tudás alapszintű ismereteinek megismerése és gyakorlása. A laborok során új technológiákkal foglalkozunk.
 
@@ -34,8 +34,6 @@ Labor után kulcsot vigyük vissza az adminba.
 * Írjuk fel a táblára a belépési adatokat. (E-mailben küldjük ki nektek.)
 
 ## Labor menete
-
-
 
 ### Beugró/kisZH
 A labor mindig vagy beugróval, vagy kisZH-val kezdődik. A kisZH kiváltja a beugrót. Mindkettőt a Moodle felületén írják meg.  
@@ -106,6 +104,18 @@ A parancs hatását látjuk is utána PR-ben:
 
 ![AHK merge](../laborvezetoknek/images/hazi-github-pr-ahkmerge.png)
 
+### Pontlevonások és szankciók
+
+| Issue                                                                                | Pontozás                                                      |
+|--------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| Határidő után leadva                                                                 | 0 pont az egészre                                             |
+| Határidő előtt elkészült (commitokból látszik), de elfelejtette assignolni           | 1 pont levonás                                                |
+| Határidő előtt elkészült (commitokból látszik), de elfelejtette pusholni/PR-t nyitni | 1 pont levonás                                                |
+| Megengedett 5 kiértékelés túllépése                                                  | 1 pont levonás                                                |
+| Bukott beugró                                                                        | 0 pont az egészre                                             |
+| Kívülről írt beugró                                                                  | 0 pont az egészre, Krisztiánnak írni fegyelmi eljárás ügyében |
+
+
 ### Problémák és megoldásuk
 
 **Nem futott le az automata értékelés.**
@@ -119,14 +129,14 @@ A parancs hatását látjuk is utána PR-ben:
 
 ___
 
-# NagyHF
+## NagyHF
 A félév során két feladatuk van a hallgatóknak a nagyházival kapcsolatban: a specifikáció és a kész projekt beadása.
 
-## Specifikáció értékelési szempontok
+### Specifikáció értékelési szempontok
 
 A specifikáció GO/NOGO értékelésű, szöveges megjegyzésben jelezhetjük, ha túl nagyot vállalt a hallgató, vagy találtunk benne valami kifogásolnivalót, vagy nagyon szép doksit adott le, stb..
 
-## NagyHF értékelési szempontok
+### NagyHF értékelési szempontok
 
 Maximum 15 pont szerezhető.
 * specifikáció szerinti, logikusan elvárt működés, (3 pont)
@@ -145,7 +155,7 @@ NagyHF-n 10 IMSC pont szerezhető:
 * kódminőség (tiszta kód követése, rövid osztályok, függvények, stb.). (3 pont)
 * Rövid dokumentáció feltöltése a ZIP-ben az IMSC-s részhez tartozó megoldásról és indoklása/bemutatása a fent felsorolt extra elemeknek (kötelező).
 
-## Android és MobWeb közös házi feladat
+### Android és MobWeb közös házi feladat
 Ha valaki a MobWebet és az Androidalapú szoftverfejlesztést is hallgatná a félévben, és felmerülne benne, hogy lehet-e közös házit csinálni:
 * Lehet, de ezt mindenképpen egyeztesse mindkét laborvezetőjével.
 * Ugyanazt a házit csak úgy adhatja le mindkét tárgyon, ha kicsit felülteljesíti a nehezebb követelményeket (vagyis az Androidalapú szf-t)
