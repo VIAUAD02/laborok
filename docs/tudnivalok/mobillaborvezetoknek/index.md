@@ -123,8 +123,6 @@ A parancs hatását látjuk is utána PR-ben:
 - Lehet, hogy a hallgató _draft_ módban hagyta a PR-t, ezt vissza kell állítani. A PR alján megjelenik ilyenkor egy _Ready for review_ gomb.
 - Ha sikertelen volt a kiértékelés, meg lehet ismételni. Ez segít a tranziens hibákon (ritka eset). Ehhez tegyél egy _eval_ nevű labelt-t a PR-re (új label-ként kell létrehozni).
 
-**Több, mint 5-ször futott a kiértékelés.** Ezt pontlevonással szankcionáljuk. Első alkalommal eltekinthetünk tőle, de mindenképpen tájékoztassuk a hallgatót.
-
 **Hiba van a kiértékelő alkalmazásban.** Előfordulhat. Keresd a tárgyfelelőst, vagy javítsd a hibát (a kiértékelő programok itt vannak: **TBD**).
 
 ___
