@@ -1171,20 +1171,19 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 </ol>
 <h3 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Első lépésként indítsuk el az Android Studio-t, majd:<br />
-1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.<br />
-2. A projekt neve legyen <code>ShoppingList</code>, a kezdő package pedig <code>hu.bme.aut.  android.shoppinglist</code><br />
+1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.<br />
+2. A projekt neve legyen <code>ShoppingList</code>, a kezdő package pedig <code>hu.bme.aut.android.shoppinglist</code><br />
 3. Nyelvnek válasszuk a <em>Kotlin</em>-t.<br />
-4. A minimum API szint legyen <strong>API21: Android 5.0</strong>.<br />
-5. A <em>Use legacy android.support libraries</em> pontot <strong>ne</strong> pipáljuk be. </p>
+4. A minimum API szint legyen <strong>API24: Android 7.0</strong>.  </p>
 <div class="admonition danger">
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő ShoppingList könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
-<p>Amint elkészült a projektünk, kapcsoljuk is be a <code>ViewBinding</code>-ot. Az <code>app</code> modulhoz tartozó <code>build.gradle</code> fájlban az <code>android</code> tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a <code>Sync Now</code> gombra.):
+<p>Amint elkészült a projektünk, kapcsoljuk is be a <code>ViewBinding</code>-ot. Az <code>app</code> modulhoz tartozó <code>build.gradle.kts</code> fájlban az <code>android</code> tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a <code>Sync Now</code> gombra.):
 <div class="highlight"><pre><span></span><code>android {
     ...
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 </code></pre></div></p>
@@ -1192,22 +1191,22 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 <h3 id="perzisztens-adattarolas-megvalositasa-1-pont">Perzisztens adattárolás megvalósítása (1 pont)<a class="headerlink" href="#perzisztens-adattarolas-megvalositasa-1-pont" title="Permanent link">&para;</a></h3>
 <p>Az adatok perzisztens tárolásához a <code>Room</code> könyvtárat fogjuk használni.</p>
 <h4 id="room-hozzaadasa-a-projekthez">Room hozzáadása a projekthez<a class="headerlink" href="#room-hozzaadasa-a-projekthez" title="Permanent link">&para;</a></h4>
-<p>Kezdjük azzal, hogy az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírunk egy sort (bekapcsoljuk a Kotlin Annotation Processort - KAPT):
+<p>Kezdjük azzal, hogy az app modulhoz tartozó <code>build.gradle.kts</code> fájlban a pluginokhoz hozzáírunk egy sort (bekapcsoljuk a Kotlin Annotation Processort - KAPT):
 <div class="highlight"><pre><span></span><code>plugins {
-    id &#39;com.android.application&#39;
-    id &#39;kotlin-android&#39;
-    id &#39;kotlin-kapt&#39;
+    id(&quot;com.android.application&quot;)
+    id(&quot;org.jetbrains.kotlin.android&quot;)
+    kotlin(&quot;kapt&quot;)
 }
 
 //...
 </code></pre></div></p>
-<p>Ezt követően, szintén ebben a <code>build.gradle</code> fájlban a <code>dependencies</code> blokkhoz adjuk hozzá a <code>Room</code> libraryt:
+<p>Ezt követően, szintén ebben a <code>build.gradle.kts</code> fájlban a <code>dependencies</code> blokkhoz adjuk hozzá a <code>Room</code> libraryt:
 <div class="highlight"><pre><span></span><code>dependencies {
     //...
-    def room_version = &quot;2.3.0&quot;
-    implementation &quot;androidx.room:room-runtime:$room_version&quot;
-    implementation &quot;androidx.room:room-ktx:$room_version&quot;
-    kapt &quot;androidx.room:room-compiler:$room_version&quot;
+    val room_version = &quot;2.3.0&quot;
+    implementation(&quot;androidx.room:room-runtime:$room_version&quot;)
+    implementation(&quot;androidx.room:room-ktx:$room_version&quot;)
+    kapt(&quot;androidx.room:room-compiler:$room_version&quot;)
 }
 </code></pre></div>
 Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> gombra.</p>
@@ -1451,13 +1450,19 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
 <p>A RecyclerView megírásánál figyeltek arra, hogy hatékony legyen, ezért az adathalmaz változásakor csak azokat a nézeteket frissíti, amit feltétlen szükséges. Azonban szintén hatékonyság miatt, nem az adapter fogja kiszámolni a változást, hanem ezt a programozónak kell kézzel jeleznie. Erre szolgál a <code>notify***</code> függvénycsalád, aminek két tagja fent látható. Az alsó hatására a teljes adathalmaz lecserélődik, és újrarajzolódik minden. Az első hatására viszont a már létező elemek nem módosulnak, csak egy újonnan beszúrt elem lesz kirajzolva.</p>
 </div>
 <h4 id="a-recyclerview-es-az-adatok-megjelenitese">A <code>RecyclerView</code> és az adatok megjelenítése<a class="headerlink" href="#a-recyclerview-es-az-adatok-megjelenitese" title="Permanent link">&para;</a></h4>
-<p>Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbiakkal:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowActionBar&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/item&gt;</span>
-<span class="w">    </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
-<span class="w">    </span>...
+<p>Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbira:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources</span><span class="w"> </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Base application theme. --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight.NoActionBar&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Customize your light theme here. --&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
 
-<span class="nt">&lt;/style&gt;</span>
+<span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowActionBar&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
 </code></pre></div>
 <p>Szeretnék, hogy a bevásárlólista alkalmazás egyetlen <code>Activity</code>-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az <code>activity_main.xml</code> tartalmát az alábbiakra:</p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -1798,8 +1803,8 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
           </path>
         </svg>
       </span>
-      <span title="2022. október 12. 09:06:28">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-10-12T09:06:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-12</span>
+      <span title="2023. szeptember 29. 14:53:21">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-29T14:53:21+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-29</span>
       </span>
     </span>
 
@@ -1822,6 +1827,8 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
           <img src="https://avatars.githubusercontent.com/u/24962402?size=72" alt="@zoli0">
         </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
+        </a><a href="https://github.com/gaborbsd" target="_blank" rel="noopener noreferrer" class="md-author" title="@gaborbsd">
+          <img src="https://avatars.githubusercontent.com/u/5345619?size=72" alt="@gaborbsd">
         </a></nav>      
     </span>
   </div>
