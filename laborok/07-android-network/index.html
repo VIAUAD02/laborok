@@ -1129,32 +1129,31 @@
 </ol>
 <h3 id="projekt-letrehozasa">Projekt létrehozása<a class="headerlink" href="#projekt-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Első lépésként indítsuk el az Android Studio-t, majd:<br />
-1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.<br />
-2. A projekt neve legyen <code>WeatherInfo</code>, a kezdő package pedig <code>hu.bme.aut.  android.weatherinfo</code><br />
-3. Nyelvnek válasszuk a <em>Kotlin</em>-t.<br />
-4. A minimum API szint legyen <strong>API21: Android 5.0</strong>.<br />
-5. A <em>Use legacy android.support libraries</em> pontot <strong>ne</strong> pipáljuk be. </p>
+1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.<br />
+2. A projekt neve legyen <code>WeatherInfo</code>, a kezdő package pedig <code>hu.bme.aut.android.weatherinfo</code><br />
+3. A többi beállítást hagyjuk érintetlenül.</p>
 <div class="admonition danger">
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő WeatherInfo könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
 <p>Nevezzük át a generált Activityt <code>CityActivity</code>, a hozzá tartozó layout fájlt pedig <code>activity_city</code> névre.</p>
 <p>Kapcsoljuk be a <code>ViewBinding</code>-ot. Ehhez az <code>app</code> modulhoz tartozó <code>build.gradle</code> fájlban az <code>android</code> blokkon belülre illesszük be az engedélyező kódrészletet (majd kattintsunk a jobb felül megjelenő <code>Sync Now</code> gombra).</p>
-<div class="highlight"><pre><span></span><code><span class="n">buildFeatures</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">viewBinding</span><span class="w"> </span><span class="kc">true</span>
-<span class="o">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">buildFeatures</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">viewBinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Töltsük le és tömörítsük ki <a href="assets/drawables.zip">az alkalmazáshoz szükséges erőforrásokat</a> , majd másoljuk be őket a projekt <em>app/src/main/res</em> mappájába (Studio-ban a <em>res</em> mappa kijelölése után <em>Ctrl+V</em>)!</p>
 <p>Az <em>app</em> modulhoz tartozó <code>build.gradle</code> fájlban a <code>dependencies</code> blokkhoz adjuk hozzá a <code>Retrofit</code> és <code>Glide</code> libraryket:</p>
-<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="o">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="p">{</span>
 <span class="w">    </span><span class="c1">//...</span>
-<span class="w">    </span><span class="kt">def</span><span class="w"> </span><span class="n">retrofit_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.0&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.squareup.retrofit2:retrofit:$retrofit_version&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.squareup.retrofit2:converter-gson:$retrofit_version&quot;</span>
-<span class="w">    </span><span class="kt">def</span><span class="w"> </span><span class="n">glide_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;4.14.2&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.github.bumptech.glide:glide:$glide_version&quot;</span>
-<span class="w">    </span><span class="n">annotationProcessor</span><span class="w"> </span><span class="s2">&quot;com.github.bumptech.glide:compiler:$glide_version&quot;</span>
-<span class="o">}</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrofitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.0&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.squareup.retrofit2:retrofit:</span><span class="si">$</span><span class="n">retrofitVersion</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.squareup.retrofit2:converter-gson:</span><span class="si">$</span><span class="n">retrofitVersion</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">glideVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;4.16.0&quot;</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.github.bumptech.glide:glide:</span><span class="si">$</span><span class="n">glideVersion</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">annotationProcessor</span><span class="p">(</span><span class="s">&quot;com.github.bumptech.glide:compiler:</span><span class="si">$</span><span class="n">glideVersion</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync now</strong> gombra.</p>
 <div class="admonition info">
@@ -1436,8 +1435,8 @@ Tipp: <a href="http://stackoverflow.com/questions/13746412/prevent-dialogfragmen
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h3 id="2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont">2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)<a class="headerlink" href="#2-reszletezo-nezet-letrehozasa-es-bekotese-a-navigacioba-1-pont" title="Permanent link">&para;</a></h3>
-<p>A következő lépésben a <code>hu.bme.aut.android.weatherinfo.feature</code>  package-en belül hozzunk létre egy <code>details</code> nevű packaget.</p>
-<p>A <code>details</code> package-ben hozzunk létre egy <em>Empty Activity</em> típusú <code>Activity</code>-t  <code>DetailsActivity</code> néven.</p>
+<p>A következő lépésben a <code>hu.bme.aut.android.weatherinfo.feature</code>  package-en belül hozzunk létre egy <code>details</code> nevű packaget. (Ehhez a legegyszerűbb megoldás, ha a Project nézeten az Options-re (3 pötty) kattintva kiszedjük a pipát a Tree Appearance -&gt; Compact Middle Packages elemnél.)</p>
+<p>A <code>details</code> package-ben hozzunk létre egy <em>Empty Views Activity</em> típusú <code>Activity</code>-t  <code>DetailsActivity</code> néven.</p>
 <p>A hozzá tartozó <code>activity_details.xml</code> layout kódja:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;LinearLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
@@ -1938,8 +1937,8 @@ Tipp: <a href="http://stackoverflow.com/questions/13746412/prevent-dialogfragmen
           </path>
         </svg>
       </span>
-      <span title="2022. október 14. 10:15:28">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-10-14T10:15:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-14</span>
+      <span title="2023. szeptember 29. 09:05:48">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-29T09:05:48+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-29</span>
       </span>
     </span>
 
