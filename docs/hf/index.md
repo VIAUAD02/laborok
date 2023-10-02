@@ -71,3 +71,9 @@ A házi feladatot a specifikáción túl dokumentálni nem szükséges.
 
 A házi feladat minimumkövetelményeinek túlteljesítéséért, extra funkciókért, igényes felületért, kiemelkedő kódminőségért a laborvezetővel egyeztetve maximum 10 iMSc pont szerezhető.
 iMSc pont szerzéséhez az elkészült alkalmazásról rövid dokumentációt kell készíteni a README.md fájlba. (A specifikáció után.) Ebben röviden ismertetni kell az elkészült alkalmazás funkcionalitását és az érdekesebb megoldásokat.
+
+## Androidalapú szoftverfejlesztés && Mobil- és webes szoftverek közös házi feladat
+
+Ha valaki mind a két tárgyat hallgatja a félévben, van lehetőség közös házi feladat írására, DE:
+- Ezt mindenképpen egyeztetni kell mindkét laborvezetővel.
+- Ugyanaz a házi csak úgy adható le mindkét tárgyon, ha a nehezebb követelményeket (vagyis az Androidalapú szoftverfejlesztését) felülteljesíti. Tehát az Androidalapú szoftverfejlesztés követelményei szerint nem 5, hanem 6-7 technológiát kell használni. Ennek mennyiségéről és a feladat komplexitásáról a laborvezetők döntenek.
