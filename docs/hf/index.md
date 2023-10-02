@@ -1,4 +1,4 @@
-# Házi feladat információk - TODO 2023
+# Házi feladat információk
 
 A házi feladat célja, hogy az előadáson és laborokon bemutatott technológiák segítségével egy komplex alkalmazást készítsen a hallgató, önálló funkcionalitással.
 
@@ -11,7 +11,6 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 	-	[https://github.com/wasabeef/awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
 	-	[https://github.com/wasabeef/awesome-android-libraries](https://github.com/wasabeef/awesome-android-libraries)
 	-	[https://github.com/nisrulz/android-tips-tricks](https://github.com/nisrulz/android-tips-tricks)
-	-	[https://blog.autsoft.hu/the-android-and-ios-alternative-library-collection](https://blog.autsoft.hu/the-android-and-ios-alternative-library-collection)
 
 !!!tip "Néhány példa alkalmazás"
 	-	Kiadás/bevétel nyomkövető figyelmeztető funkcióval és grafikonokkal
@@ -40,7 +39,7 @@ A házi feladat célja, hogy az előadáson és laborokon bemutatott technológi
 
 ### Specifikáció
 
-A specifikáció beadás határideje a **7. hét vége (2022. október 23. 23:59)**.
+A specifikáció beadás határideje a **7. hét vége (2023. október 22. 23:59)**.
 A specifikáció elkészítése közben a "spec" branchen dolgozz. Erre az ágra akárhány kommitot tehetsz.
 Sablont a README.md fájl tartalmaz, azt kell kiegészíteni, és feltölteni a repóba a megadott határidőig.
 A beadás akkor teljes, ha a "spec" branch-en megtalálható a README.md fájlban a specifikáció. A beadást egy pull request jelzi, amely pull request-et a laborvezetődhöz kell rendelned.
@@ -48,7 +47,7 @@ A specifikáció elkészítése előfeltétele a házi feladat elfogadásának.
 
 ### Házi feladat
 
-A házi feladat beadás határideje a **11. hét vége (2022. november 20. 23:59)**.
+A házi feladat beadás határideje a **11. hét vége (2023. november 19. 23:59)**.
 A házi feladat elkészítése közben a "hf" branchen dolgozz. Erre az ágra akárhány kommitot tehetsz. 
 A projektet mindenképpen ebbe a repository-ba hozd létre, a fejlesztést végig itt végezd.
 A beadás akkor teljes, ha a "hf" branch-en megtalálható a projekted teljes forráskódja. A beadást egy pull request jelzi, amely pull request-et a laborvezetődhöz kell rendelned.
@@ -56,10 +55,13 @@ A házi feladathoz mindenképpen tartozik **házi feladat védés** is. Ennek id
 
 ### Házi feladat pótlás -fizetésköteles!
 
-A pótbeadás határideje a **13. hét vége (2022. december 4. 23:59)**.
+A pótbeadás határideje a **13. hét vége (2023. december 3. 23:59)**.
 A házi feladat pótlása közben a "pothf" branchen dolgozz. Erre az ágra akárhány kommitot tehetsz. 
 A beadás akkor teljes, ha a "pothf" branch-en megtalálható a projekted teljes forráskódja. A beadást egy pull request jelzi, amely pull request-et a laborvezetődhöz kell rendelned.
 A házi feladat pótlásához mindenképpen tartozik **pót házi feladat védés** is. Ennek ideje a beadást követően (a 14. héten) van. Módjáról és idejéről egyeztess a laborvezetőddel.
+
+!!!danger "FONTOS: Elővizsga"
+	Az elővizsgára jelentkezés feltétele a házi feladat normál határidőre való leadása. Aki mégis jelentkezik elővizsgára úgy, hogy pót házit adott le, annak a vizsgáját nem javítjuk, automatikusan elégtelen kerül beírásra.
 
 ## Dokumentáció
 
