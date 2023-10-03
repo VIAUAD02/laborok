@@ -54,7 +54,7 @@ A projektet mindenképpen ebbe a repository-ba hozd létre, a fejlesztést végi
 A beadás akkor teljes, ha a "hf" branch-en megtalálható a projekted teljes forráskódja. A beadást egy pull request jelzi, amely pull request-et a laborvezetődhöz kell rendelned.
 A házi feladathoz mindenképpen tartozik **házi feladat védés** is. Ennek ideje a beadást követően (a 12-13. héten) van. Módjáról és idejéről egyeztess a laborvezetőddel.
 
-### Házi feladat pótlás -fizetésköteles!
+### Házi feladat pótlás - fizetésköteles!
 
 A pótbeadás határideje a **13. hét vége (2023. december 3. 23:59)**.
 A házi feladat pótlása közben a "pothf" branchen dolgozz. Erre az ágra akárhány kommitot tehetsz. 
@@ -73,7 +73,7 @@ A házi feladatot a specifikáción túl dokumentálni nem szükséges.
 A házi feladat minimumkövetelményeinek túlteljesítéséért, extra funkciókért, igényes felületért, kiemelkedő kódminőségért a laborvezetővel egyeztetve maximum 10 iMSc pont szerezhető.
 iMSc pont szerzéséhez az elkészült alkalmazásról rövid dokumentációt kell készíteni a README.md fájlba. (A specifikáció után.) Ebben röviden ismertetni kell az elkészült alkalmazás funkcionalitását és az érdekesebb megoldásokat.
 
-!!!tipp "Androidalapú szoftverfejlesztés && Mobil- és webes szoftverek közös házi feladat"
+!!!tip "Androidalapú szoftverfejlesztés + Mobil- és webes szoftverek közös házi feladat"
 	Ha valaki mind a két tárgyat hallgatja a félévben, van lehetőség közös házi feladat írására, DE:
 	- Ezt mindenképpen egyeztetni kell mindkét laborvezetővel.
 	- Ugyanaz a házi csak úgy adható le mindkét tárgyon, ha a nehezebb követelményeket (vagyis az Androidalapú szoftverfejlesztését) felülteljesíti. Tehát az Androidalapú szoftverfejlesztés követelményei szerint nem 5, hanem 6-7 technológiát kell használni. Ennek mennyiségéről és a feladat komplexitásáról a laborvezetők döntenek.
