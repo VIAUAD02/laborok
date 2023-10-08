@@ -13,6 +13,10 @@ A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az a
 !!!info "Android Room"
     A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.
 
+!!! warning "IMSc"
+	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
+
+
 ## Előkészületek
 
 A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
@@ -35,14 +39,21 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 ### A projekt létrehozása
 
-Hozzunk létre egy új Android projektet, _Add no Activity_ opcióval. Az _Application name_ mezőben adjuk meg a `Simple Drawer` nevet. A _Package_ név legyen `hu.bme.aut.android.simpledrawer`. Nyelvnek a Kotlin legyen kiválasztva, a minimum SDK szintje legyen API 21. Ezután nyomjunk a **Finish** gombra.
+Hozzunk létre egy `Simple Drawer` nevű projektet Android Studioban:
 
-Adjunk a projekthez egy új _Empty activity_ osztályt. _Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt, valamint pipáljuk be a _Launcher Activity_ opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
-
-Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
+1. Hozzunk létre egy új projektet, válasszuk az *No Activity* lehetőséget.
+1. A projekt neve legyen `Simple Drawer`, a kezdő package `hu.bme.aut.android.simpledrawer`, a mentési hely pedig a kicheckoutolt repository-n belül az SimpleDrawer mappa.
+1. Nyelvnek válasszuk a *Kotlin*-t.
+1. A minimum API szint legyen API24: Android 7.0.
+1. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő SimpleDrawer könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+
+Adjunk a projekthez egy új *Empty Views Activity* -t. *Activity name*-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon *layout* fájlt, valamint pipáljuk be a _Launcher Activity_ opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
+
+Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
+
 
 ### A resource-ok hozzáadása
 
@@ -75,11 +86,8 @@ Az alkalmazásunkban az egyszerűség kedvéért most csak az álló módot tám
     android:screenOrientation="portrait">
 ```
 
-## Laborfeladatok
 
-A labor során a következő feladatokat kell megvalósítani a laborvezető segítségével, illetve bizonyos feladatokat önállóan. A labor végén lehetőség van **iMSc** pontokat is szerezni a jelölt feladatok megoldásával.
-
-### 1. feladat: A kezdő layout létrehozása (1 pont)
+## A kezdő layout létrehozása (1 pont)
 
 Első lépésként hozzunk létre egy új _package_-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk a `view` nevet. Ebben hozzunk létre egy új osztályt, amit nevezzünk el `DrawingView`-nak, és származzon le a `View` osztályból (`android.view.View`).
 
@@ -91,35 +99,44 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 }
 ```
 
-Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként egy `RelativeLayout`-ot, azon belül pedig felülre a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Végezetül a layoutnak így kell kinéznie:
+Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként egy `ConstraintLayout`-ot, azon belül alulra egy `Toolbar`-t rakjunk, fölé pedig a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt fekete háttérrel. Végezetül a layoutnak így kell kinéznie:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DrawingActivity">
 
-	<hu.bme.aut.android.simpledrawer.view.DrawingView
-		android:id="@+id/canvas"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_above="@+id/toolbar"
-		android:background="@android:color/black" />
+    <hu.bme.aut.android.simpledrawer.view.DrawingView
+        android:id="@+id/canvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?android:colorPrimary" />
-</RelativeLayout>
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **elkészült oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült DrawingActivity** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
 
-### 2. feladat: Stílusválasztó (1 pont)
+## Stílusválasztó (1 pont)
 
 Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `Toolbar`-t, hozzuk létre a menüt, amivel be lehet állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven a `res` mappában, és _Resource type_-nak is válasszuk azt, hogy `menu`. Ezen belül hozzunk létre egy új _Menu resource file_-t `menu_toolbar.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
 
@@ -129,7 +146,6 @@ Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `To
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_style"
-        android:checkableBehavior="single"
         android:icon="@drawable/ic_style"
         android:title="@string/style"
         app:showAsAction="ifRoom">
@@ -156,7 +172,7 @@ Ahhoz, hogy elérjük a létrehozott erőforrásokat kódból, view binding-ra l
 android {
     ...
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 ```
@@ -182,7 +198,7 @@ override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuItem: MenuItem = toolbarMenu.getItem(i)
         menuItem.setOnMenuItemClickListener { item -> onOptionsItemSelected(item) }
         if (menuItem.hasSubMenu()) {
-            val subMenu: SubMenu = menuItem.subMenu
+            val subMenu: SubMenu = menuItem.subMenu!!
             for (j in 0 until subMenu.size()) {
                 subMenu.getItem(j)
                     .setOnMenuItemClickListener { item -> onOptionsItemSelected(item) }
@@ -211,9 +227,9 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **elkészült menü kinyitva** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
 
-### 3. feladat: A `DrawingView` osztály implementálása (1 pont)
+## A `DrawingView` osztály implementálása (1 pont)
 
-#### A modellek létrehozása
+### A modellek létrehozása
 
 A rajzprogramunk, ahogy az már az előző feladatban is kiderült, kétféle rajzolási stílust fog támogatni. Nevezetesen a pont- és vonalrajzolást. Ahhoz, hogy a rajzolt alakzatokat el tudjuk tárolni szükségünk lesz két új típusra, modellre, amihez hozzunk létre egy új _package_-et a `hu.bme.aut.android.simpledrawer`-en belül `model` néven.
 
@@ -236,7 +252,7 @@ data class Line(
 )
 ```
 
-#### A rajzolási stílus beállítása
+### A rajzolási stílus beállítása
 
 Most, hogy megvannak a modelljeink el lehet kezdeni magának a rajzolás funkciójának fejlesztését. Ehhez a `DrawingView` osztályt fogjuk ténylegesen is elkészíteni. Először vegyünk fel az osztályon belül egy `companion object`-et, amiben a rajzolási stílus konstansait fogjuk meghatározni. Ehhez kapcsolódóan vegyünk fel egy új `field`-et az osztályunkba, amiben eltároljuk, hogy jelenleg milyen stílus van kiválasztva. 
 
@@ -268,7 +284,7 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
     }
 }
 ```
-#### Inicializálások
+### Inicializálások
 
 A rajzolási funkció megvalósításához fel kell vennünk néhány további `field`-et a `DrawingView` osztályban, amiket a konstruktorban inicializálnunk kell. A paint objektumhoz hozzáadjuk a `lateinit` kulcsszót, hogy elég legyen az `init` blokkban inicializálnunk. A `Point` osztály import-ja során használjuk a korábban definiált osztályunkat.
 
@@ -294,7 +310,7 @@ private fun initPaint() {
 }
 ```
 
-#### Gesztusok kezelése
+### Gesztusok kezelése
 
 Ahhoz, hogy vonalat vagy pontot tudjunk rajzolni a `View`-nkra, kezelnünk kell a felhasználótól kapott gesztusokat, mint például amikor hozzáér a kijelzőhöz, elhúzza rajta vagy felemeli róla az ujját. Szerencsére ezeket a gesztusokat nem szükséges manuálisan felismernünk és lekezelnünk, a `View` ősosztály `onTouchEvent()` függvényének felüldefiniálásával egyszerűen megolható a feladat.
 
@@ -331,7 +347,7 @@ private fun addLineToTheList(startPoint: Point, endPoint: Point) {
 
 Ahogy a fenti kódrészletből is látszik minden gesztusnál elmentjük az adott `TouchEvent` pontját, mint a rajzolás végpontját, illetve ha `MotionEvent.ACTION_DOWN` történt, tehát a felhasználó hozzáért a `View`-hoz, elmentjük ezt kezdőpontként is. Amíg a felhasználó mozgatja az ujját a `View`-n (`MotionEvent.ACTION_MOVE`), addig nem csinálunk semmit, de amint felemeli (`MotionEvent.ACTION_UP`), elmentjük az adott elemet a korábban már definiált listákba. Ezen kívül minden egyes alkalommal meghívjuk az `invalidate()` függvényt, ami kikényszeríti a `View` újrarajzolását.
 
-#### A rajzolás
+### A rajzolás
 
 A rajzolás megvalósításához a `View` ősosztály `onDraw()` metódusát kell felüldefiniálnunk. Egyrészt ki kell rajzolnunk a már meglévő objektumokat (amiket a `MotionEvent.ACTION_UP` eseménynél beleraktunk a listába), valamint ki kell rajzolnunk az aktuális kezdőpont (a `MotionEvent.ACTION_DOWN` eseménytől) és a felhasználó ujja közötti vonalat.
 
@@ -375,13 +391,13 @@ private fun drawLine(canvas: Canvas, startPoint: Point?, endPoint: Point?) {
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **elkészült kirajzolás** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
 
-### 4. feladat: Perzisztencia megvalósítása _SQLite_ adatbázis segítségével (1 pont)
+## Perzisztencia megvalósítása _SQLite_ adatbázis segítségével (1 pont)
 
 Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy _SQLite_ adatbázisban. 
 
 Hozzunk létre egy új _package_-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk az `sqlite` nevet.
 
-#### Táblák definiálása
+### Táblák definiálása
 
 Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkiptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új _singleton_ osztályt az `object` kulcsszóval az `sqlite` _package_-en belül `DbConstants` néven. 
 
@@ -473,7 +489,7 @@ object Lines {
 Érdemes megfigyelni továbbá azt is, hogy az osztályokat nem a class kulcsszóval deklaráltuk. Helyette az `object`-et használjuk, amivel a Kotlin nyelv azt biztosítja számunkra, hogy a `DbConstants` és a benne lévő `Points` és `Lines` osztály is singletonként viselkednek, azaz az alkalmazás futtatásakor létrejön belőlük egy példány, további példányokat pedig nem lehet létrehozni belőlük.
 
 
-#### A segédosztályok létrehozása
+### A segédosztályok létrehozása
 
 Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a `DBHelper` osztály, ami az `SQLiteOpenHelper` osztályból származik. Vegyük fel ezt is az `sqlite` _package_-be.
 
@@ -609,7 +625,7 @@ class PersistentDataHelper(context: Context) {
 }
 ```
 
-#### A `DrawingView` kiegészítése
+### A `DrawingView` kiegészítése
 
 Ahhoz, hogy a rajzolt objektumainkat el tudjuk menteni az adatbázisba, fel kell készíteni a `DrawingView` osztályunkat arra, hogy átadja, illetve meg lehessen adni neki kívülről is őket. Ehhez a következő függvényeket kell felvennünk:
 
@@ -621,7 +637,7 @@ fun restoreObjects(points: MutableList<Point>?, lines: MutableList<Line>?) {
 }
 ```
 
-#### A `DrawingActivity` kiegészítése
+### A `DrawingActivity` kiegészítése
 
 A perzisztencia megvalósításához már csak egy feladatunk maradt hátra, mégpedig az, hogy bekössük a frissen létrehozott osztályainkat a `DrawingActivity`-nkbe. Ehhez először is példányosítanunk kell a `PersistentDataHelper` osztályunkat. Mivel az adatbázishozzáférés drága erőforrás, ezért ne felejtsük el az `Activity` `onResume()` függvényében megnyitni, az `onPause()` függvényében pedig lezárni a vele való kapcsolatot:
 
@@ -676,7 +692,7 @@ private fun onExit() {
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **kilépő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a perzisztens mentéshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
 
-### 5. (önálló) feladat: A vászon törlése (1 pont)
+## Önálló feladat: A vászon törlése (1 pont)
 
 Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!
 
