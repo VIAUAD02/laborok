@@ -153,6 +153,25 @@ NagyHF-n 10 IMSC pont szerezhető:
 - kódminőség (tiszta kód követése, rövid osztályok, függvények, stb.). (3 pont)  
 - Rövid dokumentáció feltöltése a ZIP-ben az IMSC-s részhez tartozó megoldásról és indoklása/bemutatása a fent felsorolt extra elemeknek (kötelező).  
 
+### NagyHF pontozási módszer
+
+A hallgatók a házi feladatot a laborokhoz hasonlóan GitHub Classroom-on keresztül adják be, azonban itt egy PR helyett, az egyes fázisoknál külön-külön PR-t nyitnak. Az AHK bot azonban repóhoz van kötve, nem PR-hez, ezért a 2-3 kölün PR értékelése felül írja egymást. Ez alapvetően nem probléma, ha konzekvensen használjuk:
+
+A házi pontozásánál ugyanúgy a `/ahk ok` parancsot kell kiadni, de ezúttal több paraméterrel: `/ahk ok <spec GO/NOGO - 0/1> <hf sima pontszám - 0-15> <hf sima imsc pontszám - 0-10> <póthf pontszám - 0-15> <póthf imsc pontszám - 0-10>`
+Tehát a különböző fázisokban:
+- specifikáció (spec branch): 
+	- `/ahk ok 0` ha nem fogadod el
+	- `/ahk ok 1` ha elfogadod.
+- normál házi (hf branch): 
+	- `/ahk ok 0 0 0` ha már a specifikáció sem volt rendben.
+	- `/ahk ok 1 13 0` ha a specifikációt rendesen leadta, 13 pont a házija. 
+	- `/ahk ok 1 15 10` ha a specifikációt rendesen leadta, 15 pontos a házija és kap még 10 iMSc pontot.
+- pót házi (pothf branch): 
+	- `/ahk ok 0 0 0 0 0` ha már a specifikáció sem volt rendben.
+	- `/ahk ok 1 0 0 12 0` ha a specifikációt rendesen leadta, 12 pont a pót házija. 
+	- `/ahk ok 1 0 0 14 5` ha a specifikációt rendesen leadta, 14 pontos a házija és kap még 5 iMSc pontot.
+	- `/ahk ok 1 8 0 14 4` ha a specifikációt rendesen leadta, 8 pontot kapott eredetileg a házira iMSc pont nélkül, de javított a pótláson 14 pontra, és kapott még 4 iMSc pontot. 
+
 ### Android és MobWeb közös házi feladat
 Ha valaki a MobWebet és az Androidalapú szoftverfejlesztést is hallgatná a félévben, és felmerülne benne, hogy lehet-e közös házit csinálni:  
 -Lehet, de ezt mindenképpen egyeztesse mindkét laborvezetőjével.  
