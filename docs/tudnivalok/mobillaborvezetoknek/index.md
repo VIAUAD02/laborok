@@ -159,6 +159,7 @@ A hallgatók a házi feladatot a laborokhoz hasonlóan GitHub Classroom-on keres
 
 A házi pontozásánál ugyanúgy a `/ahk ok` parancsot kell kiadni, de ezúttal több paraméterrel: `/ahk ok <spec GO/NOGO - 0/1> <hf sima pontszám - 0-15> <hf sima imsc pontszám - 0-10> <póthf pontszám - 0-15> <póthf imsc pontszám - 0-10>`
 Tehát a különböző fázisokban:
+
 - specifikáció (spec branch): 
 	- `/ahk ok 0` ha nem fogadod el
 	- `/ahk ok 1` ha elfogadod.
