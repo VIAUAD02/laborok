@@ -1065,19 +1065,27 @@ Az első laboron markdown-t, a többi laboron néhány screenshotot és a forrá
 <h3 id="nagyhf-pontozasi-modszer">NagyHF pontozási módszer<a class="headerlink" href="#nagyhf-pontozasi-modszer" title="Permanent link">&para;</a></h3>
 <p>A hallgatók a házi feladatot a laborokhoz hasonlóan GitHub Classroom-on keresztül adják be, azonban itt egy PR helyett, az egyes fázisoknál külön-külön PR-t nyitnak. Az AHK bot azonban repóhoz van kötve, nem PR-hez, ezért a 2-3 kölün PR értékelése felül írja egymást. Ez alapvetően nem probléma, ha konzekvensen használjuk:</p>
 <p>A házi pontozásánál ugyanúgy a <code>/ahk ok</code> parancsot kell kiadni, de ezúttal több paraméterrel: <code>/ahk ok &lt;spec GO/NOGO - 0/1&gt; &lt;hf sima pontszám - 0-15&gt; &lt;hf sima imsc pontszám - 0-10&gt; &lt;póthf pontszám - 0-15&gt; &lt;póthf imsc pontszám - 0-10&gt;</code>
-Tehát a különböző fázisokban:
-- specifikáció (spec branch): 
-    - <code>/ahk ok 0</code> ha nem fogadod el
-    - <code>/ahk ok 1</code> ha elfogadod.
-- normál házi (hf branch): 
-    - <code>/ahk ok 0 0 0</code> ha már a specifikáció sem volt rendben.
-    - <code>/ahk ok 1 13 0</code> ha a specifikációt rendesen leadta, 13 pont a házija. 
-    - <code>/ahk ok 1 15 10</code> ha a specifikációt rendesen leadta, 15 pontos a házija és kap még 10 iMSc pontot.
-- pót házi (pothf branch): 
-    - <code>/ahk ok 0 0 0 0 0</code> ha már a specifikáció sem volt rendben.
-    - <code>/ahk ok 1 0 0 12 0</code> ha a specifikációt rendesen leadta, 12 pont a pót házija. 
-    - <code>/ahk ok 1 0 0 14 5</code> ha a specifikációt rendesen leadta, 14 pontos a házija és kap még 5 iMSc pontot.
-    - <code>/ahk ok 1 8 0 14 4</code> ha a specifikációt rendesen leadta, 8 pontot kapott eredetileg a házira iMSc pont nélkül, de javított a pótláson 14 pontra, és kapott még 4 iMSc pontot. </p>
+Tehát a különböző fázisokban:</p>
+<ul>
+<li>specifikáció (spec branch): <ul>
+<li><code>/ahk ok 0</code> ha nem fogadod el</li>
+<li><code>/ahk ok 1</code> ha elfogadod.</li>
+</ul>
+</li>
+<li>normál házi (hf branch): <ul>
+<li><code>/ahk ok 0 0 0</code> ha már a specifikáció sem volt rendben.</li>
+<li><code>/ahk ok 1 13 0</code> ha a specifikációt rendesen leadta, 13 pont a házija. </li>
+<li><code>/ahk ok 1 15 10</code> ha a specifikációt rendesen leadta, 15 pontos a házija és kap még 10 iMSc pontot.</li>
+</ul>
+</li>
+<li>pót házi (pothf branch): <ul>
+<li><code>/ahk ok 0 0 0 0 0</code> ha már a specifikáció sem volt rendben.</li>
+<li><code>/ahk ok 1 0 0 12 0</code> ha a specifikációt rendesen leadta, 12 pont a pót házija. </li>
+<li><code>/ahk ok 1 0 0 14 5</code> ha a specifikációt rendesen leadta, 14 pontos a házija és kap még 5 iMSc pontot.</li>
+<li><code>/ahk ok 1 8 0 14 4</code> ha a specifikációt rendesen leadta, 8 pontot kapott eredetileg a házira iMSc pont nélkül, de javított a pótláson 14 pontra, és kapott még 4 iMSc pontot. </li>
+</ul>
+</li>
+</ul>
 <h3 id="android-es-mobweb-kozos-hazi-feladat">Android és MobWeb közös házi feladat<a class="headerlink" href="#android-es-mobweb-kozos-hazi-feladat" title="Permanent link">&para;</a></h3>
 <p>Ha valaki a MobWebet és az Androidalapú szoftverfejlesztést is hallgatná a félévben, és felmerülne benne, hogy lehet-e közös házit csinálni:<br />
 -Lehet, de ezt mindenképpen egyeztesse mindkét laborvezetőjével.<br />
@@ -1093,8 +1101,8 @@ Tehát a különböző fázisokban:
           </path>
         </svg>
       </span>
-      <span title="2023. október 11. 23:55:13">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-11T23:55:13+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-11</span>
+      <span title="2023. október 12. 00:07:23">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-12T00:07:23+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-12</span>
       </span>
     </span>
 
