@@ -383,7 +383,7 @@ fun update(shoppingItems: List<ShoppingItem>) {
 
 #### A `RecyclerView` és az adatok megjelenítése
 
-Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbira:
+Kezdjük azzal, hogy kiegészítjük a themes.xml fájl tartalmát az alábbira:
 
 ```xml
 <resources xmlns:tools="http://schemas.android.com/tools">
