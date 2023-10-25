@@ -1450,7 +1450,7 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
 <p>A RecyclerView megírásánál figyeltek arra, hogy hatékony legyen, ezért az adathalmaz változásakor csak azokat a nézeteket frissíti, amit feltétlen szükséges. Azonban szintén hatékonyság miatt, nem az adapter fogja kiszámolni a változást, hanem ezt a programozónak kell kézzel jeleznie. Erre szolgál a <code>notify***</code> függvénycsalád, aminek két tagja fent látható. Az alsó hatására a teljes adathalmaz lecserélődik, és újrarajzolódik minden. Az első hatására viszont a már létező elemek nem módosulnak, csak egy újonnan beszúrt elem lesz kirajzolva.</p>
 </div>
 <h4 id="a-recyclerview-es-az-adatok-megjelenitese">A <code>RecyclerView</code> és az adatok megjelenítése<a class="headerlink" href="#a-recyclerview-es-az-adatok-megjelenitese" title="Permanent link">&para;</a></h4>
-<p>Kezdjük azzal, hogy kiegészítjük a theme.xml fájl tartalmát az alábbira:</p>
+<p>Kezdjük azzal, hogy kiegészítjük a themes.xml fájl tartalmát az alábbira:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;resources</span><span class="w"> </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="cm">&lt;!-- Base application theme. --&gt;</span>
 <span class="w">    </span><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight.NoActionBar&quot;</span><span class="nt">&gt;</span>
@@ -1803,8 +1803,8 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
           </path>
         </svg>
       </span>
-      <span title="2023. szeptember 29. 14:53:21">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-29T14:53:21+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-29</span>
+      <span title="2023. október 17. 12:05:51">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-17T12:05:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-17</span>
       </span>
     </span>
 
@@ -1829,6 +1829,8 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
           <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/gaborbsd" target="_blank" rel="noopener noreferrer" class="md-author" title="@gaborbsd">
           <img src="https://avatars.githubusercontent.com/u/5345619?size=72" alt="@gaborbsd">
+        </a><a href="https://github.com/sloweroons" target="_blank" rel="noopener noreferrer" class="md-author" title="@sloweroons">
+          <img src="https://avatars.githubusercontent.com/u/127698251?size=72" alt="@sloweroons">
         </a></nav>      
     </span>
   </div>
