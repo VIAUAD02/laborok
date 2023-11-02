@@ -318,7 +318,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
         * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
         * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.
 
-7. Készítsünk egy a tartalomtól független rész a szerzőről
+7. Készítsünk egy a tartalomtól független részt a szerzőről
     * Szerző neve a megfelelő heading típussal.
     * Egy kép a szerzőről, vagy keress egy képet és azt is tedd a repositoryba vagy használd a https://via.placeholder.com/80x80 placeholdert.
     * Egy bekezdés szöveg, amit legegyszerűbben a https://www.lipsum.com/ oldal segítségével generálhatunk.
