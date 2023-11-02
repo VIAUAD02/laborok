@@ -289,6 +289,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `ul` - bullet pointos felsorolás.
             * `ol` - számozott felsorolás.
             * `li` - lista elem.
+
     * **Táblázatok** 
         Egy heading-ben jelezd, hogy ez a rész a "Táblázatok", majd készítsd el az alábbi képen látható táblázatot.
         
@@ -305,6 +306,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `colspan` - oszlopok összevonása (attribútum a td-re)
             * `rowspan` - sorok összevonása (attribútum a td-re)
             * `border` - táblázat keret vastagsága (attribútum a table-re )
+
     * **Kép kezelése képaláírással**:
         * Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.
         * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternative textet is.
@@ -314,6 +316,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `img` - maga a kép
             * `alt` - az `img` tagnek attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.
             * `figcaption` - Képaláírás
+
     * **Formázott szöveg**:
         * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
         * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.
