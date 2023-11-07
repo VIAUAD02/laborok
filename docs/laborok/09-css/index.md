@@ -149,7 +149,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 * Az új szabály mellett azt látjuk, hogy az *inspector-stylesheet*-ben jött létre. Tehát a háttérben a böngésző létrehoz egy CSS fájlt és abban tárolja a létrehozott stílusokat, amit meg is tudunk nézni ha rákattintunk az *inspector-stylesheet*-re.
 * Az így létrehzott szabályok csak az oldal újratöltéséig maradnak meg.
 * Figyeljük meg a fenti képernyőn, hogy az új szabállyal nem egy cellára állítottuk be a padding-ot hanem minden cellára.
-* Az új szabály alatt egyébként látható a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.
+* Az új szabály alatt egyébként láthatóak a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.
 
 ### Beadandó
 
@@ -167,7 +167,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 
 ## 3. Feladat - CSS alapok
 
-A HTML oldalhoz kétféle tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal `head` tagjében definiált `<style>` tagben.
+A HTML oldalhoz kétféleképpen tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal `head` tagjében definiált `<style>` tagben.
 
 ### Float használata
 
@@ -402,7 +402,7 @@ A logó mellett két elemből álló **menüsor** található, ahol az elemek á
 
 3. A navigációban lévő linkből menüpont készítése.
     * Ne hozz létre CSS osztályt, hanem a HTML tagekhez rendeld a szabályokat.
-    * Csak a nagigáción belüli felsorolás nézzen így ki.
+    * Csak a navigáción belüli felsorolás nézzen így ki.
     * Az `ul` tagre állítsd be, hogy ne legyen margó és ne legyenek előtte pöttyök
     * Az `li` tagekre állítsd be, hogy egymás mellé kerüljenek (`inline-block`), legyen köztük 40px távolság és függőlegesen középre legyenek igazítva.
 
@@ -426,7 +426,7 @@ A logó mellett két elemből álló **menüsor** található, ahol az elemek á
 
 ### 4.3 Fő hír megjelenítése
 
-A fő hír megjelenését a `news.css` fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)
+A fő hír megjelenését a `news.css` fájlba készítse el, ami már létre van hozva, viszont egyelőre üres. (A HTML oldal már hivatkozik rá.)
 
 <figure markdown>
   ![Fő hír megjelenítése](./assets/4-main-news.png)
@@ -435,8 +435,8 @@ A fő hír megjelenését a `news.css` fájlba készítse el, amit először lé
 
 A kezdőoldalon a legfrissebb hír jelenik meg.
 
-* A hírnek van egy fejléce amiben megtalálható a **szerző profil képe**, **cím**, **szerző** és a **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
-    * A szerző profil képe 
+* A hírnek van egy fejléce amiben megtalálható a **szerző profilképe**, **cím**, **szerző** és a **publikálási dátum**.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!
+    * A szerző profilképe 
         * 80px x 80px legyen. Akkor is állítsuk ezt be a CSS-ben ha a kép pont ekkora. 
         * Igazítsuk balra, hogy a cím, szerző és dátum mellé kerüljön.
         * A kép és a szöveg között legyen 1rem távolság.
@@ -447,15 +447,15 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
 * Állítsd be, hogy a hír elem 1rem távolságot tartson a befoglaló elemektől. (Tipp: `padding`)
 * A hír törzse egy **bevezető**, **kép** majd **további tartalomból** áll.
 * A hírhez tartozó képek legyen középre igazítva. Ehhez a beállítást az `.image` CSS osztályon érdemes beállítani.
-* Egy kép maximálus szélessége 250px legyen, de csak azok, amik az `.images` alatt vannak.
+* Egy kép maximális szélessége 250px legyen, de csak azok, amik az `.images` alatt vannak.
 
-* Állítsd be, hogy a fő tartalmi rész `main` tag szélességét úgy, hogy ne lógjon be az oldalsó hasáb alá, de úgy, hogy reszponzív maradjon. Mivel ez a módosítás a layoutot érinti ezért a **`main.css`** -be végezd el.
+* Állítsd be a fő tartalmi rész `main` tag szélességét úgy, hogy ne lógjon be az oldalsó hasáb alá, de úgy, hogy reszponzív maradjon. Mivel ez a módosítás a layoutot érinti ezért a **`main.css`** -ben végezd el.
 
 ??? info "Segítség"
     * Az egyik megoldás, hogy a fő tartalmi rész `main` tagre beállítasz egy jobb oldali margót, ami éppen akkora mint a jobb oldali hasáb, így az oldalsó sáv csak a margót fogja kitakarni.
     * A másik megoldás, hogy a szélsség megadásánál a `calc` segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.
-        * Így a `width: calc(100% - 450px` tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.
-    * Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding nem számolódjon bele. Tipp: `box-sizing`
+        * Így a `width: calc(100% - 450px)` tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.
+    * Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding ne számolódjon bele. Tipp: `box-sizing`
 
 #### Beadandó
 
@@ -475,7 +475,7 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítsd el.
 * Készíts CSS szabályt, hogy az egyes hírek között (csak ami az oldalsó sávban van) legyen egy elválasztó vonal és `1rem` távolság a következő elemtől.
 * Az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
 
-* Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállíás ezért a **`main.css`** -be állítsd be az `aside` tagen.
+* Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállíás ezért a **`main.css`** -ben állítsd be az `aside` tagen.
     * A magasságot a `calc` segítségével lehet kiszámolni, de ez robosztusság szempontjából azért nem a legjobb megoldás, mert ha változik a fix rész (fejléc, lábléc, margók...) akkor módosítani kell ezt a szabályt is.
     * A másik megoldás egy jelenleg *experimental* fázisban lévő megoldás használata. Hivatalosan a `height: stretch` érték lenne, de ez még ezen a néven nem támogatott. Viszont a Chromium alapú böngészők a `height: -webkit-fill-available` névvel támogatják. Ez a beállítás azt jelenti, hogy az elem magassága annyi legyen amennyi hely rendelkezésre áll. (Részletek a támogatottságról: https://caniuse.com/mdn-css_properties_height_stretch)
     * Ezen felül még be kell állítani, hogy a szöveg ne lógjon ki az elemből, azaz automatikusan jelenjen meg a scroll, ha szükséges.
