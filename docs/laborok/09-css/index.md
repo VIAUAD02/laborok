@@ -442,7 +442,7 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
         * A kép és a szöveg között legyen 1rem távolság.
     * A címnek csak alsó margója legyen `.75rem`
     * A név legyen félkövér és az alsó paddingja `.25rem`
-    * A pulbikálás dátuma legyen szürke, dőlt betűvel és a betűmérete legyen `.75rem`
+    * A publikálás dátuma legyen szürke, dőlt betűvel és a betűmérete legyen `.75rem`
 
 * Állítsd be, hogy a hír elem 1rem távolságot tartson a befoglaló elemektől. (Tipp: `padding`)
 * A hír törzse egy **bevezető**, **kép** majd **további tartalomból** áll.
@@ -453,7 +453,7 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
 
 ??? info "Segítség"
     * Az egyik megoldás, hogy a fő tartalmi rész `main` tagre beállítasz egy jobb oldali margót, ami éppen akkora mint a jobb oldali hasáb, így az oldalsó sáv csak a margót fogja kitakarni.
-    * A másik megoldás, hogy a szélsség megadásánál a `calc` segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.
+    * A másik megoldás, hogy a szélesség megadásánál a `calc` segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.
         * Így a `width: calc(100% - 450px)` tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.
     * Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding ne számolódjon bele. Tipp: `box-sizing`
 
@@ -475,7 +475,7 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítsd el.
 * Készíts CSS szabályt, hogy az egyes hírek között (csak ami az oldalsó sávban van) legyen egy elválasztó vonal és `1rem` távolság a következő elemtől.
 * Az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: `:last-child`)
 
-* Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállíás ezért a **`main.css`** -ben állítsd be az `aside` tagen.
+* Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállítás ezért a **`main.css`** -ben állítsd be az `aside` tagen.
     * A magasságot a `calc` segítségével lehet kiszámolni, de ez robosztusság szempontjából azért nem a legjobb megoldás, mert ha változik a fix rész (fejléc, lábléc, margók...) akkor módosítani kell ezt a szabályt is.
     * A másik megoldás egy jelenleg *experimental* fázisban lévő megoldás használata. Hivatalosan a `height: stretch` érték lenne, de ez még ezen a néven nem támogatott. Viszont a Chromium alapú böngészők a `height: -webkit-fill-available` névvel támogatják. Ez a beállítás azt jelenti, hogy az elem magassága annyi legyen amennyi hely rendelkezésre áll. (Részletek a támogatottságról: https://caniuse.com/mdn-css_properties_height_stretch)
     * Ezen felül még be kell állítani, hogy a szöveg ne lógjon ki az elemből, azaz automatikusan jelenjen meg a scroll, ha szükséges.
@@ -497,8 +497,8 @@ Egészítse ki a `main.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk 
 
 **Tippek a megoldáshoz**
 
-* Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek, így könnyen kideríthatő, hogy kisebb ablak méretnél mit kell módosítani.
-* A megoldás attól függ, hogy szélességet, vagy margót állítottál annak érdekében, hogy a jobb oldali hasáb ne takarja ki a tartamat, hiszen pont ezt az értéket kell majd átállítani ha nem látszódik a jobb oldali hasáb
+* Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek, így könnyen kideríthető, hogy kisebb ablak méretnél mit kell módosítani.
+* A megoldás attól függ, hogy szélességet, vagy margót állítottál annak érdekében, hogy a jobb oldali hasáb ne takarja ki a tartalmat, hiszen pont ezt az értéket kell majd átállítani, ha nem látszódik a jobb oldali hasáb
 * Elsőként el kell rejteni a teljes jobb oldali hasábot.
 * Be kell állítani alapértelmezettre a szélességet / jobb oldali margót, hogy ha nem látszódik a jobb oldali hasáb, akkor a teljes képernyőt kitöltse a fő tartalmi rész.
 * `@media` query-ket az `and` és az `or` logikai operátorokkal tud egymás után fűzni, pl. `@media screen and (min-width: 200px) {...}`, negálni a `not` kulcsszóval lehetséges, bár ebben a megoldásban erre nem lesz szükség.
