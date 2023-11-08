@@ -1430,7 +1430,7 @@
 </li>
 <li>Az így létrehzott szabályok csak az oldal újratöltéséig maradnak meg.</li>
 <li>Figyeljük meg a fenti képernyőn, hogy az új szabállyal nem egy cellára állítottuk be a padding-ot hanem minden cellára.</li>
-<li>Az új szabály alatt egyébként látható a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.</li>
+<li>Az új szabály alatt egyébként láthatóak a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.</li>
 </ul>
 <h3 id="beadando_1">Beadandó<a class="headerlink" href="#beadando_1" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
@@ -1448,7 +1448,7 @@
 </ul>
 </div>
 <h2 id="3-feladat-css-alapok">3. Feladat - CSS alapok<a class="headerlink" href="#3-feladat-css-alapok" title="Permanent link">&para;</a></h2>
-<p>A HTML oldalhoz kétféle tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal <code>head</code> tagjében definiált <code>&lt;style&gt;</code> tagben.</p>
+<p>A HTML oldalhoz kétféleképpen tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal <code>head</code> tagjében definiált <code>&lt;style&gt;</code> tagben.</p>
 <h3 id="float-hasznalata">Float használata<a class="headerlink" href="#float-hasznalata" title="Permanent link">&para;</a></h3>
 <p>Az <code>index.html</code> forráskódját egészítsük ki, a <code>&lt;head&gt;</code> elembe helyezzük el az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
@@ -1659,7 +1659,7 @@
 <p>A navigációban lévő linkből menüpont készítése.</p>
 <ul>
 <li>Ne hozz létre CSS osztályt, hanem a HTML tagekhez rendeld a szabályokat.</li>
-<li>Csak a nagigáción belüli felsorolás nézzen így ki.</li>
+<li>Csak a navigáción belüli felsorolás nézzen így ki.</li>
 <li>Az <code>ul</code> tagre állítsd be, hogy ne legyen margó és ne legyenek előtte pöttyök</li>
 <li>Az <code>li</code> tagekre állítsd be, hogy egymás mellé kerüljenek (<code>inline-block</code>), legyen köztük 40px távolság és függőlegesen középre legyenek igazítva.</li>
 </ul>
@@ -1689,7 +1689,7 @@
 <p>Demonstrálja képernyőképpel a megoldást! <strong><code>f4-2.png</code></strong></p>
 </div>
 <h3 id="43-fo-hir-megjelenitese">4.3 Fő hír megjelenítése<a class="headerlink" href="#43-fo-hir-megjelenitese" title="Permanent link">&para;</a></h3>
-<p>A fő hír megjelenését a <code>news.css</code> fájlba készítse el, amit először létre kell hozni. (A HTML oldal már hivatkozik rá.)</p>
+<p>A fő hír megjelenését a <code>news.css</code> fájlba készítse el, ami már létre van hozva, viszont egyelőre üres. (A HTML oldal már hivatkozik rá.)</p>
 <figure>
 <p><img alt="Fő hír megjelenítése" src="assets/4-main-news.png" />
   </p>
@@ -1698,9 +1698,9 @@
 <p>A kezdőoldalon a legfrissebb hír jelenik meg.</p>
 <ul>
 <li>
-<p>A hírnek van egy fejléce amiben megtalálható a <strong>szerző profil képe</strong>, <strong>cím</strong>, <strong>szerző</strong> és a <strong>publikálási dátum</strong>.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!</p>
+<p>A hírnek van egy fejléce amiben megtalálható a <strong>szerző profilképe</strong>, <strong>cím</strong>, <strong>szerző</strong> és a <strong>publikálási dátum</strong>.  Ezeket a csatolt képernyőkép alapján rendezze és formázza!</p>
 <ul>
-<li>A szerző profil képe <ul>
+<li>A szerző profilképe <ul>
 <li>80px x 80px legyen. Akkor is állítsuk ezt be a CSS-ben ha a kép pont ekkora. </li>
 <li>Igazítsuk balra, hogy a cím, szerző és dátum mellé kerüljön.</li>
 <li>A kép és a szöveg között legyen 1rem távolság.</li>
@@ -1708,7 +1708,7 @@
 </li>
 <li>A címnek csak alsó margója legyen <code>.75rem</code></li>
 <li>A név legyen félkövér és az alsó paddingja <code>.25rem</code></li>
-<li>A pulbikálás dátuma legyen szürke, dőlt betűvel és a betűmérete legyen <code>.75rem</code></li>
+<li>A publikálás dátuma legyen szürke, dőlt betűvel és a betűmérete legyen <code>.75rem</code></li>
 </ul>
 </li>
 <li>
@@ -1717,21 +1717,21 @@
 <li>A hír törzse egy <strong>bevezető</strong>, <strong>kép</strong> majd <strong>további tartalomból</strong> áll.</li>
 <li>A hírhez tartozó képek legyen középre igazítva. Ehhez a beállítást az <code>.image</code> CSS osztályon érdemes beállítani.</li>
 <li>
-<p>Egy kép maximálus szélessége 250px legyen, de csak azok, amik az <code>.images</code> alatt vannak.</p>
+<p>Egy kép maximális szélessége 250px legyen, de csak azok, amik az <code>.images</code> alatt vannak.</p>
 </li>
 <li>
-<p>Állítsd be, hogy a fő tartalmi rész <code>main</code> tag szélességét úgy, hogy ne lógjon be az oldalsó hasáb alá, de úgy, hogy reszponzív maradjon. Mivel ez a módosítás a layoutot érinti ezért a <strong><code>main.css</code></strong> -be végezd el.</p>
+<p>Állítsd be a fő tartalmi rész <code>main</code> tag szélességét úgy, hogy ne lógjon be az oldalsó hasáb alá, de úgy, hogy reszponzív maradjon. Mivel ez a módosítás a layoutot érinti ezért a <strong><code>main.css</code></strong> -ben végezd el.</p>
 </li>
 </ul>
 <details class="info">
 <summary>Segítség</summary>
 <ul>
 <li>Az egyik megoldás, hogy a fő tartalmi rész <code>main</code> tagre beállítasz egy jobb oldali margót, ami éppen akkora mint a jobb oldali hasáb, így az oldalsó sáv csak a margót fogja kitakarni.</li>
-<li>A másik megoldás, hogy a szélsség megadásánál a <code>calc</code> segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.<ul>
-<li>Így a <code>width: calc(100% - 450px</code> tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.</li>
+<li>A másik megoldás, hogy a szélesség megadásánál a <code>calc</code> segítségével ki lehet számolni, hogy a teljes szélességből adott pixelt levonva mennyi hely marad. Ezt a böngésző rendereléskor mindig újraszámolja. Azért kell ilyen megoldást választani, mert a jobb oldali hasáb abszolút pozícionált, így nekünk kell figyelni arra, hogy te takarjon ki semmit se.<ul>
+<li>Így a <code>width: calc(100% - 450px)</code> tűnik a jó választásnak, mert 450px széles a jobb oldali hasáb.</li>
 </ul>
 </li>
-<li>Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding nem számolódjon bele. Tipp: <code>box-sizing</code></li>
+<li>Ellenőrizzük, hogy tényleg helyes értéket állítottunk-e be, mert a jobb oldali hasáb szélessége attúl függ, hogy milyen box model van rajta beállítva. Most a jobb oldali hasáb szélessége 450px + a padding. Állítsd át a box modellt úgy, hogy a padding ne számolódjon bele. Tipp: <code>box-sizing</code></li>
 </ul>
 </details>
 <h4 id="beadando_4">Beadandó<a class="headerlink" href="#beadando_4" title="Permanent link">&para;</a></h4>
@@ -1753,7 +1753,7 @@
 <p>Az utolsó hír után viszont már ne legyen elválasztó vonal (Tipp: <code>:last-child</code>)</p>
 </li>
 <li>
-<p>Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállíás ezért a <strong><code>main.css</code></strong> -be állítsd be az <code>aside</code> tagen.</p>
+<p>Állítsd be, hogy a jobb oldali hasáb a rendelkezésre álló teljes magasságot töltse ki. Mivel ez is layout beállítás ezért a <strong><code>main.css</code></strong> -ben állítsd be az <code>aside</code> tagen.</p>
 <ul>
 <li>A magasságot a <code>calc</code> segítségével lehet kiszámolni, de ez robosztusság szempontjából azért nem a legjobb megoldás, mert ha változik a fix rész (fejléc, lábléc, margók...) akkor módosítani kell ezt a szabályt is.</li>
 <li>A másik megoldás egy jelenleg <em>experimental</em> fázisban lévő megoldás használata. Hivatalosan a <code>height: stretch</code> érték lenne, de ez még ezen a néven nem támogatott. Viszont a Chromium alapú böngészők a <code>height: -webkit-fill-available</code> névvel támogatják. Ez a beállítás azt jelenti, hogy az elem magassága annyi legyen amennyi hely rendelkezésre áll. (Részletek a támogatottságról: <a href="https://caniuse.com/mdn-css_properties_height_stretch">https://caniuse.com/mdn-css_properties_height_stretch</a>)</li>
@@ -1779,8 +1779,8 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
 <p>Egészítse ki a <code>main.css</code> fájlt úgy, hogy ha 900px-nél kisebbre állítjuk az ablakot, akkor a jobb oldali sáv tűnjön el, és a teljes oldalt a fő hír foglalja el. (Tipp: <code>@media( max-width: 900px )</code>)</p>
 <p><strong>Tippek a megoldáshoz</strong></p>
 <ul>
-<li>Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek, így könnyen kideríthatő, hogy kisebb ablak méretnél mit kell módosítani.</li>
-<li>A megoldás attól függ, hogy szélességet, vagy margót állítottál annak érdekében, hogy a jobb oldali hasáb ne takarja ki a tartamat, hiszen pont ezt az értéket kell majd átállítani ha nem látszódik a jobb oldali hasáb</li>
+<li>Használja a böngésző DOM vizualizáló eszközt, így láthatja, hogy a kijelölt elemre milyen CSS szabályok illeszkednek, így könnyen kideríthető, hogy kisebb ablak méretnél mit kell módosítani.</li>
+<li>A megoldás attól függ, hogy szélességet, vagy margót állítottál annak érdekében, hogy a jobb oldali hasáb ne takarja ki a tartalmat, hiszen pont ezt az értéket kell majd átállítani, ha nem látszódik a jobb oldali hasáb</li>
 <li>Elsőként el kell rejteni a teljes jobb oldali hasábot.</li>
 <li>Be kell állítani alapértelmezettre a szélességet / jobb oldali margót, hogy ha nem látszódik a jobb oldali hasáb, akkor a teljes képernyőt kitöltse a fő tartalmi rész.</li>
 <li><code>@media</code> query-ket az <code>and</code> és az <code>or</code> logikai operátorokkal tud egymás után fűzni, pl. <code>@media screen and (min-width: 200px) {...}</code>, negálni a <code>not</code> kulcsszóval lehetséges, bár ebben a megoldásban erre nem lesz szükség.</li>
@@ -1800,8 +1800,8 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
           </path>
         </svg>
       </span>
-      <span title="2022. október 14. 14:09:29">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-10-14T14:09:29+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-14</span>
+      <span title="2023. november 7. 18:39:04">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-07T18:39:04+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-07</span>
       </span>
     </span>
 
@@ -1816,7 +1816,13 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav></nav>      
+      <nav><a href="https://github.com/botetta" target="_blank" rel="noopener noreferrer" class="md-author" title="@botetta">
+          <img src="https://avatars.githubusercontent.com/u/59029986?v=4?size=72" alt="@botetta">
+        </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
+          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
+        </a><a href="https://github.com/gincsai" target="_blank" rel="noopener noreferrer" class="md-author" title="@gincsai">
+          <img src="https://avatars.githubusercontent.com/u/17701398?v=4?size=72" alt="@gincsai">
+        </a></nav>      
     </span>
   </div>
 
