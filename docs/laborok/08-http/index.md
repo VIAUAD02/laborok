@@ -303,27 +303,27 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
             * `tr` - táblázat sor
             * `td` - táblázat cella
             * `th` - táblázat fejléc oszlop
-            * `colspan` - oszlopok összevonása (attribútum a td-re)
-            * `rowspan` - sorok összevonása (attribútum a td-re)
-            * `border` - táblázat keret vastagsága (attribútum a table-re )
+            * `colspan` - oszlopok összevonása (attribútum a `td`-re)
+            * `rowspan` - sorok összevonása (attribútum a `td`-re)
+            * `border` - táblázat keretének a vastagsága (attribútum a `table`-re)
 
     * **Kép kezelése képaláírással**:
         * Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.
         * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternative textet is.
 
         ??? info "Segítség"
-            * `figure` - tag ami összefogja a képet és képaláírást.
+            * `figure` - tag, ami összefogja a képet és a képaláírást.
             * `img` - maga a kép
-            * `alt` - az `img` tagnek attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.
-            * `figcaption` - Képaláírás
+            * `alt` - Az `img` tagnek egy attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.
+            * `figcaption` - képaláírás
 
     * **Formázott szöveg**:
         * Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"
-        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.
+        * `pre` - olyan előre formázott szöveg amiben megtartja rendereléskor a white space-eket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.
 
-7. Készítsünk egy a tartalomtól független részt a szerzőről
-    * Szerző neve a megfelelő heading típussal.
-    * Egy kép a szerzőről, vagy keress egy képet és azt is tedd a repositoryba vagy használd a https://via.placeholder.com/80x80 placeholdert.
+7. Készítsünk egy tartalomtól független részt a szerzőről
+    * A szerző neve a megfelelő heading típussal.
+    * Egy kép a szerzőről. Keress egy képet és azt is tedd a repositoryba, vagy használd a https://via.placeholder.com/80x80 placeholdert.
     * Egy bekezdés szöveg, amit legegyszerűbben a https://www.lipsum.com/ oldal segítségével generálhatunk.
 
 8. Készítsük el a láblécet, amibe az évszám és a BME AUT felirat kerüljön.
@@ -331,7 +331,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 ### Beadandó
 !!! example "3. feladat beadandó (1.5 pont)"
     * Az `index.html` módosításait commitold!
-    * Az elkészült weboldal képernyőképet másold be `f3.png` néven a repository gyökerébe!
+    * Az elkészült weboldal képernyőképét másold be `f3.png` néven a repository gyökerébe!
 
 ## 4. Feladat 
 
@@ -344,8 +344,8 @@ Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagy
 A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS szabály mellett látható a "user agent stylesheet" jelzi, hogy a böngésző beépített stíluslapjában található ez a formázás.
 
 <figure markdown>
-  ![A böngésző beépített stílusainak vizsgálata F12 eszközökkel](./assets/beepitett-stilusok.png)
-  <figcaption>A böngésző beépített stílusainak vizsgálata F12 eszközökkel</figcaption>
+  ![A böngésző beépített stílusainak vizsgálata Developer Tools segítségével](./assets/beepitett-stilusok.png)
+  <figcaption>A böngésző beépített stílusainak vizsgálata Developer Tools segítségével</figcaption>
 </figure>
 
 ### Beadandó
@@ -393,7 +393,7 @@ A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
 
 ### Beadandó
 
-!!! example "BEADANDÓ (1 pont)"
+!!! example "5. feladat beadandó (1 pont)"
     * Commitold a `form.html` módosított tartalmát!
     * Készíts képernyőképet `f5a.png` néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!
     * Demonstráld a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET `f5b.png` és POST `f5c.png` igék használatával is! Fontos, hogy a képen láthatóak legyenek az elküldött paraméterek.
