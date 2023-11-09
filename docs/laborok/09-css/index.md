@@ -47,7 +47,7 @@ Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetős
 </figure>
 
 !!! tip "Fontos"
-    A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
+    A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, le kell tiltanunk a cache-t a Developer Tools eszköztáron.
 
 Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
 
@@ -333,16 +333,16 @@ Készítsd el az alábbi ábrán látható HTML oldal designját. Figyelj rá, h
 
 ### 4.1 Layout vizsgálata
 
-Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a **`css/main.css`** fájlban találhatók, melyekből a lefontosabbakat tekintük is át.
+Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a **`css/main.css`** fájlban találhatók, melyekből a legfontosabbakat tekintsük is át.
 
-* A `html` és `body` tagen nincs margin és padding sem és itt adtuk meg a betűtípust is.
-* A hivatkozások `a` tagek nincsennek aláhúzva.
+* A `html` és `body` tagen nincs margin és padding sem, és itt adtuk meg a betűtípust is.
+* A hivatkozások (`a` tagek) nincsenek aláhúzva.
 * Van egy `.container` CSS osztály, amiben megadtuk, hogy a tartalmi rész 1200px széles legyen és  középre igazítottuk.
     * Itt a `margin-left: auto` és `margin-right: auto` segítségével igazítjuk a tartalmat  középre.
     * Figyeljük meg, hogy a `position: relative` beállítás is szerepel, hogy az abszolút pozícionált elemek ehhez képest legyenek igazítva. 
-* Mivel fix fejlécet szeretnénk ezért a fő tartalmi részre `main` tag beállítottunk egy 76px-es paddingot. 60px a fejléc magassága és 16px távolságot szeretnénk a fejléc és a tartalmi rész között.
+* Mivel fix fejlécet szeretnénk ezért a fő tartalmi részre (`main` tag) beállítottunk egy 76px-es paddingot. 60px a fejléc magassága és 16px távolságot szeretnénk a fejléc és a tartalmi rész között.
 * Az `aside` jobb oldalra van igazítva.
-    * Mivel a végső cél az, hogy teljesen függetlenül tudjuk görgetni és akor is teljes magasságú legyen ha a mellette lévő fő tartalmi rész kevés, ezért `position: absolute` segítségével pozítionáljuk a `container` tetejékez és jobb oldalra (`top: 60px` és `right: 0`).
+    * Mivel a végső cél az, hogy teljesen függetlenül tudjuk görgetni, és akkor is teljes magasságú legyen, ha a mellette lévő fő tartalmi rész kevés, ezért `position: absolute` segítségével pozícionáljuk a `container` tetejéhez és jobb oldalra (`top: 60px` és `right: 0`).
     * Ezen felül megadtuk, hogy 450px széles legyen, a hátterét és egy bal oldali margót.
 * A láblécben lévő szöveget középre igazítottuk, kapott egy első margót és a betű színe és mérete is beállításra került.
 
@@ -505,5 +505,5 @@ Egészítse ki a `main.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk 
 
 #### Beadandó
 
-!!! example "4 Feladat - Reszponzivitás beadandó (0.5 pont)"
-    Demonstrálja képernyőképpel **`f4-5.png`**, hogy 900px alatt nem látszódik a jobb oldali hasáb.
+!!! example "4. Feladat - Reszponzivitás beadandó (0.5 pont)"
+    Demonstrálja képernyőképpel (**`f4-5.png`**), hogy 900px alatt nem látszódik a jobb oldali hasáb.
