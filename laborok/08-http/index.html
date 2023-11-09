@@ -1567,9 +1567,9 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <li><code>tr</code> - táblázat sor</li>
 <li><code>td</code> - táblázat cella</li>
 <li><code>th</code> - táblázat fejléc oszlop</li>
-<li><code>colspan</code> - oszlopok összevonása (attribútum a td-re)</li>
-<li><code>rowspan</code> - sorok összevonása (attribútum a td-re)</li>
-<li><code>border</code> - táblázat keret vastagsága (attribútum a table-re )</li>
+<li><code>colspan</code> - oszlopok összevonása (attribútum a <code>td</code>-re)</li>
+<li><code>rowspan</code> - sorok összevonása (attribútum a <code>td</code>-re)</li>
+<li><code>border</code> - táblázat keretének a vastagsága (attribútum a <code>table</code>-re)</li>
 </ul>
 </details>
 </li>
@@ -1582,10 +1582,10 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <details class="info">
 <summary>Segítség</summary>
 <ul>
-<li><code>figure</code> - tag ami összefogja a képet és képaláírást.</li>
+<li><code>figure</code> - tag, ami összefogja a képet és a képaláírást.</li>
 <li><code>img</code> - maga a kép</li>
-<li><code>alt</code> - az <code>img</code> tagnek attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.</li>
-<li><code>figcaption</code> - Képaláírás</li>
+<li><code>alt</code> - Az <code>img</code> tagnek egy attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.</li>
+<li><code>figcaption</code> - képaláírás</li>
 </ul>
 </details>
 </li>
@@ -1593,16 +1593,16 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <p><strong>Formázott szöveg</strong>:</p>
 <ul>
 <li>Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"</li>
-<li><code>pre</code> - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.</li>
+<li><code>pre</code> - olyan előre formázott szöveg amiben megtartja rendereléskor a white space-eket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>Készítsünk egy a tartalomtól független részt a szerzőről</p>
+<p>Készítsünk egy tartalomtól független részt a szerzőről</p>
 <ul>
-<li>Szerző neve a megfelelő heading típussal.</li>
-<li>Egy kép a szerzőről, vagy keress egy képet és azt is tedd a repositoryba vagy használd a <a href="https://via.placeholder.com/80x80">https://via.placeholder.com/80x80</a> placeholdert.</li>
+<li>A szerző neve a megfelelő heading típussal.</li>
+<li>Egy kép a szerzőről. Keress egy képet és azt is tedd a repositoryba, vagy használd a <a href="https://via.placeholder.com/80x80">https://via.placeholder.com/80x80</a> placeholdert.</li>
 <li>Egy bekezdés szöveg, amit legegyszerűbben a <a href="https://www.lipsum.com/">https://www.lipsum.com/</a> oldal segítségével generálhatunk.</li>
 </ul>
 </li>
@@ -1615,7 +1615,7 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <p class="admonition-title">3. feladat beadandó (1.5 pont)</p>
 <ul>
 <li>Az <code>index.html</code> módosításait commitold!</li>
-<li>Az elkészült weboldal képernyőképet másold be <code>f3.png</code> néven a repository gyökerébe!</li>
+<li>Az elkészült weboldal képernyőképét másold be <code>f3.png</code> néven a repository gyökerébe!</li>
 </ul>
 </div>
 <h2 id="4-feladat">4. Feladat<a class="headerlink" href="#4-feladat" title="Permanent link">&para;</a></h2>
@@ -1624,9 +1624,9 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <p>Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>) mezők, ill. ezért törik a <code>&lt;div&gt;</code> (ami blockszintű elem), és marad folyószöveg a <code>&lt;span&gt;</code> (ami inline).</p>
 <p>A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS szabály mellett látható a "user agent stylesheet" jelzi, hogy a böngésző beépített stíluslapjában található ez a formázás.</p>
 <figure>
-<p><img alt="A böngésző beépített stílusainak vizsgálata F12 eszközökkel" src="assets/beepitett-stilusok.png" />
+<p><img alt="A böngésző beépített stílusainak vizsgálata Developer Tools segítségével" src="assets/beepitett-stilusok.png" />
   </p>
-<figcaption>A böngésző beépített stílusainak vizsgálata F12 eszközökkel</figcaption>
+<figcaption>A böngésző beépített stílusainak vizsgálata Developer Tools segítségével</figcaption>
 </figure>
 <h3 id="beadando_1">Beadandó<a class="headerlink" href="#beadando_1" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
@@ -1682,7 +1682,7 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 </details>
 <h3 id="beadando_2">Beadandó<a class="headerlink" href="#beadando_2" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p class="admonition-title">5. feladat beadandó (1 pont)</p>
 <ul>
 <li>Commitold a <code>form.html</code> módosított tartalmát!</li>
 <li>Készíts képernyőképet <code>f5a.png</code> néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!</li>
@@ -1699,8 +1699,8 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
           </path>
         </svg>
       </span>
-      <span title="2023. november 2. 10:32:32">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-02T10:32:32+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-02</span>
+      <span title="2023. november 8. 19:05:32">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-08T19:05:32+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-08</span>
       </span>
     </span>
 
@@ -1715,7 +1715,9 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gincsai" target="_blank" rel="noopener noreferrer" class="md-author" title="@gincsai">
+      <nav><a href="https://github.com/tbeni22" target="_blank" rel="noopener noreferrer" class="md-author" title="@tbeni22">
+          <img src="https://avatars.githubusercontent.com/u/47601385?v=4?size=72" alt="@tbeni22">
+        </a><a href="https://github.com/gincsai" target="_blank" rel="noopener noreferrer" class="md-author" title="@gincsai">
           <img src="https://avatars.githubusercontent.com/u/17701398?v=4?size=72" alt="@gincsai">
         </a><a href="https://github.com/bencemali" target="_blank" rel="noopener noreferrer" class="md-author" title="@bencemali">
           <img src="https://avatars.githubusercontent.com/u/64798108?v=4?size=72" alt="@bencemali">

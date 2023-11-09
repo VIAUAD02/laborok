@@ -1333,7 +1333,7 @@
 </figure>
 <div class="admonition tip">
 <p class="admonition-title">Fontos</p>
-<p>A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.</p>
+<p>A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, le kell tiltanunk a cache-t a Developer Tools eszköztáron.</p>
 </div>
 <p>Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.</p>
 <p>A kiválasztott elemhez a jobb oldali <strong>Computed</strong> fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS fájlunk linkelve és CSS szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített <strong>user agent stylesheet</strong>-je érvényesül. Itt láthatjuk a <strong>CSS Box model</strong>-t is, ami az elem <strong>tartalma</strong>, a hozzá tartozó <strong>padding</strong>, <strong>border</strong> és <strong>margin</strong> értékek egymásra halmozását jelenti a <em>2 dimenziós téglalap</em> oldalaihoz mérten.</p>
@@ -1579,18 +1579,18 @@
 <figcaption>900px alatt</figcaption>
 </figure>
 <h3 id="41-layout-vizsgalata">4.1 Layout vizsgálata<a class="headerlink" href="#41-layout-vizsgalata" title="Permanent link">&para;</a></h3>
-<p>Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a <strong><code>css/main.css</code></strong> fájlban találhatók, melyekből a lefontosabbakat tekintük is át.</p>
+<p>Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a <strong><code>css/main.css</code></strong> fájlban találhatók, melyekből a legfontosabbakat tekintsük is át.</p>
 <ul>
-<li>A <code>html</code> és <code>body</code> tagen nincs margin és padding sem és itt adtuk meg a betűtípust is.</li>
-<li>A hivatkozások <code>a</code> tagek nincsennek aláhúzva.</li>
+<li>A <code>html</code> és <code>body</code> tagen nincs margin és padding sem, és itt adtuk meg a betűtípust is.</li>
+<li>A hivatkozások (<code>a</code> tagek) nincsenek aláhúzva.</li>
 <li>Van egy <code>.container</code> CSS osztály, amiben megadtuk, hogy a tartalmi rész 1200px széles legyen és  középre igazítottuk.<ul>
 <li>Itt a <code>margin-left: auto</code> és <code>margin-right: auto</code> segítségével igazítjuk a tartalmat  középre.</li>
 <li>Figyeljük meg, hogy a <code>position: relative</code> beállítás is szerepel, hogy az abszolút pozícionált elemek ehhez képest legyenek igazítva. </li>
 </ul>
 </li>
-<li>Mivel fix fejlécet szeretnénk ezért a fő tartalmi részre <code>main</code> tag beállítottunk egy 76px-es paddingot. 60px a fejléc magassága és 16px távolságot szeretnénk a fejléc és a tartalmi rész között.</li>
+<li>Mivel fix fejlécet szeretnénk ezért a fő tartalmi részre (<code>main</code> tag) beállítottunk egy 76px-es paddingot. 60px a fejléc magassága és 16px távolságot szeretnénk a fejléc és a tartalmi rész között.</li>
 <li>Az <code>aside</code> jobb oldalra van igazítva.<ul>
-<li>Mivel a végső cél az, hogy teljesen függetlenül tudjuk görgetni és akor is teljes magasságú legyen ha a mellette lévő fő tartalmi rész kevés, ezért <code>position: absolute</code> segítségével pozítionáljuk a <code>container</code> tetejékez és jobb oldalra (<code>top: 60px</code> és <code>right: 0</code>).</li>
+<li>Mivel a végső cél az, hogy teljesen függetlenül tudjuk görgetni, és akkor is teljes magasságú legyen, ha a mellette lévő fő tartalmi rész kevés, ezért <code>position: absolute</code> segítségével pozícionáljuk a <code>container</code> tetejéhez és jobb oldalra (<code>top: 60px</code> és <code>right: 0</code>).</li>
 <li>Ezen felül megadtuk, hogy 450px széles legyen, a hátterét és egy bal oldali margót.</li>
 </ul>
 </li>
@@ -1787,8 +1787,8 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
 </ul>
 <h4 id="beadando_6">Beadandó<a class="headerlink" href="#beadando_6" title="Permanent link">&para;</a></h4>
 <div class="admonition example">
-<p class="admonition-title">4 Feladat - Reszponzivitás beadandó (0.5 pont)</p>
-<p>Demonstrálja képernyőképpel <strong><code>f4-5.png</code></strong>, hogy 900px alatt nem látszódik a jobb oldali hasáb.</p>
+<p class="admonition-title">4. Feladat - Reszponzivitás beadandó (0.5 pont)</p>
+<p>Demonstrálja képernyőképpel (<strong><code>f4-5.png</code></strong>), hogy 900px alatt nem látszódik a jobb oldali hasáb.</p>
 </div>
 
     <hr>
@@ -1800,8 +1800,8 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
           </path>
         </svg>
       </span>
-      <span title="2023. november 7. 18:39:04">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-07T18:39:04+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-07</span>
+      <span title="2023. november 8. 19:06:23">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-08T19:06:23+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-08</span>
       </span>
     </span>
 
@@ -1816,7 +1816,9 @@ Demonstrálja képernyőképpel a megoldást! <strong><code>f4-4-iMsc.png</code>
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/botetta" target="_blank" rel="noopener noreferrer" class="md-author" title="@botetta">
+      <nav><a href="https://github.com/tbeni22" target="_blank" rel="noopener noreferrer" class="md-author" title="@tbeni22">
+          <img src="https://avatars.githubusercontent.com/u/47601385?v=4?size=72" alt="@tbeni22">
+        </a><a href="https://github.com/botetta" target="_blank" rel="noopener noreferrer" class="md-author" title="@botetta">
           <img src="https://avatars.githubusercontent.com/u/59029986?v=4?size=72" alt="@botetta">
         </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
           <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
