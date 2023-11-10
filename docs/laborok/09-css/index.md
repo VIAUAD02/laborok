@@ -317,7 +317,7 @@ Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük
 
 ## 4. Feladat 
 
-Mostantól a `Feladat4` mappában lévő állományokkal dolgozz.
+Mostantól a `feladat4` mappában lévő állományokkal dolgozz.
 
 Készítsd el az alábbi ábrán látható HTML oldal designját. Figyelj rá, hogy a megvalósítás során nem alkalmazhatsz inline stílusokat, és kerüld a HTML fájl módosítását.
 
@@ -361,12 +361,7 @@ A fejlécnek így kell kinéznie
 
 A logó mellett két elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészíteni)!
 
-* A menüsort `<ul>` és `<li>` elemek használatával strukturáld. (Tipp: `display: inline-block`)
-* A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín legyen szürke.
-* A menüpontok szövege legyen függőlegesen középre igazítva. (Tipp: `line-height`)
-* Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
-
-#### Megvalósítás lépései
+#### A megvalósítás lépései
 
 1. A fejléchez alapvető kinézetének beállítása.
     * Készíts egy `.page-header` CSS osztályt amit tegyél rá az első `header` tagre.
@@ -389,7 +384,7 @@ A logó mellett két elemből álló **menüsor** található, ahol az elemek á
         }
         ```
 
-2. Fejlécen belüli layout kialakítása.
+2. A fejlécen belüli layout kialakítása.
     * Készíts egy `.logo` CSS osztályt, amit rendelj a fejlécben lévő képhez.
     * A CSS osztályan igazítsd balra a képet úgy, hogy mellé fel tudjon csúszni felsorolás.
     ??? info "Segítség"
@@ -413,7 +408,7 @@ A logó mellett két elemből álló **menüsor** található, ahol az elemek á
         * Az egyes elemek közötti távolságokra a `padding`-ot érdemes használni.
         * Függőleges igazításhoz a `line-height`-t kell beállítani a fejléc magasságára. (60px)
 
-4. Navigációs linkek színének beállítása
+4. A navigációs linkek színének beállítása
     * A fejlécben lévő navigációs linkek legyenek fehér színűek, a betűméter pedig 1.1em
     * Ha egy menupont (link) fölé visszük az egeret, akkor a betű színe legyen szürke.
 
