@@ -302,7 +302,7 @@ A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a sz
 }
 ```
 
-A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik meg, tehát nem a képernyő mérete, hanem a rendelkezésre álló hely függvényében változik (pl. ablak átméretezésekor is). A `medium-only` osztállyal ellátott elemek csak ilyen képernyőméreten jelennek meg, ugyanis a media query szabály specifikusabb, mint az azon kívül definiált.
+A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik meg, tehát nem a képernyő mérete, hanem a rendelkezésre álló hely függvényében változik (pl. ablak átméretezésekor is). A `medium-only` osztállyal ellátott elemek csak ilyen képernyőméreten jelennek meg, ugyanis a media query szabály specifikusabb, mint az azon kívül definiált. Tedd rá a `table` elemre az imént létrehozott osztályt.
 
 Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
@@ -360,11 +360,6 @@ A fejlécnek így kell kinéznie
 </figure>
 
 A logó mellett két elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészíteni)!
-
-* A menüsort `<ul>` és `<li>` elemek használatával strukturáld. (Tipp: `display: inline-block`)
-* A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín legyen szürke.
-* A menüpontok szövege legyen függőlegesen középre igazítva. (Tipp: `line-height`)
-* Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
 
 #### A megvalósítás lépései
 
