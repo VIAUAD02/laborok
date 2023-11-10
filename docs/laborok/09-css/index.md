@@ -361,6 +361,11 @@ A fejlécnek így kell kinéznie
 
 A logó mellett két elemből álló **menüsor** található, ahol az elemek átnavigálnak rendre az `index.html` és `contact.html` oldalakra az aktuális oldalról, megnevezésük: *Főoldal*, *Kapcsolat* (ezeket az oldalakat nem kell elkészíteni)!
 
+* A menüsort `<ul>` és `<li>` elemek használatával strukturáld. (Tipp: `display: inline-block`)
+* A menüpontok betűmérete 1.1em legyen, előtérszíne fehér. Az egeret a menüpontra helyezve (Tipp: `:hover` pszeudoclass) a háttérszín legyen szürke.
+* A menüpontok szövege legyen függőlegesen középre igazítva. (Tipp: `line-height`)
+* Ügyeljen rá, hogy görgetéskor a tartalom ne takarja ki a menüsort! (Tipp: `z-index`)
+
 #### A megvalósítás lépései
 
 1. A fejléchez alapvető kinézetének beállítása.
