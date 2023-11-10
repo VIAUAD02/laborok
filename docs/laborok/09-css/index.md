@@ -135,7 +135,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 !!! warning "Inline stílusok"
     Inline stílusokat csak kivételes esetekben használjunk, jellemzően programozottan (JavaScriptből) elfogadott lehet egy elem megjelenését ilyen módon állítani, de a nyers HTML-ben nem!
 
-* Vegyünk fel egy új szabályt, amiben megadjuk, hogy a táblázat cellák `td` paddingja 1rem legyen minden irányba. Ehhez a Syles fülön a jobb oldalon található + jelre kell kattintani és akkor létrejön egy új szabály ahol megadhatjuk a selectort és a beállításokat is.
+* Vegyünk fel egy új szabályt, amiben megadjuk, hogy a táblázat cellák `td` paddingja 1rem legyen minden irányba. Ehhez a Styles fülön a jobb oldalon található + jelre kell kattintani és akkor létrejön egy új szabály ahol megadhatjuk a selectort és a beállításokat is.
     ``` css
     td {
         padding: 1rem;
@@ -333,7 +333,7 @@ Készítsd el az alábbi ábrán látható HTML oldal designját. Figyelj rá, h
 
 ### 4.1 Layout vizsgálata
 
-Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a **`css/main.css`** fájlban találhatók, melyekből a legfontosabbakat tekintsük is át.
+Az oldalnak az alapvető elrendezése már elkészült, melyhez a formázások a **`feladat4/css/main.css`** fájlban találhatók, melyekből a legfontosabbakat tekintsük is át.
 
 * A `html` és `body` tagen nincs margin és padding sem, és itt adtuk meg a betűtípust is.
 * A hivatkozások (`a` tagek) nincsenek aláhúzva.
@@ -422,7 +422,7 @@ A logó mellett két elemből álló **menüsor** található, ahol az elemek á
 !!! example "4. feladat - Fejléc beadandó (1 pont)"
     Commitolja a `index.html` és `navbar.css` fájlokat a repositoryba!
 
-    Demonstrálja képernyőképpel a megoldást! **`f4-2.png`**
+    Demonstrálja képernyőképpel a megoldást! **`f4-1.png`**
 
 ### 4.3 Fő hír megjelenítése
 
@@ -460,7 +460,7 @@ A kezdőoldalon a legfrissebb hír jelenik meg.
 #### Beadandó
 
 !!! example "4. feladat - Hír szövege beadandó (1 pont)"
-    Demonstrálja képernyőképpel a megoldást! **`f4-3.png`**
+    Demonstrálja képernyőképpel a megoldást! **`f4-2.png`**
 
 ### 4.4 Oldalsó sáv
 
@@ -483,13 +483,13 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítsd el.
 #### Beadandó
 
 !!! example "4. feladat - Oldalsó sáv beadandó (1 pont)"
-    Demonstrálja képernyőképpel a megoldást! **`f4-4.png`**
+    Demonstrálja képernyőképpel a megoldást! **`f4-3.png`**
 
 #### IMSc Beadandó
 !!! example "4. feladat - Oldalsó sáv beadandó (1 IMSc pont)"
     * Ha az oldalsó hír címe rövid, akkor a tartalmi rész felcsúszik alá a `float` miatt. Készítsd szabályt, ami a HTML módosítása nélkül az oldalsó sávban lévő hírek fejléce után törli a floatolást.
     * Használt a `::after` -t a megoldáshoz
-    Demonstrálja képernyőképpel a megoldást! **`f4-4-iMsc.png`**
+    Demonstrálja képernyőképpel a megoldást! **`f4-3-iMsc.png`**
 
 ### 4.5 Reszponzivitás
 
@@ -506,4 +506,4 @@ Egészítse ki a `main.css` fájlt úgy, hogy ha 900px-nél kisebbre állítjuk 
 #### Beadandó
 
 !!! example "4. Feladat - Reszponzivitás beadandó (0.5 pont)"
-    Demonstrálja képernyőképpel (**`f4-5.png`**), hogy 900px alatt nem látszódik a jobb oldali hasáb.
+    Demonstrálja képernyőképpel (**`f4-4.png`**), hogy 900px alatt nem látszódik a jobb oldali hasáb.
