@@ -400,7 +400,7 @@ Kezdjük azzal, hogy kiegészítjük a themes.xml fájl tartalmát az alábbira:
 </resources>
 ```
 
-Szeretnék, hogy a bevásárlólista alkalmazás egyetlen `Activity`-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az `activity_main.xml` tartalmát az alábbiakra:
+Szeretnénk, hogy a bevásárlólista alkalmazás egyetlen `Activity`-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az `activity_main.xml` tartalmát az alábbiakra:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
