@@ -1566,7 +1566,7 @@ rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztályn
 </code></pre></div>
 <p>Érdemes megfigyelni továbbá azt is, hogy az osztályokat nem a class kulcsszóval deklaráltuk. Helyette az <code>object</code>-et használjuk, amivel a Kotlin nyelv azt biztosítja számunkra, hogy a <code>DbConstants</code> és a benne lévő <code>Points</code> és <code>Lines</code> osztály is singletonként viselkednek, azaz az alkalmazás futtatásakor létrejön belőlük egy példány, további példányokat pedig nem lehet létrehozni belőlük.</p>
 <h3 id="a-segedosztalyok-letrehozasa">A segédosztályok létrehozása<a class="headerlink" href="#a-segedosztalyok-letrehozasa" title="Permanent link">&para;</a></h3>
-<p>Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a <code>DBHelper</code> osztály, ami az <code>SQLiteOpenHelper</code> osztályból származik. Vegyük fel ezt is az <code>sqlite</code> <em>package</em>-be.</p>
+<p>Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a <code>DbHelper</code> osztály, ami az <code>SQLiteOpenHelper</code> osztályból származik. Vegyük fel ezt is az <code>sqlite</code> <em>package</em>-be.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DbHelper</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">)</span><span class="w"> </span><span class="p">:</span>
 <span class="w">    </span><span class="n">SQLiteOpenHelper</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_NAME</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_VERSION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
@@ -1776,8 +1776,8 @@ rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztályn
           </path>
         </svg>
       </span>
-      <span title="2023. október 9. 01:40:19">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-09T01:40:19+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-09</span>
+      <span title="2023. november 23. 09:50:03">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-23T09:50:03+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-23</span>
       </span>
     </span>
 
@@ -1792,7 +1792,9 @@ rajzoltatni, így elegendő két <code>Point</code>-ot tartalmaznia az osztályn
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+      <nav><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
+          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/zoli0" target="_blank" rel="noopener noreferrer" class="md-author" title="@zoli0">
           <img src="https://avatars.githubusercontent.com/u/24962402?v=4?size=72" alt="@zoli0">
