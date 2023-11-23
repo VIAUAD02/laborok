@@ -378,7 +378,7 @@ A következő rész a lábléc elkészítése.
 
 * Adj meg megfelelő méretű paddingot, amihez a `p-4` CSS osztályt vagy annak egyéb változatait használd. [Bootstrap spacing](https://getbootstrap.com/docs/5.0/utilities/spacing/)
 * Állítd be a sötét hátteret, úgy mint ahogy az a fejlécben is megadásra került.
-* A copyright szöveg kerüljön balra, az ikonok pedig jobbra. Ehhez a flexboxot használd a bootstapben definiált osztályok segítségével. [Bootstrap felx](https://getbootstrap.com/docs/5.2/utilities/flex/)
+* A copyright szöveg kerüljön balra, az ikonok pedig jobbra. Ehhez a flexboxot használd a bootstrapben definiált osztályok segítségével. [Bootstrap felx](https://getbootstrap.com/docs/5.2/utilities/flex/)
 * Készíts egyedi CSS szabályokat a láblécre ahol az alábbiakat állítod be
     * A szöveg fehér színű legyen.
     * Az egyes ikonok mérete 1.25rem legyen
