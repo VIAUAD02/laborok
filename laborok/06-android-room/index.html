@@ -1203,7 +1203,7 @@ A menüben található „Remove all” opcióval az összes lista elemet törö
 <p>Ezt követően, szintén ebben a <code>build.gradle.kts</code> fájlban a <code>dependencies</code> blokkhoz adjuk hozzá a <code>Room</code> libraryt:
 <div class="highlight"><pre><span></span><code>dependencies {
     //...
-    val room_version = &quot;2.4.0&quot;
+    val room_version = &quot;2.3.0&quot;
     implementation(&quot;androidx.room:room-runtime:$room_version&quot;)
     implementation(&quot;androidx.room:room-ktx:$room_version&quot;)
     kapt(&quot;androidx.room:room-compiler:$room_version&quot;)
@@ -1464,7 +1464,7 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
 <span class="w">    </span><span class="nt">&lt;/style&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre></div>
-<p>Szeretnék, hogy a bevásárlólista alkalmazás egyetlen <code>Activity</code>-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az <code>activity_main.xml</code> tartalmát az alábbiakra:</p>
+<p>Szeretnénk, hogy a bevásárlólista alkalmazás egyetlen <code>Activity</code>-jét teljesen elfoglalja. Ennek az eléréséhez cseréljük le az <code>activity_main.xml</code> tartalmát az alábbiakra:</p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout</span><span class="w"> </span>
 <span class="w">    </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
@@ -1803,8 +1803,8 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
           </path>
         </svg>
       </span>
-      <span title="2023. október 17. 12:05:51">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-17T12:05:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-17</span>
+      <span title="2023. november 23. 09:50:55">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-23T09:50:55+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-23</span>
       </span>
     </span>
 
@@ -1819,7 +1819,9 @@ Frissítsük a <code>MainActivity</code>-t, hogy implementálja a dialógusban d
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/sloweroons" target="_blank" rel="noopener noreferrer" class="md-author" title="@sloweroons">
+      <nav><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
+          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
+        </a><a href="https://github.com/sloweroons" target="_blank" rel="noopener noreferrer" class="md-author" title="@sloweroons">
           <img src="https://avatars.githubusercontent.com/u/127698251?v=4?size=72" alt="@sloweroons">
         </a><a href="https://github.com/gaborbsd" target="_blank" rel="noopener noreferrer" class="md-author" title="@gaborbsd">
           <img src="https://avatars.githubusercontent.com/u/5345619?v=4?size=72" alt="@gaborbsd">
