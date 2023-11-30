@@ -280,7 +280,7 @@ JavaScriptben a DOM API-t használval
 
 ### 2.1. Tabfül váltás
 
-Készítsük el a kódot, amiben az egyes tabfületek között váltani tudunk. Ehhez a `todo.js` fájlt kell kiegészíteni.
+Készítsük el a kódot, amiben az egyes tabfülek között váltani tudunk. Ehhez a `todo.js` fájlt kell kiegészíteni.
 
 * Vegyünk fel egy változót `currentTab` névvel, amiben eltároljuk az aktuálisan kiválasztott fül típusát.
 * Készísünk egy függényt `selectTab` névvel, ami paraméterül megkapja, hogy melyik fület kell megjelenítenie és ez alapján a `todo-tab` CSS osztállyal rendelkező tabfüleken az `.active` CSS osztályt átteszi az újonnan kiválasztott fülre.
