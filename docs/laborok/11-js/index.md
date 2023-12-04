@@ -267,7 +267,7 @@ renderTodos();
 
 ## 2. Feladat - Todo elemek állapotváltás
 
-Az alkalmazásban több helyen is kell állapot változást kezelni. Egyfelől az egyes Todo elemek állapota változhat, másfelől a tabfülekre kattintva csak az adott állapotban lévő elemeket kell megjeleníteni, illetve jelölni kell az aktuálisan kiválasztott fület is.
+Az alkalmazásban több helyen is kell állapotváltozást kezelni. Egyfelől az egyes Todo elemek állapota változhat, másfelől a tabfülekre kattintva csak az adott állapotban lévő elemeket kell megjeleníteni, illetve jelölni kell az aktuálisan kiválasztott fület is.
 
 Felhasználói interakciót úgy tudunk megvalósítani, hogy **eseménykezelőt rendelünk** egy tag megfelelő eseményéhez. 
 
@@ -280,7 +280,7 @@ JavaScriptben a DOM API-t használval
 
 ### 2.1. Tabfül váltás
 
-Készítsük el a kódot, amiben az egyes tabfület között váltani tudunk. Ehhez a `todo.js` fájlt kell kiegészíteni.
+Készítsük el a kódot, amiben az egyes tabfülek között váltani tudunk. Ehhez a `todo.js` fájlt kell kiegészíteni.
 
 * Vegyünk fel egy változót `currentTab` névvel, amiben eltároljuk az aktuálisan kiválasztott fül típusát.
 * Készísünk egy függényt `selectTab` névvel, ami paraméterül megkapja, hogy melyik fület kell megjelenítenie és ez alapján a `todo-tab` CSS osztállyal rendelkező tabfüleken az `.active` CSS osztályt átteszi az újonnan kiválasztott fülre.
@@ -464,7 +464,7 @@ A részfeladatok tehát:
 * Az elkészített alkalmazást az implementáció után teszted egy inkognító abalkban is, hogy ott is működik-e, vagy netán a `todos` tömb `null` vagy `undefined` értéket kap, amin a `push` nem értelmezett.
 
 !!! tip "Storage debuggolás"
-    A storage tartalmát böngészőtől függően különböző helyen tudjuk megvizsgálni, jellemzően a Storage vagy Debugger fülön található.
+    A storage tartalmát böngészőtől függően különböző helyen tudjuk megvizsgálni, jellemzően az Application/Storage vagy Debugger fülön található.
 
 ### Beadandó
 
