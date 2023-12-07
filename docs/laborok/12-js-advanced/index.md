@@ -336,7 +336,7 @@ export class Guess {
             element.disabled = !this.enabled;
         }
 
-        if (!this.enabled) {
+        if (this.enabled) {
             document.getElementById('guess-input').focus();
         }
     }
