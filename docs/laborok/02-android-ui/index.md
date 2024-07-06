@@ -42,11 +42,11 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Első lépésként indítsuk el az Android Studio-t, majd:
 
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
-1. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
-1. Nyelvnek válasszuk a *Kotlin*-t.
-1. A minimum API szint legyen API24: Android 7.0.
-1. A *Build configuration language* Kotlin DSL legyen.
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
+2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
+3. Nyelvnek válasszuk a *Kotlin*-t.
+4. A minimum API szint legyen API24: Android 7.0.
+5. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő PublicTransport könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
@@ -54,19 +54,48 @@ Első lépésként indítsuk el az Android Studio-t, majd:
 !!!info ""
 	A projekt létrehozásakor, a fordító keretrendszernek rengeteg függőséget kell letöltenie. Amíg ez nem történt meg, addig a projektben nehézkes navigálni, hiányzik a kódkiegészítés, stb... Éppen ezért ezt tanácsos kivárni, azonban ez akár 5 percet is igénybe vehet az első alkalommal! Az ablak alján látható információs sávot kell figyelni.
 
-Láthatjuk, hogy létrejött egy projekt, amiben van egy Activity, `MainActivity` néven, valamint egy hozzá tartozó layout fájl `activity_main.xml` néven. Nevezzük ezeket át `LoginActivity`-re, illetve `activity_login.xml`-re. Ezt a jobb gomb > Refactor > Rename menüpontban lehet megtenni (vagy Shift+F6). Az átnevezésnél található egy Scope nevű beállítás. Ezt állítsuk úgy be, hogy csak a jelenlegi projekten belül nevezze át a dolgokat (Project Files).
+Láthatjuk, hogy létrejött egy projekt, amiben van egy Activity, `MainActivity` néven, ez be is lett írva automatikusan a *Manifest* fájlba mint Activity. Ezután nyissuk meg a
 
-!!!note ""
-	Érdemes megfigyelni, hogy az átnevezés "okos". A layout fájl átnevezése esetén a LoginActivity-ben nem kell kézzel átírnunk a layout fájl azonosítóját, mert ezt a rendszer megteszi. Ugyanez igaz a manifest fájlra is.
+- Modul szintű `build.gradle.kts` fájlt (*app -> build.gradle.kts*)
+- Illetve a `libs.version.toml` fájlt (*gradle -> libs.versions.toml*)
+
+Ezt a kettőt úgy tudjuk elérni, hogy a bal fölső sarokban az *Android* nézetről *Project* nézetre kapcsolunk, és itt megkeressük a fenti alapján ezt a két fájlt.
+Ezután másoljuk be a következő függőségeket a `libs.version.toml` fájlba:
+```toml
+[versions]
+...
+coreSplashscreen = "1.0.1"
+navigationCompose = "2.7.7"
+
+[libraries]
+...
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+```
+
+A `[versions]` tag-en belül adhatunk egy változó nevet, majd egy verzió értéket, amit majd a következő lépésben átadunk a `version.ref`-nek. Ez megmondja, hogy melyik verziót használja az adott modulból. A `[libraries]` tag-en belül definiálunk szintén egy változót `androidx-navigation-compose` néven, amit majd később használunk fel a `build.gradle.kts` fájlban. Ennek megadjuk, hogy melyik modul-t szeretnénk beletenni a projektbe, valamint egy verzió számot, amit korábban már definiáltunk. Hogy ha ezzel megvagyunk, nyissuk meg a `build.gradle.kts` fájlt, és adjuk hozzá a következőt a `dependencies` tag-en belülre
+
+```kts
+dependencies {
+    ...
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation.compose)
+}
+```
+
+Hogy ha ezzel is megvagyunk kattintsunk a `Sync Now` gombra a jobb fölső sarokban, és várjuk meg míg letölti a szükséges függőségeket.
+
+!!!warning "Sync Now"
+    Hogy ha ezt a lépést kihagyjuk, akkor az Android Studio nem fogja megtalálni a szükséges elemeket, és ez később gondot okozhat!
+
 
 ## Splash képernyő (0.5 pont)
 
-Az első Activity-nk a nevéhez híven a felhasználó bejelentkezéséért lesz felelős, azonban még mielőtt ez megjelenik a felhasználó számára, egy splash képernyővel fogjuk üdvözölni. Ez egy elegáns megoldás arra, hogy az alkalmazás betöltéséig ne egy egyszínű képernyő legyen a felhasználó előtt, hanem egy tetszőleges saját design.
+Miután a felhasználó elindította az alkalmazást, egy "üdvözlő/splash" képernyővel szeretnénk köszönteni. Ez egy elegáns megoldás arra, hogy az alkalmazás betöltéséig ne egy egyszínű képernyő legyen a felhasználó előtt, hanem jelen esetben egy alkalmazás logo, egy tetszőleges háttér színnel.
 
-<p align="center"> 
+<p align="center">
 <img src="./assets/splash.png" width="320">
 </p>
-
 
 ???info "Android 12 (API 31) alatt"
 
@@ -141,27 +170,19 @@ Az első Activity-nk a nevéhez híven a felhasználó bejelentkezéséért lesz
 	}
 	```
 
-API 31 felett bevezetésre került egy [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), most ezt fogjuk használni. Ehhez adjuk hozzá a szükséges függőséget az `app` modulhoz tartozó `build.gradle.kts` fájlunkban a *dependencies* szekcióhoz:
 
-```gradle
-dependencies {
-	...
-    implementation("androidx.core:core-splashscreen:1.0.0")
-}
-```
+API 31 felett bevezetésre került egy [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), most ezt fogjuk használni. Ehhez már korábban felvettük a szükséges függőséget a `build.gradle.kts` fájlba.
 
-A függőség hozzáadása után nyomjuk meg a `Sync Now` gombot a felül megjelenő kék sávon. A Környezet ez után letölti amegfelelő könyvtárakat, és újraszinkronizálja a gradle fájlokat. Innentől kezdve már használható a frissen hozzáadott könyvtár.
+Készítsünk el egy tetszőleges ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített `Asset Studio` eszközét fogjuk használni. Bal oldalon a a *Project* fül alatt nyissuk meg a `Resource Manager`-t, majd nyomjunk a <kbd>+</kbd> gombra, ott pedig az `Image Asset` lehetőségre.
 
-Azonban először készítsünk egy ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített `Asset Studio` eszközét fogjuk használni. Bal oldalon a *Project* fül alatt nyissuk meg a `Resource Manager`-t, majd nyomjunk a + gombra, ott pedig az `Image Asset` lehetőségre. 
-
-1. Itt *Launcher Icon*-t szeretnénk majd generálni, tehát válasszuk azt. 
-1. A neve legyen *ic_transport*
-1. Az egyszerűség kedvéért most *Clip Art*-ból fogjuk elkészíteni az ikonunkat, így válasszuk azt, majd az alatta lévő gombnál válasszunk egy szimpatikusat (pl. a bus keressel).
-1. Ez után válasszunk egy szimpatikus színt.
-1. Ha akarunk, állíthatunk a méretezésen is.
-1. A `Background Layer` fülön beállíthatjuk a háttér színét is.
-1. A beállításoknál állítsuk át, hogy az ikonok *PNG* formábumban készüljenek el.
-1. Ez után nyomjunk a *Next* majd a *Finish* gombra.
+1. Itt *Launcher Icon-t* szeretnénk majd generálni, tehát válasszuk azt.
+2. A neve legyen *ic_transport*
+3. Az egyszerűség kedvéért most *Clip Art*-ból fogjuk elkészíteni az ikonunkat, így válasszuk azt, majd az alatta lévő gombnál válasszunk egy szimpatikusat (pl. a *bus* keresési szóval).
+4. Ez után válasszunk egy szimpatikus színt.
+5. Ha akarunk, állíthatunk a méretezésen is.
+6. A `Background Layer` fülön beállíthatjuk a háttér színét is.
+7. A beállításoknál állítsuk át, hogy az ikon *PNG* formában készüljön el.
+8. Ezután nyomjunk a *Next* majd a *Finish* gombra.
 
 <p align="center"> 
 <img src="./assets/asset_studio.png">
@@ -169,251 +190,229 @@ Azonban először készítsünk egy ikont, amit majd fel fogunk használni a spl
 
 Láthatjuk, hogy több féle ikon készült, több féle méretben. Ezekből a rendszer a konfiguráció függvényében fog választani.
 
-A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `themes.xml` fájlban.
+A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `themes.xml` fájlban. Vegyük fel az alábbi kódrészletet a meglévő stílus alá. (A tárgy keretein belül nagyon kevés xml kóddal fogunk foglalkozni.)
 
 ```xml
-<resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PublicTransport" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="Theme.PublicTransport" parent="Base.Theme.PublicTransport" />
-
-    <style name="Theme.PublicTransport.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/design_default_color_primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transport_foreground</item>
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
-        <item name="postSplashScreenTheme">@style/Theme.PublicTransport</item>
-    </style>
-    
-</resources>
+<style name="Theme.PublicTransport.Starting" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">#5A3DDC</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transport_foreground</item>
+    <item name="android:windowSplashScreenIconBackgroundColor">#5A3DDC</item>
+    <item name="postSplashScreenTheme">@style/Theme.PublicTransport</item>
+</style>
 ```
 
 Az új stílusunk a `Theme.PublicTransport.Starting` nevet viseli, és a `Theme.SplashScreen` témából származik. Ezen kívül beállítottuk benne, hogy
 
-- `windowSplashScreenBackground`: a splash képernyő háttere a *primary color* legyen (természetesen más is választható),
+- `windowSplashScreenBackground`: a splash képernyő háttere (természetesen más is választható),
 - `windowSplashScreenAnimatedIcon`: a középen megjelenő ikon a saját ikonunk legyen, annak is csak az előtere,
-- `android:windowSplashScreenIconBackgroundColor`: az ikonunk mögött milyen háttér legyen,
+- `android:windowSplashScreenIconBackgroundColor`: az ikonunk mögött milyen háttér legyen (ez is személyre szabható más színnel),
 - `postSplashScreenTheme`: a splash screen után milyen stílusra kell visszaváltania az alkalmazásnak.
+
 
 !!!note
 	A Splash Screen API ennél jóval többet tud, akár animálhatjuk is a megjelenített képet, azonban ez sajnos túlmutat a labor keretein.
 
-Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk `LoginActivity`-re a `manifest.xml`-ben.
- 
+Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk `MainActivity`-re a `manifest.xml`-ben.
+
+
 ```xml
-<application
+<activity
+    android:theme="@style/Theme.PublicTransport.Starting"
+    android:name=".MainActivity"
+    android:exported="true">
     ...
-	<activity
-        android:theme="@style/Theme.PublicTransport.Starting"
-        android:name=".LoginActivity"
-        android:exported="true">
-			...
-</application>
+</activity>
 ```
 
-Ha már itt járunk, állítsuk be az alkalmazásunk ikonját is:
+Ezután állítsuk be az alkalmazásunk ikonját is:
 
 ```xml
 <application
     ...
-	android:icon="@mipmap/ic_transport"
+    android:icon="@mipmap/ic_transport_round"
     android:roundIcon="@mipmap/ic_transport_round">
-	...
+    ...
 </application>
 ```
-
-Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate`-ben, hogy valójában elkészüljön a *splash screen*:
+Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate-ben`, hogy az alkalmazás indításánál, valóban elkészüljön a *splash screen*.
 
 ```kotlin
-class LoginActivity : AppCompatActivity() {
-	override fun onCreate(savedInstanceState: Bundle?) {
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-	}
+        enableEdgeToEdge()
+
+        setContent {
+            PublicTransportTheme {
+                Greeting(name = "Android")
+            }
+        }
+    }
 }
 ```
 
-Próbáljuk ki az alkalmazásunkat!
+!!!note "Splash Screen-NavGraph"
+    A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#ismerteto-feladat-navgrap-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
 
+
+Próbáljuk ki az alkalmazásunkat!
 
 !!!example "BEADANDÓ (0.5 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **splash képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-	
+
 
 ## Login képernyő (0.5 pont)
 
-Most már elkészíthetjük a login képernyőt. A felhasználótól egy email címet, illetve egy számokból álló jelszót fogunk bekérni, és egyelőre csak azt fogjuk ellenőrizni, hogy beírt-e valamit a mezőkbe.
+Most már elkészíthetjük a login képernyőt. A felhasználótól egy e-mail címet, illetve egy számokból álló jelszót fogunk bekérni, és egyelőre csak azt fogjuk ellenőrizni, hogy beírt-e valamit a mezőbe.
 
 <p align="center"> 
 <img src="./assets/login.png" width="320">
 </p>
 
-Az `activity_login.xml` fájlba kerüljön az alábbi kód. Alapértelmezetten egy grafikus szerkesztő nyílik meg, ezt át kell állítani a szöveges szerkesztőre. Ezt az Android Studio verziójától függően a jobb felső, vagy a jobb alsó sarokban lehet megtenni:
+Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a package-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Ismertető feladat - Screen File](#ismerteto-feladat-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:text="Please enter your credentials" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email" />
-
-    <EditText
-        android:id="@+id/etEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Login" />
-
-</LinearLayout>
-```
-
-- A használt elrendezés teljesen lineáris, csak egymás alá helyezünk el benne különböző View-kat egy `LinearLayout`-ban. 
-- Az `EditText`-eknek és a `Button`-nek adtunk ID-kat, hogy később kódból elérjük őket.
-
-Az alkalmazást újra futtatva megjelenik a layout, azonban most még bármilyen szöveget be tudnunk írni a két beviteli mezőbe. Az `EditText` osztály lehetőséget ad számos speciális input kezelésére, XML kódban az [`inputType`](https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType) attribútum megadásával. Jelen esetben az email címet kezelő `EditText`-hez a `textEmailAddress` értéket, a másikhoz pedig a `numberPassword` értéket használhatjuk.
-
-```xml
-<EditText
-    android:id="@+id/etEmailAddress"
-    ...
-    android:inputType="textEmailAddress" />
-
-<EditText
-    android:id="@+id/etPassword"
-    ...
-    android:inputType="numberPassword" />
-```
-
-Ha most kipróbáljuk az alkalmazást, már látjuk a beállítások hatását: 
-
-- A legtöbb billentyűzettel az első mezőhöz most már megjelenik a `@` szimbólum, a másodiknál pedig csak számokat írhatunk be.
-- Mivel a második mezőt jelszó típusúnak állítottuk be, a karakterek a megszokott módon elrejtésre kerülnek a beírásuk után.
-
-Még egy dolgunk van ezen a képernyőn, az input ellenőrzése. Ezt a `LoginActivity.kt` fájlban tehetjük meg. A layout-unkat alkotó `View`-kat az `onCreate` függvényben lévő `setContentView` hívás után tudjuk először elérni. 
-
-!!!note ""
-	Ezt csinálhatnánk a klasszikus módon, azaz példányosítunk egy gombot, a `findViewById` metódussal referenciát szerzünk a felületen lévő vezérlőre, és a példányon beállítjuk az eseménykezelőt:
-	
-	```kotlin
-	val btnLogin = findViewById<Button>(R.id.btnLogin)
-	btnLogin.setOnClickListener {
-	    ...
-	}
-	```
-
-	Azonban a `findViewById` hívásnak számos problémája [van](https://developer.android.com/topic/libraries/view-binding#findviewbyid). Ezekről bővebben az előadáson lesz szó (pl.: *Null safety*, *type safety*). Ezért ehelyett "nézetkötést", azaz `ViewBinding`-ot fogunk használni.
-
-A [`ViewBinding`](https://developer.android.com/topic/libraries/view-binding) a kódírást könnyíti meg számunkra. Amennyiben ezt használjuk, az automatikusan generálódó *binding* osztályokon keresztül közvetlen referencián keresztül tudunk elérni minden *ID*-val rendelkező erőforrást az `XML` fájljainkban.
-
-Először is be kell kapcsolnunk a modulunkra a `ViewBinding`-ot. Az `app` modulhoz tartozó `build.gradle.kts` fájlban az `android` tagen belülre illesszük be az engedélyezést (Ezek után kattintsunk jobb felül a `Sync Now` gombra.):
+Nyissuk meg a `NavGraph` fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.
 
 ```kotlin
-android {
-    ...
-    buildFeatures {
-        viewBinding = true
-    }
-}
-
-```
-
-Ezzel után már a teljes modulunkban automatikusan elérhetővé vált a `ViewBinding`. 
-
-!!! info "ViewBinding"
-	Ebben az esetben a modul minden egyes XML layout fájljához generálódik egy úgynevezett binding osztály. Minden binding osztály tartalmaz referenciát az adott XML layout erőforrás gyökér elemére és az összes ID-val rendelkező view-ra. A generált osztály neve úgy áll elő, hogy az XML layout nevét Pascal formátumba alakítja a rendszer és a végére illeszti, hogy `Binding`. Azaz például a `result_profile.xml` erőforrásfájlból az alábbi binding osztály generálódik: `ResultProfileBinding`.
-
-	```xml
-	<LinearLayout ... >
-	    <TextView android:id="@+id/name" />
-	    <ImageView android:cropToPadding="true" />
-	    <Button android:id="@+id/button"
-	        android:background="@drawable/rounded_button" />
-	</LinearLayout>
-	```
-	
-	A generált osztálynak két mezője van. A `name` id-val rendelkező `TextView` és a `button` id-jú `Button`. A layout-ban szereplő ImageView-nak nincs id-ja, ezért nem szerepel a binding osztályban.
-	
-	Minden generált osztály tartalmaz egy `getRoot()` metódust, amely direkt referenciaként szolgál a layout gyökerére. A példában a `getRoot()` metódus a `LinearLayout`-tal tér vissza.
-
-A `ViewBinding` használatához tehát az `Activity`-nkben csak példányosítanunk kell a `binding` objektumot, amin keresztül majd elérhetjük az erőforrásainkat.
-A `binding` példány működéséhez három dolgot kell tennünk:
-
-1. A generált `binding` osztály *statikus* `inflate` függvényével példányosítjuk a `binding` osztályunkat az `Activity`-hez.
-2. Referenciát szerzünk a gyökérelemre. Ezt kétféleképpen is megtehetjük. Vagy meghívjuk a `getRoot()` metódust, vagy a Kotlin property syntax-ot használva.
-3.  Ezt a gyökérelemet odaadjuk a `setContentView()` függvénynek, hogy ez legyen az aktív *view* a képernyőn:
-
-```kotlin
-private lateinit var binding: ActivityLoginBinding
-
-override fun onCreate(savedInstanceState: Bundle?) {
-	installSplashScreen()
-    super.onCreate(savedInstanceState)
-    binding = ActivityLoginBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-}
-```
-
-!!!info "lateinit"
-	A [`lateinit`](https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables) kulcsszóval megjelölt property-ket a fordító megengedi inicializálatlanul hagyni az osztály konstruktorának lefutása utánig, anélkül, hogy nullable-ként kéne azokat megjelölnünk (ami később kényelmetlenné tenné a használatukat, mert mindig ellenőriznünk kéne, hogy `null`-e az értékük). Ez praktikus olyan esetekben, amikor egy osztály inicializálása nem a konstruktorában történik (például ahogy az `Activity`-k esetében az `onCreate`-ben), mert később az esetleges `null` eset lekezelése nélkül használhatjuk majd a property-t. A `lateinit` használatával átvállaljuk a felelősséget a fordítótól, hogy a property-t az első használata előtt inicializálni fogjuk - ellenkező esetben kivételt kapunk.
-
-Ezek után már be is állíthatjuk a gombunk eseménykezelőit az `onCreate` függvényben:
-
-```kotlin
-binding.btnLogin.setOnClickListener {
-    if(binding.etEmailAddress.text.toString().isEmpty()) {
-        binding.etEmailAddress.requestFocus()
-        binding.etEmailAddress.error = "Please enter your email address"
-    }
-    else if(binding.etPassword.text.toString().isEmpty()) {
-        binding.etPassword.requestFocus()
-        binding.etPassword.error = "Please enter your password"
-    }
-    else {
-        // TODO login
+@Composable
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+){
+    NavHost(
+        navController = navController,
+        startDestination = "login"
+    ){
+        composable("login"){
+            LoginScreen(
+                onSuccess = {
+                    navController.navigate("list")
+                }
+            )
+        }
     }
 }
 ```
 
-Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghívásával aktívvá tesszük, majd az [`error`](https://developer.android.com/reference/android/widget/TextView.html#setError(java.lang.CharSequence)) property beállításával kiírunk rá egy hibaüzenetet. Ez egy kényelmes, beépített megoldás input hibák jelzésére. Így nem kell például egy külön `TextView`-t használnunk erre a célra, és abba beleírni a fellépő hibát. Ezt már akár ki is próbálhatjuk, bár helyes adatok megadása esetén még nem történik semmi.
+Miután ezzel megvagyunk, hozzunk létre egy új *Packaget* `screen` néven a projekt mappában, majd ezen belül hozzunk létre egy új *Kotlin Filet* `LoginScreen` néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot
 
-!!!info "setOnClickListener"
-	A [`setOnClickListener`](https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener)) függvény valójában olyan objektumot vár paraméterként, ami megvalósítja a [`View.OnClickListener`](https://developer.android.com/reference/android/view/View.OnClickListener) interfészt. Ezt Java-ban anonim objektumokkal szokás megoldani, amit [meg lehet tenni](https://kotlinlang.org/docs/reference/object-declarations.html#object-expressions) Kotlin nyelven is.Ehelyett azonban érdemesebb kihasználni, hogy a Kotlin rendelkezik igazi függvény típusokkal, így megadható egy olyan [lambda kifejezés](https://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions), amelynek a fejléce megegyezik az elvárt interfész egyetlen függvényének fejlécével. Ez alapján pedig a [SAM conversion](https://kotlinlang.org/docs/reference/java-interop.html#sam-conversions) nevű nyelvi funkció a háttérben a lambda alapján létrehozza a megfelelő `View.OnClickListener` példányt.
+```kotlin
+@Composable
+fun LoginScreen(
+    onSuccess: () -> Unit
+) {
+    Column (
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = "Please enter your credentials"
+        )
+
+        var email by remember { mutableStateOf("") }
+        var emailError by remember { mutableStateOf(false) }
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            label = { Text("Email") },
+            value = email,
+            onValueChange =
+            {
+                email = it
+                emailError = email.isEmpty()
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            isError = emailError,
+            trailingIcon = {
+                if (emailError) {
+                    Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
+                }
+            },
+            supportingText = {
+                if (emailError) {
+                    Text("Please enter your e-mail address", color = Color.Red)
+                }
+            }
+
+        )
+
+
+        var password by remember { mutableStateOf("") }
+        var passwordError by remember { mutableStateOf(false) }
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 8.dp, end = 8.dp),
+            label = { Text("Password") },
+            value = password,
+            onValueChange =
+            {
+                password = it
+                passwordError = password.isEmpty()
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            isError = passwordError,
+            trailingIcon = {
+                if (passwordError) {
+                    Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
+                }
+            },
+            supportingText = {
+                if (passwordError) {
+                    Text("Please enter your password", color = Color.Red)
+                }
+            }
+        )
+        Button(onClick = {
+            if (email.isEmpty()) {
+                emailError = true
+            } else if (password.isEmpty()) {
+                passwordError = true
+            } else {
+                onSuccess()
+            }
+        }) {
+            Text("Login")
+        }
+
+    }
+}
+```
+
+!!!warning "kód értelmezése"
+    A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
+
+Hogy ha ezzel a lépéssel is megvagyunk, akkor a `NavGraph` fájlban az errornak el kell tűnnie a szükséges importok után.
+
+Már csak egyetlen lépés van, hogy ezt a képernyőt az emulátoron láthassuk az indítás után. Nyissuk meg a `MainActivity` fájlt, és módosítsuk a következő szerint:
+
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+
+        setContent {
+            PublicTransportTheme {
+                NavGraph()
+            }
+        }
+    }
+}
+```
 
 !!!example "BEADANDÓ (0.5 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **login képernyő egy input hibával** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az e-mail mezőbe begépelve**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
@@ -422,7 +421,10 @@ Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghív
 
 ## Lehetőségek listája (1 pont)
 
-A következő képernyőn a felhasználó a különböző járműtípusok közül válaszhat. Egyelőre három szolgáltatás működik a fiktív vállalatunkban: biciklik, buszok illetve vonatok.
+!!!danger ""
+    Letöltési zip módosítása
+
+A következő képernyőn a felhasználó a különböző járműtípusok közül választhat. Egyelőre csak három szolgáltatás működik a fiktív vállalatunkban: bicikli, buszok illetve vonatok.
 
 <p align="center"> 
 <img src="./assets/list.png" width="320">
@@ -430,328 +432,378 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 
 Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
 
-Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Views Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
-
+Hozzunk ehhez létre egy új *Kotlin Filet* és nevezzük el `ListScreen` néven, majd írjuk bele a következőt:
 
 ```kotlin
-binding.btnLogin.setOnClickListener {
-    ...
-    else {
-        startActivity(Intent(this, ListActivity::class.java))
+@Composable
+fun ListScreen(
+    onPassClick: (s: String) -> Unit
+) {
+    //TODO
+}
+```
+
+Menjünk vissza a `NavGraph` file-ba és egészítsük ki a következővel
+
+```kotlin
+@Composable
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+){
+
+    NavHost(
+        navController = navController,
+        startDestination = "login"
+    ){
+        ...
+        composable("list"){
+            ListScreen(
+                onPassClick = {
+                    navController.navigate("pass/$it")
+                }
+            )
+        }
     }
 }
 ```
 
-Folytassuk a layout elkészítésével a munkát, az `activity_list.xml` tartalmát cseréljük ki az alábbira:
+Ezután készítsük el a `ListScreen` felépítését.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="3"
-    tools:context=".ListActivity">
+```kotlin
+@Composable
+fun ListScreen(
+    onPassClick: (s: String) -> Unit
+) {
+    Column (
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxSize()
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .clickable {
+                    onPassClick("Bike")
+                },
+        ) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.mipmap.bikes),
+                    contentDescription = "Bike Button",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+            }
+            Text(
+                text = "Bike",
+                fontSize = 36.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .align(Alignment.Center)
+            )
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .clickable {
+                    onPassClick("Bus")
+                },
+        ) {
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-    </FrameLayout>
-
-</LinearLayout>
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.mipmap.bus),
+                    contentDescription = "Bus Button",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+            }
+            Text(
+                text = "Bus",
+                fontSize = 36.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .align(Alignment.Center)
+            )
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .clickable {
+                    onPassClick("Train")
+                }
+            ,
+        ) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.mipmap.trains),
+                    contentDescription = "Train Button",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+            }
+            Text(
+                text = "Train",
+                fontSize = 36.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .align(Alignment.Center)
+            )
+        }
+    }
+}
 ```
 
-Ismét egy függőleges LinearLayout-ot használunk, most azonban súlyokat adunk meg benne. A gyökérelemben megadjuk, hogy a súlyok összege (`weightSum`) `3` lesz, és mindhárom gyerekének `1`-es súlyt (`layout_weight`), és `0dp` magasságot adunk. Ezzel azt érjük el, hogy három egyenlő részre osztjuk a képernyőt, amit a három `FrameLayout` fog elfoglalni.
+Vagy a kicsit kíváncsiabbak kedvéért az alábbi kódot. Ezzel a kóddal ugyanazt érhetjük el mint az előzővel, csak kevesebbet kell írni, illetve kicsit összetettebb.
 
-A `FrameLayout` egy nagyon egyszerű és gyors elrendezés, amely lényegében csak egymás tetejére teszi a gyerekeiként szereplő View-kat. Ezeken belül egy-egy képet, illetve azokon egy-egy feliratot fogunk elhelyezni. A három sávból az elsőt így készíthetjük el:
+```kotlin
+@Composable
+fun ListScreen(
+    onPassClick: (s: String) -> Unit
+) {
+    Column (
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxSize()
+    ) {
+        val type = mapOf(
+            "Bike" to R.mipmap.bikes,
+            "Bus" to R.mipmap.bus,
+            "Train" to R.mipmap.trains
+        )
 
-```xml
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
+        for (i in type) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .clickable {
+                        onPassClick(i.key)
+                    },
+            ) {
 
-    <ImageButton
-        android:id="@+id/btnBike"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bikes" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/bike"
-        android:textColor="#FFF"
-        android:textSize="36sp" />
-
-</FrameLayout>
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    Image(
+                        painter = painterResource(id = i.value),
+                        contentDescription = "$i Button",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.FillBounds
+                    )
+                }
+                Text(
+                    text = i.key,
+                    fontSize = 36.sp,
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                )
+            }
+        }
+    }
+}
 ```
 
-Az itt használt `ImageButton` pont az, aminek hangzik: egy olyan gomb, amelyen egy képet helyezhetünk el. Azt, hogy ez melyik legyen, az `src` attribútummal adtuk meg. Az utána szereplő `TextView` fehér színnel és nagy méretű betűkkel a kép fölé fog kerülni, ebbe írjuk bele a jármű nevét.
+Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki, így könnyen elérhetjük a további navigációt, azonban ez a funkció még elcrasheli az alkalmazást, mert hiányzik a `NavGraph`-ból az elérési út. Ezt a következő feladatban orvosolni fogjuk.
 
-A `@string/bike` hibát jelez. Mint látható, itt sem egy konkrét szöveget, hanem egy hivatkozást használunk. Ez azért hasznos, mert így egy helyre tudjuk szervezni a szöveges erőforrásainkat (`strings.xml`), így egyszerűen [lokalizálhatjuk](https://developer.android.com/guide/topics/resources/localization) az alkalmazásunkat `erőforrásminősítők` segítségével. 
+!!!warning "kód értelmezése"
+    A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
 
-Adjunk tehát értéket a `@strings/bike` elemnek. Ezt megtehetjük kézzel is a `strings.xml`-ben, de `Alt+Enter`rel a helyi menüben is:
+!!!info "Stringek kiszervezése"
+    Nagyobb projekteknél érdemes a Stringeket kiszervezni a `./values/strings.xml` fájlba, így [lokalizálhatjuk](https://developer.android.com/guide/topics/resources/localization) az alkalmazásunkat `erőforrásminősítők` segítségével. Ezt az <kbd>ALT</kbd> + <kbd>ENTER</kbd> billentyűkombináció segítségével tehetjük meg, hogy ha a string-re kattintunk, vagy akár kézileg is megtehetjük a `strings.xml`-ben
+    ```xml
+    <string name="bike">Bike</string>
+    ```
 
-```xml
-<string name="bike">Bike</string>
-```
+Próbáljuk ki az alkalmazásunkat, a bejelentkezés után az elkészített lista nézetet kell látnunk. Habár a lista elemein való kattintás még nem navigál minket tovább, érdemes a `LogCat` segítségével leellenőrizni a Logolást, ugyanis, ha mindent jól csináltunk, akkor látni kellene az adott járműre való kattintást.
 
-Töltsük ki ehhez hasonló módon a másik két `FrameLayout`-ot is, ID-ként használjuk a `@+id/btnBus` és `@+id/btnTrain` értékeket, képnek pedig használhatjuk a korábban már bemásolt `@drawable/bus` és `@drawable/trains` erőforrásokat. Ne felejtsük el a `TextView`-k szövegét is értelemszerűen átírni.
-
-Próbáljuk ki az alkalmazásunkat, bejelentkezés után a most elkészített lista nézethez kell jutnunk.
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **jármúvek listája** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-
 ## Részletes nézet (1 pont)
 
-Miután a felhasználó kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.
+Miután a felhasználo kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.
 
 <p align="center"> 
 <img src="./assets/details.png" width="320">
 </p>
 
-Hozzuk létre ezt az új Activity-t `DetailsActivity` néven, a layout-ját kezdjük az alábbi kóddal:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:padding="16dp"
-    android:scrollbarStyle="outsideInset"
-    tools:context=".DetailsActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-</ScrollView>
-```
-
-Az eddigiekhez képest itt újdonság, hogy a használt `LinearLayout`-ot egy `ScrollView`-ba tesszük, mivel sok nézetet fogunk egymás alatt elhelyezni, és alapértelmezetten egy `LinearLayout` nem görgethető, így ezek bizonyos eszközökön már a képernyőn kívül lennének.
-
-Kezdjük el összerakni a szükséges layout-ot a `LinearLayout` belsejében. Az oldal tetejére elhelyezünk egy címet, amely a kiválasztott jegy típusát fogja megjeleníteni.
-
-```xml
-<TextView
-    android:id="@+id/tvTicketType"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:textSize="24sp" 
-    tools:text="Bus ticket" />
-```
-
-!!!note ""
-	Az itt használt `tools` névtérrel megadott `text` attribútum hatása csak az előnézetben fog megjelenni, az alkalmazásban ezt majd a Kotlin kódból állítjuk be, az előző képernyőn megnyomott gomb függvényében.
-
-Az első beállítás ezen a képernyőn a bérlet érvényességének időtartama lesz. 
-
-Ezt az érvényesség első és utolsó napjának megadásával tesszük, amelyhez a `DatePicker` osztályt használjuk fel. Ez alapértelmezetten egy teljes havi naptár nézetet jelenít meg, azonban a `calendarViewShown="false"` és a `datePickerMode="spinner"` beállításokkal egy kompaktabb, "pörgethető" választót kapunk.
-
-```xml
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Start date" />
-
-<DatePicker
-    android:id="@+id/dpStartDate"
-    android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:calendarViewShown="false"
-    android:datePickerMode="spinner" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="End date" />
-
-<DatePicker
-    android:id="@+id/dpEndDate"
-    android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:calendarViewShown="false"
-    android:datePickerMode="spinner" />
-```
-
-Ezeknek a `DatePicker`-eknek is adtunk ID-kat, hiszen később szükségünk lesz a Kotlin kódunkban a rajtuk beállított értékekre.
-
-
-Még egy beállítás van hátra, az árkategória kiválasztása - nyugdíjasoknak és közalkalmazottaknak különböző kedvezményeket adunk a jegyek árából.
-
-Mivel ezek közül az opciók közül egyszerre csak egynek akarjuk megengedni a kiválasztását, ezért `RadioButton`-öket fogunk használni, amelyeket Androidon egy `RadioGroup`-pal kell összefognunk, hogy jelezzük, melyikek tartoznak össze.
-
-```xml
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Price category" />
-
-<RadioGroup
-    android:id="@+id/rgPriceCategory"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <RadioButton
-        android:id="@+id/rbFullPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Full price" />
-
-    <RadioButton
-        android:id="@+id/rbSenior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senior" />
-
-    <RadioButton
-        android:id="@+id/rbPublicServant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Public servant" />
-
-</RadioGroup>
-```
-
-!!!warning "FONTOS"
-	Fontos, hogy adjunk ID-t a teljes csoportnak, és a benne lévő minden opciónak is, mivel később ezek alapján tudjuk majd megnézni, hogy melyik van kiválasztva.
-
-Végül az oldal alján kiírjuk a kiválasztott bérlet árát, illetve ide kerül a megvásárláshoz használható gomb is. Az árnak egyelőre csak egy fix értéket írunk ki.
-
-```xml
-<TextView
-    android:id="@+id/tvPrice"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_margin="8dp"
-    android:text="42000" />
-
-<Button
-    android:id="@+id/btnPurchase"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_margin="8dp"
-    android:text="Purchase pass" />
-```
-
-Ne felejtsük el, a stringeket itt is kiszervezni!
-
-Meg kell oldanunk még azt, hogy az előző képernyőn tett választás eredménye elérhető legyen a `DetailsActivity`-ben. Ezt úgy tehetjük meg, hogy az Activity indításához használt `Intent`-be teszünk egy azonosítót, amiből kiderül, hogy melyik típust választotta a felhasználó.
-
-Ehhez a `DetailsActivity`-ben vegyünk fel egy konstanst, ami ennek a paraméternek a kulcsaként fog szolgálni:
+Hozzuk létre az új Screen-t `PassScreen` néven, és készítsük el a felépítését, az alábbi szerint:
 
 ```kotlin
-class DetailsActivity : AppCompatActivity() {
-    companion object {
-        const val KEY_TRANSPORT_TYPE = "KEY_TRANSPORT_TYPE"
-    }
-    ...
-}
-```
+@Composable
+fun PassScreen(
+    onSuccess: (s: String) -> Unit,
+    passId: String
+) {
+    val context = LocalContext.current
+    
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-Ezután menjünk a `ListActivity` kódjához, és vegyünk fel konstansokat a különböző támogatott járműveknek:
+    var startDate by remember { mutableStateOf(String.format(Locale.US, "%d. %02d. %02d", year, month + 1, day)) }
+    var endDate by remember { mutableStateOf(String.format(Locale.US, "%d. %02d. %02d", year, month + 1, day)) }
+    val currentDate = "$year. ${month + 1}. $day"
 
-```kotlin
-class ListActivity : AppCompatActivity() {
-    companion object {
-        const val TYPE_BIKE = 1
-        const val TYPE_BUS = 2
-        const val TYPE_TRAIN = 3
-    }
-    ...
-}
-```
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp, top = 24.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp),
+            text = "${passId} pass",
+            fontSize = 24.sp
+        )
+        Text(
+            modifier = Modifier.padding(top = 16.dp),
+            text = "Start date",
+            fontSize = 16.sp
+        )
+        TextButton(
+            modifier = Modifier.padding(top = 16.dp),
+            onClick = {
+            DatePickerDialog(
+                context,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    startDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
+                },
+                year, month, day
+            ).show()
+        }) {
+            Text(
+                text = if (startDate.isEmpty()) currentDate else startDate,
+                fontSize = 16.sp
+            )
+        }
 
-!!!info "static"
-	A Kotlin egy nagy eltérése az eddig ismert, megszokott OOP nyelvektől, hogy nincs benne `static` kulcsszó, és így nincsenek statikus változók vagy függvények sem. Ehelyett minden osztályhoz lehet definiálni egy [`companion object`-et](https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects), ami egy olyan singleton-t definiál, ami az osztály összes példányán keresztül elérhető. Röviden, minden `companion object`-en belül definiált konstans, változó, függvény úgy viselkedik, mintha statikus lenne.
+        Text(
+            modifier = Modifier.padding(top = 16.dp),
+            text = "End date",
+            fontSize = 16.sp
+        )
 
-Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a `DetailsActivity`-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a `ViewBinding`beállítása után:
-
-```kotlin
-private lateinit var binding: ActivityListBinding
-
-...
-
- override fun onCreate(savedInstanceState: Bundle?) {
-     super.onCreate(savedInstanceState)
-
-     binding = ActivityListBinding.inflate(layoutInflater)
-     setContentView(binding.root)
-
-     binding.btnBike.setOnClickListener {
-         val intent = Intent(this, DetailsActivity::class.java)
-         intent.putExtra(DetailsActivity.KEY_TRANSPORT_TYPE, TYPE_BIKE)
-         startActivity(intent)
-     }
-}
-```
-
-A másik két gomb listener-je ugyanerre a mintára működik, csupán az átadott típus konstanst kell megváltoztatni bennük. Hozzuk létre ezeket is! (Ezt a viselkedést érdemes lehet később kiszervezni egy külön osztályba, ami implementálja az `OnClickListener` interfészt, de ezt most nem tesszük meg.)
-
-Még hátra van az, hogy a `DetailsActivity`-ben kiolvassuk ezt az átadott paramétert, és megjelenítsük a felhasználónak. Ezt az `onCreate` függvényében tehetjük meg, az Activity indításához használt `Intent` elkérésével (`intent` property), majd az előbbi kulcs használatával:
-
-```kotlin
-val transportType = this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1)
-```
-
-Ezt az átadott számot még le kell képeznünk egy stringre, ehhez vegyünk fel egy egyszerű segédfüggvényt:
-
-```kotlin
-private fun getTypeString(transportType: Int): String {
-    return when (transportType) {
-        ListActivity.TYPE_BUS -> "Bus pass"
-        ListActivity.TYPE_TRAIN -> "Train pass"
-        ListActivity.TYPE_BIKE -> "Bike pass"
-        else -> "Unknown pass type"
+        TextButton(
+            modifier = Modifier.padding(top = 16.dp),
+            onClick = {
+            DatePickerDialog(
+                context,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    endDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
+                },
+                year, month, day
+            ).show()
+        }) {
+            Text(
+                text = if (endDate.isEmpty()) currentDate else endDate,
+                fontSize = 16.sp
+            )
+        }
+        var selectedCategory by remember { mutableStateOf("Full price") }
+        
+        val categories = listOf("Full price", "Senior", "Public servant")
+        Text(
+            modifier = Modifier.padding(top = 16.dp),
+            text = "Price category",
+            fontSize = 16.sp
+        )
+        Column (
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            categories.forEach { category ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .selectable(
+                            selected = (category == selectedCategory),
+                            onClick = { selectedCategory = category },
+                            role = Role.RadioButton
+                        )
+                        .padding(vertical = 4.dp)
+                ) {
+                    RadioButton(
+                        selected = (category == selectedCategory),
+                        onClick = { selectedCategory = category }
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(category)
+                }
+            }
+        }
+        Text(
+            fontSize = 20.sp,
+            text = "Price: 42000",
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp),
+        )
+        Button(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp),
+            onClick = {
+                onSuccess("${startDate};$endDate;Senior Bus Pass")
+            }){
+            Text("Buy")
+        }
     }
 }
 ```
 
-!!!info "when"
-	Egy másik nagy eltérése a Kotlin-nak a megszokott nyelvektől, hogy nincs benne `switch`. Helyette a Kotlin egy [`when`](https://kotlinlang.org/docs/reference/control-flow.html#when-expression) nevű szerkezetet használ, ami egyrészről egy kifejezés (látható, hogy az értéke vissza van adva), másrészről pedig sokkal sokoldalúbb feltételeket kínál, mint a hagyományos *case*.
 
-Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a szövegének a függvény által visszaadott értéket (készítsük el a `ViewBindingot` is):
+!!!info "Értelmezés"
+    Az alábbi kódban nagyon sok formázás van, így jelentősen megnehezítheti az értelmezését, ezt a laborvezető segítségével nézzük át, és értelmezzük.
+
+Ezután bővítsük ki a `NavGrap`-unkat a következő szerint, majd beszéjük át a laborvezetővel a kód működését.
 
 ```kotlin
-binding.tvTicketType.text = getTypeString(transportType)
+@Composable
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+){
+    NavHost(
+        navController = navController,
+        startDestination = "login"
+    ){
+        ...
+        composable(
+            route = "pass/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { backStackEntry ->
+            PassScreen(passId = backStackEntry.arguments?.getString("id") ?: "",
+                onSuccess = {
+                    navController.navigate("ticket/$it")
+                }
+            )
+        }
+    }
+}
 ```
 
-Próbáljuk ki az alkalmazást! A `DetailsActivity`-ben meg kell jelennie a hozzáadott beállításoknak, illetve a tetején a megfelelő jegy típusnak.
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **részletes nézet** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
@@ -759,140 +811,242 @@ Próbáljuk ki az alkalmazást! A `DetailsActivity`-ben meg kell jelennie a hozz
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
+
 ## A bérlet (1 pont)
 
-Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.
+!!!danger "ELÍRÁS"
+
+Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez maga a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.
 
 <p align="center"> 
 <img src="./assets/pass.png" width="320">
 </p>
 
-Hozzuk létre a szükséges Activity-t, `PassActivity` néven. Ennek az Activity-nek szüksége lesz a jegy típusára és a kiválasztott dátumokra - a QR kód az egyszerűség kedvéért egy fix kép lesz.
 
-Az adatok átadásához először vegyünk fel két kulcsot a `PassActivity`-ben:
+Hozzuk létre a szükséges *Kotlin Filet* szintén a `screen` packageba, `TicketScreen` néven, majd írjuk bele az alábbiakat.
 
 ```kotlin
-class PassActivity : AppCompatActivity() {
-    companion object {
-        const val KEY_DATE_STRING = "KEY_DATE_STRING"
-        const val KEY_TYPE_STRING = "KEY_TYPE_STRING"
+@Composable
+fun TicketScreen(
+    ticketRange: String
+){
+
+    val parts = ticketRange.split(";")
+
+    val startDate = parts[0]
+    val endDate = parts[1]
+    val category = parts[2]
+
+    Column (
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+        Text(
+            text = category,
+            fontSize = 24.sp,
+            modifier = Modifier.padding(16.dp)
+        )
+        Text(
+            text = "$startDate - $endDate",
+            fontSize = 16.sp,
+            modifier = Modifier.padding(16.dp)
+        )
+        Image(painter = painterResource(id = R.mipmap.qrcode), contentDescription = "Ticket")
     }
-    ...
 }
 ```
 
-Ezeket az adatokat a `DetailsActivity`-ben kell összekészítenünk és beleraknunk az `Intent`-be. Ehhez adjunk hozzá a vásárlás gombhoz egy listener-t az `onCreate`-ben:
+Mivel a `TicketScreen`-nek szüksége van a jegy típúsára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.
 
-```kotlin
-binding.btnPurchase.setOnClickListener {
-    val typeString = getTypeString(transportType)
-    val dateString = "${getDateFrom(binding.dpStartDate)} - ${getDateFrom(binding.dpEndDate)}"
-
-    val intent = Intent(this, PassActivity::class.java)
-    intent.putExtra(PassActivity.KEY_TYPE_STRING, typeString)
-    intent.putExtra(PassActivity.KEY_DATE_STRING, dateString)
-    startActivity(intent)
-}
-```
+- `yyyy. mm. dd.;yyyy. mm. dd.;price` a felépítése a kapott Stringnek
+- Ezt feldaraboljuk a `;` mentén, majd a dátumot string interpoláció segítségével átadjuk a `Text` Composable értékének, a price-t pedig egy másik `Text` Composable-nak
 
 !!!info ""
 	 Látható, hogy a Java-val ellentétben a Kotlin támogatja a [string interpolációt](https://kotlinlang.org/docs/reference/basic-types.html#string-templates).
 
-Ebben összegyűjtjük a szükséges adatokat, és a megfelelő kulcsokkal elhelyezzük őket a `PassActivity` indításához használt `Intent`-ben.
+Végül itt is kössük be a `NavGraph`-ba az új képernyőnket az előzőhöz hasonlóan:
 
-A `getDateFrom` egy segédfüggvény lesz, ami egy `DatePicker`-t kap paraméterként, és formázott stringként visszaadja az éppen kiválasztott dátumot, ennek implementációja a következő:
 
 ```kotlin
-private fun getDateFrom(picker: DatePicker): String {
-    return String.format(
-        Locale.getDefault(), "%04d.%02d.%02d.",
-        picker.year, picker.month + 1, picker.dayOfMonth
-    )
+@Composable
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+){
+
+    NavHost(
+        navController = navController,
+        startDestination = "login"
+    ){
+        ...
+        composable(
+            route = "ticket/{range}",
+            arguments = listOf(navArgument("range") { type = NavType.StringType })
+        ) { backStackEntry ->
+            TicketScreen(ticketRange = backStackEntry.arguments?.getString("range") ?: "")
+        }
+    }
 }
 ```
 
-!!!note "Megjegyzés"
-	Itt a hónaphoz azért adtunk hozzá egyet, mert akárcsak a [`Calendar`](https://developer.android.com/reference/java/util/Calendar.html#MONTH) osztály esetében, a `DatePicker` osztálynál is 0 indexelésűek a hónapok.)
-
-
-
-Most már elkészíthetjük a `PassActivity`-t. Kezdjük a layout-jával (`activity_pass.xml`), aminek már majdnem minden elemét használtuk, az egyetlen újdonság itt az `ImageView` használata.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tvTicketType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="24sp"
-        tools:text="Train pass" />
-
-    <TextView
-        android:id="@+id/tvDates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        tools:text="1999.11.22. - 2012.12.21." />
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:src="@drawable/qrcode" />
-
-</LinearLayout>
-```
-
-Az Activity Kotlin kódjában pedig csak a két `TextView` szövegét kell az `Intent`-ben megkapott értékekre állítanunk az `onCreate` függvényben(illetve beállítani a `ViewBindingot`):
-
-```kotlin
-binding.tvTicketType.text = intent.getStringExtra(KEY_TYPE_STRING)
-binding.tvDates.text = intent.getStringExtra(KEY_DATE_STRING)
-
-```
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **bérlet képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-
 ## Önálló feladat - Hajó bérlet (1 pont)
 
 Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltatásunk is. Adjuk hozzá ezt az új bérlet típust az alkalmazásunkhoz!
 
-???success "Megoldás"
-	A szükséges változtatások nagy része a `ListActivity`-ben lesz. Először frissítsük az Activity layout-ját: itt egy új `FrameLayout`-ot kell hozzáadnunk, amiben a gomb ID-ja legyen `@+id/btnBoat`. A szükséges képet már tartalmazza a projekt, ezt `@drawable/boat` néven találjuk meg.
-
-	Ne felejtsük el a gyökérelemünkként szolgáló `LinearLayout`-ban átállítani a `weightSum` attribútumot `3`-ról `4`-re, hiszen most már ennyi a benne található View-k súlyainak összege. (Kipróbálhatjuk, hogy mi történik, ha például `1`-re, vagy `2.5`-re állítjuk ezt a számot, a hatásának már az előnézetben is látszania kell.)
-	
-	Menjünk az Activity Kotlin fájljába, és következő lépésként vegyünk fel egy új konstanst a hajó típus jelölésére.
-	
-	```kotlin
-	const val TYPE_BOAT = 4
-	```
-	
-	Az előző három típussal azonos módon keressük a hajót kiválasztó gombra (`btnBoat`) is állítsunk be rá egy listener-t, amely elindítja a `DetailsActivity`-t, a `TYPE_BOAT` konstanst átadva az `Intent`-ben paraméterként.
-	
-	Még egy dolgunk maradt, a `DetailsActivity` kódjában értelmeznünk kell ezt a paramétert. Ehhez a `getTypeString` függvényen belül vegyünk fel egy új ágat a `when`-ben:
-	
-	```kotlin
-	ListActivity.TYPE_BOAT -> "Boat pass"
-	```
+???info "Segítség"
+    A szükséges változtatások nagy része a `ListScreen`-ben lesz. Az eddigi 3 lehetőség mellé fel kell venni egy új `Box`-ot, és az előzőekhez hasonlóan át kell alakítani az új opciót.
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts **két képernyőképet**, amelyen látszik a **jármű választó képernyő** illetve a **hajó bérlet képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), és az **ezekhez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képeket a megoldásban a repository-ba f6.png és f7.png néven töltsd föl. 
 
 	A képernyőképek szükséges feltételei a pontszám megszerzésének.
+
+
+## Ismertető feladat (Extra)
+
+!!!note "Ismertető"
+    Ezek a feladatok nem szükségesek a labor maximális pont megszerzéséhez, csupán csak ismertető jelleggel vannak a labor anyagában azok számára akik jobban beleásnák magukat a témába :)
+
+
+### Ismertető feladat - NavGrap-Splash
+
+Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGrap segítségével fogunk egyet megnézni.
+
+Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új *Kotlin Filet* a `screen` packagen belül, majd nevezzük el `SplashScreen`-nek, és írjuk bele az alábbi kódot:
+
+```kotlin
+@Composable
+fun SplashScreen(
+    onSuccess: () -> Unit
+){
+    LaunchedEffect(key1 = true){
+        delay(1000)
+        onSuccess()
+    }
+    Column (
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            modifier = Modifier
+                .size(128.dp),
+            painter = painterResource(id = R.drawable.ic_transport_foreground),
+            contentDescription = "Public Transport",)
+    }
+}
+```
+
+A LaunchedEffect-ről bővebben majd előadáson tanulhattok. Itt szükség volt rá, ugyanis a benne lévő delay függvényt nem lehet csak önmagában kiírni, egy *suspend* függvényen belül, vagy egy *courutinen* belül lehet meghívni. A delay függvény felel azért, hogy mennyi ideig legyen a képernyőn a SplashScreen. Jelen esetben ez 1 másodperc (1000 milisec), majd ezután meghívódik az onSucces lambda, ami átnavigál minket a LoginScreen-re.
+
+
+Módosítsuk a `NavGraph`-unkat a következő szerint:
+
+```kotlin
+NavHost(
+    navController = navController,
+    startDestination = "splash"
+){
+    composable("splash"){
+        SplashScreen(
+            onSuccess = {
+                navController.navigate("login"){
+                    popUpTo("splash"){ inclusive = true }
+                    launchSingleTop = true
+                }
+            }
+        )
+    }
+    ...
+}
+```
+
+A `SplashScreen` képernyő testreszabásával a labor keretein belül nem fogunk foglalkozni, ez teljesen egyénre szabható. 
+
+Az újonnan hozzáadott `composable` elem a `NavGraph`-ban a következő képpen épül fel:
+
+- Szintén kapott egy elérési *routet*
+- Valamint megkapta a kívánt képernyőt a függvény törzsében
+- Ennek van egy *onSuccess* lambda paramétere, amibe beletesszük a következő képernyőre való navigálást
+- Ezen belül a `popUpTo` segítségével kiszedjük a SplashScreen-t, hogy visszanavigálás esetén, ne dobja be ezt
+
+Majd ezután a `Manifest` fájl személyre szabható, hogy milyen témát jelenítsen meg.
+
+
+### Ismertető feladat - Screen File
+
+Ez a fájl az alábbi kódot fogja tartalmazni:
+
+```kotlin
+sealed class Screen(val route: String){
+    object Login: Screen("login")
+    object List: Screen("list")
+    object Pass: Screen("pass/{id}"){
+        fun passId(id: String) = "pass/$id"
+    }
+    object Ticket: Screen("ticket/{range}"){
+        fun ticketRange(range: String) = "ticket/$range"
+    }
+}
+```
+
+Valamint a `NavGraph` `route` paraméterének nem egy nyers Stringet adunk át, hanem ennek az osztálynak egy Object-jét a következő képpen:
+
+```kotlin
+@Composable
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+){
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Login.route
+    ){
+        composable(Screen.Login.route){
+            LoginScreen(
+                onSuccess = {
+                    navController.navigate(Screen.List.route)
+                }
+            )
+        }
+        composable(Screen.List.route){
+            ListScreen(
+                onPassClick = {
+                    navController.navigate(Screen.Pass.passId(it))
+                }
+            )
+        }
+        composable(
+            route = Screen.Pass.route,
+            ...
+        ) { backStackEntry ->
+            PassScreen(passId = backStackEntry.arguments?.getString("id") ?: "",
+                onSuccess = {
+                    navController.navigate(Screen.Ticket.ticketRange(it))
+                }
+            )
+        }
+        composable(
+            route = Screen.Ticket.route,
+            ...
+        ) { 
+            ...
+        }
+
+    }
+}
+```
+
+Jól látható, hogy a *Sealed Class* segítségével könnyebben módosítható az egyes elérési utak címe. Mind a két megoldás működőképes, viszont ez utóbbi kicsit elegánsabb nagyobb projekteknél.
+
 
 
 ## iMSc feladat
@@ -918,13 +1072,16 @@ Ebből még az alábbi kedvezményeket adjuk:
 | Közalkalmazott | 50%                |
 
 !!!tip "Tipp"
-	A számolásokhoz és az eseménykezeléshez a [`Calendar`][calendar] osztályt, a `DatePicker` osztály [`init`][picker-init-link] függvényét, illetve a `RadioGroup` osztály [`setOnCheckedChangeListener`][radio-checked-changed] osztályát érdemes használni.
+	A számolásokhoz és az eseménykezeléshez a [`Calendar`][calendar] osztályt, a valamint a Calendar.set függvényt érdemes használni.
 
 	[calendar]: https://developer.android.com/reference/java/util/Calendar.html
 
-	[picker-init-link]: https://developer.android.com/reference/android/widget/DatePicker.html#init(int%2C%20int%2C%20int%2C%20android.widget.DatePicker.OnDateChangedListener)
 
-	[radio-checked-changed]: https://developer.android.com/reference/android/widget/RadioGroup.html#setOnCheckedChangeListener(android.widget.RadioGroup.OnCheckedChangeListener)
+???tip "Tipp"
+    Érdemes két függvényt írni, a számoláshoz:
+    
+    - Az egyik függvény egy különbség számító, ami két dátum között eltelt napokat számol
+    - A másik függvény pedig ami a napok, és a kategória alapján kiszámolja az árat
 
 ### Különböző bérlet napi árak (1 IMSc pont)
 
