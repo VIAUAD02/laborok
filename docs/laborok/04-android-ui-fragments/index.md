@@ -51,14 +51,14 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet 'Empty Views Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.android.workplaceapp`.
+Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.android.workplaceapp`.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 Használhatjuk az alapértelmezett 24-es minimum SDK szintet és a Kotlin DSL-t.
 
-Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
+Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő mipmap könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
 
 ## Képernyők kezelése Android alkalmazásokban
 A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
@@ -72,198 +72,313 @@ Régebben az alkalmazások az Activity alapú megközelítést használták, ké
 Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez részleteiben meg kellett ismerni a **FragmentManager** működését, különben könnyen hibákba futhattunk. Ennek a megoldására fejlesztette ki a Google a *Navigation Component* csomagot, mellyel az Android Studió környezetében egy grafikus eszközzel könnyen létre tudjuk hozni az oldalak közötti navigációt, illetve ezt a kódból egyszerűen el tudjuk indítani. 
 
 ## Navigation Component inicializálás
-Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle` fájlban a `dependencies` részhez vegyük fel a következő függőségeket:
-```
-val nav_version = "2.5.3"
+Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle.kts` fájlra illetve a `libs.versions.toml` fájlra lesz szükségünk. Keressük meg ezeket, majd írjuk bele a következő függőséget:
 
-implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+`libs.versions.toml`
+```toml
+[versions]
+...
+navigationCompose = "2.7.7"
+
+
+[libs]
+...
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 ```
-Illetve engedélyezzük a *View Binding*-ot az `android` részben:
-```
-buildFeatures {
-    viewBinding = true
+
+`build.gradle.kts`
+
+```kts
+dependencies {
+    ...
+    implementation(libs.androidx.navigation.compose)
+
 }
 ```
 
-A Navigation Component egy *navigációs gráfot* használ a képernyők, illetve a közöttük lévő kapcsolatok definiálására. Ezt a gráfot a többi erőforráshoz hasonlóan egy `.xml` kiterjesztésű fájlban tudjuk megadni. Hozzuk létre ezt a fájlt:
+Ha ezzel megvagyunk akkor Synceljük a projektet, a jobb fölső sarokban lévő `Sync Now` gombbal.
 
-1. A `res` mappán jobb gombbal kattintva válasszuk ki a **New &rarr; Android Resource Directory** opciót, majd a *Resource Type* mezőben válasszuk ki a *navigation* lehetőséget.
-2. Az így létrejött `navigation` mappán jobb klikkelve válasszuk ki a **new &rarr; Navigation Resource File** opciót, legyen a fájl neve *nav_graph*.
 
-Ahhoz, hogy a létrehozott navigációs gráf által működjön az alkalmazásunk, fel kell vennünk az alkalmazásunkban is. Ehhez módosítanunk kell az üres Activity példányunkat. Nyissuk meg az `activity_main.xml` fájlt, és írjuk felül a tartalmát az alábbi kóddal:
+!!!warning "Sync"
+    Figyeljünk rá, hogy Synceljük, ugyanis, hogy ha ez a lépés kimarad, akkor nem fogja megtalálni a szükséges függőségeket, és később ez gondot okozhat!
+
+A Navigation Component *Jetpack Compose* használatával is navigációs gráfot alkalmaz a képernyők és a közöttük lévő kapcsolatok definiálására. Ezt a gráfot azonban közvetlenül *Kotlin* kódban tudjuk megadni. Létrehozásához kövessük az alábbi lépéseket:
+
+1. Hozzuk létre a navigációs gráfot a Jetpack Compose használatával.
+
+2. Készítsünk egy *Packaget* `navigation` néven, majd ebbe a *Packageba* egy új *Kotlin Filet* (*jobb klikk -> New Kotlin Class/File*)
+
+3. Az előző laborokon látott NavGraphoz hasonlóan hozzuk létre a NavGraph-ot:
+```kotlin
+@Composable
+fun NavGraph(...){
+    NavHost(...){
+        composable("..."){
+            Screen1()
+        }
+        composable("..."){
+            Screen2()
+        }
+    }
+}
 ```
-<?xml version="1.0" encoding="utf-8"?>  
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"  
-  xmlns:app="http://schemas.android.com/apk/res-auto"  
-  xmlns:tools="http://schemas.android.com/tools"  
-  android:layout_width="match_parent"  
-  android:layout_height="match_parent"  
-  tools:context=".MainActivity">  
-      
-  <androidx.fragment.app.FragmentContainerView  
-	  android:id="@+id/nav_host_fragment"  
-	  android:name="androidx.navigation.fragment.NavHostFragment"  
-	  android:layout_width="0dp"  
-	  android:layout_height="0dp"  
-	  app:layout_constraintLeft_toLeftOf="parent"  
-	  app:layout_constraintRight_toRightOf="parent"  
-	  app:layout_constraintTop_toTopOf="parent"  
-	  app:layout_constraintBottom_toBottomOf="parent"  
-  
-	  app:defaultNavHost="true"  
-	  app:navGraph="@navigation/nav_graph" />  
-  
-  
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
-A most hozzáadott `FragmentContainerView` lesz az a nézet, melyben a navigációs gráfban felvett képernyők meg fognak jelenni. A `navGraph` paraméterrel tudjuk megadni az aktuális navigációs gráfot, míg a `defaultNavHost`-al tudjuk jelezni, hogy a rendszer vissza gombját alapértelmezetten ennek a nézetnek kell lekezelnie.
 
+4. Hogy ha ezzel megvagyunk, már, csak bővíteni kell igény szerint ezt a `NavGraph`-ot, illetve a `MainActivity`-ben, ezt a Composable függvényt kell meghívni, majd ez automatikusan a beállított főképernyőt hozza be az alkalmazás elindításakor.
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WorkplaceAppTheme {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopBar() }
+                )
+                { innerPadding ->
+                    NavGraph(innerPadding)
+                }
+            }
+        }
+    }
+}
+```
 !!!info "Több navigációs gráf"
-    Bár a Navigation Component támogatja, hogy több különböző navigáció gráfot is létrehozzunk az alkalmazásunkban, a legtöbb alkalmazásnál elegendő egy darab.
+    A Jetpack Compose használatával több navigációs gráf létrehozása és kezelése is lehetséges, azonban a legtöbb alkalmazásnál elegendő egyetlen `NavGraph`
 
-Próbáljuk meg futtatni az alkalmazást! Az indulás után az alkalmazásunk crashelni fog, mivel még nem vettünk fel képernyőket a navigáció gráfban, az Activity semmit se tud megjeleníteni, hibára fut.
 
 ## Főmenü képernyő (1 pont)
-Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
 
-Nyissuk meg a `nav_graph.xml` fájlt, és kattintsunk a *New Destination* gombra (bal felső gomb), majd a *Create new destination* gombra:
-<p align="center"> 
-<img src="./assets/new_destination.png" width="640">
-</p>
-Válasszuk ki a *Fragment (Blank)* gombot, és legyen az oldal neve *MenuFragment*. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a *Home Destination* jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
-A létrejött `fragment_menu.xml` tartalmát cseréljük ki az alábbira:
+Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk meghvalósítani, ezek a Profil és a Szabadság.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
-```
-
-Egy függőleges LinearLayout-ba tettünk bele 2 vízszintes LinearLayout-ot, mindkettő 2 gombot fog tartalmazni. Súlyozás segítségével 2 részre osztottuk a vízszintes LinearLayout-okat.
-A gombon a háttér és a felirat elhelyezéséhez a korábbi laboron már látotthoz hasonlóan FrameLayout-ot fogunk használni.
-
-Az első gombot például így készíthetjük el (a `FrameLayout` tagbe írjuk):
-```xml
-<ImageButton
-    android:id="@+id/btnProfile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:adjustViewBounds="true"
-    android:scaleType="fitCenter"
-    android:src="@drawable/profile" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="Profile"
-    android:textSize="34sp" />
-```
-
-A további 3 gombot ennek a mintájára készítsük el ezekkel az értékekkel:
-
-| Szöveg | ID | Kép |
-| -- | -- | -- |
-| Holiday | `@+id/btnHoliday` | `@drawable/holiday` |
-| Payment | `@+id/btnPayment` | `@drawable/payment` |
-| Cafeteria | `@+id/btnCafeteria` | `@drawable/cafeteria` |
-
-Ne felejtsük el a szövegeket kiszervezni erőforrásba! (a szövegen állva `Alt+Enter`)
-
-Valósítsuk meg a navigációt a két oldalra. Hozzunk létre két új *Fragment (Blank)* képernyőt (`ProfileFragment` és `HolidayFragment`). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A két akció létrehozása után így fog kinézni a navigációs gráf:
-
-<p align="center"> 
-<img src="./assets/actions.png" width="640">
-</p>
-
-Az akciók meghívásához használjuk a view binding-ot a `MenuFragment`-ben:
+Hozzunk létre egy új *Packaget* a projekt gyökérmappájában, majd nevezzük el `navigation` néven, és ebben hozzunk létre egy új *Kotlin Filet* `NavGraph` néven, majd írjuk meg a kódot az alábbi alapján:
 
 ```kotlin
-class MenuFragment : Fragment() {  
-	private lateinit var binding : FragmentMenuBinding  
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {  
-        binding = FragmentMenuBinding.inflate(inflater, container, false)  
-        return binding.root;  
-    }  
-  
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
-        super.onViewCreated(view, savedInstanceState)  
-  
-        binding.btnProfile.setOnClickListener {
-	        findNavController().navigate(R.id.action_menuFragment_to_profileFragment)  
-        }  
-        binding.btnHoliday.setOnClickListener {
-	        findNavController().navigate(R.id.action_menuFragment_to_holidayFragment)  
-        }  
-    }  
+@Composable
+fun NavGraph(
+    paddingValues: PaddingValues,
+    navController: NavHostController = rememberNavController(),
+){
+    NavHost(
+        navController = navController,
+        startDestination = "menu"
+    ){
+        composable("menu"){
+            MenuScreen(
+                onClick = { destination ->
+                    navController.navigate(destination)
+                },
+                modifier = Modifier.padding(paddingValues)
+            )
+        }
+    }
 }
 ```
-A `findNavController()` függvénnyel érhetjük el a **NavController** osztály aktuális példányát, mellyel a navigációt tudjuk megvalósítani. A navigációhoz használt akciókhoz automatikusan generálódik egy azonosító, de ezeket a szerkesztőben módosíthatjuk, ha szeretnénk.
 
-Próbáljuk ki az alkalmazást! 4 gombnak kell megjelennie és a felső kettőn működnie kell a navigációnak a (még) üres Fragment-kbe.
+Ezzel létrehoztuk a `NavGraph`-unkat, most már csak bővíteni kell a további képernyőkhöz, valamint meg kell hívni a `MainActivity`-ben. 
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WorkplaceAppTheme {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopBar() }
+                )
+                { innerPadding ->
+                    NavGraph(innerPadding)
+                }
+            }
+        }
+    }
+}
+```
+
+Ahhoz, hogy az alkalmazásunk működőképes legyen, létre kell hoznunk még a `TopBar` valamint a `MenuScreen` *Composable* függvényeket. Első lépésként valósítsuk meg a `TopBar`-t. Ezt hasonlóan megtehetjük az előző laborokon tanultakkal. Hozzunk létre egy uj *Packaget* a projektmappába `appbar` néven, majd ebben hozzunk létre egy új *Kotlin Filet* `TopBar` néven, és írjuk bele a következő kódot:
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar() {
+    TopAppBar(
+        title = { Text(text = "Workplace App") },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.inversePrimary
+        )
+    )
+}
+```
+
+Ez egy egyszerű AppBar, ennek segítségével elhelyezhetünk különbőző *Actiont* valamint gombokat.
+
+Ezután írjuk meg a `MainScreen` képernyőnket is. Ehhez hozzunk létre egy új *Packaget* `screen` néven, majd ebben egy új *Kotlin Filet* `MainScreen` néven. Ezen belül hozzunk létre egy segéd függvényt, amely a speciális gombokért fog felelni:
+
+```kotlin
+@Composable
+fun CustomButton(imageId: Int, text: String, clickAction: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clickable { clickAction() }
+            .size(180.dp)
+            .background(Color.LightGray)
+            .padding(8.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Image(
+                painter = painterResource(id = imageId),
+                contentDescription = text,
+                modifier = Modifier
+                    .fillMaxSize()
+            )
+            Text(
+                text = text,
+                fontSize = 24.sp,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(4.dp)
+            )
+        }
+    }
+}
+```
+
+Ez egy ImageButton-ként fog működni, amin egy feliratot is el tudunk helyezni. Ennek a segítségével valósítsuk meg a főképernyőnket:
+
+```kotlin
+@Composable
+fun MenuScreen(
+    onClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier.fillMaxSize()
+    ) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                CustomButton(imageId = R.mipmap.profile, text = "Profile", clickAction = { onClick("profile") })
+                Spacer(modifier = Modifier.width(16.dp))
+                CustomButton(imageId = R.mipmap.holiday, text = "Holiday", clickAction = { onClick("holiday") })
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            //TODO
+        }
+    }
+}
+```
+
+Ennek mintájára, valósítsuk meg a másik két gombot is az alábbi értékekkel:
+
+|Szöveg|Kép|
+|------|---|
+|`Salary`|`@mipmap.payment`|
+|`Cafeteria`|`@mipmap.cafeteria`|
+
+Ne felejtsük el a szövegeket kiszervezni a szöveges erőforrásba! (A szövegen állva <kbd>ALT</kbd>+<kbd>ENTER</kbd>)
+
+Ha most elindítjuk az alkalmazást, akkor mind a 4 gombot látnunk kellene, azonban ha ezekre kattintunk, akkor az alkalmazás el fog crashelni, ugyanis a `NavGraph`unk még hiányos. Ez a következő kódokkal tudjuk pótolni. Ehhez először létre kell hozunk 2 ideiglenes *Kotlin Filet* amit majd később szerkeszteni fogunk.
+
+Hozzunk létre két *Kotlin Filet* a `screen` *Packageba* `ProfileScreen` illetve `HolidayScreen` névvel, és írjuk bele az alábbi ideiglenes kódokat:
+
+```kotlin
+@Composable
+fun ProfileScreen(
+    modifier: Modifier = Modifier
+){
+    Column (
+        modifier = modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ){
+        Text(
+            fontSize = 24.sp,
+            text = "Profile Screen"
+        )
+    }
+}
+```
+
+```kotlin
+@Composable
+fun HolidayScreen(
+    modifier: Modifier = Modifier
+){
+    Column (
+        modifier = modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ){
+        Text(
+            fontSize = 24.sp,
+            text = "Holiday Screen"
+        )
+    }
+}
+```
+
+Majd ezután kössük be ezt a két új képernyőt a `NavGraph`ba. Ehhez módosítsuk a Gráfunkat a következő képpen. Adjuk hozzá a két új *composable* sort.
+
+
+```kotlin
+@Composable
+fun NavGraph(
+    ...
+){
+    NavHost(
+        ...
+    ){
+        ...
+        composable("profile"){
+            ProfileScreen(modifier = Modifier.padding(paddingValues))
+        }
+
+        composable("holiday"){
+            HolidayScreen(modifier = Modifier.padding(paddingValues))
+        }
+    }
+}
+```
+
+Indítsuk el az alkalmazást. Mostmár a felső két gombnak működnie kellene.
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **elkészült főoldal kép** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
 
+
 ## Profil képernyő elkészítése (1 pont)
 
-A Profil képernyő két lapozható oldalból fog állni, ezen a név, email, lakcím (első oldal), illetve a személyigazolvány szám, TAJ szám, adószám és törzsszám (második oldal) fognak megjelenni.
 
-Hozzunk létre egy `data` package-et, azon belül egy `Person` adatosztályt, ebben fogjuk tárolni az oldalakon megjelenő adatokat.
-Az adat típusú osztályok esetében a Kotlin automatikusan deklarál gyakran használt függvényeket, mint például az `equals()` és `hashCode()` függvényeket különböző objektumok összehasonlításához, illetve egy `toString()` függvényt, mely visszaadja a tárolt változók értékét.
+A Profil képernyő két lapozható oldalból fog állni (`HorizontalPager`), amelyen a következő információk lesznek megtalálhatóak:
+
+- Első oldal
+    - Név
+    - Email
+    - Lakcím
+- Második oldal
+    - Személyi szám
+    - TAJ szám
+    - Adószám
+    - Törzsszám
+
+Hozzunk létre egy `data` package-et, azon belül egy `Person` adatosztályt, ebben fogjuk tárolni az oldalakon megjelenő adatokat. Az adat típusú osztályok esetében a Kotlin automatikusan deklarál gyakran használt függvényeket, mint például az `equals()` és `hashCode()` függvényeket különböző objektumok összehasonlításához, illetve egy `toString()` függvényt, mely visszaadja a tárolt változók értékét.
+
 
 ```kotlin
 data class Person(
@@ -271,7 +386,7 @@ data class Person(
     val email: String,
     val address: String,
     val id: String,
-    val socialSecurityNumber: String,
+    val socialSecNum: String,
     val taxId: String,
     val registrationId: String
 )
@@ -291,482 +406,452 @@ object DataManager {
     )
 }
 ```
-A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy **ViewPager**-t fogunk használni, mely Fragment oldalak között képes ilyen interakciót megvalósítani.
 
-Hozzunk létre egy új *package*-et `profile` néven, majd mozgassuk át ebbe a `ProfileFragment` osztályunkat. A mozgatás után töröljük az eredeti helyen maradt fájlt.
+A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy **HorizontalPager**-t fogunk használni, mely Composable függvények között képes ilyen interakciókat megvalósítani.
 
-Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre a `profile` package-ben a két Fragmentet (New -> Kotlin Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
+Hozzunk létre egy új *Package*-et `profile` néven a `screen` *Packagen* belül, majd a `ProfileScreen` *Kotlin Filen -> Jobb Klikk  -> Refactor -> Move* segítségével mozgassuk át az új *Packagebe*, majd ezután hozzunk létre három új *Kotlin Filet* az alábbi nevekkel: `ProfileFirstPage`, `ProfileSecondPage`, `ProfileInfoField`, majd írjuk bele az alábbi kódot.
 
-A két Fragmentben származzunk le a Fragment osztályból (androidx-es verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
+`ProfileInfoField`
 
-`MainProfileFragment.kt`:
 ```kotlin
-class MainProfileFragment : Fragment(){
-    private lateinit var binding: FragmentProfileMainBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentProfileMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val person = DataManager.person
-        binding.tvName.text = person.name
-        binding.tvEmail.text = person.email
-        binding.tvAddress.text = person.address
+@Composable
+fun InfoFields(title: String, value: String) {
+    Column(
+        modifier = Modifier.padding(bottom = 16.dp)
+    ) {
+        Text(
+            color = Color.Gray,
+            text = title,
+            fontSize = 20.sp
+        )
+        Text(
+            text = value,
+            fontSize = 24.sp
+        )
     }
 }
 ```
+Ez csak egy segéd *Composable* függvény, amely lehetővé fogja tenni a kevesebb kód írását, valamint, hogy a Profil információk formázottan jelenlenek meg.
 
-`DetailsProfileFragment.kt`:
+`ProfileFirstPage`
+
 ```kotlin
-class DetailsProfileFragment : Fragment(){
-    private lateinit var binding: FragmentProfileDetailBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentProfileDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val person = DataManager.person
-        binding.tvId.text = person.id
-        binding.tvSSN.text = person.socialSecurityNumber
-        binding.tvTaxId.text = person.taxId
-        binding.tvRegistrationId.text = person.registrationId
+@Composable
+fun ProfileFirstPage(
+    name: String,
+    email: String,
+    address: String
+){
+    Column (
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        InfoFields(title = "NAME:", value = name)
+        InfoFields(title = "EMAIL:", value = email)
+        InfoFields(title = "ADDRESS:", value = address)
     }
 }
 ```
 
-Készítsük el a megfelelő layout-okat a Fragmentekhez (`fragment_profile_main.xml` és `fragment_profile_detail.xml`).
+Ez a *Composable* függvény fog felelni az első oldalért, a következő pedig a második oldalért.
 
-`fragment_profile_main.xml`:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+`ProfileSecondPage`
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-</LinearLayout>
-```
-
-`fragment_profile_detail.xml`:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Social Security ID:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvSSN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tax ID:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvTaxId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registration ID:"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/tvRegistrationId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#000000"
-        android:textSize="34sp" />
-
-</LinearLayout>
-```
-
-(Szervezzük ki a szövegeket erőforrásba)
-
-Már csak a lapozás megvalósítása maradt hátra, ezt a ViewPager osztállyal fogjuk megvalósítani.
-
-A `fragment_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="hu.bme.aut.android.workplaceapp.profile.ProfileFragment">
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
-```
-!!!info "ViewPager2"
-	A ViewPager2 osztály egy teljes újraírása az eredeti ViewPager osztálynak, a RecyclerView-re alapozva.
-
-A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy új  PagerAdaptert a két Fragmentünkhöz.
-`ProfilePagerAdapter.kt`:
 ```kotlin
-class ProfilePageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {  
-  
-  override fun getItemCount(): Int = NUM_PAGES  
-  
-  override fun createFragment(position: Int): Fragment = when(position){  
-      0 -> MainProfileFragment()  
-      1 -> DetailsProfileFragment()  
-      else -> MainProfileFragment()  
-  }  
-  
-  companion object{  
-      const val NUM_PAGES = 2  
-  }  
+@Composable
+fun ProfileSecondPage(
+    id: String,
+    socialSecurityId: String,
+    taxId: String,
+    registrationId: String
+) {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        InfoFields(title = "ID:", value = id)
+        InfoFields(title = "SOCIAL SECURITY ID:", value = socialSecurityId)
+        InfoFields(title = "TAX ID:", value = taxId)
+        InfoFields(title = "REGISTRATION ID:", value = registrationId)
+    }
 }
 ```
 
-A ProfileFragment-ben rendeljük hozzá a ViewPagerhez a most elkészített adaptert: 
+A függvény paraméterei a Profil egyes adatai lesznek String formátumban. Ha ezekkel megvagyunk, módosítsuk a `ProfileScreen` nevű *Composable* függvényünket az alábbiak szerint:
+
 ```kotlin
-class ProfileFragment : Fragment() {  
-      
-    private lateinit var binding: FragmentProfileBinding  
-  
-  override fun onCreateView(  
-        inflater: LayoutInflater,   
-        container: ViewGroup?,   
-        savedInstanceState: Bundle?  
-    ): View {  
-        binding = FragmentProfileBinding.inflate(inflater, container, false)  
-        return binding.root  
-  }  
-  
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
-        super.onViewCreated(view, savedInstanceState)  
-      
-        binding.vpProfile.adapter = ProfilePageAdapter(this)  
-    }  
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ProfileScreen(
+    modifier: Modifier = Modifier
+) {
+    val pagerState = rememberPagerState(pageCount = { 2 })
+    val profile = DataManager.person
+
+    HorizontalPager(state = pagerState) {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            when (pagerState.currentPage) {
+                0 -> {
+                    ProfileFirstPage(
+                        name = profile.name,
+                        email = profile.email,
+                        address = profile.address
+                    )
+                }
+                1 -> {
+                    ProfileSecondPage(
+                        id = profile.id,
+                        socialSecurityId = profile.socialSecNum,
+                        taxId = profile.taxId,
+                        registrationId = profile.registrationId
+                    )
+                }
+            }
+        }
+    }
 }
 ```
 
-Próbáljuk ki az alkalmazást. A Profile gombra kattinva megjelennek a felhasználó adatai és lehet lapozni is.
+Először is létre kell hozunk egy `pagerState` nevű változót, amit át fogunk adni a `HorizontalPager`nek. Ez tartalmazza, hogy hány oldal lesz az adott *Composable*n. Ezt követően szükség lesz egy profil-ra, amit már korábban definiáltunk egy `object`ként. Végül a `HorizontalPager` segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két *Composable* függvényt 1-1 oldalként.
+
+Próbáljuk ki az alkalmazást. A Profile gombra kattintva megjelennek a felhasználó adatai, és ha mindent jól csináltunk lehet lapozni is.
+
+
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **profil oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), melyben az egyik mező helyére a **neptun kódod** van kírva, illetve a **ProfilePageAdapter** kódrészlete. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik a **profil oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), melyben az egyik mező helyére a **neptun kódod** van kírva, illetve a **HorizontalPager** kódrészlete. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+
+
 
 ## Szabadság képernyő elkészítése (1 pont)
 
-A Szabadság képernyőn egy kördiagramot fogunk megjeleníteni, ami mutatja, hogy mennyi szabadságot vettünk már ki és mennyi maradt. Ezen kívül egy gomb segítségével új szabadnap kivételét is megengedjük a felhasználónak.
+A Szabadság képernyőn egy kördiagrammot fogunk megjeleníteni, ami mutatja, hogy mennyi szabadságot vettunk már ki, és mennyi maradt százalékos arányban. Ezen kívül egy gomb segítségével egy új szabadság intervallum kivételét is megengedjük a felhasználónak.
 
-Először egészítsük ki a DataManager osztályunkat, hogy kezelje a szabadsághoz kapcsolódó adatokat is:
-```kotlin
-const val HOLIDAY_MAX_VALUE = 20
-const val HOLIDAY_DEFAULT_VALUE = 15
+A PieChart kirajzoláshoz korábban az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t használtuk, azonban ez sajnos Jetpack Compose-ra nem működik már teljesen így a [YCharts](https://github.com/codeandtheory/YCharts) könyvtárat fogjuk a következőkben használni. Ehhez vegyük is fel a függőséget. Nyissuk meg a `settings.gradle` fájlt, és vegyük fel a `repositories`-hez a következőt:
 
-var holidays = HOLIDAY_DEFAULT_VALUE
-val remainingHolidays get() = HOLIDAY_MAX_VALUE - holidays
-```
-
-A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t fogjuk használni.
-
-settings.gradle:
 ```groovy
-dependencyResolutionManagement {
-    repositories {
-        ...
-        maven(url = "https://jitpack.io")
-    }
+repositories {
+    ...
+    maven { url = uri("https://jitpack.io")}
 }
 ```
 
-App szintű build.gradle:
+Ezután nyissuk vegyük fel az előzőhöz hasonlóan a függőséget.
+
+
+`libs.versions.toml`
+```toml
+[versions]
+...
+ycharts = "2.1.0"
+
+[libraries]
+...
+ycharts = { module = "co.yml:ycharts", version.ref = "ycharts" }
+```
+
+
+`build.gradle`
 ```groovy
 dependencies {
     ...
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation(libs.ycharts)
 }
 ```
 
-Ezután kattinsunk az Android Studioban jobb fent megjelenő `Sync Now` feliratra vagy a fejlécen szereplő mérges gradle elefánt gombra, hogy a library fájljai letöltődjenek.
+Valamint ezen a fájlon belül keressük meg a `minSdk` változót, és írjuk át 26-ra:
 
-Ha a library fájljai letöltődtek, akkor írjuk meg a Fragment layout-ját (`fragment_holiday.xml`):
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="hu.bme.aut.android.workplaceapp.HolidayFragment">
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/chartHoliday"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/btnTakeHoliday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take Holiday"
-        android:layout_gravity="center" />
-
-</LinearLayout>
+```groovy
+android {
+    ...
+    defaultConfig{
+        ...
+        minSdk = 26
+        ...
+    }
+    ...
+}
 ```
 
-Írjuk meg a Fragment kódját (`HolidayFragment.kt`):
+Ezután Synceljük a Projectet a jobb fent lévő `Sync Now` gombbal. 
+
+Ha a fájlok letöltődtek hozzunk létre egy `model` *Packaget* a projekt mappában, és ezen belül hozzunk létre egy új *Kotlin Filet* `HolidayViewModel` néven. Erre azért lesz szükség, hogy eltároljuk a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. Ezt lehetne egy külön változóban is, azonban szükség van a ViewModel-re, hogy az egyes képernyők között megtartsák az értékeket a változók. Ennek alapján írjuk be az alábbi kódot a fájlba:
+
 ```kotlin
-class HolidayFragment : Fragment() {
+class HolidayViewModel : ViewModel() {
+    private val _holidayMaxValue = MutableStateFlow(20)
+    val holidayMaxValue: StateFlow<Int> = _holidayMaxValue
 
-    private lateinit var binding : FragmentHolidayBinding
+    private val _holidayDefaultValue = MutableStateFlow(15)
+    val holidayDefaultValue: StateFlow<Int> = _holidayDefaultValue
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHolidayBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.btnTakeHoliday.setOnClickListener {
-            //TODO: DatePickerDialogFragment megjelenítése
+    fun incrementDefaultValue(
+        days: Int
+    ) {
+        viewModelScope.launch {
+            _holidayDefaultValue.value+=days
         }
-        loadHolidays()
-    }
-
-    private fun loadHolidays(){
-        val entries = listOf(
-            PieEntry(DataManager.holidays.toFloat(), "Taken"),
-            PieEntry(DataManager.remainingHolidays.toFloat(), "Remaining")
-        )
-
-        val dataSet = PieDataSet(entries, "Holidays")
-        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
-
-        val data = PieData(dataSet)
-        binding.chartHoliday.data = data
-        binding.chartHoliday.invalidate()
     }
 }
 ```
 
-Próbáljuk ki az alkalmazást! A PieChart most már megjelenik, de a gomb még nem kell, hogy működjön.
+Majd ezután frissíthetjük a `HolidayScreen` *Composable* függvényünket az alábbiak szerint:
 
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **elkészült szabadság képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
- 
+```kotlin
+@Composable
+fun HolidayScreen(
+    modifier: Modifier = Modifier
+) {
+
+    var showDialog by remember { mutableStateOf(false) }
+
+
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        //PieChartData létrehozása
+        
+
+        //PieChartConfig létrehozása
+        
+
+        //PieChart létrehozása - PieChartData, PieChartConfig segítségével
+        
+
+        //Holiday Button
+
+
+        //DatePicker Dialog
+
+
+    }
+}
+```
+
+
+
+
+
+1. Hozzuk létre a `pieChardData` változónkat az alábbiak szerint (Másoljuk be a `//PieChartData létrehozása` comment alá):
+```kotlin
+val pieChartData = PieChartData(
+    slices = listOf(
+        PieChartData.Slice("Remaining", 5f, Color(0xFFFFEB3B)),
+        PieChartData.Slice("Taken", 15f, Color(0xFF00FF00)),
+    ), plotType = PlotType.Pie
+)
+```
+    * `PieChartData`-nak két paramétert tudunk átadni ezek:
+        - **slices**: Ez a paraméter fogja tartalmazni az adatokat, és az adatok eloszlását, valamint az adatok színét.
+        - **plotType**: Ezzel a változóval tudjuk megadni a diagram típusát. Jelen esetben ez most `Pie` típus lesz.
+    * `PieChartData.Slice`-nak négy paramétert tudunk átadni, mi most csak az első hárommal foglalkozunk:
+        - **label**: Ez a String fog megjelenni az egyes "szeleteken".
+        - **value**: Ez az eloszlás értéke az adatoknak
+        - **color**: Ezzel tudjuk beállítani az egyes adatok színét a diagramon.
+
+    Az eloszlás értékének átadtuk a ViewModel-ben tárolt két változónkat. Ez minden egyes alkalommal változni fog, hogy ha új szabadság időintervallumot nyújtunk be, valamint, hogy ha kilépünk a Szabadság képernyőről a főmenübe, és vissza, továbbra is meg fogja tartani az értéket.
+
+2. Az előzőhöz hasonlóan hozzuk létre a `pieChartConfig` változót is:
+```kotlin
+val pieChartConfig = PieChartConfig(
+    backgroundColor = Color.Transparent,
+    labelType = PieChartConfig.LabelType.VALUE,
+    isAnimationEnable = true,
+    labelVisible = true,
+    sliceLabelTextSize = TextUnit(20f, TextUnitType.Sp),
+    animationDuration = 1000,
+    sliceLabelTextColor = Color.Black,
+    inActiveSliceAlpha = .8f,
+    activeSliceAlpha = 1.0f,
+)
+```
+    * A `PieChartConfig`-nak nagyon sok paramétere van, ezek közül csak párat fogunk megnézni a labor során.
+        - **backgroundColor**: Ezzel tudjuk módosítani a diagram hátterét. Jelen esetben átlátszóra van szükségünk.
+        - **labelType**: Ezzel lehet(ne) állítani, hogy az értéket, vagy a százalékot írja ki a diagram egyes szeletein, de ez jelenleg nem működik :)
+        - **isAnimationEnable**: Animáció ki-be kapcsolása.
+        - **labelVisible**: Ezzel tudjuk ki-be kapcsolni, hogy látszódjon a felirat a diagram szeletein.
+        - **sliceLabelTextSize**: Felirat mérete a szeleteken.
+        - **animationDuration**: Animáció időtartama.
+        - **sliceLabelTextColor**: Felirat színe.
+        - **inActiveSliceAlpha**: Inaktív szeletek átlátszósága.
+        - **activeSliceAlpha**: Aktív szeletek átlátszósága.
+
+3. `PieChart` létrehozása:
+```kotlin
+PieChart(
+    modifier = Modifier
+        .width(400.dp)
+        .height(400.dp),
+    pieChartData,
+    pieChartConfig
+)
+```
+    * Az előbb létrehozott két változót átadjuk a `PieChart` *Composable* függvénynek, és ezeknek a segítségével létrehozza a kördiagrammot.
+
+    * Hogy ha most elindítjuk az alkalmazást, és mindent jól csináltunk, akkor a Holiday opciónál látni kéne a diagramot
+
 ## Dátumválasztó megvalósítása (1 pont)
 
-A következő lépésben a Take Holiday gombra megjelenő dátumválasztó működését fogjuk megvalósítani. A gomb lenyomására megjelenik egy dátumválasztó és a dátum kiválasztása után a szabad napok eggyel csökkennek.
-
-Hozzunk létre egy DatePickerDialogFragment osztályt:
+Következő lépésként valósítsuk meg a `Take Holiday` gombot:
+    * Ehhez szükségünk lesz az 5. lépésben egy DialogWindow-ra, de addig is be tudjuk állítani a Gomb működését.
 ```kotlin
-class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetListener{
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        return DatePickerDialog(requireContext(), this, year, month, day)
-    }
-
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        //TODO: return result
-    }
+Button(
+    onClick = { showDialog = true }
+) {
+    Text("Take holiday")
 }
 ```
+### Képernyők közötti kommunikáció viewModel segítségével
 
-Az importoknál a `java.util`-t válasszuk a Calendarhoz, a Fragment-hez pedig az `androidx`-es verziót.
+Hozzunk létre egy model Packaget a projekt mappában, és ezen belül hozzunk létre egy új Kotlin Filet HolidayViewModel néven. Erre azért lesz szükség, hogy eltároljuk a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. Ezt lehetne egy külön változóban is, azonban szükség van a ViewModel-re, hogy az egyes képernyők között megtartsák az értékeket a változók. Ennek alapján írjuk be az alábbi kódot a fájlba:
 
-Vegyük fel a dialógust a navigációs gráfba! Ehhez kattintsunk a **New Destination** gombra, és válasszuk ki a most létrehozott DatePickerDialogFragment osztályt.
-
-!!!note "Dialog a navigációs gráfban"
-	A kiválasztásnál észrevehetjük, hogy a típusnál a *Fragment (dialog)* van megadva, míg a többi képernyőnél csak *Fragment*. Ez azért van, mert az osztály a **DialogFragment**-ből származik le, ami a navigációs gráf máshogy kezel, mivel ez nem egy teljes képernyős nézet. Ha átváltunk a kód nézetbe, ott is látható, hogy `dialog` taggel van felvéve ez az útvonal.
-
-Adjunk hozzá a navigációhoz egy akciót, mely a **HolidayFragment**-ből a **DatePickerDialogFragment**-re mutat. Állítsuk be a gomb eseménykezelőjét a HolidayFragment-ben, hogy lenyomáskor jelenítse meg a dátumválasztót:
 ```kotlin
-binding.btnTakeHoliday.setOnClickListener {
-    findNavController().navigate(R.id.action_holidayFragment_to_datePickerDialogFragment)
-}
-```
+class HolidayViewModel : ViewModel() {
+    private val _holidayMaxValue = MutableStateFlow(20)
+    val holidayMaxValue: StateFlow<Int> = _holidayMaxValue
 
-Próbáljuk ki az alkalmazást! Mostmár megjelenik a dialógus egy kisebb ablakban, de még a dátumválasztás eredménye nem jut vissza a kiinduló képernyőre. 
+    private val _holidayDefaultValue = MutableStateFlow(15)
+    val holidayDefaultValue: StateFlow<Int> = _holidayDefaultValue
 
-### Fragmentek közötti kommunikáció a Navigation Component segítségével
-
-Ahogy láthattuk az eddigi feladatok megoldásaiból, a Navigation Component a használata során maga kezeli a Fragmenteket, ő felelős a példányosításért. Ennek köszönhetően ha kommunikálni akarunk a képernyők között, akkor azt is a Navigation Component segítségével tudjuk megtenni.
-Kommunikáció során alapvetően két irányről beszélhetünk:
-
-- A hívó fél szeretne valamilyen paramétert átadni az új oldalnak.
-- Az új, jelenleg látható oldal szeretne valamilyen értéket visszaadni az előző oldalnak.
-
-!!!note "Több oldalon keresztüli navigáció"
-	A Navigation Component csak a szomszédos oldalak közötti navigációt teszi lehetővé. Több oldal esetén érdemesebb valamilyen egész alkalmazásra vonatkozó állapotkezelési megoldást használni.
-
-Az új oldalnak való paraméterátadás esetében a felületi szerkesztőben a megfelelő oldalt kiválasztva tudunk felvenni új paramétereket. Itt megadhatjuk a paraméter nevét, típusát, illetve pár egyéb opcionális beállítást. Ezekből a *Safe Args* csomag segítségével minden akcióhoz egy segédosztály fog generálódni, melyet példányosítva meg tudjuk adni a paramétereket, és ezt átadva a **NavController** `navigate()` függvényének, át tudunk navigálni az új oldalra. Az új oldalon pedig a `by navArgs()` használatával el tudunk kérni egy olyan objektumot, mely tartalmazni fogja ezeket a paramétereket. Ezen a laboron erre nem lesz szükségünk.
-
-Az érték visszaadására a Navigation Component egy elsőre bonyolultnak tűnő megoldást ad, viszont erre szükség van, mivel nincsen garantálva, hogy visszatéréskor az előző Fragment objektum még létezik. A Navigation Component minden képernyőjéhez egy **[`NavBackStackEntry`](https://developer.android.com/reference/androidx/navigation/NavBackStackEntry)**-t rendel, mely többek között tartalmaz egy tárolásra alkalmas objektumot ([`SavedStateHandle`](https://developer.android.com/reference/androidx/lifecycle/SavedStateHandle)). Az új oldal ebbe tud küldeni egy új értéket, míg az eredeti oldal meg tudja figyelni az ezeken történő változásokat.
-!!!note "Lifecycle"
-	A `SavedStateHandle` épít az Androidban elterjedt **Lifecycle** koncepcióra, ennek részletes bemutatása azonban túlmutat a labor anyagán, elég csak magát a kommunikáció módját érteni.
-
-Valósítsuk meg a dátumválasztó felület kommunikációját! Először vizsgáljuk meg a dátumválasztás oldalát. 
-Vegyünk fel egy új kulcsot a `HolidayFragment` osztályba, mellyel az eredményt tudjuk azonosítani a fogadóoldalon:
-```kotlin
-companion object {
-    const val DATE_SELECTED_KEY = "date_selected"
-}
-```
-Hozzunk létre a egy új osztályt a  `DatePickerDialogFragment`-en belül, mely az eredményt fogja tárolni:
-```kotlin
-data class DatePickerResult(
-    val year: Int,
-    val month: Int,
-    val dayOfMonth: Int,
-) : Serializable
-```
-!!!info "Serializable"
-	A Navigation Component kommunikációja a **Bundle** osztályt használja, ezért nem lehet tetszőleges objektumot átadni neki. A **Serializable** interfész használata egy könnyű megoldást biztosít erre.
-
-Majd készítsük el a dátumkiválasztás függvényét:
-```kotlin
-override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-    val result = DatePickerResult(year, month, dayOfMonth)
-    findNavController()
-        .previousBackStackEntry
-        ?.savedStateHandle
-        ?.set(HolidayFragment.DATE_SELECTED_KEY, result)
-}
-```
-
-Vizsgáljuk meg, hogyan működik a kommunikáció! Mivel az előző oldalnak akarok értéket visszaadni, a `previousBackStackEntry` paramétert használom, mely így a `HolidayFragment`-hez fog tartozni. Ennek a **SavedStateHandle** objektumán a `set()` metódushívással tudok paramétert átadni.
-
-Készítsük el a fogadó fél oldalát is. Ehhez az **HolidayFragment** `onViewCreated()` metódusában fel kell iratkoznunk a megfelelő eredmény objektumra:
-```kotlin
-override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-
-    binding.btnTakeHoliday.setOnClickListener {
-        findNavController().navigate(R.id.action_holidayFragment_to_datePickerDialogFragment)
-    }
-    findNavController()
-        .currentBackStackEntry
-        ?.savedStateHandle
-        ?.getLiveData<DatePickerDialogFragment.DatePickerResult>(DATE_SELECTED_KEY)
-        ?.observe(viewLifecycleOwner) {
-            val numHolidays = DataManager.holidays
-            if (DataManager.remainingHolidays > 0){
-                DataManager.holidays = numHolidays + 1
-            }
-            loadHolidays()
+    fun incrementDefaultValue(
+        days: Int
+    ) {
+        viewModelScope.launch {
+            _holidayDefaultValue.value+=days
         }
-    loadHolidays()
+    }
 }
 ```
-Itt az `observe()` metódusnak átadott callback metódus (a kapcsos zárójel közötti rész) minden alkalommal meg fog hívodni, amikor valamilyen változás történik az eredményben.
 
-Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön, a napok számának is csökkennie kell a diagramon.
+Ezután módosítsuk a `HolidayScreen` fejlénét a következő képpen, és hozzunk létre pár új változót:
+
+```kotlin
+@Composable
+fun HolidayScreen(
+    modifier: Modifier = Modifier,
+    viewModel: HolidayViewModel = viewModel()
+) {
+
+    val holidayMaxValueVM by viewModel.holidayMaxValue.collectAsState()
+    val holidayDefaultValueVM by viewModel.holidayDefaultValue.collectAsState()
+    val remainingHolidaysVM = holidayMaxValueVM - holidayDefaultValueVM
+
+    val currentDate = Calendar.getInstance()
+    val context = LocalContext.current
+    var showDialog by remember { mutableStateOf(false) }
+
+    Column(
+        ...
+    ) {
+
+        //PieChartData létrehozása
+        val pieChartData = PieChartData(
+            slices = listOf(
+                PieChartData.Slice("Remaining", remainingHolidaysVM.toFloat(), Color(0xFFFFEB3B)),
+                PieChartData.Slice("Taken", holidayDefaultValueVM.toFloat(), Color(0xFF00FF00)),
+            ), plotType = PlotType.Pie
+        )
+
+        //PieChartConfig létrehozása
+        ...
+
+        //PieChart létrehozása - PieChartData, PieChartConfig segítségével
+        ...
+
+        //Holiday Button
+        Button(
+            onClick = { showDialog = true }
+        ) {
+            Text("Take holiday")
+        }
+
+        //DatePicker Dialog
+        
+    }
+}
+```
+!!!danger "pieChartData"
+    Figyelj arra, hogy a `pieChartData`-t is frissítsed, ugyanis itt már nem beégetett eloszlás értéket használunk, hanem a viewModel-ben lévő változót!
+
+!!!warning "viewModel"
+    Sokszor az Android Studio nem tudja megtalálni a `viewModel()`-hez szükséges importot. Ilyenkor kézileg írjuk az importokhoz az alábbi importot:
+    ```kotlin
+    import androidx.lifecycle.viewmodel.compose.viewModel
+    ```
+
+
+
+Hozzuk létre a dialógus ablakot az alábbiak szerint.
+```kotlin
+if (showDialog) {
+    DatePickerDialog(
+        context,
+        { _, _year, _months, _days ->
+            showDialog = false
+            val selectedDate = Calendar.getInstance().apply{
+                set(_year, _months, _days)
+            }
+            val diff = ((selectedDate.timeInMillis - currentDate.timeInMillis) / (24 * 60 * 60 * 1000)).toInt()
+            viewModel.incrementDefaultValue(
+                days = diff
+            )
+        },
+        currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH)
+    ).apply {
+        setOnCancelListener { showDialog = false }
+        show()
+    }
+}
+```
+
+!!!tip "DatePickerDialog import"
+    A `DatePickerDialog`-nál használjuk az alábbi importot:
+    ```kotlin
+    import android.app.DatePickerDialog
+    ```
+
+Hogy ha ezzel megvagyunk, akkor már csak a `NavGraph`-ot kell úgy módosítani, hogy az értékeket megtartsa az alkalmazás, hogy ha ki-és belépünk a Holiday képernyőre. Ezt a következő képpen tudjuk megtenni:
+```kotlin
+@Composable
+fun NavGraph(
+    ...
+){
+    val holidayViewModel: HolidayViewModel = viewModel()
+
+    NavHost(
+        ...
+    ){
+        ...
+        composable("holiday"){
+            HolidayScreen(
+                viewModel = holidayViewModel,
+                modifier = Modifier.padding(paddingValues)
+            )
+        }
+
+    }
+}
+```
+
+Ezután az alkalmazást elindítva már rendesen kell működnie a `Take Holiday` gombnak.
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **dátumválasztó kép** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4a.png néven töltsd föl. **Emellett**  készíts egy **képernyőképet**, amelyen látszik a **dátumválasztás eredménye a szabadság képernyőn** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a kommunikációhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4b.png néven töltsd föl.
 
+
 ## Önálló feladat
 
-- Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)
-- Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)
+*   Csak akkor engedjünk új szabadságot kivenni, hogy ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)
+*   Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)
 
 !!!example "BEADANDÓ (0.5 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **dátumválasztó oldal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **korábbi napok tiltásához tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5a.png néven töltsd föl.
@@ -775,14 +860,13 @@ Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön,
 	Készíts egy **képernyőképet**, amelyen látszik a **letiltott gomb** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5b.png néven töltsd föl.
 
 ## iMSc feladat
-
 ### Fizetés menüpont megvalósítása
 
-A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewPager-rel és 2 Fragment-tel (A Profile menüponthoz hasonlóan):
-- `PaymentTaxesFragment`: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
-- `MonthlyPaymentFragment`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
+A Payment menüpontra kattintva jelenjen meg egy `PaymentScreen` rajta egy HorizontalPager-rel és két képernyővel (A Profile menüponthoz hasonlóan):
+- `PaymentTaxesScreen`: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
+- `MonthlyPaymentScreen`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
 
-[Segítség](https://github.com/PhilJay/MPAndroidChart/wiki)
+[Segítség](https://github.com/codeandtheory/YCharts)
 
 !!!example "BEADANDÓ (1 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **aktuális fizetés és nettó jövedelem a levont adókkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f6.png néven töltsd föl.
@@ -790,3 +874,9 @@ A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewP
 
 !!!example "BEADANDÓ (1 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **12 oszlop a havi fizetési adatokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl.
+
+## Extra
+
+Az érdeklődők kedvéért ezen a laboron egy extra feladat is van, viszont ez csak saját tapasztalat szerzésért. **Ezért a feladatért nem jár pont!**
+
+*   Az önálló feladathoz hasonlóan most a állítsad be, hogy a DatePicker dialógus ablakon csak a mai illetve a mai + maximális szabadnapok között lehessen választani. 
