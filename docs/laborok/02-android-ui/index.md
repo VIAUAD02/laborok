@@ -173,7 +173,7 @@ Miután a felhasználó elindította az alkalmazást, egy "üdvözlő/splash" k�
 
 API 31 felett bevezetésre került egy [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), most ezt fogjuk használni. Ehhez már korábban felvettük a szükséges függőséget a `build.gradle.kts` fájlba.
 
-Készítsünk el egy tetszőleges ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített `Asset Studio` eszközét fogjuk használni. Bal oldalon a a *Project* fül alatt nyissuk meg a `Resource Manager`-t, majd nyomjunk a <kbd>+</kbd> gombra, ott pedig az `Image Asset` lehetőségre.
+Készítsünk el egy tetszőleges ikont, amit majd fel fogunk használni a splash képernyőnk közepén. Ehhez az Android Studio beépített `Asset Studio` eszközét fogjuk használni. Bal oldalon a *Project* fül alatt nyissuk meg a `Resource Manager`-t, majd nyomjunk a <kbd>+</kbd> gombra, ott pedig az `Image Asset` lehetőségre.
 
 1. Itt *Launcher Icon-t* szeretnénk majd generálni, tehát válasszuk azt.
 2. A neve legyen *ic_transport*
@@ -190,7 +190,7 @@ Készítsünk el egy tetszőleges ikont, amit majd fel fogunk használni a splas
 
 Láthatjuk, hogy több féle ikon készült, több féle méretben. Ezekből a rendszer a konfiguráció függvényében fog választani.
 
-A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `themes.xml` fájlban. Vegyük fel az alábbi kódrészletet a meglévő stílus alá. (A tárgy keretein belül nagyon kevés xml kóddal fogunk foglalkozni.)
+A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `themes.xml` fájlban. Vegyük fel az alábbi kódrészletet a meglévő stílus alá. (A tárgy keretein belül nagyon kevés XML kóddal fogunk foglalkozni.)
 
 ```xml
 <style name="Theme.PublicTransport.Starting" parent="Theme.SplashScreen">
@@ -234,7 +234,7 @@ Ezután állítsuk be az alkalmazásunk ikonját is:
     ...
 </application>
 ```
-Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate-ben`, hogy az alkalmazás indításánál, valóban elkészüljön a *splash screen*.
+Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate`-ben, hogy az alkalmazás indításánál, valóban elkészüljön a *Splash Screen*.
 
 ```kotlin
 
@@ -273,7 +273,7 @@ Most már elkészíthetjük a login képernyőt. A felhasználótól egy e-mail 
 <img src="./assets/login.png" width="320">
 </p>
 
-Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a package-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Ismertető feladat - Screen File](#ismerteto-feladat-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
+Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Ismertető feladat - Screen File](#ismerteto-feladat-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
 Nyissuk meg a `NavGraph` fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.
 
@@ -421,9 +421,6 @@ class MainActivity : ComponentActivity() {
 
 ## Lehetőségek listája (1 pont)
 
-!!!danger ""
-    Letöltési zip módosítása
-
 A következő képernyőn a felhasználó a különböző járműtípusok közül választhat. Egyelőre csak három szolgáltatás működik a fiktív vállalatunkban: bicikli, buszok illetve vonatok.
 
 <p align="center"> 
@@ -484,6 +481,7 @@ fun ListScreen(
                 .fillMaxWidth()
                 .weight(1f)
                 .clickable {
+                    Log.d("ListScreen", "Bike clicked")
                     onPassClick("Bike")
                 },
         ) {
@@ -511,6 +509,7 @@ fun ListScreen(
                 .fillMaxWidth()
                 .weight(1f)
                 .clickable {
+                    Log.d("ListScreen", "Bus clicked")
                     onPassClick("Bus")
                 },
         ) {
@@ -539,6 +538,7 @@ fun ListScreen(
                 .fillMaxWidth()
                 .weight(1f)
                 .clickable {
+                    Log.d("ListScreen", "Train clicked")
                     onPassClick("Train")
                 }
             ,
@@ -566,7 +566,7 @@ fun ListScreen(
 }
 ```
 
-Vagy a kicsit kíváncsiabbak kedvéért az alábbi kódot. Ezzel a kóddal ugyanazt érhetjük el mint az előzővel, csak kevesebbet kell írni, illetve kicsit összetettebb.
+Vagy az érdeklődők kedvéért az alábbi kódot. Ezzel a kóddal ugyanazt érhetjük el mint az előzővel, csak kevesebbet kell írni, illetve kicsit összetettebb.
 
 ```kotlin
 @Composable
@@ -590,6 +590,7 @@ fun ListScreen(
                     .fillMaxWidth()
                     .weight(1f)
                     .clickable {
+                        Log.d("ListScreen", "${i.key} clicked")
                         onPassClick(i.key)
                     },
             ) {
@@ -618,7 +619,7 @@ fun ListScreen(
 }
 ```
 
-Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki, így könnyen elérhetjük a további navigációt, azonban ez a funkció még elcrasheli az alkalmazást, mert hiányzik a `NavGraph`-ból az elérési út. Ezt a következő feladatban orvosolni fogjuk.
+Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigációt, azonban ez a funkció még elcrasheli az alkalmazást, mert hiányzik a `NavGraph`-ból az elérési út. Ezt a következő feladatban orvosolni fogjuk.
 
 !!!warning "kód értelmezése"
     A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
@@ -813,8 +814,6 @@ fun NavGraph(
 
 
 ## A bérlet (1 pont)
-
-!!!danger "ELÍRÁS"
 
 Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez maga a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.
 
