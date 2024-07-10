@@ -56,11 +56,11 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 !!!danger "FILE PATH"
-    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az Android Studio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\\ meghajtó gyökerében dolgozni.
+    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\ meghajtó gyökerében dolgozni.
 
-## Menü elkészítése (1 pont)
+## Menü elkészítése
 
-Azt szeretnénk, ha a képernyő felső részében lenne egy ActionBar, (alkalmazás nevével és) egy törlési opcióval, vagy akár egy legördülő menü opcióval. Ehhez a megvalósításhoz, nagyon jól alkalmazható a Scaffold Composable, ugyanis ennek van egy *topBar* attribútuma, aminek könnyen adhatunk egy ilyen ActionBar-t. Első lépésben hozzunk létre egy Packaget a projekt mappa gyökerén `(hu.bme.aut.android.androidwallet)` `screen` néven, majd ezen belül egy új *Kotlin Filet*  `TopBar` néven. Ezután írjuk bele a következőt:
+Azt szeretnénk, ha a képernyő felső részében lenne egy ActionBar, (alkalmazás nevével és) egy törlési opcióval, vagy akár egy legördülő menü opcióval. Ehhez a megvalósításhoz, nagyon jól alkalmazható a Scaffold Composable, ugyanis ennek van egy *topBar* attribútuma, aminek könnyen adhatunk egy ilyen ActionBar-t. Első lépésben hozzunk létre egy Packaget a projek mappájában `appbar` néven, majd ezen belül egy új *Kotlin* classt `TopBar` néven, ezután írjuk bele a következőt:
 
 ```kotlin
 @OptIn(ExperimentalMaterial3Api::class)
@@ -79,7 +79,6 @@ fun TopBar(title: String, icon: ImageVector, onIconClick: () -> Unit) {
 ```
 
 Ezzel a TopBar kész is, azonban ahhoz, hogy a főképernyőt elkészítsük, létre kell hoznunk egy listaelemet, amit majd a LazyColumn-ban fogunk látni. 
-
 - Egy listaelem felépítése:
 	- Ikon a pénzforgalom irányától függően.
 	- A megadott megnevezés és alatta az összeg.
@@ -88,19 +87,21 @@ Ezzel a TopBar kész is, azonban ahhoz, hogy a főképernyőt elkészítsük, l�
 
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **TopBar** Kotlin File, a menü kódjával, valamint a **neptun kódod kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik a **TopBar** Kotlin Class, a menü kódjával, valamint a **neptun kódod kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
 ## Listaelem létrehozása (1 pont)
 
-Ehhez hozzunk létre egy új *Kotlin Filet* `SalaryCard` néven a `screen` packageba. Mielőtt a kód beírásra kerülne, töltsük le az alábbi iconokat:
+Az ehhez tartozó képeket le lehet menteni innen:
 
-- [income.png](downloads/income.png)
-- [expense.png](downloads/expense.png)
+*   [income](./downloads/income.png)
+*   [expense](./downloads/expense.png)
 
-Ezt a két icont másoljuk be a `res/mipmap` mappába, majd írjuk meg a kódot a következő képpen:
+Ezt a két képet másoljuk be a `res/mipmap` mappa egyikébe, ezután hozzunk létre egy új *Packaget* `screen` néven, majd ebben egy új *Kotlin* classt `SalaryCard` néven.
+
+Ennek a következő képpen kell kinéznie:
 
 ```kotlin
 @Composable
@@ -124,14 +125,14 @@ fun SalaryCard(isIncome: Boolean = false, item: String = "Item", price: String =
 
 A *SalaryCard* Composable függvény 3 paramétert tartalmaz:
 
-- `isIncome - Boolean változó amely a kiadás/bevétel állapotért felel`   
+- `isIncome - Boolean változó amely a kiadás/bevétel állapotért felel.`   
 - `item - kiadás/bevétel neve`
 - `price - kiadás/bevétel értéke`
 
-A függvényen belül megtalálható egy *Row*, valamint egy *Column*. A *Row* felel azért, hogy az elemeket horizontálisan egymás mellé lehessen rakni, a Column pedig, hogy az elemeket egymás alá. (Ez utóbbi a kiadás/bevétel neve, illetve értéke miatt szükséges, hogy egymás alatt szerepeljenek) A képet pedig egy Image Composable-val helyezzük el. Itt a `modifier` segítségével sok fajta beállításra van lehetőség, most csak a size-val, illetve a paddinggel foglalkozunk, hogy átláthatóbb legyen. A `painter` segítségével adhatjuk meg a képet, amit szeretnénk megjeleníteni. Ennek egy *Painter* típust kell adni, amit a *painterResource* segítségével tehetünk meg. Ennek paraméterét egy if-else elágazással oldjuk meg, mégpedig a paraméterként kapott `isIncome` segítségével, hogy dinamikusan változzon a kép a kiadás/bevétel szerint. Miután megvagyunk az Image-val, a `Row`-n belül a `Column`-ba elhelyezünk kettő `Text`-et, a maradék kettő paraméterrel.
+A függvényen belül megtalálható egy *Row*, valamint egy *Column*. A *Row* felel azért, hogy az elemeket horizontálisan egymás mellé lehessen rakni, a Column pedig, hogy az elemeket egymás alá. (Ez utóbbi a kiadás/bevétel neve, illetve értéke miatt szükséges, hogy egymás alatt szerepeljenek) A képet pedig egy Image Composable-val helyezzük el. Itt a `modifier` segítségével sok fajta beállításra van lehetőség, most csak a size-val, illetve a paddinggel foglalkozunk, hogy átláthatóbb legyen. A `painter` segítségével adhatjuk meg a képet, amit szeretnénk megjeleníteni, ezt egy if-else elágazással oldjuk meg, mégpedig a paraméterként kapott `isIncome` segítségével. Miután megvagyunk az Image-val, a `Row`-n belül a `Column`-ba elhelyezünk kettő `Text`-et, a maradék kettő paraméterrel.
 
 
-Ahhoz, hogy végezzünk a `SalaryCard` Kotlin File-val, még egy fontos lépést végre kell hajtani, ez pedig egy *data class* implementálása. Ez a LazyColumn-nak átadott lista miatt lesz szükséges.
+Ahhoz, hogy végezzünk a `SalaryCard` fájllal, még egy fontos lépést végre kell hajtani, ez pedig egy *data class* implementálása. Ez a LazyColumn-nak átadott lista miatt lesz szükséges.
 
 ```kotlin
 data class SalaryCardData(
@@ -144,15 +145,13 @@ data class SalaryCardData(
 Jól láthatjuk, hogy ennek *data classnak* a paraméterezése, ugyanaz mint a *SalaryCard*-nak. Ez a későbbiekben fontos lesz, ugyanis, ennek a Composable függvénynek, fogjuk átadni a *data class* elemeit.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **SalaryCard** Composable, illetve a **data class** Kotlin kódja, a **neptun kódod kommentként**, illetve a Design menü-ben a készített Card. (<kbd>ALT</kbd>+<kbd>SHIFT</kbd>+<kbd>RIGHT</kbd>  billentyű kombinációval érhető ez el, vagy a jobb fölső sarokban a Design elemre kattintva). A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik a **SalaryCard** Composable, illetve a **data class** Kotlin kódja, a **neptun kódod kommentként**, illetve a Design menü-ben a készített Card. (`Alt`+`Shift`+`Right` billentyű kombinációval érhető ez el, vagy a jobb fölső sarokban a Design elemre kattintva). A képet a megoldásban a repository-ba f1.png néven töltsd föl.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-    
+## Főképernyő elkészítése
 
-## Főképernyő elkészítése (1 pont)
-
-Most már csak a főképernyő van hátra, hogy valamit láthassunk is az alkalmazásból. Ehhez hozzunk létre egy `MainScreen` nevű új *Kotlin Filet* a `screen` packagen belül, majd írjuk meg a főképernyőnek a felépítését az alábbi kód alapján:
+Most már csak a főképernyő van hátra, hogy valamit láthassunk is az alkalmazásból. Ehhez hozzunk létre egy `MainScreen` nevű új Kotlin classt a `screen` packagen belül, majd írjuk meg a főképernyőnek a felépítését az alábbi kód alapján:
 
 ```kotlin
 @Composable
@@ -161,7 +160,7 @@ fun MainScreen() {
     val context = LocalContext.current
     Scaffold (
         topBar = {
-            TopBarT(title = "Android Wallet",
+            TopBar(title = "Android Wallet",
                 icon = Icons.Default.Clear,
                 onIconClick = {
                     items = emptyList()
@@ -205,11 +204,13 @@ fun MainScreen() {
 }
 ```
 
-A `MainScreen` tartalmaz egy *Scaffold*ot, amivel el tudjuk érni, hogy az elején implementált `TopBar`-t átadjuk a topBar paraméterének. Ezt a következő képpen tesszük meg. Adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat, valamint a sum értékét 0-ra állítani. Mivel mind a két változó kapott egy `by remember {mutableStateOf(...)}` értéket, ezért ha változás történik, akkor az összes Composable újrafordul. Ha ezzel megvagyunk, a következőt kellene látni a Preview-ben.
+A `MainScreen` tartalmaz egy *Scaffold*-ot, amivel el tudjuk érni, hogy az elején implementált `TopBar`-t átadjuk a topBar paraméterének. Ezt a következő képpen tesszük meg. Adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel mind a két változó kapott egy `by remember {mutableStateOf(...)}` értéket, ezért ha változás történik, akkor az összes Composable újrafordul. Ha ezzel megvagyunk, a következőt kellene látni a Preview-ben.
 
 <p align="center">
 <img src="./assets/MainScreen_TopBar.png" width="320">
 </p>
+
+### Beviteli mezők és Gombok megvalósítása (1 pont)
 
 Ezután fejezzük be a *Scaffold* tartalmát. Elsőként a TextField-eket fogjuk megírni az alábbi kód alapján. (`Ezt a //TODO (TextFields)` helyére kell beírni.)
 
@@ -268,7 +269,16 @@ Button(
 }
 ```
 
+
+
 Az ElevatedButton helyett más fajta gombot is lehet használni, ez csak demonstrálja, hogy a Compose mennyi lehetőséget kínál a tervezés során. A két gombnak szintén beállítjuk az onClick eseményét, valamint a megjelenítendő szöveget rajtuk. A második gomb esetén az onClick eseményt egy if-else elágazásba kell tenni, hogy ha a felhasználó üresen hagyná, akkor ez figyelmeztesse. Ha nem üres, akkor az items listához hozzáadunk egy új elemet a bevitt adatnak megfelelően. Ez az elem a már korábban definiált `data class` egy példánya. 
+
+!!!example "BEADANDÓ (1 pont)"
+    Készíts egy **képernyőképet**, amelyen látszik a **főképernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a kódja, valamint a **neptun kódod a kódban kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
+
+    A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+### Listaelem példányosítása LazyColumn-ban (1 pont)
 
 Végül a LazyColumn-ot is befejezzük a következő kód segítségével. (Ezt a `//TODO (items)` helyére kell elhelyezni.)
 
@@ -310,6 +320,12 @@ Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték 
 
 !!!warning "Figyelem"
 	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a `sum` 0 értéket vesz fel.) (-0.5 pont)
+
+
+!!!example "BEADANDÓ (1 pont)"
+    Készíts egy **képernyőképet**, amelyen látszik az **összegző mező használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódod valamelyik termék neveként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl.
+
+    A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
 ### Bonus
