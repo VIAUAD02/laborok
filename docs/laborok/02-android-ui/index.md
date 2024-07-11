@@ -83,10 +83,12 @@ dependencies {
 }
 ```
 
+Itt az `implementation` függvény segítségével tudunk új függőséget felvenni a projektbe, és ezen belül meg kell adnunk a modul nevét, amit már korábban definiáltunk a `libs.version.toml`-ban. Ezt a következő képpen tehetjük meg. Megadjuk a fájl nevét, jelen esetben `libs` majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.
+
 Hogy ha ezzel is megvagyunk kattintsunk a `Sync Now` gombra a jobb fölső sarokban, és várjuk meg míg letölti a szükséges függőségeket.
 
-!!!warning "Sync Now"
-    Hogy ha ezt a lépést kihagyjuk, akkor az Android Studio nem fogja megtalálni a szükséges elemeket, és ez később gondot okozhat!
+!!!danger "Sync Now"
+    Figyelem ha ezt a lépést kihagyjuk, akkor az Android Studio nem fogja megtalálni a szükséges elemeket, és ez később gondot okozhat!
 
 
 ## Splash képernyő (0.5 pont)
@@ -311,84 +313,125 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            modifier = Modifier.padding(16.dp),
-            text = "Please enter your credentials"
-        )
 
-        var email by remember { mutableStateOf("") }
-        var emailError by remember { mutableStateOf(false) }
+        //TODO (Header Text)
+        
 
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            label = { Text("Email") },
-            value = email,
-            onValueChange =
-            {
-                email = it
-                emailError = email.isEmpty()
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            isError = emailError,
-            trailingIcon = {
-                if (emailError) {
-                    Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
-                }
-            },
-            supportingText = {
-                if (emailError) {
-                    Text("Please enter your e-mail address", color = Color.Red)
-                }
-            }
+        //TODO (Email Field)
+        
 
-        )
+        //TODO (Password Field)
+        
 
-
-        var password by remember { mutableStateOf("") }
-        var passwordError by remember { mutableStateOf(false) }
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp),
-            label = { Text("Password") },
-            value = password,
-            onValueChange =
-            {
-                password = it
-                passwordError = password.isEmpty()
-            },
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-            isError = passwordError,
-            trailingIcon = {
-                if (passwordError) {
-                    Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
-                }
-            },
-            supportingText = {
-                if (passwordError) {
-                    Text("Please enter your password", color = Color.Red)
-                }
-            }
-        )
-        Button(onClick = {
-            if (email.isEmpty()) {
-                emailError = true
-            } else if (password.isEmpty()) {
-                passwordError = true
-            } else {
-                onSuccess()
-            }
-        }) {
-            Text("Login")
-        }
-
+        //TODO (Login Button)
+        
     }
 }
 ```
+
+Hogy ha megvan a `LoginScreen` váza, akkor kezdjük el belepakolni az egyes elemeket. (Text, TextField, Button)
+
+Kezdjük a `Text` *Composable*-val. Ez egy üzenetként fog szolgálni a képernyő tetején `"Please enter your credentials"` felirattal. (A `//TODO` kommentet igény szerint el lehet távolítani.)
+
+```kotlin
+//TODO (Header Text)
+Text(
+    modifier = Modifier.padding(16.dp),
+    text = "Please enter your credentials"
+)
+```
+
+Következőnek hozzuk létre a két `TextField`-et, amit egy `OutlinedTextField` *Composable* segítségével fogunk megvalósítani. Itt szükség lesz egyéb változókra is.
+
+```kotlin
+//TODO (Email Field)
+var email by remember { mutableStateOf("") }
+var emailError by remember { mutableStateOf(false) }
+
+OutlinedTextField(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(8.dp),
+    label = { Text("Email") },
+    value = email,
+    onValueChange =
+    {
+        email = it
+        emailError = email.isEmpty()
+    },
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+    isError = emailError,
+    trailingIcon = {
+        if (emailError) {
+            Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
+        }
+    },
+    supportingText = {
+        if (emailError) {
+            Text("Please enter your e-mail address", color = Color.Red)
+        }
+    }
+
+)
+
+//TODO (Password Field)
+var password by remember { mutableStateOf("") }
+var passwordError by remember { mutableStateOf(false) }
+
+OutlinedTextField(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(start = 8.dp, end = 8.dp),
+    label = { Text("Password") },
+    value = password,
+    onValueChange =
+    {
+        password = it
+        passwordError = password.isEmpty()
+    },
+    visualTransformation = PasswordVisualTransformation(),
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+    isError = passwordError,
+    trailingIcon = {
+        if (passwordError) {
+            Icon(Icons.Filled.Warning, contentDescription = "Error", tint = Color.Red)
+        }
+    },
+    supportingText = {
+        if (passwordError) {
+            Text("Please enter your password", color = Color.Red)
+        }
+    }
+)
+```
+
+1.   **label**: Ennek a segítségével tudjuk megadni azt a feliratot ami szerepelni fog az üres TextFieldben. Hogy ha írtunk már bele, akkor az `OutlinedTextField`-nek köszönhetően a *Label* szöveg, felcsúszik a bal fölső sarokba.
+2.   **value**: Ennek a praméternek adjuk át, a beírt értéket.
+3.   **onValueChange**: Ez egy lambda, aminek a segítségével adunk újra és újra értéket annak a változónak amit átadtunk a **value** paraméternek. Minden egyes változásnál frissül ez a paraméter a `remember`-nek köszönhetően.
+4.   **visualTransformation**: Ennek a segítéségvel tudjuk változtatni, hogy *Password* vagy sima Input field legyen.
+5.   **keyboardOptions**: Ezzel a paraméterrel be tudjuk állítani, és korlátozni a felhasználót, hogy milyen adatot tudjon beleírni a beviteli mezőbe.
+6.   **isError**: Ennek szintén egy változót adunk át, amely minden egyes alkalommal frissül, hogy ha üres a beviteli mező. Ez azért lesz hasznos, ugyanis a feladatban azt szeretnénk elérni, hogy egy üzenetet írjon ki a TextField, hogy ha üresen szeretnénk bejelentkezni.
+7.   **trailingIcon**: Itt be tudjuk állítani azt az Icon-t amit látni szeretnénk a TextField jobb oldalán.
+8.   **supportingText**: Ez a paraméter felel azért, hogy a TextField alatt meg tudjunk jeleníteni szöveget.
+
+Végül csináljuk meg az utolsó elemet is, ez pedig a gomb lesz, amely a bejelentkezésért fog felelni.
+
+```kotlin
+//TODO (Login Button)
+Button(onClick = {
+    if (email.isEmpty()) {
+        emailError = true
+    } else if (password.isEmpty()) {
+        passwordError = true
+    } else {
+        onSuccess()
+    }
+}) {
+    Text("Login")
+}
+```
+
+
 
 !!!warning "kód értelmezése"
     A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
