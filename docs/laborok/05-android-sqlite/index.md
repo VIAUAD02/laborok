@@ -139,7 +139,7 @@ enum class DrawingMode{
 }
 ```
 
-Az viewModel-hez szükségünk van még egy osztályra a `DrawingMode`. Ezzel tudjuk majd állítani a rajz stílust.
+Az viewModel-hez szükségünk van még egy osztályra a `DrawingMode`-ra. Ezzel tudjuk majd állítani a rajz stílust.
 
 !!!warning "Kód értelmezése"
     A laborvezető segítségével értelmezzük a viewModel kódját!
@@ -190,20 +190,7 @@ fun BottomBar(){
                         painterResource(id = R.mipmap.ic_style),
                         contentDescription = stringResource(id = R.string.style)
                     )
-                    //Stílus
-                }
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.mipmap.ic_color),
-                        stringResource(id = R.string.color)
-                    )
-                    //Opciók
-                }
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.mipmap.ic_clear_canvas),
-                        contentDescription = "Delete",
-                    )
+                    //Stílusok
                 }
             }
         },
@@ -211,7 +198,9 @@ fun BottomBar(){
     )
 }
 ```
-A BottomBar-on egy icont helyezünk el, melynek a segítségével tudunk váltani a rajz módok között. (Vonal, Pont)
+A BottomBar már kicsit összetettebb, itt az `actions` paraméterrel át tudunk adni olyan composable elemeket, amik megjelennek majd kis iconként az AppBar-on, ezekhez később akár onClick eseményt is tudunk adni. Így fogjuk megvalósítani a stílusváltás opciót, amelynek a megnyomására egy ablak ugrik fel, amin ki lehet választani a kívánt stílust (Vonal, pont)
+
+
 !!!example "BEADANDÓ (0.5 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **elkészült kódból egy részlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1b.png néven töltsd föl. 
 
@@ -347,6 +336,12 @@ fun BottomBar(
 }
 ```
 
+!!!warning "viewModel"
+    Sokszor az Android Studio nem tudja megtalálni a `viewModel()`-hez szükséges importot. Ilyenkor kézileg írjuk az importokhoz az alábbi importot:
+    ```kotlin
+    import androidx.lifecycle.viewmodel.compose.viewModel
+    ```
+
 Ezután módosítsuk a `DrawingScreen`-en a `BottomBar` függvény hívást, és vegyük hozzá a viewModel paramétert.
 
 ```kotlin
@@ -392,7 +387,7 @@ data class Line(
 )
 ```
 
-Ilyen formában fogjuk tárolni az adatunkat a listában. A vonalnak a két végpontját lehetne 1-1 `Dot` objektummal tárolni, viszont az egyszerűség kedvéért, most így fogjuk megoldani.
+Ilyen formában fogjuk tárolni az adatunkat a listában. Igaz, hogy a `Line` data class még kétszer megkapja a színt, de ez csak az egyszerűség kedvéért lesz így, ezzel a paraméterrel nem fogunk foglalkozni.
 
 Ezután a `screen` *Packagen* belül hozzunk létre egy `CanvasScreen` *Kotolin Filet*. Ebben a Composable osztályban megvalósítjuk a `Canvas` beépített Composable-t, aminek a segítségével fogjuk a rajzolást véghezvinni. Ennek az osztálynak van egy `Modifier.pointerInteropFilter` paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.
 
@@ -481,7 +476,7 @@ MotionEvent.ACTION_UP -> {
 }
 ```
 
-Ennél az eseménynél már azt kezeljük mikor a felhasználó felemelte az újját a képernyőről. Itt is két lehetőségre bomlik az algoritmus, ugyanis, hogy ha pontról van szó, akkor csak a `tempPoint` értékét kell rögzíteni. Azonban, ha már vonalról, akkor az `endPoint` illetve a `startPoint` értékeit kell rögzíteni vonalként. **Mintkét eseménynél szükséges a null ellenőrzés**!
+Ennél az eseménynél már azt kezeljük mikor a felhasználó felemelte az újját a képernyőről. Itt is két lehetőségre bomlik az algoritmus, ugyanis, hogy ha pontról van szó, akkor csak a `tempPoint` értékét kell rögzíteni. Azonban, ha már vonalról, akkor az `endPoint` illetve a `startPoint` értékeit kell rögzíteni vonalként. **Mindkét eseménynél szükséges a null ellenőrzés**!
 
 
 Miután az események megvannak, már csak a kirajzolást kell megoldani. Ezt úgy tehetjük meg, hogy a drawElements-be eltárolt adatokat egyesével kirajzoljuk típusuktól függően:
@@ -687,81 +682,142 @@ class PersistentDataHelper(context: Context) {
         dbHelper.close()
     }
 
-    fun persistPoints(points: List<Dot>) {
-        clearPoints()
-        for (point in points) {
-            val values = ContentValues()
-            values.put(DbConstants.Points.Columns.COORD_X.name, point.x)
-            values.put(DbConstants.Points.Columns.COORD_Y.name, point.y)
-            database!!.insert(DbConstants.Points.DATABASE_TABLE, null, values)
-        }
-    }
+    //PersistPoints
+    
 
-    fun restorePoints(): MutableList<Dot> {
-        val points: MutableList<Dot> = ArrayList()
-        val cursor = database!!.query(DbConstants.Points.DATABASE_TABLE, pointColumns, null, null, null, null, null)
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val point: Dot = cursorToPoint(cursor)
-            points.add(point)
-            cursor.moveToNext()
-        }
-        cursor.close()
-        return points
-    }
+    //RestorePoints
+    
 
-    fun clearPoints() {
-        database!!.delete(DbConstants.Points.DATABASE_TABLE, null, null)
-    }
+    //ClearPoints
+    
 
-    private fun cursorToPoint(cursor: Cursor): Dot {
-        val point = Dot(
-            cursor.getFloat(DbConstants.Points.Columns.COORD_X.ordinal),
-            cursor.getFloat(DbConstants.Points.Columns.COORD_Y.ordinal),
-            Color(Color.Red.toArgb())
-        )
-        return point
-    }
+    //CursorToPoint
+    
 
-    fun persistLines(lines: List<Line>) {
-        clearLines()
-        for (line in lines) {
-            val values = ContentValues()
-            values.put(DbConstants.Lines.Columns.START_X.name, line.start.x)
-            values.put(DbConstants.Lines.Columns.START_Y.name, line.start.y)
-            values.put(DbConstants.Lines.Columns.END_X.name, line.end.x)
-            values.put(DbConstants.Lines.Columns.END_Y.name, line.end.y)
-            database!!.insert(DbConstants.Lines.DATABASE_TABLE, null, values)
-        }
-    }
 
-    fun restoreLines(): MutableList<Line> {
-        val lines: MutableList<Line> = ArrayList()
-        val cursor = database!!.query(DbConstants.Lines.DATABASE_TABLE, lineColumns, null, null, null, null, null)
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val line: Line = cursorToLine(cursor)
-            lines.add(line)
-            cursor.moveToNext()
-        }
-        cursor.close()
-        return lines
-    }
+    //PersistLines
+    
 
-    fun clearLines() {
-        database!!.delete(DbConstants.Lines.DATABASE_TABLE, null, null)
-    }
+    //RestoreLines
+    
 
-    private fun cursorToLine(cursor: Cursor): Line {
-        val line = Line(
-            Dot(cursor.getFloat(DbConstants.Lines.Columns.START_X.ordinal), cursor.getFloat(DbConstants.Lines.Columns.START_Y.ordinal)),
-            Dot(cursor.getFloat(DbConstants.Lines.Columns.END_X.ordinal), cursor.getFloat(DbConstants.Lines.Columns.END_Y.ordinal)),
-            Color(Color.Red.toArgb())
-        )
-        return line
+    //ClearLines
+    
+
+    //CursorToLine
+    
+}
+```
+
+Egészítsük ki a `PersistentDataHelper` osztályt az alábbiak szerint:
+
+1.   PersistPoints: Itt kell megvalósítanunk a pontok eltárolását. Elsősorban ürítjük az adatbázist, utána pedig a kapott Lista paraméteren végigmegyünk és egyesével elmentjük a pontokat.
+1.   RestorePoints: Itt kell megvalósítanunk a pontok betöltését. Ehhez egy ideiglenes MutableList-et használunk, amelyhez hozzáadjuk a kiolvasott pontokat.
+1.   ClearPoints: Ezzel a függvénnyel érjük el hogy az adatbázisból töröljük a Points táblát.
+1.   CursorToPoint: Ezzel a függvénnyel olvasunk ki egyetlen pontnak az adatát az adatbázisból.
+1.   PersistLines: Itt kell megvalósítanunk a vonalak eltárolását. Elsősorban ürítjük az adatbázist, utána pedig a kapott Lista paraméteren végigmegyünk és egyesével elmentjük a vonalakat.
+1.   RestoreLines: Itt kell megvalósítanunk a vonalak betöltését. Ehhez egy ideiglenes MutableList-et használunk, amelyhez hozzáadjuk a kiolvasott vonalakat.
+1.   ClearLines: Ezzel a függvénnyel érjük el hogy az adatbázisból töröljük a Lines táblát.
+1.   CursorToLine: Ezzel a függvénnyel olvasunk ki egyetlen vonalnak adatát az adatbázisból.
+
+**1. PersistPoints**
+```kotlin
+fun persistPoints(points: List<Dot>) {
+    clearPoints()
+    for (point in points) {
+        val values = ContentValues()
+        values.put(DbConstants.Points.Columns.COORD_X.name, point.x)
+        values.put(DbConstants.Points.Columns.COORD_Y.name, point.y)
+        database!!.insert(DbConstants.Points.DATABASE_TABLE, null, values)
     }
 }
 ```
+**2. RestorePoints**
+```kotlin
+fun restorePoints(): MutableList<Dot> {
+    val points: MutableList<Dot> = ArrayList()
+    val cursor = database!!.query(DbConstants.Points.DATABASE_TABLE, pointColumns, null, null, null, null, null)
+    cursor.moveToFirst()
+    while (!cursor.isAfterLast) {
+        val point: Dot = cursorToPoint(cursor)
+        points.add(point)
+        cursor.moveToNext()
+    }
+    cursor.close()
+    return points
+}
+```
+
+**3. ClearPoints**
+```kotlin
+fun clearPoints() {
+    database!!.delete(DbConstants.Points.DATABASE_TABLE, null, null)
+}
+```
+
+**4. CursorToPoints**
+```kotlin
+private fun cursorToPoint(cursor: Cursor): Dot {
+    val point = Dot(
+        cursor.getFloat(DbConstants.Points.Columns.COORD_X.ordinal),
+        cursor.getFloat(DbConstants.Points.Columns.COORD_Y.ordinal),
+        Color(Color.Red.toArgb())
+    )
+    return point
+}
+```
+
+**5. PersistLines**
+```kotlin
+fun persistLines(lines: List<Line>) {
+    clearLines()
+    for (line in lines) {
+        val values = ContentValues()
+        values.put(DbConstants.Lines.Columns.START_X.name, line.start.x)
+        values.put(DbConstants.Lines.Columns.START_Y.name, line.start.y)
+        values.put(DbConstants.Lines.Columns.END_X.name, line.end.x)
+        values.put(DbConstants.Lines.Columns.END_Y.name, line.end.y)
+        database!!.insert(DbConstants.Lines.DATABASE_TABLE, null, values)
+    }
+}
+```
+**6. RestoreLines**
+```kotlin
+fun restoreLines(): MutableList<Line> {
+    val lines: MutableList<Line> = ArrayList()
+    val cursor = database!!.query(DbConstants.Lines.DATABASE_TABLE, lineColumns, null, null, null, null, null)
+    cursor.moveToFirst()
+    while (!cursor.isAfterLast) {
+        val line: Line = cursorToLine(cursor)
+        lines.add(line)
+        cursor.moveToNext()
+    }
+    cursor.close()
+    return lines
+}
+```
+
+**7. ClearLines**
+```kotlin
+fun clearLines() {
+    database!!.delete(DbConstants.Lines.DATABASE_TABLE, null, null)
+}
+```
+
+**8. CursorToLine**
+```kotlin
+private fun cursorToLine(cursor: Cursor): Line {
+    val line = Line(
+        Dot(cursor.getFloat(DbConstants.Lines.Columns.START_X.ordinal), cursor.getFloat(DbConstants.Lines.Columns.START_Y.ordinal)),
+        Dot(cursor.getFloat(DbConstants.Lines.Columns.END_X.ordinal), cursor.getFloat(DbConstants.Lines.Columns.END_Y.ordinal)),
+        Color(Color.Red.toArgb())
+    )
+    return line
+}
+```
+
+
+
 
 ### ViewModel kiegészítése
 
