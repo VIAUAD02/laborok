@@ -291,7 +291,7 @@ fun NavGraph(
         composable("login"){
             LoginScreen(
                 onSuccess = {
-                    navController.navigate("list")
+                    /*TODO*/
                 }
             )
         }
@@ -343,6 +343,8 @@ Text(
 
 Következőnek hozzuk létre a két `TextField`-et, amit egy `OutlinedTextField` *Composable* segítségével fogunk megvalósítani. Itt szükség lesz egyéb változókra is.
 
+**Email Field**
+
 ```kotlin
 //TODO (Email Field)
 var email by remember { mutableStateOf("") }
@@ -373,7 +375,11 @@ OutlinedTextField(
     }
 
 )
+```
 
+**Password Field**
+
+```
 //TODO (Password Field)
 var password by remember { mutableStateOf("") }
 var passwordError by remember { mutableStateOf(false) }
@@ -472,7 +478,7 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 
 Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
 
-Hozzunk ehhez létre egy új *Kotlin Filet* és nevezzük el `ListScreen` néven, majd írjuk bele a következőt:
+Hozzunk ehhez létre egy új *Kotlin Filet* a `screen` *Packageban* és nevezzük el `ListScreen` néven, majd írjuk bele a következőt:
 
 ```kotlin
 @Composable
@@ -495,11 +501,18 @@ fun NavGraph(
         navController = navController,
         startDestination = "login"
     ){
-        ...
+        composable("login"){
+            LoginScreen(
+                onSuccess = {
+                    navController.navigate("list")
+                }
+            )
+        }
         composable("list"){
             ListScreen(
                 onPassClick = {
-                    navController.navigate("pass/$it")
+                    /*TODO*/
+                    /*navController.navigate("pass/$it")*/
                 }
             )
         }
@@ -609,7 +622,8 @@ fun ListScreen(
 }
 ```
 
-Vagy az érdeklődők kedvéért az alábbi kódot. Ezzel a kóddal ugyanazt érhetjük el mint az előzővel, csak kevesebbet kell írni, illetve kicsit összetettebb.
+Vagy az érdeklődők kedvéért az alábbi kódot adtuk. Ezzel a kóddal ugyanazt érhetjük el mint az előzővel, csak kevesebbet kell írni, illetve kicsit összetettebb.
+
 
 ```kotlin
 @Composable
@@ -662,7 +676,9 @@ fun ListScreen(
 }
 ```
 
-Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigációt, azonban ez a funkció még elcrasheli az alkalmazást, mert hiányzik a `NavGraph`-ból az elérési út. Ezt a következő feladatban orvosolni fogjuk.
+Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigációt, azonban ez a funkció még nem működik, mert hiányzik a `NavGraph`-ból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban orvosolni fogjuk. 
+
+Az `Image` *Composable* függvénynek egy `painter` `contentDescription` `contentScale` paramétere van. Ezeket át is tudjuk adni sorban a `painterResource`, `String`, `ContentScale` segítségével. A `painterResource`-nak megadjuk a kép elérési útját, a `painterDescription`-nak, egy leírást, illetve a `contentScale`-nak egy `FillBounds`-ot adunk. Ennek a segítségével el tudjuk érni, hogy a teljes `Box` Területén kép legyen.
 
 !!!warning "kód értelmezése"
     A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
@@ -683,13 +699,13 @@ Próbáljuk ki az alkalmazásunkat, a bejelentkezés után az elkészített list
 
 ## Részletes nézet (1 pont)
 
-Miután a felhasználo kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.
+Miután a felhasználó kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.
 
 <p align="center"> 
 <img src="./assets/details.png" width="320">
 </p>
 
-Hozzuk létre az új Screen-t `PassScreen` néven, és készítsük el a felépítését, az alábbi szerint:
+Hozzuk létre az új képernyőt `PassScreen` néven a `screen` *Packageban*, és készítsük el a felépítését, az alábbi szerint:
 
 ```kotlin
 @Composable
@@ -698,7 +714,7 @@ fun PassScreen(
     passId: String
 ) {
     val context = LocalContext.current
-    
+
     val calendar = Calendar.getInstance()
     val year = calendar.get(Calendar.YEAR)
     val month = calendar.get(Calendar.MONTH)
@@ -715,108 +731,171 @@ fun PassScreen(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 16.dp),
-            text = "${passId} pass",
-            fontSize = 24.sp
-        )
-        Text(
-            modifier = Modifier.padding(top = 16.dp),
-            text = "Start date",
-            fontSize = 16.sp
-        )
-        TextButton(
-            modifier = Modifier.padding(top = 16.dp),
-            onClick = {
-            DatePickerDialog(
-                context,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    startDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
-                },
-                year, month, day
-            ).show()
-        }) {
-            Text(
-                text = if (startDate.isEmpty()) currentDate else startDate,
-                fontSize = 16.sp
-            )
-        }
+        //Pass category
 
-        Text(
-            modifier = Modifier.padding(top = 16.dp),
-            text = "End date",
-            fontSize = 16.sp
-        )
-
-        TextButton(
-            modifier = Modifier.padding(top = 16.dp),
-            onClick = {
-            DatePickerDialog(
-                context,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    endDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
-                },
-                year, month, day
-            ).show()
-        }) {
-            Text(
-                text = if (endDate.isEmpty()) currentDate else endDate,
-                fontSize = 16.sp
-            )
-        }
-        var selectedCategory by remember { mutableStateOf("Full price") }
         
-        val categories = listOf("Full price", "Senior", "Public servant")
-        Text(
-            modifier = Modifier.padding(top = 16.dp),
-            text = "Price category",
-            fontSize = 16.sp
-        )
-        Column (
-            modifier = Modifier.padding(top = 16.dp)
+        //Start date
+
+        
+        //End date
+        
+        
+        //Price category
+
+        
+        //Price
+
+        
+        //Buy button
+        
+    }
+}
+```
+
+**Pass category**
+```kotlin
+Text(
+    modifier = Modifier
+        .align(Alignment.CenterHorizontally)
+        .padding(top = 16.dp),
+    text = "${passId} pass",
+    fontSize = 24.sp
+)
+```
+
+Ez a `Text` Composable egy fejléc lesz, ami azt fogja mutatni, hogy jelenleg milyen jegyet próbálunk megvásárolni. Ennek a `passId` paramétert adjuk át szövegként, majd a `Modifier.align()` segítségével középre igazítjuk az oszlopban.
+
+**Start date**
+```kotlin
+Text(
+    modifier = Modifier.padding(top = 16.dp),
+    text = "Start date",
+    fontSize = 16.sp
+)
+TextButton(
+    modifier = Modifier.padding(top = 16.dp),
+    onClick = {
+        DatePickerDialog(
+            context,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                startDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
+            },
+            year, month, day
+        ).show()
+    }) {
+    Text(
+        text = if (startDate.isEmpty()) currentDate else startDate,
+        fontSize = 16.sp
+    )
+}
+```
+Egy `Text` és egy `TextButton` segítéségvel egy dátumválasztó mezőt valósítunk meg. A `Text` csak fejlécként nyújt információt, a `TextButton`-nak pedig egy onClick eventet adunk át, aminek a segítségével egy DatePicker dialógust valósítunk meg. Ennek átadjuk a szükséges paramétereket:
+
+1. context
+2. Lambda paraméter, ami azt írja le, hogy a dátum választás során mi történjen. Jelen esetben nekünk arra van szükség, hogy a startDate változónkat felülírjuk.
+3. Year - jelenlegi év
+4. Month - jelenlegi hónap
+5. Day - jelenlegi nap
+
+Ez utóbbi három a DatePicker dialógus jelenlegi nap helyzetét fogja befolyásolni.
+
+
+**End date**
+```kotlin
+Text(
+    modifier = Modifier.padding(top = 16.dp),
+    text = "End date",
+    fontSize = 16.sp
+)
+
+TextButton(
+    modifier = Modifier.padding(top = 16.dp),
+    onClick = {
+        DatePickerDialog(
+            context,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                endDate = String.format(Locale.US, "%d. %02d. %02d", selectedYear, selectedMonth + 1, selectedDay)
+            },
+            year, month, day
+        ).show()
+    }) {
+    Text(
+        text = if (endDate.isEmpty()) currentDate else endDate,
+        fontSize = 16.sp
+    )
+}
+```
+
+A *Start Date*-hez hasonlóan működik.
+
+**Price category**
+```kotlin
+val categories = listOf("Full price", "Senior", "Public servant")
+var selectedCategory by remember { mutableStateOf("Full price") }
+Text(
+    modifier = Modifier.padding(top = 16.dp),
+    text = "Price category",
+    fontSize = 16.sp
+)
+Column (
+    modifier = Modifier.padding(top = 16.dp)
+) {
+    categories.forEach { category ->
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectable(
+                    selected = (category == selectedCategory),
+                    onClick = { selectedCategory = category },
+                    role = Role.RadioButton
+                )
+                .padding(vertical = 4.dp)
         ) {
-            categories.forEach { category ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .selectable(
-                            selected = (category == selectedCategory),
-                            onClick = { selectedCategory = category },
-                            role = Role.RadioButton
-                        )
-                        .padding(vertical = 4.dp)
-                ) {
-                    RadioButton(
-                        selected = (category == selectedCategory),
-                        onClick = { selectedCategory = category }
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(category)
-                }
-            }
-        }
-        Text(
-            fontSize = 20.sp,
-            text = "Price: 42000",
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 16.dp),
-        )
-        Button(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 16.dp),
-            onClick = {
-                onSuccess("${startDate};$endDate;Senior Bus Pass")
-            }){
-            Text("Buy")
+            RadioButton(
+                selected = (category == selectedCategory),
+                onClick = { selectedCategory = category }
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(category)
         }
     }
 }
 ```
+
+Az árkategória résznek szintén adunk egy fejlécet a `Text` *Composable* segítségével, majd ezen belül elhelyezünk egy radio gomb szekciót, ami 3 kategóriából áll.
+
+
+**Price**
+
+```kotlin
+Text(
+    fontSize = 20.sp,
+    text = "Price: 42000",
+    modifier = Modifier
+        .align(Alignment.CenterHorizontally)
+        .padding(top = 16.dp),
+)
+```
+
+Az ár rész jelenleg csak statikus árat ír ki, ezt az iMSc feladat során lehet változtatni.
+
+**Buy button**
+```kotlin
+Button(
+    modifier = Modifier
+        .align(Alignment.CenterHorizontally)
+        .padding(top = 16.dp),
+    onClick = {
+        onSuccess("${startDate};$endDate;Senior Bus Pass")
+    }){
+    Text("Buy")
+}
+```
+
+A gombnak szintén átadunk egy onClick event eseményt, mégpedig a lambda paramétert amit paraméterként kaptunk. Ennek a módosítása is az iMSc feladat során történhet meg.
+
+
 
 
 !!!info "Értelmezés"
@@ -833,14 +912,20 @@ fun NavGraph(
         navController = navController,
         startDestination = "login"
     ){
-        ...
+        composable("list"){
+            ListScreen(
+                onPassClick = {
+                    navController.navigate("pass/$it")
+                }
+            )
+        }
         composable(
             route = "pass/{id}",
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) { backStackEntry ->
             PassScreen(passId = backStackEntry.arguments?.getString("id") ?: "",
                 onSuccess = {
-                    navController.navigate("ticket/$it")
+                    /*TODO*/
                 }
             )
         }
@@ -909,7 +994,7 @@ Mivel a `TicketScreen`-nek szüksége van a jegy típúsára, valamint az érvé
 !!!info ""
 	 Látható, hogy a Java-val ellentétben a Kotlin támogatja a [string interpolációt](https://kotlinlang.org/docs/reference/basic-types.html#string-templates).
 
-Végül itt is kössük be a `NavGraph`-ba az új képernyőnket az előzőhöz hasonlóan:
+Végül itt is kössük be a `NavGraph`-ba az új képernyőnket az előzőhöz hasonlóan, valamint adjuk meg a lambda eseményt az előző composable-nek:
 
 
 ```kotlin
@@ -923,6 +1008,16 @@ fun NavGraph(
         startDestination = "login"
     ){
         ...
+         composable(
+            route = "pass/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { backStackEntry ->
+            PassScreen(passId = backStackEntry.arguments?.getString("id") ?: "",
+                onSuccess = {
+                    navController.navigate("ticket/$it")
+                }
+            )
+        }
         composable(
             route = "ticket/{range}",
             arguments = listOf(navArgument("range") { type = NavType.StringType })
