@@ -56,7 +56,7 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
 !!!danger "FILE PATH"
-    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\ meghajtó gyökerében dolgozni.
+    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\\ meghajtó gyökerében dolgozni.
 
 ## Menü elkészítése
 
@@ -79,17 +79,13 @@ fun TopBar(title: String, icon: ImageVector, onIconClick: () -> Unit) {
 ```
 
 Ezzel a TopBar kész is, azonban ahhoz, hogy a főképernyőt elkészítsük, létre kell hoznunk egy listaelemet, amit majd a LazyColumn-ban fogunk látni. 
+
 - Egy listaelem felépítése:
 	- Ikon a pénzforgalom irányától függően.
 	- A megadott megnevezés és alatta az összeg.
 	- A Toolbaron egy menüpont a lista teljes törlésére.
 	- A lista görgethető kell legyen
 
-
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **TopBar** Kotlin Class, a menü kódjával, valamint a **neptun kódod kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl.
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
 ## Listaelem létrehozása (1 pont)
@@ -204,7 +200,7 @@ fun MainScreen() {
 }
 ```
 
-A `MainScreen` tartalmaz egy *Scaffold*-ot, amivel el tudjuk érni, hogy az elején implementált `TopBar`-t átadjuk a topBar paraméterének. Ezt a következő képpen tesszük meg. Adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel mind a két változó kapott egy `by remember {mutableStateOf(...)}` értéket, ezért ha változás történik, akkor az összes Composable újrafordul. Ha ezzel megvagyunk, a következőt kellene látni a Preview-ben.
+A `MainScreen` tartalmaz egy *Scaffold*-ot, amivel el tudjuk érni, hogy az elején implementált `TopBar`-t átadjuk a topBar paraméterének. Ezt a következő képpen tesszük meg. Adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel mind a két változó kapott egy `by remember {mutableStateOf(...)}` értéket, ezért ha változás történik, akkor az összes Composable újrafordul ami függ attól a változótól. Ha ezzel megvagyunk, a következőt kellene látni a Preview-ben.
 
 <p align="center">
 <img src="./assets/MainScreen_TopBar.png" width="320">
@@ -317,6 +313,9 @@ A Toast üzeneteknél már van egy sokkal szebb megoldás is, ez a [Snackbar](ht
 ### Összegző mező (1 pont)
 
 Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy pozitív vagy negatív érték. 
+
+!!!tip "Tipp"
+    Érdemes használni a `Modifier.alpha()` paramétert.
 
 !!!warning "Figyelem"
 	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a `sum` 0 értéket vesz fel.) (-0.5 pont)
