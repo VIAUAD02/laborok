@@ -1,5 +1,5 @@
 
-# Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+# Labor 04 - Felhasználói felület készítése - HorizontalPager, Chartok
 
 ## Bevezető
 
@@ -64,14 +64,16 @@ Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájl
 A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
 
 -  *Activity alapú megközelítés*: Minden képernyő egy **Activity**. Mivel az **Activity** egy rendszerszintű komponense az Androidnak, ezért ennek kezeléséért is az operációs rendszer a felelős. Mi közvetlenül sose példányosítjuk, hanem **Intent**-et küldünk a rendszer felé. A navigációért is a rendszer felel, bizonyos opciókat *flagek* segítségével tudunk beállítani.
-- *Fragment alapú megközelítés*: Ez esetben a képernyőink egy vagy több **Fragment**-ből épülnek fel. Ezeknek kezelése az alkalmazás szintjén történik meg, emiatt mindenképp szükséges egy **Activity**, mely a megjelenítésért felel. A megjelenítést, illetve a navigációt a **FragmentManager** osztály végzi.
-- *Egyéb egyedi megoldás*: Külső vagy saját könyvtár használata a megjelenítéshez, mely tipikusan az alap **View** osztályból származik le. Ilyen például a régi *Conductor*, illetve az újabb *Jetpack Compose*.
+- *Composable alapú megközelítés*: Ez esetben a képernyőink egy vagy több *Composable* elemből épülnek fel. Ezeknek a kezelése az alkalmazás szintjén történik meg, emiatt mindenképp szükséges egy **Activity**, mely a megjelenítésért felel. A megjelenítést illetve a navigációt a **NavGraph** osztály végzi.
+- *Egyéb egyedi megoldás*: Külső vagy saját könyvtár használata a megjelenítéshez, mely tipikusan az alap **View** osztályból származik le. Ilyen például a régi *Conductor*, illetve a *Jetpack Compose*.
 
 Régebben az alkalmazások az Activity alapú megközelítést használták, később azonban áttértek a Fragmentekre. Az ilyen alkalmazásoknál összesen egy fő **Activity** van, mely tartalmazza azt a **FragmentManager** példányt, amit a későbbiekben a **Fragment** alapú képernyők megjelenítésére használunk.
 
 Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez részleteiben meg kellett ismerni a **FragmentManager** működését, különben könnyen hibákba futhattunk. Ennek a megoldására fejlesztette ki a Google a *Navigation Component* csomagot, mellyel az Android Studió környezetében egy grafikus eszközzel könnyen létre tudjuk hozni az oldalak közötti navigációt, illetve ezt a kódból egyszerűen el tudjuk indítani. 
 
-## Navigation Component inicializálás
+A Jetpack Compose-ban már a **NavHost** felel a navigációért, és külön-külön hívja meg az egyes *Composable* függvényeket.
+
+## NavHost Compose inicializálás
 Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle.kts` fájlra illetve a `libs.versions.toml` fájlra lesz szükségünk. Keressük meg ezeket, majd írjuk bele a következő függőséget:
 
 `libs.versions.toml`
@@ -106,7 +108,7 @@ A Navigation Component *Jetpack Compose* használatával is navigációs gráfot
 
 1. Hozzuk létre a navigációs gráfot a Jetpack Compose használatával.
 
-2. Készítsünk egy *Packaget* `navigation` néven, majd ebbe a *Packageba* egy új *Kotlin Filet* (*jobb klikk -> New Kotlin Class/File*)
+2. Készítsünk egy *Packaget* `navigation` néven, majd ebbe a *Packageba* egy új *Kotlin Filet* `NavGraph` néven (*jobb klikk -> New Kotlin Class/File*)
 
 3. Az előző laborokon látott NavGraphoz hasonlóan hozzuk létre a NavGraph-ot:
 ```kotlin
@@ -156,7 +158,6 @@ Hozzunk létre egy új *Packaget* a projekt gyökérmappájában, majd nevezzük
 ```kotlin
 @Composable
 fun NavGraph(
-    paddingValues: PaddingValues,
     navController: NavHostController = rememberNavController(),
 ){
     NavHost(
@@ -167,8 +168,7 @@ fun NavGraph(
             MenuScreen(
                 onClick = { destination ->
                     navController.navigate(destination)
-                },
-                modifier = Modifier.padding(paddingValues)
+                }
             )
         }
     }
@@ -183,14 +183,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            WorkplaceAppTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { TopBar() }
-                )
-                { innerPadding ->
-                    NavGraph(innerPadding)
-                }
+            WorkplaceAppFinalTestTheme {
+                NavGraph()
             }
         }
     }
@@ -202,9 +196,11 @@ Ahhoz, hogy az alkalmazásunk működőképes legyen, létre kell hoznunk még a
 ```kotlin
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar() {
+fun TopBar(
+    string: String = "Workplace App"
+) {
     TopAppBar(
-        title = { Text(text = "Workplace App") },
+        title = { Text(text = string) },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.inversePrimary
         )
@@ -258,25 +254,31 @@ fun MenuScreen(
     onClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.fillMaxSize()
-    ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize()
+    Scaffold (
+        topBar = { TopBar() }
+    ) { innerPadding ->
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         ) {
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
             ) {
-                CustomButton(imageId = R.mipmap.profile, text = "Profile", clickAction = { onClick("profile") })
-                Spacer(modifier = Modifier.width(16.dp))
-                CustomButton(imageId = R.mipmap.holiday, text = "Holiday", clickAction = { onClick("holiday") })
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    CustomButton(imageId = R.mipmap.profile, text = "Profile", clickAction = { onClick("profile") })
+                    Spacer(modifier = Modifier.width(16.dp))
+                    CustomButton(imageId = R.mipmap.holiday, text = "Holiday", clickAction = { onClick("holiday") })
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                //TODO
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            //TODO
         }
     }
 }
@@ -300,16 +302,24 @@ Hozzunk létre két *Kotlin Filet* a `screen` *Packageba* `ProfileScreen` illetv
 fun ProfileScreen(
     modifier: Modifier = Modifier
 ){
-    Column (
-        modifier = modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ){
-        Text(
-            fontSize = 24.sp,
-            text = "Profile Screen"
-        )
+    Scaffold (
+        topBar = {
+            TopBar("Profile")
+        }
+    ){ innerPadding ->
+
+        Column (
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ){
+            Text(
+                fontSize = 24.sp,
+                text = "Profile Screen"
+            )
+        }
     }
 }
 ```
@@ -319,16 +329,24 @@ fun ProfileScreen(
 fun HolidayScreen(
     modifier: Modifier = Modifier
 ){
-    Column (
-        modifier = modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ){
-        Text(
-            fontSize = 24.sp,
-            text = "Holiday Screen"
-        )
+    Scaffold (
+        topBar ={
+            TopBar("Holdiay")
+        }
+    ) { innerPadding ->
+
+        Column (
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ){
+            Text(
+                fontSize = 24.sp,
+                text = "Holiday Screen"
+            )
+        }
     }
 }
 ```
@@ -486,31 +504,40 @@ A függvény paraméterei a Profil egyes adatai lesznek String formátumban. Ha 
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier
-) {
-    val pagerState = rememberPagerState(pageCount = { 2 })
-    val profile = DataManager.person
-
-    HorizontalPager(state = pagerState) {
-        Column(
-            modifier = modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+){
+    Scaffold (
+        topBar = {
+            TopBar("Profile")
+        }
+    ){ innerPadding ->
+        val pagerState = rememberPagerState(pageCount = { 2 })
+        val profile = DataManager.person
+        HorizontalPager(
+            modifier = modifier
+                .padding(innerPadding),
+            state = pagerState
         ) {
-            when (pagerState.currentPage) {
-                0 -> {
-                    ProfileFirstPage(
-                        name = profile.name,
-                        email = profile.email,
-                        address = profile.address
-                    )
-                }
-                1 -> {
-                    ProfileSecondPage(
-                        id = profile.id,
-                        socialSecurityId = profile.socialSecNum,
-                        taxId = profile.taxId,
-                        registrationId = profile.registrationId
-                    )
+            Column(
+                modifier = modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                when (pagerState.currentPage) {
+                    0 -> {
+                        ProfileFirstPage(
+                            name = profile.name,
+                            email = profile.email,
+                            address = profile.address
+                        )
+                    }
+                    1 -> {
+                        ProfileSecondPage(
+                            id = profile.id,
+                            socialSecurityId = profile.socialSecNum,
+                            taxId = profile.taxId,
+                            registrationId = profile.registrationId
+                        )
+                    }
                 }
             }
         }
@@ -518,7 +545,7 @@ fun ProfileScreen(
 }
 ```
 
-Először is létre kell hozunk egy `pagerState` nevű változót, amit át fogunk adni a `HorizontalPager`nek. Ez tartalmazza, hogy hány oldal lesz az adott *Composable*n. Ezt követően szükség lesz egy profil-ra, amit már korábban definiáltunk egy `object`ként. Végül a `HorizontalPager` segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két *Composable* függvényt 1-1 oldalként.
+Először is létre kell hozunk egy `pagerState` nevű változót, amit át fogunk adni a `HorizontalPager`nek. Ez tartalmazza, hogy hány oldal lesz az adott *Composable*-n. Ezt követően szükség lesz egy profil-ra, amit már korábban definiáltunk egy `object`ként. Végül a `HorizontalPager` segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két *Composable* függvényt 1-1 oldalként.
 
 Próbáljuk ki az alkalmazást. A Profile gombra kattintva megjelennek a felhasználó adatai, és ha mindent jól csináltunk lehet lapozni is.
 
@@ -581,64 +608,49 @@ android {
 
 Ezután Synceljük a Projectet a jobb fent lévő `Sync Now` gombbal. 
 
-Ha a fájlok letöltődtek hozzunk létre egy `model` *Packaget* a projekt mappában, és ezen belül hozzunk létre egy új *Kotlin Filet* `HolidayViewModel` néven. Erre azért lesz szükség, hogy eltároljuk a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. Ezt lehetne egy külön változóban is, azonban szükség van a ViewModel-re, hogy az egyes képernyők között megtartsák az értékeket a változók. Ennek alapján írjuk be az alábbi kódot a fájlba:
-
-```kotlin
-class HolidayViewModel : ViewModel() {
-    private val _holidayMaxValue = MutableStateFlow(20)
-    val holidayMaxValue: StateFlow<Int> = _holidayMaxValue
-
-    private val _holidayDefaultValue = MutableStateFlow(15)
-    val holidayDefaultValue: StateFlow<Int> = _holidayDefaultValue
-
-    fun incrementDefaultValue(
-        days: Int
-    ) {
-        viewModelScope.launch {
-            _holidayDefaultValue.value+=days
-        }
-    }
-}
-```
-
-Majd ezután frissíthetjük a `HolidayScreen` *Composable* függvényünket az alábbiak szerint:
+Ha a fájlok letöltődtek frissítsük a `HolidayScreen` *Composable* függvényünket az alábbiak szerint:
 
 ```kotlin
 @Composable
 fun HolidayScreen(
     modifier: Modifier = Modifier
 ) {
-
     var showDialog by remember { mutableStateOf(false) }
 
+    Scaffold (
+        topBar = {
+            TopBar("Holiday")
+        }
+    ) { innerPadding ->
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+        Column(
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
 
-        //PieChartData létrehozása
-        
+            //PieChartData létrehozása
+            //...
 
-        //PieChartConfig létrehozása
-        
+            //PieChartConfig létrehozása
+            //...
 
-        //PieChart létrehozása - PieChartData, PieChartConfig segítségével
-        
+            //PieChart létrehozása - PieChartData, PieChartConfig segítségével
+            //...
 
-        //Holiday Button
+            //Holiday Button
+            //...
 
+            //DatePicker Dialog
+            //...
 
-        //DatePicker Dialog
-
-
+        }
     }
+
 }
 ```
-
-
-
 
 
 1. Hozzuk létre a `pieChardData` változónkat az alábbiak szerint (Másoljuk be a `//PieChartData létrehozása` comment alá):
@@ -712,7 +724,7 @@ Button(
 ```
 ### Képernyők közötti kommunikáció viewModel segítségével
 
-Hozzunk létre egy model Packaget a projekt mappában, és ezen belül hozzunk létre egy új Kotlin Filet HolidayViewModel néven. Erre azért lesz szükség, hogy eltároljuk a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. Ezt lehetne egy külön változóban is, azonban szükség van a ViewModel-re, hogy az egyes képernyők között megtartsák az értékeket a változók. Ennek alapján írjuk be az alábbi kódot a fájlba:
+Hozzunk létre egy `model` *Packaget* a projekt mappában, és ezen belül hozzunk létre egy új *Kotlin Filet* `HolidayViewModel` néven. Erre azért lesz szükség, hogy eltároljuk a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. Ezt lehetne egy külön változóban is, azonban szükség van a ViewModel-re, hogy az egyes képernyők között megtartsák az értékeket a változók. Ennek alapján írjuk be az alábbi kódot a fájlba:
 
 ```kotlin
 class HolidayViewModel : ViewModel() {
@@ -732,7 +744,7 @@ class HolidayViewModel : ViewModel() {
 }
 ```
 
-Ezután módosítsuk a `HolidayScreen` fejlénét a következő képpen, és hozzunk létre pár új változót:
+Ezután módosítsuk a `HolidayScreen` fejlécét a következő képpen, és hozzunk létre pár új változót:
 
 ```kotlin
 @Composable
@@ -749,34 +761,47 @@ fun HolidayScreen(
     val context = LocalContext.current
     var showDialog by remember { mutableStateOf(false) }
 
-    Column(
-        ...
-    ) {
-
-        //PieChartData létrehozása
-        val pieChartData = PieChartData(
-            slices = listOf(
-                PieChartData.Slice("Remaining", remainingHolidaysVM.toFloat(), Color(0xFFFFEB3B)),
-                PieChartData.Slice("Taken", holidayDefaultValueVM.toFloat(), Color(0xFF00FF00)),
-            ), plotType = PlotType.Pie
-        )
-
-        //PieChartConfig létrehozása
-        ...
-
-        //PieChart létrehozása - PieChartData, PieChartConfig segítségével
-        ...
-
-        //Holiday Button
-        Button(
-            onClick = { showDialog = true }
-        ) {
-            Text("Take holiday")
+    Scaffold (
+        topBar = {
+            TopBar("Holiday")
         }
+    ) { innerPadding ->
 
-        //DatePicker Dialog
-        
+        Column(
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            //PieChartData létrehozása
+            val pieChartData = PieChartData(
+                slices = listOf(
+                    PieChartData.Slice("Remaining", remainingHolidaysVM.toFloat(), Color(0xFFFFEB3B)),
+                    PieChartData.Slice("Taken", holidayDefaultValueVM.toFloat(), Color(0xFF00FF00)),
+                ), plotType = PlotType.Pie
+            )
+
+            //PieChartConfig létrehozása
+            //...
+
+            //PieChart létrehozása - PieChartData, PieChartConfig segítségével
+            //...
+
+            //Holiday Button
+            Button(
+                onClick = { showDialog = true }
+            ) {
+                Text("Take holiday")
+            }
+
+            //DatePicker Dialog
+            //...
+
+        }
     }
+
 }
 ```
 !!!danger "pieChartData"
@@ -813,6 +838,8 @@ if (showDialog) {
 }
 ```
 
+Az előző laborokon látottak alapján, hasonló módon használjuk a DataPicker Dialógust. Átadunk neki egy context-et, ezután egy lambda paramétert, ami a működést fogja leírni, abban az esetben, hogy ha dátumot választunk ki, majd végül utolsó három paraméternek átadjuk a jelenlegi dátumot.
+
 !!!tip "DatePickerDialog import"
     A `DatePickerDialog`-nál használjuk az alábbi importot:
     ```kotlin
@@ -832,10 +859,7 @@ fun NavGraph(
     ){
         ...
         composable("holiday"){
-            HolidayScreen(
-                viewModel = holidayViewModel,
-                modifier = Modifier.padding(paddingValues)
-            )
+            HolidayScreen(viewModel = holidayViewModel)
         }
 
     }
