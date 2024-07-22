@@ -112,11 +112,10 @@ Az SDK kezelésére az SDK managert használjuk, ezzel lehet letölteni és fris
 
 Az SDK Manager ikonja a fenti toolbaron a beállításoknál található (vagy Tools -> SDK Manager):
 
-![](assets/sdk_manager_icon.png)
+|Régi UI||Új UI|
+|-------||-----|
+|![](assets/sdk_manager_icon.png)||![](assets/sdk_manager_icon_2.png)|
 
-vagy
-
-![](assets/sdk_manager_icon_2.png)
 
 SDK manager felülete:
 
@@ -129,19 +128,18 @@ Indítsuk el az AVD managert, és vizsgáljuk meg a laborvezetővel, hogy rendel
 
 ### AVD
 
-Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül lehetséges (illetve parancssorból is, de ennek a használatára csak speciális esetekben van szükség).
+Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül lehetséges (*Tools->Device Manager*), illetve parancssorból is, de ennek a használatára csak speciális esetekben van szükség.
 
 Az AVD Manager ikonja:
 
-![](assets/avd_icon.png)
+|Régi UI||Új UI|
+|-------||-----|
+|![](assets/avd_icon.png)||![](assets/avd_icon_2.png)|
 
-vagy
-
-![](assets/avd_icon_2.png)
 
 ![](assets/avd_manager.png)
 
-A fenti képen jobb oldalon, a kinyíló panelben, a létező virtuális eszközök listáját találjuk, bal oldalon pedig az ún. eszköz definíciókét. (Ezt az *Add a new device* fül, majd a *Create Virtual Device* füllel tudjuk megnyitni a jobb oldalon lévő `+` ikonnal) Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S24). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.
+A fenti képen jobb oldalon, a kinyíló panelben, a létező virtuális eszközök listáját találjuk, bal oldalon pedig az ún. eszköz definíciókét. (Ezt az *Add a new device* fül, majd a *Create Virtual Device* opcióval tudjuk megnyitni a jobb oldalon lévő `+` ikonnal) Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S24). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.
 
 1. A jobb oldali panelon kattintsunk a fent található *Create Virtual Device...* gombra!
 2. Válasszunk az előre definiált készülék sablonokból (pl. *Pixel 8 Pro*), majd nyomjuk meg a *Next* gombot.
@@ -184,7 +182,7 @@ Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi 
 
 ## Fejlesztői környezet
 
- Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a *Tip of the day*, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a *Settings -> Appeareance & Behavior -> System Settings -> Reopen last project on startup* opcióval ki is kapcsolhatjuk.)
+ Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a *Tip of the day*, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a *Settings -> Appeareance & Behavior -> System Settings -> Reopen projects on startup* opcióval ki is kapcsolhatjuk.)
 
 ![](assets/studio_old.png)
 
@@ -257,6 +255,9 @@ Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-
 *   <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Keresés a beállításokban, kiadható parancsokban.
 *   <kbd>ALT</kbd> + <kbd>ENTER</kbd> hiányzó elemek importálása/létrehozása.
 
+!!!tip "Keresés"
+    Hogy ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki és keressünk rá a "Device Manager" opcióra.
+
 ### Eszközök, szerkesztők
 
 A *View* menü *Tool Windows* menüpontjában lehetőség van különböző ablakok ki- és bekapcsolására. Laborvezető segítségével tekintsék át az alábbi eszközöket!
@@ -275,7 +276,7 @@ Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott
 
 A laborvezető segítségével állítsák be a következő hasznos funkciókat:
 
-*   kis- nagybetű érzékenység kikapcsolása a kódkiegészítőben (settingsben keresés: *sensitive*)
+*   kis- nagybetű érzékenység kikapcsolása a kódkiegészítőben (settingsben keresés: *Match case*)
 *   "laptop mód" ki- és bekapcsolása (*File -> Power Save Mode*)
 *   sorszámozás bekapcsolása (kód melletti részen bal oldalt: jobb egérgomb, *Appearance -> Show Line Numbers*)
 
