@@ -140,7 +140,7 @@ Vegyük fel az alábbi szöveges erőforrásokat a `res/values/strings.xml`-be:
     <string name="title_activity_city">Cities</string>
     <string name="remove">Remove</string>
     
-    <string name="new_city">New city</string>
+    <string name="new_city">New cityList-et a főképernyőn, </string>
    	<string name="new_city_hint">City</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -168,7 +168,7 @@ Regisztráljunk saját felhasználót az [OpenWeatherMap](https://openweathermap
 
 A kapott API kulcsra később szükségünk lesz az időjárás adatokat lekérő API hívásnál.
 
-### 1. Városlista megvalósítása (1 pont)
+## 1. Városlista megvalósítása (1 pont)
 
 Valósítsuk meg az egy `LazyColumn`-ból álló, városok listáját megjelenítő `MainScreen`-t!
 
@@ -212,7 +212,10 @@ fun MainScreen(
 }
 ```
 
-Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. Előfordulhat, hogy a másolások miatt az Android Studio nem ismeri fel egyből a package szerkezetet, így ha ilyen problémánk lenne, az osztály néven állva Alt+Enter után állítassuk be a megfelelő package nevet.
+A főképernyőnk egy Scaffold-ból fog állni, aminek külön adunk egy TopBar-t, illetve egy FloatingActionButton-t. Ezeket később fogjuk megvalósítani és pótolni a hiányzó részeknél. A Scaffold törzsében egy LazyColumn-ot helyezünk el, ennek a segítségével fogjuk megjeleníteni a tárolt városokat. Ehhez szükségünk lesz egy listára, illetve egy példányra, ami azt írja le, hogy hogyan nézzen ki egyetlen elem a listából.
+
+!!!info "Package"
+    Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. Előfordulhat, hogy a másolások miatt az Android Studio nem ismeri fel egyből a package szerkezetet, így ha ilyen problémánk lenne, az osztály néven állva <kbd>Alt</kbd>+<kbd>Enter</kbd> után állítassuk be a megfelelő package nevet.
 
 Hozzuk létre a navigáláshoz szükséges `NavGraph`-ot. Ehhez csináljunk egy új *Packaget* `navigation` néven, majd ebben egy új *Kotlin Filet* `NavGraph` néven. Ez fog felelni a navigációért a két képernyőnk között. 
 
@@ -239,13 +242,14 @@ fun NavGraph(
 }
 ```
 
-Szükségünk van egy *LazyCard Composable* függvényre is, amely a `LazyColumn` egy elemét fogja modellezni. Ehhez hozzunk létre `element` *Packaget* a már meglévő `screen` *Packagen* belül, majd ezen belül egy `LazyCard` nevű új *Kotlin Filet`, majd hozzuk létre a függvényünket:
+Kezdésként létrehozzuk a főképernyőnek a navigációját, ami a *mainscreen* lesz. Ehhez létrehozzuk a composable függvényt, ami a *MainScreen* Composable függvényünket fogja meghívni.
+
+Szükségünk van egy *LazyCard Composable* függvényre is, amely a `LazyColumn` egy elemét fogja modellezni. Ehhez hozzunk létre `element` *Packaget* a már meglévő `screen` *Packagen* belül, majd ezen belül egy `LazyCard` nevű új *Kotlin Filet*, majd hozzuk létre a függvényünket:
 
 ```kotlin
 @Composable
 fun LazyCard(
     cityName: String = "CityName",
-    onDelete: () -> Unit = {},
     navController: NavController
 ) {
     Card (
@@ -270,7 +274,7 @@ fun LazyCard(
                 modifier = Modifier.padding(8.dp)
             )
             Button(onClick = {
-                onDelete()
+                /*TODO*/
             }) {
                 Text(stringResource(id = R.string.remove))
             }
@@ -279,7 +283,7 @@ fun LazyCard(
 }
 ```
 
-A példányunk két elemet fog tartalmazni. Egy `Text`-et amire kiírjuk az adott város nevét, illetve egy `Button`-t amivel a törlést valósíthatjuk meg. Ennek egy onDelete lambdát adunk át amit majd később fogunk implementálni. Magának a `Card` *Composable* függvénynek, adunk egy `clickable` Modifiert, aminek a segítségével fogjuk létrehozni a navigációt. 
+A példányunk két elemet fog tartalmazni. Egy `Text`-et amire kiírjuk az adott város nevét, illetve egy `Button`-t amivel a törlést valósíthatjuk meg. Magának a `Card` *Composable* függvénynek, adunk egy `clickable` Modifiert, aminek a segítségével fogjuk létrehozni a navigációt. 
 
 Ezzel el is készítettük nagyjából a városlistánkat, azonban még három dolog hátravan a feladat teljesítéséhez:
 
@@ -287,7 +291,7 @@ Ezzel el is készítettük nagyjából a városlistánkat, azonban még három d
 - TopBar - Ez fog felelni a TopBar-ért ami a képernyő felső részén helyezkedik el.
 - NewCityDialog - Ezzel a Dialógus ablakkal fogunk új várost hozzáadni a meglévő listánkhoz.
 
-#### MainScreenViewModel megvalósítása
+### MainScreenViewModel megvalósítása
 
 Ehhez hozzunk létre egy új packaget `model` néven a Projekt mappában, majd ezen belül egy `MainScreenViewModel` Kotlin Filet, és írjuk meg a kódját a következők szerint:
 
@@ -301,12 +305,12 @@ class MainScreenViewModel: ViewModel() {
         _cityList.value = listOf("Budapest", "London", "Berlin")
     }
 
-    fun addCity(city: String){
-        _cityList.value += city
+    fun addCity(cityList-et a főképernyőn, : String){
+        _cityList.value += cityList-et a főképernyőn, 
     }
 
-    fun removeCity(city: String){
-        _cityList.value -= city
+    fun removeCity(cityList-et a főképernyőn, : String){
+        _cityList.value -= cityList-et a főképernyőn, 
     }
 
 }
@@ -339,19 +343,22 @@ fun MainScreen(
                 LazyCard(
                     cityName = cityList[it],
                     navController = navController,
-                    onDelete = {
-                        viewModel.removeCity(cityList[it])
-                    }
                 )
             }
         }
     }
 }
 ```
+Látható, hogy átadtuk paraméterként az imént létrehozott viewModellünket, majd a segítségével létrehoztunk egy cityList-et a főképernyőn, amit fel is használunk a LazyColumn-ra. Az `items(..)`-nek átadjuk a lista méretét, ez azt fogja jelezni a LazyColumn-nak, hogy mennyi eleme van az adott listának, amit meg szeretnénk jeleníteni. Ezt a `cityList.size` paraméter segítségével tudjuk elérni.
+
+Az `items(..)` törzsébe elhelyezzük a példányt amit készítettünk és átadjuk a szükséges paramétereket.
+
+*   `cityName - cityList[it]`
+*   `onDelete - viewModel.removeCity(..)`
 
 Ezután rögtön hozzuk is létre a `TopBar`-t is. 
 
-#### TopBar megvalósítása
+### TopBar megvalósítása
 
 Ehhez csináljunk egy új *Packaget* a `screen`-en belül `appbar` néven, majd ebben egy `TopBar` nevű *Kotlin Filet*, és írjuk meg ennek is a kódját:
 
@@ -396,7 +403,8 @@ fun MainScreen(
 }
 ```
 
-#### Dialógus ablak megvalósítása
+
+### Dialógus ablak megvalósítása
 
 Hozzunk létre egy új *Packaget* a `screen`-en belül `dialog` néven, majd ebben egy új *Kotlin Filet* `NewCityDialog` néven és valósítsuk meg ennek a felépítését:
 
@@ -430,14 +438,14 @@ fun NewCityDialog(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
+            Button(onClick = onDismiss) {
+                Text(stringResource(id = R.string.cancel))
+            }
             Button(onClick = {
                 onAddCity(city)
                 onDismiss()
             }) {
                 Text(stringResource(id = R.string.ok))
-            }
-            Button(onClick = onDismiss) {
-                Text(stringResource(id = R.string.cancel))
             }
         }
     }
@@ -487,8 +495,8 @@ fun MainScreen(
                 onDismissRequest = { isDialog = false }) {
                 NewCityDialog(
                     onDismiss = { isDialog = false },
-                    onAddCity = { city ->
-                        viewModel.addCity(city)
+                    onAddCity = { cityList-et a főképernyőn,  ->
+                        viewModel.addCity(cityList-et a főképernyőn, )
                         isDialog = false
                     }
                 )
@@ -497,6 +505,49 @@ fun MainScreen(
     }
 }
 ```
+
+Végül módosítsuk a `MainActivity`, illetve a `NavGraph`-ot a következő képpen.
+
+```kotlin
+@Composable
+fun NavGraph(
+    /*...*/
+) {
+
+    val viewModel = MainScreenViewModel()
+    NavHost(
+        /*...*/
+    ) {
+
+        composable("mainscreen") {
+            MainScreen(
+                navController = navController,
+                viewModel = viewModel
+            )
+        }
+    }
+}
+```
+
+Látható, hogy létrehoztunk egy viewModel példányt, amit át is kell adnunk paraméterként, illetve le kell cserélnünk a `MainActivity`-ben a jelenlegi `setContent` hívást, hogy a `NavGraph`-ot használjuk.
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WeatherInfoTheme {
+                NavGraph()
+            }
+        }
+    }
+}
+```
+
+Most már el tudjuk indítani az alkalmazást, és ha mindent jól csináltunk akkor a városfelvétel, illetve törlés-nek működnie kell.
+
+
 !!!note ""
     Szorgalmi feladat otthonra: az alkalmazás ne engedje a város létrehozását, ha a városnév mező üres!
 
@@ -505,7 +556,7 @@ fun MainScreen(
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### 2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
+## 2. Részletező nézet létrehozása és bekötése a navigációba (1 pont)
 
 A következő lépésben hozzunk létre egy új *Packaget* a `screen`-en belül `weather` néven, majd ebben egy `WeatherScreen`, `MainWeather`, `DetailsWeather` *Kotlin Filet*. Első lépésben valósítsuk meg a `WeatherScreen` Filet:
 
@@ -536,7 +587,7 @@ fun WeatherScreen(
 }
 ```
 
-Létre kell hoznunk egy `pagerState` változót, annak érdekében, hogy a `HorinzontalPager`-ünk működőképes legyen. Itt megadhatjuk, hogy hány oldalt szeretnénk használni. Jelen esetben ez nekünk kettő oldalra fog eloszlani. Ezután egy `when(..){..}` segítségével rajzoltatjuk ki a megfelelő oldalt.
+Létre kell hoznunk egy `pagerState` változót, annak érdekében, hogy a `HorinzontalPager`-ünk működőképes legyen. Itt megadhatjuk, hogy hány oldalt szeretnénk használni. Jelen esetben ez nekünk kettő oldalra fog eloszlani. Ezután egy `when(..){..}` segítségével jelenítjük meg a megfelelő oldalt.
 
 Hozzuk létre a `MainWeather` felépítését is:
 
@@ -629,14 +680,17 @@ fun NavGraph(
         /*mainscreen*/
         //...
         composable("weather/{city}",
-            arguments = listOf(navArgument("city") {
-                defaultValue = "Budapest"
-                type = NavType.StringType
-            })){
-            val city = it.arguments?.getString("city")
+            arguments = listOf(
+                navArgument("city") { 
+                    defaultValue = "Budapest"
+                    type = NavType.StringType 
+                }
+            )
+        ){
+            val city  = it.arguments?.getString("city")
             city?.let {
-                WeatherScreen(cityName = it)
-            }
+            WeatherScreen(cityName = it) 
+            } 
         }
     }
 }
@@ -648,13 +702,13 @@ Ennél a lépésnél kiszedjük a megfelelő navargument-et, ennek a segítség�
 Ezután indítsuk el az alkalmazásunkat és próbáljuk ki, hogy valóban megjelenik-e az új nézetünk a megfelelő fejléccel, hogy ha az egyes elemekre kattintunk.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **üres részletes nézet a megfelelő fejléccel**, a **WeatherScreen** kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik az **részletes nézet a beégetett adatokkal és a megfelelő fejléccel**, a **WeatherScreen** kódja, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### 3. Hálózati kommunikáció megvalósítása (1 pont)
+## 3. Hálózati kommunikáció megvalósítása (1 pont)
 
-#### Modell osztályok létrehozása 
+### Modell osztályok létrehozása 
 
 Hozzunk létre egy új *Packaget* `weather` néven a `model` *Packageban* majd ebben egy `WeatherResult`nevű *Kotlin Filet*
 
@@ -757,8 +811,56 @@ data class Wind(
 ```
 
 
-#### Hálózati réteg megvalósítása
-##### ViewModel létrehozása
+### Hálózati réteg megvalósítása
+
+A `hu.bme.aut.android.weatherinfo` package-ben hozzuk létre egy `network` nevű package-et, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni.
+
+A `network` package-en belül hozzuk létre egy `WeatherApiService` nevű *Kotlin Filet*.
+
+```kotlin
+private const val SERVICE_URL = "https://api.openweathermap.org"
+
+
+
+val gson = GsonBuilder().setLenient().create()
+
+
+private val retrofit = Retrofit.Builder()
+    .baseUrl(SERVICE_URL)
+    .addConverterFactory(GsonConverterFactory.create(gson))
+    .build()
+
+object WAPI {
+    val retrofitService: WeatherApiService by lazy {
+        retrofit.create(WeatherApiService::class.java)
+    }
+}
+
+interface WeatherApiService {
+    @GET("/data/2.5/weather")
+    suspend fun getWeatherData(@Query("q") cityName: String,
+                               @Query("units") units: String,
+                               @Query("appid") appId: String): WeatherResult
+}
+```
+
+Látható, hogy *annotációk* alkalmazásával tuduk jelezni, hogy az adott függvényhívás milyen hálózati hívásnak fog megfelelni. A `@GET` annotáció *HTTP GET* kérést jelent, a paraméterként adott string pedig azt jelzi, hogy hogy a szerver alap *URL*-éhez képest melyik végpontra szeretnénk küldeni a kérést.
+
+!!!warn ""
+    Hasonló módon tudjuk leírni a többi HTTP kérés típust is: @POST, @UPDATE, @PATCH, @DELETE
+
+
+A függvény paremétereit a `@Query` annotációval láttuk el. Ez azt jelenti, hogy a `Retrofit` az adott paraméter értékét a kéréshez fűzi *query* paraméterként az annotációban megadott kulccsal.
+
+!!!warn ""
+    További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field
+
+
+A hálózati hívást jelölő interfész függvény visszatérési értéke egy `Call<WeatherResult>` típusú objektum lesz. (A retrofites Callt importáljuk a megjelenő lehetőségek közül.) Ez egy olyan hálózati hívást ír le, aminek a válasza `WeatherResult` típusú objektummá alakítható.
+
+A létrehozott `WAPI object` segítségével fogjuk elérni az API hívást a viewModellen belül.
+
+### ViewModel létrehozása
 Ahhoz hogy a hálózati kommunikációt kezelni tudjuk szükségünk van ehhez is egy ViewModel-re, aminek a segítségével kezelni fogjuk az API kérés válaszát:
 
 *   Success
@@ -783,7 +885,7 @@ class WeatherViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
         private set
 
     init {
-        savedStateHandle.get<String>("city")?.let {
+        savedStateHandle.get<String>("cityList-et a főképernyőn, ")?.let {
             getWeather(it)
         }
     }
@@ -809,7 +911,10 @@ Itt az `API_KEY` helyére illesszük be a saját API kulcsunkat. Az `init` blokk
 
 Hogy ha ez sikeresen megtörtént akkor a WeatherUiState-re meghívjuk a Success data class-t, ami vissza adja az időjárás adatokat.
 
-##### PreWeatherScreen létrehozása
+!!!danger "Import"
+    Figyeljünk nagyon, hogy a `WAPI` importja a saját, korábban létrehozott objektum legyen, és ne a beépített deprecated!
+
+#### PreWeatherScreen létrehozása
 
 Ahhoz, hogy tudjuk kezelni a viewModel-t egy külön Composable függvényt kell létrehozni, aminek a paramétere megkapja a viewModellünket. Ez alapján fogja a kiválasztani, hogy melyik képernyőt láthatjuk a lekérdezés alapján.
 
@@ -817,7 +922,7 @@ Ahhoz, hogy tudjuk kezelni a viewModel-t egy külön Composable függvényt kell
 *   ErrorScreen - Valamilyen hibába ütközött a lekérdezés
 *   WeatherScreen - Az adat sikeresen megérkezett.
 
-Ez alapján hozzunk létre egy `PreWeatherScreen` *Kotlin Filet* amiben az alábbi kódot helyezzük el:
+Ez alapján hozzunk létre egy `PreWeatherScreen` *Kotlin Filet* a `screen` packageban, amiben az alábbi kódot helyezzük el:
 
 ```kotlin
 @Composable
@@ -902,13 +1007,13 @@ fun NavGraph(
         /*MainScreen*/
         //...
 
-        composable("weather/{city}",
-            arguments = listOf(navArgument("city") {
+        composable("weather/{cityList-et a főképernyőn, }",
+            arguments = listOf(navArgument("cityList-et a főképernyőn, ") {
                 defaultValue = "Budapest"
                 type = NavType.StringType
             })){
-            val city = it.arguments?.getString("city")
-            city?.let {
+            val cityList-et a főképernyőn,  = it.arguments?.getString("cityList-et a főképernyőn, ")
+            cityList-et a főképernyőn, ?.let {
                 PreWeatherScreen()
             }
         }
@@ -953,13 +1058,13 @@ Nyissuk meg az alkalmazásunkat, és próbáljuk ki. A részletező nézetben ug
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### 4. A hálózati réteg bekötése a részletező nézetbe (1 pont)
+## 4. A hálózati réteg bekötése a részletező nézetbe (1 pont)
 
 A modell elemek és a hálózati réteg megvalósítása után a részletező nézetbe fogjuk bekötni a hálózati réteget.
 
-#### MainWeather továbbfejlesztése
+### MainWeather frissítése
 
-Fejlesszük tovább a `MainWeather` Composable függvényt, úgy hogy paraméterként megkapja a lekérdezett adatokat. Ehhez használjuk fel az alábbi kódot:
+Frissítsük a `MainWeather` Composable függvényt, úgy hogy paraméterként megkapja a lekérdezett adatokat. Ehhez használjuk fel az alábbi kódot:
 
 ```kotlin
 fun MainWeather(
@@ -974,9 +1079,9 @@ Hogy ha ezzel megvagyunk módosítsuk a két Text field-et illetve az AsyncImage
 *   Details: weatherResult.weather[0].description
 *   AsyncImage: weatherResult.weather[0].icon ("10d" stringet kell lecserélni.)
 
-#### DetailsWeather továbbfejlesztése
+### DetailsWeather frissítése
 
-Szintén az `MainWeather`-hez hasonlóan fejlesszük tovább a `DetailsWeather`-ünket.
+Szintén az `MainWeather`-hez hasonlóan frissítsük a `DetailsWeather`-ünket.
 
 ```kotlin
 fun DetailsWeather(
@@ -1032,7 +1137,7 @@ Hogy ha ezzel végeztünk, indítsuk el az alkalmazást és próbáljuk ki, hogy
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### 5. Önálló feladat: város listából törlés megvalósítása (1 pont)
+## 5. Önálló feladat: város listából törlés megvalósítása (1 pont)
 
 Valósítsuk meg a városok törlését a *Remove* gomb megnyomásának hatására.
 
