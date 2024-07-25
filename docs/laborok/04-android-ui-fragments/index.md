@@ -133,13 +133,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WorkplaceAppTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { TopBar() }
-                )
-                { innerPadding ->
-                    NavGraph(innerPadding)
-                }
+                NavGraph()
             }
         }
     }
@@ -183,7 +177,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            WorkplaceAppFinalTestTheme {
+            WorkplaceAppTheme {
                 NavGraph()
             }
         }
@@ -364,15 +358,21 @@ fun NavGraph(
     ){
         ...
         composable("profile"){
-            ProfileScreen(modifier = Modifier.padding(paddingValues))
+            ProfileScreen()
         }
 
         composable("holiday"){
-            HolidayScreen(modifier = Modifier.padding(paddingValues))
+            HolidayScreen()
+        }
+        composable("cafeteria"){
+            /*TODO*/
         }
     }
 }
 ```
+
+!!!note "Cafeteria"
+    A Cafeteria képernyőre navigációt előre beírtuk, hogy a labor végén a gombra való kattintásnál ne crasheljen az alkalmazás. Ezt a funkciót mindenki tudja otthon módosítani gyakorlás képpen.
 
 Indítsuk el az alkalmazást. Mostmár a felső két gombnak működnie kellene.
 
