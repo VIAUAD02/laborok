@@ -231,6 +231,7 @@ Ezután állítsuk be az alkalmazásunk ikonját is:
 ```xml
 <application
     ...
+    android:theme="@style/Theme.PublicTransport.Starting"
     android:icon="@mipmap/ic_transport_round"
     android:roundIcon="@mipmap/ic_transport_round">
     ...
@@ -1051,6 +1052,144 @@ Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltat�
 
 !!!note "Ismertető"
     Ezek a feladatok nem szükségesek a labor maximális pont megszerzéséhez, csupán csak ismertető jelleggel vannak a labor anyagában azok számára akik jobban beleásnák magukat a témába :)
+
+
+### Ismertető feladat - SplashScreen animáció
+
+A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár `.xml` fájlt kell létrehozunk az Android Studio segítségével, amellyekben megvalósítjuk ezeket a műveleteket.
+
+Szükségünk van a következőkre:
+
+*   Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn. (Ezt már korábban létrehoztuk, csak módosítani fogjuk)
+*   Animator - Ebben fogjuk leírni az animációt amit szeretnénk használni az adott Logo-n.
+*   Animated Vector Drawable - Ennek a segítségével lesz összekötve az Animator, és a Logo.
+*   Themes - Ezt is csak módosítani fogjuk
+*   Animation - Ebben meg tudunk adni Interpolációkat még az animációk mellé
+
+#### Logo módosítása
+
+Módosítsuk a már meglévő Logo-t az alábbiak szerint. (`ic_transport_foreground.xml`)
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="#FF0000">
+  <group
+      android:name="animationGroup"
+      android:pivotX="12"
+      android:pivotY="12">
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,16c0,0.88 0.39,1.67 1,2.22L5,20c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h8v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1.78c0.61,-0.55 1,-1.34 1,-2.22L20,6c0,-3.5 -3.58,-4 -8,-4s-8,0.5 -8,4v10zM7.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,14 7.5,14s1.5,0.67 1.5,1.5S8.33,17 7.5,17zM16.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM18,11L6,11L6,6h12v5z"/>
+  </group>
+</vector>
+```
+
+A már meglévő path-et belecsomagoltuk egy group tag-be, amire azért van szükség, hogy tudjuk animálni az icont. Ennek a groupnak adunk egy nevet, amit az animálásnál fogunk felhasználni, hogy melyik csoportot szeretnénk, illetve beállítjuk a pivotX, és pivotY pontokat. Ezt jelen esetben középre tesszük, ugyanis a Logo-t középről szeretnénk animálni.
+
+#### Animator létrehozása
+
+Ahhoz hogy a Logo-t animálni tudjuk, létre kell hozunk egy Animator típusú fájlt. Kattintsunk a `res` mappára jobb klikkel, majd *New->Android Resource file*, névnek adjuk meg a `logo_animator`-t, type-nak az `Animator` típust, és Root elementnek pedig `objectAnimator`-t, majd kattintsunk az OK gombra. Ez létrehozta a szükséges fájlt, már csak meg kell írni az animációkat. Első sorban állítsuk be az animáció időtartamát, ezt az `android:duration` segítségével tehetjük meg az `objectAnimator` tagen belül. 
+
+*   Kezdetben állítsuk egy másodpercre (1000). 
+*   Ezután adjunk a Logo-nak egy Scale animációt, ennek a segítségével el tudjuk érni azt, hogy a semmiből megjelenjen, és az animáció időtartamával lineárisan megnövekedjen. Ehhez szükségünk van egy `propertyValuesHolder` tag-re az `objectAnimator`-on belül. 
+
+```xml
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="750"
+    android:interpolator="@anim/overshoot_interpolator">
+
+    <propertyValuesHolder
+        android:propertyName="scaleX"
+        android:valueType="floatType"
+        android:valueFrom="0.0"
+        android:valueTo="0.5" />
+
+    <propertyValuesHolder
+        android:propertyName="scaleY"
+        android:valueType="floatType"
+        android:valueFrom="0.0"
+        android:valueTo="0.5" />
+
+</objectAnimator>
+```
+
+Ebben a rövid animációs kódban csak megnöveljük a méretét a Logo-nak 0-ról 0.5-re. A properyName-n belül tudjuk megadni az animációt, ez lehet scaleX, scaleY, roation, stb... valamint a valuesFrom/To-ban tudjuk megadni a kezdő-cél méretet.
+
+Ahhoz, hogy ezt az animációt összekössük a Logo-val, létre kell hoznunk egy Animated Vector Drawable-t.
+
+#### Animated Vector Drawable
+
+Hozzuk létre az Animated Vector Drawable file-t az Android Studio segítségével. Kattintsunk jobb klikkel a drawable mappánkra, majd *New->Drawable Resource File*. Itt névnek adjuk meg a `animated_logo`-t, valamint root element-nek `animated-vector`-t, majd kattintsunk az OK gombra. Ez létrehozta a szükséges file-t. Egészítsük ki az alábbiak szerint:
+
+```xml
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_transport_foreground">
+
+    <target
+        android:animation="@animator/logo_animator"
+        android:name="animationGroup" />
+
+</animated-vector>
+```
+
+*   Az `android:drawable` segítségével megadjuk azt a fájlt amit szeretnénk animálni.
+*   Az `android:animation` segítségével pedig, hogy melyik animációt szeretnénk használni.
+*   Valamint az `android:name` segítségével azt a csoportot amelyiket szeretnénk animálni az adott Logo-n belül.
+
+A korábbiakban már elkészítettük a szükséges témát a splashscreenhez, viszont az még csak a sima Logo-ra történt meg. Ahhoz hogy az aninált Logo legyen használva módosítsuk az alábbiak szerint.
+
+#### Themes módosítása
+
+```xml
+<style name="Theme.PublicTransport.Starting" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">#5A3DDC</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/animated_logo</item>
+    <item name="android:windowSplashScreenIconBackgroundColor">#5A3DDC</item>
+    <item name="postSplashScreenTheme">@style/Theme.PublicTransport</item>
+</style>
+```
+Itt csak az AnimatedIcon-t lecseréltük az `animated_logo`-ra, a sima helyett.
+
+#### Animation - Interpolációk
+...
+
+
+
+Az instalSplashScreen-nek van egy lambda paramétere: `apply{}`. Ezen belül meg tudunk adni különböző működéseket is. Például `setKeepOnScreenCondition` ennek a segítségével a SplashScreent addig tudjuk a képernyőn tartani amíg nem teljesül valamilyen feltétel. Általánan ezen a blokkon belül érdemes végezni az adatbázis kiolvasásokat, vagy olyan dolgokat amik időigényesek és csak az alkalmazás indítása során egyszer kell végrehajtani. Hogy ha ezek végrehajtódtak teljesül egy feltétel, és eltűnik a SplashScreen. `setOnExitAnimationListener` - Ezen belül meg tudunk adni olyan animációt ami akkor hajtódik végre, hogy ha a `setKeepOnScreenCondition` nem tartja előtérben a SplashScreen-t, és éppen váltana képernyőt az alkalmazás. Ilyenkor végrehajthatunk egy kilépő animációt is. Például az alábbit:
+
+```kotlin
+installSplashScreen().apply {
+    setOnExitAnimationListener{ splashScreenView ->
+        val zoomX = ObjectAnimator.ofFloat(
+            splashScreenView.iconView,
+            "scaleX",
+            0.5f,
+            0f
+        )
+        zoomX.interpolator = OvershootInterpolator()
+        zoomX.duration = 500
+        zoomX.doOnEnd { splashScreenView.remove() }
+        val zoomY = ObjectAnimator.ofFloat(
+            splashScreenView.iconView,
+            "scaleY",
+            0.5f,
+            0f
+        )
+        zoomY.interpolator = OvershootInterpolator()
+        zoomY.duration = 500
+        zoomY.doOnEnd { splashScreenView.remove()}
+        zoomX.start()
+        zoomY.start()
+    }
+}
+```
+
+
+
 
 
 ### Ismertető feladat - NavGrap-Splash
