@@ -711,6 +711,9 @@ PieChart(
 
     * Hogy ha most elindítjuk az alkalmazást, és mindent jól csináltunk, akkor a Holiday opciónál látni kéne a diagramot
 
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **szabadságképernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl.
+
 ## Dátumválasztó megvalósítása (1 pont)
 
 Következő lépésként valósítsuk meg a `Take Holiday` gombot:
