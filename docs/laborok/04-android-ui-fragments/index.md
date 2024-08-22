@@ -872,7 +872,7 @@ Ezután az alkalmazást elindítva már rendesen kell működnie a `Take Holiday
 	Készíts egy **képernyőképet**, amelyen látszik a **dátumválasztó kép** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4a.png néven töltsd föl. **Emellett**  készíts egy **képernyőképet**, amelyen látszik a **dátumválasztás eredménye a szabadság képernyőn** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a kommunikációhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4b.png néven töltsd föl.
 
 
-## Önálló feladat
+## Önálló feladat (1 pont)
 
 *   Csak akkor engedjünk új szabadságot kivenni, hogy ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)
 *   Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)
