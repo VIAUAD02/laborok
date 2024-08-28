@@ -269,6 +269,22 @@ Button(
 
 Az ElevatedButton helyett más fajta gombot is lehet használni, ez csak demonstrálja, hogy a Compose mennyi lehetőséget kínál a tervezés során. A két gombnak szintén beállítjuk az onClick eseményét, valamint a megjelenítendő szöveget rajtuk. A második gomb esetén az onClick eseményt egy if-else elágazásba kell tenni, hogy ha a felhasználó üresen hagyná, akkor ez figyelmeztesse. Ha nem üres, akkor az items listához hozzáadunk egy új elemet a bevitt adatnak megfelelően. Ez az elem a már korábban definiált `data class` egy példánya. 
 
+Az elkészített képernyőt állítsuk be a `MainActivity`-ben, úgy hogy a `setContent` ezt a Composable Screent jelenítse meg.
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AndroidWalletTheme {
+                MainScreen()
+            }
+        }
+    }
+}
+```
+
 !!!example "BEADANDÓ (1 pont)"
     Készíts egy **képernyőképet**, amelyen látszik a **főképernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a kódja, valamint a **neptun kódod a kódban kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
 
