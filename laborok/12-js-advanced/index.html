@@ -1070,7 +1070,7 @@ npm run start
 <div class="admonition warning">
 <p class="admonition-title">NPM cache</p>
 <p>Fontos! A laborgépeken nem vagy nem mindig érhető el megfelelően az NPM lokális cache példánya, ezért használjuk helyette itt az <code>npm install --cache .cache</code> parancsot, ami az aktuális mappában egy <code>.cache</code> nevű mappát használ a központi gyorsítótár helyett. Lokális gépen is használhatjuk ezt a parancsot, de ott elegendő (kell, hogy legyen) az <code>npm install</code> is.</p>
-<p><strong>Ez a <code>.cache</code> mappa NE KERÜLJÖN commuttolásra!</strong></p>
+<p><strong>Ez a <code>.cache</code> mappa NE KERÜLJÖN commitolásra!</strong></p>
 </div>
 </li>
 <li>
@@ -1104,8 +1104,8 @@ Ennek az alap konfigurációja (amelyet akár projektfájlnak is tekinthetünk) 
 <li>jQuery plugin</li>
 </ul>
 <h2 id="feladat-2-modern-javascript-funkciok">Feladat 2 - Modern JavaScript funkciók<a class="headerlink" href="#feladat-2-modern-javascript-funkciok" title="Permanent link">&para;</a></h2>
-<p>A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: <strong>egy objektum komponens, ha megjelenik a felületen a reprezentációja</strong>, képes kommunikálni más objektumokkal és komponensekkel, ezen felül lehet állapota (mezői, tulajdonságai, amiket karban tart).</p>
-<p>Az alkalmazásunknak szüksége lesz egy "gépre", aki majd kigondolja a számot. Az egyszerűség kedvéért most ez egy 1 és 100 közötti szám lesz, az érték nem konfigurálható. Szimuláljuk, hogy a "számítás" komplex, úgyhogy kis késleltetést viszünk majd abba, amíg a választ visszakapjuk a tippünkre.</p>
+<p>A megoldás során használjuk az objektumorientált megközelítést és a modern JS funkciókat! Igyekezzünk komponens-orientáltan gondolkodni: <strong>egy objektum komponens, ha megjelenik a felületen a reprezentációja</strong>, képes kommunikálni más objektumokkal és komponensekkel, ezen felül lehet állapota (mezői, tulajdonságai, amiket karbantart).</p>
+<p>Az alkalmazásunknak szüksége lesz egy "gépre", ami majd kigondolja a számot. Az egyszerűség kedvéért most ez egy 1 és 100 közötti szám lesz, az érték nem konfigurálható. Szimuláljuk, hogy a "számítás" komplex, úgyhogy kis késleltetést viszünk majd abba, amíg a választ visszakapjuk a tippünkre.</p>
 <p>Az objektumaink, melyek a felületen is megjelennek, rendelkezni fognak egy <code>render()</code> függvénnyel, és lesz egy (az alkalmazás szempontjából) globális <code>render()</code> függvényünk is, ami minden komponenst kirajzol azok <code>render()</code> függvényének meghívásával.</p>
 <p>Először készítsük el az időzítőt! Az időzítő a játék indulásakor elkezdi számolni <strong>a kliensen</strong> az eltelt időt. Más elemekről nem tud, önállóan működni képes, elindulni és megállni tud, el lehet tőle kérni formázottan az eltelt időt, és ki tudja rajzolni az eltelt időt a felületre. A komponens kódja így az alábbi:</p>
 <div class="highlight"><span class="filename">ClientApp\src\timer.js</span><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Timer</span><span class="w"> </span><span class="p">{</span>
@@ -1288,7 +1288,7 @@ Ennek az alap konfigurációja (amelyet akár projektfájlnak is tekinthetünk) 
 <span class="w">            </span><span class="nx">element</span><span class="p">.</span><span class="nx">disabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;guess-input&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1511,8 +1511,8 @@ Ennek az alap konfigurációja (amelyet akár projektfájlnak is tekinthetünk) 
           </path>
         </svg>
       </span>
-      <span title="2022. november 25. 03:10:46">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T03:10:46+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      <span title="2023. december 7. 10:00:06">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-12-07T10:00:06+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-12-07</span>
       </span>
     </span>
 
@@ -1527,7 +1527,9 @@ Ennek az alap konfigurációja (amelyet akár projektfájlnak is tekinthetünk) 
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/asztrikx" target="_blank" rel="noopener noreferrer" class="md-author" title="@asztrikx">
+      <nav><a href="https://github.com/vandreas73" target="_blank" rel="noopener noreferrer" class="md-author" title="@vandreas73">
+          <img src="https://avatars.githubusercontent.com/u/113762114?v=4?size=72" alt="@vandreas73">
+        </a><a href="https://github.com/asztrikx" target="_blank" rel="noopener noreferrer" class="md-author" title="@asztrikx">
           <img src="https://avatars.githubusercontent.com/u/15632657?v=4?size=72" alt="@asztrikx">
         </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
           <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
