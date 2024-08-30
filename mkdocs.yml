@@ -1,8 +1,8 @@
-site_name: BMEVIAUAC00 - Mobil- és webes szoftverek laborfeladatok
+site_name: BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
 site_author: Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László, Pomázi Krisztián, Kövesdán Gábor
 copyright: Copyright &copy; BME VIK AUT
-repo_name: viauac00/laborok
-repo_url: https://github.com/viauac00/laborok
+repo_name: viauad02/laborok
+repo_url: https://github.com/viauad02/laborok
 
 theme:
   name: material
@@ -74,7 +74,7 @@ plugins:
       timezone: Europe/Budapest
       locale: hu
   - git-committers:
-      repository: VIAUAC00/laborok
+      repository: VIAUAD02/laborok
       branch: master
 
 nav:

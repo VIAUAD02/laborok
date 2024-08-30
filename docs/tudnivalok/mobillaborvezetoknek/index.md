@@ -44,7 +44,7 @@ Az első héten nincs beugró.
 
 ### Github Classroom
 A 2022 őszi félévtől a laboranyagok a Github Classromon érhetőek el.
-Az ezzel kapcsolatos információk [itt](https://viauac00.github.io/laborok/) olvashatók.
+Az ezzel kapcsolatos információk [itt](https://VIAUAD02.github.io/laborok/) olvashatók.
 Ha hibát, elgépelést találsz benne, arra kérünk, hogy javítsd: minden anyag jobb felső sarkában van egy kis ceruza ikon, javítsd a hibát, és küldj PR-t.
 
 ### Labormunka
@@ -62,7 +62,7 @@ Az első laboron markdown-t, a többi laboron néhány screenshotot és a forrá
 
 A laborok megoldását adott határidőig kell beadni GitHub-on. Ennek pontos menete a hallgató szemszögéből [itt](../github/GitHub.md) elolvasható.
 
-Ahhoz, hogy hozzáférj a GitHub-on a beadott megoldásokhoz (és ahhoz, hogy a hallgatók ezt hozzád tudják rendelni), kell egy GitHub account. A GitHub nevedet írd meg a tárgyfelelősnek, és felvesz GitHub-on a <https://www.github.com/viauac00> organization-be.
+Ahhoz, hogy hozzáférj a GitHub-on a beadott megoldásokhoz (és ahhoz, hogy a hallgatók ezt hozzád tudják rendelni), kell egy GitHub account. A GitHub nevedet írd meg a tárgyfelelősnek, és felvesz GitHub-on a <https://www.github.com/VIAUAD02> organization-be.
 
 ### Mikor kell értékelni a labort?
 
@@ -70,7 +70,7 @@ A laborokat a határidő lejárta után kell értékelni. A határidő előtt a 
 
 ### Hol kell értékelni a labort?
 
-A határidő lejárta után a feladatod a **hozzád rendelt** pull request-ek értékelése. A hallgató azzal adja be a labort, hogy a pull request-et a laborvezetőjéhez rendeli. Ezeket a GitHub keresőjével a legegyszerűbb megtalálni: <https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Abmeviauac01+assignee%3A%40me+>.
+A határidő lejárta után a feladatod a **hozzád rendelt** pull request-ek értékelése. A hallgató azzal adja be a labort, hogy a pull request-et a laborvezetőjéhez rendeli. Ezeket a GitHub keresőjével a legegyszerűbb megtalálni: <https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3AVIAUAD02+assignee%3A%40me+>.
 
 Alternatívaként a GitHub értesítő felületét is lehet használni a <https://github.com/notifications> címen, itt minden hozzád rendelt, vagy review-ra váró PR megjelenik.
 
