@@ -1163,19 +1163,15 @@
 </div>
 <h2 id="android-alapok">Android alapok<a class="headerlink" href="#android-alapok" title="Permanent link">&para;</a></h2>
 <h3 id="forditas-menete-android-platformon">Fordítás menete Android platformon<a class="headerlink" href="#forditas-menete-android-platformon" title="Permanent link">&para;</a></h3>
-<p>A projekt létrehozása után a forráskód az <code>src</code> könyvtárban, míg a felhasználói felület leírására szolgáló XML állományok a <code>res</code> könyvtárban találhatók. Az erőforrás állományokat egy <code>R.java</code> állomány köti össze a forráskóddal, így könnyedén elérhetjük Java/Kotlin oldalról az XML-ben definiált felületi elemeket. Az Android projekt fordításának eredménye egy APK állomány, melyet közvetlenül telepíthetünk mobil eszközre.</p>
+<p>A projekt létrehozása után a forráskód az <code>src</code> könyvtárban található. A felhasználói felületet Jetpack Compose használatával, közvetlenül Kotlin kódban definiáljuk, így nincs szükség XML állományokra. Az Android projekt fordításának eredménye egy APK állomány, melyet közvetlenül telepíthetünk mobil eszközre. Jetpack Compose segítségével könnyedén elérhetjük és kezelhetjük a felületi elemeket Kotlin kódból, megkönnyítve ezzel a modern, deklaratív felületkialakítást.</p>
 <p><img alt="" src="assets/lab-1-compile.png" /></p>
 <p><em>Fordítás menete Android platformon</em></p>
 <ol>
 <li>
-<p>A fejlesztő elkészíti a Kotlin forráskódot, valamint az XML alapú felhasználói felület leírást a szükséges erőforrás állományokkal.</p>
+<p>A fejlesztő elkészíti a Kotlin forráskódot, amelyben a felhasználói felületet Jetpack Compose segítségével definiálja. Nincs szükség külön XML alapú felhasználói felület leírásra.</p>
 </li>
 <li>
-<p>A fejlesztőkörnyezet az erőforrás állományokból folyamatosan naprakészen tartja az <code>R.java</code> erőforrás fájlt a fejlesztéshez és a fordításhoz. </p>
-<div class="admonition danger">
-<p class="admonition-title">FONTOS</p>
-<p><strong>Az <code>R.java</code> állomány generált, kézzel SOHA ne módosítsuk!</strong> (Az Android Studio egyébként nem is hagyja.)</p>
-</div>
+<p>A fejlesztőkörnyezet folyamatosan naprakészen tartja a Compose elemekhez kapcsolódó erőforrásokat és a szükséges build állományokat a fejlesztéshez és a fordításhoz.</p>
 </li>
 <li>
 <p>A fejlesztő a Manifest állományban beállítja az alkalmazás hozzáférési jogosultságait (pl. Internet elérés, szenzorok használata, stb.), illetve ha futás idejű jogosultságok szükségesek, ezt kezeli.</p>
@@ -1227,10 +1223,23 @@
 </ul>
 <h3 id="avd-es-sdk-manager">AVD és SDK manager<a class="headerlink" href="#avd-es-sdk-manager" title="Permanent link">&para;</a></h3>
 <p>Az SDK kezelésére az SDK managert használjuk, ezzel lehet letölteni és frissen tartani az eszközeinket. Indítása az Android Studion keresztül lehetséges.</p>
-<p>Az SDK Manager ikonja a fenti toolbaron (vagy Tools -&gt; SDK Manager):</p>
-<p><img alt="" src="assets/sdk_manager_icon.png" /></p>
-<p>vagy</p>
-<p><img alt="" src="assets/sdk_manager_icon_2.png" /></p>
+<p>Az SDK Manager ikonja a fenti toolbaron a beállításoknál található (vagy Tools -&gt; SDK Manager):</p>
+<table>
+<thead>
+<tr>
+<th>Régi UI</th>
+<th></th>
+<th>Új UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="assets/sdk_manager_icon.png" /></td>
+<td></td>
+<td><img alt="" src="assets/sdk_manager_icon_2.png" /></td>
+</tr>
+</tbody>
+</table>
 <p>SDK manager felülete:</p>
 <p><img alt="" src="assets/sdk_manager.png" /></p>
 <div class="admonition note">
@@ -1239,16 +1248,29 @@
 </div>
 <p>Indítsuk el az AVD managert, és vizsgáljuk meg a laborvezetővel, hogy rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.</p>
 <h3 id="avd">AVD<a class="headerlink" href="#avd" title="Permanent link">&para;</a></h3>
-<p>Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül lehetséges (illetve parancssorból is, de ennek a használatára csak speciális esetekben van szükség).</p>
+<p>Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül lehetséges (<em>Tools-&gt;Device Manager</em>), illetve parancssorból is, de ennek a használatára csak speciális esetekben van szükség.</p>
 <p>Az AVD Manager ikonja:</p>
-<p><img alt="" src="assets/avd_icon.png" /></p>
-<p>vagy</p>
-<p><img alt="" src="assets/avd_icon_2.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Régi UI</th>
+<th></th>
+<th>Új UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="assets/avd_icon.png" /></td>
+<td></td>
+<td><img alt="" src="assets/avd_icon_2.png" /></td>
+</tr>
+</tbody>
+</table>
 <p><img alt="" src="assets/avd_manager.png" /></p>
-<p>A fenti képen jobb oldalon, a kinyíló panelben, a létező virtuális eszközök listáját találjuk, bal oldalon pedig az ún. eszköz definíciókét. Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S4). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.</p>
+<p>A fenti képen jobb oldalon, a kinyíló panelben, a létező virtuális eszközök listáját találjuk, bal oldalon pedig az ún. eszköz definíciókét. (Ezt az <em>Add a new device</em> fül, majd a <em>Create Virtual Device</em> opcióval tudjuk megnyitni a jobb oldalon lévő <code>+</code> ikonnal) Itt néhány előre elkészített sablon áll rendelkezésre. Magunk is készíthetünk ilyet, ha tipikusan egy adott eszközre szeretnénk fejleszteni (pl. Galaxy S24). Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül.</p>
 <ol>
 <li>A jobb oldali panelon kattintsunk a fent található <em>Create Virtual Device...</em> gombra!</li>
-<li>Válasszunk az előre definiált készülék sablonokból (pl. <em>Pixel 7 Pro</em>), majd nyomjuk meg a <em>Next</em> gombot.</li>
+<li>Válasszunk az előre definiált készülék sablonokból (pl. <em>Pixel 8 Pro</em>), majd nyomjuk meg a <em>Next</em> gombot.</li>
 <li>Döntsük el, hogy milyen Android verziójú emulátort kívánunk használni. CPU/ABI alapvetően x86_64 legyen, mivel ezekhez kapunk <a href="https://developer.android.com/studio/run/emulator-acceleration">hardveres gyorsítást</a> is. Itt válasszunk a rendelkezésre állók közül egyet, majd <em>Next</em>.</li>
 <li>
 <p>Az eszköz részletes konfigurációja.</p>
@@ -1265,7 +1287,7 @@
 </ul>
 </li>
 <li>Hálózat: Állíthatjuk a sebességét és a késleltetését is kommunikációs technológiák szerint.</li>
-<li><em>Boot Option</em>: Nemrég jelent meg az Android emulátor állapotáról való pillanatkép elmentésének lehetősége. Ez azt takarja, hogy a virtuális operációs rendszer csak felfüggesztésre kerül az emulátor bezáráskor (például a megnyitott alkalmazás is megmarad, a teljes állapotával), és <em>Quick boot</em> esetben a teljes OS indítása helyett másodperceken belül elindul az emulált rendszer. <em>Cold Boot</em> esetben minden alkalommal leállítja és újra indítja a virtális eszköz teljes operációs rendszerét.</li>
+<li><em>Boot Option</em>: (Nemrég jelent meg az) Az Android emulátor állapotáról való pillanatkép elmentésének lehetősége. Ez azt takarja, hogy a virtuális operációs rendszer csak felfüggesztésre kerül az emulátor bezáráskor (például a megnyitott alkalmazás is megmarad, a teljes állapotával), és <em>Quick boot</em> esetben a teljes OS indítása helyett másodperceken belül elindul az emulált rendszer. <em>Cold Boot</em> esetben minden alkalommal leállítja és újra indítja a virtális eszköz teljes operációs rendszerét.</li>
 <li>
 <p>Memória és tárhely: </p>
 <ul>
@@ -1288,23 +1310,29 @@
 <p class="admonition-title">Megjegyzés</p>
 <p>A gyári emulátoron kívül több alternatíva is létezik, mint pl. a <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> vagy a <a href="https://www.bignox.com/">BigNox</a>, viszont a Google féle emulátor a legelterjedtebb, így amennyiben ezzel nem jelentkeznek problémáink, maradjunk ennél.</p>
 </div>
-<p>Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi képen látható plusz funkciókat is adja. Lehetőség van többek között egyedi hely beállítására, bejövő hívás szimulálására, stb. A panelt a futó emulátor jobb oldalán található vezérlő gombok közül a <em>...</em> gombbal lehet megnyitni:</p>
+<p>Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi képen látható plusz funkciókat is adja. Lehetőség van többek között egyedi hely beállítására, bejövő hívás szimulálására, virtuálisan szenzorok manipulálására, stb. A panelt a futó emulátor jobb oldalán található vezérlő gombok közül a <em>...</em> gombbal lehet megnyitni:</p>
 <p><img alt="" src="assets/avd_extras.png" /></p>
 <h2 id="fejlesztoi-kornyezet">Fejlesztői környezet<a class="headerlink" href="#fejlesztoi-kornyezet" title="Permanent link">&para;</a></h2>
-<p>Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a <em>Tip of the day</em>, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a <em>Settings -&gt; Appeareance &amp; Behavior -&gt; System Settings -&gt; Reopen last project on startup</em> opcióval ki is kapcsolhatjuk.)</p>
+<p>Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a <em>Tip of the day</em>, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a <em>Settings -&gt; Appeareance &amp; Behavior -&gt; System Settings -&gt; Reopen projects on startup</em> opcióval ki is kapcsolhatjuk.)</p>
 <p><img alt="" src="assets/studio_old.png" /></p>
-<p>Az Android Studio Giraffe-ban megújult a környezet felhasználói felülete. Amint látható, jóval letisztultabb dizájnt választottak, sokkal kevesebb a figyelmet elvonó extra a képernyőn, sokkal inkább a kódon van a hangsúly. Ezek között a nézetek között egyszerűen válthatunk a Beállításokban, a New UI menüpontban.</p>
+<p>Pár frissítéssel ezelőtt, az Android Studio Giraffe-ban megújult a környezet felhasználói felülete. Amint látható, jóval letisztultabb dizájnt választottak, sokkal kevesebb a figyelmet elvonó extra a képernyőn, sokkal inkább a kódon van a hangsúly. Ezek között a nézetek között egyszerűen válthatunk a Beállításokban, a New UI menüpontban. (<em>Settings -&gt; Appeareance &amp; Behavior -&gt; New UI</em>)</p>
 <p><img alt="" src="assets/studio_new.png" /></p>
 <h2 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h2>
-<p>A laborvezető segítségével készítsünk egy egyszerű Hello World alkalmazást, a varázsló nézeten az <em>Include Kotlin support</em> legyen bepipálva! 
-1. Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.
-1. A projekt neve legyen <code>HelloWorld</code>, a kezdő package <code>hu.bme.aut.mobweb.helloworld</code>, a mentési hely pedig a kicheckoutolt repository-n belül a <code>HelloWorld</code> mappa.
-1. Nyelvnek válasszuk a <em>Kotlin</em>-t.
-1. A minimum API szint legyen API24: Android 7.0.
-1. A <code>Build configuration language</code> Kotlin DSL legyen.</p>
+<p>A laborvezető segítségével készítsünk egy egyszerű Hello World alkalmazást.</p>
+<ol>
+<li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.</li>
+<li>A projekt neve legyen <code>HelloWorld</code>, a kezdő package <code>hu.bme.aut.mobweb.helloworld</code>, a mentési hely pedig a kicheckoutolt repository-n belül a <code>HelloWorld</code> mappa.</li>
+<li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
+<li>A minimum API szint legyen API24: Android 7.0.</li>
+<li>A <code>Build configuration language</code> Kotlin DSL legyen.</li>
+</ol>
 <div class="admonition warning">
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő HelloWorld könyvtárba kerüljön!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>A projektnek az elérési Path-je csak az angol ábécé kis betűit tartalmazza, ugyanis az Android Studio az ékezetekre és a speciális karakterekre érzékeny!</p>
 </div>
 <h3 id="android-studio">Android Studio<a class="headerlink" href="#android-studio" title="Permanent link">&para;</a></h3>
 <p>Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-t, és szeretnék megismerni a különbségeket az Android Studio-hoz képest.</p>
@@ -1335,11 +1363,11 @@
 <li>Szigorú lint. A Studio megengedi a warningot. Ezért szigorúbb a lint, több mindenre figyelmeztet (olyan apróságra is, hogy egy View egyik oldalán van padding, a másikon nincs)</li>
 <li>Layout szerkesztés. A grafikus layout építés lehetséges.</li>
 <li>CTRL-t lenyomva navigálhatunk a kódban, pl. osztályra, metódushívásra kattintva. Ezt a navigációt (és az egyszerű másik osztályba kattintást is) rögzíti, és a historyban előre-hátra gombokkal lehet lépkedni. Ha van az egerünkön/billentyűzetünkön ilyen gomb, és netes böngészés közben aktívan használjuk, ezt a funkciót nagyon hasznosnak fogjuk találni.</li>
+<li>Ha több fájl is meg van nyitva egyszerre, könnyen navigálhatunk az <kbd>ALT</kbd> + <kbd>BAL</kbd>/<kbd>JOBB</kbd> nyilak segítségével az fájlok között.</li>
 </ul>
 </li>
 </ul>
 <p><img alt="" src="assets/nice_studio.png" /></p>
-<p><em>Szín ikonja a sor elején; kiemelve jobb oldalon, hogy melyik nézeten vagyunk; szabadszavas kiegészítés; a "Hello world" igazából <code>@string/very_very_very_long_hello_world</code>.</em></p>
 <h3 id="billentyukombinaciok">Billentyűkombinációk<a class="headerlink" href="#billentyukombinaciok" title="Permanent link">&para;</a></h3>
 <ul>
 <li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>L</kbd>: Kódformázás</li>
@@ -1357,7 +1385,12 @@
 <li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Keresés fájlokban</li>
 <li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Keresés szimbólumokban (például függvények, property-k)</li>
 <li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Keresés a beállításokban, kiadható parancsokban.</li>
+<li><kbd>ALT</kbd> + <kbd>ENTER</kbd> hiányzó elemek importálása/létrehozása.</li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Keresés</p>
+<p>Hogy ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki és keressünk rá a "Device Manager" opcióra.</p>
+</div>
 <h3 id="eszkozok-szerkesztok">Eszközök, szerkesztők<a class="headerlink" href="#eszkozok-szerkesztok" title="Permanent link">&para;</a></h3>
 <p>A <em>View</em> menü <em>Tool Windows</em> menüpontjában lehetőség van különböző ablakok ki- és bekapcsolására. Laborvezető segítségével tekintsék át az alábbi eszközöket!</p>
 <ul>
@@ -1369,13 +1402,13 @@
 <li>Event Log</li>
 <li>Gradle</li>
 </ul>
-<p>Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal, <em>Split Vertically/Horizontally</em>!</p>
+<p>Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal, <em>Split Right/Down</em> vagy csak kattintsunk rá hosszan és kezdjük el húzni a kódfelületre!</p>
 <h3 id="hasznos-beallitasok">Hasznos beállítások<a class="headerlink" href="#hasznos-beallitasok" title="Permanent link">&para;</a></h3>
 <p>A laborvezető segítségével állítsák be a következő hasznos funkciókat:</p>
 <ul>
-<li>kis- nagybetű érzékenység kikapcsolása a kódkiegészítőben (settingsben keresés: <em>sensitive</em>)</li>
+<li>kis- nagybetű érzékenység kikapcsolása a kódkiegészítőben (settingsben keresés: <em>Match case</em>)</li>
 <li>"laptop mód" ki- és bekapcsolása (<em>File -&gt; Power Save Mode</em>)</li>
-<li>sorszámozás bekapcsolása (kód melletti részen bal oldalt: jobb egérgomb, <em>Show Line Numbers</em>)</li>
+<li>sorszámozás bekapcsolása (kód melletti részen bal oldalt: jobb egérgomb, <em>Appearance -&gt; Show Line Numbers</em>)</li>
 </ul>
 <h3 id="generalhato-elemek">Generálható elemek<a class="headerlink" href="#generalhato-elemek" title="Permanent link">&para;</a></h3>
 <p>A Studio sok sablont tartalmaz, röviden tekintsék át a lehetőségeket:</p>
@@ -1390,10 +1423,10 @@
 <p>Például részletes információt kaphatunk a hálózati forgalomról:</p>
 <p><img alt="" src="assets/ap_network.png" /></p>
 <h2 id="database-inspector">Database Inspector<a class="headerlink" href="#database-inspector" title="Permanent link">&para;</a></h2>
-<p>A készüléken debuggolt alkalmazásunknak az <a href="https://developer.android.com/studio/inspect/database">adatbázisát</a> is meg tudjuk tekinteni.</p>
+<p>A készüléken debuggolt alkalmazásunknak az <a href="https://developer.android.com/studio/inspect/database">adatbázisát</a> is meg tudjuk tekinteni. (<em>View -&gt; Tool Windows -&gt; App Inspection</em>)</p>
 <p><img alt="" src="assets/di.png" /></p>
 <h2 id="device-file-explorer">Device File Explorer<a class="headerlink" href="#device-file-explorer" title="Permanent link">&para;</a></h2>
-<p>A készüléken lévő fájlrendszert is <a href="https://developer.android.com/studio/debug/device-file-explorer">böngészhetjük</a>.</p>
+<p>A készüléken lévő fájlrendszert is <a href="https://developer.android.com/studio/debug/device-file-explorer">böngészhetjük</a>. (<em>View -&gt; Tool Windows -&gt; Device Explorer</em>)</p>
 <p><img alt="" src="assets/dfe.png" /></p>
 <h2 id="feladatok-10-x-05-pont">Feladatok (10 x 0.5 pont)<a class="headerlink" href="#feladatok-10-x-05-pont" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1423,8 +1456,8 @@
           </path>
         </svg>
       </span>
-      <span title="2023. szeptember 18. 03:32:40">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-18T03:32:40+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-18</span>
+      <span title="2024. július 22. 17:24:44">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-07-22T17:24:44+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-07-22</span>
       </span>
     </span>
 
@@ -1439,7 +1472,9 @@
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+      <nav><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
+          <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/unluckyProgDestroyer" target="_blank" rel="noopener noreferrer" class="md-author" title="@unluckyProgDestroyer">
           <img src="https://avatars.githubusercontent.com/u/99834170?v=4?size=72" alt="@unluckyProgDestroyer">
