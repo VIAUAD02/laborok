@@ -221,7 +221,7 @@ Az új stílusunk a `Theme.PublicTransport.Starting` nevet viseli, és a `Theme.
 !!!note
 	A Splash Screen API ennél jóval többet tud, akár animálhatjuk is a megjelenített képet, azonban ez sajnos túlmutat a labor keretein.
 
-Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk `MainActivity`-re a `manifest.xml`-ben.
+Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk `MainActivity`-re a `AndroidManifest.xml`-ben.
 
 
 ```xml
@@ -263,7 +263,7 @@ class MainActivity : ComponentActivity() {
 ```
 
 !!!note "Splash Screen-NavGraph"
-    A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#ismerteto-feladat-navgrap-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
+    A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#extra-feladat-navgraph-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
 
 
 Próbáljuk ki az alkalmazásunkat!
@@ -686,9 +686,9 @@ fun PreviewListScreen() {
 	            .fillMaxSize()
 	    ) {
 	        val type = mapOf(
-	            "Bike" to R.mipmap.bikes,
-	            "Bus" to R.mipmap.bus,
-	            "Train" to R.mipmap.trains
+	            "Bike" to R.drawable.bikes,
+	            "Bus" to R.drawable.bus,
+	            "Train" to R.drawable.trains
 	        )
 	
 	        for (i in type) {
@@ -1095,7 +1095,7 @@ fun PreviewPassScreen() {
 }
 ```
 
-Mivel a `TicketScreen`-nek szüksége van a jegy típúsára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.
+Mivel a `PassScreen`-nek szüksége van a jegy típusára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.
 
 - `yyyy. mm. dd.;yyyy. mm. dd.;category` a felépítése a kapott Stringnek
 - Ezt feldaraboljuk a `;` mentén, majd a dátumot string interpoláció segítségével átadjuk a `Text` Composable értékének, a price-t pedig egy másik `Text` Composable-nak
@@ -1295,9 +1295,9 @@ installSplashScreen().apply {
 
 Illesszük ezt be a `MainActivity` `onCreate()` függvényébe a megfelelő helyre, majd próbáljuk ki az alkalmazást!
 
-### Extra feladat - NavGrap-Splash
+### Extra feladat - NavGraph-Splash
 
-Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGrap segítségével fogunk egyet megnézni.
+Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGraph segítségével fogunk egyet megnézni.
 
 Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új *Kotlin Filet* a `screen` packagen belül, majd nevezzük el `SplashScreen`-nek, és írjuk bele az alábbi kódot:
 
