@@ -282,7 +282,7 @@ Most már elkészíthetjük a login képernyőt. A felhasználótól egy e-mail 
 <img src="./assets/login.png" width="320">
 </p>
 
-Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Screen File](#ismerteto-feladat-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
+Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Különálló Screen File](#extra-feladat-kulonallo-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
 Nyissuk meg a `NavGraph` fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.
 
@@ -1363,7 +1363,7 @@ Az újonnan hozzáadott `composable` elem a `NavGraph`-ban a következő képpen
 Majd ezután a `Manifest` fájl személyre szabható, hogy milyen témát jelenítsen meg.
 
 
-### Extra feladat - különálló Screen File
+### Extra feladat - Különálló Screen File
 
 Nagy projektekben, ahol több képernyő található, egy idő után kényelmetlen megoldás lehet a *screenek* közötti *stringekkel* történő navigáció. Ezért általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló `Screen` osztályba gyűjtjük, majd a navigációs gráfban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott `Screen` fájl az alábbi kódot fogja tartalmazni:
 
