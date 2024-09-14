@@ -1098,7 +1098,7 @@ fun PreviewPassScreen() {
 Mivel a `PassScreen`-nek szüksége van a jegy típusára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.
 
 - `yyyy. mm. dd.;yyyy. mm. dd.;category` a felépítése a kapott Stringnek
-- Ezt feldaraboljuk a `;` mentén, majd a dátumot string interpoláció segítségével átadjuk a `Text` Composable értékének, a price-t pedig egy másik `Text` Composable-nak
+- Ezt feldaraboljuk a `;` mentén, majd a dátumot string interpoláció segítségével átadjuk a `Text` Composable értékének, a category-t pedig egy másik `Text` Composable-nak
 
 !!!info ""
 	 Látható, hogy a Java-val ellentétben a Kotlin támogatja a [string interpolációt](https://kotlinlang.org/docs/reference/basic-types.html#string-templates).
