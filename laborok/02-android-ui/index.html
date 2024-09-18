@@ -1438,7 +1438,7 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">EdgeToEdge</p>
-<p>Android 15-től (API 35) az alkalmazásunk képes a rendszer UI (StatusBar, NavigationBar, soft keyboard, stb.) alá is rajzolni. Ezzel valósították meg azt, hogy a készülék teljes képernyőjét használni tudjuk a szélétől a széléig. Ez hasznos helet számtalan esetben, amikor "teljes képernyős" alkalmazást szeretnénk írni, nem korlátoz minket az elfedő rendszer UI. A funkció természetesen alacsonyabb API szinteken is elérhető, erre való a fent is látható <code>enableEdgeToEdge</code> függvényhívás.</p>
+<p>Android 15-től (API 35) az alkalmazásunk képes a rendszer UI (StatusBar, NavigationBar, soft keyboard, stb.) alá is rajzolni. Ezzel valósították meg azt, hogy a készülék teljes képernyőjét használni tudjuk a szélétől a széléig. Ez hasznos lehet számtalan esetben, amikor "teljes képernyős" alkalmazást szeretnénk írni, nem korlátoz minket az elfedő rendszer UI. A funkció természetesen alacsonyabb API szinteken is elérhető, erre való a fent is látható <code>enableEdgeToEdge</code> függvényhívás.</p>
 <p>Ez viszont amennyire hasznos, annyi problémát is tud okozni, ha e miatt valami vezérlőnk becsúszik mondjuk a szoftveres billentyűzet alá, amit így nem tudunk elérni. Ennek kiküszöbölésére találták ki az <a href="https://developer.android.com/develop/ui/compose/layouts/insets">inseteket</a>. Ennek számos beállítása van, amellyel nem kell nekünk kézzel megtippelni, hogy például a <em>status bar</em> hány dp magas, különösen, hogy ezek az értékek futásidőben változhatnak (lásd szoftveres billentyűzet). A számos beállítás közül mi most a fent látható <code>safeDrawindPadding</code>-et használjuk, ami mint neve is mutatja, pont akkora <em>paddinget</em> állít mindenhova, hogy semmit se takarjon ki a rendszer UI. (Természetesen ez nem csak az <code>Activity</code>-ben, hanem minden <code>Screenen</code> és <code>Composable</code>-ön kölün is használható.)</p>
 <p>A funkció egyik jó demonstrációja, hogy a LoginScreen vezérlői, amik a teljes oldal közepére vannak helyezve, a szoftveres billentyűzet megjelenésekor nem takaródnak le, hanem a szabadon maradó hely közepére csúsznak.</p>
 <p><p align="center"> 
@@ -2021,7 +2021,7 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <p>Ezek a feladatok nem szükségesek a labor maximális pontszámának megszerzéséhez, csupán csak ismertető jelleggel vannak a labor anyagában azok számára akik jobban beleásnák magukat a témába.</p>
 </div>
 <h3 id="extra-feladat-splashscreen-animacio">Extra feladat - SplashScreen animáció<a class="headerlink" href="#extra-feladat-splashscreen-animacio" title="Permanent link">&para;</a></h3>
-<p>A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár <code>.xml</code> fájlt kell létrehozunk az Android Studio segítségével, amellyekben megvalósítjuk ezeket a műveleteket.</p>
+<p>A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár <code>.xml</code> fájlt kell létrehozunk az Android Studio segítségével, amelyekben megvalósítjuk ezeket a műveleteket.</p>
 <p>Szükségünk van a következőkre:</p>
 <ul>
 <li>Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn. (Ezt már korábban létrehoztuk, csak módosítani fogjuk)</li>
@@ -2328,8 +2328,8 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
           </path>
         </svg>
       </span>
-      <span title="2024. augusztus 29. 21:10:51">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-08-29T21:10:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-08-29</span>
+      <span title="2024. szeptember 18. 16:36:17">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-18T16:36:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-18</span>
       </span>
     </span>
 
@@ -2344,7 +2344,9 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+      <nav><a href="https://github.com/bohcstams" target="_blank" rel="noopener noreferrer" class="md-author" title="@bohcstams">
+          <img src="https://avatars.githubusercontent.com/u/126723855?v=4?size=72" alt="@bohcstams">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
           <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
