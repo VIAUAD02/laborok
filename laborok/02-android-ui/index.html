@@ -574,15 +574,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-navgrap-splash" class="md-nav__link">
-    Extra feladat - NavGrap-Splash
+  <a href="#extra-feladat-navgraph-splash" class="md-nav__link">
+    Extra feladat - NavGraph-Splash
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#extra-feladat-kulonallo-screen-file" class="md-nav__link">
-    Extra feladat - különálló Screen File
+    Extra feladat - Különálló Screen File
   </a>
   
 </li>
@@ -941,15 +941,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-navgrap-splash" class="md-nav__link">
-    Extra feladat - NavGrap-Splash
+  <a href="#extra-feladat-navgraph-splash" class="md-nav__link">
+    Extra feladat - NavGraph-Splash
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#extra-feladat-kulonallo-screen-file" class="md-nav__link">
-    Extra feladat - különálló Screen File
+    Extra feladat - Különálló Screen File
   </a>
   
 </li>
@@ -1190,7 +1190,7 @@
 <p class="admonition-title">Note</p>
 <p>A Splash Screen API ennél jóval többet tud, akár animálhatjuk is a megjelenített képet, azonban ez sajnos túlmutat a labor keretein.</p>
 </div>
-<p>Most már, hogy bekonfiguráltuk a <em>splash</em> képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk <code>MainActivity</code>-re a <code>manifest.xml</code>-ben.</p>
+<p>Most már, hogy bekonfiguráltuk a <em>splash</em> képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk <code>MainActivity</code>-re a <code>AndroidManifest.xml</code>-ben.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;activity</span>
 <span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
 <span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
@@ -1223,7 +1223,7 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Splash Screen-NavGraph</p>
-<p>A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető <a href="#ismerteto-feladat-navgrap-splash">feladat</a> fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)</p>
+<p>A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető <a href="#extra-feladat-navgraph-splash">feladat</a> fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)</p>
 </div>
 <p>Próbáljuk ki az alkalmazásunkat!</p>
 <div class="admonition example">
@@ -1237,7 +1237,7 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 <img src="./assets/login.png" width="320">
 </p>
 
-<p>Ehhez először hozzunk létre egy új <em>Packaget</em> a projekt mappába <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>Package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>NavGraph</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#ismerteto-feladat-screen-file">Extra feladat - Screen File</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
+<p>Ehhez először hozzunk létre egy új <em>Packaget</em> a projekt mappába <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>Package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>NavGraph</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#extra-feladat-kulonallo-screen-file">Extra feladat - Különálló Screen File</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
 <p>Nyissuk meg a <code>NavGraph</code> fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
@@ -1596,9 +1596,9 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 <span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span>
-<span class="w">            </span><span class="s">&quot;Bike&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">mipmap</span><span class="p">.</span><span class="na">bikes</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;Bus&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">mipmap</span><span class="p">.</span><span class="na">bus</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;Train&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">mipmap</span><span class="p">.</span><span class="na">trains</span>
+<span class="w">            </span><span class="s">&quot;Bike&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">bikes</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Bus&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">bus</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Train&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">trains</span>
 <span class="w">        </span><span class="p">)</span>
 
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1961,10 +1961,10 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <span class="w">    </span><span class="n">PassScreen</span><span class="p">(</span><span class="n">passDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2024. 09. 01.;2024. 12. 08.;Senior Train&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Mivel a <code>TicketScreen</code>-nek szüksége van a jegy típúsára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.</p>
+<p>Mivel a <code>PassScreen</code>-nek szüksége van a jegy típusára, valamint az érvényességi idejére, ezt egy paraméterként kapja meg, majd ezt egy függvényen belül feldolgozzuk, és az alábbiak szerint használjuk fel.</p>
 <ul>
 <li><code>yyyy. mm. dd.;yyyy. mm. dd.;category</code> a felépítése a kapott Stringnek</li>
-<li>Ezt feldaraboljuk a <code>;</code> mentén, majd a dátumot string interpoláció segítségével átadjuk a <code>Text</code> Composable értékének, a price-t pedig egy másik <code>Text</code> Composable-nak</li>
+<li>Ezt feldaraboljuk a <code>;</code> mentén, majd a dátumot string interpoláció segítségével átadjuk a <code>Text</code> Composable értékének, a category-t pedig egy másik <code>Text</code> Composable-nak</li>
 </ul>
 <div class="admonition info">
 <p>Látható, hogy a Java-val ellentétben a Kotlin támogatja a <a href="https://kotlinlang.org/docs/reference/basic-types.html#string-templates">string interpolációt</a>.</p>
@@ -2129,8 +2129,8 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
 <span class="p">}</span>
 </code></pre></div>
 <p>Illesszük ezt be a <code>MainActivity</code> <code>onCreate()</code> függvényébe a megfelelő helyre, majd próbáljuk ki az alkalmazást!</p>
-<h3 id="extra-feladat-navgrap-splash">Extra feladat - NavGrap-Splash<a class="headerlink" href="#extra-feladat-navgrap-splash" title="Permanent link">&para;</a></h3>
-<p>Korábban ezt a képernyőt a <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a> segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGrap segítségével fogunk egyet megnézni.</p>
+<h3 id="extra-feladat-navgraph-splash">Extra feladat - NavGraph-Splash<a class="headerlink" href="#extra-feladat-navgraph-splash" title="Permanent link">&para;</a></h3>
+<p>Korábban ezt a képernyőt a <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a> segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGraph segítségével fogunk egyet megnézni.</p>
 <p>Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új <em>Kotlin Filet</em> a <code>screen</code> packagen belül, majd nevezzük el <code>SplashScreen</code>-nek, és írjuk bele az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">SplashScreen</span><span class="p">(</span>
@@ -2184,7 +2184,7 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
 <li>Ezen belül a <code>popUpTo</code> segítségével kiszedjük a SplashScreen-t, hogy visszanavigálás esetén, ne dobja be ezt</li>
 </ul>
 <p>Majd ezután a <code>Manifest</code> fájl személyre szabható, hogy milyen témát jelenítsen meg.</p>
-<h3 id="extra-feladat-kulonallo-screen-file">Extra feladat - különálló Screen File<a class="headerlink" href="#extra-feladat-kulonallo-screen-file" title="Permanent link">&para;</a></h3>
+<h3 id="extra-feladat-kulonallo-screen-file">Extra feladat - Különálló Screen File<a class="headerlink" href="#extra-feladat-kulonallo-screen-file" title="Permanent link">&para;</a></h3>
 <p>Nagy projektekben, ahol több képernyő található, egy idő után kényelmetlen megoldás lehet a <em>screenek</em> közötti <em>stringekkel</em> történő navigáció. Ezért általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló <code>Screen</code> osztályba gyűjtjük, majd a navigációs gráfban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott <code>Screen</code> fájl az alábbi kódot fogja tartalmazni:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Screen</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">route</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
 <span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Login</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">)</span>
@@ -2328,8 +2328,8 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 18. 16:36:17">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-18T16:36:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-18</span>
+      <span title="2024. szeptember 18. 21:44:21">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-18T21:44:21+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-18</span>
       </span>
     </span>
 
@@ -2344,10 +2344,12 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/bohcstams" target="_blank" rel="noopener noreferrer" class="md-author" title="@bohcstams">
-          <img src="https://avatars.githubusercontent.com/u/126723855?v=4?size=72" alt="@bohcstams">
-        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
+        </a><a href="https://github.com/bohcstams" target="_blank" rel="noopener noreferrer" class="md-author" title="@bohcstams">
+          <img src="https://avatars.githubusercontent.com/u/126723855?v=4?size=72" alt="@bohcstams">
+        </a><a href="https://github.com/gb999" target="_blank" rel="noopener noreferrer" class="md-author" title="@gb999">
+          <img src="https://avatars.githubusercontent.com/u/48630952?v=4?size=72" alt="@gb999">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
           <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
         </a><a href="https://github.com/unluckyProgDestroyer" target="_blank" rel="noopener noreferrer" class="md-author" title="@unluckyProgDestroyer">
