@@ -511,7 +511,7 @@ class MainActivity : ComponentActivity() {
 ```
 
 !!!note "EdgeToEdge"
-	Android 15-től (API 35) az alkalmazásunk képes a rendszer UI (StatusBar, NavigationBar, soft keyboard, stb.) alá is rajzolni. Ezzel valósították meg azt, hogy a készülék teljes képernyőjét használni tudjuk a szélétől a széléig. Ez hasznos helet számtalan esetben, amikor "teljes képernyős" alkalmazást szeretnénk írni, nem korlátoz minket az elfedő rendszer UI. A funkció természetesen alacsonyabb API szinteken is elérhető, erre való a fent is látható `enableEdgeToEdge` függvényhívás.
+	Android 15-től (API 35) az alkalmazásunk képes a rendszer UI (StatusBar, NavigationBar, soft keyboard, stb.) alá is rajzolni. Ezzel valósították meg azt, hogy a készülék teljes képernyőjét használni tudjuk a szélétől a széléig. Ez hasznos lehet számtalan esetben, amikor "teljes képernyős" alkalmazást szeretnénk írni, nem korlátoz minket az elfedő rendszer UI. A funkció természetesen alacsonyabb API szinteken is elérhető, erre való a fent is látható `enableEdgeToEdge` függvényhívás.
 
 	Ez viszont amennyire hasznos, annyi problémát is tud okozni, ha e miatt valami vezérlőnk becsúszik mondjuk a szoftveres billentyűzet alá, amit így nem tudunk elérni. Ennek kiküszöbölésére találták ki az [inseteket](https://developer.android.com/develop/ui/compose/layouts/insets). Ennek számos beállítása van, amellyel nem kell nekünk kézzel megtippelni, hogy például a *status bar* hány dp magas, különösen, hogy ezek az értékek futásidőben változhatnak (lásd szoftveres billentyűzet). A számos beállítás közül mi most a fent látható `safeDrawindPadding`-et használjuk, ami mint neve is mutatja, pont akkora *paddinget* állít mindenhova, hogy semmit se takarjon ki a rendszer UI. (Természetesen ez nem csak az `Activity`-ben, hanem minden `Screenen` és `Composable`-ön kölün is használható.)
 
@@ -1164,7 +1164,7 @@ Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltat�
 
 ### Extra feladat - SplashScreen animáció
 
-A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár `.xml` fájlt kell létrehozunk az Android Studio segítségével, amellyekben megvalósítjuk ezeket a műveleteket.
+A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár `.xml` fájlt kell létrehozunk az Android Studio segítségével, amelyekben megvalósítjuk ezeket a műveleteket.
 
 Szükségünk van a következőkre:
 
