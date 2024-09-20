@@ -1,4 +1,3 @@
-
 # Labor 04 - Felhasználói felület készítése - HorizontalPager, Chartok
 
 ## Bevezető

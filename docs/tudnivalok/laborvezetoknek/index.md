@@ -65,7 +65,7 @@ A **labor termekhez** kulcsra és/vagy kártyára van szükség. Ezeket a titká
 
 A laborok megoldását adott határidőig kell beadni GitHub-on. Ennek pontos menete a hallgató szemszögéből [itt](../github/GitHub.md) elolvasható.
 
-Ahhoz, hogy hozzáférj a GitHub-on a beadott megoldásokhoz (és ahhoz, hogy a hallgatók ezt hozzád tudják rendelni), kell egy GitHub account. A GitHub nevedet írd meg a tárgyfelelősnek, és felvesz GitHub-on a <https://www.github.com/viauac00> organization-be.
+Ahhoz, hogy hozzáférj a GitHub-on a beadott megoldásokhoz (és ahhoz, hogy a hallgatók ezt hozzád tudják rendelni), kell egy GitHub account. A GitHub nevedet írd meg a tárgyfelelősnek, és felvesz GitHub-on a <https://www.github.com/VIAUAD02> organization-be.
 
 ### Mikor kell értékelni a labort?
 
@@ -73,7 +73,7 @@ A laborokat a határidő lejárta után kell értékelni. A határidő előtt a 
 
 ### Hol kell értékelni a labort?
 
-A határidő lejárta után a feladatod a **hozzád rendelt** pull request-ek értékelése. A hallgató azzal adja be a labort, hogy a pull request-et a laborvezetőjéhez rendeli. Ezeket a GitHub keresőjével a legegyszerűbb megtalálni: <https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Abmeviauac01+assignee%3A%40me+>.
+A határidő lejárta után a feladatod a **hozzád rendelt** pull request-ek értékelése. A hallgató azzal adja be a labort, hogy a pull request-et a laborvezetőjéhez rendeli. Ezeket a GitHub keresőjével a legegyszerűbb megtalálni: <https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3AVIAUAD02+assignee%3A%40me+>.
 
 Alternatívaként a GitHub értesítő felületét is lehet használni a <https://github.com/notifications> címen, itt minden hozzád rendelt, vagy review-ra váró PR megjelenik.
 
@@ -85,7 +85,7 @@ A PR-eket egyesével kell megnyitni, és meg kell nézni a PR komment felületé
 
 Automatikus értékelés esetén (ami nem minden labornál van) a forráskódot nem szükséges betűről betűre megnézni - a részletes ellenőrzést elvégzi az automata. A laborvezető feladata a képernyőképek ellenőrzése, valamint annak eldöntése, hogy a forráskód konzisztens-e a kapott eredménnyel, és nincs-e benne olyan kódrészlet, amely ugyan működik, de kifejezetten rosszul oldja meg a problémát. Amely labornál nincs automata értékelés, ott több munka hárul a laborvezetőre, alaposabban meg kell nézni a megoldást.
 
-A feladatok minta megoldása itt érhető el: <https://github.com/viauac00?q=labor-megoldas>. Ezek csak lehetséges megoldások, a hallgató megoldása nem kell ezzel egyezzen.
+A feladatok minta megoldása itt érhető el: <https://github.com/VIAUAD02?q=labor-megoldas>. Ezek csak lehetséges megoldások, a hallgató megoldása nem kell ezzel egyezzen.
 
 Az értékelés végeztével:
 
