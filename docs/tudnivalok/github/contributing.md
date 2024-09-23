@@ -57,7 +57,7 @@ Amennyiben a hozzájárulásod meg tudod valósítani indíts pull requestet
     3. Ellenőrizd, hogy ne kerüljön bele a commitba olyan file, amit az editor generált (pl.: `.idea` mappa)
     illetve olyan file aminek nem kéne kikerülnie, pl.: Github Private Access Token
 
-    4. Ha kész vagy a laborok beadásához hasonlóan indíts egy pull requestet a `VIAUAC00/laborok` `master` branchére.
+    4. Ha kész vagy a laborok beadásához hasonlóan indíts egy pull requestet a `VIAUAD02/laborok` `master` branchére.
 
     5. Lásd el a megfelelő címkékkel
         1. A labor típusa (`android` az androidos laboroknál és `web` a webes laboroknál)
