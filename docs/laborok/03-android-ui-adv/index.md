@@ -1,30 +1,29 @@
-# Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+# Labor 03 - UI, LazyColumn - Kiadás és bevétel kezelő alkalmazás
 
 ## Bevezető
 
-A labor célja egy egyszerű felhasználói felület tervezése, kivitelezése. 
+A labor célja egy egyszerű felhasználói felület tervezése és kivitelezése Android platformon, Jetpack Compose felhasználásával. 
 
-A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészítése AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel tudja venni egy listába a kiadásait, bevételeit, illetve törölni tudja az egész lista tartalmát.
+A feladat egy kiadás és bevétel naplózására alkalmas alkalmazás elkészítése AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel tudja venni egy listába a kiadásait és a bevételeit, törölni tudja őket, illetve törölni tudja az egész lista tartalmát.
 
 A kész alkalmazás mintaképe: 
 
 <p align="center">
-<img src="./assets/sample_screen.png" width="320">
+<img src="./assets/MainScreen.png" width="320">
 </p>
- 
+
 Az alkalmazás felépítése és működése a következő:
 
-- Kezdőképernyő a listával illetve egy beviteli résszel, amelyen a felhasználó beír egy megnevezést és egy összeget, megadja a pénzforgalom irányát, és el tudja menteni a listába a tranzakcióját. Amennyiben itt bármelyik mező üres, a mentést meg kell akadályoznunk.
+- Kezdőképernyő egy listával (LazyColumn) illetve egy beviteli résszel rendelkezik. Itt a felhasználó beír egy megnevezést és egy összeget, megadja a pénzforgalom irányát, majd ezután el tudja menteni a listába a tranzakcióját. Amennyiben itt bármelyik mező üres, a mentést meg kell akadályoznunk.
 - Egy listaelem felépítése:
 	- Ikon a pénzforgalom irányától függően.
 	- A megadott megnevezés és alatta az összeg.
-	- A Toolbaron egy menüpont a lista teljes törlésére.
-	- A lista görgethető kell legyen
+	- Egy gomb a tétel törlésére.
 
 ### Felhasznált technológiák:
-- Activity
-- LinearLayout, TextView, ImageView, EditText, Button, ToggleButton
-- LayoutInflater
+- **Scaffold**, TopBar, BottomBar, FloatingActionButton, Column, Row, Image, Text, Spacer, OutlinedTextField, IconButton, IconToggleButton, **LazyColumn**
+- data class
+
 
 ## Előkészületek
 
@@ -47,7 +46,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
 1. A projekt neve legyen `AndroidWallet`, a kezdő package `hu.bme.aut.android.androidwallet`, a mentési hely pedig a kicheckoutolt repository-n belül az AndroidWallet mappa.
 1. Nyelvnek válasszuk a *Kotlin*-t.
 1. A minimum API szint legyen API24: Android 7.0.
@@ -56,377 +55,562 @@ Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
-## Menü elkészítése
+!!!danger "FILE PATH"
+    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\\ meghajtó gyökerében dolgozni.
 
-Azt szeretnénk, ha az *ActionBaron* megjelenne egy menü, ahonnan a törlés opció érhető el. Azonban ha megfigyeljük, a legenerált témának nincs *ActionBarja.* Ahhoz, hogy ezt visszahozzuk, nyissuk meg a `res/values/themes.xml-t`, ahol az alkalmazásunk témája van definiálva. Itt láthatjuk, hogy a `Base.Theme.AndroidWallet` témánk a `Theme.Material3.DayNight.NoActionBar`-ból származik. Töröljük ki innen a `.NoActionBar`-t. Így tehát az új `themes.xml` kódja:
+
+## Főképernyő elkészítése
+
+Első lépésként, hogy ezzel a fejlesztés során a későbbiekben ne legyen gond, illesszük be a szöveges erőforrásainkat a `strings.xml` fájlba:
 
 ```xml
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AndroidWallet" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="Theme.AndroidWallet" parent="Base.Theme.AndroidWallet" />
+<resources>
+    <string name="app_name">AndroidWallet</string>
+    <string name="item">Item</string>
+    <string name="price">Price</string>
+    <string name="label_empty_list">List is empty. Start adding salary.</string>
 </resources>
 ```
 
-Az *ActionBar* felhelyezése után készítsük el a menüt. Bal oldalon a `res` könyvtáron nyomjunk jobb klikket és a menüből hozzunk létre egy új `Android Resource File` elemet. Itt a varázslóban mindent ki is tudunk választani:
-
-![](assets/menu.png)
-
-A `menu_main` tartalma legyen az alábbi:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_delete_all"
-        android:title="Delete All" />
-</menu>
-```
-
-Ne felejtsük el kiszervezni a string erőforrást! Ezt egyszerűen megtehetjük a *Delete All* szövegen állva az `Alt`+`Enter` konbinációt megnyomva, az `Extract string resource` opcióval. Adjuk meg a nevet: `delete_all`
-
-!!!note ""
-	Láthatjuk, hogy Android platformon a menüt is egyszerű XML erőforrásból tudjuk felvenni. A fenti esetben egyetlen elemet tettünk a menübe, amelyet majd az `action_delete_all` id-val tudunk hivatkozni.
-
-Ahhoz, hogy az imént létrehozott menü felkerüljön a felületre a `MainActivity`-ből fel kell "fújjuk" azt, és le kell kezelnünk a kattintásokat. Ezt az `onCreateOptionsMenu` és az `onOptionsItemSelected` függvényekkel tudjuk megtenni:
+Második lépésként, hogy a felhasználói felületületét akadálytalanul el tudjuk készíteni, készítsük el az adat struktúrát, ami a tárolandó adatokat fogja tartalmazni. Szükégünk vagy egy listára, amely az adatokat tartalmazza. Ebben a listában az alábbi `SalaryData` *data class* objektumokat fogunk tárolni. Hozzunk létre egy `data` *package*-et a fő *package*-ünkön belül, majd abba tegyük bele a `SalaryData` osztályt:
 
 ```kotlin
-override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    menuInflater.inflate(R.menu.menu_main, menu)
-    return super.onCreateOptionsMenu(menu)
-}
+package hu.bme.aut.android.androidwallet.data
 
-override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-        R.id.action_delete_all -> {
-            // TODO: itt fogjuk kezelni a kattintást
-            true
+data class SalaryData(
+    val isIncome: Boolean,
+    val item: String,
+    val price: String
+)
+```
+
+Az osztály három változója az alábbiakat reprezentálja:
+
+- `isIncome - Boolean változó amely a kiadás/bevétel állapotért felel.`   
+- `item - kiadás/bevétel neve`
+- `price - kiadás/bevétel értéke`
+
+
+Miután megvagyunk a modell osztállyal, áttérhetünk a felhasználói felületre. Készítsük el a főképernyő vázát, amit majd a labor során feltöltünk tartalommal. Ehhez hozzunk létre egy `screen` *package*-et a `ui` *package*-en belül, majd ebbe egy `MainScreen` nevű új Kotlin classt. Írjuk meg a főképernyőnek a felépítését az alábbi kód alapján:
+
+```kotlin
+package hu.bme.aut.android.androidwallet.ui.screen
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.androidwallet.data.SalaryData
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MainScreen() {
+    val context = LocalContext.current
+    val salaryItems = remember { mutableStateListOf<SalaryData>() }
+
+    var isIncome by remember { mutableStateOf(false) }
+    var item by remember { mutableStateOf("") }
+    var price by remember { mutableStateOf("") }
+
+
+
+    Scaffold(
+        modifier = Modifier.safeDrawingPadding(),
+        topBar = {
+
+            ///TODO (topbar)
+            TopAppBar(title = { Text(text = "TopAppbar") })
+
+        },
+        floatingActionButton = {
+            ///TODO (floatingactionbutton)
+
+        },
+        content =
+        { innerPadding ->
+
+            ///TODO (lista)
+            Text(
+                text = "content",
+                modifier = Modifier.padding(innerPadding)
+            )
+
+
+        },
+        bottomBar = {
+            BottomAppBar {
+                ///TODO (TextFields)
+                Text(text = "BottomAppBar")
+
+            }
+
         }
-        else -> super.onOptionsItemSelected(item)
+    )
+}
+
+@Composable
+@Preview
+fun PreviewMainScreen() {
+    MainScreen()
+}
+```
+
+A `MainScreen` tartalmaz egy [`Scaffold`](https://developer.android.com/develop/ui/compose/components/scaffold)-ot, ami segít minket a felület struktúrájának kialakítában. A `Scaffold` lényege, hogy megad egy vázat (állványt), aminek az előre definiált helyeire ([lyukaiba](https://developer.android.com/develop/ui/compose/layouts/basics#slot-based-layouts)) tudunk saját *Composable*-öket illeszteni.
+
+Ahhoz, hogy az alkalmazásunk máris futtatható legyen, és ki tudjuk próbálni minden lépés után, cseréljük le a `MainActivity` tartalmát:
+
+```kotlin
+package hu.bme.aut.android.androidwallet
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.androidwallet.ui.screen.MainScreen
+import hu.bme.aut.android.androidwallet.ui.theme.AndroidWalletTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AndroidWalletTheme {
+                MainScreen()
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMainActivity() {
+    AndroidWalletTheme {
+        MainScreen()
     }
 }
 ```
 
-## Beviteli rész megvalósítása (1 pont)
+Jelenleg így néz ki az alkalmazásunk:
 
-Az alkalmazás működéséhez szükség lesz két `EditText`-re, amelyekben a felhasználó a megnevezést és az összeget adhatja meg. Szükséges továbbá egy kapcsoló működésű gomb, például egy `ToggleButton`, amellyel a pénzforgalom iránya állítható, illetve kell egy mentés gomb, amelyet egy egyszerű `Button` fog megvalósítani.
-
-Egy XML fájlt megnyitva két lehetőségünk van: vagy a beépített grafikus szerkesztőn drag and drop módszerrel összerakjuk a felületet, vagy kézzel XML-ben írjuk meg a komponenseket és a tulajdonságaikat. Előbbi a tanulási fázisban nagyon hasznos, mert könnyen tudunk puskázni, viszont később sok fejfájást okozhat, ezért az XML leírás plusz előnézettel fogjuk megvalósítani a feladatot.
-
-Mivel a feladatunk lineárisan összerakható elemekből épül fel, ezért érdemes egy ilyen magvalósításban gondolkodnunk. Nyissuk meg a `res/layout/activity_main.xml` fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot.) Módosítsuk az előre legenerált `ConstraintLayoutot` `LinearLayoutra`, és adjuk hozzá az `android:orientation="vertical"` attribútumot.
-
-Szükségünk lesz másik három LinearLayout-ra:
-
-- A név és összeg mezőnek, horizontális elrendezéssel
-- A kiadás/bevétel kapcsolónak és mentés gombnak, szintén horizontális elrendezéssel és jobbra zárással
-- A tényleges listának, amelyet mivel a lista elemek vertikálisan követik egymást, vertikálisra állítunk.
-  
-Így az `activity_main.xml`-ben a `LinearLayout`-ok elrendezése az alábbi lesz:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-	</LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal">
-	</LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-	</LinearLayout>
-</LinearLayout>
-```
-
-Az első (nem gyökér) `LinearLayout`-ba vegyük fel a két `EditText`-et, adjunk nekik *id*-t, hogy a Kotlin kódból is egyszerűen elérjük őket. A két `EditText` egymáshoz képesti elhelyezkedését súlyozással fogjuk beállítani.  Mindkettő legyen `singleLine`, így nem fog szétcsúszni a UI, illetve érdemes a megnevezés `EditText`-nek egy `actionNext` `imeOptions`-t adni, így a felhasználó billentyűzete a következő `EditText`-re fog ugrani az Enter/Ok billentyűre:
-
-```xml
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <EditText
-        android:id="@+id/salary_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.6"
-        android:imeOptions="actionNext"
-        android:inputType="textCapWords"
-        android:singleLine="true" />
-
-    <EditText
-        android:id="@+id/salary_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.4"
-        android:singleLine="true" />
-</LinearLayout>
-```
-
-A középső, gombokat tartalmazó `LinearLayout`-ban a gombokat jobbra szeretnénk igazítani, ezért a `LinearLayout`*gravity*-jét *end* értékre állítjuk. Így a két gombot az operációs rendszer szerint beállított szövegirányultság szerinti végére zárja a UI. A `LinearLayout`-ba felvesszük a `ToggleButton`-t, a sima `Button`-t és *id*-t adunk nekik.  A mentés gombon állítsuk be a megjelenített feliratot, ez legyen "SAVE". Ne felejtsük el ezt is kiszervezni erőforrásba!
-
-```xml
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="end"
-    android:orientation="horizontal">
-
-    <ToggleButton
-        android:id="@+id/expense_or_income"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save" />
-</LinearLayout>
-```
-
-Mivel erre is van lehetőség bármi kódolás nélkül, érdemes már most beállítani a `ToggleButton` két állapotának feliratát a `textOn` illetve `textOff` attribútomokkal, amelyhez az "INCOME" illetve "EXPENSE" string erőforrásokat kell felvennünk. 
-
-```xml
-<ToggleButton
-    android:id="@+id/expense_or_income"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOff="@string/income"
-    android:textOn="@string/expense" />
-```
-
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **MainActivity felülete a beviteli mezőkkel és gombokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl.
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-
-## A listaelem XML-jének összeállítása (1 pont)
-
-Új elem felvételekor azt várjuk, hogy a *Save* gomb hatására az adott tételből egy új sor jelenjen meg a listában. Ezek a sorok komplexek és egymáshoz nagyon hasonlóak, így érdemes az elrendezésüket külön elkészíteni, és hozzáadáskor csak felhasználni ezt a megfelelő paraméterekkel.
-
-Egy-egy ilyen elem felhasználásakor példányosítanunk kell a felületi elemet, amit a rendszer *inflater* szolgáltatásával tudunk megtenni. Az *inflate*-elés során az operációs rendszer egy olyan szolgáltatását kérjük el, amelyet egyéb elemeknél (pl. Toolbar menu) automatikusan elvégez. Mi ezzel most egy előre meghatározott komponenst, a listánk egy elemét szeretnénk "felfújni" a megfelelő pillanatban.
-
-!!! danger "Figyelem"
-	Fontos megjegyezni hogy a későbbiekben a profi lista kezeléshez majd a [`RecyclerView`](https://developer.android.com/develop/ui/views/layout/recyclerview?gclid=EAIaIQobChMIuPGHwNnu-QIVHY1oCR1V0gRbEAAYASAAEgJSTfD_BwE&gclsrc=aw.ds) komponenst fogjuk használni. `LineraLayout`-ot lista jellegű viselkedésre használni nem ajánlott, most csak az *inflate*-elés gyakorlásához használjuk.
-
-Rakjuk össze először a felületi erőforrást. A listaelemünk felépítése, az előzőekhez hasonlóan, kivitelezhető teljesen lineáris elrendezéssel, így ismét a `LinearLayout`-ot használjuk. Adjunk hozzá a projektünkhöz a `salary_row.xml`-t. (res/layout mappán jobb klikk, New -> Layout Resource File)
-
-Egy horizontális `LinearLayout`-tal kezdünk, mivel az *icon* és a feliratok egymás mellett helyezkednek el. Mivel ez csak egy listaelem lesz, ezért `wrap_content`-re kell vennünk a szélességét magasságát. Adjunk neki *id*-t is. Ebbe a `LinearLayout`-ba bal oldalra kerül az `ImageView`. A méretét állítsuk be 40x40-re, illetve adjunk neki *id*-t is. Az `ImageView` mellett egy függőleges `LinearLayout` következik, amiben egymás alatt helyezkedik el a tétel neve és összege. A `LinearLayout` szélessége legyen `match_parent`, magassága `wrap_content`, a `TextView`-knak pedig mindenképpen adjunk *id*-t. 
-
-Mivel igényes kinézetet szeretnénk, a megfelelő *marginokat* illetve *paddingeket* adjuk hozzá a különböző elemeinkhez: a gyökérre 4dp *padding,* a beágyazottra `marginStart` attribútum *16dp* értékkel, illetve `layout_gravity` paramétert `center_vertical`-ra állítjuk, így biztosítva a gyerekelemek középre rendezését.
-
-A `salary_row.xml` végleges kódja:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/salary_row"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="4dp">
-
-    <ImageView
-        android:id="@+id/salary_direction_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        tools:src="@mipmap/ic_launcher" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/row_salary_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="hétszőnyű" />
-
-        <TextView
-            android:id="@+id/row_salary_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="kapanyányimonyók" />
-    </LinearLayout>
-</LinearLayout>
-```
-
-!!!note "Megjegyzés"
-	A „tools” névtérnek csak a preview-ra van hatása, tervezés közben beírhatunk oda bármit a lefordított alkalmazásban sehol nem fog látszani.
-
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **egy sor layout-ja** (*preview-ként*), **a hozzá tartozó kóddal**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl.
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+<p align="center">
+<img src="./assets/MainScreen_scaffold.png" width="320">
+</p>
 
 
-## A listaelem példányosítása (1 pont)
+### A menüsáv elkészítése ( 1 pont)
 
-Mostanra minden összetevőnk készen áll, már csak a mögöttes logikát kell megvalósítanunk. A kódban szükségünk lesz a mezők elérésére, illetve a kapcsolónk állapotának vizsgálatára a kattintás pillanatában. Ezeket a részeket a *Save* gombunk kattintás eseménykezelőjében
-fogjuk megvalósítani. Továbbá az említett *inflate*-elendő komponensünk példányosítását is itt kell végrehajtanunk a kapott adatok alapján. `Toast` üzenetben jelezzük, ha valamelyik mező nincs kitöltve!
+Azt szeretnénk, hogy a képernyő tetején legyen egy `ActionBar` az alkalmazás nevével és egy törlési opcióval, vagy akár egy legördülő menüvel. Mint feljebb láttuk, ehhez a megvalósításhoz, nagyon jól alkalmazható a `Scaffold` *Composable*, ugyanis ennek van egy *topBar* attribútuma, aminek könnyen adhatunk egy ilyen `ActionBar`-t. 
 
-Először készítsük el az eseménykezelő vázát. Figyeljük meg, hogy kódot adunk át paraméterként, ezért nem kerek zárójeleket, hanem kapcsos zárójelpárt használunk. Szintén fontos, hogy ha Kotlinban készítünk Android alkalmazást, akkor a `layout`-ban definiált komponenseket az *id*-jükkel el tudjuk érni. Ehhez először meg kell csinálnunk a `viewBinding`-ot az `Activity`-n. Nem szabad elfelejteni, hogy a modul szintű `build.gradle.kts` fájlban fel kell vennünk a `viewBinding`  `buildFeature`-t. 
-
-```
-buildFeatures {
-    viewBinding = true
-}
-```
-
-Ezt követően az `Activity`:
+Hozzunk létre egy új *package*-et a már meglévő `ui` csomagban `view` néven, majd ezen belül egy új *Kotlin* classt `TopBar` néven. Töltsük föl a fájlt az alábbi kóddal:
 
 ```kotlin
-private lateinit var binding: ActivityMainBinding
+package hu.bme.aut.android.androidwallet.ui.view
 
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 
-    binding.saveButton.setOnClickListener {
-        // TODO: ide jön az eseménykezelő kód
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(title: String, icon: ImageVector, onIconClick: () -> Unit) {
+    TopAppBar(
+        title = { Text(text = title) },
+        actions = {
+            IconButton(onClick = onIconClick) {
+                Icon(imageVector = icon, contentDescription = "Delete", tint = Color.Red)
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.inversePrimary)
+    )
+}
+
+@Preview
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun PreviewTopBar() {
+    TopBar(title = "AndroidWallet", icon = Icons.Default.Clear) {
+
     }
 }
 ```
 
-Az eseménykezelőben először a kitöltöttség ellenőrzését végezzük el, ehhez egy hibaüzenetet is meg kell adnunk. Ezt a jó gyakorlatnak megfelelően a `strings.xml` fájlba szervezzük is ki. A hibaüzenet legyen mondjuk "Missing data!":
+A `TopAppBar`-nak a cím és a szín mellett megadtunk egy akciót is: egy `IconButton`-t amivel a lista törlését fogjuk majd megvalósítani.
+
+
+Miután elkészültünk a `TopBar`-unkkal, illesszük is ezt be a `MainScreen` beli `Scaffold` megfelelő helyére. Ezt a következő képpen tesszük meg: adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel a listánk állapotként van tárolva `val salaryItems = remember { mutableStateListOf<SalaryData>() }`, ezért ha változás történik, akkor az összes Composable újrafordul ami függ tőle:
 
 ```kotlin
-if (binding.salaryName.text.toString().isEmpty() || binding.salaryAmount.text.toString().isEmpty()) {
-    Toast.makeText(this, R.string.warn_message, Toast.LENGTH_LONG).show()
-    return@setOnClickListener
-}
+Scaffold(
+        modifier = Modifier.safeDrawingPadding(),
+        topBar = {
+            TopBar(
+                title = stringResource(id = R.string.app_name),
+                icon = Icons.Default.Clear,
+                onIconClick = {
+                    salaryItems.clear()
+                }
+            )
+        },
+        floatingActionButton = {
+			...
 ```
 
-Ha minden adat helyes, akkor már fel is vehetünk egy új sort. Egy sor kezeléséhez szükségünk van egy `SalaryRowBinding` példányra:
+Ha ezzel megvagyunk, akkor már a következőt kell látnunk az alkalmazásunkban:
+
+<p align="center">
+<img src="./assets/MainScreen_TopBar.png" width="320">
+</p>
+
+
+Ezzel a `TopBar` kész is. Folytassuk most a beviteli résszel, amit az oldal alján található `BottomAppBar`-ban fogunk megvalósítani.
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **TopBar** *Composable* Kotlin kódja, a **neptun kódod kommentként**, illetve a **futó alkalmazás** (emulátoron vagy a készüléket türközve)! A képet a megoldásban a repository-ba f1.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+
+### Beviteli mezők megvalósítása (1 pont)
+
+A beviteli részt ezúttal nem egy külön *Composable*-ben, hanem a `MainScreen`-en belüli `Scaffold`-ban, helyben fogjuk megvalósítani. 
+
+Ide kerül egy `IconButton`, ami a tranzakció irányát mutatja, majd két `OutlinedTextField` a névnek és az árnak. 
+
+Első lépésként töltsük le a tranzakció irányához használt [erőforrásokat](./downloads/res.zip)! 
+
+Letöltés után másoljuk be a mappa tartalmát a projektünk erőforrásait tartalmazó res mappába. (...\AndroidWallet\app\src\main\res)
+
+Illesszük be az alábbi kódot a `Scaffold` megfelelő pontjára:
 
 ```kotlin
-private lateinit var rowBinding: SalaryRowBinding
-```
-
-Ezután egy row itemet példányosítunk, (*inflate*-elünk) a korábban elkészített XML-ből az `OnCreate` metódus eseménykezelőjében:
-
-```kotlin
-rowBinding = SalaryRowBinding.inflate(layoutInflater)
-```
-
-A példányosítás után már elérjük az adott példány különböző részeit, tehát az ikont, a nevet, és az összeget. Állítsuk is be ezeket a megadott adatok alapján.
-Az ikont a `ToggleButton` állapota alapján kell kitöltenünk. Az ikonokhoz az [income.png](downloads/income.png) és az [expense.png](downloads/expense.png) képeket fogjuk használni.
-
-!!!tip "Android Asset Studio"
-	A letöltött képeket használhatjuk egyből a res/drawable mappába helyezve, azonban ha igényes alkalmazást akarunk készíteni, akkor célszerű több méretben is elérhetővé tenni ezeket. A különböző méretek legenerálásához használjuk az [Asset Studio](https://romannurik.github.io/AndroidAssetStudio/)-t (azon belül a Generic icon generator-t), forrásként válasszuk ki a képeinket, állítsuk be a Color paramétert Alpha értékét 0-ra, majd a letöltött zip fájlokat csomagoljuk ki a res mappába.
+bottomBar = {
+	BottomAppBar {
 	
-
-```kotlin
-rowBinding.salaryDirectionIcon.setImageResource(if (binding.expenseOrIncome.isChecked) R.drawable.expense else R.drawable.income)
-rowBinding.rowSalaryName.text = binding.salaryName.text.toString()
-rowBinding.rowSalaryAmount.text = binding.salaryAmount.text.toString()
-```
-
-Most, hogy megvagyunk a példányosítással és az adatok feltöltésével, hozzá kell adnunk az elemet a listához (`LinearLayout`). Ehhez az `activity_main.xml` alsó `LinearLayout`-jának egy *id*-t is kell adnunk, hogy hivatkozni tudjunk rá:
-
-```xml
-<LinearLayout
-    android:id="@+id/list_of_rows"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" />
-```
- 
-```kotlin
-binding.listOfRows.addView(rowBinding.root)
-```
-
-És ezen a ponton akár futtathatjuk is az alkalmazásunkat. Próbáljuk is ki! 
-
-Ezen a ponton már majdnem készen is vagyunk: hozzá tudunk adni elemeket a listánkhoz. Azonban két helyen még hiányos az alkalmazásunk. Nem lehet törölni a teljes listát, illetve ha elég sok elemet veszünk fel észrevesszük, hogy nem férnek ki, viszont görgetni nem tudunk. Az előbbi probléma megoldását már előkészítettük, erre fog szolgálni a „Delete All”-ra átalakított menüpontunk, amely megjelenni már helyesen jelenik de még nem csinál semmit. Az eseménykezelő vázát már elkészítettük az `onOptionsItemSelected()` metódusban, most ezt kell kiegészítenünk az alábbira:
-
-```kotlin
-override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-        R.id.action_delete_all -> {
-            binding.listOfRows.removeAllViews()
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
+	    Row(
+	        modifier = Modifier
+	            .fillMaxWidth(),
+	    ) {
+	        IconToggleButton(
+                modifier = Modifier.size(64.dp),
+                checked = isIncome,
+                onCheckedChange = { isIncome = !isIncome },
+            ) {
+                Image(
+                    modifier = Modifier.size(64.dp),
+                    painter = painterResource(id = if (isIncome) R.drawable.ic_income else R.drawable.ic_expense),
+                    contentDescription = "expense/income button"
+                )
+            }
+	        OutlinedTextField(
+	            label = { Text(stringResource(R.string.item)) },
+	            modifier = Modifier
+	                .padding(start = 8.dp, end = 8.dp)
+	                .weight(2f),
+	            singleLine = true,
+	            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+	            value = item,
+	            onValueChange = {
+	                item = it
+	            }
+	        )
+	        OutlinedTextField(
+	            label = { Text(stringResource(R.string.price)) },
+	            modifier = Modifier
+	                .padding(start = 8.dp, end = 8.dp)
+	                .weight(1f),
+	            singleLine = true,
+	            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+	            value = price,
+	            onValueChange = {
+	                price = it
+	            }
+	        )
+	    }
+	}
 }
 ```
 
-Próbáljuk ki a törlés funkciót! 
+Itt szintén elvégezzük a szükséges beállításokat. A legtöbb azért felel, hogy barátibb UI-t láthassunk, viszont a legfontosabb a `value`, valamint az `onValueChange` értéke, ugyanis, ha ezek nincsenek beállítva, akkor nem fog megjelenni a begépelt szöveg. A `value`-nak átadjuk az *item* értéket, valamint az `onValueChange` esetén beállítjuk, hogy minden egyes karakter leütésnél új értéket kapjon a változó. Ezzel érhetjük el azt, hogy futási időben láthassuk a *TextField* értékét.
 
-Utóbbi problémánkra pedig nagyon egyszerű a megoldás, a listánkat tartalmazó `LinearLayoutot` egy `ScrollView`-ba kell foglalnunk és már működik is.
+!!!note "Állapottól függő megjelenítés"
+	Az `Image` *painter* attribútumánál jól megfigyelhető a *Jetpack Compose* egyik nagy előnye. A megjelenített képet egy állapottól tesszük függővé, amit ott helyben meg tudunk oldani:
+	```kotlin
+	...
+	painter = painterResource(id = if (isIncome) R.drawable.ic_income else R.drawable.ic_expense)
+	...
+	```
 
-```xml
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/list_of_rows"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-</ScrollView>
+### Új elem felvétele
+
+Új elem felvételét a `FloatingActionButton` gomb megnyomásának hatására fogunk felvenni. Szerencsére a `Scaffold` ennek is biztosít helyet. Illesszük tehát be az alábbi kódot:
+
+```kotlin
+floatingActionButton = {
+    LargeFloatingActionButton(
+        shape = CircleShape,
+        onClick = {
+            if (item.isNotEmpty() && price.isNotEmpty()) {
+                salaryItems += SalaryData(isIncome, item, price)
+            } else {
+
+                Toast.makeText(
+                    context,
+                    "",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+        })
+    {
+        Image(
+            imageVector = Icons.Default.Add,
+            contentDescription = "save button"
+        )
+    }
+},
 ```
 
+Az itteni gomb esetén az *onClick* eseményt először egy feltétellel ellenőrizzük. Ha üresen maradt a név vagy az ár, akkor egy `Toast` üzenettel figyelmeztetjük a felhasználót. Ha megfelelő a kitöltés, akkor a *salaryItems* listához hozzáadunk egy új elemet a bevitt adatnak megfelelően. Ez az elem a már korábban definiált `data class` egy példánya. 
+
+Jelenleg így néz ki a felületünk:
+
+<p align="center">
+<img src="./assets/MainScreen_empty.png" width="320">
+</p>
+
+
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik hogy **a lista scrollozható** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **lista törlésének kódjával**, valamint a **neptun kódoddal valamelyik termék neveként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik a **MainScreen** kódja, **a futó alkalmazás** (emulátoron vagy a készüléket türközve), valamint a **neptun kódod a beviteli mezőbe beleírva elemként a listában, vagy a kódban kommentként**! A képet a megoldásban a repository-ba f2.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+
+## Lista elkészítése (1 pont)
+
+###Listaelem létrehozása
+
+A vezérlőink megvannak, azonban ahhoz, hogy a listát elkészítsük, létre kell hoznunk egy listaelemet, amit majd a `LazyColumn`-ben fogunk látni. 
+
+- Egy listaelem felépítése:
+	- Ikon a pénzforgalom irányától függően.
+	- A megadott megnevezés és alatta az összeg.
+	- Egy gomb a tétel törlésére.
+
+Hozzunk létre egy a `ui/view` *package*-be egy új *Kotlin* fájlt `SalaryCard` néven.
+
+Ennek a következő képpen kell kinéznie:
+
+```kotlin
+package hu.bme.aut.android.androidwallet.ui.view
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import hu.bme.aut.android.androidwallet.R
+
+@Composable
+fun SalaryCard(isIncome: Boolean, item: String, price: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Image(
+            modifier = Modifier.size(64.dp),
+            painter = painterResource(id = if (isIncome) R.drawable.ic_income else R.drawable.ic_expense),
+            contentDescription = "Income/Expense"
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                text = item,
+                maxLines = 1
+            )
+            Spacer(modifier = Modifier.size(12.dp))
+            Text(
+                text = price,
+                color = Color.Gray,
+                maxLines = 1
+            )
+        }
+        Spacer(modifier = Modifier.size(8.dp))
+        IconButton(
+            modifier = Modifier.align(Alignment.CenterVertically),
+            onClick = {
+                ///TODO
+            }
+        ) {
+            Image(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "delete button",
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PreviewIncomeSalaryCard() {
+    SalaryCard(isIncome = true, item = "item", price = "500 Ft")
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PreviewExpenseSalaryCard() {
+    SalaryCard(isIncome = false, item = "item", price = "500 Ft")
+}
+```
+
+A *SalaryCard* Composable függvény 3 paramétert tartalmaz:
+
+- `isIncome - Boolean változó amely a kiadás/bevétel állapotért felel.`   
+- `item - kiadás/bevétel neve`
+- `price - kiadás/bevétel értéke`
+
+A függvényen belül megtalálható egy `Row`, egy `Spacer`, egy `Column`, még egy `Spacer`, valamint egy `ImageButton`. A `Row` felel azért, hogy az elemeket horizontálisan egymás mellé lehessen rakni, a `Column` pedig, hogy az elemeket egymás alá. (A kiadás/bevétel neve, illetve értéke.) A képet egy `Image` *Composable*-lel helyezzük el. Itt a `modifier` segítségével sok fajta beállításra van lehetőség, most csak a size-zal foglalkozunk, hogy átláthatóbb legyen a kód. A `painter` segítségével adhatjuk meg a képet, amit szeretnénk megjeleníteni, ezt egy if-else elágazással oldjuk meg, mégpedig a paraméterként kapott *isIncome* segítségével. Miután megvagyunk az `Image`-dzsel, a `Row`-n belül a `Column`-be elhelyezünk kettő `Text`-et a maradék kettő paraméterrel. A sor végi törlő gomb funkcionalitásának megoldása önálló feladat lesz.
+
+
+### Listaelem példányosítása LazyColumn-ben
+
+Végül a `MainScreen`-ünkön a `Scaffold` *content* részébe valósítsuk meg a listát:
+
+```kotlin
+content =
+{ innerPadding ->
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)
+    ) {
+        if (salaryItems.size == 0) {
+            Text(
+                text = stringResource(R.string.label_empty_list),
+                modifier = Modifier.fillMaxSize(),
+                textAlign = TextAlign.Center,
+            )
+        } else
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                items(salaryItems.size) {
+                    SalaryCard(
+                        isIncome = salaryItems[it].isIncome,
+                        item = salaryItems[it].item,
+                        price = "${salaryItems[it].price} Ft",
+                    )
+                    if (salaryItems.size - 1 > it) {
+                        HorizontalDivider(modifier = Modifier.fillMaxWidth())
+                    }
+                }
+            }
+
+    }
+},
+```
+
+Itt is megfigyelhetjük, hogy a lista elemszámától (állapotától) függően vagy egy szöveget, vagy a `LazyColumn` listát helyezzük el a felületre. 
+
+A `LazyColumn`-ön belül az `items(..)` függvénynek egy méretet kell átadni, ami azt jelöli, hogy mekkora a lista. Ez után a blokk törzsében el kell helyezni azt a *Composable* elemet amit látni szeretnénk a listában. Ez a `SalaryCard` *Composable* lesz, amit már korábban implementáltunk. Ennek paraméterként megadjuk az *salaryItems* aktuális (`it`) elemeit. Ezen fog végig iterálni a `LazyColumn`, és minden elemet ki fog rajzolni.
+
+Ezzel a lépéssel elérkeztünk a kész alkalmazáshoz, és indítás során a következőt kell látnunk:
+
+<p align="center">
+<img src="./assets/MainScreen_empty_list.png" width="320">
+</p>
+
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **LazyColumn** kódja, a futó alkalmazás (emulátoron vagy a készüléket türközve), valamint a **neptun kódod egy elemként a listában, vagy a kódban kommentként**! A képet a megoldásban a repository-ba f3.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
 ## Önálló feladatok
 
-### Snack bar (1 pont)
-
-A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi, a [Snackbar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést Snackbarra!
-
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **a Snackbar használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódoddal a termék neveként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl.
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-
-
 ### Összegző mező (1 pont)
 
-Vegyünk fel egy összegző mezőt a gombok mellé, amely minden bevitt érték után frissül. Figyeljünk rá, hogy ha még nincs egy bejegyzés sem, akkor ne jelenjen meg semmi, illetve hogy a felhasználó nem fog mínusz karaktert beírni tehát a kapcsoló alapján kell eldöntenünk, hogy ez pozitív vagy negatív érték. Az egyszerűség kedvéért megengedjük, hogy az összeg mező `inputType`-ját `numberDecimal`-ra állítsuk, így a felhasználó nem tud betűket beírni.
+Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy pozitív vagy negatív érték. 
+
+!!!tip "Tipp"
+    Érdemes használni a `Modifier.alpha()` paramétert.
 
 !!!warning "Figyelem"
-	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (-0.5 pont)
+	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a `sum` 0 értéket vesz fel.) (-0.5 pont)
+
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik **az összegző mező használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódod valamelyik termék neveként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl.
+    Készíts egy **képernyőképet**, amelyen látszik az **összegző mező használata** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a kódja**, valamint a **neptun kódod valamelyik termék neveként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl!
+
+    A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+### Egyes elemek törlése (1 pont)
+
+Az egyes listaelemeken már jelen van a törlés gomb, azonban még nem működik. Valósítsuk meg az egyedi törlést!
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **törlés** kódja, az emulátor a működő alkalmazásról, valamint a **neptun kódod egy elemként a listában, vagy a kódban kommentként**! A képet a megoldásban a repository-ba f5.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
 ### Bonus
 
-Vizsgáljuk meg mi történik, ha az `EditText`-et (`TextInputEditTextet`) `TextInputLayout`-tal használjuk. [https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html)
+Módosítsuk a *TopBar* menü gombját, úgy hogy legördülő menü lista legyen belőle, ahol 3 opció található meg.
+
+- Delete Expenses
+- Delete Incomes
+- Delete All
+
+Ehhez módosítsuk a TopBar Composable függvényünket.
+
+???success "Segítség"
+      - Plusz két lambda operátor
+      - DropdownMenu
+      - DropdownMenuItem
+      - .filter használata a listán/sum-on

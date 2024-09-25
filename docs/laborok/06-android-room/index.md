@@ -1,4 +1,4 @@
-# Labor 06 - Bevásárló alkalmazás készítése
+# Labor 06 - Room - Bevásárló alkalmazás
 
 ## Bevezető
 A labor során egy bevásárló lista alkalmazás elkészítése a feladat. Az alkalmazásban fel lehet venni megvásárolni kívánt termékeket, valamint  megvásároltnak lehet jelölni és törölni lehet meglévőket.
@@ -750,4 +750,3 @@ Teremtsük meg a lista elemek szerkesztésének lehetőségét. A lista elemre h
 
 !!!example "BEADANDÓ (1 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **szerkesztési dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl.
-
