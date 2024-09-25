@@ -1,4 +1,4 @@
-# Labor 03 - Felhasználói felület tervezése és készítése Android platformon
+# Labor 03 - UI, LazyColumn - Kiadás és bevétel kezelő alkalmazás
 
 ## Bevezető
 

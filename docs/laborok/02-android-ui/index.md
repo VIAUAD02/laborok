@@ -1,4 +1,4 @@
-# Labor 02 - Felhasználói felület készítés
+# Labor 02 - UI - Tömegközlekedési alkalmazás
 
 ## Bevezető
 

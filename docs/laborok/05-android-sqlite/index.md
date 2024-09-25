@@ -1,4 +1,4 @@
-# Labor 05 - SQLite - Rajzoló alkalmazás készítése
+# Labor 05 - SQLite - Rajzoló alkalmazás
 
 ## Bevezető
 

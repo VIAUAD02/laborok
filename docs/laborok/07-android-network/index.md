@@ -1,3 +1,3 @@
-# Labor 07 - Weather Info alkalmazás készítése
+# Labor 07 - Retrofit - Időjárás alkalmazás
 
 ## TODO 2024

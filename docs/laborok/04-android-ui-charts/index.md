@@ -1,4 +1,4 @@
-# Labor 04 - Felhasználói felület készítése - HorizontalPager, Chartok
+# Labor 04 - UI,HorizontalPager, Charts - HR alkalmazás
 
 ## Bevezető
 
