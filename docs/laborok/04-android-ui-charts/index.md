@@ -143,7 +143,7 @@ package hu.bme.aut.android.workplaceapp.navigation
 sealed class Screen(val route: String) {
     object Menu : Screen("menu")
     object Screen1: Screen("screen1")
-    object Screen2: Screen("scren2")
+    object Screen2: Screen("screen2")
 }
 ```
 !!!info "sealed class"
