@@ -109,7 +109,7 @@ A Navigation Component *Jetpack Compose* használatával is navigációs gráfot
 
 2. Készítsünk egy *package*-et `navigation` néven, majd ebbe a *package*-be egy új *Kotlin File*-t `NavGraph` néven (*jobb klikk -> New Kotlin Class/File*)
 
-3. Az előző laborokon látott `NavGrap`-hoz hasonlóan hozzuk létre a `NavGraph`-ot:
+3. Az előző laborokon látott `NavGraph`-hoz hasonlóan hozzuk létre a `NavGraph`-ot:
 ```kotlin
 package hu.bme.aut.android.workplaceapp.navigation
 
@@ -704,7 +704,7 @@ fun ProfileScreen(
 
 @Composable
 @Preview
-fun PrevewProfileScreen() {
+fun PreviewProfileScreen() {
     ProfileScreen()
 }
 ```
