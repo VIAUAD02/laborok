@@ -443,6 +443,7 @@ fun NavGraph(
                 onSalaryButtonClick = {},
                 onCafeteriaButtonClick = {})
         }
+    }
 }
 ```
 
@@ -771,7 +772,7 @@ A Szabadság képernyőn egy kördiagrammot fogunk megjeleníteni, ami azt mutat
 !!!note "PieChart"
 	A PieChart kirajzoláshoz korábban, a View keretrendszerben az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t használtuk, azonban ez sajnos *Jetpack Compose*-ra nem működik.
 
-A diagram kirajzolásáta [YCharts](https://github.com/codeandtheory/YCharts) könyvtárral fogjuk megoldani. Ehhez először vegyük is fel a függőséget:
+A diagram kirajzolását a [YCharts](https://github.com/codeandtheory/YCharts) könyvtárral fogjuk megoldani. Ehhez először vegyük is fel a függőséget:
 
 Nyissuk meg a `settings.gradle.kts` fájlt, és vegyük fel a `repositories` tagen belülre a következőt:
 
