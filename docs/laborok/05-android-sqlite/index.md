@@ -60,8 +60,6 @@ A labor során az alábbi technológiákkal fogunk találkozni:
 - ViewModel
 - Dialog
 
-Hogy ha létrejött a projektünk hozzunk létre egy *Packaget* `screen` néven a projekt mappában. Erre a későbbiekben szükség lesz.
-
 
 ### A resource-ok hozzáadása
 
@@ -396,7 +394,7 @@ fun BottomBar(
                     modifier = Modifier.size(64.dp)
                 ) {
                     Icon(
-                        painterResource(id = R.mipmap.ic_style),
+                        painterResource(id = R.drawable.ic_style),
                         contentDescription = stringResource(id = R.string.style)
                     )
                     DropdownMenu(
