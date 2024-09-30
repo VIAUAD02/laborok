@@ -1407,6 +1407,7 @@
 <span class="w">                </span><span class="n">onSalaryButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
 <span class="w">                </span><span class="n">onCafeteriaButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
 <span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Ha most elindítjuk az alkalmazást, akkor már mind a 4 gombot látjuk, azonban még egyik sem működik. </p>
@@ -1703,7 +1704,7 @@
 <p class="admonition-title">PieChart</p>
 <p>A PieChart kirajzoláshoz korábban, a View keretrendszerben az <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library-t használtuk, azonban ez sajnos <em>Jetpack Compose</em>-ra nem működik.</p>
 </div>
-<p>A diagram kirajzolásáta <a href="https://github.com/codeandtheory/YCharts">YCharts</a> könyvtárral fogjuk megoldani. Ehhez először vegyük is fel a függőséget:</p>
+<p>A diagram kirajzolását a <a href="https://github.com/codeandtheory/YCharts">YCharts</a> könyvtárral fogjuk megoldani. Ehhez először vegyük is fel a függőséget:</p>
 <p>Nyissuk meg a <code>settings.gradle.kts</code> fájlt, és vegyük fel a <code>repositories</code> tagen belülre a következőt:</p>
 <div class="highlight"><pre><span></span><code><span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="o">...</span>
@@ -2195,8 +2196,8 @@ Hozzunk létre a <code>holiday</code> <em>package</em>-ben egy új <em>Kotlin Fi
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 28. 14:23:27">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-28T14:23:27+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-28</span>
+      <span title="2024. szeptember 29. 12:36:34">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-29T12:36:34+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-29</span>
       </span>
     </span>
 
@@ -2211,7 +2212,9 @@ Hozzunk létre a <code>holiday</code> <em>package</em>-ben egy új <em>Kotlin Fi
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/Zotyamester" target="_blank" rel="noopener noreferrer" class="md-author" title="@Zotyamester">
+      <nav><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
+          <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
+        </a><a href="https://github.com/Zotyamester" target="_blank" rel="noopener noreferrer" class="md-author" title="@Zotyamester">
           <img src="https://avatars.githubusercontent.com/u/40998048?v=4?size=72" alt="@Zotyamester">
         </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
