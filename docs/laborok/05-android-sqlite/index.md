@@ -1,16 +1,17 @@
-# Labor 05 - Rajzoló alkalmazás készítése
+# Labor 05 - SQLite - Rajzoló alkalmazás
 
 ## Bevezető
 
-A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az alkalmazással egy vászonra lehet vonalakat vagy pontokat rajzolni. Ezen kívül szükséges a rajzolt ábrát perzisztensen elmenteni, hogy az alkalmazás újraindítása után is visszatöltődjön.
+A labor során egy egyszerű rajzoló alkalmazás elkészítése a feladat. Az alkalmazással egy vászonra lehet vonalakat vagy pontokat rajzolni, majd a rajzolt ábrát perzisztensen elmenteni, hogy az alkalmazás újraindítása után is visszatöltődjön.
 
 <p align="center">
 <img src="./assets/main_screen.png" width="160">
 <img src="./assets/color_selector.png" width="160">
 <img src="./assets/style_selector.png" width="160">
+<img src="./assets/clear_dialog.png" width="160">
 </p>
 
-!!!info "Android Room"
+!!!info "Room könyvtár"
     A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.
 
 !!! warning "IMSc"
@@ -41,7 +42,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Hozzunk létre egy `Simple Drawer` nevű projektet Android Studioban:
 
-1. Hozzunk létre egy új projektet, válasszuk az *No Activity* lehetőséget.
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
 1. A projekt neve legyen `Simple Drawer`, a kezdő package `hu.bme.aut.android.simpledrawer`, a mentési hely pedig a kicheckoutolt repository-n belül az SimpleDrawer mappa.
 1. Nyelvnek válasszuk a *Kotlin*-t.
 1. A minimum API szint legyen API24: Android 7.0.
@@ -50,9 +51,14 @@ Hozzunk létre egy `Simple Drawer` nevű projektet Android Studioban:
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő SimpleDrawer könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
-Adjunk a projekthez egy új *Empty Views Activity* -t. *Activity name*-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon *layout* fájlt, valamint pipáljuk be a _Launcher Activity_ opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
+A labor során az alábbi technológiákkal fogunk találkozni:
 
-Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
+- SQLite
+- Scaffold
+    - TopBar
+    - BottomBar
+- ViewModel
+- Dialog
 
 
 ### A resource-ok hozzáadása
@@ -63,389 +69,688 @@ Az alábbi, alkalmazáshoz szükséges _string resource_-okat másoljuk be a `re
 
 ```xml
 <resources>
-   <string name="app_name">Simple Drawer</string>
-   
-   <string name="style">Stílus</string>
-   <string name="line">Vonal</string>
-   <string name="point">Pont</string>
-   
-   <string name="are_you_sure_want_to_exit">Biztosan ki akarsz lépni?</string>
-   <string name="ok">OK</string>
-   <string name="cancel">Mégse</string>
+    <string name="app_name">Simple Drawer</string>
+
+    <string name="style">Stílus</string>
+    <string name="line">Vonal</string>
+    <string name="point">Pont</string>
+
+    <string name="color">Szín</string>
+    <string name="red">Piros</string>
+    <string name="green">Zöld</string>
+    <string name="blue">Kék</string>
+    
+    <string name="clear">Törlés</string>
+
+    <string name="are_you_sure_want_to_clear">Biztosan törölni akarod a rajzlapot?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Mégse</string>
 </resources>
 ```
 
+## A kezdő képernyő létrehozása (1 pont)
+
 ### Álló layout kikényszerítése
 
-Az alkalmazásunkban az egyszerűség kedvéért most csak az álló módot támogatjuk. Ehhez az `AndroidManifest.xml`-ben a `DrawingActivity` nyitótagjához kell hozzáadni egy sort a következő módon:
+Az alkalmazásunkban az egyszerűség kedvéért most csak az álló módot támogatjuk. Ehhez az `AndroidManifest.xml`-ben az `<activity>` tagen belül módosítsuk az alábbiakat:
 
 ```xml
 <activity
-    android:name=".DrawingActivity"
+    android:name=".MainActivity"
     android:exported="true"
-    android:screenOrientation="portrait">
+    android:label="@string/app_name"
+    android:screenOrientation="sensorPortrait"
+    android:theme="@style/Theme.SimpleDrawer">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
 ```
 
 
-## A kezdő layout létrehozása (1 pont)
+### AppBar-ok létrehozása
 
-Első lépésként hozzunk létre egy új _package_-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk a `view` nevet. Ebben hozzunk létre egy új osztályt, amit nevezzünk el `DrawingView`-nak, és származzon le a `View` osztályból (`android.view.View`).
+A már létező `ui` *package*-en belül hozzunk létre egy `view` *package*-et, ezen belül egy `TopBar` és egy `BottomBar` *Kotlin File*-t, majd írjuk bele a következőt:
 
-Hozzuk létre a szükséges konstruktort ezen belül:
+`TopBar.kt`:
 
 ```kotlin
-class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+package hu.bme.aut.android.simpledrawer.ui.view
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.simpledrawer.R
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar() {
+    TopAppBar(
+        title = {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                color = Color.White
+            )
+        },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF6200EE))
+    )
+}
+
+@Composable
+@Preview
+fun PreviewTopBar() {
+    TopBar()
+}
+```
+Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevét. A BottomBar kicsit összetettebb lesz ennél.
+
+`BottomBar.kt`:
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.view
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import hu.bme.aut.android.simpledrawer.R
+
+@Composable
+fun BottomBar() {
+    BottomAppBar(
+        actions = {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Icon(
+                        painterResource(id = R.drawable.ic_style),
+                        contentDescription = stringResource(id = R.string.style)
+                    )
+                    //Stílusok
+                }
+            }
+        },
+        containerColor = Color(0xFF6200EE),
+    )
+}
+
+@Composable
+@Preview
+fun PreviewBottomBar() {
+    BottomBar()
 }
 ```
 
-Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként egy `ConstraintLayout`-ot, azon belül alulra egy `Toolbar`-t rakjunk, fölé pedig a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt fekete háttérrel. Végezetül a layoutnak így kell kinéznie:
+A BottomBar már kicsit összetettebb, itt az `actions` paraméterrel át tudunk adni olyan composable elemeket, amik megjelennek majd kis iconként az AppBar-on, ezekhez később akár onClick eseményt is tudunk adni. Így fogjuk megvalósítani a stílusváltás opciót, amelynek a megnyomására egy ablak ugrik fel, amin ki lehet választani a kívánt stílust (Vonal, pont)
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DrawingActivity">
+### A DrawingScreen felület
 
-    <hu.bme.aut.android.simpledrawer.view.DrawingView
-        android:id="@+id/canvas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+A `ui` *package*-en belül hozzunk létre egy `screen` *package*-t. Ebbe fog kerülni a `DrawingScreen`-ünk. Itt fogjuk elhelyezni a *Scaffold*-ot, aminek a segítségével egy TopBar-t és egy BottomBar-t is megvalósítunk. Kezdetben a Scaffold tartalma csak egy fekete `Spacer` lesz, ezt később a `Canvas` fogja helyettesíteni.
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.screen
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.simpledrawer.ui.view.BottomBar
+import hu.bme.aut.android.simpledrawer.ui.view.TopBar
+
+@Composable
+fun DrawingScreen() {
+
+    Scaffold(
+        topBar = {
+            TopBar()
+        },
+        bottomBar = {
+            BottomBar()
+        }
+    ) { innerPadding ->
+        //TODO replace with canvas
+        Spacer(
+            modifier = Modifier
+                .background(Color.Black)
+                .padding(innerPadding)
+                .fillMaxSize()
+        )
+    }
+}
+
+@Composable
+@Preview
+fun PreviewDrawingScreen() {
+    DrawingScreen()
+}
 ```
 
+Végül írjuk át a `MainActivity.kt` kódját, úgy hogy az imént létrehozott `DrawingScreent` példányosítsa:
+
+```kotlin
+package hu.bme.aut.android.simpledrawer
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import hu.bme.aut.android.simpledrawer.ui.screen.DrawingScreen
+import hu.bme.aut.android.simpledrawer.ui.theme.SimpleDrawerTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            SimpleDrawerTheme {
+                DrawingScreen()
+            }
+        }
+    }
+}
+```
+
+Hogy ha ezzel is megvagyunk indítsuk el az alkalmazást! Most már látjuk a két AppBar-t illetve a közötte elhelyezkedő fekete képernyőt. A BottomBar-on feltűnik egy icon is, aminek a megnyomása még semmit nem csinál.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **elkészült DrawingActivity** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült kezdőképernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**' A képet a megoldásban a repository-ba f1.png néven töltsd föl!
 
-## Stílusválasztó (1 pont)
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `Toolbar`-t, hozzuk létre a menüt, amivel be lehet állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven a `res` mappában, és _Resource type_-nak is válasszuk azt, hogy `menu`. Ezen belül hozzunk létre egy új _Menu resource file_-t `menu_toolbar.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/menu_style"
-        android:icon="@drawable/ic_style"
-        android:title="@string/style"
-        app:showAsAction="ifRoom">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/menu_style_line"
-                    android:checked="true"
-                    android:title="@string/line" />
-                <item
-                    android:id="@+id/menu_style_point"
-                    android:checked="false"
-                    android:title="@string/point" />
-            </group>
-        </menu>
-    </item>
-</menu>
+## A stílusválasztó megvalósítása (1 pont)
+
+Most, hogy már létre van hozva a BottomBar, illetve a kezdőképernyő váza, valósítsuk meg a stílus választást is. Ehhez módosítanunk kell a `BottomBar`-t, úgy, hogy ha a Stílus választó gombra kattintunk, akkor megjelenjen egy menü, amin ki lehet választani a rajzmódot. Ez a mód a rajzolás egy állapotaként valósítható meg. Ezeket az állapotokat pedig a korábbi laborokon látottak szerint egy külön *viewModel*-ben tároljuk. 
+
+### Szükséges függőség hozzáadása
+
+A *viewModel* használatához fel kell vennünk egy függőséget a `build.gradles.kts` fájlba. Ehhez nyissuk meg a `libs.versions.toml` fájlt a `gradle` *package*-ben, majd írjuk bele a következőt:
+
+```toml
+[versions]
+...
+lifecycleCompose = "2.8.6"
+
+[libraries]
+...
+androidx-lifecycle-compose = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleCompose" }
 ```
-
-Ezután kössük be a menüt, hogy megjelenjen a `Toolbar`-on.
-Ahhoz, hogy elérjük a létrehozott erőforrásokat kódból, view binding-ra lesz szükségünk. A modul szintű gradle file-ba fegyük fel a következő elemet. ***Ne felejtsünk*** el a `Sync` now gombra kattintani a módosítást követően.
-
-```groovy
-android {
+Ezután frissítsük a `build.gradle.kts`-t is:
+```kts
+dependencies{
     ...
-    buildFeatures {
-        viewBinding = true
+    implementation(libs.androidx.lifecycle.compose)
+}
+```
+
+A függőség felvétele után ne felejtsünk el rányomni a `Sync Now` gombra.
+
+
+### ViewModel létrehozás
+
+Hozzuk tehát a *viewModel*-ünket. Ez segítésget fog nyújtani a szín/stílus váltásban, és később a perzisztens adattárolásban.
+
+Hozzunk létre a `screen` *package*-be a `DrawingScreen` mellé egy `DrawingViewModel` *Kotlin Filet* majd írjuk bele a következő kódot:
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.screen
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class DrawingViewModel(application: Application): AndroidViewModel(application){
+
+    private val _drawingMode = MutableStateFlow(DrawingMode.LINE)
+    val drawingMode: StateFlow<DrawingMode> = _drawingMode
+
+
+    private val _drawElements = MutableStateFlow<List<Any>>(emptyList())
+    val drawElements: StateFlow<List<Any>> = _drawElements
+
+
+    fun setDrawingMode(mode: DrawingMode){
+        viewModelScope.launch {
+            _drawingMode.value = mode
+        }
+    }
+
+    fun addDrawElement(element: Any) {
+        viewModelScope.launch {
+            _drawElements.value += element
+        }
     }
 }
-```
-Ezután hozzunk létre egy binding adattagot a `DrawingActivity`-n belül `toolbarBinding` néven és inicializáljuk az `onCreate` függvényben.
 
-```kotlin
-private lateinit var binding: ActivityDrawingBinding
-
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityDrawingBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+enum class DrawingMode{
+    LINE,
+    POINT
 }
 ```
 
-Már csak annyi van hátra, hogy a `DrawingActivity`-ben felüldefiniáljuk  az _Activity_ `onCreateOptionsMenu()` és `onOptionsItemSelected()` függvényét az alábbi módon:
+
+Az viewModel-hez szükségünk van még egy osztályra a `DrawingMode`-ra. Ezzel tudjuk majd állítani a rajz stílust.
+
+!!!warning "Kód értelmezése"
+    A laborvezető segítségével értelmezzük a viewModel kódját!
+
+Most, hogy megvan a *viewModel*-ünk, már csak a `BottomBar`-t kell módosítani, hogy be tudjuk állítani az állapotot.
+
+
+### Stílusválasztó
+
+Módosítsuk a `BottomBar`-t, úgy, hogy ha a Stílus választó gombra kattintunk, akkor megjelenjen egy ablak, amin ki lehet választani a rajzmódot. Ezt a következő képpen tehetjük meg:
 
 ```kotlin
-override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    val toolbarMenu: Menu = binding.toolbar.menu
-    menuInflater.inflate(R.menu.menu_toolbar, toolbarMenu)
-    for (i in 0 until toolbarMenu.size()) {
-        val menuItem: MenuItem = toolbarMenu.getItem(i)
-        menuItem.setOnMenuItemClickListener { item -> onOptionsItemSelected(item) }
-        if (menuItem.hasSubMenu()) {
-            val subMenu: SubMenu = menuItem.subMenu!!
-            for (j in 0 until subMenu.size()) {
-                subMenu.getItem(j)
-                    .setOnMenuItemClickListener { item -> onOptionsItemSelected(item) }
+@Composable
+fun BottomBar(
+    viewModel: DrawingViewModel = viewModel()
+){
+    var showStyle by remember { mutableStateOf(false) }
+    val drawingMode by viewModel.drawingMode.collectAsState()
+
+    BottomAppBar(
+        ...
+        actions = {
+            Row (
+                ...
+            ){
+                IconButton(
+                    onClick = { showStyle = !showStyle },
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Icon(
+                        painterResource(id = R.drawable.ic_style),
+                        contentDescription = stringResource(id = R.string.style)
+                    )
+                    DropdownMenu(
+                        expanded = showStyle,
+                        onDismissRequest = { showStyle = false}) {
+                        DropdownMenuItem(
+                            text = { Text(
+                                stringResource(id = R.string.point),
+                                color = if (drawingMode == DrawingMode.POINT) Color.Magenta else Color.Black
+                            ) },
+                            onClick = {
+                                viewModel.setDrawingMode(DrawingMode.POINT)
+                                showStyle = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text(
+                                stringResource(id = R.string.line),
+                                color = if (drawingMode == DrawingMode.LINE) Color.Magenta else Color.Black)
+                            },
+                            onClick = {
+                                viewModel.setDrawingMode(DrawingMode.LINE)
+                                showStyle = false
+                            }
+                        )
+                    }
+                }
+                ...
             }
-        }
-    }
-    return super.onCreateOptionsMenu(menu)
-}
-```
-```kotlin
-override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-        R.id.menu_style_line -> {
-            item.isChecked = true
-            true
-        }
-        R.id.menu_style_point -> {
-            item.isChecked = true
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
-}
-```
-
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **elkészült menü kinyitva** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
-
-## A `DrawingView` osztály implementálása (1 pont)
-
-### A modellek létrehozása
-
-A rajzprogramunk, ahogy az már az előző feladatban is kiderült, kétféle rajzolási stílust fog támogatni. Nevezetesen a pont- és vonalrajzolást. Ahhoz, hogy a rajzolt alakzatokat el tudjuk tárolni szükségünk lesz két új típusra, modellre, amihez hozzunk létre egy új _package_-et a `hu.bme.aut.android.simpledrawer`-en belül `model` néven.
-
-Ezen belül először hozzunk létre egy `Point` osztályt, ami értelemszerűen a pontokat fogja reprezentálni. Kétparaméteres konstruktort fogunk  létrehozni, amihez alapértékeket rendelünk.
-
-```kotlin
-data class Point(
-    var x: Float = 0F,
-    var y: Float = 0F
-)
-```
-
-Miután ezzel megvagyunk, hozzunk létre egy `Line` osztályt. Mivel egy vonalat a két végpontjának megadásával ki tudunk 
-rajzoltatni, így elegendő két `Point`-ot tartalmaznia az osztálynak.
-
-```kotlin
-data class Line(
-    var start: Point,
-    var end: Point
-)
-```
-
-### A rajzolási stílus beállítása
-
-Most, hogy megvannak a modelljeink el lehet kezdeni magának a rajzolás funkciójának fejlesztését. Ehhez a `DrawingView` osztályt fogjuk ténylegesen is elkészíteni. Először vegyünk fel az osztályon belül egy `companion object`-et, amiben a rajzolási stílus konstansait fogjuk meghatározni. Ehhez kapcsolódóan vegyünk fel egy új `field`-et az osztályunkba, amiben eltároljuk, hogy jelenleg milyen stílus van kiválasztva. 
-
-```kotlin
-companion object {
-        const val DRAWING_STYLE_LINE = 1
-        const val DRAWING_STYLE_POINT = 2
-}
-
-var currentDrawingStyle = DRAWING_STYLE_LINE
-```
-
-Ha ezek megvannak, akkor egészítsük ki a `DrawingActivity`-ben a menükezelést, úgy, hogy a megfelelő függvények hívódjanak meg. Az `onOptionsItemSelected()` függvény megfelelő `case` ágában meg kell hívnunk a `canvas`-ra a `setDrawingStyle()` függvényt a megfelelő paraméterrel.
-
-```kotlin
-override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-        R.id.menu_style_line -> {
-            binding.canvas.currentDrawingStyle = DrawingView.DRAWING_STYLE_LINE
-            item.isChecked = true
-            true
-        }
-        R.id.menu_style_point -> {
-            binding.canvas.currentDrawingStyle = DrawingView.DRAWING_STYLE_POINT
-            item.isChecked = true
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
-}
-```
-### Inicializálások
-
-A rajzolási funkció megvalósításához fel kell vennünk néhány további `field`-et a `DrawingView` osztályban, amiket a konstruktorban inicializálnunk kell. A paint objektumhoz hozzáadjuk a `lateinit` kulcsszót, hogy elég legyen az `init` blokkban inicializálnunk. A `Point` osztály import-ja során használjuk a korábban definiált osztályunkat.
-
-```kotlin
-private lateinit var paint: Paint
-
-private var startPoint: Point? = null
-
-private var endPoint: Point? = null
-
-var lines: MutableList<Line> = mutableListOf()
-var points: MutableList<Point> = mutableListOf()
-
-init {
-    initPaint()
-}
-
-private fun initPaint() {
-    paint = Paint()
-    paint.color = Color.GREEN
-    paint.style = Paint.Style.STROKE
-    paint.strokeWidth = 5F
-}
-```
-
-### Gesztusok kezelése
-
-Ahhoz, hogy vonalat vagy pontot tudjunk rajzolni a `View`-nkra, kezelnünk kell a felhasználótól kapott gesztusokat, mint például amikor hozzáér a kijelzőhöz, elhúzza rajta vagy felemeli róla az ujját. Szerencsére ezeket a gesztusokat nem szükséges manuálisan felismernünk és lekezelnünk, a `View` ősosztály `onTouchEvent()` függvényének felüldefiniálásával egyszerűen megolható a feladat.
-
-```kotlin
-@SuppressLint("ClickableViewAccessibility")
-override fun onTouchEvent(event: MotionEvent): Boolean {
-    endPoint = Point(event.x, event.y)
-    when (event.action) {
-        MotionEvent.ACTION_DOWN -> startPoint = Point(event.x, event.y)
-        MotionEvent.ACTION_MOVE -> {
-        }
-        MotionEvent.ACTION_UP -> {
-            when (currentDrawingStyle) {
-                DRAWING_STYLE_POINT -> addPointToTheList(endPoint!!)
-                DRAWING_STYLE_LINE -> addLineToTheList(startPoint!!, endPoint!!)
-            }
-            startPoint = null
-            endPoint = null
-        }
-        else -> return false
-    }
-    invalidate()
-    return true
-}
-
-private fun addPointToTheList(startPoint: Point) {
-    points.add(startPoint)
-}
-
-private fun addLineToTheList(startPoint: Point, endPoint: Point) {
-    lines.add(Line(startPoint, endPoint))
-}
-```
-
-Ahogy a fenti kódrészletből is látszik minden gesztusnál elmentjük az adott `TouchEvent` pontját, mint a rajzolás végpontját, illetve ha `MotionEvent.ACTION_DOWN` történt, tehát a felhasználó hozzáért a `View`-hoz, elmentjük ezt kezdőpontként is. Amíg a felhasználó mozgatja az ujját a `View`-n (`MotionEvent.ACTION_MOVE`), addig nem csinálunk semmit, de amint felemeli (`MotionEvent.ACTION_UP`), elmentjük az adott elemet a korábban már definiált listákba. Ezen kívül minden egyes alkalommal meghívjuk az `invalidate()` függvényt, ami kikényszeríti a `View` újrarajzolását.
-
-### A rajzolás
-
-A rajzolás megvalósításához a `View` ősosztály `onDraw()` metódusát kell felüldefiniálnunk. Egyrészt ki kell rajzolnunk a már meglévő objektumokat (amiket a `MotionEvent.ACTION_UP` eseménynél beleraktunk a listába), valamint ki kell rajzolnunk az aktuális kezdőpont (a `MotionEvent.ACTION_DOWN` eseménytől) és a felhasználó ujja közötti vonalat.
-
-```kotlin
-override fun onDraw(canvas: Canvas) {
-    super.onDraw(canvas)
-    for (point in points) {
-        drawPoint(canvas, point)
-    }
-    for (line in lines) {
-        drawLine(canvas, line.start, line.end)
-    }
-    when (currentDrawingStyle) {
-        DRAWING_STYLE_POINT -> drawPoint(canvas, endPoint)
-        DRAWING_STYLE_LINE -> drawLine(canvas, startPoint, endPoint)
-    }
-}
-
-private fun drawPoint(canvas: Canvas, point: Point?) {
-    if (point == null) {
-        return
-    }
-    canvas.drawPoint(point.x, point.y, paint)
-}
-
-private fun drawLine(canvas: Canvas, startPoint: Point?, endPoint: Point?) {
-    if (startPoint == null || endPoint == null) {
-        return
-    }
-    canvas.drawLine(
-        startPoint.x,
-        startPoint.y,
-        endPoint.x,
-        endPoint.y,
-        paint
+        },
+        ...
     )
 }
 ```
 
+!!!warning "viewModel"
+    Sokszor az Android Studio nem tudja megtalálni a `viewModel()`-hez szükséges importot. Ilyenkor kézileg írjuk az importokhoz az alábbi importot:
+    ```kotlin
+    import androidx.lifecycle.viewmodel.compose.viewModel
+    ```
+
+Ezután módosítsuk a `DrawingScreen`-en a `BottomBar` függvény hívást, és vegyük hozzá a viewModel paramétert.
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.screen
+
+import android.app.Application
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
+import hu.bme.aut.android.simpledrawer.ui.view.BottomBar
+import hu.bme.aut.android.simpledrawer.ui.view.TopBar
+
+@Composable
+fun DrawingScreen() {
+    val viewModel: DrawingViewModel = viewModel(
+        factory = ViewModelProvider.AndroidViewModelFactory(
+            LocalContext.current.applicationContext as Application
+        )
+    )
+    Scaffold(
+        topBar = {
+            TopBar()
+        },
+        bottomBar = {
+            BottomBar(viewModel = viewModel)
+        }
+    ) { innerPadding ->
+        //TODO replace with canvas
+        Spacer(
+            modifier = Modifier
+                .background(Color.Black)
+                .padding(innerPadding)
+                .fillMaxSize()
+        )
+    }
+}
+
+@Composable
+@Preview
+fun PreviewDrawingScreen() {
+    DrawingScreen()
+}
+```
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **elkészült kirajzolás** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült Stílusválasztó kinyitva** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f2.png néven töltsd föl!
 
-## Perzisztencia megvalósítása _SQLite_ adatbázis segítségével (1 pont)
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy _SQLite_ adatbázisban. 
 
-Hozzunk létre egy új _package_-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk az `sqlite` nevet.
+## A canvas megvalósítása (1 pont)
+
+A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t `Line` és `Point` néven. Hozzunk létre egy `model` *package*-et a fő *package*-ünkben, majd implementáljuk a két osztályt:
+
+`Point.kt`:
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.model
+
+import androidx.compose.ui.graphics.Color
+
+data class Point(
+    var x: Float = 0F,
+    var y: Float = 0F,
+    var color: Color = Color.Yellow
+)
+```
+
+`Line.kt`:
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.model
+
+import androidx.compose.ui.graphics.Color
+
+data class Line(
+    var start: Point,
+    var end: Point,
+    var color: Color = Color.Yellow
+)
+```
+
+Ilyen formában fogjuk tárolni az adatunkat a listában. Igaz, hogy a `Line` data class még kétszer megkapja a színt, de ez csak az egyszerűség kedvéért lesz így, ezzel a paraméterrel nem fogunk foglalkozni.
+
+Ezután a `view` *package*-en belül hozzunk létre egy `DrawingCanvas` *Kotolin File-t*. Ebben a Composable osztályban a beépített `Canvas` *Composable* segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy `Modifier.pointerInteropFilter` paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.
+
+```kotlin
+package hu.bme.aut.android.simpledrawer.ui.view
+
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInteropFilter
+import hu.bme.aut.android.simpledrawer.ui.screen.DrawingMode
+import hu.bme.aut.android.simpledrawer.ui.screen.DrawingViewModel
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun DrawingCanvas(
+    modifier: Modifier = Modifier,
+    currentColor: Color = Color.Red,
+    drawingMode: DrawingMode,
+    viewModel: DrawingViewModel,
+    drawElements: List<Any>
+) {
+    var startPoint by remember { mutableStateOf<Offset?>(null) }
+    var endPoint by remember { mutableStateOf<Offset?>(null) }
+    var tempPoint by remember { mutableStateOf<Offset?>(null) }
+
+    Canvas(
+        modifier = modifier
+            .background(Color.Black)
+            .pointerInteropFilter { event ->
+                when (event.action) {
+                    /*TODO*/
+                    //ACTION_DOWN
+
+                    //ACTION_MOVE
+
+                    //ACTION_UP
+                }
+                true
+            }
+    ) {
+
+        //TODO drawElements
+        
+    }
+}
+```
+
+Az `event.action`-ön belül kezelni fogjuk a `MotionEvent.ACTION_DOWN`, `MotionEvent.ACTION_MOVE`, `MotionEvent.ACTION_UP` eventeket, valamint a `Canvas`-re rajzolást is.
+
+`ACTION_DOWN`:
+
+```kotlin
+MotionEvent.ACTION_DOWN -> {
+    startPoint = Offset(event.x, event.y)
+    tempPoint = startPoint
+}
+```
+Ez az esemény akkor következik be, amikor az ujjunkat a képernyőre ráhelyezzük. Ilyenkor elmentjük ezt a paramétert, egy `startPoint` váltózóba.
+
+`ACTION_MOVE`:
+
+```kotlin
+MotionEvent.ACTION_MOVE -> {
+    tempPoint = Offset(event.x, event.y)
+    if (drawingMode == DrawingMode.LINE) {
+        endPoint = tempPoint
+    }
+}
+```
+Miután lehelyezük az ujjunkat, tudjuk mozgatni is. Ilyenkor következik be ez az esemény. Itt két részre bontódik a folyamat, ugyanis, hogy ha pont-ot rajzolunk és mozgatjuk az ujjunkat, akkor a pontot az utolsó pozícióra szeretnénk helyezni, így a `tempPoint`-ba írjuk bele a pozíciót. Hogy ha vonalat rajzolunk, akkor az `endPoint`-ba kell beleírnunk a pozíciót.
+
+`ACTION_UP`:
+
+```kotlin
+MotionEvent.ACTION_UP -> {
+    if (drawingMode == DrawingMode.POINT) {
+        tempPoint?.let {
+            viewModel.addDrawElement(Point(it.x, it.y, currentColor))
+        }
+    } else if (drawingMode == DrawingMode.LINE) {
+        endPoint?.let {
+            startPoint?.let { start ->
+                viewModel.addDrawElement(
+                    Line(
+                        Point(start.x, start.y, currentColor),
+                        Point(it.x, it.y, currentColor),
+                        currentColor
+                    )
+                )
+            }
+        }
+
+    }
+    startPoint = null
+    endPoint = null
+    tempPoint = null
+}
+```
+
+Ennél az eseménynél már azt kezeljük mikor a felhasználó felemelte az újját a képernyőről. Itt is két lehetőségre bomlik az algoritmus, ugyanis, hogy ha pontról van szó, akkor csak a `tempPoint` értékét kell rögzíteni. Azonban, ha már vonalról, akkor az `endPoint` illetve a `startPoint` értékeit kell rögzíteni vonalként. **Mindkét eseménynél szükséges a null ellenőrzés**!
+
+
+Miután az események megvannak, már csak a kirajzolást kell megoldani. Ezt úgy tehetjük meg, hogy a drawElements-be eltárolt adatokat egyesével kirajzoljuk típusuktól függően:
+
+```kotlin
+Canvas (..){
+    drawElements.forEach { element ->
+        when (element) {
+            is Point -> drawCircle(color = element.color, center = Offset(element.x, element.y), radius = 5f)
+            is Line -> drawLine(color = element.color, start = Offset(element.start.x, element.start.y), end = Offset(element.end.x, element.end.y), strokeWidth = 5f)
+        }
+    }
+    ...
+}
+```
+Ezzel kész is van a `DrawingCanvas`, azonban így még nem látjuk a rajzot, csak ha az ujjunkat felemeltük a kijelzőről. Ezt a következő képpen lehet javítani:
+
+```kotlin
+Canvas (..){
+    ...
+    tempPoint?.let {
+        if (drawingMode == DrawingMode.POINT) {
+            drawCircle(color = currentColor, center = it, radius = 5f)
+        } else if (drawingMode == DrawingMode.LINE && startPoint != null) {
+            drawLine(color = currentColor, start = startPoint!!, end = it, strokeWidth = 5f)
+        }
+    }
+}
+```
+Ebben az esetben kirajzoljuk azt az elemet aminek a kezdőpontja az a pont ahol lehelyeztük az ujjunkat, a végpontja pedig az ahol az ujjunk van. Ha ezt mozgatjuk akkor valós időben frissülni fog, így láthatjuk előre a végeredményt.
+
+Ezután módosítsuk a `DrawingScreen`-t és cseréljük le a `Spacer`-t az imént elkészített `DrawingCanvas`-re.
+
+```kotlin
+@Composable
+fun DrawingScreen() {
+    val viewModel: DrawingViewModel = viewModel(
+        factory = ViewModelProvider.AndroidViewModelFactory(
+            LocalContext.current.applicationContext as Application
+        )
+    )
+    val drawingMode by viewModel.drawingMode.collectAsState()
+    val drawElements by viewModel.drawElements.collectAsState()
+    Scaffold(
+        ...
+    ) { innerPadding ->
+        DrawingCanvas(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            drawingMode = drawingMode,
+            viewModel = viewModel,
+            drawElements = drawElements
+        )
+    }
+}
+```
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült DrawingScreen** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, **a DrawingCanvas egy kódrészlete**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f3.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+
+## Perzisztencia megvalósítása *SQLite* adatbázis segítségével (1 pont)
+
+Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy *SQLite* adatbázisban.
+
+Hozzunk létre egy új package-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk az `sqlite` nevet.
 
 ### Táblák definiálása
 
-Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkiptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új _singleton_ osztályt az `object` kulcsszóval az `sqlite` _package_-en belül `DbConstants` néven. 
+Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkiptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új singleton osztályt az `object` kulcsszóval az `sqlite` package-en belül `DbConstants` néven.
 
 Ezen belül először is konstansként felvesszük az adatbázis nevét és verzióját is. Ha az adatbázisunk sémáján szeretnénk változtatni, akkor ez utóbbit kell inkrementálnunk, így elkerülhetjük az inkompatibilitás miatti nem kívánatos hibákat.
 
 ```kotlin
-object DbConstants {
+package hu.bme.aut.android.simpledrawer.sqlite
+
+object DbConstants{
 
     const val DATABASE_NAME = "simpledrawer.db"
     const val DATABASE_VERSION = 1
+
+    //Points
+    
+    //Lines
 }
 ```
-
-Ezek után a `DbConstants` nevű osztályba hozzuk létre a `Point` osztályhoz a konstansokat. Az osztályokon belül létrehozunk egy `enum`-ot is, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását szolgáló _SQL utasítást_ valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla létrehozásakor, illetve upgrade-elésekor kell meghívni:
+Ezek után a `DbConstants` nevű osztályba hozzuk létre a `Point` osztályhoz a konstansokat. Az osztályokon belül létrehozunk egy `enum`-ot is, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását szolgáló SQL utasítást valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla létrehozásakor, illetve upgrade-elésekor kell meghívni:
 
 ```kotlin
-object DbConstants {
+object Points {
+    const val DATABASE_TABLE = "points"
 
-    const val DATABASE_NAME = "simpledrawer.db"
-    const val DATABASE_VERSION = 1
+    enum class Columns {
+        ID, COORD_X, COORD_Y
+    }
 
-    object Points {
-        const val DATABASE_TABLE = "points"
+    private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
+        ${Columns.ID.name} integer primary key autoincrement,
+        ${Columns.COORD_X.name} real not null,
+        ${Columns.COORD_Y.name} real not null
+        );"""
 
-        enum class Columns {
-            ID, COORD_X, COORD_Y
-        }
+    private const val DATABASE_DROP = "drop table if exists $DATABASE_TABLE;"
 
-        private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
-            ${Columns.ID.name} integer primary key autoincrement,
-            ${Columns.COORD_X.name} real not null,
-            ${Columns.COORD_Y} real not null
-            );"""
+    fun onCreate(database: SQLiteDatabase) {
+        database.execSQL(DATABASE_CREATE)
+    }
 
-        private const val DATABASE_DROP = "drop table if exists $DATABASE_TABLE;"
-
-        fun onCreate(database: SQLiteDatabase) {
-            database.execSQL(DATABASE_CREATE)
-        }
-
-        fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-            Log.w(
-                Points::class.java.name,
-                "Upgrading from version $oldVersion to $newVersion"
-            )
-            database.execSQL(DATABASE_DROP)
-            onCreate(database)
-        }
+    fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        database.execSQL(DATABASE_DROP)
+        onCreate(database)
     }
 }
 ```
@@ -460,14 +765,13 @@ object Lines {
         ID, START_X, START_Y, END_X, END_Y
     }
 
-    private val DATABASE_CREATE ="""create table if not exists $DATABASE_TABLE (
-    ${Columns.ID.name} integer primary key autoincrement,
-    ${Columns.START_X} real not null,
-    ${Columns.START_Y} real not null,
-    ${Columns.END_X} real not null,
-    ${Columns.END_Y} real not null
-
-    );"""
+    private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
+        ${Columns.ID.name} integer primary key autoincrement,
+        ${Columns.START_X.name} real not null,
+        ${Columns.START_Y.name} real not null,
+        ${Columns.END_X.name} real not null,
+        ${Columns.END_Y.name} real not null
+        );"""
 
     private const val DATABASE_DROP = "drop table if exists $DATABASE_TABLE;"
 
@@ -476,10 +780,6 @@ object Lines {
     }
 
     fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        Log.w(
-            Lines::class.java.name,
-            "Upgrading from version $oldVersion to $newVersion"
-        )
         database.execSQL(DATABASE_DROP)
         onCreate(database)
     }
@@ -488,14 +788,17 @@ object Lines {
 
 Érdemes megfigyelni továbbá azt is, hogy az osztályokat nem a class kulcsszóval deklaráltuk. Helyette az `object`-et használjuk, amivel a Kotlin nyelv azt biztosítja számunkra, hogy a `DbConstants` és a benne lévő `Points` és `Lines` osztály is singletonként viselkednek, azaz az alkalmazás futtatásakor létrejön belőlük egy példány, további példányokat pedig nem lehet létrehozni belőlük.
 
-
-### A segédosztályok létrehozása
-
-Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a `DbHelper` osztály, ami az `SQLiteOpenHelper` osztályból származik. Vegyük fel ezt is az `sqlite` _package_-be.
-
+### A segédosztály létrehozása
+Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a `DbHelper` osztály, ami az `SQLiteOpenHelper` osztályból származik. Vegyük fel ezt is az `sqlite` package-be.
 
 ```kotlin
-class DbHelper(context: Context) :
+package hu.bme.aut.android.simpledrawer.sqlite
+
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+
+class DbHelper(context: Context):
     SQLiteOpenHelper(context, DbConstants.DATABASE_NAME, null, DbConstants.DATABASE_VERSION) {
 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
@@ -514,17 +817,24 @@ class DbHelper(context: Context) :
 }
 ```
 
-Ezen kívül szükségünk van még egy olyan segédosztályra is, ami ezt az egészet összefogja, és amivel egyszerűen tudjuk kezelni az adatbázisunkat. Ez lesz a `PersistentDataHelper` továbbra is az `sqlite` _package_-ben. Ebben olyan függényeket fogunk megvalósítani, mint pl. az `open()` és a `close()`, amikkel az adatbáziskapcsolatot nyithatjuk meg, illetve zárhatjuk le. Ezen kívül ebben az osztályban valósítjuk meg azokat a függvényeket is, amik az adatok adatbázisba való kiírásáért, illetve az onnan való kiolvasásáért felelősek. Figyeljünk rá, hogy a saját Point osztályunkat válasszuk az _import_ során.
+Ezen kívül szükségünk van még egy olyan segédosztályra is, ami ezt az egészet összefogja, és amivel egyszerűen tudjuk kezelni az adatbázisunkat. Ez lesz a `PersistentDataHelper` továbbra is az `sqlite` package-ben. Ebben olyan függényeket fogunk megvalósítani, mint pl. az `open()` és a `close()`, amikkel az adatbáziskapcsolatot nyithatjuk meg, illetve zárhatjuk le. Ezen kívül ebben az osztályban valósítjuk meg azokat a függvényeket is, amik az adatok adatbázisba való kiírásáért, illetve az onnan való kiolvasásáért felelősek. Figyeljünk rá, hogy a saját Point osztályunkat válasszuk az import során.
 
 ```kotlin
+package hu.bme.aut.android.simpledrawer.sqlite
+
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
+
 class PersistentDataHelper(context: Context) {
     private var database: SQLiteDatabase? = null
     private val dbHelper: DbHelper = DbHelper(context)
 
+
     private val pointColumns = arrayOf(
         DbConstants.Points.Columns.ID.name,
         DbConstants.Points.Columns.COORD_X.name,
-        DbConstants.Points.Columns.COORD_Y.name
+        DbConstants.Points.Columns.COORD_Y.name,
     )
 
     private val lineColumns = arrayOf(
@@ -532,9 +842,9 @@ class PersistentDataHelper(context: Context) {
         DbConstants.Lines.Columns.START_X.name,
         DbConstants.Lines.Columns.START_Y.name,
         DbConstants.Lines.Columns.END_X.name,
-        DbConstants.Lines.Columns.END_Y.name
-
+        DbConstants.Lines.Columns.END_Y.name,
     )
+
 
     @Throws(SQLiteException::class)
     fun open() {
@@ -545,171 +855,258 @@ class PersistentDataHelper(context: Context) {
         dbHelper.close()
     }
 
-    fun persistPoints(points: List<Point>) {
-        clearPoints()
-        for (point in points) {
-            val values = ContentValues()
-            values.put(DbConstants.Points.Columns.COORD_X.name, point.x)
-            values.put(DbConstants.Points.Columns.COORD_Y.name, point.y)
-            database!!.insert(DbConstants.Points.DATABASE_TABLE, null, values)
-        }
-    }
+    //PersistPoints
 
-    fun restorePoints(): MutableList<Point> {
-        val points: MutableList<Point> = ArrayList()
-        val cursor: Cursor =
-            database!!.query(DbConstants.Points.DATABASE_TABLE, pointColumns, null, null, null, null, null)
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val point: Point = cursorToPoint(cursor)
-            points.add(point)
-            cursor.moveToNext()
-        }
-        cursor.close()
-        return points
-    }
 
-    fun clearPoints() {
-        database!!.delete(DbConstants.Points.DATABASE_TABLE, null, null)
-    }
+    //RestorePoints
 
-    private fun cursorToPoint(cursor: Cursor): Point {
-        val point = Point()
-        point.x =cursor.getFloat(DbConstants.Points.Columns.COORD_X.ordinal)
-        point.y =cursor.getFloat(DbConstants.Points.Columns.COORD_Y.ordinal)
-        return point
-    }
 
-    fun persistLines(lines: List<Line>) {
-        clearLines()
-        for (line in lines) {
-            val values = ContentValues()
-            values.put(DbConstants.Lines.Columns.START_X.name, line.start.x)
-            values.put(DbConstants.Lines.Columns.START_Y.name, line.start.y)
-            values.put(DbConstants.Lines.Columns.END_X.name, line.end.x)
-            values.put(DbConstants.Lines.Columns.END_Y.name, line.end.y)
-            database!!.insert(DbConstants.Lines.DATABASE_TABLE, null, values)
-        }
-    }
+    //ClearPoints
 
-    fun restoreLines(): MutableList<Line> {
-        val lines: MutableList<Line> = ArrayList()
-        val cursor: Cursor =
-            database!!.query(DbConstants.Lines.DATABASE_TABLE, lineColumns, null, null, null, null, null)
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val line: Line = cursorToLine(cursor)
-            lines.add(line)
-            cursor.moveToNext()
-        }
-        cursor.close()
-        return lines
-    }
 
-    fun clearLines() {
-        database!!.delete(DbConstants.Lines.DATABASE_TABLE, null, null)
-    }
+    //CursorToPoint
 
-    private fun cursorToLine(cursor: Cursor): Line {
-        val startPoint = Point(
+
+    //PersistLines
+
+
+    //RestoreLines
+
+
+    //ClearLines
+
+
+    //CursorToLine
+
+}
+```
+
+Egészítsük ki a `PersistentDataHelper` osztályt az alábbiak szerint:
+
+1.   PersistPoints: Itt kell megvalósítanunk a pontok eltárolását. Elsősorban ürítjük az adatbázist, utána pedig a kapott Lista paraméteren végigmegyünk és egyesével elmentjük a pontokat.
+1.   RestorePoints: Itt kell megvalósítanunk a pontok betöltését. Ehhez egy ideiglenes MutableList-et használunk, amelyhez hozzáadjuk a kiolvasott pontokat.
+1.   ClearPoints: Ezzel a függvénnyel érjük el hogy az adatbázisból töröljük a Points táblát.
+1.   CursorToPoint: Ezzel a függvénnyel olvasunk ki egyetlen pontnak az adatát az adatbázisból.
+1.   PersistLines: Itt kell megvalósítanunk a vonalak eltárolását. Elsősorban ürítjük az adatbázist, utána pedig a kapott Lista paraméteren végigmegyünk és egyesével elmentjük a vonalakat.
+1.   RestoreLines: Itt kell megvalósítanunk a vonalak betöltését. Ehhez egy ideiglenes MutableList-et használunk, amelyhez hozzáadjuk a kiolvasott vonalakat.
+1.   ClearLines: Ezzel a függvénnyel érjük el hogy az adatbázisból töröljük a Lines táblát.
+1.   CursorToLine: Ezzel a függvénnyel olvasunk ki egyetlen vonalnak adatát az adatbázisból.
+
+**1. PersistPoints**
+```kotlin
+fun persistPoints(points: List<Point>) {
+    clearPoints()
+    for (point in points) {
+        val values = ContentValues()
+        values.put(DbConstants.Points.Columns.COORD_X.name, point.x)
+        values.put(DbConstants.Points.Columns.COORD_Y.name, point.y)
+        database!!.insert(DbConstants.Points.DATABASE_TABLE, null, values)
+    }
+}
+```
+**2. RestorePoints**
+```kotlin
+fun restorePoints(): MutableList<Point> {
+    val points: MutableList<Point> = ArrayList()
+    val cursor = database!!.query(
+        DbConstants.Points.DATABASE_TABLE,
+        pointColumns,
+        null,
+        null,
+        null,
+        null,
+        null
+    )
+    cursor.moveToFirst()
+    while (!cursor.isAfterLast) {
+        val point: Point = cursorToPoint(cursor)
+        points.add(point)
+        cursor.moveToNext()
+    }
+    cursor.close()
+    return points
+}
+```
+
+**3. ClearPoints**
+```kotlin
+fun clearPoints() {
+    database!!.delete(DbConstants.Points.DATABASE_TABLE, null, null)
+}
+```
+
+**4. CursorToPoints**
+```kotlin
+private fun cursorToPoint(cursor: Cursor): Point {
+    val point = Point(
+        cursor.getFloat(DbConstants.Points.Columns.COORD_X.ordinal),
+        cursor.getFloat(DbConstants.Points.Columns.COORD_Y.ordinal),
+        Color(Color.Red.toArgb())
+    )
+    return point
+}
+```
+
+**5. PersistLines**
+```kotlin
+fun persistLines(lines: List<Line>) {
+    clearLines()
+    for (line in lines) {
+        val values = ContentValues()
+        values.put(DbConstants.Lines.Columns.START_X.name, line.start.x)
+        values.put(DbConstants.Lines.Columns.START_Y.name, line.start.y)
+        values.put(DbConstants.Lines.Columns.END_X.name, line.end.x)
+        values.put(DbConstants.Lines.Columns.END_Y.name, line.end.y)
+        database!!.insert(DbConstants.Lines.DATABASE_TABLE, null, values)
+    }
+}
+```
+**6. RestoreLines**
+```kotlin
+fun restoreLines(): MutableList<Line> {
+    val lines: MutableList<Line> = ArrayList()
+    val cursor = database!!.query(
+        DbConstants.Lines.DATABASE_TABLE,
+        lineColumns,
+        null,
+        null,
+        null,
+        null,
+        null
+    )
+    cursor.moveToFirst()
+    while (!cursor.isAfterLast) {
+        val line: Line = cursorToLine(cursor)
+        lines.add(line)
+        cursor.moveToNext()
+    }
+    cursor.close()
+    return lines
+}
+```
+
+**7. ClearLines**
+```kotlin
+fun clearLines() {
+    database!!.delete(DbConstants.Lines.DATABASE_TABLE, null, null)
+}
+```
+
+**8. CursorToLine**
+```kotlin
+private fun cursorToLine(cursor: Cursor): Line {
+    val line = Line(
+        Point(
             cursor.getFloat(DbConstants.Lines.Columns.START_X.ordinal),
             cursor.getFloat(DbConstants.Lines.Columns.START_Y.ordinal)
-        )
-        val endPoint = Point(
+        ),
+        Point(
             cursor.getFloat(DbConstants.Lines.Columns.END_X.ordinal),
             cursor.getFloat(DbConstants.Lines.Columns.END_Y.ordinal)
-        )
-        return Line(startPoint, endPoint)
+        ),
+        Color(Color.Red.toArgb())
+    )
+    return line
+}
+```
+
+
+### ViewModel kiegészítése
+
+Ahhoz hogy a perzisztencia rendesen működjön ki kell egészítenünk a viewModel-t, úgy hogy minden egyes rajzolás után elmentse az adatbázisba az adatokat. Így az adataink akkor is megmaradnak, ha újraindítjuk az alkalmazást. Ahhoz hogy ezt lássuk is újra a rajzoló felületen, be is kell tölteni a rajzot. Ebben szerpet fog játszani az `init{}` blokk.
+
+```kotlin
+class DrawingViewModel(application: Application): AndroidViewModel(application){
+
+
+    //DrawingMode
+
+    //DrawElements
+
+
+    private val dataHelper = PersistentDataHelper(application)
+
+
+    init{
+        loadDrawElements()
     }
 
+
+    //setDrawingMode
+    
+    
+    fun addDrawElement(element: Any) {
+        viewModelScope.launch {
+            _drawElements.value += element
+            saveDrawElements()
+        }
+    }
+
+
+    private fun saveDrawElements() {
+        viewModelScope.launch {
+            dataHelper.open()
+            dataHelper.clearPoints()
+            dataHelper.clearLines()
+            val points = _drawElements.value.filterIsInstance<Point>()
+            val lines = _drawElements.value.filterIsInstance<Line>()
+            dataHelper.persistPoints(points)
+            dataHelper.persistLines(lines)
+            dataHelper.close()
+        }
+    }
+
+    private fun loadDrawElements() {
+        viewModelScope.launch {
+            dataHelper.open()
+            val points = dataHelper.restorePoints()
+            val lines = dataHelper.restoreLines()
+            _drawElements.value = points + lines
+            dataHelper.close()
+        }
+    }
 }
 ```
 
-### A `DrawingView` kiegészítése
+Láthatjuk, hogy az `init{}` blokkban meghívódik a `loadDrawElements()` aminek a segítségével, kiolvassuk a korábban definiált `restorePoints` és `restoreLines` függvényekkel az adatokat az adatbázisból, majd hozzáadjuk a Listánkhoz.
 
-Ahhoz, hogy a rajzolt objektumainkat el tudjuk menteni az adatbázisba, fel kell készíteni a `DrawingView` osztályunkat arra, hogy átadja, illetve meg lehessen adni neki kívülről is őket. Ehhez a következő függvényeket kell felvennünk:
-
-```kotlin
-fun restoreObjects(points: MutableList<Point>?, lines: MutableList<Line>?) {
-    points?.also { this.points = it }
-    lines?.also { this.lines = it }
-    invalidate()
-}
-```
-
-### A `DrawingActivity` kiegészítése
-
-A perzisztencia megvalósításához már csak egy feladatunk maradt hátra, mégpedig az, hogy bekössük a frissen létrehozott osztályainkat a `DrawingActivity`-nkbe. Ehhez először is példányosítanunk kell a `PersistentDataHelper` osztályunkat. Mivel az adatbázishozzáférés drága erőforrás, ezért ne felejtsük el az `Activity` `onResume()` függvényében megnyitni, az `onPause()` függvényében pedig lezárni a vele való kapcsolatot:
-
-```kotlin
-private lateinit var dataHelper: PersistentDataHelper
-
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityDrawingBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-
-    dataHelper = PersistentDataHelper(this)
-    dataHelper.open()
-    restorePersistedObjects()
-}
-
-override fun onResume() {
-    super.onResume()
-    dataHelper.open()
-}
-
-override fun onPause() {
-    dataHelper.close()
-    super.onPause()
-}
-
-private fun restorePersistedObjects() {
-    binding.canvas.restoreObjects(dataHelper.restorePoints(), dataHelper.restoreLines())
-}
-```
-
-Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen meg, hogy biztos kilép-e, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az alkalmazásból. Ehhez felül kell definiálnunk az `Activity` `onBackPressed()` függvényét. Az _AlertDialog_-nál válasszuk az _androidx.appcompat.app_-ba tartozó verziót.
-
-```kotlin
-override fun onBackPressed() {
-    AlertDialog.Builder(this)
-        .setMessage(R.string.are_you_sure_want_to_exit)
-        .setPositiveButton(R.string.ok) { _, _ -> onExit() }
-        .setNegativeButton(R.string.cancel, null)
-        .show()
-}
-
-private fun onExit() {
-    dataHelper.persistPoints(binding.canvas.points)
-    dataHelper.persistLines(binding.canvas.lines)
-    dataHelper.close()
-    finish()
-}
-```
-
+A mentés hasonló módon működik csak ezt a függvényt akkor hívjuk, hogyha rajzoltunk.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **kilépő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a perzisztens mentéshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült CanvasScreen** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl! 
 
-## Önálló feladat: A vászon törlése (1 pont)
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!
 
+## Önállo feladat: A vászon törlése (1 pont)
+
+A *BottomBar*-on vegyünk fel egy új vezérlőt, ami a törlésért felelős! Ennek megnyomása esetén egy dialógus ablak ugorjon fel, és figyelmeztessen minket, hogy a törlés nem visszavonható! Legyen egy pozitív és egy negatív gombja!
+
+A gomb iconja legyen a `R.drawable.ic_clear_canvas`!
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **törlés gomb** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlést elvégző kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik a **törlést megerősítő dialógus ablak** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlést elvégző kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f5.png néven töltsd föl!
 
-## Kiegészítő iMSc feladat (2 iMSc pont)
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+
+## iMSc feladat (2 iMSc pont)
 
 Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a rajzolás színét a 3 fő szín között (_RGB_).
 
 **Figyelem:** az adatbázisban is el kell menteni az adott objektum színét!
 
+!!!tip "Adatbázis"
+    Érdemes Wipe Data-t indítani, vagy verziót váltani az adatbázisnál, hogy ha változtatjuk a felépítését.
+
 
 !!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **rajzoló oldal a különböző színekkel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f6.png néven töltsd föl.
+	Készíts egy **képernyőképet**, amelyen látszik a **rajzoló oldal a különböző színekkel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f6.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 	
 	
 !!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **különböző színek mentését végző kódrészletet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f7.png néven töltsd föl. 
+	Készíts egy **képernyőképet**, amelyen látszik a **különböző színek mentését végző kódrészletet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f7.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.

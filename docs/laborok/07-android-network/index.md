@@ -1,4 +1,4 @@
-# Labor 07 - Weather Info alkalmazás készítése
+# Labor 07 - Retrofit - Időjárás alkalmazás
 
 ## Bevezető
 
@@ -1145,3 +1145,4 @@ Valósítsuk meg a városok törlését a *Remove* gomb megnyomásának hatásá
 	Készíts egy **képernyőképet**, amelyen látszik az emulátoron a **városok listája CSAK Budapesttel**, a **törlés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f5.png néven töltsd föl. 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+

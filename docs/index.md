@@ -1,6 +1,6 @@
 # Tárgy ismertető
 
-A tárgykövetelményeket lásd a [hivatalos tantárgyi adatlapon](https://portal.vik.bme.hu/kepzes/targyak/VIAUAC00/).
+A tárgykövetelményeket lásd a [hivatalos tantárgyi adatlapon](https://portal.vik.bme.hu/kepzes/targyak/VIAUAD02/).
 
 A laborok sorrendjét és a beadások határidejét Moodle-ben találod.
 
@@ -10,7 +10,7 @@ A laborok sorrendjét és a beadások határidejét Moodle-ben találod.
     A javítás menetéről és formájáról bővebben a ["Hozzájárulás az anyaghoz"](tudnivalok/github/contributing.md) dokumentumban olvashatsz bővebben.
 
 !!! quote "Felhasználási feltételek"
-    Az itt található oktatási segédanyagok a BMEVIAUAC00 tárgy hallgatóinak készültek. Az anyagok oly módú felhasználása, amely a tárgy oktatásához nem szorosan kapcsolódik, csak a szerző(k) és a forrás megjelölésével történhet.
+    Az itt található oktatási segédanyagok a BMEVIAUAD02 tárgy hallgatóinak készültek. Az anyagok oly módú felhasználása, amely a tárgy oktatásához nem szorosan kapcsolódik, csak a szerző(k) és a forrás megjelölésével történhet.
 
     Az anyagok a tárgy keretében oktatott kontextusban értelmezhetőek. Az anyagokért egyéb felhasználás esetén a szerző(k) felelősséget nem vállalnak.
 

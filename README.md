@@ -1,10 +1,10 @@
 # Mobil- és Webes szoftverek - Laborok
 
-![Build docs](https://github.com/bmeviauac01/laborok/workflows/Build%20docs/badge.svg?branch=master)
+![Build docs](https://github.com/VIAUAD02/laborok/workflows/Build%20docs/badge.svg?branch=master)
 
-[BMEVIAUAC00 - Mobil- és Webes Szoftverek](https://www.aut.bme.hu/Course/mobilesweb) tárgy laborfeladatai.
+[BMEVIAUAD02 - Mobil- és Webes Szoftverek](https://www.aut.bme.hu/Course/mobilesweb) tárgy laborfeladatai.
 
-A jegyzetek MkDocs segítségével készülnek és GitHub Pages-en kerülnek publikálásra: <https://viauac00.github.io/laborok/>
+A jegyzetek MkDocs segítségével készülnek és GitHub Pages-en kerülnek publikálásra: <https://VIAUAD02.github.io/laborok/>
 
 Az MKDocs használatához [a hovatalos dokumentáció](https://squidfunk.github.io/mkdocs-material/creating-your-site/) segítségedre lehet.
 
