@@ -2172,7 +2172,7 @@ A menüben található <em>Remove all</em> opcióval az összes lista elemet tö
 <span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
-<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">MemoryShoppingItemRepository</span>
+<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">IShoppingItemRepository</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -2497,9 +2497,7 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 
 <span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
 
-<span class="w">        </span><span class="c1">//lateinit var repository: MemoryShoppingItemRepository</span>
-
-<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">RoomShoppingListRepository</span>
+<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">IShoppingItemRepository</span>
 
 <span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">database</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingListDatabase</span>
 <span class="w">    </span><span class="p">}</span>
@@ -2568,8 +2566,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           </path>
         </svg>
       </span>
-      <span title="2024. október 6. 02:15:02">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-06T02:15:02+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-06</span>
+      <span title="2024. október 7. 01:46:10">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-07T01:46:10+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-07</span>
       </span>
     </span>
 
@@ -2586,10 +2584,10 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
       <span>Szerzők</span>
       <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
-        </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
-          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
+        </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
+          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
           <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
         </a><a href="https://github.com/sloweroons" target="_blank" rel="noopener noreferrer" class="md-author" title="@sloweroons">
