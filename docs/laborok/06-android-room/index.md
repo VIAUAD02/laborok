@@ -961,7 +961,7 @@ import hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemReposit
 class ShoppingListApplication : Application() {
 
     companion object {
-        lateinit var repository: MemoryShoppingItemRepository
+        lateinit var repository: IShoppingItemRepository
     }
 
     override fun onCreate() {
@@ -1353,9 +1353,7 @@ class ShoppingListApplication : Application() {
 
     companion object {
 
-        //lateinit var repository: MemoryShoppingItemRepository
-
-        lateinit var repository: RoomShoppingListRepository
+        lateinit var repository: IShoppingItemRepository
 
         private lateinit var database: ShoppingListDatabase
     }
