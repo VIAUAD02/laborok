@@ -38,7 +38,7 @@ A labor során az alábbi feladatokat a laborvezető segítségével, illetve a 
 
 1. A felhasználói felület létrehozása: 2 pont
 1. A *viewModel* és a *repository* kialakítása: 1 pont
-1. A erzisztens adattárolás megvalósítása: 1 pont
+1. A perzisztens adattárolás megvalósítása: 1 pont
 1. **Önálló feladat** (törlés megvalósítása): 1 pont
 
 
