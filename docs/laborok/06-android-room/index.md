@@ -741,7 +741,7 @@ fun ShoppingListScreen() {
             name = "Alma",
             description = "jonatán\n1 kg",
             estimatedPrice = 500,
-            category = ShoppingItem.Category.FOOD.name,
+            category = ShoppingItem.Category.FOOD,
             isBought = true
         ),
         ShoppingItem(
@@ -749,7 +749,7 @@ fun ShoppingListScreen() {
             name = "A gyűrűk ura",
             description = "A gyűrű szövetsége",
             estimatedPrice = 8000,
-            category = ShoppingItem.Category.BOOK.name,
+            category = ShoppingItem.Category.BOOK,
             isBought = false
         )
     )
