@@ -681,7 +681,7 @@ fun ProfileScreen(
             state = pagerState
         ) {
 
-            when (pagerState.currentPage) {
+            when (it) {
                 0 -> {
                     ProfileFirstPage(
                         name = profile.name,
@@ -710,7 +710,7 @@ fun PreviewProfileScreen() {
 }
 ```
 
-Itt először is létre kell hozunk egy `pagerState` nevű változót, amit át fogunk adni a `HorizontalPager`-nek. Ez tartalmazza, hogy hány oldal lesz az adott *Composable*-ön. Ezt követően szükség lesz egy profilra, amit már korábban definiáltunk egy `object`-ként. Végül a `HorizontalPager` segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két *Composable* függvényt 1-1 oldalként.
+Itt először is létre kell hozunk egy `pagerState` nevű változót, amit át fogunk adni a `HorizontalPager`-nek. Ez tartalmazza, hogy hány oldal lesz az adott *Composable*-ön. Ezt követően szükség lesz egy profilra, amit már korábban definiáltunk egy `object`-ként. Végül a `HorizontalPager` segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két *Composable* függvényt 1-1 oldalként. Az aktuális oldalt pedig az `it` segítségével választjuk ki.
 
 Végük kössük be a `ProfileScreen`-t a navigáciba:
 
