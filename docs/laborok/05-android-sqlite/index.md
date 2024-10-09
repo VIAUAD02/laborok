@@ -295,7 +295,7 @@ Most, hogy már létre van hozva a BottomBar, illetve a kezdőképernyő váza, 
 
 ### Szükséges függőség hozzáadása
 
-A *viewModel* használatához fel kell vennünk egy függőséget a `build.gradles.kts` fájlba. Ehhez nyissuk meg a `libs.versions.toml` fájlt a `gradle` *package*-ben, majd írjuk bele a következőt:
+A *viewModel* használatához fel kell vennünk egy függőséget a `build.gradle.kts` fájlba. Ehhez nyissuk meg a `libs.versions.toml` fájlt a `gradle` *package*-ben, majd írjuk bele a következőt:
 
 ```toml
 [versions]
@@ -502,7 +502,7 @@ A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezelés
 `Point.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.ui.model
+package hu.bme.aut.android.simpledrawer.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -516,7 +516,7 @@ data class Point(
 `Line.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.ui.model
+package hu.bme.aut.android.simpledrawer.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -529,7 +529,7 @@ data class Line(
 
 Ilyen formában fogjuk tárolni az adatunkat a listában. Igaz, hogy a `Line` data class még kétszer megkapja a színt, de ez csak az egyszerűség kedvéért lesz így, ezzel a paraméterrel nem fogunk foglalkozni.
 
-Ezután a `view` *package*-en belül hozzunk létre egy `DrawingCanvas` *Kotolin File-t*. Ebben a Composable osztályban a beépített `Canvas` *Composable* segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy `Modifier.pointerInteropFilter` paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.
+Ezután a `view` *package*-en belül hozzunk létre egy `DrawingCanvas` *Kotlin File-t*. Ebben a Composable osztályban a beépített `Canvas` *Composable* segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy `Modifier.pointerInteropFilter` paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.
 
 ```kotlin
 package hu.bme.aut.android.simpledrawer.ui.view
@@ -1073,7 +1073,7 @@ Láthatjuk, hogy az `init{}` blokkban meghívódik a `loadDrawElements()` aminek
 A mentés hasonló módon működik csak ezt a függvényt akkor hívjuk, hogyha rajzoltunk.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **elkészült CanvasScreen** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl! 
+	Készíts egy **képernyőképet**, amelyen látszik az **elkészült DrawingScreen** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
