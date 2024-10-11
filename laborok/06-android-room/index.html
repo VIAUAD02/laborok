@@ -1298,7 +1298,7 @@
 <h3 id="az-alkalmazas-specifikacioja">Az alkalmazás specifikációja<a class="headerlink" href="#az-alkalmazas-specifikacioja" title="Permanent link">&para;</a></h3>
 <p>Az alkalmazás egy <code>Activity</code>-ből áll, amin egy <em>Composable</em> osztály fog szerepelni, a <code>MainScreen</code>. Új elemet a jobb alsó sarokban található <code>FloatingActionButton</code> segítségével vehetünk fel. Erre kattintva egy dialógus jelenik meg, amin megadhatjuk a vásárolni kívánt áru nevét, leírását, becsült árát és kategóriáját.</p>
 <p>A dialóguson a <em>Save</em> gombra kattintva a dialógus eltűnik, a benne megadott adatokkal létrejön egy új elem a listában. Az egyes lista elemeken <code>CheckBox</code> segítségével jelezhetjük, hogy már megvásároltuk őket. A kuka ikonra kattintva törölhetjük az adott elemet.
-A menüben található <em>Remove all</em> opcióval az összes lista elemet törölhetjük.</p>
+A menüben található <em>Delete all</em> opcióval az összes lista elemet törölhetjük.</p>
 <p align="center">
 <img src="./assets/shopping_list.png" width="320">
 <img src="./assets/new_item.png" width="320">
@@ -2089,7 +2089,7 @@ A menüben található <em>Remove all</em> opcióval az összes lista elemet tö
 <p>Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon egy <em>screen composable</em>-ben tároljuk. Ezt a gyors kipróbálhatóság érdekében tettük, azonban most kialakítjuk a megfelelő architektúrát. Kezdetben még maradunk a memóriában tárolt listánál, azonban azok helyét architekturálisan megfelelőbben választjuk meg.</p>
 <h3 id="a-repository-letrehozasa">A repository létrehozása<a class="headerlink" href="#a-repository-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Az adataink tipikusan egy adatforrásból, egy <em>repository</em>-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy <em>interface</em>-t és egy konkrét megvalósítást is (ami még mindig memória alapú) a <code>hu.bme.aut.android.shoppinglist.data.repository</code> <em>package</em>-ben:</p>
-<p><code>IShoppongItemRepository.kt</code>:</p>
+<p><code>IShoppingItemRepository.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
@@ -2352,7 +2352,7 @@ A menüben található <em>Remove all</em> opcióval az összes lista elemet tö
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">devtools</span><span class="p">.</span><span class="na">ksp</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="p">...</span>
-<span class="n">dependencied</span><span class="w"> </span><span class="p">{</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ksp</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">compiler</span><span class="p">)</span>
 <span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">runtime</span><span class="p">)</span>
 <span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">ktx</span><span class="p">)</span>
@@ -2490,6 +2490,7 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Room</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingListRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.database.ShoppingListDatabase</span>
 
@@ -2541,8 +2542,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 </div>
 <h2 id="imsc-feladatok">IMSc feladatok<a class="headerlink" href="#imsc-feladatok" title="Permanent link">&para;</a></h2>
 <h3 id="megerosito-dialogus-1-pont">Megerősítő dialógus (1 pont)<a class="headerlink" href="#megerosito-dialogus-1-pont" title="Permanent link">&para;</a></h3>
-<p>Implementálj egy <em>Remove all</em> menüpontot és a hozzá tartozó funkciót!</p>
-<p>Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a <em>Remove all</em> menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (<em>OK</em> és <em>Cancel</em>). A pozitív gomb lenyomásakor törlődjenek csak az elemek.</p>
+<p>Implementálj egy <em>Delete all</em> menüpontot és a hozzá tartozó funkciót!</p>
+<p>Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a <em>Delete all</em> menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (<em>OK</em> és <em>Cancel</em>). A pozitív gomb lenyomásakor törlődjenek csak az elemek.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 iMSc pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>megerősítő dialógus</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba <strong>f6.png</strong> néven töltsd föl!</p>
@@ -2566,8 +2567,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           </path>
         </svg>
       </span>
-      <span title="2024. október 11. 22:35:55">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-11T22:35:55+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-11</span>
+      <span title="2024. október 11. 22:44:42">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-11T22:44:42+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-11</span>
       </span>
     </span>
 
@@ -2586,6 +2587,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
+        </a><a href="https://github.com/Zotyamester" target="_blank" rel="noopener noreferrer" class="md-author" title="@Zotyamester">
+          <img src="https://avatars.githubusercontent.com/u/40998048?v=4?size=72" alt="@Zotyamester">
         </a><a href="https://github.com/bohcstams" target="_blank" rel="noopener noreferrer" class="md-author" title="@bohcstams">
           <img src="https://avatars.githubusercontent.com/u/126723855?v=4?size=72" alt="@bohcstams">
         </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
