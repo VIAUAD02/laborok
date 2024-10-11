@@ -1623,7 +1623,7 @@
 <span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pagerState</span>
 <span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">pagerState</span><span class="p">.</span><span class="na">currentPage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="m">0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="n">ProfileFirstPage</span><span class="p">(</span>
 <span class="w">                        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
@@ -1651,7 +1651,7 @@
 <span class="w">    </span><span class="n">ProfileScreen</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Itt először is létre kell hozunk egy <code>pagerState</code> nevű változót, amit át fogunk adni a <code>HorizontalPager</code>-nek. Ez tartalmazza, hogy hány oldal lesz az adott <em>Composable</em>-ön. Ezt követően szükség lesz egy profilra, amit már korábban definiáltunk egy <code>object</code>-ként. Végül a <code>HorizontalPager</code> segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két <em>Composable</em> függvényt 1-1 oldalként.</p>
+<p>Itt először is létre kell hozunk egy <code>pagerState</code> nevű változót, amit át fogunk adni a <code>HorizontalPager</code>-nek. Ez tartalmazza, hogy hány oldal lesz az adott <em>Composable</em>-ön. Ezt követően szükség lesz egy profilra, amit már korábban definiáltunk egy <code>object</code>-ként. Végül a <code>HorizontalPager</code> segítségével létrehozzuk a lapozható oldalt, amin elhelyezzük a két <em>Composable</em> függvényt 1-1 oldalként. Az aktuális oldalt pedig az <code>it</code> segítségével választjuk ki.</p>
 <p>Végük kössük be a <code>ProfileScreen</code>-t a navigáciba:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.navigation</span>
 
@@ -2196,8 +2196,8 @@ Hozzunk létre a <code>holiday</code> <em>package</em>-ben egy új <em>Kotlin Fi
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 29. 12:36:34">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-29T12:36:34+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-29</span>
+      <span title="2024. szeptember 30. 17:44:37">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-30T17:44:37+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-30</span>
       </span>
     </span>
 
@@ -2212,7 +2212,9 @@ Hozzunk létre a <code>holiday</code> <em>package</em>-ben egy új <em>Kotlin Fi
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
+      <nav><a href="https://github.com/Porkl" target="_blank" rel="noopener noreferrer" class="md-author" title="@Porkl">
+          <img src="https://avatars.githubusercontent.com/u/144810724?v=4?size=72" alt="@Porkl">
+        </a><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
           <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
