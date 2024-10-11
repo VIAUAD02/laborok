@@ -1350,7 +1350,7 @@ Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevé
 <h2 id="a-stilusvalaszto-megvalositasa-1-pont">A stílusválasztó megvalósítása (1 pont)<a class="headerlink" href="#a-stilusvalaszto-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>Most, hogy már létre van hozva a BottomBar, illetve a kezdőképernyő váza, valósítsuk meg a stílus választást is. Ehhez módosítanunk kell a <code>BottomBar</code>-t, úgy, hogy ha a Stílus választó gombra kattintunk, akkor megjelenjen egy menü, amin ki lehet választani a rajzmódot. Ez a mód a rajzolás egy állapotaként valósítható meg. Ezeket az állapotokat pedig a korábbi laborokon látottak szerint egy külön <em>viewModel</em>-ben tároljuk. </p>
 <h3 id="szukseges-fuggoseg-hozzaadasa">Szükséges függőség hozzáadása<a class="headerlink" href="#szukseges-fuggoseg-hozzaadasa" title="Permanent link">&para;</a></h3>
-<p>A <em>viewModel</em> használatához fel kell vennünk egy függőséget a <code>build.gradles.kts</code> fájlba. Ehhez nyissuk meg a <code>libs.versions.toml</code> fájlt a <code>gradle</code> <em>package</em>-ben, majd írjuk bele a következőt:</p>
+<p>A <em>viewModel</em> használatához fel kell vennünk egy függőséget a <code>build.gradle.kts</code> fájlba. Ehhez nyissuk meg a <code>libs.versions.toml</code> fájlt a <code>gradle</code> <em>package</em>-ben, majd írjuk bele a következőt:</p>
 <p><div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
 <span class="n">lifecycleCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.8.6&quot;</span>
@@ -1531,7 +1531,7 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <h2 id="a-canvas-megvalositasa-1-pont">A canvas megvalósítása (1 pont)<a class="headerlink" href="#a-canvas-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t <code>Line</code> és <code>Point</code> néven. Hozzunk létre egy <code>model</code> <em>package</em>-et a fő <em>package</em>-ünkben, majd implementáljuk a két osztályt:</p>
 <p><code>Point.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -1542,7 +1542,7 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="p">)</span>
 </code></pre></div>
 <p><code>Line.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -1553,7 +1553,7 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="p">)</span>
 </code></pre></div>
 <p>Ilyen formában fogjuk tárolni az adatunkat a listában. Igaz, hogy a <code>Line</code> data class még kétszer megkapja a színt, de ez csak az egyszerűség kedvéért lesz így, ezzel a paraméterrel nem fogunk foglalkozni.</p>
-<p>Ezután a <code>view</code> <em>package</em>-en belül hozzunk létre egy <code>DrawingCanvas</code> <em>Kotolin File-t</em>. Ebben a Composable osztályban a beépített <code>Canvas</code> <em>Composable</em> segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy <code>Modifier.pointerInteropFilter</code> paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.</p>
+<p>Ezután a <code>view</code> <em>package</em>-en belül hozzunk létre egy <code>DrawingCanvas</code> <em>Kotlin File-t</em>. Ebben a Composable osztályban a beépített <code>Canvas</code> <em>Composable</em> segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy <code>Modifier.pointerInteropFilter</code> paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Canvas</span>
@@ -2033,7 +2033,7 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 <p>A mentés hasonló módon működik csak ezt a függvényt akkor hívjuk, hogyha rajzoltunk.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
-<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült CanvasScreen</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f4.png néven töltsd föl! </p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült DrawingScreen</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f4.png néven töltsd föl! </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h2 id="onallo-feladat-a-vaszon-torlese-1-pont">Önállo feladat: A vászon törlése (1 pont)<a class="headerlink" href="#onallo-feladat-a-vaszon-torlese-1-pont" title="Permanent link">&para;</a></h2>
@@ -2071,8 +2071,8 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 30. 17:43:59">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-09-30T17:43:59+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-09-30</span>
+      <span title="2024. október 5. 23:53:54">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-05T23:53:54+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-05</span>
       </span>
     </span>
 
@@ -2087,10 +2087,12 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
-          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
+      <nav><a href="https://github.com/laszlokissm" target="_blank" rel="noopener noreferrer" class="md-author" title="@laszlokissm">
+          <img src="https://avatars.githubusercontent.com/u/144819306?v=4?size=72" alt="@laszlokissm">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
           <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
         </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
