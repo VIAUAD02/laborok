@@ -25,7 +25,7 @@ Felhasznált technológiák:
 Az alkalmazás egy `Activity`-ből áll, amin egy *Composable* osztály fog szerepelni, a `MainScreen`. Új elemet a jobb alsó sarokban található `FloatingActionButton` segítségével vehetünk fel. Erre kattintva egy dialógus jelenik meg, amin megadhatjuk a vásárolni kívánt áru nevét, leírását, becsült árát és kategóriáját.
 
 A dialóguson a *Save* gombra kattintva a dialógus eltűnik, a benne megadott adatokkal létrejön egy új elem a listában. Az egyes lista elemeken `CheckBox` segítségével jelezhetjük, hogy már megvásároltuk őket. A kuka ikonra kattintva törölhetjük az adott elemet.
-A menüben található *Remove all* opcióval az összes lista elemet törölhetjük.
+A menüben található *Delete all* opcióval az összes lista elemet törölhetjük.
 
 
 <p align="center">
@@ -741,7 +741,7 @@ fun ShoppingListScreen() {
             name = "Alma",
             description = "jonatán\n1 kg",
             estimatedPrice = 500,
-            category = ShoppingItem.Category.FOOD.name,
+            category = ShoppingItem.Category.FOOD,
             isBought = true
         ),
         ShoppingItem(
@@ -749,7 +749,7 @@ fun ShoppingListScreen() {
             name = "A gyűrűk ura",
             description = "A gyűrű szövetsége",
             estimatedPrice = 8000,
-            category = ShoppingItem.Category.BOOK.name,
+            category = ShoppingItem.Category.BOOK,
             isBought = false
         )
     )
@@ -868,7 +868,7 @@ Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon eg
 
 Az adataink tipikusan egy adatforrásból, egy *repository*-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy *interface*-t és egy konkrét megvalósítást is (ami még mindig memória alapú) a `hu.bme.aut.android.shoppinglist.data.repository` *package*-ben:
 
-`IShoppongItemRepository.kt`:
+`IShoppingItemRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.repository
@@ -1178,7 +1178,7 @@ plugins {
     alias(libs.plugins.google.devtools.ksp)
 }
 ...
-dependencied {
+dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -1346,6 +1346,7 @@ package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
 import androidx.room.Room
+import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingListRepository
 import hu.bme.aut.android.shoppinglist.database.ShoppingListDatabase
 
@@ -1402,9 +1403,9 @@ Valósítsd meg a tételek törlését egyesével, az elemeken található szeme
 
 ### Megerősítő dialógus (1 pont)
 
-Implementálj egy *Remove all* menüpontot és a hozzá tartozó funkciót!
+Implementálj egy *Delete all* menüpontot és a hozzá tartozó funkciót!
 
-Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a *Remove all* menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (*OK* és *Cancel*). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
+Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a *Delete all* menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (*OK* és *Cancel*). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
 
 !!!example "BEADANDÓ (1 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **megerősítő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f6.png** néven töltsd föl!
