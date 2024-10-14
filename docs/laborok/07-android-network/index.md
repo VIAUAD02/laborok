@@ -173,7 +173,7 @@ A város nevére kattintva jelenik majd meg az időjárás nézet (*WeatherScree
 
 ### Az architektúra kialakítása
 
-Az adatok forrása az előző laboron látottakhoz hasonlóan egy *repository* lesz. Innen fogjuk visszakapni a (jelenleg csak a memóriában tárolt) várokainkat.
+Az adatok forrása az előző laboron látottakhoz hasonlóan egy *repository* lesz. Innen fogjuk visszakapni a (jelenleg csak a memóriában tárolt) városainkat.
 
 #### A modell osztály
 Vegyünk fel a fő *package*-ünkbe egy `data`, majd ezen belül egy `local`, majd ezen belül egy `model` *package*-et. Ide fog kerülni a városainkat reprezentáló osztály, ami jelen esetben csupán egy *id*-val és egy *névvel* rendelkezik.
@@ -892,7 +892,7 @@ Az [OpenWeatherMAp API](https://openweathermap.org/current) a kéréseinkre vál
 
 Ahhoz, hogy ebből általunk is használható objektumok legyenek, szükségünk lesz a modell osztály(ok)ra, illetve a `Moshi` könyvtárra, ami a konverziót végzi. Ebben a fázisban először a modell osztályokat készítsük el. Mint látható a kapott *JSON* elég bonyolult, és sok al csomópontot tartalmaz. Szerencsére az osztályainkat nem kell kézzel a *JSON*-ből kisilabizálni. Egyrészt a legtöbb *API*-nál kiterjedt leírást kapunk a modellről, másrészt számos konverter létezik a *JSON* -> *Kotlin class* konverzióra. Mi most egy Android Studio Plugin segítségét fogjuk kérni.
 
-Keressük meg az Android Studio beállításai között a *Plugins*-t, ott pedig a *Marketplace* keresőbe írjuk be, hogy *JSPN To Kotlin Class*, és telepítsük a megtalált *plugint*.
+Keressük meg az Android Studio beállításai között a *Plugins*-t, ott pedig a *Marketplace* keresőbe írjuk be, hogy *JSON To Kotlin Class*, és telepítsük a megtalált *plugint*.
 
 <p align="center">
 <img src="./assets/plugin.png" width="720">
@@ -1483,7 +1483,7 @@ Az időjárás képernyőnk megjelenik, ott van a felirat a fejlécen, de a val�
 				...
 	```
 
-!!!example "BEADANDÓ (1 pont)"
+!!!example "BEADANDÓ (2 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **időjárás nézet a megfelelő fejléccel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **WeatherScreen** kódja, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f2.png néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
