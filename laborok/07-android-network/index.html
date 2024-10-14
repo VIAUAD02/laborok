@@ -1429,7 +1429,7 @@
 <p>Valósítsuk meg az egy <code>LazyColumn</code>-ból álló, városok listáját megjelenítő <code>CityListScreen</code>-t!</p>
 <p>A város nevére kattintva jelenik majd meg az időjárás nézet (<em>WeatherScreen</em>), ahol az időjárás információk letöltése fog történni. Új város felvételére egy <em>FloatingActionButton</em> fog szolgálni.</p>
 <h3 id="az-architektura-kialakitasa">Az architektúra kialakítása<a class="headerlink" href="#az-architektura-kialakitasa" title="Permanent link">&para;</a></h3>
-<p>Az adatok forrása az előző laboron látottakhoz hasonlóan egy <em>repository</em> lesz. Innen fogjuk visszakapni a (jelenleg csak a memóriában tárolt) várokainkat.</p>
+<p>Az adatok forrása az előző laboron látottakhoz hasonlóan egy <em>repository</em> lesz. Innen fogjuk visszakapni a (jelenleg csak a memóriában tárolt) városainkat.</p>
 <h4 id="a-modell-osztaly">A modell osztály<a class="headerlink" href="#a-modell-osztaly" title="Permanent link">&para;</a></h4>
 <p>Vegyünk fel a fő <em>package</em>-ünkbe egy <code>data</code>, majd ezen belül egy <code>local</code>, majd ezen belül egy <code>model</code> <em>package</em>-et. Ide fog kerülni a városainkat reprezentáló osztály, ami jelen esetben csupán egy <em>id</em>-val és egy <em>névvel</em> rendelkezik.</p>
 <p><code>City.kt</code>:</p>
@@ -2079,7 +2079,7 @@
 </code></pre></div>
 </details>
 <p>Ahhoz, hogy ebből általunk is használható objektumok legyenek, szükségünk lesz a modell osztály(ok)ra, illetve a <code>Moshi</code> könyvtárra, ami a konverziót végzi. Ebben a fázisban először a modell osztályokat készítsük el. Mint látható a kapott <em>JSON</em> elég bonyolult, és sok al csomópontot tartalmaz. Szerencsére az osztályainkat nem kell kézzel a <em>JSON</em>-ből kisilabizálni. Egyrészt a legtöbb <em>API</em>-nál kiterjedt leírást kapunk a modellről, másrészt számos konverter létezik a <em>JSON</em> -&gt; <em>Kotlin class</em> konverzióra. Mi most egy Android Studio Plugin segítségét fogjuk kérni.</p>
-<p>Keressük meg az Android Studio beállításai között a <em>Plugins</em>-t, ott pedig a <em>Marketplace</em> keresőbe írjuk be, hogy <em>JSPN To Kotlin Class</em>, és telepítsük a megtalált <em>plugint</em>.</p>
+<p>Keressük meg az Android Studio beállításai között a <em>Plugins</em>-t, ott pedig a <em>Marketplace</em> keresőbe írjuk be, hogy <em>JSON To Kotlin Class</em>, és telepítsük a megtalált <em>plugint</em>.</p>
 <p align="center">
 <img src="./assets/plugin.png" width="720">
 </p>
@@ -2596,7 +2596,7 @@
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<p class="admonition-title">BEADANDÓ (2 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>időjárás nézet a megfelelő fejléccel</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>WeatherScreen</strong> kódja, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f2.png néven töltsd föl! </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
@@ -2704,8 +2704,8 @@
           </path>
         </svg>
       </span>
-      <span title="2024. október 11. 22:28:25">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-11T22:28:25+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-11</span>
+      <span title="2024. október 14. 10:31:33">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-14T10:31:33+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-14</span>
       </span>
     </span>
 
@@ -2720,14 +2720,16 @@
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+      <nav><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
+          <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
+        </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
+        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
           <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
         </a><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
           <img src="https://avatars.githubusercontent.com/u/22079595?v=4?size=72" alt="@kpomazi">
-        </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
         </a></nav>      
     </span>
   </div>
