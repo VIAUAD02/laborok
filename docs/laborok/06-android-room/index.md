@@ -1078,7 +1078,21 @@ fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = Sh
 
     val list = viewModel.shoppingItemList.collectAsStateWithLifecycle().value
 
-	...
+    Scaffold(
+        ...
+    ) { innerPadding ->
+
+        LazyColumn(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            items(list, key = { item -> item.id!! }) {
+
+                ItemShoppingItem(
+                    shoppingItem = it,
+                    onCheckBoxClick = { shoppingItem ->
+                        viewModel.update(shoppingItem)
+                    },
+                    ...
 
 	if (isDialogOpen) {
         Dialog(onDismissRequest = { isDialogOpen = false }) {
