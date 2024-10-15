@@ -2276,7 +2276,21 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">shoppingItemList</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">().</span><span class="na">value</span>
 
-<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+
+<span class="w">        </span><span class="n">LazyColumn</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="na">id</span><span class="o">!!</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="n">ItemShoppingItem</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">onCheckBoxClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                        </span><span class="n">viewModel</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">...</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isDialogOpen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Dialog</span><span class="p">(</span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">isDialogOpen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
@@ -2567,8 +2581,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           </path>
         </svg>
       </span>
-      <span title="2024. október 11. 22:44:42">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-11T22:44:42+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-11</span>
+      <span title="2024. október 15. 15:21:49">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-15T15:21:49+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-15</span>
       </span>
     </span>
 
