@@ -2025,7 +2025,7 @@
 <h3 id="az-architektura-kialakitasa_1">Az architektúra kialakítása<a class="headerlink" href="#az-architektura-kialakitasa_1" title="Permanent link">&para;</a></h3>
 <p>Az adataink áramlása hasonló lesz a már korábban látottakhoz, (<em>repository</em> -&gt; <em>viewmodel</em> -&gt; <em>screen</em>) szóval készítsük is el ezeket.</p>
 <h4 id="modell-osztalyok">Modell osztályok<a class="headerlink" href="#modell-osztalyok" title="Permanent link">&para;</a></h4>
-<p>Az <a href="https://openweathermap.org/current">OpenWeatherMAp API</a> a kéréseinkre válaszként egy JSON objektumban fogja visszaadni az aktuális időjárást. </p>
+<p>Az <a href="https://openweathermap.org/current">OpenWeatherMap API</a> a kéréseinkre válaszként egy JSON objektumban fogja visszaadni az aktuális időjárást. </p>
 <div class="admonition info">
 <p class="admonition-title">API hívás (az {appID} lecserélendő a sajátra)</p>
 <p><a href="https://api.openweathermap.org/data/2.5/weather?q=Budapest&amp;units=metric&amp;appid={appId">https://api.openweathermap.org/data/2.5/weather?q=Budapest&amp;units=metric&amp;appid={appId</a>}</p>
@@ -2303,10 +2303,10 @@
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">Factory</span><span class="p">:</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelFactory</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">initializer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">()</span>
-<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherReposotory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span>
 <span class="w">                </span><span class="n">WeatherViewModel</span><span class="p">(</span>
 <span class="w">                    </span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">,</span>
-<span class="w">                    </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherReposotory</span>
+<span class="w">                    </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherRepository</span>
 <span class="w">                </span><span class="p">)</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -2684,7 +2684,7 @@
 <summary>A megvalósítás lépései</summary>
 <ul>
 <li>törlés függvény a <em>repository interface</em>-be</li>
-<li>törlés függvény a <em>rapository</em>-ba</li>
+<li>törlés függvény a <em>repository</em>-ba</li>
 <li>törlés függvény a <em>viewmodel</em>-be</li>
 <li>törlés eseménykezelő a <em>CityListScreen</em>-be</li>
 </ul>
@@ -2704,8 +2704,8 @@
           </path>
         </svg>
       </span>
-      <span title="2024. október 14. 10:31:33">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-14T10:31:33+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-14</span>
+      <span title="2024. október 19. 13:56:12">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-10-19T13:56:12+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-10-19</span>
       </span>
     </span>
 
@@ -2720,10 +2720,12 @@
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
-          <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
+      <nav><a href="https://github.com/Zotyamester" target="_blank" rel="noopener noreferrer" class="md-author" title="@Zotyamester">
+          <img src="https://avatars.githubusercontent.com/u/40998048?v=4?size=72" alt="@Zotyamester">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
+        </a><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
+          <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
         </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
