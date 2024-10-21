@@ -837,7 +837,7 @@ Az adataink áramlása hasonló lesz a már korábban látottakhoz, (*repository
 
 #### Modell osztályok
 
-Az [OpenWeatherMAp API](https://openweathermap.org/current) a kéréseinkre válaszként egy JSON objektumban fogja visszaadni az aktuális időjárást. 
+Az [OpenWeatherMap API](https://openweathermap.org/current) a kéréseinkre válaszként egy JSON objektumban fogja visszaadni az aktuális időjárást. 
 
 !!!info "API hívás (az {appID} lecserélendő a sajátra)"
 	https://api.openweathermap.org/data/2.5/weather?q=Budapest&units=metric&appid={appId}
@@ -1162,10 +1162,10 @@ class WeatherViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val savedStateHandle = createSavedStateHandle()
-                val weatherReposotory = WeatherInfoApplication.weatherRepository
+                val weatherRepository = WeatherInfoApplication.weatherRepository
                 WeatherViewModel(
                     savedStateHandle = savedStateHandle,
-                    weatherRepository = weatherReposotory
+                    weatherRepository = weatherRepository
                 )
             }
         }
@@ -1592,7 +1592,7 @@ Valósítsuk meg a városok törlését az elemek balra elhúzásának hatásár
 
 ???success "A megvalósítás lépései"
 	- törlés függvény a *repository interface*-be
-	- törlés függvény a *rapository*-ba
+	- törlés függvény a *repository*-ba
 	- törlés függvény a *viewmodel*-be
 	- törlés eseménykezelő a *CityListScreen*-be
 
