@@ -163,7 +163,7 @@ Alapvetően két irányba indulhatunk el
 
 * Válasszuk kiindulásnak [ezt](https://getbootstrap.com/docs/5.2/components/navbar/#supported-content) a template-et. Ebben már benne van minden fontos funkció, csak testre kell szabni a tartalmát és egy-egy helyen a megjelenését.
 
-* Ennél a feladatnál azt a megoldást választjuk, hogy a Boostrap által nyúltott minta kódot szabjuk testre, hogy azok a tartalmi elemek legyenek benne ami nekünk kell.
+* Ennél a feladatnál azt a megoldást választjuk, hogy a Boostrap által nyújtott minta kódot szabjuk testre, hogy azok a tartalmi elemek legyenek benne ami nekünk kell.
 * Másoljuk be a template teljes kódját a `index.html`-be.
 
 ``` html
@@ -315,7 +315,7 @@ Az alábbi kódrészlet egy kártya felépítését mutatja, melyben kép és l�
 
 ### Megvalósítás lépései
 
-Először az oldal címsorát és az alatta lévő bekezést formázzuk
+Először az oldal címsorát és az alatta lévő bekezdést formázzuk
 
 * Állítsd be, hogy a cím alatt és fölött legyen margó. Tipp: `my-3`
 * A címsor alatti bekezdés legyen középre igazítva. Tipp: `text-center`
