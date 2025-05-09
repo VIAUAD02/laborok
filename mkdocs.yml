@@ -32,6 +32,7 @@ theme:
     - navigation.instant
     - navigation.top
     - search.suggest
+    - content.code.copy
   logo: logo-bme-aut.png
   favicon: favicon.ico
 
