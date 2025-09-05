@@ -305,7 +305,7 @@ A Studio sok sablont tartalmaz, röviden tekintsük át a lehetőségeket:
 *   Forráskódban <kbd>ALT</kbd>+<kbd>INSERT</kbd> billentyűkombinációra
 
 
-## Android Profiler
+### Android Profiler
 
 A készülék erőforráshasználata [monitorozható](https://developer.android.com/studio/profile/android-profiler) ezen a felületen, amelyet az említett *View -> Tool Windows*-ból érhetünk el.
 
@@ -316,7 +316,7 @@ Például részletes információt kaphatunk a processzor és a memória haszná
 ![](assets/ap2.png)
 
 
-## App Inspection
+### App Inspection
 
 A készüléken debuggolt alkalmazásunk [hálózati forgalmát](https://developer.android.com/studio/debug/network-profiler) és [adatbázisát](https://developer.android.com/studio/inspect/database) is meg tudjuk tekinteni. (*View -> Tool Windows -> App Inspection*)
 
@@ -324,7 +324,7 @@ A készüléken debuggolt alkalmazásunk [hálózati forgalmát](https://develop
 
 ![](assets/di.png)
 
-## Device Explorer
+### Device Explorer
 
 A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.android.com/studio/debug/device-file-explorer). (*View -> Tool Windows -> Device Explorer*)
 
