@@ -174,8 +174,8 @@ The device we just created appears in the Android Virtual Device Manager. Here y
 Start the new emulator with the Play button!
 
 !!! danger "Emulator problems"
-
-    If the emulator does not start, check the following tips:
+        If the emulator does not start, check the following tips:
+        
     * Is there enough space (minimum 15-20 GB) on the drive?
     * Are Android Studio and SDK up to date?
     * SDK manager > SDK tools: is the android emulator the latest?
