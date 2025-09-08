@@ -720,15 +720,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#avd-and-sdk-manager" class="md-nav__link">
-    AVD and SDK Manager
+  <a href="#sdk-manager" class="md-nav__link">
+    SDK Manager
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#avd" class="md-nav__link">
-    AVD
+  <a href="#avd-manager" class="md-nav__link">
+    AVD Manager
   </a>
   
 </li>
@@ -788,29 +788,29 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#android-profiler" class="md-nav__link">
     Android Profiler
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#database-inspector" class="md-nav__link">
-    Database Inspector
+        
+          <li class="md-nav__item">
+  <a href="#app-inspection" class="md-nav__link">
+    App Inspection
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#device-file-explorer" class="md-nav__link">
-    Device File Explorer
+        
+          <li class="md-nav__item">
+  <a href="#device-explorer" class="md-nav__link">
+    Device Explorer
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -842,7 +842,7 @@
 
 <h1 id="labor-01-hello-world">Labor 01 - Hello World<a class="headerlink" href="#labor-01-hello-world" title="Permanent link">&para;</a></h1>
 <p>The first lab is unusual compared to the others. Here we will encounter little code, the focus is more on reviewing the basics.</p>
-<p>The goal of the lab is to introduce the Android development environment, the process of creating an application, testing and compiling it, monitoring the application, and the functions of the emulator and the development environment. We will explain how to create a Hello World application and during the lab the lab leader will introduce the tools in detail.</p>
+<p>The goal of the lab is to introduce the Android Studio development environment, the process of creating, testing, and compiling applications, application management, and the functions of the emulator and development environment. We will explain how to create a Hello World application and the main tools used for debugging.</p>
 <p>At the end of the lab, a report must be submitted to obtain a grade.</p>
 <p>The assessment covers the following topics:</p>
 <ul>
@@ -852,38 +852,39 @@
 <li>Creating and running an Android project on an emulator</li>
 <li>Building a manifest file</li>
 <li>Android Profiler</li>
+<li>Android App Inspection</li>
 </ul>
 <h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
 <p>When solving the tasks, don't forget to follow the <a href="../github/GitHub.md">task submission process</a>.</p>
 <h3 id="create-and-download-a-git-repository">Create and download a Git repository<a class="headerlink" href="#create-and-download-a-git-repository" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Find the lab invitation URL in Moodle and use it to create your own repository.</p>
+<p>Find the lab invitation URL in Moodle and use it to create your own repository!</p>
 </li>
 <li>
-<p>Wait for the repository to be ready, then checkout it.</p>
+<p>Wait for the repository to be ready, then checkout it!</p>
 <div class="admonition tip">
 <p>In university labs, if the system does not ask for a username and password during checkout and the checkout fails, it is likely that the system tried to use a username previously saved on the machine. First, delete the saved login information, and try again.</p>
 </div>
 </li>
 <li>
-<p>Create a new branch called <code>solution</code> and work on this branch.</p>
+<p>Create a new branch called <code>solution</code> and work on this branch!</p>
 </li>
 <li>
-<p>Write your Neptun code in the file <code>neptun.txt</code>. The file should contain nothing else but the 6 characters of the Neptun code on a single line.</p>
+<p>Write your Neptun code in the file <code>neptun.txt</code>. The file should contain nothing else but the 6 characters of the Neptun code on a single line!</p>
 </li>
 </ol>
 <h3 id="open-a-markdown-file">Open a Markdown file<a class="headerlink" href="#open-a-markdown-file" title="Permanent link">&para;</a></h3>
-<p>When completing the tasks, prepare the documentation in markdown format. Open the previously downloaded git repository with a markdown compatible editor. It is recommended to use Visual Studio Code:</p>
+<p>When solving the tasks, the documentation must be prepared in markdown format. Open the previously downloaded git repository with a markdown compatible editor! It is recommended to use Visual Studio Code:</p>
 <ol>
 <li>
-<p>Start VS Code.</p>
+<p>Start VS Code!</p>
 </li>
 <li>
-<p>Open the git repository directory using the <em>File &gt; Open Folder...</em> menu.</p>
+<p>Open the git repository directory using the <em>File &gt; Open Folder...</em> menu!</p>
 </li>
 <li>
-<p>In the tree on the left, find the <code>README.md</code> file and double-click to open it.</p>
+<p>In the tree on the left, find the <code>README.md</code> file and open it by double-clicking it!</p>
 <ul>
 <li>Edit this file.</li>
 <li>If you create an image, put it in the repository with the other files. This way you can reference it with a relative path (filename).</li>
@@ -903,7 +904,7 @@
 </div>
 <h2 id="android-basics">Android Basics<a class="headerlink" href="#android-basics" title="Permanent link">&para;</a></h2>
 <h3 id="compilation-process-on-android-platform">Compilation process on Android platform<a class="headerlink" href="#compilation-process-on-android-platform" title="Permanent link">&para;</a></h3>
-<p>After creating the project, the source code is located in the <code>src</code> directory. The user interface is defined directly in Kotlin code using Jetpack Compose, so there is no need for XML files. The result of compiling the Android project is an APK file, which can be installed directly on a mobile device. Jetpack Compose allows us to easily access and manipulate interface elements from Kotlin code, facilitating modern, declarative interface design.</p>
+<p>After creating the project, the source code is located in the <code>app/src</code> directory. The user interface is defined directly in Kotlin code using Jetpack Compose, so there is no need for XML files. The result of compiling the Android project is an APK file, which can be installed directly on a mobile device. Jetpack Compose allows us to easily access and manipulate interface elements from Kotlin code, facilitating modern, declarative interface design.</p>
 <p><img alt="" src="assets/lab-1-compile-en.png" /></p>
 <p><em>Compilation process on Android platform</em></p>
 <ol>
@@ -929,7 +930,6 @@
 <p>Android Studio uses the <a href="https://gradle.org/">Gradle</a> build system to perform these steps.</p>
 <div class="admonition note">
 <p class="admonition-title">Notes</p>
-</div>
 <ul>
 <li>
 <p>The entire process takes place on the developer's machine, only binary files are delivered to the devices.</p>
@@ -950,90 +950,68 @@
 <p>Android applications are typically published in the Google Play Store, so distribution in APK format is not as widespread.</p>
 </li>
 </ul>
+</div>
 <h3 id="sdk-and-its-libraries">SDK and its libraries<a class="headerlink" href="#sdk-and-its-libraries" title="Permanent link">&para;</a></h3>
-<p>The IDE and SDK can be downloaded from <a href="https://developer.android.com/studio">developer.android.com/studio</a>. Let's review its important folders and tools with the help of the lab leader!</p>
+<p>The IDE and SDK can be downloaded from <a href="https://developer.android.com/studio">developer.android.com/studio</a>. Let's review its most important folders and tools!</p>
 <p><img alt="" src="assets/ide_android.png" /></p>
 <p>SDK structure:</p>
 <ul>
-<li><code>docs:</code> Documentation</li>
-<li><code>extras:</code> Location of various extra software. Maven repository, support libs materials, analytics SDK, Google <a href="https://developer.android.com/studio/run/win-usb.html">Android USB driver</a> (if we downloaded this with SDK manager) etc.</li>
-<li><code>platform-tools:</code> Location of Fastboot and ADB binaries (most used tools)</li>
-<li><code>platforms</code>, <code>samples</code>, <code>sources</code>, <code>system-images:</code> Platform materials, sources, example projects, OS images in a separate subfolder for each API level</li>
-<li><code>tools:</code> Tools to help with compilation and testing, SDK manager, 9Patch drawer, emulator binaries etc.</li>
+<li><code>build-tools</code>: Tools to help build API levels: AIDL, AAPT2, etc.</li>
+<li><code>emulator</code>: Location of Android emulator files.</li>
+<li><code>extras</code>: Location of various extra software. Maven repository, support libs materials, analytics SDK, Google <a href="https://developer.android.com/studio/run/win-usb.html">Android USB driver</a> (if we downloaded this with SDK manager) etc.</li>
+<li><code>platform-tools</code>: Location of Fastboot and ADB binaries (most used tools).</li>
+<li><code>platforms</code>, <code>sources</code>, <code>system-images</code>: Platform materials, sources, OS images in separate subfolders for each API level</li>
+<li><code>tools</code>: Tools to help build and test, SDK manager, etc.</li>
 </ul>
-<h3 id="avd-and-sdk-manager">AVD and SDK Manager<a class="headerlink" href="#avd-and-sdk-manager" title="Permanent link">&para;</a></h3>
-<p>We use the SDK manager to manage the SDK, which allows us to download and keep our tools up to date. It can be launched via Android Studio.</p>
-<p>The SDK Manager icon can be found in the settings on the toolbar above (or Tools -&gt; SDK Manager):</p>
-<table>
-<thead>
-<tr>
-<th>Old UI</th>
-<th></th>
-<th>New UI</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img alt="" src="assets/sdk_manager_icon.png" /></td>
-<td></td>
-<td><img alt="" src="assets/sdk_manager_icon_2.png" /></td>
-</tr>
-</tbody>
-</table>
+<h3 id="sdk-manager">SDK Manager<a class="headerlink" href="#sdk-manager" title="Permanent link">&para;</a></h3>
+<p>To manage the SDK, we use the SDK manager, which allows us to download and keep our tools up to date. It can be launched via Android Studio.</p>
+<p>The SDK Manager is available from the Tools -&gt; SDK Manager menu:</p>
+<p><img alt="" src="assets/sdk_manager_icon.png" /></p>
 <p>SDK Manager interface:</p>
 <p><img alt="" src="assets/sdk_manager.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Notes</p>
 <p>There used to be a standalone SDK manager, but its use is now deprecated. Don't be surprised if you see it in online sources.</p>
 </div>
-<p>Let's start the AVD Manager and check with the lab leader whether everything we need for our first application is available.</p>
-<h3 id="avd">AVD<a class="headerlink" href="#avd" title="Permanent link">&para;</a></h3>
-<p>AVD is the abbreviation for Android Virtual Device. As mentioned in the presentation, we can run our code not only on a real device, but also on an emulator. (What is the difference between a simulator and an emulator?) The AVD can be started via the development environment (<em>Tools-&gt;Device Manager</em>), or from the command line, but this is only needed in special cases.</p>
+<p>Let's start the AVD manager and check if everything we need for our first application is available.</p>
+<h3 id="avd-manager">AVD Manager<a class="headerlink" href="#avd-manager" title="Permanent link">&para;</a></h3>
+<p>AVD is the abbreviation for Android Virtual Device. As already mentioned in the presentation, we can run our code not only on a real device, but also on an emulator. (What is the difference between a simulator and an emulator?) Starting the AVD is possible through the development environment (<em>Tools-&gt;Device Manager</em>) or from the command line, but this is only necessary in special cases.</p>
 <p>AVD Manager icon:</p>
-<table>
-<thead>
-<tr>
-<th>Old  UI</th>
-<th></th>
-<th>New UI</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img alt="" src="assets/avd_icon.png" /></td>
-<td></td>
-<td><img alt="" src="assets/avd_icon_2.png" /></td>
-</tr>
-</tbody>
-</table>
+<p><img alt="" src="assets/avd_icon.png" /></p>
+<p>AVD Manager interface:</p>
 <p><img alt="" src="assets/avd_manager.png" /></p>
-<p>In the picture above, on the right side, in the panel that opens, we find a list of existing virtual devices, and on the left side, the so-called device definitions. (This can be opened with the <em>Add a new device</em> tab, then the <em>Create Virtual Device</em> option with the <code>+</code> icon on the right side) There are some pre-made templates available here. We can also create one ourselves if we typically want to develop for a specific device (e.g. Galaxy S24). Let's create a new emulator! Naturally, we can only create devices with API levels that are available through the SDK manager.</p>
+<p>In the image above, on the right side, in the panel that opens, we find a list of existing virtual devices, and on the left side, the so-called device definitions. (This <em>Add device</em> tab can be opened with the <em>Create Virtual Device</em> option after clicking on the <code>+</code> icon on the right.) There are some pre-made templates available here. We can also create one ourselves if we typically want to develop for a specific device (e.g. Galaxy S24).</p>
+<p>Let's create a new emulator! Naturally, we can only create devices with API levels that are available through the SDK manager.</p>
 <ol>
-<li>On the right side panel, click the <em>Create Virtual Device...</em> button above!</li>
-<li>Select one of the predefined device templates (e.g. <em>Pixel 8 Pro</em>), then press the <em>Next</em> button.</li>
-<li>Decide which Android version of emulator we want to use. CPU/ABI should basically be x86_64, as we get <a href="https://developer.android.com/studio/run/emulator-acceleration">hardware acceleration</a> for these. Here, select one of the available ones, then <em>Next</em>.</li>
-<li>
-<p>Detailed configuration of the device.</p>
-<ul>
-<li>The virtual device name should be <code>Labor_1</code> for example.</li>
-<li>Select the default orientation, turn on or off the display of the device frame as desired.</li>
+<li>On the right panel, click the <em>Create Virtual Device...</em> button above!</li>
+<li>Select one of the predefined device templates (e.g. <em>Pixel 9 Pro</em>), then press the <em>Next</em> button.</li>
+<li>Device configuration:<ul>
+<li>The virtual device should be named, for example, <code>Labor_1</code>.</li>
+<li>Decide which Android emulator version you want to use and which features you need. CPU/ABI should be x86_64, as you can get <a href="https://developer.android.com/studio/run/emulator-acceleration">hardware acceleration</a> for these. Here, select one of the available ones, then <em>Next</em>.
+<img alt="" src="assets/avd_create.png" /></li>
 </ul>
-<p>Under <em>Show Advanced Settings</em> you will find additional options:</p>
+</li>
+<li>
+<p>Under the <em>Additional settings</em> tab, you will find additional options:</p>
 <ul>
-<li>Camera options:        <ul>
+<li>Turn the display of the device frame on or off as desired.</li>
+<li>Camera options:    <ul>
 <li><em>WebcamX</em>, a hardware camera that is connected to the computer</li>
 <li><em>Emulated</em>, a simple software solution, <strong>now at least one of the cameras should be like this</strong>.</li>
 <li><em>VirtualScene</em>, a more sophisticated software solution, in which we can move the camera in a 3D world.</li>
 </ul>
 </li>
 <li>Network: You can also adjust its speed and latency according to communication technologies.</li>
-<li><em>Boot Option</em>: (Recently released) The ability to save a snapshot of the Android emulator state. This means that the virtual operating system is only suspended when the emulator is closed (for example, the open application is also preserved, with its full state), and in the case of <em>Quick boot</em>, instead of starting the full OS, the emulated system starts within seconds. In the case of <em>Cold Boot</em>, it stops and restarts the entire operating system of the virtual device every time.</li>
+<li>Select the default orientation.</li>
+<li><em>Default boot</em>: Option to save a snapshot of the Android emulator state. This means that the virtual operating system is only suspended when the emulator is closed (for example, the opened application is also preserved, with its full state), and in the <em>Quick</em> case, instead of starting the entire OS, the emulated system starts within seconds. In the <em>Cold</em> case, however, it stops and restarts the entire operating system of the virtual device every time.</li>
+<li>Internal and external storage size, or possibly setting a specific image of the storage content.</li>
 <li>
-<p>Memory and storage:</p>
+<p>Performance:</p>
 <ul>
-<li>RAM: If you have little system memory, it is not worth giving more than 768 MB, because you can easily run into problems. If the emulator freezes or the entire OS stops working, then set this value lower. With 8 GB or more system memory, you can safely set the emulator memory to 1024, 1536, or 2048 MB.</li>
+<li>Number of CPU cores to be used.</li>
+<li>Type of graphics acceleration. (Hardware acceleration is only available with the appropriate driver)</li>
 <li>VM heap: for the virtual machine of the applications, you can leave the default value. You should know that it varies by manufacturer for devices.</li>
-<li>Internal flash memory and SD card size, the default settings are basically good.</li>
+<li>The desired binary <em>interface</em>.</li>
 </ul>
 </li>
 <li>
@@ -1042,10 +1020,21 @@
 </ul>
 </li>
 </ol>
-<p><img alt="" src="assets/avd_create.png" /></p>
-<p>The device we just created appears in the Android Virtual Device Manager. Here you can edit the previously specified parameters, delete user data from the "device" (<em>Wipe Data</em> - Full reset), and duplicate or delete the emulator instance.</p>
+<p><img alt="" src="assets/avd_create2.png" /></p>
+<p>The device we just created appears in the Android Virtual Device Manager. Here you can edit the previously specified parameters, connect an external device, delete user data from the "device" (<em>Wipe Data</em> - Full reset), and duplicate or delete the emulator instance.</p>
 <p>Start the new emulator with the Play button!</p>
-<p>Try out the <em>API Demos</em> and <em>Dev Tools</em> applications on the launched emulator!</p>
+<div class="admonition danger">
+<p class="admonition-title">Emulator problems</p>
+<p>If the emulator does not start, check the following tips:
+* Is there enough space (minimum 15-20 GB) on the drive?
+* Are Android Studio and SDK up to date?
+* SDK manager &gt; SDK tools: is the android emulator the latest?
+* Does the installation path of Android Studio or SDK contain spaces, accented letters or special characters?
+* Have you tried a different API, with or without Play Store?
+* Is virtualization enabled/enabled on the machine?
+* Try changing the graphics acceleration type.</p>
+</div>
+<p>Try some pre-installed applications on the launched emulator!</p>
 <div class="admonition note">
 <p class="admonition-title">Notes</p>
 <p>In addition to the factory emulator, there are several alternatives, such as <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> or <a href="https://www.bignox.com/">BigNox</a>, but the Google emulator is the most common, so if you don't have any problems with it, let's stick with it.</p>
@@ -1054,11 +1043,9 @@
 <p><img alt="" src="assets/avd_extras.png" /></p>
 <h2 id="development-environment">Development environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h2>
 <p>For Android development, we will use Android Studio, which is based on JetBrains IntelliJ, during the lab. A useful feature for those who are new to Studio is the <em>Tip of the day</em>, it is worth trying out and checking out the given feature right away. By default, the last project opens when starting up, if there is none, or if we have closed all our projects, then the opening screen. (You can also disable the reopening of the last project with the <em>Settings -&gt; Appeareance &amp; Behavior -&gt; System Settings -&gt; Reopen projects on startup</em> option.)</p>
-<p><img alt="" src="assets/studio_old.png" /></p>
-<p>A few updates ago, Android Studio Giraffe got a new UI. As you can see, it has a much cleaner design, with less distractions on the screen, and more focus on the code. You can easily switch between these views in Settings, under the New UI menu. (<em>Settings -&gt; Appeareance &amp; Behavior -&gt; New UI</em>)</p>
-<p><img alt="" src="assets/studio_new.png" /></p>
+<p><img alt="" src="assets/studio.png" /></p>
 <h2 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h2>
-<p>With the help of the lab leader, let's create a simple Hello World application.</p>
+<p>Let's make a simple Hello World application!</p>
 <ol>
 <li>Create a new project, select the <em>Empty Activity</em> option.</li>
 <li>The project name should be <code>HelloWorld</code>, the starting package <code>hu.bme.aut.mobweb.helloworld</code>, and the save location should be the <code>HelloWorld</code> folder within the checked-out repository.</li>
@@ -1075,9 +1062,8 @@
 <p>The project's access path contains only lowercase letters of the English alphabet, as Android Studio is sensitive to accents and special characters!</p>
 </div>
 <h3 id="android-studio">Android Studio<a class="headerlink" href="#android-studio" title="Permanent link">&para;</a></h3>
-<p>This section is for those who have previously used the Eclipse IDE and want to learn about the differences compared to Android Studio.</p>
+<p>This section is for those who have previously used other IntelliJ products or the IDE called Eclipse and want to learn about the differences compared to Android Studio.</p>
 <ul>
-<li><strong>Import from old projects:</strong> Android Studio allows you to import projects from older versions of projects and old Eclipse projects.</li>
 <li>
 <p><strong>Project structure:</strong> Android Studio compiles with Gradle and uses a different structure. Within a project:</p>
 <ul>
@@ -1107,7 +1093,7 @@
 </ul>
 </li>
 </ul>
-<p><img alt="" src="assets/nice_studio.png" /></p>
+<p><img alt="" src="assets/studio_nice.png" /></p>
 <h3 id="keyboard-shortcuts">Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h3>
 <ul>
 <li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>L</kbd>: Code formatting</li>
@@ -1127,12 +1113,13 @@
 <li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Search in settings, commands that can be issued.</li>
 <li><kbd>ALT</kbd> + <kbd>ENTER</kbd> import/create missing elements.</li>
 </ul>
+<p><a href="https://developer.android.com/studio/intro/keyboard-shortcuts">More keyboard shortcuts</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Find</p>
 <p>If you ever need something but can't find it in the menu, you can search in Android Studio (or other JetBrains IDEs) by pressing the double Shift key (<kbd>Shift</kbd>+<kbd>Shift</kbd>). Try it out and search for the "Device Manager" option.</p>
 </div>
 <h3 id="tools-editors">Tools, editors<a class="headerlink" href="#tools-editors" title="Permanent link">&para;</a></h3>
-<p>In the <em>View</em> menu, you can turn various windows on and off. With the help of a lab instructor, review the following tools!</p>
+<p>In the <em>View</em> menu, you can turn various windows on and off using the <em>Tool Windows</em> menu item. Let's take a look at the following tools:</p>
 <ul>
 <li>Project</li>
 <li>Structure</li>
@@ -1144,42 +1131,42 @@
 </ul>
 <p>It is possible to split the editor window, to do this, right-click on the tab of an open file, <em>Split Right/Down</em> or just click and hold it and start dragging it onto the code surface!</p>
 <h3 id="useful-settings">Useful settings<a class="headerlink" href="#useful-settings" title="Permanent link">&para;</a></h3>
-<p>With the help of the lab leader, set the following useful functions:</p>
+<p>Let's set up the following useful functions:</p>
 <ul>
 <li>turn off case sensitivity in the code completion (search in settings: <em>Match case</em>)</li>
 <li>turn on and off "laptop mode" (<em>File -&gt; Power Save Mode</em>)</li>
 <li>turn on line numbering (right-click on the code on the left side, <em>Appearance -&gt; Show Line Numbers</em>)</li>
 </ul>
 <h3 id="generateable-elements">Generateable elements<a class="headerlink" href="#generateable-elements" title="Permanent link">&para;</a></h3>
-<p>Studio contains many templates, let's briefly review the options:</p>
+<p>Studio includes many templates, let's briefly review the options:</p>
 <ul>
 <li>In the project tree, right-click on the project -&gt; new -&gt; module</li>
 <li>In the project tree, inside the module, right-click on "java" -&gt; new</li>
 <li>In the source code, press <kbd>ALT</kbd>+<kbd>INSERT</kbd></li>
 </ul>
-<h2 id="android-profiler">Android Profiler<a class="headerlink" href="#android-profiler" title="Permanent link">&para;</a></h2>
+<h3 id="android-profiler">Android Profiler<a class="headerlink" href="#android-profiler" title="Permanent link">&para;</a></h3>
 <p>The device's resource usage can be <a href="https://developer.android.com/studio/profile/android-profiler">monitored</a> on this interface, which can be accessed from the aforementioned <em>View -&gt; Tool Windows</em>.</p>
 <p><img alt="" src="assets/ap.png" /></p>
-<p>For example, we can get detailed information about network traffic:</p>
-<p><img alt="" src="assets/ap_network.png" /></p>
-<h2 id="database-inspector">Database Inspector<a class="headerlink" href="#database-inspector" title="Permanent link">&para;</a></h2>
-<p>We can also view the <a href="https://developer.android.com/studio/inspect/database">database</a> of our debugged app on the device. (<em>View -&gt; Tool Windows -&gt; App Inspection</em>)</p>
-<p><img alt="" src="assets/di.png" /></p>
-<h2 id="device-file-explorer">Device File Explorer<a class="headerlink" href="#device-file-explorer" title="Permanent link">&para;</a></h2>
+<p>For example, we can get detailed information about processor and memory usage:</p>
+<p><img alt="" src="assets/ap2.png" /></p>
+<h3 id="app-inspection">App Inspection<a class="headerlink" href="#app-inspection" title="Permanent link">&para;</a></h3>
+<p>We can also view the <a href="https://developer.android.com/studio/debug/network-profiler">network traffic</a> and <a href="https://developer.android.com/studio/inspect/database">database</a> of our debugged app on the device. (<em>View -&gt; Tool Windows -&gt; App Inspection</em>)</p>
+<p><img alt="" src="assets/ni.png" /></p>
+<h3 id="device-explorer">Device Explorer<a class="headerlink" href="#device-explorer" title="Permanent link">&para;</a></h3>
 <p>You can also <a href="https://developer.android.com/studio/debug/device-file-explorer">browse</a> the file system on your device. (<em>View -&gt; Tool Windows -&gt; Device Explorer</em>)</p>
-<p><img alt="" src="assets/dfe.png" /></p>
+<p><img alt="" src="assets/de.png" /></p>
 <h2 id="tasks-10-x-05-points">Tasks (10 x 0.5 points)<a class="headerlink" href="#tasks-10-x-05-points" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Run the new application on an emulator (those who have their own device should also try it)!</li>
+<li>Run the new application on an emulator (those who have their own device should try it too)!</li>
 <li>Place a breakpoint in the code and start the application in debug mode! (It is worth noting that another Gradle Task is now running at the bottom of the screen.)</li>
-<li>Make a call and send an SMS to the emulator! What do you experience?</li>
-<li>Make a call and send an SMS from the emulator! What do you experience?</li>
-<li>Review the functions of the Android Profiler view with the help of the lab leader!</li>
+<li>Make a call and send an SMS to the emulator! What do we experience?</li>
+<li>Make a call and send an SMS from the emulator! What do we experience?</li>
+<li>Take a picture with the emulator and find it in the file system using Device Explorer!</li>
 <li>Change the location of the device (GPS) using the appropriate panel of the emulator!</li>
-<li>Examine the open threads and memory allocation of the launched <code>HelloWorld</code> project!</li>
+<li>Examine the open threads and memory usage of the launched <code>HelloWorld</code> project!</li>
 <li>Examine the contents of the Logcat panel!</li>
 <li>Examine the result of Code -&gt; Inspect code!</li>
-<li>Find the folder of the <code>HelloWorld</code> project you created and examine the contents of the <code>.apk</code> file within the build directory! Where is the compiled code located?</li>
+<li>Find the folder of the created <code>HelloWorld</code> project and examine the contents of the <code>.apk</code> file inside the build directory! Where is the compiled code located?</li>
 </ol>
 <div class="admonition example">
 <p class="admonition-title">TO BE SUBMITTED</p>
@@ -1196,8 +1183,8 @@
           </path>
         </svg>
       </span>
-      <span title="2025. szeptember 8. 11:54:05">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 8. 11:54:05 CEST"><span class="timeago" datetime="2025-09-08T11:54:05+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 8. 11:54:05 CEST">2025-09-08</span>
+      <span title="2025. szeptember 8. 11:59:17">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 8. 11:59:17 CEST"><span class="timeago" datetime="2025-09-08T11:59:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 8. 11:59:17 CEST">2025-09-08</span>
       </span>
     </span>
 
