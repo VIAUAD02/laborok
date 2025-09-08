@@ -2,7 +2,7 @@
 
 The first lab is unusual compared to the others. Here we will encounter little code, the focus is more on reviewing the basics.
 
-The goal of the lab is to introduce the Android development environment, the process of creating an application, testing and compiling it, monitoring the application, and the functions of the emulator and the development environment. We will explain how to create a Hello World application and during the lab the lab leader will introduce the tools in detail.
+The goal of the lab is to introduce the Android Studio development environment, the process of creating, testing, and compiling applications, application management, and the functions of the emulator and development environment. We will explain how to create a Hello World application and the main tools used for debugging.
 
 At the end of the lab, a report must be submitted to obtain a grade.
 
@@ -14,6 +14,7 @@ The assessment covers the following topics:
 * Creating and running an Android project on an emulator
 * Building a manifest file
 * Android Profiler
+* Android App Inspection
 
 ## Preparations
 
@@ -21,26 +22,26 @@ When solving the tasks, don't forget to follow the [task submission process](../
 
 ### Create and download a Git repository
 
-1. Find the lab invitation URL in Moodle and use it to create your own repository.
+1. Find the lab invitation URL in Moodle and use it to create your own repository!
 
-1. Wait for the repository to be ready, then checkout it.
+1. Wait for the repository to be ready, then checkout it!
 
     !!! tip ""
         In university labs, if the system does not ask for a username and password during checkout and the checkout fails, it is likely that the system tried to use a username previously saved on the machine. First, delete the saved login information, and try again.
 
-1. Create a new branch called `solution` and work on this branch.
+1. Create a new branch called `solution` and work on this branch!
 
-1. Write your Neptun code in the file `neptun.txt`. The file should contain nothing else but the 6 characters of the Neptun code on a single line.
+1. Write your Neptun code in the file `neptun.txt`. The file should contain nothing else but the 6 characters of the Neptun code on a single line!
 
 ### Open a Markdown file
 
-When completing the tasks, prepare the documentation in markdown format. Open the previously downloaded git repository with a markdown compatible editor. It is recommended to use Visual Studio Code:
+When solving the tasks, the documentation must be prepared in markdown format. Open the previously downloaded git repository with a markdown compatible editor! It is recommended to use Visual Studio Code:
 
-1. Start VS Code.
+1. Start VS Code!
 
-1. Open the git repository directory using the _File > Open Folder..._ menu.
+1. Open the git repository directory using the _File > Open Folder..._ menu!
 
-1. In the tree on the left, find the `README.md` file and double-click to open it.
+1. In the tree on the left, find the `README.md` file and open it by double-clicking it!
 
     - Edit this file.
     - If you create an image, put it in the repository with the other files. This way you can reference it with a relative path (filename).
@@ -58,7 +59,7 @@ When completing the tasks, prepare the documentation in markdown format. Open th
 
 ### Compilation process on Android platform
 
-After creating the project, the source code is located in the `src` directory. The user interface is defined directly in Kotlin code using Jetpack Compose, so there is no need for XML files. The result of compiling the Android project is an APK file, which can be installed directly on a mobile device. Jetpack Compose allows us to easily access and manipulate interface elements from Kotlin code, facilitating modern, declarative interface design.
+After creating the project, the source code is located in the `app/src` directory. The user interface is defined directly in Kotlin code using Jetpack Compose, so there is no need for XML files. The result of compiling the Android project is an APK file, which can be installed directly on a mobile device. Jetpack Compose allows us to easily access and manipulate interface elements from Kotlin code, facilitating modern, declarative interface design.
 
 ![](assets/lab-1-compile-en.png)
 
@@ -79,42 +80,41 @@ After creating the project, the source code is located in the `src` directory. T
 Android Studio uses the [Gradle](https://gradle.org/) build system to perform these steps.
 
 !!! note "Notes"
-* The entire process takes place on the developer's machine, only binary files are delivered to the devices.
+    * The entire process takes place on the developer's machine, only binary files are delivered to the devices.
 
-* External libraries can usually be added to the current project as JAR files or by adding another project (but we don't have to do this manually, Gradle will also help with managing dependencies).
+    * External libraries can usually be added to the current project as JAR files or by adding another project (but we don't have to do this manually, Gradle will also help with managing dependencies).
 
-* The APK file is most similar to the JAR files known in the Java world.
+    * The APK file is most similar to the JAR files known in the Java world.
 
-* The Android version you want to support must be specified in the Manifest file, which is upwardly compatible with newer versions, but the application cannot be installed on older versions.
+    * The Android version you want to support must be specified in the Manifest file, which is upwardly compatible with newer versions, but the application cannot be installed on older versions.
 
-* Developers must constantly keep up with the constantly updated versions of Android.
+    * Developers must constantly keep up with the constantly updated versions of Android.
 
-* Android applications are typically published in the Google Play Store, so distribution in APK format is not as widespread.
+    * Android applications are typically published in the Google Play Store, so distribution in APK format is not as widespread.
 
 
 ### SDK and its libraries
 
-The IDE and SDK can be downloaded from [developer.android.com/studio](https://developer.android.com/studio). Let's review its important folders and tools with the help of the lab leader!
+The IDE and SDK can be downloaded from [developer.android.com/studio](https://developer.android.com/studio). Let's review its most important folders and tools!
 
 ![](assets/ide_android.png)
 
 SDK structure:
 
-* `docs:` Documentation
-* `extras:` Location of various extra software. Maven repository, support libs materials, analytics SDK, Google [Android USB driver](https://developer.android.com/studio/run/win-usb.html) (if we downloaded this with SDK manager) etc.
-* `platform-tools:` Location of Fastboot and ADB binaries (most used tools)
-* `platforms`, `samples`, `sources`, `system-images:` Platform materials, sources, example projects, OS images in a separate subfolder for each API level
-* `tools:` Tools to help with compilation and testing, SDK manager, 9Patch drawer, emulator binaries etc.
+* `build-tools`: Tools to help build API levels: AIDL, AAPT2, etc.
+* `emulator`: Location of Android emulator files.
+* `extras`: Location of various extra software. Maven repository, support libs materials, analytics SDK, Google [Android USB driver](https://developer.android.com/studio/run/win-usb.html) (if we downloaded this with SDK manager) etc.
+* `platform-tools`: Location of Fastboot and ADB binaries (most used tools).
+* `platforms`, `sources`, `system-images`: Platform materials, sources, OS images in separate subfolders for each API level
+* `tools`: Tools to help build and test, SDK manager, etc.
 
-### AVD and SDK Manager
+### SDK Manager
 
-We use the SDK manager to manage the SDK, which allows us to download and keep our tools up to date. It can be launched via Android Studio.
+To manage the SDK, we use the SDK manager, which allows us to download and keep our tools up to date. It can be launched via Android Studio.
 
-The SDK Manager icon can be found in the settings on the toolbar above (or Tools -> SDK Manager):
+The SDK Manager is available from the Tools -> SDK Manager menu:
 
-|Old UI||New UI|
-|-------||-----|
-|![](assets/sdk_manager_icon.png)||![](assets/sdk_manager_icon_2.png)|
+![](assets/sdk_manager_icon.png)
 
 
 SDK Manager interface:
@@ -124,53 +124,67 @@ SDK Manager interface:
 !!! note "Notes"
 	There used to be a standalone SDK manager, but its use is now deprecated. Don't be surprised if you see it in online sources.
 
-Let's start the AVD Manager and check with the lab leader whether everything we need for our first application is available.
+Let's start the AVD manager and check if everything we need for our first application is available.
 
-### AVD
+### AVD Manager
 
-AVD is the abbreviation for Android Virtual Device. As mentioned in the presentation, we can run our code not only on a real device, but also on an emulator. (What is the difference between a simulator and an emulator?) The AVD can be started via the development environment (*Tools->Device Manager*), or from the command line, but this is only needed in special cases.
+AVD is the abbreviation for Android Virtual Device. As already mentioned in the presentation, we can run our code not only on a real device, but also on an emulator. (What is the difference between a simulator and an emulator?) Starting the AVD is possible through the development environment (*Tools->Device Manager*) or from the command line, but this is only necessary in special cases.
 
 AVD Manager icon:
 
-|Old  UI||New UI|
-|-------||-----|
-|![](assets/avd_icon.png)||![](assets/avd_icon_2.png)|
+![](assets/avd_icon.png)
+
+AVD Manager interface:
 
 
 ![](assets/avd_manager.png)
 
-In the picture above, on the right side, in the panel that opens, we find a list of existing virtual devices, and on the left side, the so-called device definitions. (This can be opened with the *Add a new device* tab, then the *Create Virtual Device* option with the `+` icon on the right side) There are some pre-made templates available here. We can also create one ourselves if we typically want to develop for a specific device (e.g. Galaxy S24). Let's create a new emulator! Naturally, we can only create devices with API levels that are available through the SDK manager.
+In the image above, on the right side, in the panel that opens, we find a list of existing virtual devices, and on the left side, the so-called device definitions. (This *Add device* tab can be opened with the *Create Virtual Device* option after clicking on the `+` icon on the right.) There are some pre-made templates available here. We can also create one ourselves if we typically want to develop for a specific device (e.g. Galaxy S24).
 
-1. On the right side panel, click the *Create Virtual Device...* button above!
-2. Select one of the predefined device templates (e.g. *Pixel 8 Pro*), then press the *Next* button.
-3. Decide which Android version of emulator we want to use. CPU/ABI should basically be x86_64, as we get [hardware acceleration](https://developer.android.com/studio/run/emulator-acceleration) for these. Here, select one of the available ones, then *Next*.
-4. Detailed configuration of the device.
+Let's create a new emulator! Naturally, we can only create devices with API levels that are available through the SDK manager.
 
-    - The virtual device name should be `Labor_1` for example.
-    - Select the default orientation, turn on or off the display of the device frame as desired.
-
-    Under *Show Advanced Settings* you will find additional options:
-
-    - Camera options:        
+1. On the right panel, click the *Create Virtual Device...* button above!
+1. Select one of the predefined device templates (e.g. *Pixel 9 Pro*), then press the *Next* button.
+1. Device configuration:
+    - The virtual device should be named, for example, `Labor_1`.
+    - Decide which Android emulator version you want to use and which features you need. CPU/ABI should be x86_64, as you can get [hardware acceleration](https://developer.android.com/studio/run/emulator-acceleration) for these. Here, select one of the available ones, then *Next*.
+![](assets/avd_create.png)
+1. Under the *Additional settings* tab, you will find additional options:
+    - Turn the display of the device frame on or off as desired.
+    - Camera options:    
         - *WebcamX*, a hardware camera that is connected to the computer
         - *Emulated*, a simple software solution, **now at least one of the cameras should be like this**.
         - *VirtualScene*, a more sophisticated software solution, in which we can move the camera in a 3D world.
     - Network: You can also adjust its speed and latency according to communication technologies.
-    - *Boot Option*: (Recently released) The ability to save a snapshot of the Android emulator state. This means that the virtual operating system is only suspended when the emulator is closed (for example, the open application is also preserved, with its full state), and in the case of *Quick boot*, instead of starting the full OS, the emulated system starts within seconds. In the case of *Cold Boot*, it stops and restarts the entire operating system of the virtual device every time.
-    - Memory and storage:
-        - RAM: If you have little system memory, it is not worth giving more than 768 MB, because you can easily run into problems. If the emulator freezes or the entire OS stops working, then set this value lower. With 8 GB or more system memory, you can safely set the emulator memory to 1024, 1536, or 2048 MB.
+    - Select the default orientation.
+    - *Default boot*: Option to save a snapshot of the Android emulator state. This means that the virtual operating system is only suspended when the emulator is closed (for example, the opened application is also preserved, with its full state), and in the *Quick* case, instead of starting the entire OS, the emulated system starts within seconds. In the *Cold* case, however, it stops and restarts the entire operating system of the virtual device every time.
+    - Internal and external storage size, or possibly setting a specific image of the storage content.
+    - Performance:
+        - Number of CPU cores to be used.
+        - Type of graphics acceleration. (Hardware acceleration is only available with the appropriate driver)
         - VM heap: for the virtual machine of the applications, you can leave the default value. You should know that it varies by manufacturer for devices.
-        - Internal flash memory and SD card size, the default settings are basically good.
+        - The desired binary *interface*.
 
     - If everything looks fine in the window, then *Finish*!
 
-![](assets/avd_create.png)
+![](assets/avd_create2.png)
 
-The device we just created appears in the Android Virtual Device Manager. Here you can edit the previously specified parameters, delete user data from the "device" (*Wipe Data* - Full reset), and duplicate or delete the emulator instance.
+The device we just created appears in the Android Virtual Device Manager. Here you can edit the previously specified parameters, connect an external device, delete user data from the "device" (*Wipe Data* - Full reset), and duplicate or delete the emulator instance.
 
 Start the new emulator with the Play button!
 
-Try out the *API Demos* and *Dev Tools* applications on the launched emulator!
+!!! danger "Emulator problems"
+
+    If the emulator does not start, check the following tips:
+    * Is there enough space (minimum 15-20 GB) on the drive?
+    * Are Android Studio and SDK up to date?
+    * SDK manager > SDK tools: is the android emulator the latest?
+    * Does the installation path of Android Studio or SDK contain spaces, accented letters or special characters?
+    * Have you tried a different API, with or without Play Store?
+    * Is virtualization enabled/enabled on the machine?
+    * Try changing the graphics acceleration type.
+
+Try some pre-installed applications on the launched emulator!
 
 !!! note "Notes"
 	In addition to the factory emulator, there are several alternatives, such as [Genymotion](https://www.genymotion.com/fun-zone/) or [BigNox](https://www.bignox.com/), but the Google emulator is the most common, so if you don't have any problems with it, let's stick with it.
@@ -184,16 +198,12 @@ The emulator is very useful for testing purposes, and it also provides the addit
 
 For Android development, we will use Android Studio, which is based on JetBrains IntelliJ, during the lab. A useful feature for those who are new to Studio is the *Tip of the day*, it is worth trying out and checking out the given feature right away. By default, the last project opens when starting up, if there is none, or if we have closed all our projects, then the opening screen. (You can also disable the reopening of the last project with the *Settings -> Appeareance & Behavior -> System Settings -> Reopen projects on startup* option.)
 
-![](assets/studio_old.png)
-
-A few updates ago, Android Studio Giraffe got a new UI. As you can see, it has a much cleaner design, with less distractions on the screen, and more focus on the code. You can easily switch between these views in Settings, under the New UI menu. (*Settings -> Appeareance & Behavior -> New UI*)
-
-![](assets/studio_new.png)
+![](assets/studio.png)
 
 
 ## Hello World
 
-With the help of the lab leader, let's create a simple Hello World application.
+Let's make a simple Hello World application!
 
 1. Create a new project, select the *Empty Activity* option.
 2. The project name should be `HelloWorld`, the starting package `hu.bme.aut.mobweb.helloworld`, and the save location should be the `HelloWorld` folder within the checked-out repository.
@@ -210,9 +220,9 @@ With the help of the lab leader, let's create a simple Hello World application.
 
 ### Android Studio
 
-This section is for those who have previously used the Eclipse IDE and want to learn about the differences compared to Android Studio.
+This section is for those who have previously used other IntelliJ products or the IDE called Eclipse and want to learn about the differences compared to Android Studio.
 
-* **Import from old projects:** Android Studio allows you to import projects from older versions of projects and old Eclipse projects.
+
 * **Project structure:** Android Studio compiles with Gradle and uses a different structure. Within a project:
     * `.idea`: IDE files
     * `app`: source
@@ -233,7 +243,7 @@ This section is for those who have previously used the Eclipse IDE and want to l
     * You can navigate in the code by pressing CTRL, e.g. by clicking on a class or method call. This navigation (and also simple clicking on another class) is recorded, and you can step forward and backward in the history with the back and forth keys. If you have such a button on your mouse/keyboard, and you actively use it while browsing the net, you will find this function very useful.
     * If you have several files open at the same time, you can easily navigate between the files using the <kbd>ALT</kbd> + <kbd>LEFT</kbd>/<kbd>RIGHT</kbd> arrows.
 
-![](assets/nice_studio.png)
+![](assets/studio_nice.png)
 
 
 ### Keyboard shortcuts
@@ -255,12 +265,14 @@ This section is for those who have previously used the Eclipse IDE and want to l
 * <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Search in settings, commands that can be issued.
 * <kbd>ALT</kbd> + <kbd>ENTER</kbd> import/create missing elements.
 
+[More keyboard shortcuts](https://developer.android.com/studio/intro/keyboard-shortcuts).
+
 !!!tip "Find"
     If you ever need something but can't find it in the menu, you can search in Android Studio (or other JetBrains IDEs) by pressing the double Shift key (<kbd>Shift</kbd>+<kbd>Shift</kbd>). Try it out and search for the "Device Manager" option.
 
 ### Tools, editors
 
-In the *View* menu, you can turn various windows on and off. With the help of a lab instructor, review the following tools!
+In the *View* menu, you can turn various windows on and off using the *Tool Windows* menu item. Let's take a look at the following tools:
 
 * Project
 * Structure
@@ -274,7 +286,7 @@ It is possible to split the editor window, to do this, right-click on the tab of
 
 ### Useful settings
 
-With the help of the lab leader, set the following useful functions:
+Let's set up the following useful functions:
 
 * turn off case sensitivity in the code completion (search in settings: *Match case*)
 * turn on and off "laptop mode" (*File -> Power Save Mode*)
@@ -282,47 +294,47 @@ With the help of the lab leader, set the following useful functions:
 
 ### Generateable elements
 
-Studio contains many templates, let's briefly review the options:
+Studio includes many templates, let's briefly review the options:
 
 * In the project tree, right-click on the project -> new -> module
 * In the project tree, inside the module, right-click on "java" -> new
 * In the source code, press <kbd>ALT</kbd>+<kbd>INSERT</kbd>
 
-## Android Profiler
+### Android Profiler
 
 The device's resource usage can be [monitored](https://developer.android.com/studio/profile/android-profiler) on this interface, which can be accessed from the aforementioned *View -> Tool Windows*.
 
 ![](assets/ap.png)
 
-For example, we can get detailed information about network traffic:
+For example, we can get detailed information about processor and memory usage:
 
-![](assets/ap_network.png)
+![](assets/ap2.png)
 
 
-## Database Inspector
+### App Inspection
 
-We can also view the [database](https://developer.android.com/studio/inspect/database) of our debugged app on the device. (*View -> Tool Windows -> App Inspection*)
+We can also view the [network traffic](https://developer.android.com/studio/debug/network-profiler) and [database](https://developer.android.com/studio/inspect/database) of our debugged app on the device. (*View -> Tool Windows -> App Inspection*)
 
-![](assets/di.png)
+![](assets/ni.png)
 
-## Device File Explorer
+### Device Explorer
 
 You can also [browse](https://developer.android.com/studio/debug/device-file-explorer) the file system on your device. (*View -> Tool Windows -> Device Explorer*)
 
-![](assets/dfe.png)
+![](assets/de.png)
 
 ## Tasks (10 x 0.5 points)
 
-1. Run the new application on an emulator (those who have their own device should also try it)!
-2. Place a breakpoint in the code and start the application in debug mode! (It is worth noting that another Gradle Task is now running at the bottom of the screen.)
-3. Make a call and send an SMS to the emulator! What do you experience?
-4. Make a call and send an SMS from the emulator! What do you experience?
-5. Review the functions of the Android Profiler view with the help of the lab leader!
-6. Change the location of the device (GPS) using the appropriate panel of the emulator!
-7. Examine the open threads and memory allocation of the launched `HelloWorld` project!
-8. Examine the contents of the Logcat panel!
-9. Examine the result of Code -> Inspect code!
-10. Find the folder of the `HelloWorld` project you created and examine the contents of the `.apk` file within the build directory! Where is the compiled code located?
+1. Run the new application on an emulator (those who have their own device should try it too)!
+1. Place a breakpoint in the code and start the application in debug mode! (It is worth noting that another Gradle Task is now running at the bottom of the screen.)
+1. Make a call and send an SMS to the emulator! What do we experience?
+1. Make a call and send an SMS from the emulator! What do we experience?
+1. Take a picture with the emulator and find it in the file system using Device Explorer!
+1. Change the location of the device (GPS) using the appropriate panel of the emulator!
+1. Examine the open threads and memory usage of the launched `HelloWorld` project!
+1. Examine the contents of the Logcat panel!
+1. Examine the result of Code -> Inspect code!
+1. Find the folder of the created `HelloWorld` project and examine the contents of the `.apk` file inside the build directory! Where is the compiled code located?
 
 !!! example "TO BE SUBMITTED"
     To complete the lab, you must perform the tasks above and document your results. This should be done with a screenshot and a short, few-sentence explanation for each task. The protocol should be created in the `README.md` file in the repository.
