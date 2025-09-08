@@ -1,0 +1,1270 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László, Pomázi Krisztián, Kövesdán Gábor">
+      
+      
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
+    
+    
+      
+        <title>Labor 01 - Hello World - BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-01-hello-world" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 01 - Hello World
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-tabs__link">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="false">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/contributing/" class="md-nav__link">
+        Hozzájárulás az anyaghoz
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/02-android-ui/" class="md-nav__link">
+        Labor 02 - UI - Tömegközlekedési alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - UI, LazyColumn - Kiadás és bevétel kezelő alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/04-android-ui-charts/" class="md-nav__link">
+        Labor 04 - UI,HorizontalPager, Charts - HR alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/05-android-sqlite/" class="md-nav__link">
+        Labor 05 - SQLite - Rajzoló alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/06-android-room/" class="md-nav__link">
+        Labor 06 - Room - Bevásárló lista alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/07-android-network/" class="md-nav__link">
+        Labor 07 - Retrofit - Időjárás alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/12-js-advanced/" class="md-nav__link">
+        Labor 12 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/13-jquery/" class="md-nav__link">
+        Labor 13 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    Preparations
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-download-a-git-repository" class="md-nav__link">
+    Create and download a Git repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-a-markdown-file" class="md-nav__link">
+    Open a Markdown file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-basics" class="md-nav__link">
+    Android Basics
+  </a>
+  
+    <nav class="md-nav" aria-label="Android Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilation-process-on-android-platform" class="md-nav__link">
+    Compilation process on Android platform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-and-its-libraries" class="md-nav__link">
+    SDK and its libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd-and-sdk-manager" class="md-nav__link">
+    AVD and SDK Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avd" class="md-nav__link">
+    AVD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-environment" class="md-nav__link">
+    Development environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    Hello World
+  </a>
+  
+    <nav class="md-nav" aria-label="Hello World">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-studio" class="md-nav__link">
+    Android Studio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    Keyboard shortcuts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-editors" class="md-nav__link">
+    Tools, editors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-settings" class="md-nav__link">
+    Useful settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generateable-elements" class="md-nav__link">
+    Generateable elements
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-profiler" class="md-nav__link">
+    Android Profiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-inspector" class="md-nav__link">
+    Database Inspector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-file-explorer" class="md-nav__link">
+    Device File Explorer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks-10-x-05-points" class="md-nav__link">
+    Tasks (10 x 0.5 points)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="labor-01-hello-world">Labor 01 - Hello World<a class="headerlink" href="#labor-01-hello-world" title="Permanent link">&para;</a></h1>
+<p>The first lab is unusual compared to the others. Here we will encounter little code, the focus is more on reviewing the basics.</p>
+<p>The goal of the lab is to introduce the Android development environment, the process of creating an application, testing and compiling it, monitoring the application, and the functions of the emulator and the development environment. We will explain how to create a Hello World application and during the lab the lab leader will introduce the tools in detail.</p>
+<p>At the end of the lab, a report must be submitted to obtain a grade.</p>
+<p>The assessment covers the following topics:</p>
+<ul>
+<li>Understanding the basics of the Android platform</li>
+<li>Android Studio development environment basics</li>
+<li>Android Emulator features</li>
+<li>Creating and running an Android project on an emulator</li>
+<li>Building a manifest file</li>
+<li>Android Profiler</li>
+</ul>
+<h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
+<p>When solving the tasks, don't forget to follow the <a href="../github/GitHub.md">task submission process</a>.</p>
+<h3 id="create-and-download-a-git-repository">Create and download a Git repository<a class="headerlink" href="#create-and-download-a-git-repository" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Find the lab invitation URL in Moodle and use it to create your own repository.</p>
+</li>
+<li>
+<p>Wait for the repository to be ready, then checkout it.</p>
+<div class="admonition tip">
+<p>In university labs, if the system does not ask for a username and password during checkout and the checkout fails, it is likely that the system tried to use a username previously saved on the machine. First, delete the saved login information, and try again.</p>
+</div>
+</li>
+<li>
+<p>Create a new branch called <code>solution</code> and work on this branch.</p>
+</li>
+<li>
+<p>Write your Neptun code in the file <code>neptun.txt</code>. The file should contain nothing else but the 6 characters of the Neptun code on a single line.</p>
+</li>
+</ol>
+<h3 id="open-a-markdown-file">Open a Markdown file<a class="headerlink" href="#open-a-markdown-file" title="Permanent link">&para;</a></h3>
+<p>When completing the tasks, prepare the documentation in markdown format. Open the previously downloaded git repository with a markdown compatible editor. It is recommended to use Visual Studio Code:</p>
+<ol>
+<li>
+<p>Start VS Code.</p>
+</li>
+<li>
+<p>Open the git repository directory using the <em>File &gt; Open Folder...</em> menu.</p>
+</li>
+<li>
+<p>In the tree on the left, find the <code>README.md</code> file and double-click to open it.</p>
+<ul>
+<li>Edit this file.</li>
+<li>If you create an image, put it in the repository with the other files. This way you can reference it with a relative path (filename).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Filename: all lowercase letters without accents</p>
+<p>Do not use accented characters, spaces, or mixed case in image filenames. Different platforms and git handle filenames differently. Everything will display correctly on the GitHub web interface if you use only lowercase letters in your filenames.</p>
+</div>
+</li>
+<li>
+<p>For convenient editing, open the <a href="https://code.visualstudio.com/docs/languages/markdown#_markdown-preview">preview function</a> (<em>Ctrl-K + V</em>).</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Other editing tools</p>
+<p>If you don't like this editor, you can also use the <a href="https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository">GitHub web interface</a> to edit the documentation, there is also a preview there. Then <a href="https://help.github.com/en/github/managing-files-in-a-repository/adding-a-file-to-a-repository">uploading files</a> will be a little more complicated.</p>
+</div>
+<h2 id="android-basics">Android Basics<a class="headerlink" href="#android-basics" title="Permanent link">&para;</a></h2>
+<h3 id="compilation-process-on-android-platform">Compilation process on Android platform<a class="headerlink" href="#compilation-process-on-android-platform" title="Permanent link">&para;</a></h3>
+<p>After creating the project, the source code is located in the <code>src</code> directory. The user interface is defined directly in Kotlin code using Jetpack Compose, so there is no need for XML files. The result of compiling the Android project is an APK file, which can be installed directly on a mobile device. Jetpack Compose allows us to easily access and manipulate interface elements from Kotlin code, facilitating modern, declarative interface design.</p>
+<p><img alt="" src="assets/lab-1-compile-en.png" /></p>
+<p><em>Compilation process on Android platform</em></p>
+<ol>
+<li>
+<p>The developer creates the Kotlin source code, in which the user interface is defined using Jetpack Compose. There is no need for a separate XML-based user interface description.</p>
+</li>
+<li>
+<p>The development environment keeps the resources related to Compose elements and the necessary build files for development and compilation constantly up to date.</p>
+</li>
+<li>
+<p>The developer sets the application's access permissions in the Manifest file (e.g. Internet access, use of sensors, etc.), and if runtime permissions are required, they are managed.</p>
+</li>
+<li>
+<p>The compiler generates the machine code of the <a href="https://source.android.com/docs/core/dalvik"><strong>ART</strong></a> virtual machine from the source code, resources and external libraries.</p>
+</li>
+<li>
+<p>The unsigned APK file is generated from the machine code and resources.</p>
+</li>
+<li>
+<p>Finally, the system performs the signing and produces a signed APK that can be installed on devices.</p>
+</li>
+</ol>
+<p>Android Studio uses the <a href="https://gradle.org/">Gradle</a> build system to perform these steps.</p>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+</div>
+<ul>
+<li>
+<p>The entire process takes place on the developer's machine, only binary files are delivered to the devices.</p>
+</li>
+<li>
+<p>External libraries can usually be added to the current project as JAR files or by adding another project (but we don't have to do this manually, Gradle will also help with managing dependencies).</p>
+</li>
+<li>
+<p>The APK file is most similar to the JAR files known in the Java world.</p>
+</li>
+<li>
+<p>The Android version you want to support must be specified in the Manifest file, which is upwardly compatible with newer versions, but the application cannot be installed on older versions.</p>
+</li>
+<li>
+<p>Developers must constantly keep up with the constantly updated versions of Android.</p>
+</li>
+<li>
+<p>Android applications are typically published in the Google Play Store, so distribution in APK format is not as widespread.</p>
+</li>
+</ul>
+<h3 id="sdk-and-its-libraries">SDK and its libraries<a class="headerlink" href="#sdk-and-its-libraries" title="Permanent link">&para;</a></h3>
+<p>The IDE and SDK can be downloaded from <a href="https://developer.android.com/studio">developer.android.com/studio</a>. Let's review its important folders and tools with the help of the lab leader!</p>
+<p><img alt="" src="assets/ide_android.png" /></p>
+<p>SDK structure:</p>
+<ul>
+<li><code>docs:</code> Documentation</li>
+<li><code>extras:</code> Location of various extra software. Maven repository, support libs materials, analytics SDK, Google <a href="https://developer.android.com/studio/run/win-usb.html">Android USB driver</a> (if we downloaded this with SDK manager) etc.</li>
+<li><code>platform-tools:</code> Location of Fastboot and ADB binaries (most used tools)</li>
+<li><code>platforms</code>, <code>samples</code>, <code>sources</code>, <code>system-images:</code> Platform materials, sources, example projects, OS images in a separate subfolder for each API level</li>
+<li><code>tools:</code> Tools to help with compilation and testing, SDK manager, 9Patch drawer, emulator binaries etc.</li>
+</ul>
+<h3 id="avd-and-sdk-manager">AVD and SDK Manager<a class="headerlink" href="#avd-and-sdk-manager" title="Permanent link">&para;</a></h3>
+<p>We use the SDK manager to manage the SDK, which allows us to download and keep our tools up to date. It can be launched via Android Studio.</p>
+<p>The SDK Manager icon can be found in the settings on the toolbar above (or Tools -&gt; SDK Manager):</p>
+<table>
+<thead>
+<tr>
+<th>Old UI</th>
+<th></th>
+<th>New UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="assets/sdk_manager_icon.png" /></td>
+<td></td>
+<td><img alt="" src="assets/sdk_manager_icon_2.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>SDK Manager interface:</p>
+<p><img alt="" src="assets/sdk_manager.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+<p>There used to be a standalone SDK manager, but its use is now deprecated. Don't be surprised if you see it in online sources.</p>
+</div>
+<p>Let's start the AVD Manager and check with the lab leader whether everything we need for our first application is available.</p>
+<h3 id="avd">AVD<a class="headerlink" href="#avd" title="Permanent link">&para;</a></h3>
+<p>AVD is the abbreviation for Android Virtual Device. As mentioned in the presentation, we can run our code not only on a real device, but also on an emulator. (What is the difference between a simulator and an emulator?) The AVD can be started via the development environment (<em>Tools-&gt;Device Manager</em>), or from the command line, but this is only needed in special cases.</p>
+<p>AVD Manager icon:</p>
+<table>
+<thead>
+<tr>
+<th>Old  UI</th>
+<th></th>
+<th>New UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="assets/avd_icon.png" /></td>
+<td></td>
+<td><img alt="" src="assets/avd_icon_2.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="assets/avd_manager.png" /></p>
+<p>In the picture above, on the right side, in the panel that opens, we find a list of existing virtual devices, and on the left side, the so-called device definitions. (This can be opened with the <em>Add a new device</em> tab, then the <em>Create Virtual Device</em> option with the <code>+</code> icon on the right side) There are some pre-made templates available here. We can also create one ourselves if we typically want to develop for a specific device (e.g. Galaxy S24). Let's create a new emulator! Naturally, we can only create devices with API levels that are available through the SDK manager.</p>
+<ol>
+<li>On the right side panel, click the <em>Create Virtual Device...</em> button above!</li>
+<li>Select one of the predefined device templates (e.g. <em>Pixel 8 Pro</em>), then press the <em>Next</em> button.</li>
+<li>Decide which Android version of emulator we want to use. CPU/ABI should basically be x86_64, as we get <a href="https://developer.android.com/studio/run/emulator-acceleration">hardware acceleration</a> for these. Here, select one of the available ones, then <em>Next</em>.</li>
+<li>
+<p>Detailed configuration of the device.</p>
+<ul>
+<li>The virtual device name should be <code>Labor_1</code> for example.</li>
+<li>Select the default orientation, turn on or off the display of the device frame as desired.</li>
+</ul>
+<p>Under <em>Show Advanced Settings</em> you will find additional options:</p>
+<ul>
+<li>Camera options:        <ul>
+<li><em>WebcamX</em>, a hardware camera that is connected to the computer</li>
+<li><em>Emulated</em>, a simple software solution, <strong>now at least one of the cameras should be like this</strong>.</li>
+<li><em>VirtualScene</em>, a more sophisticated software solution, in which we can move the camera in a 3D world.</li>
+</ul>
+</li>
+<li>Network: You can also adjust its speed and latency according to communication technologies.</li>
+<li><em>Boot Option</em>: (Recently released) The ability to save a snapshot of the Android emulator state. This means that the virtual operating system is only suspended when the emulator is closed (for example, the open application is also preserved, with its full state), and in the case of <em>Quick boot</em>, instead of starting the full OS, the emulated system starts within seconds. In the case of <em>Cold Boot</em>, it stops and restarts the entire operating system of the virtual device every time.</li>
+<li>
+<p>Memory and storage:</p>
+<ul>
+<li>RAM: If you have little system memory, it is not worth giving more than 768 MB, because you can easily run into problems. If the emulator freezes or the entire OS stops working, then set this value lower. With 8 GB or more system memory, you can safely set the emulator memory to 1024, 1536, or 2048 MB.</li>
+<li>VM heap: for the virtual machine of the applications, you can leave the default value. You should know that it varies by manufacturer for devices.</li>
+<li>Internal flash memory and SD card size, the default settings are basically good.</li>
+</ul>
+</li>
+<li>
+<p>If everything looks fine in the window, then <em>Finish</em>!</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img alt="" src="assets/avd_create.png" /></p>
+<p>The device we just created appears in the Android Virtual Device Manager. Here you can edit the previously specified parameters, delete user data from the "device" (<em>Wipe Data</em> - Full reset), and duplicate or delete the emulator instance.</p>
+<p>Start the new emulator with the Play button!</p>
+<p>Try out the <em>API Demos</em> and <em>Dev Tools</em> applications on the launched emulator!</p>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+<p>In addition to the factory emulator, there are several alternatives, such as <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> or <a href="https://www.bignox.com/">BigNox</a>, but the Google emulator is the most common, so if you don't have any problems with it, let's stick with it.</p>
+</div>
+<p>The emulator is very useful for testing purposes, and it also provides the additional functions shown in the image below. It is possible to set a unique location, simulate an incoming call, manipulate sensors virtually, etc. The panel can be opened with the <em>...</em> button from the control buttons on the right side of the running emulator:</p>
+<p><img alt="" src="assets/avd_extras.png" /></p>
+<h2 id="development-environment">Development environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h2>
+<p>For Android development, we will use Android Studio, which is based on JetBrains IntelliJ, during the lab. A useful feature for those who are new to Studio is the <em>Tip of the day</em>, it is worth trying out and checking out the given feature right away. By default, the last project opens when starting up, if there is none, or if we have closed all our projects, then the opening screen. (You can also disable the reopening of the last project with the <em>Settings -&gt; Appeareance &amp; Behavior -&gt; System Settings -&gt; Reopen projects on startup</em> option.)</p>
+<p><img alt="" src="assets/studio_old.png" /></p>
+<p>A few updates ago, Android Studio Giraffe got a new UI. As you can see, it has a much cleaner design, with less distractions on the screen, and more focus on the code. You can easily switch between these views in Settings, under the New UI menu. (<em>Settings -&gt; Appeareance &amp; Behavior -&gt; New UI</em>)</p>
+<p><img alt="" src="assets/studio_new.png" /></p>
+<h2 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h2>
+<p>With the help of the lab leader, let's create a simple Hello World application.</p>
+<ol>
+<li>Create a new project, select the <em>Empty Activity</em> option.</li>
+<li>The project name should be <code>HelloWorld</code>, the starting package <code>hu.bme.aut.mobweb.helloworld</code>, and the save location should be the <code>HelloWorld</code> folder within the checked-out repository.</li>
+<li>Select <em>Kotlin</em> as the language.</li>
+<li>The minimum API level should be API24: Android 7.0.</li>
+<li>The <code>Build configuration language</code> should be Kotlin DSL.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">FILE PATH</p>
+<p>The project should be placed in the HelloWorld directory in the repository!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>The project's access path contains only lowercase letters of the English alphabet, as Android Studio is sensitive to accents and special characters!</p>
+</div>
+<h3 id="android-studio">Android Studio<a class="headerlink" href="#android-studio" title="Permanent link">&para;</a></h3>
+<p>This section is for those who have previously used the Eclipse IDE and want to learn about the differences compared to Android Studio.</p>
+<ul>
+<li><strong>Import from old projects:</strong> Android Studio allows you to import projects from older versions of projects and old Eclipse projects.</li>
+<li>
+<p><strong>Project structure:</strong> Android Studio compiles with Gradle and uses a different structure. Within a project:</p>
+<ul>
+<li><code>.idea</code>: IDE files</li>
+<li><code>app</code>: source<ul>
+<li><code>build</code>: compiled files</li>
+<li><code>libs</code>: libraries</li>
+<li><code>src</code>: source code, within it a separate project for the test, and within it a <code>res</code> library, and <code>java</code>. Within the latter are the packages.</li>
+</ul>
+</li>
+<li><code>gradle</code>: Gradle files</li>
+</ul>
+</li>
+<li>
+<p><strong>Useful features:</strong></p>
+<ul>
+<li>IntelliSense, advanced refactoring support</li>
+<li>If we reference a color or image resource in a line, it puts a miniature version at the beginning of the line.</li>
+<li>If we specify an indirectly referenced resource (either <code>resources.get...</code> or <code>R...</code>), it collapses the reference and shows the actual value. Hovering over it reveals it, clicking expands the reference.</li>
+<li>It can do the same with anonymous inner classes, improving code readability.</li>
+<li>The search is free for code completion, it searches for word fragments, not for options starting with the word (see image)</li>
+<li>Variable name suggestion: when we need a variable name, press <em>Ctrl+Space</em>. If the circumstances are right, Studio can suggest some pretty good names.</li>
+<li>Strict lint. Studio allows warnings. Therefore, lint is stricter, it warns about more things (even small things like padding on one side of a View, but not on the other)</li>
+<li>Layout editing. Graphical layout construction is possible.</li>
+<li>You can navigate in the code by pressing CTRL, e.g. by clicking on a class or method call. This navigation (and also simple clicking on another class) is recorded, and you can step forward and backward in the history with the back and forth keys. If you have such a button on your mouse/keyboard, and you actively use it while browsing the net, you will find this function very useful.</li>
+<li>If you have several files open at the same time, you can easily navigate between the files using the <kbd>ALT</kbd> + <kbd>LEFT</kbd>/<kbd>RIGHT</kbd> arrows.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="assets/nice_studio.png" /></p>
+<h3 id="keyboard-shortcuts">Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>L</kbd>: Code formatting</li>
+<li><kbd>CTRL</kbd> + <kbd>SPACE</kbd>: Code completion</li>
+<li><kbd>SHIFT</kbd> + <kbd>F6</kbd> Rename (Everywhere)</li>
+<li><kbd>F2</kbd>: Jump to next error. If there is no error, then to warning.</li>
+<li><kbd>CTRL</kbd> + <kbd>Z</kbd> or <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd>: Undo and Redo</li>
+<li><kbd>CTRL</kbd> + <kbd>P</kbd>: Show Parameters</li>
+<li><kbd>ALT</kbd> + <kbd>INSERT</kbd>: Generate Method</li>
+<li><kbd>CTRL</kbd> + <kbd>O</kbd>: Override Method</li>
+<li><kbd>CTRL</kbd> + <kbd>F9</kbd>: Compile</li>
+<li><kbd>SHIFT</kbd> + <kbd>F10</kbd>: Compile and Run</li>
+<li><kbd>SHIFT</kbd> <kbd>SHIFT</kbd>: Search Everywhere</li>
+<li><kbd>CTRL</kbd> + <kbd>N</kbd>: Search in classes</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Search in files</li>
+<li><kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>N</kbd>: Search in symbols (e.g. functions, properties)</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>: Search in settings, commands that can be issued.</li>
+<li><kbd>ALT</kbd> + <kbd>ENTER</kbd> import/create missing elements.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Find</p>
+<p>If you ever need something but can't find it in the menu, you can search in Android Studio (or other JetBrains IDEs) by pressing the double Shift key (<kbd>Shift</kbd>+<kbd>Shift</kbd>). Try it out and search for the "Device Manager" option.</p>
+</div>
+<h3 id="tools-editors">Tools, editors<a class="headerlink" href="#tools-editors" title="Permanent link">&para;</a></h3>
+<p>In the <em>View</em> menu, you can turn various windows on and off. With the help of a lab instructor, review the following tools!</p>
+<ul>
+<li>Project</li>
+<li>Structure</li>
+<li>TODO</li>
+<li>Logcat</li>
+<li>Terminal</li>
+<li>Event Log</li>
+<li>Gradle</li>
+</ul>
+<p>It is possible to split the editor window, to do this, right-click on the tab of an open file, <em>Split Right/Down</em> or just click and hold it and start dragging it onto the code surface!</p>
+<h3 id="useful-settings">Useful settings<a class="headerlink" href="#useful-settings" title="Permanent link">&para;</a></h3>
+<p>With the help of the lab leader, set the following useful functions:</p>
+<ul>
+<li>turn off case sensitivity in the code completion (search in settings: <em>Match case</em>)</li>
+<li>turn on and off "laptop mode" (<em>File -&gt; Power Save Mode</em>)</li>
+<li>turn on line numbering (right-click on the code on the left side, <em>Appearance -&gt; Show Line Numbers</em>)</li>
+</ul>
+<h3 id="generateable-elements">Generateable elements<a class="headerlink" href="#generateable-elements" title="Permanent link">&para;</a></h3>
+<p>Studio contains many templates, let's briefly review the options:</p>
+<ul>
+<li>In the project tree, right-click on the project -&gt; new -&gt; module</li>
+<li>In the project tree, inside the module, right-click on "java" -&gt; new</li>
+<li>In the source code, press <kbd>ALT</kbd>+<kbd>INSERT</kbd></li>
+</ul>
+<h2 id="android-profiler">Android Profiler<a class="headerlink" href="#android-profiler" title="Permanent link">&para;</a></h2>
+<p>The device's resource usage can be <a href="https://developer.android.com/studio/profile/android-profiler">monitored</a> on this interface, which can be accessed from the aforementioned <em>View -&gt; Tool Windows</em>.</p>
+<p><img alt="" src="assets/ap.png" /></p>
+<p>For example, we can get detailed information about network traffic:</p>
+<p><img alt="" src="assets/ap_network.png" /></p>
+<h2 id="database-inspector">Database Inspector<a class="headerlink" href="#database-inspector" title="Permanent link">&para;</a></h2>
+<p>We can also view the <a href="https://developer.android.com/studio/inspect/database">database</a> of our debugged app on the device. (<em>View -&gt; Tool Windows -&gt; App Inspection</em>)</p>
+<p><img alt="" src="assets/di.png" /></p>
+<h2 id="device-file-explorer">Device File Explorer<a class="headerlink" href="#device-file-explorer" title="Permanent link">&para;</a></h2>
+<p>You can also <a href="https://developer.android.com/studio/debug/device-file-explorer">browse</a> the file system on your device. (<em>View -&gt; Tool Windows -&gt; Device Explorer</em>)</p>
+<p><img alt="" src="assets/dfe.png" /></p>
+<h2 id="tasks-10-x-05-points">Tasks (10 x 0.5 points)<a class="headerlink" href="#tasks-10-x-05-points" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Run the new application on an emulator (those who have their own device should also try it)!</li>
+<li>Place a breakpoint in the code and start the application in debug mode! (It is worth noting that another Gradle Task is now running at the bottom of the screen.)</li>
+<li>Make a call and send an SMS to the emulator! What do you experience?</li>
+<li>Make a call and send an SMS from the emulator! What do you experience?</li>
+<li>Review the functions of the Android Profiler view with the help of the lab leader!</li>
+<li>Change the location of the device (GPS) using the appropriate panel of the emulator!</li>
+<li>Examine the open threads and memory allocation of the launched <code>HelloWorld</code> project!</li>
+<li>Examine the contents of the Logcat panel!</li>
+<li>Examine the result of Code -&gt; Inspect code!</li>
+<li>Find the folder of the <code>HelloWorld</code> project you created and examine the contents of the <code>.apk</code> file within the build directory! Where is the compiled code located?</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED</p>
+<p>To complete the lab, you must perform the tasks above and document your results. This should be done with a screenshot and a short, few-sentence explanation for each task. The protocol should be created in the <code>README.md</code> file in the repository.</p>
+<p>The documentation, including the images, should also be displayed correctly on the GitHub web interface! Check this during your commit: open the web interface of your repository, switch to the appropriate branch, and GitHub will automatically render the README.md file with the images.</p>
+</div>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2025. szeptember 8. 11:54:05">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 8. 11:54:05 CEST"><span class="timeago" datetime="2025-09-08T11:54:05+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 8. 11:54:05 CEST">2025-09-08</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  </body>
+</html>
