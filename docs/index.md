@@ -36,7 +36,7 @@ A kiértékelés eredményéről a GitHub-on kapsz szöveges visszajelzést (lá
 
 ### iMSC pontok
 
-iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron nem szerezhető iMSc pont. A későbbi laborokon, ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásait a sima labormegoldásokkal együtt kell feltölteni. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
+A ZH-kon 10-10 pont és a laborokon összesen 10 pont szerezhető. Az első laboron nem szerezhető iMSc pont. A későbbi laborokon, ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásait a sima labormegoldásokkal együtt kell feltölteni. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
 
 ### Beugró
 
