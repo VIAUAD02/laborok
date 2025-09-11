@@ -6,7 +6,7 @@
 
 A jegyzetek MkDocs segítségével készülnek és GitHub Pages-en kerülnek publikálásra: <https://VIAUAD02.github.io/laborok/>
 
-Az MKDocs használatához [a hovatalos dokumentáció](https://squidfunk.github.io/mkdocs-material/creating-your-site/) segítségedre lehet.
+Az MKDocs használatához [a hivatalos dokumentáció](https://squidfunk.github.io/mkdocs-material/creating-your-site/) segítségedre lehet.
 
 ## MKDocs tesztelése (Docker-rel)
 
