@@ -65,14 +65,32 @@ Először másoljuk be a következő függőségeket a `libs.version.toml` verzi
 
 ```toml
 [versions]
-...
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.3"
+activityCompose = "1.12.0-alpha08"
+composeBom = "2025.09.00"
+
 coreSplashscreen = "1.0.1"
-navigationCompose = "2.7.7"
+nav3Core = "1.0.0-alpha09"
+kotlinSerialization = "2.2.20"
+kotlinxSerializationCore = "1.9.0"
+
 
 [libraries]
 ...
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+
+
+[plugins]
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 ```
 
 Itt a `[versions]` tag-en belül adhatunk egy változó nevet, majd egy verzió értéket, amit majd a következő lépésben átadunk a `version.ref`-nek. Ez mondja meg, hogy melyik verziót használja az adott modulból. A `[libraries]` tag-en belül definiálunk szintén egy változót `androidx-navigation-compose` néven, amit majd később használunk fel a `build.gradle.kts` fájlban. Ennek megadjuk, hogy melyik modul-t szeretnénk beletenni a projektbe, valamint egy verzió számot, amit korábban már definiáltunk. 
@@ -83,7 +101,9 @@ Hogy ha ezzel megvagyunk, nyissuk meg a `build.gradle.kts` fájlt, és adjuk hoz
 dependencies {
     ...
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 ```
 
@@ -91,6 +111,16 @@ Itt az `implementation` függvény segítségével tudunk új függőséget felv
 
 - megadjuk a fájl nevét, jelen esetben `libs` 
 - majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.
+
+Végezetül kapcsoljuk be az alábbi `plugint` a `build.gradle.kts` fáj tetején:
+
+```kotlin
+plugins {
+	...
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+```
+
 
 Hogy ha ezzel is megvagyunk kattintsunk a `Sync Now` gombra a jobb fölső sarokban, és várjuk meg míg letölti a szükséges függőségeket.
 
@@ -243,24 +273,6 @@ Ezután állítsuk be az alkalmazásunk ikonját is:
     ...
 </application>
 ```
-Majd meg kell hívnunk az `installSplashScreen` függvényt az `onCreate`-ben, hogy az alkalmazás indításánál, valóban elkészüljön a *Splash Screen*.
-
-```kotlin
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        setContent {
-            PublicTransportTheme {
-                Greeting(name = "Android")
-            }
-        }
-    }
-}
-```
 
 !!!note "Splash Screen-NavGraph"
     A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#extra-feladat-navgraph-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
@@ -282,31 +294,10 @@ Most már elkészíthetjük a login képernyőt. A felhasználótól egy e-mail 
 <img src="./assets/login.png" width="320">
 </p>
 
-Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `NavGraph` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Különálló Screen File](#extra-feladat-kulonallo-screen-file) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
-Nyissuk meg a `NavGraph` fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.
+### Felület
 
-```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ){
-        composable("login"){
-            LoginScreen(
-                onSuccess = {
-                    /*TODO*/
-                }
-            )
-        }
-    }
-}
-```
-
-Miután ezzel megvagyunk, hozzunk létre egy új *Packaget* `screen` néven a projekt mappában, majd ezen belül hozzunk létre egy új *Kotlin Filet* `LoginScreen` néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:
+Először hozzunk létre egy új *Packaget* `screen` néven a projekt mappában, majd ezen belül hozzunk létre egy új *Kotlin Filet* `LoginScreen` néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:
 
 ```kotlin
 @Composable
@@ -486,7 +477,50 @@ Button(
 !!!warning "kód értelmezése"
     A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
 
-Hogy ha ezzel a lépéssel is megvagyunk, akkor a `NavGraph` fájlban az errornak el kell tűnnie a szükséges importok után.
+
+### Navigáció
+
+Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a `LoginScreen` függvényt a `MainActivity` `onCreate` függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `AppNavigation` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Átláthatóbb navigáció](#extra-feladat-atlathatobb-navigacio) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
+
+
+
+Nyissuk meg az `AppNavigation` fájlt, készítsük el a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével!
+
+```kotlin
+data object LoginScreenDestination
+
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {})
+                }
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
+        }
+    )
+}
+```
+
+Itt először létrehozunk egy singleton adat osztályt (`data object`) `LoginScreenDestination` néven. Ez reprezentálja a navigációnk egyik "állomását".
+
+Az `AppNavigation` függvényünkben először létrehozunk egy `backStack`-et, ami a navigációs célpontjainkat fogja tartalmazni. Látható, hogy igazából bármi belepakolható ebbe a listába, mi jelenleg az egyetlen létező célpontunkat, a `LoginScreenDestination`-t raktuk bele. Ezek után a `NavDisplay` függvényparamétereként beállítuk:
+
+* a **modifier** dekorátort,
+* az imént létrehozott **backstack**-et
+* azt a **viselkedést, amit a vissza gomb hatására végre kell hajtani** (jelen esetben levenni a *backstack* felső elemét),
+* illetve magát a navigációs logikát, ahol attól függően, hogy melyik "állomás"-on vagyöunk, megjelenítünk valamit (jelen esetben a `LoginScreenDestination` esetén a `LoginScreen`-t.
+
 
 Már csak egyetlen lépés van, hogy ezt a képernyőt az emulátoron láthassuk az indítás után. Nyissuk meg a `MainActivity` fájlt, és módosítsuk a következő szerint:
 
@@ -494,16 +528,11 @@ Már csak egyetlen lépés van, hogy ezt a képernyőt az emulátoron láthassuk
 ```kotlin
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PublicTransportTheme {
-                Box(
-                    modifier = Modifier.safeDrawingPadding()
-                ) {
-                    NavGraph()
-                }
+                AppNavigation(modifier = Modifier.safeDrawingPadding())
             }
         }
     }
@@ -548,36 +577,46 @@ fun ListScreen(
 }
 ```
 
-Menjünk vissza a `NavGraph` file-ba és egészítsük ki a következővel
+Menjünk vissza az `AppNavigation` file-ba és egészítsük ki a következővel:
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+data object LoginScreenDestination
+data object ListScreenDestination
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ) {
-        composable("login") {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate("list")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
-        }
-        composable("list") {
-            ListScreen(
-                onTransportClick = {
-                    /*TODO*/
-                    /*navController.navigate("pass/$it")*/
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = {})
                 }
-            )
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-    }
+    )
 }
 ```
+
+Itt három frissítés történt:
+
+* hozzáadtunk egy új állomást reprezentáló singleton adat osztályt a `ListScreen`-ünknek,
+* hozzáadtuk az új navigációs állomást,
+* megvalósítottuk a `LoginScreen` `onSuccess` függvényét, amiben elvégeztük a navigációt.
 
 Ezután készítsük el a `ListScreen`-t:
 
@@ -982,45 +1021,48 @@ A gombnak szintén átadunk egy onClick event eseményt, mégpedig a lambda para
 !!!warning "Értelmezés"
     Az alábbi kódban nagyon sok formázás van, így jelentősen megnehezítheti az értelmezését, ezt a laborvezető segítségével nézzük át, és értelmezzük.
 
-Ezután bővítsük ki a `NavGrap`-unkat a következő szerint, majd beszéjük át a laborvezetővel a kód működését.
+Ezután bővítsük ki az `AppNavigation`-ünket a következő szerint, majd beszéjük át a laborvezetővel a kód működését.
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+data object LoginScreenDestination
+data object ListScreenDestination
+data class DetailsScreenDestination(val type: String)
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ) {
-        composable("login") {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate("list")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
-        }
-        composable("list") {
-            ListScreen(
-                onTransportClick = {
-                    navController.navigate("details/$it")
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = { backStack.add(DetailsScreenDestination(it)) })
                 }
-            )
-        }
-        composable(
-            route = "details/{type}",
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    /*TODO*/
+
+                is DetailsScreenDestination -> NavEntry(key) {
+                    DetailsScreen(onSuccess = {}, transportType = key.type)
                 }
-            )
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-    }
+    )
 }
 ```
+
+!!!warning ""
+	Figyeljük meg, ho hogyan hoztunk létre olyan állomást, ami paramétert fogad, illetve hogyan adjuk át ezt a paramétert navigáció esetén!
 
 
 !!!example "BEADANDÓ (1 pont)"
@@ -1103,37 +1145,52 @@ Mivel a `PassScreen`-nek szüksége van a jegy típusára, valamint az érvénye
 !!!info ""
 	 Látható, hogy a Java-val ellentétben a Kotlin támogatja a [string interpolációt](https://kotlinlang.org/docs/reference/basic-types.html#string-templates).
 
-Végül itt is kössük be a `NavGraph`-ba az új képernyőnket az előzőhöz hasonlóan, valamint adjuk meg a lambda eseményt az előző composable-nek:
+Végül itt is kössük be az `AppNavigation`-be az új képernyőnket az előzőhöz hasonlóan, valamint adjuk meg a lambda eseményt az előző composable-nek:
 
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
+data object LoginScreenDestination
+data object ListScreenDestination
+data class DetailsScreenDestination(val type: String)
+data class PassScreenDestination(val details: String)
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ){
-        ...
-		composable(
-            route = "details/{type}",
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    navController.navigate("pass/$it")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = { backStack.add(DetailsScreenDestination(it)) })
+                }
+
+                is DetailsScreenDestination -> NavEntry(key) {
+                    DetailsScreen(
+                        onSuccess = { backStack.add(PassScreenDestination(it)) },
+                        transportType = key.type
+                    )
+                }
+
+                is PassScreenDestination -> NavEntry(key) {
+                    PassScreen(passDetails = key.details)
+                }
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-        composable(
-            route = "pass/{passDetails}",
-            arguments = listOf(navArgument("passDetails") { type = NavType.StringType })
-        ) { backStackEntry ->
-            PassScreen(passDetails = backStackEntry.arguments?.getString("passDetails") ?: "")
-        }
-    }
+    )
 }
 ```
 
@@ -1330,107 +1387,113 @@ fun SplashScreen(
 A LaunchedEffect-ről bővebben előadáson lesz szó. Itt szükség volt rá, ugyanis a benne lévő delay függvényt nem lehet csak önmagában meghívni: egy *suspend* függvényen vagy egy *coroutinon* belül lehet használni. A delay függvény felel azért, hogy mennyi ideig legyen a képernyőn a SplashScreen. Jelen esetben ez 1 másodperc (1000 milisec), majd ezután meghívódik az onSucces lambda, ami átnavigál minket a LoginScreen-re.
 
 
-Módosítsuk a `NavGraph`-unkat a következő szerint:
+Módosítsuk az `AppNavigation`-ünkat a következő szerint:
 
 ```kotlin
-NavHost(
-    navController = navController,
-    startDestination = "splash"
-){
-    composable("splash"){
-        SplashScreen(
-            onSuccess = {
-                navController.navigate("login"){
-                    popUpTo("splash"){ inclusive = true }
-                    launchSingleTop = true
+data object SplashScreenDestination
+...
+
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(SplashScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is SplashScreenDestination -> NavEntry(key) {
+                    SplashScreen(onSuccess = {
+                        backStack.removeLastOrNull()
+                        backStack.add(LoginScreenDestination)
+                    })
                 }
+
+                ...
             }
-        )
-    }
-    ...
+        }
+    )
 }
 ```
 
 A `SplashScreen` képernyő testreszabásával a labor keretein belül nem fogunk foglalkozni, ez teljesen egyénre szabható. 
 
-Az újonnan hozzáadott `composable` elem a `NavGraph`-ban a következő képpen épül fel:
-
-- Szintén kapott egy elérési *routet*
-- Valamint megkapta a kívánt képernyőt a függvény törzsében
-- Ennek van egy *onSuccess* lambda paramétere, amibe beletesszük a következő képernyőre való navigálást
-- Ezen belül a `popUpTo` segítségével kiszedjük a SplashScreen-t, hogy visszanavigálás esetén, ne dobja be ezt
+Figyeljük meg, hogy itt nem csak a navigációt végezzük el az `onSuccess` *callback*-ben, hanem először levesszük a `SplashScreen`-t a *backstack*-ről, hogy oda semmi esetre se lehessen visszanavigálni.
 
 Majd ezután a `Manifest` fájl személyre szabható, hogy milyen témát jelenítsen meg.
 
 
-### Extra feladat - Különálló Screen File
+### Extra feladat - Átláthatóbb navigáció
 
-Nagy projektekben, ahol több képernyő található, egy idő után kényelmetlen megoldás lehet a *screenek* közötti *stringekkel* történő navigáció. Ezért általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló `Screen` osztályba gyűjtjük, majd a navigációs gráfban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott `Screen` fájl az alábbi kódot fogja tartalmazni:
+Nagy projektekben, ahol több képernyő található, egy idő után nagyra nőhet a navigációs fájl. Egyrészt ilyenkor a navigációt szétszedhetjük kisebb al navigációkra, majd ezeket egyesíthetjük egy főbb navigációs fájlban. Másrészt kicsit jobban megszervezhetjük az *állomásaink* kezelését.  Erre általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló `Screen` osztályba gyűjtjük, majd a navigációs fájlban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott `Screen` fájl az alábbi kódot fogja tartalmazni:
 
 ```kotlin
-sealed class Screen(val route: String){
-    object Login: Screen("login")
-    object List: Screen("list")
-    object Details: Screen("details/{type}"){
-        fun passType(type: String) = "details/$type"
-    }
-    object Pass: Screen("pass/{passDetails}"){
-        fun passPassDetails(passDetails: String) = "pass/$passDetails"
-    }
+sealed interface Screen : NavKey {
+	@Serializable
+    data object SplashScreenDestination : Screen
+	@Serializable
+    data object LoginScreenDestination : Screen
+	@Serializable
+    data object ListScreenDestination : Screen
+	@Serializable
+    data class DetailsScreenDestination(val type: String) : Screen
+	@Serializable
+    data class PassScreenDestination(val details: String) : Screen
 }
 ```
+Látható, hogy az *interface*-ünk megvalósít egy `NavKey` *interface*-t. Ez nem tartalmaz releváns kódot, csak egy jelzés arra, hogy ezeket az objektumokat navigáció során fogjuk használni.
 
 !!!info "sealed class"
 	A Kotlin sealed class-ai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a `Details` valójában nem a `Screen` közvetlen leszármazottja, hanem anonim leszármazott osztálya, mivel a felhasználónév paraméterként történő kezelését is tartalmazza.
 
-Ez után tehát a `NavGraph` `route` paraméterének nem egy nyers Stringet adunk át, hanem az imént létrehozott *objecteket* a következő képpen:
+Ez után tehát az `AppNavigation`-ünkből kitörölhetjük az állomásokat, valamint az `entryProvider`-t is egyszerűsíthetjük:
 
 ```kotlin
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.LoginScreenDestination) }
 
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Login.route
-    ) {
-        composable(Screen.Login.route) {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate(Screen.List.route)
-                }
-            )
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.LoginScreenDestination> {
+                LoginScreen(onSuccess = {
+                    backStack.add(Screen.ListScreenDestination)
+                })
+            }
+
+            entry<Screen.ListScreenDestination> {
+                ListScreen(onTransportClick = { backStack.add(Screen.DetailsScreenDestination(it)) })
+            }
+
+            entry<Screen.DetailsScreenDestination> { key ->
+                DetailsScreen(
+                    onSuccess = { backStack.add(Screen.PassScreenDestination(it)) },
+                    transportType = key.type
+                )
+            }
+
+            entry<Screen.PassScreenDestination> { key ->
+                PassScreen(passDetails = key.details)
+            }
         }
-        composable(Screen.List.route) {
-            ListScreen(
-                onTransportClick = {
-                    navController.navigate(Screen.Details.passType(it))
-                }
-            )
-        }
-        composable(
-            route = Screen.Details.route,
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    navController.navigate(Screen.Pass.passPassDetails(it))
-                }
-            )
-        }
-        composable(
-            route = Screen.Pass.route,
-            arguments = listOf(navArgument("passDetails") { type = NavType.StringType })
-        ) { backStackEntry ->
-            PassScreen(passDetails = backStackEntry.arguments?.getString("passDetails") ?: "")
-        }
-    }
+    )
 }
 ```
 
-Jól látható, hogy a *Sealed Class* segítségével könnyebben módosítható az egyes elérési utak címe. Mind a két megoldás működőképes, viszont ez utóbbi kicsit elegánsabb nagyobb projekteknél.
+A labor során észrevehettük, hogy amennyiben elforgattuk az eszközünket, mindig a visszakerültünk a bejelentkező oldalra. Ez azért van, mert az *Activity* megszűnésével megszűnik a benne lévő *backstack* is. Ha szeretnénk, hogy az alkalmazásunk megfelelően működjön és megmaradjon a navigációnk állapota, akkor jeleznünk kell, hogy amit a `backStack`-ben tárolunk az egy valós *navigációs backstack*.
 
+Változtassuk meg tehát az `AppNavigation`-ünkben a `backStack` definícióját:
+
+```kotlin
+val backStack = rememberNavBackStack(Screen.LoginScreenDestination)
+```
+
+Próbáljuk ki, hogy így már elforgatás esetén is helyesen működik az alkalmazásunk!
 
 
 ## iMSc feladat
