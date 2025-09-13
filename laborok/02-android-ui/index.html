@@ -528,6 +528,26 @@
     Login képernyő (0.5 pont)
   </a>
   
+    <nav class="md-nav" aria-label="Login képernyő (0.5 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#felulet" class="md-nav__link">
+    Felület
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigacio" class="md-nav__link">
+    Navigáció
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -581,8 +601,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-kulonallo-screen-file" class="md-nav__link">
-    Extra feladat - Különálló Screen File
+  <a href="#extra-feladat-atlathatobb-navigacio" class="md-nav__link">
+    Extra feladat - Átláthatóbb navigáció
   </a>
   
 </li>
@@ -895,6 +915,26 @@
     Login képernyő (0.5 pont)
   </a>
   
+    <nav class="md-nav" aria-label="Login képernyő (0.5 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#felulet" class="md-nav__link">
+    Felület
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigacio" class="md-nav__link">
+    Navigáció
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -948,8 +988,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-kulonallo-screen-file" class="md-nav__link">
-    Extra feladat - Különálló Screen File
+  <a href="#extra-feladat-atlathatobb-navigacio" class="md-nav__link">
+    Extra feladat - Átláthatóbb navigáció
   </a>
   
 </li>
@@ -1069,21 +1109,41 @@
 </ul>
 <p>Először másoljuk be a következő függőségeket a <code>libs.version.toml</code> verzió katalógus fájlba:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="p">...</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;8.12.3&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.17.0&quot;</span>
+<span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;4.13.2&quot;</span>
+<span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
+<span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3.7.0&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.3&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.12.0-alpha08&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2025.09.00&quot;</span>
+
 <span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.1&quot;</span>
-<span class="n">navigationCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.7.7&quot;</span>
+<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.0-alpha09&quot;</span>
+<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
+<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.9.0&quot;</span>
+
 
 <span class="k">[libraries]</span>
 <span class="p">...</span>
 <span class="n">androidx-core-splashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.core:core-splashscreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coreSplashscreen&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-navigation-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation:navigation-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigationCompose&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-navigation3-runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-runtime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-navigation3-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span>
+
+
+<span class="k">[plugins]</span>
+<span class="n">jetbrains-kotlin-serialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinSerialization&quot;</span><span class="p">}</span>
 </code></pre></div>
 <p>Itt a <code>[versions]</code> tag-en belül adhatunk egy változó nevet, majd egy verzió értéket, amit majd a következő lépésben átadunk a <code>version.ref</code>-nek. Ez mondja meg, hogy melyik verziót használja az adott modulból. A <code>[libraries]</code> tag-en belül definiálunk szintén egy változót <code>androidx-navigation-compose</code> néven, amit majd később használunk fel a <code>build.gradle.kts</code> fájlban. Ennek megadjuk, hogy melyik modul-t szeretnénk beletenni a projektbe, valamint egy verzió számot, amit korábban már definiáltunk. </p>
 <p>Hogy ha ezzel megvagyunk, nyissuk meg a <code>build.gradle.kts</code> fájlt, és adjuk hozzá az imént felvett modulokat a <code>dependencies</code> tag-en belülre:</p>
 <div class="highlight"><pre><span></span><code>dependencies {
     ...
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 </code></pre></div>
 <p>Itt az <code>implementation</code> függvény segítségével tudunk új függőséget felvenni a projektbe, és ezen belül meg kell adnunk a modul nevét, amit már korábban definiáltunk a <code>libs.version.toml</code>-ban. Ezt a következő képpen tehetjük meg: </p>
@@ -1091,6 +1151,12 @@
 <li>megadjuk a fájl nevét, jelen esetben <code>libs</code> </li>
 <li>majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.</li>
 </ul>
+<p>Végezetül kapcsoljuk be az alábbi <code>plugint</code> a <code>build.gradle.kts</code> fáj tetején:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">serialization</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Hogy ha ezzel is megvagyunk kattintsunk a <code>Sync Now</code> gombra a jobb fölső sarokban, és várjuk meg míg letölti a szükséges függőségeket.</p>
 <div class="admonition danger">
 <p class="admonition-title">Sync Now</p>
@@ -1199,27 +1265,12 @@
 <span class="nt">&lt;/activity&gt;</span>
 </code></pre></div>
 <p>Ezután állítsuk be az alkalmazásunk ikonját is:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">&lt;application</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;application</span>
 <span class="w">    </span><span class="err">...</span>
 <span class="w">    </span><span class="na">android:icon=</span><span class="s">&quot;@mipmap/ic_transport&quot;</span>
 <span class="w">    </span><span class="na">android:roundIcon=</span><span class="s">&quot;@mipmap/ic_transport_round&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span>...
 <span class="nt">&lt;/application&gt;</span>
-</code></pre></div>
-Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>onCreate</code>-ben, hogy az alkalmazás indításánál, valóban elkészüljön a <em>Splash Screen</em>.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">installSplashScreen</span><span class="p">()</span>
-<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-<span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
-
-<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">PublicTransportTheme</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">Greeting</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Android&quot;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Splash Screen-NavGraph</p>
@@ -1237,27 +1288,8 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 <img src="./assets/login.png" width="320">
 </p>
 
-<p>Ehhez először hozzunk létre egy új <em>Packaget</em> a projekt mappába <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>Package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>NavGraph</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#extra-feladat-kulonallo-screen-file">Extra feladat - Különálló Screen File</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
-<p>Nyissuk meg a <code>NavGraph</code> fájlt, és írjuk bele a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével a kódot.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="p">){</span>
-<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;login&quot;</span>
-<span class="w">    </span><span class="p">){</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">){</span>
-<span class="w">            </span><span class="n">LoginScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="cm">/*TODO*/</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Miután ezzel megvagyunk, hozzunk létre egy új <em>Packaget</em> <code>screen</code> néven a projekt mappában, majd ezen belül hozzunk létre egy új <em>Kotlin Filet</em> <code>LoginScreen</code> néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:</p>
+<h3 id="felulet">Felület<a class="headerlink" href="#felulet" title="Permanent link">&para;</a></h3>
+<p>Először hozzunk létre egy új <em>Packaget</em> <code>screen</code> néven a projekt mappában, majd ezen belül hozzunk létre egy új <em>Kotlin Filet</em> <code>LoginScreen</code> néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">LoginScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -1417,20 +1449,49 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 <p class="admonition-title">kód értelmezése</p>
 <p>A laborvezető segítségével beszéljük át, és értelmezzük a kódot!</p>
 </div>
-<p>Hogy ha ezzel a lépéssel is megvagyunk, akkor a <code>NavGraph</code> fájlban az errornak el kell tűnnie a szükséges importok után.</p>
+<h3 id="navigacio">Navigáció<a class="headerlink" href="#navigacio" title="Permanent link">&para;</a></h3>
+<p>Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a <code>LoginScreen</code> függvényt a <code>MainActivity</code> <code>onCreate</code> függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új <em>Packaget</em> a projekt mappába <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>Package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>AppNavigation</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#extra-feladat-atlathatobb-navigacio">Extra feladat - Átláthatóbb navigáció</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
+<p>Nyissuk meg az <code>AppNavigation</code> fájlt, készítsük el a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével!</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">(</span><span class="n">LoginScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">LoginScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">LoginScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown route: </span><span class="si">$</span><span class="n">key</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Itt először létrehozunk egy singleton adat osztályt (<code>data object</code>) <code>LoginScreenDestination</code> néven. Ez reprezentálja a navigációnk egyik "állomását".</p>
+<p>Az <code>AppNavigation</code> függvényünkben először létrehozunk egy <code>backStack</code>-et, ami a navigációs célpontjainkat fogja tartalmazni. Látható, hogy igazából bármi belepakolható ebbe a listába, mi jelenleg az egyetlen létező célpontunkat, a <code>LoginScreenDestination</code>-t raktuk bele. Ezek után a <code>NavDisplay</code> függvényparamétereként beállítuk:</p>
+<ul>
+<li>a <strong>modifier</strong> dekorátort,</li>
+<li>az imént létrehozott <strong>backstack</strong>-et</li>
+<li>azt a <strong>viselkedést, amit a vissza gomb hatására végre kell hajtani</strong> (jelen esetben levenni a <em>backstack</em> felső elemét),</li>
+<li>illetve magát a navigációs logikát, ahol attól függően, hogy melyik "állomás"-on vagyöunk, megjelenítünk valamit (jelen esetben a <code>LoginScreenDestination</code> esetén a <code>LoginScreen</code>-t.</li>
+</ul>
 <p>Már csak egyetlen lépés van, hogy ezt a képernyőt az emulátoron láthassuk az indítás után. Nyissuk meg a <code>MainActivity</code> fájlt, és módosítsuk a következő szerint:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">installSplashScreen</span><span class="p">()</span>
 <span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
 <span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
 <span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">PublicTransportTheme</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">Box</span><span class="p">(</span>
-<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">safeDrawingPadding</span><span class="p">()</span>
-<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">NavGraph</span><span class="p">()</span>
-<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">safeDrawingPadding</span><span class="p">())</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1466,34 +1527,44 @@ Majd meg kell hívnunk az <code>installSplashScreen</code> függvényt az <code>
 <span class="w">    </span><span class="c1">//TODO</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Menjünk vissza a <code>NavGraph</code> file-ba és egészítsük ki a következővel</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<p>Menjünk vissza az <code>AppNavigation</code> file-ba és egészítsük ki a következővel:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ListScreenDestination</span>
 
-<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;login&quot;</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">LoginScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">(</span><span class="n">LoginScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">LoginScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">LoginScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">ListScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">})</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ListScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="cm">/*TODO*/</span>
-<span class="w">                    </span><span class="cm">/*navController.navigate(&quot;pass/$it&quot;)*/</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">ListScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ListScreen</span><span class="p">(</span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
+
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown route: </span><span class="si">$</span><span class="n">key</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>Itt három frissítés történt:</p>
+<ul>
+<li>hozzáadtunk egy új állomást reprezentáló singleton adat osztályt a <code>ListScreen</code>-ünknek,</li>
+<li>hozzáadtuk az új navigációs állomást,</li>
+<li>megvalósítottuk a <code>LoginScreen</code> <code>onSuccess</code> függvényét, amiben elvégeztük a navigációt.</li>
+</ul>
 <p>Ezután készítsük el a <code>ListScreen</code>-t:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ListScreen</span><span class="p">(</span>
@@ -1860,43 +1931,46 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <p class="admonition-title">Értelmezés</p>
 <p>Az alábbi kódban nagyon sok formázás van, így jelentősen megnehezítheti az értelmezését, ezt a laborvezető segítségével nézzük át, és értelmezzük.</p>
 </div>
-<p>Ezután bővítsük ki a <code>NavGrap</code>-unkat a következő szerint, majd beszéjük át a laborvezetővel a kód működését.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<p>Ezután bővítsük ki az <code>AppNavigation</code>-ünket a következő szerint, majd beszéjük át a laborvezetővel a kód működését.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ListScreenDestination</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DetailsScreenDestination</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;login&quot;</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">LoginScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">(</span><span class="n">LoginScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">LoginScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">LoginScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">ListScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">})</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ListScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;details/</span><span class="si">$</span><span class="n">it</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">ListScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ListScreen</span><span class="p">(</span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">DetailsScreenDestination</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">})</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span>
-<span class="w">            </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;details/{type}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span><span class="w"> </span><span class="p">})</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="cm">/*TODO*/</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">DetailsScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">type</span><span class="p">)</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
+
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown route: </span><span class="si">$</span><span class="n">key</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="admonition warning">
+<p>Figyeljük meg, ho hogyan hoztunk létre olyan állomást, ami paramétert fogad, illetve hogyan adjuk át ezt a paramétert navigáció esetén!</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>részletes nézet</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f4.png néven töltsd föl!</p>
@@ -1969,34 +2043,49 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <div class="admonition info">
 <p>Látható, hogy a Java-val ellentétben a Kotlin támogatja a <a href="https://kotlinlang.org/docs/reference/basic-types.html#string-templates">string interpolációt</a>.</p>
 </div>
-<p>Végül itt is kössük be a <code>NavGraph</code>-ba az új képernyőnket az előzőhöz hasonlóan, valamint adjuk meg a lambda eseményt az előző composable-nek:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="p">){</span>
+<p>Végül itt is kössük be az <code>AppNavigation</code>-be az új képernyőnket az előzőhöz hasonlóan, valamint adjuk meg a lambda eseményt az előző composable-nek:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ListScreenDestination</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DetailsScreenDestination</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PassScreenDestination</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">details</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;login&quot;</span>
-<span class="w">    </span><span class="p">){</span>
-<span class="w">        </span><span class="p">...</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span>
-<span class="w">            </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;details/{type}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span><span class="w"> </span><span class="p">})</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;pass/</span><span class="si">$</span><span class="n">it</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">(</span><span class="n">LoginScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">LoginScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">LoginScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">ListScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">})</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">ListScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ListScreen</span><span class="p">(</span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">DetailsScreenDestination</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">})</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">DetailsScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">DetailsScreen</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">PassScreenDestination</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                        </span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">type</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">PassScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">PassScreen</span><span class="p">(</span><span class="n">passDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">details</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown route: </span><span class="si">$</span><span class="n">key</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span>
-<span class="w">            </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pass/{passDetails}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;passDetails&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span><span class="w"> </span><span class="p">})</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">PassScreen</span><span class="p">(</span><span class="n">passDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;passDetails&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="admonition example">
@@ -2157,94 +2246,96 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
 <span class="p">}</span>
 </code></pre></div>
 <p>A LaunchedEffect-ről bővebben előadáson lesz szó. Itt szükség volt rá, ugyanis a benne lévő delay függvényt nem lehet csak önmagában meghívni: egy <em>suspend</em> függvényen vagy egy <em>coroutinon</em> belül lehet használni. A delay függvény felel azért, hogy mennyi ideig legyen a képernyőn a SplashScreen. Jelen esetben ez 1 másodperc (1000 milisec), majd ezután meghívódik az onSucces lambda, ami átnavigál minket a LoginScreen-re.</p>
-<p>Módosítsuk a <code>NavGraph</code>-unkat a következő szerint:</p>
-<div class="highlight"><pre><span></span><code><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">    </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;splash&quot;</span>
-<span class="p">){</span>
-<span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;splash&quot;</span><span class="p">){</span>
-<span class="w">        </span><span class="n">SplashScreen</span><span class="p">(</span>
-<span class="w">            </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">){</span>
-<span class="w">                    </span><span class="n">popUpTo</span><span class="p">(</span><span class="s">&quot;splash&quot;</span><span class="p">){</span><span class="w"> </span><span class="n">inclusive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
-<span class="w">                    </span><span class="n">launchSingleTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<p>Módosítsuk az <code>AppNavigation</code>-ünkat a következő szerint:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">SplashScreenDestination</span>
+<span class="p">...</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SplashScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">SplashScreenDestination</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NavEntry</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">SplashScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">LoginScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">})</span>
 <span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="p">...</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="p">...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A <code>SplashScreen</code> képernyő testreszabásával a labor keretein belül nem fogunk foglalkozni, ez teljesen egyénre szabható. </p>
-<p>Az újonnan hozzáadott <code>composable</code> elem a <code>NavGraph</code>-ban a következő képpen épül fel:</p>
-<ul>
-<li>Szintén kapott egy elérési <em>routet</em></li>
-<li>Valamint megkapta a kívánt képernyőt a függvény törzsében</li>
-<li>Ennek van egy <em>onSuccess</em> lambda paramétere, amibe beletesszük a következő képernyőre való navigálást</li>
-<li>Ezen belül a <code>popUpTo</code> segítségével kiszedjük a SplashScreen-t, hogy visszanavigálás esetén, ne dobja be ezt</li>
-</ul>
+<p>Figyeljük meg, hogy itt nem csak a navigációt végezzük el az <code>onSuccess</code> <em>callback</em>-ben, hanem először levesszük a <code>SplashScreen</code>-t a <em>backstack</em>-ről, hogy oda semmi esetre se lehessen visszanavigálni.</p>
 <p>Majd ezután a <code>Manifest</code> fájl személyre szabható, hogy milyen témát jelenítsen meg.</p>
-<h3 id="extra-feladat-kulonallo-screen-file">Extra feladat - Különálló Screen File<a class="headerlink" href="#extra-feladat-kulonallo-screen-file" title="Permanent link">&para;</a></h3>
-<p>Nagy projektekben, ahol több képernyő található, egy idő után kényelmetlen megoldás lehet a <em>screenek</em> közötti <em>stringekkel</em> történő navigáció. Ezért általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló <code>Screen</code> osztályba gyűjtjük, majd a navigációs gráfban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott <code>Screen</code> fájl az alábbi kódot fogja tartalmazni:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Screen</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">route</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Login</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">List</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Details</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="s">&quot;details/{type}&quot;</span><span class="p">){</span>
-<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">passType</span><span class="p">(</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;details/</span><span class="si">$</span><span class="n">type</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Pass</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="s">&quot;pass/{passDetails}&quot;</span><span class="p">){</span>
-<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">passPassDetails</span><span class="p">(</span><span class="n">passDetails</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pass/</span><span class="si">$</span><span class="n">passDetails</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<h3 id="extra-feladat-atlathatobb-navigacio">Extra feladat - Átláthatóbb navigáció<a class="headerlink" href="#extra-feladat-atlathatobb-navigacio" title="Permanent link">&para;</a></h3>
+<p>Nagy projektekben, ahol több képernyő található, egy idő után nagyra nőhet a navigációs fájl. Egyrészt ilyenkor a navigációt szétszedhetjük kisebb al navigációkra, majd ezeket egyesíthetjük egy főbb navigációs fájlban. Másrészt kicsit jobban megszervezhetjük az <em>állomásaink</em> kezelését.  Erre általános megoldás, hogy a képernyőket, és a hozzájuk kapcsolódó navigációs utakat egy különálló <code>Screen</code> osztályba gyűjtjük, majd a navigációs fájlban csak a belőlük képzett objektumokat használjuk. A korábban létrehozott <code>Screen</code> fájl az alábbi kódot fogja tartalmazni:</p>
+<p><div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">Screen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NavKey</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">SplashScreenDestination</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ListScreenDestination</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DetailsScreenDestination</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PassScreenDestination</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">details</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
 <span class="p">}</span>
 </code></pre></div>
+Látható, hogy az <em>interface</em>-ünk megvalósít egy <code>NavKey</code> <em>interface</em>-t. Ez nem tartalmaz releváns kódot, csak egy jelzés arra, hogy ezeket az objektumokat navigáció során fogjuk használni.</p>
 <div class="admonition info">
 <p class="admonition-title">sealed class</p>
 <p>A Kotlin sealed class-ai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a <code>Details</code> valójában nem a <code>Screen</code> közvetlen leszármazottja, hanem anonim leszármazott osztálya, mivel a felhasználónév paraméterként történő kezelését is tartalmazza.</p>
 </div>
-<p>Ez után tehát a <code>NavGraph</code> <code>route</code> paraméterének nem egy nyers Stringet adunk át, hanem az imént létrehozott <em>objecteket</em> a következő képpen:</p>
+<p>Ez után tehát az <code>AppNavigation</code>-ünkből kitörölhetjük az állomásokat, valamint az <code>entryProvider</code>-t is egyszerűsíthetjük:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="n">Screen</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">LoginScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
-<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
-<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Screen</span><span class="p">.</span><span class="na">Login</span><span class="p">.</span><span class="na">route</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">Login</span><span class="p">.</span><span class="na">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">LoginScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">List</span><span class="p">.</span><span class="na">route</span><span class="p">)</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entryProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">LoginScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">LoginScreen</span><span class="p">(</span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">ListScreenDestination</span><span class="p">)</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">ListScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ListScreen</span><span class="p">(</span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">DetailsScreenDestination</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">})</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">DetailsScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">DetailsScreen</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">PassScreenDestination</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">type</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">PassScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">PassScreen</span><span class="p">(</span><span class="n">passDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">details</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">List</span><span class="p">.</span><span class="na">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ListScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">onTransportClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">Details</span><span class="p">.</span><span class="na">passType</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span>
-<span class="w">            </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Screen</span><span class="p">.</span><span class="na">Details</span><span class="p">.</span><span class="na">route</span><span class="p">,</span>
-<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span><span class="w"> </span><span class="p">})</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">transportType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">onSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">Pass</span><span class="p">.</span><span class="na">passPassDetails</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">composable</span><span class="p">(</span>
-<span class="w">            </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Screen</span><span class="p">.</span><span class="na">Pass</span><span class="p">.</span><span class="na">route</span><span class="p">,</span>
-<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;passDetails&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span><span class="w"> </span><span class="p">})</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">PassScreen</span><span class="p">(</span><span class="n">passDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;passDetails&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Jól látható, hogy a <em>Sealed Class</em> segítségével könnyebben módosítható az egyes elérési utak címe. Mind a két megoldás működőképes, viszont ez utóbbi kicsit elegánsabb nagyobb projekteknél.</p>
+<p>A labor során észrevehettük, hogy amennyiben elforgattuk az eszközünket, mindig a visszakerültünk a bejelentkező oldalra. Ez azért van, mert az <em>Activity</em> megszűnésével megszűnik a benne lévő <em>backstack</em> is. Ha szeretnénk, hogy az alkalmazásunk megfelelően működjön és megmaradjon a navigációnk állapota, akkor jeleznünk kell, hogy amit a <code>backStack</code>-ben tárolunk az egy valós <em>navigációs backstack</em>.</p>
+<p>Változtassuk meg tehát az <code>AppNavigation</code>-ünkben a <code>backStack</code> definícióját:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavBackStack</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">LoginScreenDestination</span><span class="p">)</span>
+</code></pre></div>
+<p>Próbáljuk ki, hogy így már elforgatás esetén is helyesen működik az alkalmazásunk!</p>
 <h2 id="imsc-feladat">iMSc feladat<a class="headerlink" href="#imsc-feladat" title="Permanent link">&para;</a></h2>
 <p>Korábban a részletes nézetben egy fix árat írtunk ki a képernyőre. Írjuk meg a bérlet árát kiszámoló logikát, és ahogy a felhasználó változtatja a bérlet paramétereit, frissítsük a megjelenített árat.</p>
 <p>Az árazás a következő módon működjön:</p>
@@ -2328,8 +2419,8 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 25. 19:52:51">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. szeptember 25. 19:52:51 CEST"><span class="timeago" datetime="2024-09-25T19:52:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. szeptember 25. 19:52:51 CEST">2024-09-25</span>
+      <span title="2025. szeptember 13. 08:49:28">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 13. 08:49:28 CEST"><span class="timeago" datetime="2025-09-13T08:49:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 13. 08:49:28 CEST">2025-09-13</span>
       </span>
     </span>
 
