@@ -65,14 +65,32 @@ First, copy the following dependencies into the `libs.version.toml` version cata
 
 ```toml
 [versions]
-...
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.3"
+activityCompose = "1.12.0-alpha08"
+composeBom = "2025.09.00"
+
 coreSplashscreen = "1.0.1"
-navigationCompose = "2.7.7"
+nav3Core = "1.0.0-alpha09"
+kotlinSerialization = "2.2.20"
+kotlinxSerializationCore = "1.9.0"
 
 [libraries]
 ...
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+
+[plugins]
+
+
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 ```
 
 Here, inside the `[versions]` tag, we can give a variable name and then a version value, which we will pass to `version.ref` in the next step. This tells us which version of the given module is being used. Inside the `[libraries]` tag, we also define a variable called `androidx-navigation-compose`, which we will use later in the `build.gradle.kts` file. We give it which module we want to include in the project, as well as a version number that we have previously defined.
@@ -83,7 +101,9 @@ Once we are done with this, let's open the `build.gradle.kts` file and add the m
 dependencies {
     ...
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 ```
 
@@ -91,6 +111,16 @@ Here we can add a new dependency to the project using the `implementation` funct
 
 - specify the name of the file, in this case `libs`
 - then specify the name of the variable to which we previously assigned our module.
+
+Finally, enable the following `plugin` at the top of the `build.gradle.kts` file:
+
+```kotlin
+plugins {
+	...
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+```
+
 
 Once we are done with this, click the `Sync Now` button in the upper right corner and wait for it to download the necessary dependencies.
 
@@ -242,27 +272,10 @@ Then let's set the icon for our application:
     ...
 </application>
 ```
-Then we need to call the `installSplashScreen` function in `onCreate` so that the *Splash Screen* is actually created when the application starts.
 
-```kotlin
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        setContent {
-            PublicTransportTheme {
-                Greeting(name = "Android")
-            }
-        }
-    }
-}
-```
-
-!!!note "Splash Screen-NavGraph"
-    The Splash Screen can also be solved using NavGraph, a tutorial [task](#extra-task-navgraph-splash) will help you with this at the end of the lab. (This is not required to pass the lab, you can get the maximum score without the task, but it is worth doing it for the sake of interest.)
+!!!note "Splash Screen with navigation"
+    The Splash Screen can also be solved using navigation, a tutorial [task](#extra-task-navigation-splash) will help you with this at the end of the lab. (This is not required to pass the lab, you can get the maximum score without the task, but it is worth doing it for the sake of interest.)
 
 
 Let's try our app!
@@ -281,31 +294,10 @@ Now we can create the login screen. We will ask the user for an email address an
 <img src="./assets/login.png" width="320">
 </p>
 
-To do this, first create a new *Package* in the project folder called `navigation`, then create two *Kotlin Files* in it (right click on our *Package* -> New -> Kotlin Class/File) called `NavGraph` and `Screen`. The latter will only be needed so that we can solve the navigation between the screens in a better way later. We will describe this in detail in the [Extra task - Separate Screen File](#extra-task-separate-screen-file) section for those interested.
 
-Open the `NavGraph` file and write the following code in it, then review and interpret the code with the help of the lab leader.
+### UI
 
-```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ){
-        composable("login"){
-            LoginScreen(
-                onSuccess = {
-                    /*TODO*/
-                }
-            )
-        }
-    }
-}
-```
-
-Once we have that, let's create a new *Package* called `screen` in the project folder, and then within that, create a new *Kotlin File* called `LoginScreen`. This screen will contain the necessary labels, buttons, and input fields. To do this, we use the following code:
+First, let's create a new *Package* called `screen` in the project folder, and then within that, create a new *Kotlin File* called `LoginScreen`. This screen will contain the necessary labels, buttons, and input fields. To do this, we use the following code:
 
 ```kotlin
 @Composable
@@ -485,7 +477,50 @@ Button(
 !!!warning "code interpretation"
     Let's talk through and interpret the code with the help of the lab leader!
 
-If we are successful with this step, the error in the `NavGraph` file should disappear after the necessary imports.
+
+### Navigation
+
+To display our new interface, it would be enough to simply call the `LoginScreen` function in the `onCreate` function of `MainActivity`. However, it would be better if we start preparing the application navigation now. To do this, first create a new *Package* in the project folder called `navigation`, and then create two *Kotlin Files* in it (right click on our *Package* -> New -> Kotlin Class/File) called `AppNavigation` and `Screen`. The latter will only be needed so that we can solve the navigation between the screens in a better way later. We will describe this in detail in the [Extra task - More transparent navigation](#extra-task-more-transparent-navigation) section for those interested.
+
+
+
+Open the `AppNavigation` file, create the following code, and then review and interpret it with the help of the lab leader!
+
+```kotlin
+data object LoginScreenDestination
+
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {})
+                }
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
+        }
+    )
+}
+```
+
+Here we first create a singleton data class (`data object`) called `LoginScreenDestination`. This represents one of the "stations" of our navigation.
+
+In our `AppNavigation` function, we first create a `backStack`, which will contain our navigation destinations. You can see that anything can be put into this list, we currently put our only existing destination, `LoginScreenDestination`. After that, we set the `NavDisplay` function parameters as:
+
+* the **modifier** decorator,
+* the **backstack** we just created
+* the **behavior that should be executed when the back button is pressed** (in this case, remove the top element of the *backstack*),
+* and the navigation logic itself, where depending on which "station" we are on, we display something (in this case, in the case of `LoginScreenDestination`, `LoginScreen`.
+
 
 There is only one more step to see this screen on the emulator after launch. Open the `MainActivity` file and modify it as follows:
 
@@ -493,16 +528,11 @@ There is only one more step to see this screen on the emulator after launch. Ope
 ```kotlin
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PublicTransportTheme {
-                Box(
-                    modifier = Modifier.safeDrawingPadding()
-                ) {
-                    NavGraph()
-                }
+                AppNavigation(modifier = Modifier.safeDrawingPadding())
             }
         }
     }
@@ -547,36 +577,46 @@ fun ListScreen(
 }
 ```
 
-Go back to the `NavGraph` file and add the following
+Go back to the `AppNavigation` file and add the following
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+data object LoginScreenDestination
+data object ListScreenDestination
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ) {
-        composable("login") {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate("list")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
-        }
-        composable("list") {
-            ListScreen(
-                onTransportClick = {
-                    /*TODO*/
-                    /*navController.navigate("pass/$it")*/
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = {})
                 }
-            )
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-    }
+    )
 }
 ```
+
+There are three updates here:
+
+* we added a singleton data class representing a new station to our `ListScreen`,
+* we added the new navigation station,
+* we implemented the `onSuccess` function of `LoginScreen`, in which we performed the navigation.
 
 Next, let's create `ListScreen`:
 
@@ -720,7 +760,7 @@ fun PreviewListScreen() {
 	}
 	```
 
-We know from the `Box` used here that the Composables placed in it are stacked on top of each other, so we can easily achieve that there is a caption on an image. We can give `Box` a click event using the `modifier` (`Modifier.clickable{..}`), so we can easily achieve further navigation. However, this function does not work yet, because the `NavGraph` is missing the path and the onClick parameter. We will fix this in the next task.
+We know from the `Box` used here that the Composables placed in it are stacked on top of each other, so we can easily achieve that there is a caption on an image. We can give `Box` a click event using the `modifier` (`Modifier.clickable{..}`), so we can easily achieve further navigation. However, this function does not work yet, because the navigation is missing the path and the onClick parameter. We will fix this in the next task.
 
 The `Image` *Composable* function has a `painter`, a `contentDescription` and a `contentScale` parameter. We can pass these in turn using `painterResource`, `String` and `ContentScale`. We give `painterResource` the path to the image, `painterDescription` a description, and `contentScale` a `FillBounds`. With this, we can achieve that the entire area of ​​the `Box` has an image.
 
@@ -981,46 +1021,48 @@ We also pass an onClick event to the button, namely the lambda parameter that we
 !!!warning "Interpretation"
     The code below has a lot of formatting, so it can be difficult to interpret. Let's review and interpret it with the help of the lab leader.
 
-Then, expand our `NavGrap` as follows, and then discuss the code's operation with the lab leader.
+Then, expand our `AppNavigation` as follows, and then discuss the code's operation with the lab leader.
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+data object LoginScreenDestination
+data object ListScreenDestination
+data class DetailsScreenDestination(val type: String)
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ) {
-        composable("login") {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate("list")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
-        }
-        composable("list") {
-            ListScreen(
-                onTransportClick = {
-                    navController.navigate("details/$it")
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = { backStack.add(DetailsScreenDestination(it)) })
                 }
-            )
-        }
-        composable(
-            route = "details/{type}",
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    /*TODO*/
+
+                is DetailsScreenDestination -> NavEntry(key) {
+                    DetailsScreen(onSuccess = {}, transportType = key.type)
                 }
-            )
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-    }
+    )
 }
 ```
 
+!!!warning ""
+    Notice how we created a station that accepts a parameter, and how we pass this parameter in the case of navigation!
 
 !!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **detailed view** (on emulator, device mirroring or screen capture), a **corresponding code snippet**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f4.png!
@@ -1102,37 +1144,53 @@ Since `PassScreen` needs the ticket type and its validity period, it receives th
 !!!info ""
     You can see that, unlike Java, Kotlin supports [string interpolation](https://kotlinlang.org/docs/reference/basic-types.html#string-templates).
 
-Finally, we connect our new screen to `NavGraph` similarly to the previous one, and we assign the lambda event to the previous composable:
+Finally, we connect our new screen to `AppNavigation` similarly to the previous one, and we assign the lambda event to the previous composable:
+
 
 
 ```kotlin
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
+data object LoginScreenDestination
+data object ListScreenDestination
+data class DetailsScreenDestination(val type: String)
+data class PassScreenDestination(val details: String)
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ){
-        ...
-		composable(
-            route = "details/{type}",
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    navController.navigate("pass/$it")
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(LoginScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is LoginScreenDestination -> NavEntry(key) {
+                    LoginScreen(onSuccess = {
+                        backStack.add(ListScreenDestination)
+                    })
                 }
-            )
+
+                is ListScreenDestination -> NavEntry(key) {
+                    ListScreen(onTransportClick = { backStack.add(DetailsScreenDestination(it)) })
+                }
+
+                is DetailsScreenDestination -> NavEntry(key) {
+                    DetailsScreen(
+                        onSuccess = { backStack.add(PassScreenDestination(it)) },
+                        transportType = key.type
+                    )
+                }
+
+                is PassScreenDestination -> NavEntry(key) {
+                    PassScreen(passDetails = key.details)
+                }
+
+                else -> {
+                    error("Unknown route: $key")
+                }
+            }
         }
-        composable(
-            route = "pass/{passDetails}",
-            arguments = listOf(navArgument("passDetails") { type = NavType.StringType })
-        ) { backStackEntry ->
-            PassScreen(passDetails = backStackEntry.arguments?.getString("passDetails") ?: "")
-        }
-    }
+    )
 }
 ```
 
@@ -1295,9 +1353,9 @@ installSplashScreen().apply {
 
 Let's paste this into the `MainActivity` `onCreate()` function in the appropriate place, then test the application!
 
-### Extra task - NavGraph-Splash
+### Extra task - Navigation-Splash
 
-Previously, we solved this screen using the [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), but there are several options, of which we will now look at one using NavGraph.
+Previously, we solved this screen using the [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), but there are several options, of which we will now look at one using navigation.
 
 This screen is essentially the same screen as the others. Here, first, let's create a new *Kotlin File* inside the `screen` package, then name it `SplashScreen`, and write the following code in it:
 
@@ -1329,107 +1387,113 @@ fun SplashScreen(
 
 LaunchedEffect will be discussed in more detail in the presentation. It was needed here, because the delay function in it cannot be called by itself: it can be used inside a *suspend* function or a *coroutine*. The delay function is responsible for how long the SplashScreen should be on the screen. In this case, it is 1 second (1000 milliseconds), after which the onSuccess lambda is called, which navigates us to the LoginScreen.
 
-Let's modify our `NavGraph` as follows:
+Let's modify our `AppNavigation` as follows:
 
 ```kotlin
-NavHost(
-    navController = navController,
-    startDestination = "splash"
-){
-    composable("splash"){
-        SplashScreen(
-            onSuccess = {
-                navController.navigate("login"){
-                    popUpTo("splash"){ inclusive = true }
-                    launchSingleTop = true
+data object SplashScreenDestination
+...
+
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Any>(SplashScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = { key ->
+            when (key) {
+                is SplashScreenDestination -> NavEntry(key) {
+                    SplashScreen(onSuccess = {
+                        backStack.removeLastOrNull()
+                        backStack.add(LoginScreenDestination)
+                    })
                 }
+
+                ...
             }
-        )
-    }
-    ...
+        }
+    )
 }
 ```
 
 We will not be dealing with the customization of the `SplashScreen` screen within the scope of the lab, it is completely customizable.
 
-The newly added `composable` element in `NavGraph` is structured as follows:
-
-- It also received an access *route*
-- It also received the desired screen in the body of the function
-- It has an *onSuccess* lambda parameter, in which we put the navigation to the next screen
-- Within this, we use `popUpTo` to extract the SplashScreen so that it does not throw it in case of navigation back
+Notice that here we not only perform the navigation in the `onSuccess` *callback*, but we first remove the `SplashScreen` from the *backstack* so that it cannot be navigated back there under any circumstances.
 
 Then the `Manifest` file can be customized to display what theme.
 
 
-### Extra Task - Separate Screen File
+### Extra Task - More transparent navigation
 
-In large projects with multiple screens, navigating between *screens* with *strings* can become inconvenient after a while. Therefore, a common solution is to collect the screens and their associated navigation paths into a separate `Screen` class, and then use only the objects formed from them in the navigation graph. The `Screen` file created earlier will contain the following code:
+In large projects with multiple screens, the navigation file can grow large after a while. On the one hand, in this case, we can break the navigation into smaller sub-navigations, and then combine them in a main navigation file. On the other hand, we can organize the management of our *stations* a little better. A common solution to this is to collect the screens and their associated navigation paths into a separate `Screen` class, and then use only the objects formed from them in the navigation file. The `Screen` file created earlier will contain the following code:
 
 ```kotlin
-sealed class Screen(val route: String){
-    object Login: Screen("login")
-    object List: Screen("list")
-    object Details: Screen("details/{type}"){
-        fun passType(type: String) = "details/$type"
-    }
-    object Pass: Screen("pass/{passDetails}"){
-        fun passPassDetails(passDetails: String) = "pass/$passDetails"
-    }
+sealed interface Screen : NavKey {
+	@Serializable
+    data object SplashScreenDestination : Screen
+	@Serializable
+    data object LoginScreenDestination : Screen
+	@Serializable
+    data object ListScreenDestination : Screen
+	@Serializable
+    data class DetailsScreenDestination(val type: String) : Screen
+	@Serializable
+    data class PassScreenDestination(val details: String) : Screen
 }
 ```
+You can see that our *interface* implements a `NavKey` *interface*. This does not contain any relevant code, just an indication that we will use these objects during navigation.
 
 !!!info "sealed class"
     Kotlin's sealed classes are classes that have limited inheritance, and all their descendants are known at compile time. We can use these classes in a similar way to enums. In this case, `Details` is not actually a direct descendant of `Screen`, but an anonymous descendant of it, since it also includes the handling of the username as a parameter.
 
-So, after this, we don't pass a raw String to the `NavGraph` `route` parameter, but the *objects* we just created, as follows:
+After this, we can delete the stations from our `AppNavigation` and simplify the `entryProvider`:
 
 ```kotlin
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.LoginScreenDestination) }
 
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Login.route
-    ) {
-        composable(Screen.Login.route) {
-            LoginScreen(
-                onSuccess = {
-                    navController.navigate(Screen.List.route)
-                }
-            )
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.LoginScreenDestination> {
+                LoginScreen(onSuccess = {
+                    backStack.add(Screen.ListScreenDestination)
+                })
+            }
+
+            entry<Screen.ListScreenDestination> {
+                ListScreen(onTransportClick = { backStack.add(Screen.DetailsScreenDestination(it)) })
+            }
+
+            entry<Screen.DetailsScreenDestination> { key ->
+                DetailsScreen(
+                    onSuccess = { backStack.add(Screen.PassScreenDestination(it)) },
+                    transportType = key.type
+                )
+            }
+
+            entry<Screen.PassScreenDestination> { key ->
+                PassScreen(passDetails = key.details)
+            }
         }
-        composable(Screen.List.route) {
-            ListScreen(
-                onTransportClick = {
-                    navController.navigate(Screen.Details.passType(it))
-                }
-            )
-        }
-        composable(
-            route = Screen.Details.route,
-            arguments = listOf(navArgument("type") { type = NavType.StringType })
-        ) { backStackEntry ->
-            DetailsScreen(transportType = backStackEntry.arguments?.getString("type") ?: "",
-                onSuccess = {
-                    navController.navigate(Screen.Pass.passPassDetails(it))
-                }
-            )
-        }
-        composable(
-            route = Screen.Pass.route,
-            arguments = listOf(navArgument("passDetails") { type = NavType.StringType })
-        ) { backStackEntry ->
-            PassScreen(passDetails = backStackEntry.arguments?.getString("passDetails") ?: "")
-        }
-    }
+    )
 }
 ```
 
-It is clear that using *Sealed Class* it is easier to modify the address of each access path. Both solutions work, but the latter is a bit more elegant for larger projects.
+During the lab, we noticed that if we rotated our device, we were always returned to the login page. This is because when the *Activity* is terminated, the *backstack* in it is also terminated. If we want our application to work properly and preserve the state of our navigation, we need to indicate that what we store in the `backStack` is a real *navigation backstack*.
 
+So let's change the definition of `backStack` in our `AppNavigation`:
+
+```kotlin
+val backStack = rememberNavBackStack(Screen.LoginScreenDestination)
+```
+
+Let's try to see if our application works correctly even when rotated!
 
 
 ## iMSc task
