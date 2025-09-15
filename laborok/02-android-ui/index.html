@@ -594,8 +594,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-navgraph-splash" class="md-nav__link">
-    Extra feladat - NavGraph-Splash
+  <a href="#extra-feladat-navigacio-splash" class="md-nav__link">
+    Extra feladat - Navigáció-Splash
   </a>
   
 </li>
@@ -981,8 +981,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#extra-feladat-navgraph-splash" class="md-nav__link">
-    Extra feladat - NavGraph-Splash
+  <a href="#extra-feladat-navigacio-splash" class="md-nav__link">
+    Extra feladat - Navigáció-Splash
   </a>
   
 </li>
@@ -1273,8 +1273,8 @@
 <span class="nt">&lt;/application&gt;</span>
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Splash Screen-NavGraph</p>
-<p>A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető <a href="#extra-feladat-navgraph-splash">feladat</a> fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)</p>
+<p class="admonition-title">Splash Screen-navigációval</p>
+<p>A Splash Screent a navigáció segítségével is meg lehet oldani, erről a labor végén egy ismertető <a href="#extra-feladat-navigacio-splash">feladat</a> fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)</p>
 </div>
 <p>Próbáljuk ki az alkalmazásunkat!</p>
 <div class="admonition example">
@@ -1702,7 +1702,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<p>Az itt használt <code>Box</code>-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A <code>Box</code>-nak a <code>modifier</code> segítségével tudunk kattintás eventet adni neki (<code>Modifier.clickable{..}</code>), így könnyen elérhetjük a további navigáció. Azonban ez a funkció még nem működik, mert hiányzik a <code>NavGraph</code>-ból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban fogjuk orvosolni. </p>
+<p>Az itt használt <code>Box</code>-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A <code>Box</code>-nak a <code>modifier</code> segítségével tudunk kattintás eventet adni neki (<code>Modifier.clickable{..}</code>), így könnyen elérhetjük a további navigáció. Azonban ez a funkció még nem működik, mert hiányzik a navigációból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban fogjuk orvosolni. </p>
 <p>Az <code>Image</code> <em>Composable</em> függvénynek egy <code>painter</code>, egy <code>contentDescription</code> és egy <code>contentScale</code> paramétere van. Ezeket át is tudjuk adni sorban a <code>painterResource</code>, <code>String</code> és a <code>ContentScale</code> segítségével. A <code>painterResource</code>-nak megadjuk a kép elérési útját, a <code>painterDescription</code>-nek, egy leírást, illetve a <code>contentScale</code>-nek egy <code>FillBounds</code>-ot. Ennek a segítségével el tudjuk érni, hogy a <code>Box</code> teljes területén kép legyen.</p>
 <div class="admonition warning">
 <p class="admonition-title">kód értelmezése</p>
@@ -2218,8 +2218,8 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
 <span class="p">}</span>
 </code></pre></div>
 <p>Illesszük ezt be a <code>MainActivity</code> <code>onCreate()</code> függvényébe a megfelelő helyre, majd próbáljuk ki az alkalmazást!</p>
-<h3 id="extra-feladat-navgraph-splash">Extra feladat - NavGraph-Splash<a class="headerlink" href="#extra-feladat-navgraph-splash" title="Permanent link">&para;</a></h3>
-<p>Korábban ezt a képernyőt a <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a> segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGraph segítségével fogunk egyet megnézni.</p>
+<h3 id="extra-feladat-navigacio-splash">Extra feladat - Navigáció-Splash<a class="headerlink" href="#extra-feladat-navigacio-splash" title="Permanent link">&para;</a></h3>
+<p>Korábban ezt a képernyőt a <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a> segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most návigáció segítségével fogunk egyet megnézni.</p>
 <p>Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új <em>Kotlin Filet</em> a <code>screen</code> packagen belül, majd nevezzük el <code>SplashScreen</code>-nek, és írjuk bele az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">SplashScreen</span><span class="p">(</span>
@@ -2419,8 +2419,8 @@ Látható, hogy az <em>interface</em>-ünk megvalósít egy <code>NavKey</code> 
           </path>
         </svg>
       </span>
-      <span title="2025. szeptember 13. 08:49:28">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 13. 08:49:28 CEST"><span class="timeago" datetime="2025-09-13T08:49:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 13. 08:49:28 CEST">2025-09-13</span>
+      <span title="2025. szeptember 15. 11:36:24">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 15. 11:36:24 CEST"><span class="timeago" datetime="2025-09-15T11:36:24+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 15. 11:36:24 CEST">2025-09-15</span>
       </span>
     </span>
 
