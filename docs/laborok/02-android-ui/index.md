@@ -274,8 +274,8 @@ Ezután állítsuk be az alkalmazásunk ikonját is:
 </application>
 ```
 
-!!!note "Splash Screen-NavGraph"
-    A Splash Screent a NavGraph segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#extra-feladat-navgraph-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
+!!!note "Splash Screen-navigációval"
+    A Splash Screent a navigáció segítségével is meg lehet oldani, erről a labor végén egy ismertető [feladat](#extra-feladat-navigacio-splash) fog segítséget mutatni. (Ez nem szükséges a labor megszerzéséhez, a feladat nélkül is el lehet érni a maximális pontot, azonban az érdekesség kedvéért érdemes végig csinálni.)
 
 
 Próbáljuk ki az alkalmazásunkat!
@@ -760,7 +760,7 @@ fun PreviewListScreen() {
 	}
 	```
 
-Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigáció. Azonban ez a funkció még nem működik, mert hiányzik a `NavGraph`-ból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban fogjuk orvosolni. 
+Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigáció. Azonban ez a funkció még nem működik, mert hiányzik a navigációból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban fogjuk orvosolni. 
 
 Az `Image` *Composable* függvénynek egy `painter`, egy `contentDescription` és egy `contentScale` paramétere van. Ezeket át is tudjuk adni sorban a `painterResource`, `String` és a `ContentScale` segítségével. A `painterResource`-nak megadjuk a kép elérési útját, a `painterDescription`-nek, egy leírást, illetve a `contentScale`-nek egy `FillBounds`-ot. Ennek a segítségével el tudjuk érni, hogy a `Box` teljes területén kép legyen.
 
@@ -1352,9 +1352,9 @@ installSplashScreen().apply {
 
 Illesszük ezt be a `MainActivity` `onCreate()` függvényébe a megfelelő helyre, majd próbáljuk ki az alkalmazást!
 
-### Extra feladat - NavGraph-Splash
+### Extra feladat - Navigáció-Splash
 
-Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most a NavGraph segítségével fogunk egyet megnézni.
+Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most návigáció segítségével fogunk egyet megnézni.
 
 Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új *Kotlin Filet* a `screen` packagen belül, majd nevezzük el `SplashScreen`-nek, és írjuk bele az alábbi kódot:
 
