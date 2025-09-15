@@ -91,7 +91,7 @@ Az Android Studio a [Gradle](https://gradle.org/) build rendszert használja eze
 	
 	*   A Manifest állományban meg kell adni a támogatni kívánt Android verziót, mely felfele kompatibilis az újabb verziókkal, ennél régebbi verzióra azonban az alkalmazás már nem telepíthető.
 	
-	*   Az Android folyamatosan frissülő verzióival folymatosan lépést kell tartaniuk a fejlesztőknek.
+	*   Az Android folyamatosan frissülő verzióival folyamatosan lépést kell tartaniuk a fejlesztőknek.
 	
 	*   Az Android alkalmazásokat tipikusan a Google Play Store-ban szokták publikálni, így az APK formátumban való terjesztés nem annyira elterjedt.
 
@@ -160,7 +160,7 @@ Készítsünk új emulátort! Értelemszerűen csak olyan API szintű eszközt k
         - *VirtualScene*, egy kifinomultabb szoftveres megoldás, amelyben egy 3D világban mozgathatjuk a kamerát.
     - Hálózat: Állíthatjuk a sebességét és a késleltetését is kommunikációs technológiák szerint.
     - Válasszuk ki az alapértelmezett orientációt.
-    - *Default boot*: Az Android emulátor állapotáról való pillanatkép elmentésének lehetősége. Ez azt takarja, hogy a virtuális operációs rendszer csak felfüggesztésre kerül az emulátor bezáráskor (például a megnyitott alkalmazás is megmarad, a teljes állapotával), és *Quick* esetben a teljes OS indítása helyett másodperceken belül elindul az emulált rendszer. *Cold* esetben viszont minden alkalommal leállítja és újra indítja a virtális eszköz teljes operációs rendszerét.
+    - *Default boot*: Az Android emulátor állapotáról való pillanatkép elmentésének lehetősége. Ez azt takarja, hogy a virtuális operációs rendszer csak felfüggesztésre kerül az emulátor bezáráskor (például a megnyitott alkalmazás is megmarad, a teljes állapotával), és *Quick* esetben a teljes OS indítása helyett másodperceken belül elindul az emulált rendszer. *Cold* esetben viszont minden alkalommal leállítja és újra indítja a virtuális eszköz teljes operációs rendszerét.
     - Belső és külső tárhely mérete, esetleg konkrét image beállítása a tárhely tartalmáról.
     - Teljesítmény:
 	    - A használandó CPU magok száma.
@@ -179,7 +179,7 @@ A Play gombbal indítsuk el az új emulátort!
 	Amennyiben az emulátor nem indulna el, ellenőrizzük az alábbi tippeket:
 
     * Van-e elég hely (minimum 15-20 GB) a meghajtón?
-    * Legfrisebb-e az Android Studio és az sdk?
+    * Legfrissebb-e az Android Studio és az sdk?
     * SDK manager > sdk tools: legrisebb-e az android emulator?
     * Nincs-e az Android Studio vagy az sdk telepítési útjában szóköz, ékezetes betű vagy különleges karakter?
     * Próbáltál-e más API-t, Play Store-ral, a nélkül?
@@ -333,7 +333,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 ## Feladatok (10 x 0.5 pont)
 
 1.  Az új alkalmazást futtassuk emulátoron (akinek saját készüléke van, az is próbálja ki)!
-1.  Helyezzünk breakpointot a kódba, és indítsuk el debug módban az alkalmazást! (Érdemes megyfigyelni, hogy most másik Gradle Task fut a képernyő alján.)
+1.  Helyezzünk breakpointot a kódba, és indítsuk el debug módban az alkalmazást! (Érdemes megfigyelni, hogy most másik Gradle Task fut a képernyő alján.)
 1.  Indítsunk hívást és küldjünk SMS-t az emulátorra! Mit tapasztalunk?
 1.  Indítsunk hívást és küldjünk SMS-t az emulátorról! Mit tapasztalunk?
 1.  Készítsünk egy képet az emulátorral és keressük meg a fájlrendszerben a Device Explorer segítségével!
