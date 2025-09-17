@@ -21,7 +21,19 @@ Az alkalmazás felépítése és működése a következő:
 	- Egy gomb a tétel törlésére.
 
 ### Felhasznált technológiák:
-- **Scaffold**, TopBar, BottomBar, FloatingActionButton, Column, Row, Image, Text, Spacer, OutlinedTextField, IconButton, IconToggleButton, **LazyColumn**
+- **Scaffold**,
+- TopBar,
+- BottomBar,
+- FloatingActionButton,
+- Column,
+- Row,
+- Image,
+- Text,
+- Spacer,
+- OutlinedTextField,
+- IconButton,
+- IconToggleButton,
+- **LazyColumn**
 - data class
 
 
@@ -215,10 +227,10 @@ Jelenleg így néz ki az alkalmazásunk:
 
 Azt szeretnénk, hogy a képernyő tetején legyen egy `ActionBar` az alkalmazás nevével és egy törlési opcióval, vagy akár egy legördülő menüvel. Mint feljebb láttuk, ehhez a megvalósításhoz, nagyon jól alkalmazható a `Scaffold` *Composable*, ugyanis ennek van egy *topBar* attribútuma, aminek könnyen adhatunk egy ilyen `ActionBar`-t. 
 
-Hozzunk létre egy új *package*-et a már meglévő `ui` csomagban `view` néven, majd ezen belül egy új *Kotlin* classt `TopBar` néven. Töltsük föl a fájlt az alábbi kóddal:
+Hozzunk létre egy új *package*-et a már meglévő `ui` csomagban `common` néven, majd ezen belül egy új *Kotlin* classt `TopBar` néven. Töltsük föl a fájlt az alábbi kóddal:
 
 ```kotlin
-package hu.bme.aut.android.androidwallet.ui.view
+package hu.bme.aut.android.androidwallet.ui.common
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -260,7 +272,6 @@ fun PreviewTopBar() {
 ```
 
 A `TopAppBar`-nak a cím és a szín mellett megadtunk egy akciót is: egy `IconButton`-t amivel a lista törlését fogjuk majd megvalósítani.
-
 
 Miután elkészültünk a `TopBar`-unkkal, illesszük is ezt be a `MainScreen` beli `Scaffold` megfelelő helyére. Ezt a következő képpen tesszük meg: adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel a listánk állapotként van tárolva `val salaryItems = remember { mutableStateListOf<SalaryData>() }`, ezért ha változás történik, akkor az összes Composable újrafordul ami függ tőle:
 
@@ -368,7 +379,7 @@ Itt szintén elvégezzük a szükséges beállításokat. A legtöbb azért fele
 
 ### Új elem felvétele
 
-Új elem felvételét a `FloatingActionButton` gomb megnyomásának hatására fogunk felvenni. Szerencsére a `Scaffold` ennek is biztosít helyet. Illesszük tehát be az alábbi kódot:
+Új elemet a `FloatingActionButton` gomb megnyomásának hatására fogunk felvenni. Szerencsére a `Scaffold` ennek is biztosít helyet. Illesszük tehát be az alábbi kódot:
 
 ```kotlin
 floatingActionButton = {
@@ -422,12 +433,12 @@ A vezérlőink megvannak, azonban ahhoz, hogy a listát elkészítsük, létre k
 	- A megadott megnevezés és alatta az összeg.
 	- Egy gomb a tétel törlésére.
 
-Hozzunk létre egy a `ui/view` *package*-be egy új *Kotlin* fájlt `SalaryCard` néven.
+Hozzunk létre a `ui/common` *package*-be egy új *Kotlin* fájlt `SalaryCard` néven.
 
 Ennek a következő képpen kell kinéznie:
 
 ```kotlin
-package hu.bme.aut.android.androidwallet.ui.view
+package hu.bme.aut.android.androidwallet.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -575,10 +586,7 @@ Ezzel a lépéssel elérkeztünk a kész alkalmazáshoz, és indítás során a 
 
 ### Összegző mező (1 pont)
 
-Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy pozitív vagy negatív érték. 
-
-!!!tip "Tipp"
-    Érdemes használni a `Modifier.alpha()` paramétert.
+Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint arran, hogy a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy az pozitív vagy negatív érték. 
 
 !!!warning "Figyelem"
 	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a `sum` 0 értéket vesz fel.) (-0.5 pont)
