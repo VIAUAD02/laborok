@@ -1036,7 +1036,19 @@
 </ul>
 <h3 id="felhasznalt-technologiak">Felhasznált technológiák:<a class="headerlink" href="#felhasznalt-technologiak" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Scaffold</strong>, TopBar, BottomBar, FloatingActionButton, Column, Row, Image, Text, Spacer, OutlinedTextField, IconButton, IconToggleButton, <strong>LazyColumn</strong></li>
+<li><strong>Scaffold</strong>,</li>
+<li>TopBar,</li>
+<li>BottomBar,</li>
+<li>FloatingActionButton,</li>
+<li>Column,</li>
+<li>Row,</li>
+<li>Image,</li>
+<li>Text,</li>
+<li>Spacer,</li>
+<li>OutlinedTextField,</li>
+<li>IconButton,</li>
+<li>IconToggleButton,</li>
+<li><strong>LazyColumn</strong></li>
 <li>data class</li>
 </ul>
 <h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
@@ -1213,8 +1225,8 @@
 
 <h3 id="a-menusav-elkeszitese-1-pont">A menüsáv elkészítése ( 1 pont)<a class="headerlink" href="#a-menusav-elkeszitese-1-pont" title="Permanent link">&para;</a></h3>
 <p>Azt szeretnénk, hogy a képernyő tetején legyen egy <code>ActionBar</code> az alkalmazás nevével és egy törlési opcióval, vagy akár egy legördülő menüvel. Mint feljebb láttuk, ehhez a megvalósításhoz, nagyon jól alkalmazható a <code>Scaffold</code> <em>Composable</em>, ugyanis ennek van egy <em>topBar</em> attribútuma, aminek könnyen adhatunk egy ilyen <code>ActionBar</code>-t. </p>
-<p>Hozzunk létre egy új <em>package</em>-et a már meglévő <code>ui</code> csomagban <code>view</code> néven, majd ezen belül egy új <em>Kotlin</em> classt <code>TopBar</code> néven. Töltsük föl a fájlt az alábbi kóddal:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.androidwallet.ui.view</span>
+<p>Hozzunk létre egy új <em>package</em>-et a már meglévő <code>ui</code> csomagban <code>common</code> néven, majd ezen belül egy új <em>Kotlin</em> classt <code>TopBar</code> néven. Töltsük föl a fájlt az alábbi kóddal:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.androidwallet.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.icons.Icons</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.icons.filled.Clear</span>
@@ -1343,7 +1355,7 @@
 </code></pre></div></p>
 </div>
 <h3 id="uj-elem-felvetele">Új elem felvétele<a class="headerlink" href="#uj-elem-felvetele" title="Permanent link">&para;</a></h3>
-<p>Új elem felvételét a <code>FloatingActionButton</code> gomb megnyomásának hatására fogunk felvenni. Szerencsére a <code>Scaffold</code> ennek is biztosít helyet. Illesszük tehát be az alábbi kódot:</p>
+<p>Új elemet a <code>FloatingActionButton</code> gomb megnyomásának hatására fogunk felvenni. Szerencsére a <code>Scaffold</code> ennek is biztosít helyet. Illesszük tehát be az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="n">floatingActionButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">LargeFloatingActionButton</span><span class="p">(</span>
 <span class="w">        </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CircleShape</span><span class="p">,</span>
@@ -1390,9 +1402,9 @@
 </ul>
 </li>
 </ul>
-<p>Hozzunk létre egy a <code>ui/view</code> <em>package</em>-be egy új <em>Kotlin</em> fájlt <code>SalaryCard</code> néven.</p>
+<p>Hozzunk létre a <code>ui/common</code> <em>package</em>-be egy új <em>Kotlin</em> fájlt <code>SalaryCard</code> néven.</p>
 <p>Ennek a következő képpen kell kinéznie:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.androidwallet.ui.view</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.androidwallet.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Image</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
@@ -1526,11 +1538,7 @@
 </div>
 <h2 id="onallo-feladatok">Önálló feladatok<a class="headerlink" href="#onallo-feladatok" title="Permanent link">&para;</a></h2>
 <h3 id="osszegzo-mezo-1-pont">Összegző mező (1 pont)<a class="headerlink" href="#osszegzo-mezo-1-pont" title="Permanent link">&para;</a></h3>
-<p>Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy pozitív vagy negatív érték. </p>
-<div class="admonition tip">
-<p class="admonition-title">Tipp</p>
-<p>Érdemes használni a <code>Modifier.alpha()</code> paramétert.</p>
-</div>
+<p>Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint arran, hogy a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy az pozitív vagy negatív érték. </p>
 <div class="admonition warning">
 <p class="admonition-title">Figyelem</p>
 <p>Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a <code>sum</code> 0 értéket vesz fel.) (-0.5 pont)</p>
@@ -1574,8 +1582,8 @@
           </path>
         </svg>
       </span>
-      <span title="2024. szeptember 25. 19:52:51">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. szeptember 25. 19:52:51 CEST"><span class="timeago" datetime="2024-09-25T19:52:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. szeptember 25. 19:52:51 CEST">2024-09-25</span>
+      <span title="2025. szeptember 17. 14:47:08">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 17. 14:47:08 CEST"><span class="timeago" datetime="2025-09-17T14:47:08+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 17. 14:47:08 CEST">2025-09-17</span>
       </span>
     </span>
 
