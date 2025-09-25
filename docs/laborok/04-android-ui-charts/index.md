@@ -50,149 +50,68 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet 'Empty Activity' sablonnal! Az alkalmazás neve legyen `WorkplaceApp`, a Package name pedig `hu.bme.aut.android.workplaceapp`.
+Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
+
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
+1. A projekt neve legyen `WorkplaceApp`, a kezdő package `hu.bme.aut.android.workplaceapp`, a mentési hely pedig a kicheckoutolt repository-n belül az WorkplaceApp mappa.
+1. Nyelvnek válasszuk a *Kotlin*-t.
+1. A minimum API szint legyen API24: Android 7.0.
+1. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő WorkplaceApp könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
 
-Használhatjuk az alapértelmezett 24-es minimum SDK szintet és a Kotlin DSL-t.
+!!!danger "FILE PATH"
+    A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\\ meghajtó gyökerében dolgozni.
 
-Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő mipmap könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
+Ha elkészült a projektünk, frissítsük a függőségeink verzióját a `libs.versions.toml` fájlban:
+
+`libs.versions.toml`:
+
+```toml
+[versions]
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.12.0-alpha09"
+composeBom = "2025.09.01"
+...
+```
+
+Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárakat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
 
 !!!info "Képernyők kezelése Android alkalmazásokban"
 	A legtöbb mobilalkalmazás jól elkülöníthető oldalak/képernyők kombinációjából épül fel. Az egyik első fő döntés, amit alkalmazástervezés közben meg kell hoznunk, ezeknek a képernyőknek a felépítése, illetve a képernyők közötti navigáció megvalósítása. Egy Android alapú alkalmazás esetén több megoldás közül is választhatunk:
 	
 	-  *Activity alapú megközelítés*: Minden képernyő egy **Activity**. Mivel az **Activity** egy rendszerszintű komponense az Androidnak, ezért ennek kezeléséért is az operációs rendszer a felelős. Mi közvetlenül sose példányosítjuk, hanem **Intent**-et küldünk a rendszer felé. A navigációért is a rendszer felel, bizonyos opciókat *flagek* segítségével tudunk beállítani.
-	- *Composable alapú megközelítés*: Ez esetben a képernyőink egy vagy több *Composable* elemből épülnek fel. Ezeknek a kezelése az alkalmazás szintjén történik meg, emiatt mindenképp szükséges egy **Activity**, mely a megjelenítésért felel. A megjelenítést illetve a navigációt a **NavGraph** osztály végzi.
+	- *Composable alapú megközelítés*: Ez esetben a képernyőink egy vagy több *Composable* elemből épülnek fel. Ezeknek a kezelése az alkalmazás szintjén történik meg, emiatt mindenképp szükséges egy **Activity**, mely a megjelenítésért felel. A megjelenítést illetve a navigációt a **AppNavigation** osztály végzi.
 	- *Egyéb egyedi megoldás*: Külső vagy saját könyvtár használata a megjelenítéshez, mely tipikusan az alap **View** osztályból származik le. Ilyen például a régi *Conductor*, illetve a *Jetpack Compose*.
 	
-	Régebben az alkalmazások az Activity alapú megközelítést használták, később azonban áttértek a Fragmentekre. Az ilyen alkalmazásoknál összesen egy fő **Activity** van, mely tartalmazza azt a **FragmentManager** példányt, amit a későbbiekben a **Fragment** alapú képernyők megjelenítésére használunk.
-	
-	Ez egy alapvetően rugalmas és jól használható megoldás volt, azonban ehhez részleteiben meg kellett ismerni a **FragmentManager** működését, különben könnyen hibákba futhattunk. Ennek a megoldására fejlesztette ki a Google a *Navigation Component* csomagot, mellyel az Android Studió környezetében egy grafikus eszközzel könnyen létre tudjuk hozni az oldalak közötti navigációt, illetve ezt a kódból egyszerűen el tudjuk indítani. 
-	
-	A Jetpack Compose-ban már a **NavHost** felel a navigációért, és külön-külön hívja meg az egyes *Composable* függvényeket.
-
-## NavHost Compose inicializálás
-Első lépésként adjuk hozzá a Navigation Component csomagot az üres projektünkhöz. Ehhez a modul szintű `build.gradle.kts` fájlra illetve a `libs.versions.toml` fájlra lesz szükségünk. Keressük meg ezeket, majd írjuk bele a következő függőséget:
-
-`libs.versions.toml`
-```toml
-[versions]
-...
-navigationCompose = "2.7.7"
+	A Jetpack Compose-ban már az **AppNAvigation** felel a navigációért, és külön-külön hívja meg az egyes *Composable* függvényeket.
 
 
-[libs]
-...
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-```
-
-`build.gradle.kts`
-
-```kts
-dependencies {
-    ...
-    implementation(libs.androidx.navigation.compose)
-
-}
-```
-
-Ha ezzel megvagyunk akkor Synceljük a projektet, a jobb fölső sarokban lévő `Sync Now` gombbal.
-
-
-!!!warning "Sync"
-    Figyeljünk rá, hogy Synceljük, ugyanis, hogy ha ez a lépés kimarad, akkor nem fogja megtalálni a szükséges függőségeket, és később ez gondot okozhat!
-
-A Navigation Component *Jetpack Compose* használatával is navigációs gráfot alkalmaz a képernyők és a közöttük lévő kapcsolatok definiálására. Ezt a gráfot azonban közvetlenül *Kotlin* kódban tudjuk megadni. Létrehozásához kövessük az alábbi lépéseket:
-
-1. Hozzuk létre a navigációs gráfot a Jetpack Compose használatával.
-
-2. Készítsünk egy *package*-et `navigation` néven, majd ebbe a *package*-be egy új *Kotlin File*-t `NavGraph` néven (*jobb klikk -> New Kotlin Class/File*)
-
-3. Az előző laborokon látott `NavGraph`-hoz hasonlóan hozzuk létre a `NavGraph`-ot:
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
-
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Screen1.route
-    ){
-//        composable(Screen.Screen1.route){
-//            Screen1()
-//        }
-//        composable(Screen.Screen2.route){
-//            Screen2()
-//        }
-    }
-}
-```
-
-4. Mint látható, itt a sima kézzel megadott *stringek* helyett hivatkozásokat használunk a *destination*-ök azonosítására. Ezeket a hivatkozásokat egy külön `Screen` *sealed class*-ban gyűjtjük össze:
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Screen1: Screen("screen1")
-    object Screen2: Screen("screen2")
-}
-```
-!!!info "sealed class"
-	A Kotlin *sealed class*-jai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a Menu valójában nem a Screen közvetlen leszármazottja, hanem anonim leszármazott osztálya.
-
-5. Hogy ha ezzel megvagyunk, már, csak bővíteni kell igény szerint ezt a `NavGraph`-ot, illetve a `MainActivity`-ben, ezt a Composable függvényt kell meghívni, majd ez automatikusan a beállított főképernyőt hozza be az alkalmazás elindításakor.
-```kotlin
-package hu.bme.aut.android.workplaceapp
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import hu.bme.aut.android.workplaceapp.navigation.NavGraph
-import hu.bme.aut.android.workplaceapp.ui.theme.WorkplaceAppTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            WorkplaceAppTheme {
-                NavGraph()
-            }
-        }
-    }
-}
-```
-
-!!!info "Több navigációs gráf"
-    A Jetpack Compose használatával több navigációs gráf létrehozása és kezelése is lehetséges, azonban a legtöbb alkalmazásnál elegendő egyetlen `NavGraph`
-
-
-## Főmenü képernyő (1 pont)
+## Főmenü képernyő elkészítése (1 pont)
 
 Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk meghvalósítani, ezek a Profil és a Szabadság.
 
-A `MenuScreen`-en egy TopAppBar-t és a gombokat szeretnénk megjeleníteni. 
+A `MenuScreen`-en egy *TopAppBar*-t és a gombokat szeretnénk megjeleníteni. 
 
 <p align="center">
 <img src="./assets/menu.png" width="160">
 </p>
 
-Először hozzunk létre egy `hu.bme.aut.android.workplaceapp.ui.view` *package*-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink:
+### Komponensek
+
+Először hozzunk létre egy `hu.bme.aut.android.workplaceapp.ui.common` *package*-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink:
 
 `TopBar.kt`: 
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -222,20 +141,17 @@ fun PreviewTopBar() {
 }
 ```
 
-Ez egy egyszerű *AppBar*, ennek segítségével elhelyezhetünk címet, különbőző *action*-öket, valamint gombokat.
+Ez egy egyszerű *AppBar*. Ennek segítségével elhelyezhetünk címet, különbőző *action*-öket, valamint gombokat.
 
 `ImageButton`:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -308,12 +224,14 @@ fun PreviewImageButton() {
 }
 ```
 
-Ez egy egyszerű gomb, amin képeket és szövekeget is könnyen tudunk elhelyezni. Az univerzális felhasználás érdekében a lényeges attribútumok kivezetésre kerültek paraméterekként. 
+Ez egy egyszerű gomb, amin képeket és szövekeget is könnyen tudunk elhelyezni. Az univerzális felhasználás érdekében a lényeges attribútumok (szöveg, kép, méret, onClick) kivezetésre kerültek paraméterekként. 
 
-Most már minden rendelkezésünkre áll, hogy megírjuk a `MainScreen` képernyőnket is. Ehhez hozzunk létre egy új `hu.bme.aut.android.workplaceapp.feature` *package*-et. Ebben lesznek külön *package*-ekben a képernyőink. A `hu.bme.aut.android.workplaceapp.feature.menu` *package*-be hozzuk létre a  `MenuScreen` *Kotlin File*-t:
+### Felület
+
+Most már minden rendelkezésünkre áll, hogy megírjuk a `MainScreen` képernyőnket is. Ehhez hozzunk létre egy új `hu.bme.aut.android.workplaceapp.ui.screen` *package*-et. Ebben lesznek külön *package*-ekben a képernyőink. A `hu.bme.aut.android.workplaceapp.ui.screen.menu` *package*-be hozzuk létre a `MenuScreen` *Kotlin File*-t:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.menu
+package hu.bme.aut.android.workplaceapp.ui.screen.menu
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -334,8 +252,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import hu.bme.aut.android.workplaceapp.R
-import hu.bme.aut.android.workplaceapp.ui.view.ImageButton
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.ImageButton
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @Composable
 fun MenuScreen(
@@ -360,10 +278,10 @@ fun MenuScreen(
                     ImageButton(
                         onClick = onProfileButtonClick,
                         modifier = modifier,
-                        label = stringResource(R.string.profile),
+                        label = stringResource(R.string.label_profile),
                         painter = painterResource(id = R.drawable.profile),
                         size = 160.dp,
-                        contentDescription = stringResource(R.string.profile)
+                        contentDescription = stringResource(R.string.label_profile)
                     )
                     Spacer(
                         modifier = Modifier.height(16.dp)
@@ -371,10 +289,10 @@ fun MenuScreen(
                     ImageButton(
                         onClick = onSalaryButtonClick,
                         modifier = modifier,
-                        label = stringResource(R.string.salary),
+                        label = stringResource(R.string.label_salary),
                         painter = painterResource(id = R.drawable.payment),
                         size = 160.dp,
-                        contentDescription = stringResource(R.string.salary)
+                        contentDescription = stringResource(R.string.label_salary)
                     )
 
                 }
@@ -408,44 +326,148 @@ Ennek mintájára, valósítsuk meg a másik két gombot is az alábbi értékek
 
 Hozzuk létre a hivatkozott szöveges erőforrásokat! (A szövegen állva <kbd>ALT</kbd>+<kbd>ENTER</kbd>)
 
-Ezek után egészítsük ki a `Screen` osztályunkat és a `NavGraph`-unkat:
 
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+### Navigáció
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
+Adjuk hozzá a Navigation3 könyvtárat a projektünkhöz. Ehhez a modul szintű `build.gradle.kts` fájlra illetve a `libs.versions.toml` fájlra lesz szükségünk. Keressük meg ezeket, majd írjuk bele a következő függőséget:
+
+`libs.versions.toml`
+```toml
+[versions]
+...
+coreSplashscreen = "1.0.1"
+nav3Core = "1.0.0-alpha10"
+kotlinSerialization = "2.2.20"
+kotlinxSerializationCore = "1.9.0"
+
+
+[libraries]
+...
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+
+
+[plugins]
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
+
+```
+
+Ezek után vegyük föl a függőségeinket a modul szintű `build.gradle.kts` fájlba is:
+
+`build.gradle.kts`
+
+```kts
+dependencies {
+    ...
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 ```
 
+Végezetül kapcsoljuk be az alábbi plugint a build.gradle.kts fáj tetején:
+
+```kts
+plugins {
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+```
+
+Ha ezzel megvagyunk akkor szinkronizáljuk a projektet, a jobb fölső sarokban lévő `Sync Now` gombbal.
+
+!!!warning "Sync"
+    Ne felejtsünk el szinkronizálni, ugyanis ha ez a lépés kimarad, akkor nem fogja megtalálni a szükséges függőségeket, és később ez gondot okozhat!
+
+
+A navigáció megvalósításához tehát a korábbi laborokon megismerthez hasonlóan szükségünk lesz egy navigációt vezérlő `AppNavigation` *Composable* osztályra és egy *destination*-öket gyűjtő `Screen` *interface*-re.
+
+A `hu.bme.aut.android.workplaceapp.ui.navigation` *package*-be készítsük is el őket. Jelenleg csak a `MenuScreen`-ünk fog szerepelni bennük, ezt bővítjük majd a későbbiekben:
+
+`Screen.kt`:
+
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+}
+```
+
+`AppNavigation.kt`:
+
+```kotlin
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = {},
-                onHolidayButtonClick = {},
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+                MenuScreen(
+                    onProfileButtonClick = {},
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {},
+                    onCafeteriaButtonClick = {}
+                )
+            }
+        }
+    )
+}
+```
+
+!!!info "sealed class"
+	A Kotlin *sealed class*-jai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a Menu valójában nem a Screen közvetlen leszármazottja, hanem anonim leszármazott osztálya.
+
+A navigáció használatához a `MainActivity`-ben hívjuk is meg az `AppNavigation` *composable*-t, ami az automatikusan a beállított főképernyőt hozza be az alkalmazás elindításakor.
+
+```kotlin
+package hu.bme.aut.android.workplaceapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import hu.bme.aut.android.workplaceapp.ui.navigation.AppNavigation
+import hu.bme.aut.android.workplaceapp.ui.theme.WorkplaceAppTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WorkplaceAppTheme {
+                AppNavigation()
+            }
         }
     }
 }
 ```
+
+!!!info "Több navigációs gráf"
+    A Navigation3 könyvtár használatával több navigációs gráf létrehozása és kezelése is lehetséges, azonban a legtöbb alkalmazásnál elegendő egyetlen navigációs osztály.
+
 
 Ha most elindítjuk az alkalmazást, akkor már mind a 4 gombot látjuk, azonban még egyik sem működik. 
 
@@ -469,7 +491,9 @@ A Profil képernyő két lapozható oldalból fog állni (`HorizontalPager`), am
     - Adószám
     - Törzsszám
 
-Hozzunk létre egy `data` *package*-et, azon belül egy `Person` adatosztályt. Ebben fogjuk tárolni az oldalakon megjelenő adatokat. Az adat típusú osztályok esetében a Kotlin automatikusan generál gyakran használt függvényeket, mint például az `equals()` és `hashCode()` függvényeket különböző objektumok összehasonlításához, illetve egy `toString()` függvényt, mely visszaadja a tárolt változók értékét.
+### Adatmodell
+
+Hozzunk létre egy `data` *package*-et, azon belül egy `Person` adatosztályt. Ebben fogjuk tárolni az oldalakon megjelenő adatokat. Az adat típusú osztályok esetében a Kotlin automatikusan generál gyakran használt függvényeket. Például az `equals()` és a `hashCode()` függvényeket különböző objektumok összehasonlításához, illetve egy `toString()` függvényt, mely visszaadja a tárolt változók értékét.
 
 
 ```kotlin
@@ -505,10 +529,12 @@ object DataManager {
 
 A profiloldalon az a célunk, hogy két külön részben megjelenítsük a normál és részletes adatokat. A két oldal között vízszintes swipe-al lehet majd lépni. Ehhez egy **HorizontalPager**-t fogunk használni, mely Composable függvények között képes ilyen interakciókat megvalósítani.
 
-Először hozzunk létre a `hu.bme.aut.android.workplaceapp.ui.view` *package*be egy `InfoField` nevű segéd *Composable*-t, ami az adatok megjelenítését fogja segíteni:
+### Komponensek
+
+Először hozzunk létre a `hu.bme.aut.android.workplaceapp.ui.common` *package*be egy `InfoField` nevű segéd *Composable*-t, ami az adatok megjelenítését fogja segíteni:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -544,12 +570,14 @@ fun PreviewInfoField() {
 }
 ```
 
-Ezek után készítsük el a két profil oldalunkat. A `hu.bme.aut.android.workplaceapp.feature.profile` *package*-be hozzuk létre az alábbi fájlokat:
+### Felület
+
+Ezek után készítsük el a két profil oldalunkat. A `hu.bme.aut.android.workplaceapp.ui.screen.profile` *package*-be hozzuk létre az alábbi fájlokat:
 
 `ProfileFirstPage`
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -558,7 +586,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import hu.bme.aut.android.workplaceapp.ui.view.InfoField
+import hu.bme.aut.android.workplaceapp.ui.common.InfoField
 
 @Composable
 fun ProfileFirstPage(
@@ -635,31 +663,26 @@ fun PreviewProfileSecondPage() {
 }
 ```
 
-A függvény paraméterei a profil egyes adatai lesznek String formátumban. 
+A függvények paraméterei a profil egyes adatai lesznek String formátumban. 
 
 Ha ezekkel megvagyunk, készítsük el a `ProfileScreen` nevű *Composable* függvényünket az alábbiak szerint:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import hu.bme.aut.android.workplaceapp.R
 import hu.bme.aut.android.workplaceapp.data.DataManager
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -668,7 +691,7 @@ fun ProfileScreen(
 ) {
     Scaffold(
         topBar = {
-            TopBar(stringResource(id = R.string.profile))
+            TopBar(stringResource(id = R.string.label_profile))
         }
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = { 2 })
@@ -714,48 +737,66 @@ Itt először is létre kell hozunk egy `pagerState` nevű változót, amit át 
 
 Végük kössük be a `ProfileScreen`-t a navigáciba:
 
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+`Screen.kt`:
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
+```kotlin
+package hu.bme.aut.android.workplaceapp.ui.navigation
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+    @Serializable
+    data object ProfileScreenDestination: Screen
 }
 ```
 
+`AppNavigation.kt`:
+
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
-import hu.bme.aut.android.workplaceapp.feature.profile.ProfileScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = { navController.navigate(Screen.Profile.route) },
-                onHolidayButtonClick = {},
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+                MenuScreen(
+                    onProfileButtonClick = {
+                        backStack.add(Screen.ProfileScreenDestination)
+                    },
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {},
+                    onCafeteriaButtonClick = {}
+                )
+            }
+            
+            entry<Screen.ProfileScreenDestination> {
+                ProfileScreen()
+            }
         }
-        composable(Screen.Profile.route) {
-            ProfileScreen()
-        }
-    }
+    )
 }
 ```
+
+Figyeljük meg, hogy hogyan adjuk hozzá a *backStack*-hez az új *destination*-ünket!
 
 Próbáljuk ki az alkalmazást! A Profile gombra kattintva megjelennek a felhasználó adatai, és lehet lapozni is.
 
@@ -768,6 +809,8 @@ Próbáljuk ki az alkalmazást! A Profile gombra kattintva megjelennek a felhasz
 ## Szabadság képernyő elkészítése (1 pont)
 
 A Szabadság képernyőn egy kördiagrammot fogunk megjeleníteni, ami azt mutatja meg százalékos arányban, hogy mennyi szabadságot vettünk már ki, és mennyi maradt még. A felületen ezen kívül egy gomb segítségével egy új szabadság intervallum kivételét is megengedjük a felhasználónak.
+
+### Felület
 
 !!!note "PieChart"
 	A PieChart kirajzoláshoz korábban, a View keretrendszerben az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t használtuk, azonban ez sajnos *Jetpack Compose*-ra nem működik.
@@ -822,12 +865,12 @@ android {
 }
 ```
 
-Ezután Synceljük a Projectet a jobb fent lévő `Sync Now` gombbal. 
+Ezután szinkronizáljuk a Projectet a jobb fent lévő `Sync Now` gombbal. 
 
-Ha a fájlok letöltődtek készítsük el a `hu.bme.aut.android.workplaceapp.feature.holiday` *package*-be a `HolidayScreen` *Composable* függvényünket az alábbiak szerint:
+Ha a fájlok letöltődtek készítsük el a `hu.bme.aut.android.workplaceapp.ui.screen.holiday` *package*-ben a `HolidayScreen` *composable* függvényünket az alábbiak szerint:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
+package hu.bme.aut.android.workplaceapp.ui.screen.holiday
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -842,7 +885,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @Composable
 fun HolidayScreen(
@@ -902,10 +945,10 @@ val pieChartData = PieChartData(
     ), plotType = PlotType.Pie
 )
 ```
-    * `PieChartData`-nak két paramétert tudunk átadni ezek:
+    * `PieChartData`-nak két paramétert tudunk átadni:
         - **slices**: Ez a paraméter fogja tartalmazni az adatokat, és az adatok eloszlását, valamint az adatok színét.
         - **plotType**: Ezzel a változóval tudjuk megadni a diagram típusát. Jelen esetben ez most `Pie` típus lesz.
-    * `PieChartData.Slice`-nak négy paramétert tudunk átadni, mi most csak az első hárommal foglalkozunk:
+    * `PieChartData.Slice`-nak négy paramétert tudunk átadni. Mi most csak az első hárommal foglalkozunk:
         - **label**: Ez a String fog megjelenni az egyes "szeleteken".
         - **value**: Ez az eloszlás értéke az adatoknak
         - **color**: Ezzel tudjuk beállítani az egyes adatok színét a diagramon.
@@ -949,54 +992,71 @@ PieChart(
 ```
     * Az előbb létrehozott két változót átadjuk a `PieChart` *Composable* függvénynek, és ezeknek a segítségével létrehozza a kördiagrammot.
 
+### Navigáció
+
 Végül pedig a `HolidayScreen`-t is kössük be a navigációba:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
-    object Holiday: Screen("holiday")
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+    @Serializable
+    data object ProfileScreenDestination: Screen
+    @Serializable
+    data object HolidayScreenDestination: Screen
 }
 ```
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.holiday.HolidayScreen
-import hu.bme.aut.android.workplaceapp.feature.holiday.HolidayViewModel
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
-import hu.bme.aut.android.workplaceapp.feature.profile.ProfileScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.holiday.HolidayScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = { navController.navigate(Screen.Profile.route) },
-                onHolidayButtonClick = { navController.navigate(Screen.Holiday.route) },
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+                MenuScreen(
+                    onProfileButtonClick = {
+                        backStack.add(Screen.ProfileScreenDestination)
+                    },
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {
+                        backStack.add(Screen.HolidayScreenDestination)
+                    },
+                    onCafeteriaButtonClick = {}
+                )
+            }
+
+            entry<Screen.ProfileScreenDestination> {
+                ProfileScreen()
+            }
+
+            entry<Screen.HolidayScreenDestination> {
+                HolidayScreen()
+            }
         }
-        composable(Screen.Profile.route) {
-            ProfileScreen()
-        }
-        composable(Screen.Holiday.route) {
-            HolidayScreen()
-        }
-    }
+    )
 }
 ```
 
@@ -1012,25 +1072,26 @@ Hogy ha most elindítjuk az alkalmazást, akkor a Holiday opciónál már látju
 ## Dátumválasztó megvalósítása (1 pont)
 
 Következő lépésként valósítsuk meg a `Take Holiday` gombot:
-    * Ehhez szükségünk lesz a 4. lépésben egy `DialogWindow`-ra, de addig is be tudjuk állítani a Gomb működését. Ha megnyomjuk a gombot, a dialog megjelenítését jelző változót igazra állítjuk:
 
-```kotlin
-Button(
-    onClick = { showDialog = true }
-) {
-    Text("Take holiday")
-}
-```
+* Ehhez szükségünk lesz a 4. lépésben egy `DialogWindow`-ra, de addig is be tudjuk állítani a gomb működését. Ha megnyomjuk a *Take Holiday* gombot, a dialógus megjelenítését jelző változót igazra állítjuk:
 
-### Képernyők közötti állapot megtartása ViewModel segítségével
+	```kotlin
+	Button(
+	    onClick = { showDialog = true }
+	) {
+	    Text("Take holiday")
+	}
+	```
+
+### ViewModel
 
 Ahhoz, hogy a képernyők közötti navigációkor ne veszítsük el a szabadságok nyilvántartását (és persze architekturális szempontból is), nem tárolhatjuk ezeket az állapotokat a *screen*-ekben. 
-Hozzunk létre a `holiday` *package*-ben egy új *Kotlin Filet* `HolidayViewModel` néven. Itt fogjuk tárolni a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. (Természetesen ezek az adatok egy valós alkalmazásban valamilyen háttértárról vagy hálózatról jönnének, a *viewmodel* onnan szerezné be ezeket.) 
+Hozzunk létre a `holiday` *package*-ben egy új *Kotlin File*-t `HolidayViewModel` néven. Itt fogjuk tárolni a szabadnapok maximális számát, illetve a már kivett szabadnapok számát. (Természetesen ezek az adatok egy valós alkalmazásban valamilyen háttértárról vagy hálózatról jönnének, a *viewmodel* onnan szerezné be ezeket.) 
 
 A `HolidayViewModel` kódja:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
+package hu.bme.aut.android.workplaceapp.ui.screen.holiday
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -1054,56 +1115,41 @@ class HolidayViewModel : ViewModel() {
 ```
 
 !!!warning "ViewModel"
-	A viewmodel "szebb" és komplexebb használatára a későbbi laborokon lesze példa.
+	A viewmodel "szebb" és komplexebb használatára a későbbi laborokon lesz példa.
 
-Ezután módosítsuk a `HolidayScreen` fejlécét, hogy átvegye a *viewmodel*.t, majd azokból szerezzük be a megfelelő álalpotokat:
+A *viewModel* használatához először is fel kell vennünk egy új függőséget:
+
+`libs.versions.toml`:
+
+```toml
+[versions]
+...
+lifecycleVersion = "2.9.4"
+
+[libraries]
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+```
+
+`build.gradle.kts`:
+
+```kts
+implementation(libs.androidx.lifecycle.viewmodel.compose)
+```
+
+Ezután módosítsuk a `HolidayScreen` *composable* paramétereit, hogy átvegye a *viewmodel*-t, majd azokból szerezzük be a megfelelő álalpotokat:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
-
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
-import androidx.compose.ui.unit.dp
-import co.yml.charts.common.model.PlotType
-import co.yml.charts.ui.piechart.charts.PieChart
-import co.yml.charts.ui.piechart.models.PieChartConfig
-import co.yml.charts.ui.piechart.models.PieChartData
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
-import androidx.lifecycle.viewmodel.compose.viewModel
-import java.util.Calendar
-
 @Composable
 fun HolidayScreen(
     modifier: Modifier = Modifier,
     viewModel: HolidayViewModel = viewModel()
 ) {
 
-    val maxHolidayValueVM by viewModel.maxHolidayValue.collectAsState()
-    val takenHolidayValueVM by viewModel.takenHolidayValue.collectAsState()
-    val remainingHolidaysVM = maxHolidayValueVM - takenHolidayValueVM
+    val maxHolidayValue by viewModel.maxHolidayValue.collectAsState()
+    val takenHolidayValue by viewModel.takenHolidayValue.collectAsState()
+    val remainingHolidays = maxHolidayValue - takenHolidayValue
 
     val currentDate = Calendar.getInstance()
-    val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
 
@@ -1124,126 +1170,75 @@ fun HolidayScreen(
             //PieChartData létrehozása
             val pieChartData = PieChartData(
                 slices = listOf(
-                    PieChartData.Slice("Remaining", remainingHolidaysVM.toFloat(), Color(0xFFFFEB3B)),
-                    PieChartData.Slice("Taken", takenHolidayValueVM.toFloat(), Color(0xFF00FF00)),
+                    PieChartData.Slice("Remaining", remainingHolidays.toFloat(), Color(0xFFFFEB3B)),
+                    PieChartData.Slice("Taken", takenHolidayValue.toFloat(), Color(0xFF00FF00)),
                 ), plotType = PlotType.Pie
             )
-
-            //PieChartConfig létrehozása
-            val pieChartConfig = PieChartConfig(
-                backgroundColor = Color.Transparent,
-                labelType = PieChartConfig.LabelType.VALUE,
-                isAnimationEnable = true,
-                labelVisible = true,
-                sliceLabelTextSize = TextUnit(20f, TextUnitType.Sp),
-                animationDuration = 1000,
-                sliceLabelTextColor = Color.Black,
-                inActiveSliceAlpha = .8f,
-                activeSliceAlpha = 1.0f,
-            )
-
-            //PieChart létrehozása - PieChartData, PieChartConfig segítségével
-            PieChart(
-                modifier = Modifier
-                    .width(400.dp)
-                    .height(400.dp),
-                pieChartData,
-                pieChartConfig
-            )
-
-            //Holiday Button
-            Button(
-                onClick = { showDialog = true }
-            ) {
-                Text("Take holiday")
-            }
-
-            //DatePicker Dialog
-            //...
-
-        }
-    }
-
-}
-
-@Composable
-@Preview
-fun PreviewHolidayScreen() {
-    HolidayScreen()
+			...
+		}
+	}
 }
 ```
 !!!danger "pieChartData"
     Figyeljünk arra, hogy a `pieChartData`-t is frissítsük, ugyanis itt már nem beégetett eloszlás értéket használunk, hanem a viewModel-ben lévő változót!
 
 !!!warning "viewModel"
-    Sokszor az Android Studio nem tudja megtalálni a `viewModel()`-hez szükséges importot. Ilyenkor kézileg írjuk az importokhoz az alábbi importot:
+    Sokszor az Android Studio nem találja meg a `viewModel()`-hez szükséges importot. Ilyenkor kézileg írjuk be az importokhoz az alábbi importot:
     ```kotlin
     import androidx.lifecycle.viewmodel.compose.viewModel
     ```
+
+### Dialógus
 
 Ezek után hozzuk létre a dialógus ablakot az alábbiak szerint:
 
 ```kotlin
 //DatePicker Dialog
 if (showDialog) {
+
+    val datePickerState = rememberDatePickerState()
+
     DatePickerDialog(
-        context,
-        { _, _year, _months, _days ->
+        onDismissRequest = {
             showDialog = false
-            val selectedDate = Calendar.getInstance().apply{
-                set(_year, _months, _days)
-            }
-            val diff = ((selectedDate.timeInMillis - currentDate.timeInMillis) / (24 * 60 * 60 * 1000)).toInt()
-            viewModel.takeHoliday(
-                days = diff
-            )
         },
-        currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH)
-    ).apply {
-        setOnCancelListener { showDialog = false }
-        show()
-    }
-}
-```
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    showDialog = false
+                    if (datePickerState.selectedDateMillis != null) {
 
-Az előző laborokon látottakhoz hasonló módon használjuk a DataPicker Dialógust. Átadunk neki egy context-et, ezután egy lambda paramétert, ami a működést fogja leírni, abban az esetben, hogy ha dátumot választunk ki, majd végül utolsó három paraméternek átadjuk a jelenlegi dátumot.
-
-!!!tip "DatePickerDialog import"
-    A `DatePickerDialog`-nál használjuk az alábbi importot:
-    ```kotlin
-    import android.app.DatePickerDialog
-    ```
-
-Hogy ha ezzel megvagyunk, akkor már csak a `NavGraph`-ot kell úgy módosítani, hogy az értékeket megtartsa az alkalmazás, hogy ha ki-és belépünk a Holiday képernyőre. Ezt a következő képpen tudjuk megtenni:
-
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
-    object Holiday: Screen("holiday")
-}
-```
-
-```kotlin
-@Composable
-fun NavGraph(
-    ...
-){
-    val holidayViewModel: HolidayViewModel = viewModel()
-
-    NavHost(
-        ...
-    ){
-        ...
-        composable(Screen.Holiday.route) {
-            HolidayScreen(viewModel = holidayViewModel)
+                        val diff =
+                            ((datePickerState.selectedDateMillis!! - currentDate.timeInMillis) / (24 * 60 * 60 * 1000)).toInt() + 1
+                        viewModel.takeHoliday(diff)
+                    }
+                }
+            ) {
+                Text(stringResource(R.string.dialog_ok_button_text))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    showDialog = false
+                }
+            ) {
+                Text(stringResource(R.string.dialog_dismiss_button_text))
+            }
         }
-
+    ) {
+        DatePicker(state = datePickerState)
     }
 }
 ```
+
+A `DatePickerDialog`-nak az alábbi paramétereket adjuk át:
+
+* **onDismissRequest**: eseménykezelő arra az esetre, ha a felhasználó nem nyomna gombot, cska a dialógus mellé kattintana.
+* **confirmButton**: megerősítő gomb a választás elfpgadására.
+* **dismissButton**: gomb a folyamat megszakítására.
+
+A `DatePickerDialog`-ban pedig egy `DatePicker`-t jelenítünk meg, aminek átadjuk a létrehozott állapotot.
 
 Ezután az alkalmazást elindítva már működik a `Take Holiday` gombunk.
 
@@ -1256,6 +1251,10 @@ Ezután az alkalmazást elindítva már működik a `Take Holiday` gombunk.
 ## Önálló feladat (1 pont)
 
 *   Csak akkor engedjünk új szabadságot kivenni, hogy ha a kiválasztott nap a mai napnál későbbi. (0.5 pont)
+
+	!!!tipp 
+		Használjuk a `rememberDatePickerState` `selectableDates` paraméterét.
+
 *   Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva. (0.5 pont)
 
 !!!example "BEADANDÓ (0.5 pont)"
