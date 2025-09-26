@@ -621,15 +621,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#szukseges-fuggoseg-hozzaadasa" class="md-nav__link">
-    Szükséges függőség hozzáadása
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#viewmodel-letrehozas" class="md-nav__link">
-    ViewModel létrehozás
+  <a href="#a-viewmodel-letrehozasa" class="md-nav__link">
+    A ViewModel létrehozása
   </a>
   
 </li>
@@ -650,6 +643,26 @@
   <a href="#a-canvas-megvalositasa-1-pont" class="md-nav__link">
     A canvas megvalósítása (1 pont)
   </a>
+  
+    <nav class="md-nav" aria-label="A canvas megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-osztalyok" class="md-nav__link">
+    Model osztályok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canvas" class="md-nav__link">
+    Canvas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -986,15 +999,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#szukseges-fuggoseg-hozzaadasa" class="md-nav__link">
-    Szükséges függőség hozzáadása
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#viewmodel-letrehozas" class="md-nav__link">
-    ViewModel létrehozás
+  <a href="#a-viewmodel-letrehozasa" class="md-nav__link">
+    A ViewModel létrehozása
   </a>
   
 </li>
@@ -1015,6 +1021,26 @@
   <a href="#a-canvas-megvalositasa-1-pont" class="md-nav__link">
     A canvas megvalósítása (1 pont)
   </a>
+  
+    <nav class="md-nav" aria-label="A canvas megvalósítása (1 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-osztalyok" class="md-nav__link">
+    Model osztályok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canvas" class="md-nav__link">
+    Canvas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1095,6 +1121,18 @@
 <img src="./assets/clear_dialog.png" width="160">
 </p>
 
+<p>A labor során az alábbi technológiákkal fogunk találkozni:</p>
+<ul>
+<li>SQLite</li>
+<li>Scaffold<ul>
+<li>TopBar</li>
+<li>BottomBar</li>
+</ul>
+</li>
+<li>DrawingCanvas</li>
+<li>ViewModel</li>
+<li>DropDownMenu</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Room könyvtár</p>
 <p>A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.</p>
@@ -1125,10 +1163,10 @@
 </ol>
 <h2 id="a-projekt-elokeszitese">A projekt előkészítése<a class="headerlink" href="#a-projekt-elokeszitese" title="Permanent link">&para;</a></h2>
 <h3 id="a-projekt-letrehozasa">A projekt létrehozása<a class="headerlink" href="#a-projekt-letrehozasa" title="Permanent link">&para;</a></h3>
-<p>Hozzunk létre egy <code>Simple Drawer</code> nevű projektet Android Studioban:</p>
+<p>Hozzunk létre egy <code>SimpleDrawer</code> nevű projektet Android Studioban:</p>
 <ol>
 <li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.</li>
-<li>A projekt neve legyen <code>Simple Drawer</code>, a kezdő package <code>hu.bme.aut.android.simpledrawer</code>, a mentési hely pedig a kicheckoutolt repository-n belül az SimpleDrawer mappa.</li>
+<li>A projekt neve legyen <code>SimpleDrawer</code>, a kezdő package <code>hu.bme.aut.android.simpledrawer</code>, a mentési hely pedig a kicheckoutolt repository-n belül az SimpleDrawer mappa.</li>
 <li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
 <li>A minimum API szint legyen API24: Android 7.0.</li>
 <li>A <em>Build configuration language</em> Kotlin DSL legyen.</li>
@@ -1137,17 +1175,10 @@
 <p class="admonition-title">FILE PATH</p>
 <p>A projekt a repository-ban lévő SimpleDrawer könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!</p>
 </div>
-<p>A labor során az alábbi technológiákkal fogunk találkozni:</p>
-<ul>
-<li>SQLite</li>
-<li>Scaffold<ul>
-<li>TopBar</li>
-<li>BottomBar</li>
-</ul>
-</li>
-<li>ViewModel</li>
-<li>Dialog</li>
-</ul>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\ meghajtó gyökerében dolgozni.</p>
+</div>
 <h3 id="a-resource-ok-hozzaadasa">A resource-ok hozzáadása<a class="headerlink" href="#a-resource-ok-hozzaadasa" title="Permanent link">&para;</a></h3>
 <p>Először töltsük le <a href="downloads/res.zip">az alkalmazás képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha <em>Android Studio</em>-ban bal fent a szokásos <em>Android</em> nézetről a <em>Project</em> nézetre váltunk erre az időre).</p>
 <p>Az alábbi, alkalmazáshoz szükséges <em>string resource</em>-okat másoljuk be a <code>res/values/strings.xml</code> fájlba:</p>
@@ -1187,9 +1218,9 @@
 <span class="nt">&lt;/activity&gt;</span>
 </code></pre></div>
 <h3 id="appbar-ok-letrehozasa">AppBar-ok létrehozása<a class="headerlink" href="#appbar-ok-letrehozasa" title="Permanent link">&para;</a></h3>
-<p>A már létező <code>ui</code> <em>package</em>-en belül hozzunk létre egy <code>view</code> <em>package</em>-et, ezen belül egy <code>TopBar</code> és egy <code>BottomBar</code> <em>Kotlin File</em>-t, majd írjuk bele a következőt:</p>
+<p>A már létező <code>ui</code> <em>package</em>-en belül hozzunk létre egy <code>common</code> <em>package</em>-et, ezen belül egy <code>TopBar</code> és egy <code>BottomBar</code> <em>Kotlin File</em>-t, majd írjuk bele a következőt:</p>
 <p><code>TopBar.kt</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
@@ -1223,12 +1254,11 @@
 </code></pre></div>
 Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevét. A BottomBar kicsit összetettebb lesz ennél.</p>
 <p><code>BottomBar.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Arrangement</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Row</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.height</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.size</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.BottomAppBar</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Icon</span>
@@ -1289,13 +1319,14 @@ Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevé
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.BottomBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.TopBar</span>
 
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
 <span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
 <span class="w">        </span><span class="p">},</span>
@@ -1341,54 +1372,47 @@ Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevé
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Hogy ha ezzel is megvagyunk indítsuk el az alkalmazást! Most már látjuk a két AppBar-t illetve a közötte elhelyezkedő fekete képernyőt. A BottomBar-on feltűnik egy icon is, aminek a megnyomása még semmit nem csinál.</p>
+<p>Hogy ha ezzel is megvagyunk indítsuk el az alkalmazást! Most már látjuk a két <em>AppBar</em>-t illetve a közötte elhelyezkedő fekete képernyőt. A <em>BottomBar</em>-on feltűnik egy icon is, aminek a megnyomása még semmit nem csinál.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült kezdőképernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>' A képet a megoldásban a repository-ba f1.png néven töltsd föl!</p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h2 id="a-stilusvalaszto-megvalositasa-1-pont">A stílusválasztó megvalósítása (1 pont)<a class="headerlink" href="#a-stilusvalaszto-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
-<p>Most, hogy már létre van hozva a BottomBar, illetve a kezdőképernyő váza, valósítsuk meg a stílus választást is. Ehhez módosítanunk kell a <code>BottomBar</code>-t, úgy, hogy ha a Stílus választó gombra kattintunk, akkor megjelenjen egy menü, amin ki lehet választani a rajzmódot. Ez a mód a rajzolás egy állapotaként valósítható meg. Ezeket az állapotokat pedig a korábbi laborokon látottak szerint egy külön <em>viewModel</em>-ben tároljuk. </p>
-<h3 id="szukseges-fuggoseg-hozzaadasa">Szükséges függőség hozzáadása<a class="headerlink" href="#szukseges-fuggoseg-hozzaadasa" title="Permanent link">&para;</a></h3>
-<p>A <em>viewModel</em> használatához fel kell vennünk egy függőséget a <code>build.gradle.kts</code> fájlba. Ehhez nyissuk meg a <code>libs.versions.toml</code> fájlt a <code>gradle</code> <em>package</em>-ben, majd írjuk bele a következőt:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<p>Miután elkészítettük a <em>BottomBar</em>-t, illetve a kezdőképernyő vázát, valósítsuk meg a stílusválasztót is. Ehhez módosítanunk kell a <code>BottomBar</code>-t, úgy, hogy ha a <em>Stílus választó</em> gombra kattintunk, akkor megjelenjen egy menü, amin ki lehet választani a rajzmódot. Ez a mód a rajzolás egy állapotaként valósítható meg. Ezeket az állapotokat pedig a korábbi laborokon látottak szerint egy külön <em>viewModel</em>-ben tároljuk. </p>
+<h3 id="a-viewmodel-letrehozasa">A ViewModel létrehozása<a class="headerlink" href="#a-viewmodel-letrehozasa" title="Permanent link">&para;</a></h3>
+<p>A <em>viewModel</em> használatához először is fel kell vennünk egy új függőséget:</p>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">lifecycleCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.8.6&quot;</span>
+<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.4&quot;</span>
 
 <span class="k">[libraries]</span>
-<span class="p">...</span>
-<span class="n">androidx-lifecycle-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleCompose&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-lifecycle-viewmodel-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleVersion&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-Ezután frissítsük a <code>build.gradle.kts</code>-t is:
-<div class="highlight"><pre><span></span><code>dependencies{
-    ...
-    implementation(libs.androidx.lifecycle.compose)
-}
-</code></pre></div></p>
+<p><code>build.gradle.kts</code>:</p>
+<div class="highlight"><pre><span></span><code>implementation(libs.androidx.lifecycle.viewmodel.compose)
+</code></pre></div>
 <p>A függőség felvétele után ne felejtsünk el rányomni a <code>Sync Now</code> gombra.</p>
-<h3 id="viewmodel-letrehozas">ViewModel létrehozás<a class="headerlink" href="#viewmodel-letrehozas" title="Permanent link">&para;</a></h3>
-<p>Hozzuk tehát a <em>viewModel</em>-ünket. Ez segítésget fog nyújtani a szín/stílus váltásban, és később a perzisztens adattárolásban.</p>
+<p>A szinkronizálás után le is készíthetjük a <em>viewModel</em>-ünket. Ez fog segítséget nyújtani a szín/stílus váltásban, és később a perzisztens adattárolásban is.</p>
 <p>Hozzunk létre a <code>screen</code> <em>package</em>-be a <code>DrawingScreen</code> mellé egy <code>DrawingViewModel</code> <em>Kotlin Filet</em> majd írjuk bele a következő kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.AndroidViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.StateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">DrawingMode</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawingMode</span>
 
-
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">emptyList</span><span class="p">())</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawElements</span>
 
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setDrawingMode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setDrawingMode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">_drawingMode</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mode</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1401,12 +1425,13 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingMode</span><span class="p">{</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingMode</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">LINE</span><span class="p">,</span>
 <span class="w">    </span><span class="n">POINT</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Az viewModel-hez szükségünk van még egy osztályra a <code>DrawingMode</code>-ra. Ezzel tudjuk majd állítani a rajz stílust.</p>
+<p>A <code>DrawingViewModel</code> két állapotot tárol (rajzolási mód és a rajzolt alakzatok), és ad vissza <em>StateFlow</em>-ként.</p>
+<p>A rejzolási stílus reprezentálásához szükségünk van még egy osztályra, a <code>DrawingMode</code>-ra. Mivel ez csak két értéket vehet fel, egy <em>Enum Class</em>-ként fogjuk megvalósítani.</p>
 <div class="admonition warning">
 <p class="admonition-title">Kód értelmezése</p>
 <p>A laborvezető segítségével értelmezzük a viewModel kódját!</p>
@@ -1416,13 +1441,12 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <p>Módosítsuk a <code>BottomBar</code>-t, úgy, hogy ha a Stílus választó gombra kattintunk, akkor megjelenjen egy ablak, amin ki lehet választani a rajzmódot. Ezt a következő képpen tehetjük meg:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">BottomBar</span><span class="p">(</span>
-<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span>
 <span class="p">){</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showStyle</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">BottomAppBar</span><span class="p">(</span>
-<span class="w">        </span><span class="p">...</span>
 <span class="w">        </span><span class="n">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">Row</span><span class="w"> </span><span class="p">(</span>
 <span class="w">                </span><span class="p">...</span>
@@ -1466,17 +1490,22 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="w">        </span><span class="p">...</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewBottomBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BottomBar</span><span class="p">(</span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">())</span>
+<span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">viewModel</p>
-<p>Sokszor az Android Studio nem tudja megtalálni a <code>viewModel()</code>-hez szükséges importot. Ilyenkor kézileg írjuk az importokhoz az alábbi importot:
+<p>Sokszor az Android Studio nem találja meg a <code>viewModel()</code>-hez szükséges importot. Ilyenkor kézileg adjuk meg az alábbi importot:
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
 </code></pre></div></p>
 </div>
 <p>Ezután módosítsuk a <code>DrawingScreen</code>-en a <code>BottomBar</code> függvény hívást, és vegyük hozzá a viewModel paramétert.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Spacer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
@@ -1485,21 +1514,19 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.platform.LocalContext</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.BottomBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.TopBar</span>
 
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
-<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
-<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
 <span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
 <span class="w">        </span><span class="p">},</span>
@@ -1523,12 +1550,14 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="w">    </span><span class="n">DrawingScreen</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
+Futtassuk az alkalmazást és próbáljuk ki a stílusválasztót!</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült Stílusválasztó kinyitva</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f2.png néven töltsd föl!</p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h2 id="a-canvas-megvalositasa-1-pont">A canvas megvalósítása (1 pont)<a class="headerlink" href="#a-canvas-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
+<h3 id="model-osztalyok">Model osztályok<a class="headerlink" href="#model-osztalyok" title="Permanent link">&para;</a></h3>
 <p>A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t <code>Line</code> és <code>Point</code> néven. Hozzunk létre egy <code>model</code> <em>package</em>-et a fő <em>package</em>-ünkben, majd implementáljuk a két osztályt:</p>
 <p><code>Point.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
@@ -1553,8 +1582,9 @@ Ezután frissítsük a <code>build.gradle.kts</code>-t is:
 <span class="p">)</span>
 </code></pre></div>
 <p>Ilyen formában fogjuk tárolni az adatunkat a listában. Igaz, hogy a <code>Line</code> data class még kétszer megkapja a színt, de ez csak az egyszerűség kedvéért lesz így, ezzel a paraméterrel nem fogunk foglalkozni.</p>
-<p>Ezután a <code>view</code> <em>package</em>-en belül hozzunk létre egy <code>DrawingCanvas</code> <em>Kotlin File-t</em>. Ebben a Composable osztályban a beépített <code>Canvas</code> <em>Composable</em> segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy <code>Modifier.pointerInteropFilter</code> paramétere, aminek a segítségével fogjuk a gesztusokat lekezelni.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<h3 id="canvas">Canvas<a class="headerlink" href="#canvas" title="Permanent link">&para;</a></h3>
+<p>Ezután a <code>common</code> <em>package</em>-en belül hozzunk létre egy <code>DrawingCanvas</code> <em>Kotlin File-t</em>. Ebben a <em>Composable</em> osztályban a beépített <code>Canvas</code> <em>Composable</em> segítségével fogjuk a rajzolást megvalósítani. Ennek az osztálynak van egy <code>Modifier.pointerInteropFilter</code> paramétere, aminek a segítségével a gesztusokat fogjuk lekezelni.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Canvas</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
@@ -1648,15 +1678,24 @@ Miután lehelyezük az ujjunkat, tudjuk mozgatni is. Ilyenkor következik be ez 
 <span class="p">}</span>
 </code></pre></div>
 <p>Ennél az eseménynél már azt kezeljük mikor a felhasználó felemelte az újját a képernyőről. Itt is két lehetőségre bomlik az algoritmus, ugyanis, hogy ha pontról van szó, akkor csak a <code>tempPoint</code> értékét kell rögzíteni. Azonban, ha már vonalról, akkor az <code>endPoint</code> illetve a <code>startPoint</code> értékeit kell rögzíteni vonalként. <strong>Mindkét eseménynél szükséges a null ellenőrzés</strong>!</p>
-<p>Miután az események megvannak, már csak a kirajzolást kell megoldani. Ezt úgy tehetjük meg, hogy a drawElements-be eltárolt adatokat egyesével kirajzoljuk típusuktól függően:</p>
+<p>Miután az események megvannak, már csak a kirajzolást kell megoldani. Ezt úgy tehetjük meg, hogy a drawElements-ben eltárolt adatokat egyesével kirajzoljuk típusuktól függően:</p>
 <p><div class="highlight"><pre><span></span><code><span class="n">Canvas</span><span class="w"> </span><span class="p">(..){</span>
 <span class="w">    </span><span class="n">drawElements</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawCircle</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
-<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawLine</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawCircle</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span>
+<span class="w">                </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span>
+<span class="w">            </span><span class="p">)</span>
+
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawLine</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span>
+<span class="w">                </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span>
+<span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
 Ezzel kész is van a <code>DrawingCanvas</code>, azonban így még nem látjuk a rajzot, csak ha az ujjunkat felemeltük a kijelzőről. Ezt a következő képpen lehet javítani:</p>
@@ -1674,14 +1713,13 @@ Ezzel kész is van a <code>DrawingCanvas</code>, azonban így még nem látjuk a
 Ebben az esetben kirajzoljuk azt az elemet aminek a kezdőpontja az a pont ahol lehelyeztük az ujjunkat, a végpontja pedig az ahol az ujjunk van. Ha ezt mozgatjuk akkor valós időben frissülni fog, így láthatjuk előre a végeredményt.</p>
 <p>Ezután módosítsuk a <code>DrawingScreen</code>-t és cseréljük le a <code>Spacer</code>-t az imént elkészített <code>DrawingCanvas</code>-re.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
-<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
-<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawElements</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
 <span class="w">        </span><span class="p">...</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
@@ -1719,7 +1757,7 @@ Ebben az esetben kirajzoljuk azt az elemet aminek a kezdőpontja az a pont ahol 
 <span class="w">    </span><span class="c1">//Lines</span>
 <span class="p">}</span>
 </code></pre></div>
-Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Point</code> osztályhoz a konstansokat. Az osztályokon belül létrehozunk egy <code>enum</code>-ot is, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását szolgáló SQL utasítást valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla létrehozásakor, illetve upgrade-elésekor kell meghívni:</p>
+Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Point</code> osztályhoz a konstansokat. Az osztályokon belül létrehozunk egy <code>enum</code>-ot is, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását szolgáló SQL utasítást, valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla létrehozásakor, illetve upgrade-elésekor kell meghívni:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">Points</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_TABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;points&quot;</span>
 
@@ -1978,24 +2016,19 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 </code></pre></div></p>
 <h3 id="viewmodel-kiegeszitese">ViewModel kiegészítése<a class="headerlink" href="#viewmodel-kiegeszitese" title="Permanent link">&para;</a></h3>
 <p>Ahhoz hogy a perzisztencia rendesen működjön ki kell egészítenünk a viewModel-t, úgy hogy minden egyes rajzolás után elmentse az adatbázisba az adatokat. Így az adataink akkor is megmaradnak, ha újraindítjuk az alkalmazást. Ahhoz hogy ezt lássuk is újra a rajzoló felületen, be is kell tölteni a rajzot. Ebben szerpet fog játszani az <code>init{}</code> blokk.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
-
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">//DrawingMode</span>
 
 <span class="w">    </span><span class="c1">//DrawElements</span>
 
-
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataHelper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PersistentDataHelper</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
-
 
 <span class="w">    </span><span class="k">init</span><span class="p">{</span>
 <span class="w">        </span><span class="n">loadDrawElements</span><span class="p">()</span>
 <span class="w">    </span><span class="p">}</span>
 
-
 <span class="w">    </span><span class="c1">//setDrawingMode</span>
-
 
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">addDrawElement</span><span class="p">(</span><span class="n">element</span><span class="p">:</span><span class="w"> </span><span class="kt">Any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
@@ -2003,7 +2036,6 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 <span class="w">            </span><span class="n">saveDrawElements</span><span class="p">()</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saveDrawElements</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
@@ -2029,8 +2061,26 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Láthatjuk, hogy az <code>init{}</code> blokkban meghívódik a <code>loadDrawElements()</code> aminek a segítségével, kiolvassuk a korábban definiált <code>restorePoints</code> és <code>restoreLines</code> függvényekkel az adatokat az adatbázisból, majd hozzáadjuk a Listánkhoz.</p>
+<p>Az <code>init{}</code> blokkban hívódik meg a <code>loadDrawElements()</code> aminek a segítségével kiolvassuk a korábban definiált <code>restorePoints</code> és <code>restoreLines</code> függvényekkel az adatokat az adatbázisból, majd hozzáadjuk a Listánkhoz.</p>
 <p>A mentés hasonló módon működik csak ezt a függvényt akkor hívjuk, hogyha rajzoltunk.</p>
+<div class="admonition warning">
+<p class="admonition-title">ViewModel</p>
+<p>A <em>viewModel</em> alapvetően független a kontextustól, és annak is kell lennie, ám ebben az esetben láthatjuk, hogy a <code>PersistentDataHelper</code>-nek szüksége van a kontextusra az adatbázis eléréséhez. Így a <code>ViewModel</code> osztály helyett az <code>AndroidViewModel</code>-ből származtatjuk a <code>DrawingViewModel</code>-ünket, ami már elfogadja az <code>Application</code>-t paraméterként. </p>
+<p>Ezt nagyobb projektekben komplexebb architektúrával és <em>Dependency Injection</em>-nel oldják meg, így megtartható a ViewModel kontextusfüggetlensége.</p>
+</div>
+<p>Változtssuk meg tehát a <code>DrawingViewModel</code> példányosítását a <code>DrawingScreen</code>-ben is:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
+<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
+<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>elkészült DrawingScreen</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel) pár vonallal és ponttal, és az <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f4.png néven töltsd föl! </p>
@@ -2071,8 +2121,8 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
           </path>
         </svg>
       </span>
-      <span title="2024. október 5. 23:53:54">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. október 5. 23:53:54 CEST"><span class="timeago" datetime="2024-10-05T23:53:54+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. október 5. 23:53:54 CEST">2024-10-05</span>
+      <span title="2025. szeptember 26. 17:12:20">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 26. 17:12:20 CEST"><span class="timeago" datetime="2025-09-26T17:12:20+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 26. 17:12:20 CEST">2025-09-26</span>
       </span>
     </span>
 
