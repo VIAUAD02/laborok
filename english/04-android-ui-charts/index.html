@@ -1228,17 +1228,17 @@
 <p>After that, add our dependencies to the module-level <code>build.gradle.kts</code> file:</p>
 <p><code>build.gradle.kts</code></p>
 <div class="highlight"><pre><span></span><code>dependencies {
-...
-implementation(libs.androidx.core.splashscreen)
-implementation(libs.androidx.navigation3.ui)
-implementation(libs.androidx.navigation3.runtime)
-implementation(libs.kotlinx.serialization.core)
+    ...
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 </code></pre></div>
 <p>Finally, enable the following plugin in the build.gradle.kts file at the top:</p>
 <div class="highlight"><pre><span></span><code>plugins {
-...
-alias(libs.plugins.jetbrains.kotlin.serialization)
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 </code></pre></div>
 <p>Once we are done with this, we will synchronize the project with the <code>Sync Now</code> button in the upper right corner.</p>
@@ -1411,7 +1411,7 @@ alias(libs.plugins.jetbrains.kotlin.serialization)
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="screen_1">Screen<a class="headerlink" href="#screen_1" title="Permanent link">&para;</a></h2>
-<p>After that, let's create our two profile pages. We create the following files in the <code>hu.bme.aut.android.workplaceapp.feature.profile</code> <em>package</em>:</p>
+<p>After that, let's create our two profile pages. We create the following files in the <code>hu.bme.aut.android.workplaceapp.ui.screen.profile</code> <em>package</em>:</p>
 <p><code>ProfileFirstPage</code></p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile</span>
 
@@ -1453,7 +1453,7 @@ alias(libs.plugins.jetbrains.kotlin.serialization)
 </code></pre></div>
 <p>This <em>Composable</em> function will be responsible for the first page, and the next one for the second page.</p>
 <p><code>ProfileSecondPage</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.feature.profile</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
@@ -1462,7 +1462,7 @@ alias(libs.plugins.jetbrains.kotlin.serialization)
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.view.InfoField</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.InfoField</span>
 
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileSecondPage</span><span class="p">(</span>
@@ -2081,8 +2081,8 @@ Create a new <em>Kotlin File</em> called <code>HolidayViewModel</code> in the <c
           </path>
         </svg>
       </span>
-      <span title="2025. szeptember 27. 23:28:17">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 27. 23:28:17 CEST"><span class="timeago" datetime="2025-09-27T23:28:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 27. 23:28:17 CEST">2025-09-27</span>
+      <span title="2025. szeptember 27. 23:45:18">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 27. 23:45:18 CEST"><span class="timeago" datetime="2025-09-27T23:45:18+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 27. 23:45:18 CEST">2025-09-27</span>
       </span>
     </span>
 
