@@ -1,0 +1,2155 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László, Pomázi Krisztián, Kövesdán Gábor">
+      
+      
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
+    
+    
+      
+        <title>Labor 04 - UI,HorizontalPager, Charts - HR application - BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-04-uihorizontalpager-charts-hr-application" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 04 - UI,HorizontalPager, Charts - HR application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-tabs__link">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="false">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/contributing/" class="md-nav__link">
+        Hozzájárulás az anyaghoz
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/02-android-ui/" class="md-nav__link">
+        Labor 02 - UI - Tömegközlekedési alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - UI, LazyColumn - Kiadás és bevétel kezelő alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/04-android-ui-charts/" class="md-nav__link">
+        Labor 04 - UI,HorizontalPager, Charts - HR alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/05-android-sqlite/" class="md-nav__link">
+        Labor 05 - SQLite - Rajzoló alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/06-android-room/" class="md-nav__link">
+        Labor 06 - Room - Bevásárló lista alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/07-android-network/" class="md-nav__link">
+        Labor 07 - Retrofit - Időjárás alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/12-js-advanced/" class="md-nav__link">
+        Labor 12 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/13-jquery/" class="md-nav__link">
+        Labor 13 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rating" class="md-nav__link">
+    Rating
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    Preparations
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-downloading-a-git-repository" class="md-nav__link">
+    Creating and downloading a Git repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-project" class="md-nav__link">
+    Create a project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-main-menu-screen-1-point" class="md-nav__link">
+    Create a main menu screen (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a main menu screen (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#screen" class="md-nav__link">
+    Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    Navigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-profile-screen-1-point" class="md-nav__link">
+    Creating a Profile Screen (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Profile Screen (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    Data model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#components_1" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screen_1" class="md-nav__link">
+    Screen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-leave-screen-1-point" class="md-nav__link">
+    Create a Leave Screen (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Leave Screen (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#screen_2" class="md-nav__link">
+    Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation_1" class="md-nav__link">
+    Navigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-a-date-picker-1-point" class="md-nav__link">
+    Implementing a date picker (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing a date picker (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewmodel" class="md-nav__link">
+    ViewModel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dialog" class="md-nav__link">
+    Dialog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#independent-task-1-point" class="md-nav__link">
+    Independent task (1 point)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-task-2-points" class="md-nav__link">
+    iMSc task (2 points)
+  </a>
+  
+    <nav class="md-nav" aria-label="iMSc task (2 points)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payment-menu-item-implementation" class="md-nav__link">
+    Payment menu item implementation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-task" class="md-nav__link">
+    Extra task
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="labor-04-uihorizontalpager-charts-hr-application">Labor 04 - UI,HorizontalPager, Charts - HR application<a class="headerlink" href="#labor-04-uihorizontalpager-charts-hr-application" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>During the lab, we will create an HR application, which allows the user to view their personal data and record time off. The application does not use persistent data storage or real login, it only works with demo data. The main topics of the lab will be creating interfaces with HorizontalPager and Charts.</p>
+<p align="center">
+<img src="./assets/menu.png" width="160">
+<img src="./assets/profile1.png" width="160">
+<img src="./assets/profile2.png" width="160">
+<img src="./assets/holiday.png" width="160">
+<img src="./assets/datepicker.png" width="160">
+</p>
+
+<div class="admonition warning">
+<p class="admonition-title">IMSc</p>
+<p>After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.</p>
+</div>
+<h2 id="rating">Rating<a class="headerlink" href="#rating" title="Permanent link">&para;</a></h2>
+<p>Grading:</p>
+<ul>
+<li>Main menu screen: 1 point</li>
+<li>Profile screen: 1 point</li>
+<li>Holiday screen: 1 point</li>
+<li>Date picker, reducing days: 1 point</li>
+<li>Independent task (further development of holiday): 1 point</li>
+</ul>
+<p>IMSc: Implementation of the payment menu item</p>
+<ul>
+<li>Pie chart: 1 IMSc point</li>
+<li>Bar chart: 1 IMSc point</li>
+</ul>
+<h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
+<p>When solving the tasks, do not forget to follow the <a href="../github/">task submission process</a>.</p>
+<h3 id="creating-and-downloading-a-git-repository">Creating and downloading a Git repository<a class="headerlink" href="#creating-and-downloading-a-git-repository" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Find the lab invitation URL in Moodle and use it to create your own repository.</p>
+</li>
+<li>
+<p>Wait until the repository is ready, then checkout it.</p>
+<div class="admonition tip">
+<p>In university labs, if the system does not ask for a username and password during checkout and the checkout fails, the system probably tried to use a username previously saved on the computer. First, delete the saved login data and try again.</p>
+</div>
+</li>
+<li>
+<p>Create a new branch called <code>solution</code> and work on this branch.</p>
+</li>
+<li>
+<p>Write your Neptun code in the <code>neptun.txt</code> file. The file should contain nothing else, except the 6 characters of the Neptun code on a single line.</p>
+</li>
+</ol>
+<h2 id="create-a-project">Create a project<a class="headerlink" href="#create-a-project" title="Permanent link">&para;</a></h2>
+<p>Let's create a project called WorkplaceApp in Android Studio:</p>
+<ol>
+<li>Create a new project, select <em>Empty Activity</em>.</li>
+<li>The project name should be <code>WorkplaceApp</code>, the starting package <code>hu.bme.aut.android.workplaceapp</code>, and the save location should be the WorkplaceApp folder within the checked out repository.</li>
+<li>Select <em>Kotlin</em> as the language.</li>
+<li>The minimum API level should be API24: Android 7.0.</li>
+<li>The <em>Build configuration language</em> should be Kotlin DSL.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>The project should be placed in the WorkplaceApp directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>The repository path should not contain accents or special characters, as AndroidStudio is sensitive to these and the code will not compile. It is worth working in the root of the C:\ drive.</p>
+</div>
+<p>Once our project is complete, let's update the version of our dependencies in the <code>libs.versions.toml</code> file:</p>
+<p><code>libs.versions.toml</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;8.12.3&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.17.0&quot;</span>
+<span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;4.13.2&quot;</span>
+<span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
+<span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3.7.0&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.4&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.12.0-alpha09&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2025.09.01&quot;</span>
+<span class="p">...</span>
+</code></pre></div>
+<p>First, download the [compressed file] containing the application images (./downloads/res.zip) and extract it. Copy the mipmap directory in it to the app/src/main/res folder (in Studio, while standing in the res folder, press <code>Ctrl+V</code>).</p>
+<div class="admonition info">
+<p class="admonition-title">Managing screens in Android apps</p>
+<p>Most mobile applications are built from a combination of distinct pages/screens. One of the first major decisions we make when designing an application is how to structure these screens and how to navigate between them. For an Android-based application, there are several options:</p>
+<ul>
+<li><em>Activity-based approach</em>: Each screen is an <strong>Activity</strong>. Since <strong>Activity</strong> is a system-level component of Android, the operating system is responsible for its management. We never instantiate it directly, but send an <strong>Intent</strong> to the system. The system is also responsible for navigation, and we can set certain options using <em>flags</em>.</li>
+<li><em>Composable-based approach</em>: In this case, our screens are built from one or more <em>Composable</em> elements. These are managed at the application level, which is why an <strong>Activity</strong> is definitely required, which is responsible for the display. The display and navigation are performed by the <strong>AppNavigation</strong> class.</li>
+<li><em>Other unique solution</em>: Using an external or own library for the display, which is typically derived from the basic <strong>View</strong> class. Examples include the old <em>Conductor</em> and <em>Jetpack Compose</em>.</li>
+</ul>
+<p>In Jetpack Compose, <strong>AppNavigation</strong> is now responsible for navigation and calls each <em>Composable</em> function separately.</p>
+</div>
+<h2 id="create-a-main-menu-screen-1-point">Create a main menu screen (1 point)<a class="headerlink" href="#create-a-main-menu-screen-1-point" title="Permanent link">&para;</a></h2>
+<p>The first screen we will create will be the main page, from which we can navigate to the other pages. During the lab, we will implement 2 functions, these are Profile and Freedom.</p>
+<p>On the <code>MenuScreen</code>, we want to display a <em>TopAppBar</em> and buttons. </p>
+<p align="center">
+<img src="./assets/menu.png" width="160">
+</p>
+
+<h3 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h3>
+<p>First, let's create a <code>hu.bme.aut.android.workplaceapp.ui.common</code> <em>package</em>. This will contain our essential UI building blocks:</p>
+<p><code>TopBar.kt</code>: </p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.MaterialTheme</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.TopAppBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.TopAppBarDefaults</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">TopBar</span><span class="p">(</span>
+<span class="w">    </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Title&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TopAppBar</span><span class="p">(</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TopAppBarDefaults</span><span class="p">.</span><span class="na">topAppBarColors</span><span class="p">(</span>
+<span class="w">            </span><span class="n">containerColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">inversePrimary</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewTopBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TopBar</span><span class="p">(</span><span class="s">&quot;Workplace App&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is a simple <em>AppBar</em>. With which we can place a title, different <em>actions</em>, and buttons.</p>
+<p><code>ImageButton</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.BorderStroke</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Image</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Box</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.PaddingValues</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.size</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.shape.RoundedCornerShape</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.OutlinedButton</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.darkColorScheme</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.painter.Painter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.layout.ContentScale</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.painterResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.Dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.R</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ImageButton</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">painter</span><span class="p">:</span><span class="w"> </span><span class="n">Painter</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="n">Dp</span><span class="p">,</span>
+<span class="w">    </span><span class="n">contentDescription</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">OutlinedButton</span><span class="p">(</span>
+<span class="w">        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onClick</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">        </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span>
+<span class="w">            </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="n">border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BorderStroke</span><span class="p">(</span><span class="m">1.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">darkColorScheme</span><span class="p">().</span><span class="na">onPrimary</span><span class="p">)</span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Image</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Crop</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+<span class="w">                </span><span class="n">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painter</span><span class="p">,</span>
+<span class="w">                </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contentDescription</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">),</span>
+<span class="w">                </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span>
+<span class="w">            </span><span class="p">)</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewImageButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ImageButton</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Holiday&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">holiday</span><span class="p">),</span>
+<span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">160.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Holiday&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is a simple button, on which we can easily place images and text. In order to use it universally, the essential attributes (text, image, size, onClick) have been removed as parameters.</p>
+<h3 id="screen">Screen<a class="headerlink" href="#screen" title="Permanent link">&para;</a></h3>
+<p>Now we have everything we need to write our <code>MainScreen</code> screen. To do this, let's create a new <code>hu.bme.aut.android.workplaceapp.ui.screen</code> <em>package</em>. In this, our screens will be in separate <em>packages</em>. In the <code>hu.bme.aut.android.workplaceapp.ui.screen.menu</code> <em>package</em>, we will create the <code>MenuScreen</code> <em>Kotlin File</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.menu</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Box</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Row</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Spacer</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.height</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.width</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.MaterialTheme</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.painterResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.R</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.ImageButton</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.TopBar</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MenuScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onProfileButtonClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onHolidayButtonClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onSalaryButtonClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onCafeteriaButtonClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TopBar</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">app_name</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">background</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">),</span>
+<span class="w">            </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Row</span><span class="p">(</span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Column</span><span class="p">(</span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ImageButton</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onProfileButtonClick</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_profile</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">profile</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">160.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_profile</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="n">Spacer</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="n">ImageButton</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onSalaryButtonClick</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_salary</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">payment</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">160.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_salary</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">Spacer</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">width</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="c1">///TODO</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Preview</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MenuScreenPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MenuScreen</span><span class="p">(</span>
+<span class="w">        </span><span class="n">onProfileButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="n">onHolidayButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="n">onCafeteriaButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="n">onSalaryButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Following this example, let's implement the other two buttons with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Holiday</code></td>
+<td><code>@drawable.holiday</code></td>
+</tr>
+<tr>
+<td><code>Cafeteria</code></td>
+<td><code>@drawable.cafeteria</code></td>
+</tr>
+</tbody>
+</table>
+<p>Let's create the referenced text resources! (While standing on the text, press <kbd>ALT</kbd>+<kbd>ENTER</kbd>)</p>
+<h3 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h3>
+<p>Let's add the Navigation3 library to our project. To do this, we will need the module-level <code>build.gradle.kts</code> file and the <code>libs.versions.toml</code> file. Find these and add the following dependency:</p>
+<p><code>libs.versions.toml</code>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.1&quot;</span>
+<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.0-alpha10&quot;</span>
+<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
+<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.9.0&quot;</span>
+
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">androidx-core-splashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.core:core-splashscreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coreSplashscreen&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-navigation3-runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-runtime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-navigation3-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span>
+
+
+<span class="k">[plugins]</span>
+<span class="n">jetbrains-kotlin-serialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinSerialization&quot;</span><span class="p">}</span>
+</code></pre></div></p>
+<p>After that, add our dependencies to the module-level <code>build.gradle.kts</code> file:</p>
+<p><code>build.gradle.kts</code></p>
+<div class="highlight"><pre><span></span><code>dependencies {
+...
+implementation(libs.androidx.core.splashscreen)
+implementation(libs.androidx.navigation3.ui)
+implementation(libs.androidx.navigation3.runtime)
+implementation(libs.kotlinx.serialization.core)
+}
+</code></pre></div>
+<p>Finally, enable the following plugin in the build.gradle.kts file at the top:</p>
+<div class="highlight"><pre><span></span><code>plugins {
+...
+alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+</code></pre></div>
+<p>Once we are done with this, we will synchronize the project with the <code>Sync Now</code> button in the upper right corner.</p>
+<div class="admonition warning">
+<p class="admonition-title">Sync</p>
+<p>Don't forget to synchronize, because if this step is skipped, it will not find the necessary dependencies, and this may cause problems later!</p>
+</div>
+<p>To implement navigation, similarly to what we learned in previous labs, we will need an <code>AppNavigation</code> <em>Composable</em> class that controls navigation and a <code>Screen</code> <em>interface</em> that collects <em>destinations</em>.</p>
+<p>Let's create them in the <code>hu.bme.aut.android.workplaceapp.ui.navigation</code> <em>package</em>. Currently, only our <code>MenuScreen</code> will be included, we will expand this later:</p>
+<p><code>Screen.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.NavKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.Serializable</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">Screen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NavKey</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">MenuScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+</code></pre></div>
+<p><code>AppNavigation.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.entryProvider</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.ui.NavDisplay</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="n">Screen</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entryProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">MenuScreen</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onProfileButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onSalaryButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onHolidayButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onCafeteriaButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">sealed class</p>
+<p>Kotlin's <em>sealed classes</em> are classes that have limited inheritance and all their descendants are known at compile time. We can use these classes in a similar way to enums. In this case, Menu is not actually a direct descendant of Screen, but an anonymous descendant.</p>
+</div>
+<p>To use navigation, we call the <code>AppNavigation</code> <em>composable</em> in <code>MainActivity</code>, which automatically brings up the configured main screen when the application is launched.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.enableEdgeToEdge</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation.AppNavigation</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.theme.WorkplaceAppTheme</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">WorkplaceAppTheme</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">AppNavigation</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Multiple Navigation Graphs</p>
+<p>Using the Navigation3 library it is possible to create and manage multiple navigation graphs, however for most applications a single navigation class is sufficient.</p>
+</div>
+<p>If we start the application now, we see all 4 buttons, but none of them work yet.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Make a <strong>screenshot</strong> showing the <strong>finished homepage image</strong> (on an emulator, mirroring the device or with a screen capture), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f1.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="creating-a-profile-screen-1-point">Creating a Profile Screen (1 point)<a class="headerlink" href="#creating-a-profile-screen-1-point" title="Permanent link">&para;</a></h2>
+<p>The Profile screen will consist of two pageable pages (<code>HorizontalPager</code>), which will contain the following information:</p>
+<ul>
+<li>First page<ul>
+<li>Name</li>
+<li>Email</li>
+<li>Address</li>
+</ul>
+</li>
+<li>Second page<ul>
+<li>Personal number</li>
+<li>Social security number</li>
+<li>Tax number</li>
+<li>Social security number</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-model">Data model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h3>
+<p>Let's create a <code>data</code> <em>package</em>, with a <code>Person</code> data class inside. This is where we will store the data that appears on the pages. For data type classes, Kotlin automatically generates commonly used functions. For example, the <code>equals()</code> and <code>hashCode()</code> functions for comparing different objects, and a <code>toString()</code> function that returns the value of the stored variables.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.data</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">address</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">socialSecurityNumber</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">taxId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">registrationId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>To access the instance of the <em>Person</em> class, let's create a <code>DataManager</code> class (also inside the <code>data</code> <em>package</em>). This will simulate real data access (we use the Singleton pattern to make it easily accessible from all parts of the application, using the object keyword provided by Kotlin):</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.data</span>
+
+<span class="kd">object</span><span class="w"> </span><span class="nc">DataManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Test User&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;testuser@domain.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;1234 Test, Random Street 1.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;123456AB&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;123456789&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;1234567890&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;0123456789&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>On the profile page, our goal is to display the normal and detailed data in two separate sections. You can move between the two pages with a horizontal swipe. For this, we will use a <strong>HorizontalPager</strong>, which can implement such interactions between Composable functions.</p>
+<h3 id="components_1">Components<a class="headerlink" href="#components_1" title="Permanent link">&para;</a></h3>
+<p>First, let's create a helper <em>Composable</em> called <code>InfoField</code> in the <code>hu.bme.aut.android.workplaceapp.ui.common</code> <em>package</em>, which will help display the data:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.sp</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">InfoField</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Gray</span><span class="p">,</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">title</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">sp</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Preview</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewInfoField</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Test User&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="screen_1">Screen<a class="headerlink" href="#screen_1" title="Permanent link">&para;</a></h2>
+<p>After that, let's create our two profile pages. We create the following files in the <code>hu.bme.aut.android.workplaceapp.feature.profile</code> <em>package</em>:</p>
+<p><code>ProfileFirstPage</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.InfoField</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileFirstPage</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">address</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;NAME:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">)</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EMAIL:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">email</span><span class="p">)</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ADDRESS:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewProfileFirstPage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ProfileFirstPage</span><span class="p">(</span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Test User&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test@email&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Test Street&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This <em>Composable</em> function will be responsible for the first page, and the next one for the second page.</p>
+<p><code>ProfileSecondPage</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.feature.profile</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.view.InfoField</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileSecondPage</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">socialSecurityId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">taxId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">registrationId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ID:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SOCIAL SECURITY ID:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socialSecurityId</span><span class="p">)</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TAX ID:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">taxId</span><span class="p">)</span>
+<span class="w">        </span><span class="n">InfoField</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;REGISTRATION ID:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registrationId</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewProfileSecondPage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ProfileSecondPage</span><span class="p">(</span>
+<span class="w">        </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">socialSecurityId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;A89FSE568TZ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">taxId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GO894GE56&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">registrationId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R6879SDLTH&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The parameters of the functions will be the profile data in String format.</p>
+<p>Once we have these, let's create our <em>Composable</em> function called <code>ProfileScreen</code> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.ExperimentalFoundationApi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.pager.HorizontalPager</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.pager.rememberPagerState</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.R</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.data.DataManager</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.TopBar</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalFoundationApi</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TopBar</span><span class="p">(</span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_profile</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">pagerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberPagerState</span><span class="p">(</span><span class="n">pageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataManager</span><span class="p">.</span><span class="na">person</span>
+
+<span class="w">        </span><span class="n">HorizontalPager</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pagerState</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="m">0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ProfileFirstPage</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">email</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">address</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="m">1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ProfileSecondPage</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">id</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">socialSecurityId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">socialSecurityNumber</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">taxId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">taxId</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">registrationId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="p">.</span><span class="na">registrationId</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewProfileScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ProfileScreen</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Here we first need to create a variable called <code>pagerState</code>, which we will pass to <code>HorizontalPager</code>. This contains how many pages there will be on the given <em>Composable</em>. After that, we will need a profile, which we have previously defined as an <code>object</code>. Finally, we will use <code>HorizontalPager</code> to create the pageable page, on which we will place the two <em>Composable</em> functions 1-1 as pages. And we will select the current page using <code>it</code>.</p>
+<p>Finally, we will connect <code>ProfileScreen</code> to the navigation:</p>
+<p><code>Screen.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.NavKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.Serializable</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">Screen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NavKey</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">MenuScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ProfileScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>AppNavigation.kt</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.entryProvider</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.ui.NavDisplay</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="n">Screen</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entryProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="n">MenuScreen</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onProfileButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">ProfileScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">onSalaryButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onHolidayButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onCafeteriaButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">ProfileScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ProfileScreen</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+Let's see how we add our new <em>destination</em> to the <em>backStack</em>!</p>
+<p>Let's try the application! Clicking on the Profile button will display the user's data, and you can also scroll through it.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Make a <strong>screenshot</strong> showing the <strong>profile page</strong> (on an emulator, mirroring the device or with a screen capture), in which one of the fields is replaced by your <strong>neptun code</strong>, and the <strong>HorizontalPager</strong> code snippet! Upload the image to the repository in the solution as f2.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="create-a-leave-screen-1-point">Create a Leave Screen (1 point)<a class="headerlink" href="#create-a-leave-screen-1-point" title="Permanent link">&para;</a></h2>
+<p>On the Leave screen, we will display a pie chart that shows the percentage of leave taken and the remaining leave. In addition, we will allow the user to select a new leave interval using a button on the interface.</p>
+<h3 id="screen_2">Screen<a class="headerlink" href="#screen_2" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">PieChart</p>
+<p>Previously, we used the <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library in the View framework to draw the PieChart, but unfortunately this does not work for <em>Jetpack Compose</em>.</p>
+</div>
+<p>We will use the <a href="https://github.com/codeandtheory/YCharts">YCharts</a> library to draw the chart. To do this, first add the dependency:</p>
+<p>Open the <code>settings.gradle.kts</code> file and add the following to the <code>repositories</code> tag:</p>
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="n">maven</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="o">(</span><span class="s2">&quot;https://jitpack.io&quot;</span><span class="o">)}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>This means that we can also pull in dependencies from the <a href="https://jitpack.io/">jitpack</a> repository.</p>
+<p>Then, like the previous dependencies, let's add <em>YCharts</em>:</p>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">ycharts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.1.0&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">ycharts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;co.yml:ycharts&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ycharts&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><code>build.gradle.kts</code> (modul szintű):</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="n">implementation</span><span class="o">(</span><span class="n">libs</span><span class="o">.</span><span class="na">ycharts</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Also, within this file, find the <code>minSdk</code> variable and change it to 26, as this is required to use <em>YCharts</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">android</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="n">defaultConfig</span><span class="o">{</span>
+<span class="w">        </span><span class="o">...</span>
+<span class="w">        </span><span class="n">minSdk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">26</span>
+<span class="w">        </span><span class="o">...</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Then Sync the Project with the <code>Sync Now</code> button on the top right.</p>
+<p>Once the files are downloaded, create our <code>HolidayScreen</code> <em>composable</em> function in the <code>hu.bme.aut.android.workplaceapp.ui.screen.holiday</code> <em>package</em> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.holiday</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Arrangement</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Column</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.getValue</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.setValue</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.common.TopBar</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HolidayScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showDialog</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Scaffold</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TopBar</span><span class="p">(</span><span class="s">&quot;Holiday&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+
+<span class="w">        </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">            </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">//Creating PieChartData</span>
+<span class="w">            </span><span class="c1">//...</span>
+
+<span class="w">            </span><span class="c1">//Creating PieChartConfig</span>
+<span class="w">            </span><span class="c1">//...</span>
+
+<span class="w">            </span><span class="c1">//Creating PieChart - using PieChartData, PieChartConfig</span>
+<span class="w">            </span><span class="c1">//...</span>
+
+<span class="w">            </span><span class="c1">//Holiday Button</span>
+<span class="w">            </span><span class="c1">//...</span>
+
+<span class="w">            </span><span class="c1">//DatePicker Dialog</span>
+<span class="w">            </span><span class="c1">//...</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewHolidayScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">HolidayScreen</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then, fill the interface with content:</p>
+<ol>
+<li>
+<p>Create our <code>pieChardData</code> variable as follows (Copy it under the <code>//Create PieChartData</code> comment):
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">pieChartData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PieChartData</span><span class="p">(</span>
+<span class="w">    </span><span class="n">slices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">        </span><span class="n">PieChartData</span><span class="p">.</span><span class="na">Slice</span><span class="p">(</span><span class="s">&quot;Remaining&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFFFFEB3B</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">PieChartData</span><span class="p">.</span><span class="na">Slice</span><span class="p">(</span><span class="s">&quot;Taken&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">15f</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFF00FF00</span><span class="p">)),</span>
+<span class="w">    </span><span class="p">),</span><span class="w"> </span><span class="n">plotType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PlotType</span><span class="p">.</span><span class="na">Pie</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li>We can pass two parameters to <code>PieChartData</code>:<ul>
+<li><strong>slices</strong>: This parameter will contain the data, the distribution of the data, and the color of the data.</li>
+<li><strong>plotType</strong>: We can use this variable to specify the type of the chart. In this case, it will be <code>Pie</code> type.</li>
+</ul>
+</li>
+<li>We can pass four parameters to <code>PieChartData.Slice</code>. We will only deal with the first three:<ul>
+<li><strong>label</strong>: This String will appear on each "slice".</li>
+<li><strong>value</strong>: This is the distribution value of the data</li>
+<li><strong>color</strong>: This allows us to set the color of each data in the chart.</li>
+</ul>
+</li>
+</ul>
+<p>We have passed the value of the distribution to our two variables stored in the ViewModel. This will change every time we submit a new leave time slot, and it will still retain its value if we exit the Leave screen to the main menu and back.</p>
+</li>
+<li>
+<p>Similarly to the previous example, we also create the <code>pieChartConfig</code> variable:
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">pieChartConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PieChartConfig</span><span class="p">(</span>
+<span class="w">    </span><span class="n">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Transparent</span><span class="p">,</span>
+<span class="w">    </span><span class="n">labelType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PieChartConfig</span><span class="p">.</span><span class="na">LabelType</span><span class="p">.</span><span class="na">VALUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isAnimationEnable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">labelVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sliceLabelTextSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextUnit</span><span class="p">(</span><span class="m">20f</span><span class="p">,</span><span class="w"> </span><span class="n">TextUnitType</span><span class="p">.</span><span class="na">Sp</span><span class="p">),</span>
+<span class="w">    </span><span class="n">animationDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sliceLabelTextColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">    </span><span class="n">inActiveSliceAlpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="m">8f</span><span class="p">,</span>
+<span class="w">    </span><span class="n">activeSliceAlpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.0f</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><code>PieChartConfig</code> has a lot of parameters, we will only look at a few of them during the lab.<ul>
+<li><strong>backgroundColor</strong>: This allows us to change the background of the diagram. In this case, we need transparent.</li>
+<li><strong>labelType</strong>: This allows us to set whether the value or percentage is displayed on each slice of the diagram, but this does not currently work :)</li>
+<li><strong>isAnimationEnable</strong>: Turns animation on and off.</li>
+<li><strong>labelVisible</strong>: This allows us to turn the label visible on the slices of the diagram.</li>
+<li><strong>sliceLabelTextSize</strong>: Size of the label on the slices.</li>
+<li><strong>animationDuration</strong>: Duration of the animation.</li>
+<li><strong>sliceLabelTextColor</strong>: Color of the label.</li>
+<li><strong>inActiveSliceAlpha</strong>: Transparency of inactive slices.</li>
+<li><strong>activeSliceAlpha</strong>: Transparency of active slices.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Creating <code>PieChart</code>:
+<div class="highlight"><pre><span></span><code><span class="n">PieChart</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">        </span><span class="p">.</span><span class="na">width</span><span class="p">(</span><span class="m">400.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">400.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">    </span><span class="n">pieChartData</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pieChartConfig</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li>We pass the two variables we created earlier to the <code>PieChart</code> <em>Composable</em> function, and it uses them to create the pie chart.</li>
+</ul>
+</li>
+</ol>
+<h3 id="navigation_1">Navigation<a class="headerlink" href="#navigation_1" title="Permanent link">&para;</a></h3>
+<p>Finally, we also connect <code>HolidayScreen</code> to the navigation:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.NavKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.Serializable</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">Screen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NavKey</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">MenuScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">ProfileScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="w">    </span><span class="nd">@Serializable</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">HolidayScreenDestination</span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.runtime.entryProvider</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation3.ui.NavDisplay</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.holiday.HolidayScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateListOf</span><span class="o">&lt;</span><span class="n">Screen</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">NavDisplay</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
+<span class="w">        </span><span class="n">backStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backStack</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStack</span><span class="p">.</span><span class="na">removeLastOrNull</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">entryProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entryProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">MenuScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">MenuScreen</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onProfileButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">ProfileScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">onSalaryButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">                    </span><span class="n">onHolidayButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">backStack</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">HolidayScreenDestination</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">onCafeteriaButtonClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">ProfileScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ProfileScreen</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">entry</span><span class="o">&lt;</span><span class="n">Screen</span><span class="p">.</span><span class="na">HolidayScreenDestination</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">HolidayScreen</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>So that if we start the application now, we can already see the diagram for the Holiday option, but we can't change it yet.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>holiday screen</strong> (on an emulator, by mirroring the device or by taking a screenshot), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f3.png!</p>
+<p>The screenshot is a necessary condition for getting a score.</p>
+</div>
+<h2 id="implementing-a-date-picker-1-point">Implementing a date picker (1 point)<a class="headerlink" href="#implementing-a-date-picker-1-point" title="Permanent link">&para;</a></h2>
+<p>The next step is to implement the <code>Take Holiday</code> button:</p>
+<ul>
+<li>
+<p>We'll need a <code>DialogWindow</code> in step 4 for this, but we can set the button's behavior in the meantime. When we press the <em>Take Holiday</em> button, we set the variable indicating that the dialog should be displayed to true:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Button</span><span class="p">(</span>
+<span class="w">    </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showDialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Take holiday&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+<h3 id="viewmodel">ViewModel<a class="headerlink" href="#viewmodel" title="Permanent link">&para;</a></h3>
+<p>To avoid losing track of holidays when navigating between screens (and for architectural reasons), we cannot store this state in <em>screens</em>.
+Create a new <em>Kotlin File</em> called <code>HolidayViewModel</code> in the <code>holiday</code> <em>package</em>. This is where we will store the maximum number of holidays and the number of holidays already taken. (Of course, in a real application, this data would come from some kind of backend or network, and the <em>viewmodel</em> would get it from there.)</p>
+<p>The code for <code>HolidayViewModel</code> is:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.workplaceapp.ui.screen.holiday</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.StateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HolidayViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_holidayMaxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">maxHolidayValue</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_holidayMaxValue</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_takenHolidayValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="m">15</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">takenHolidayValue</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_takenHolidayValue</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">takeHoliday</span><span class="p">(</span><span class="n">days</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">_takenHolidayValue</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">days</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">ViewModel</p>
+<p>We will see examples of "prettier" and more complex uses of the viewmodel in later labs.</p>
+</div>
+<p>To use <em>viewModel</em>, we first need to add a new dependency:</p>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.4&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="n">androidx-lifecycle-viewmodel-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleVersion&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><code>build.gradle.kts</code>:</p>
+<div class="highlight"><pre><span></span><code>implementation(libs.androidx.lifecycle.viewmodel.compose)
+</code></pre></div>
+<p>Next, let's modify the <em>composable</em> parameters of <code>HolidayScreen</code> to take the <em>viewmodel</em> and then get the appropriate states from them:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HolidayScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">HolidayViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">maxHolidayValue</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">maxHolidayValue</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">takenHolidayValue</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">takenHolidayValue</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">remainingHolidays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maxHolidayValue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">takenHolidayValue</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">currentDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Calendar</span><span class="p">.</span><span class="na">getInstance</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showDialog</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Scaffold</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TopBar</span><span class="p">(</span><span class="s">&quot;Holiday&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+
+<span class="w">        </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">            </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">//creating PieChartData</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">pieChartData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PieChartData</span><span class="p">(</span>
+<span class="w">                </span><span class="n">slices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">PieChartData</span><span class="p">.</span><span class="na">Slice</span><span class="p">(</span><span class="s">&quot;Remaining&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">remainingHolidays</span><span class="p">.</span><span class="na">toFloat</span><span class="p">(),</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFFFFEB3B</span><span class="p">)),</span>
+<span class="w">                    </span><span class="n">PieChartData</span><span class="p">.</span><span class="na">Slice</span><span class="p">(</span><span class="s">&quot;Taken&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">takenHolidayValue</span><span class="p">.</span><span class="na">toFloat</span><span class="p">(),</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFF00FF00</span><span class="p">)),</span>
+<span class="w">                </span><span class="p">),</span><span class="w"> </span><span class="n">plotType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PlotType</span><span class="p">.</span><span class="na">Pie</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="p">...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">pieChartData</p>
+<p>Make sure to update <code>pieChartData</code> as well, as we are no longer using a baked distribution value here, but a variable in the viewModel!</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">viewModel</p>
+<p>Often Android Studio cannot find the import required for <code>viewModel()</code>. In this case, we manually write the following import for the imports:
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
+</code></pre></div></p>
+</div>
+<h3 id="dialog">Dialog<a class="headerlink" href="#dialog" title="Permanent link">&para;</a></h3>
+<p>After that, we create the dialog window as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//DatePicker Dialog</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">showDialog</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">datePickerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberDatePickerState</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">DatePickerDialog</span><span class="p">(</span>
+<span class="w">        </span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">showDialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">confirmButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TextButton</span><span class="p">(</span>
+<span class="w">                </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">showDialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">datePickerState</span><span class="p">.</span><span class="na">selectedDateMillis</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                        </span><span class="kd">val</span><span class="w"> </span><span class="nv">diff</span><span class="w"> </span><span class="o">=</span>
+<span class="w">                            </span><span class="p">((</span><span class="n">datePickerState</span><span class="p">.</span><span class="na">selectedDateMillis</span><span class="o">!!</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">currentDate</span><span class="p">.</span><span class="na">timeInMillis</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1000</span><span class="p">)).</span><span class="na">toInt</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">                        </span><span class="n">viewModel</span><span class="p">.</span><span class="na">takeHoliday</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">dialog_ok_button_text</span><span class="p">))</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">dismissButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TextButton</span><span class="p">(</span>
+<span class="w">                </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">showDialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">dialog_dismiss_button_text</span><span class="p">))</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DatePicker</span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datePickerState</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>We pass the following parameters to <code>DatePickerDialog</code>:</p>
+<ul>
+<li><strong>onDismissRequest</strong>: event handler in case the user does not press a button, but clicks next to the dialog.</li>
+<li><strong>confirmButton</strong>: confirmation button to accept the selection.</li>
+<li><strong>dismissButton</strong>: button to cancel the process.</li>
+</ul>
+<p>In <code>DatePickerDialog</code>, we display a <code>DatePicker</code>, to which we pass the created state.</p>
+<p>Then, when you start the application, our <code>Take Holiday</code> button will work.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Make a <strong>screenshot</strong> showing the <strong>date selection image</strong> (on an emulator, mirroring the device or with a screenshot), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f4a.png! <strong>In addition</strong>, make a <strong>screenshot</strong> showing the <strong>date selection result on the holiday screen</strong> (on an emulator, mirroring the device or with a screenshot), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f4b.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="independent-task-1-point">Independent task (1 point)<a class="headerlink" href="#independent-task-1-point" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Only allow taking a new holiday if the selected day is later than today. (0.5 points)</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Let's use the <code>selectableDates</code> parameter of <code>rememberDatePickerState</code>.</p>
+</div>
+</li>
+<li>
+<p>If our holiday frame is exhausted, the Take Holiday button should be disabled. (0.5 points)</p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (0.5 points)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>date selection page</strong> (on emulator, device mirroring or screen capture), the <strong>code snippet for disabling earlier days</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f5a.png!</p>
+<p>The screenshot is a necessary condition for getting a score.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (0.5 points)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>disabled button</strong> (on an emulator, by mirroring the device or by taking a screenshot), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f5b.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="imsc-task-2-points">iMSc task (2 points)<a class="headerlink" href="#imsc-task-2-points" title="Permanent link">&para;</a></h2>
+<h3 id="payment-menu-item-implementation">Payment menu item implementation<a class="headerlink" href="#payment-menu-item-implementation" title="Permanent link">&para;</a></h3>
+<p>Clicking on the Payment menu item should display a <code>PaymentScreen</code> with a HorizontalPager and two screens (similar to the Profile menu item):
+- <code>PaymentTaxesScreen</code>: a pie chart with the current payment written in the middle and showing the net income and taxes deducted (separately for each tax)
+- <code>MonthlyPaymentScreen</code>: show a bar chart with 12 columns, showing payments broken down by month - it is worth storing the data in the DataManager class here too</p>
+<p><a href="https://github.com/codeandtheory/YCharts">Help</a></p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 iMSc point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>current payment and net income with taxes deducted</strong> (on an emulator, by mirroring the device or by taking a screenshot), a <strong>corresponding code snippet</strong>, and your <strong>neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f6.png!</p>
+<p>The screenshot is a required condition for obtaining a score.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 iMSc point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>12 columns with monthly payment data</strong> (on an emulator, mirroring the device or with a screenshot), a <strong>corresponding code fragment</strong>, and your <strong>neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f7.png!</p>
+<p>The screenshot is a required condition for obtaining a score.</p>
+</div>
+<h2 id="extra-task">Extra task<a class="headerlink" href="#extra-task" title="Permanent link">&para;</a></h2>
+<p>For those interested, there is an extra task in this lab, but it is only for gaining your own experience. <strong>No points for this task!</strong></p>
+<ul>
+<li>Similar to the standalone task, now set the DatePicker dialog box to only allow you to choose between today or today + maximum days off.</li>
+</ul>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2025. szeptember 27. 23:28:17">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 27. 23:28:17 CEST"><span class="timeago" datetime="2025-09-27T23:28:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 27. 23:28:17 CEST">2025-09-27</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  </body>
+</html>
