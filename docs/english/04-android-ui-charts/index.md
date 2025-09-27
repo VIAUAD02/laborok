@@ -360,11 +360,11 @@ After that, add our dependencies to the module-level `build.gradle.kts` file:
 
 ```kts
 dependencies {
-...
-implementation(libs.androidx.core.splashscreen)
-implementation(libs.androidx.navigation3.ui)
-implementation(libs.androidx.navigation3.runtime)
-implementation(libs.kotlinx.serialization.core)
+    ...
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
 }
 ```
 
@@ -372,8 +372,8 @@ Finally, enable the following plugin in the build.gradle.kts file at the top:
 
 ```kts
 plugins {
-...
-alias(libs.plugins.jetbrains.kotlin.serialization)
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 ```
 
@@ -572,7 +572,7 @@ fun PreviewInfoField() {
 
 ## Screen
 
-After that, let's create our two profile pages. We create the following files in the `hu.bme.aut.android.workplaceapp.feature.profile` *package*:
+After that, let's create our two profile pages. We create the following files in the `hu.bme.aut.android.workplaceapp.ui.screen.profile` *package*:
 
 `ProfileFirstPage`
 
@@ -621,7 +621,7 @@ This *Composable* function will be responsible for the first page, and the next 
 `ProfileSecondPage`
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -630,7 +630,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import hu.bme.aut.android.workplaceapp.ui.view.InfoField
+import hu.bme.aut.android.workplaceapp.ui.common.InfoField
 
 @Composable
 fun ProfileSecondPage(
