@@ -33,7 +33,7 @@ IMSc: Implementation of the payment menu item
 
 ## Preparations
 
-When solving the tasks, do not forget to follow the [task submission process](../github/GitHub.md).
+When solving the tasks, do not forget to follow the [task submission process](../github/).
 
 ### Creating and downloading a Git repository
 
@@ -50,149 +50,68 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 ## Create a project
 
-Let's create a new Android project with the 'Empty Activity' template! The application name should be `WorkplaceApp`, and the Package name should be `hu.bme.aut.android.workplaceapp`.
+Let's create a project called WorkplaceApp in Android Studio:
+
+1. Create a new project, select *Empty Activity*.
+1. The project name should be `WorkplaceApp`, the starting package `hu.bme.aut.android.workplaceapp`, and the save location should be the WorkplaceApp folder within the checked out repository.
+1. Select *Kotlin* as the language.
+1. The minimum API level should be API24: Android 7.0.
+1. The *Build configuration language* should be Kotlin DSL.
 
 !!!danger "FILE PATH"
     The project should be placed in the WorkplaceApp directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!
 
-We can use the default minimum SDK level of 24 and the Kotlin DSL.
+!!!danger "FILE PATH"
+    The repository path should not contain accents or special characters, as AndroidStudio is sensitive to these and the code will not compile. It is worth working in the root of the C:\\ drive.
+
+Once our project is complete, let's update the version of our dependencies in the `libs.versions.toml` file:
+
+`libs.versions.toml`
+
+```toml
+[versions]
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.12.0-alpha09"
+composeBom = "2025.09.01"
+...
+```
 
 First, download the [compressed file] containing the application images (./downloads/res.zip) and extract it. Copy the mipmap directory in it to the app/src/main/res folder (in Studio, while standing in the res folder, press `Ctrl+V`).
 
 !!!info "Managing screens in Android apps"
-	Most mobile applications are built from a combination of distinct pages/screens. One of the first major decisions we have to make when designing an application is how to structure these screens and how to implement navigation between them. In the case of an Android-based application, we can choose from several solutions:
+	Most mobile applications are built from a combination of distinct pages/screens. One of the first major decisions we make when designing an application is how to structure these screens and how to navigate between them. For an Android-based application, there are several options:
 
-    - *Activity-based approach*: Each screen is an **Activity**. Since **Activity** is a system-level component of Android, the operating system is responsible for managing it. We never instantiate it directly, but send an **Intent** to the system. The system is also responsible for navigation, and we can set certain options using *flags*.
-    - *Composable-based approach*: In this case, our screens are built from one or more *Composable* elements. These are managed at the application level, so an **Activity** is definitely required, which is responsible for the display. The display and navigation are performed by the **NavGraph** class.
-    - *Other unique solution*: Using an external or own library for display, which typically derives from the basic **View** class. Examples include the old *Conductor* and *Jetpack Compose*.
+    - *Activity-based approach*: Each screen is an **Activity**. Since **Activity** is a system-level component of Android, the operating system is responsible for its management. We never instantiate it directly, but send an **Intent** to the system. The system is also responsible for navigation, and we can set certain options using *flags*.
+    - *Composable-based approach*: In this case, our screens are built from one or more *Composable* elements. These are managed at the application level, which is why an **Activity** is definitely required, which is responsible for the display. The display and navigation are performed by the **AppNavigation** class.
+    - *Other unique solution*: Using an external or own library for the display, which is typically derived from the basic **View** class. Examples include the old *Conductor* and *Jetpack Compose*.
 
-    In the past, applications used the Activity-based approach, but later switched to Fragments. In such applications, there is a total of one main **Activity**, which contains the **FragmentManager** instance, which we will later use to display **Fragment**-based screens.
-
-    This was a fundamentally flexible and easy-to-use solution, but for this we had to get to know the **FragmentManager** operation in detail, otherwise we could easily run into errors. To solve this, Google developed the *Navigation Component* package, with which we can easily create navigation between pages in the Android Studio environment with a graphical tool, or we can simply start it from code.
-
-    In Jetpack Compose, **NavHost** is now responsible for navigation and calls each *Composable* function separately.
-
-## NavHost Compose initialization
-First, let's add the Navigation Component package to our empty project. To do this, we'll need the module-level `build.gradle.kts` file and the `libs.versions.toml` file. Find these and add the following dependency:
-
-`libs.versions.toml`
-```toml
-[versions]
-...
-navigationCompose = "2.7.7"
+    In Jetpack Compose, **AppNavigation** is now responsible for navigation and calls each *Composable* function separately.
 
 
-[libs]
-...
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-```
-
-`build.gradle.kts`
-
-```kts
-dependencies {
-    ...
-    implementation(libs.androidx.navigation.compose)
-
-}
-```
-
-Once you're done with this, sync the project using the `Sync Now` button in the upper right corner.
-
-
-!!!warning "Sync"
-    Make sure to Sync, because if you skip this step, it won't find the necessary dependencies, which can cause problems later!
-
-The Navigation Component also uses *Jetpack Compose* to define a navigation graph for the screens and the relationships between them. However, we can specify this graph directly in *Kotlin* code. To create it, follow these steps:
-
-1. Create the navigation graph using Jetpack Compose.
-
-2. Create a *package* called `navigation`, and then create a new *Kotlin File* called `NavGraph` in this *package* (*right click -> New Kotlin Class/File*)
-
-3. Create `NavGraph` similar to `NavGraph` seen in previous labs:
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
-
-@Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-){
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Screen1.route
-    ){
-//        composable(Screen.Screen1.route){
-//            Screen1()
-//        }
-//        composable(Screen.Screen2.route){
-//            Screen2()
-//        }
-    }
-}
-```
-
-4. As you can see, instead of using *strings* that are given by hand, we use references to identify *destinations*. We collect these references in a separate `Screen` *sealed class*:
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Screen1: Screen("screen1")
-    object Screen2: Screen("screen2")
-}
-```
-!!!info "sealed class"
-	Kotlin's *sealed classes* are classes that have limited inheritance, and all their descendants are known at compile time. We can use these classes in a similar way to enums. In this case, Menu is not actually a direct descendant of Screen, but an anonymous descendant.
-
-5. Once we're done with this, we just need to extend this `NavGraph` as needed, and in `MainActivity`, we need to call this Composable function, and it will automatically bring up the configured main screen when the application is launched.
-```kotlin
-package hu.bme.aut.android.workplaceapp
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import hu.bme.aut.android.workplaceapp.navigation.NavGraph
-import hu.bme.aut.android.workplaceapp.ui.theme.WorkplaceAppTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            WorkplaceAppTheme {
-                NavGraph()
-            }
-        }
-    }
-}
-```
-
-!!!info "Multiple Navigation Graphs"
-    Jetpack Compose allows you to create and manage multiple navigation graphs, but for most applications, a single `NavGraph` is sufficient
-
-
-## Main Menu Screen (1 point)
+## Create a main menu screen (1 point)
 
 The first screen we will create will be the main page, from which we can navigate to the other pages. During the lab, we will implement 2 functions, these are Profile and Freedom.
 
-On the `MenuScreen`, we want to display a TopAppBar and buttons. 
+On the `MenuScreen`, we want to display a *TopAppBar* and buttons. 
 
 <p align="center">
 <img src="./assets/menu.png" width="160">
 </p>
 
-First, let's create a `hu.bme.aut.android.workplaceapp.ui.view` *package*. This will contain our essential UI building blocks:
+### Components
+
+First, let's create a `hu.bme.aut.android.workplaceapp.ui.common` *package*. This will contain our essential UI building blocks:
 
 `TopBar.kt`: 
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -222,20 +141,17 @@ fun PreviewTopBar() {
 }
 ```
 
-This is a simple *AppBar*, with which we can place a title, different *actions*, and buttons.
+This is a simple *AppBar*. With which we can place a title, different *actions*, and buttons.
 
 `ImageButton`:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -308,12 +224,14 @@ fun PreviewImageButton() {
 }
 ```
 
-Ez egy egyszerű gomb, amin képeket és szövekeget is könnyen tudunk elhelyezni. Az univerzális felhasználás érdekében a lényeges attribútumok kivezetésre kerültek paraméterekként. 
+This is a simple button, on which we can easily place images and text. In order to use it universally, the essential attributes (text, image, size, onClick) have been removed as parameters.
 
-Most már minden rendelkezésünkre áll, hogy megírjuk a `MainScreen` képernyőnket is. Ehhez hozzunk létre egy új `hu.bme.aut.android.workplaceapp.feature` *package*-et. Ebben lesznek külön *package*-ekben a képernyőink. A `hu.bme.aut.android.workplaceapp.feature.menu` *package*-be hozzuk létre a  `MenuScreen` *Kotlin File*-t:
+### Screen
+
+Now we have everything we need to write our `MainScreen` screen. To do this, let's create a new `hu.bme.aut.android.workplaceapp.ui.screen` *package*. In this, our screens will be in separate *packages*. In the `hu.bme.aut.android.workplaceapp.ui.screen.menu` *package*, we will create the `MenuScreen` *Kotlin File*:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.menu
+package hu.bme.aut.android.workplaceapp.ui.screen.menu
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -334,8 +252,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import hu.bme.aut.android.workplaceapp.R
-import hu.bme.aut.android.workplaceapp.ui.view.ImageButton
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.ImageButton
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @Composable
 fun MenuScreen(
@@ -360,10 +278,10 @@ fun MenuScreen(
                     ImageButton(
                         onClick = onProfileButtonClick,
                         modifier = modifier,
-                        label = stringResource(R.string.profile),
+                        label = stringResource(R.string.label_profile),
                         painter = painterResource(id = R.drawable.profile),
                         size = 160.dp,
-                        contentDescription = stringResource(R.string.profile)
+                        contentDescription = stringResource(R.string.label_profile)
                     )
                     Spacer(
                         modifier = Modifier.height(16.dp)
@@ -371,10 +289,10 @@ fun MenuScreen(
                     ImageButton(
                         onClick = onSalaryButtonClick,
                         modifier = modifier,
-                        label = stringResource(R.string.salary),
+                        label = stringResource(R.string.label_salary),
                         painter = painterResource(id = R.drawable.payment),
                         size = 160.dp,
-                        contentDescription = stringResource(R.string.salary)
+                        contentDescription = stringResource(R.string.label_salary)
                     )
 
                 }
@@ -408,44 +326,148 @@ Following this example, let's implement the other two buttons with the following
 
 Let's create the referenced text resources! (While standing on the text, press <kbd>ALT</kbd>+<kbd>ENTER</kbd>)
 
-After that, let's add our `Screen` class and our `NavGraph`:
 
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+### Navigation
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
+Let's add the Navigation3 library to our project. To do this, we will need the module-level `build.gradle.kts` file and the `libs.versions.toml` file. Find these and add the following dependency:
+
+`libs.versions.toml`
+```toml
+[versions]
+...
+coreSplashscreen = "1.0.1"
+nav3Core = "1.0.0-alpha10"
+kotlinSerialization = "2.2.20"
+kotlinxSerializationCore = "1.9.0"
+
+
+[libraries]
+...
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+
+
+[plugins]
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
+
+```
+
+After that, add our dependencies to the module-level `build.gradle.kts` file:
+
+`build.gradle.kts`
+
+```kts
+dependencies {
+...
+implementation(libs.androidx.core.splashscreen)
+implementation(libs.androidx.navigation3.ui)
+implementation(libs.androidx.navigation3.runtime)
+implementation(libs.kotlinx.serialization.core)
 }
 ```
 
+Finally, enable the following plugin in the build.gradle.kts file at the top:
+
+```kts
+plugins {
+...
+alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+```
+
+Once we are done with this, we will synchronize the project with the `Sync Now` button in the upper right corner.
+
+!!!warning "Sync"
+    Don't forget to synchronize, because if this step is skipped, it will not find the necessary dependencies, and this may cause problems later!
+
+
+To implement navigation, similarly to what we learned in previous labs, we will need an `AppNavigation` *Composable* class that controls navigation and a `Screen` *interface* that collects *destinations*.
+
+Let's create them in the `hu.bme.aut.android.workplaceapp.ui.navigation` *package*. Currently, only our `MenuScreen` will be included, we will expand this later:
+
+`Screen.kt`:
+
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+```
+
+
+`AppNavigation.kt`:
+
+```kotlin
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = {},
-                onHolidayButtonClick = {},
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+                MenuScreen(
+                    onProfileButtonClick = {},
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {},
+                    onCafeteriaButtonClick = {}
+                )
+            }
+        }
+    )
+}
+```
+
+!!!info "sealed class"
+	Kotlin's *sealed classes* are classes that have limited inheritance and all their descendants are known at compile time. We can use these classes in a similar way to enums. In this case, Menu is not actually a direct descendant of Screen, but an anonymous descendant.
+
+To use navigation, we call the `AppNavigation` *composable* in `MainActivity`, which automatically brings up the configured main screen when the application is launched.
+
+```kotlin
+package hu.bme.aut.android.workplaceapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import hu.bme.aut.android.workplaceapp.ui.navigation.AppNavigation
+import hu.bme.aut.android.workplaceapp.ui.theme.WorkplaceAppTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WorkplaceAppTheme {
+                AppNavigation()
+            }
         }
     }
 }
 ```
+
+!!!info "Multiple Navigation Graphs"
+    Using the Navigation3 library it is possible to create and manage multiple navigation graphs, however for most applications a single navigation class is sufficient.
+
 
 If we start the application now, we see all 4 buttons, but none of them work yet.
 
@@ -469,7 +491,9 @@ The Profile screen will consist of two pageable pages (`HorizontalPager`), which
     - Tax number
     - Social security number
 
-Let's create a `data` *package*, within which there will be a `Person` data class. This will store the data displayed on the pages. For data type classes, Kotlin automatically generates frequently used functions, such as the `equals()` and `hashCode()` functions for comparing different objects, as well as a `toString()` function that returns the value of the stored variables.
+### Data model
+
+Let's create a `data` *package*, with a `Person` data class inside. This is where we will store the data that appears on the pages. For data type classes, Kotlin automatically generates commonly used functions. For example, the `equals()` and `hashCode()` functions for comparing different objects, and a `toString()` function that returns the value of the stored variables.
 
 
 ```kotlin
@@ -505,10 +529,12 @@ object DataManager {
 
 On the profile page, our goal is to display the normal and detailed data in two separate sections. You can move between the two pages with a horizontal swipe. For this, we will use a **HorizontalPager**, which can implement such interactions between Composable functions.
 
-First, let's create a helper *Composable* called `InfoField` in the `hu.bme.aut.android.workplaceapp.ui.view` *package*, which will help display the data:
+### Components
+
+First, let's create a helper *Composable* called `InfoField` in the `hu.bme.aut.android.workplaceapp.ui.common` *package*, which will help display the data:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.ui.view
+package hu.bme.aut.android.workplaceapp.ui.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -544,12 +570,14 @@ fun PreviewInfoField() {
 }
 ```
 
+## Screen
+
 After that, let's create our two profile pages. We create the following files in the `hu.bme.aut.android.workplaceapp.feature.profile` *package*:
 
 `ProfileFirstPage`
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -558,7 +586,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import hu.bme.aut.android.workplaceapp.ui.view.InfoField
+import hu.bme.aut.android.workplaceapp.ui.common.InfoField
 
 @Composable
 fun ProfileFirstPage(
@@ -635,31 +663,26 @@ fun PreviewProfileSecondPage() {
 }
 ```
 
-The parameters of the function will be the profile data in String format.
+The parameters of the functions will be the profile data in String format.
 
 Once we have these, let's create our *Composable* function called `ProfileScreen` as follows:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import hu.bme.aut.android.workplaceapp.R
 import hu.bme.aut.android.workplaceapp.data.DataManager
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -668,7 +691,7 @@ fun ProfileScreen(
 ) {
     Scaffold(
         topBar = {
-            TopBar(stringResource(id = R.string.profile))
+            TopBar(stringResource(id = R.string.label_profile))
         }
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = { 2 })
@@ -714,48 +737,66 @@ Here we first need to create a variable called `pagerState`, which we will pass 
 
 Finally, we will connect `ProfileScreen` to the navigation:
 
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+`Screen.kt`:
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
+```kotlin
+package hu.bme.aut.android.workplaceapp.ui.navigation
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+    @Serializable
+    data object ProfileScreenDestination: Screen
 }
 ```
 
+`AppNavigation.kt`:
+
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
-import hu.bme.aut.android.workplaceapp.feature.profile.ProfileScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = { navController.navigate(Screen.Profile.route) },
-                onHolidayButtonClick = {},
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+
+                MenuScreen(
+                    onProfileButtonClick = {
+                        backStack.add(Screen.ProfileScreenDestination)
+                    },
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {},
+                    onCafeteriaButtonClick = {}
+                )
+            }
+
+            entry<Screen.ProfileScreenDestination> {
+                ProfileScreen()
+            }
         }
-        composable(Screen.Profile.route) {
-            ProfileScreen()
-        }
-    }
+    )
 }
 ```
+Let's see how we add our new *destination* to the *backStack*!
 
 Let's try the application! Clicking on the Profile button will display the user's data, and you can also scroll through it.
 
@@ -768,6 +809,8 @@ Let's try the application! Clicking on the Profile button will display the user'
 ## Create a Leave Screen (1 point)
 
 On the Leave screen, we will display a pie chart that shows the percentage of leave taken and the remaining leave. In addition, we will allow the user to select a new leave interval using a button on the interface.
+
+### Screen
 
 !!!note "PieChart"
     Previously, we used the [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library in the View framework to draw the PieChart, but unfortunately this does not work for *Jetpack Compose*.
@@ -824,10 +867,10 @@ android {
 
 Then Sync the Project with the `Sync Now` button on the top right.
 
-Once the files are downloaded, create our `HolidayScreen` *Composable* function in the `hu.bme.aut.android.workplaceapp.feature.holiday` *package* as follows:
+Once the files are downloaded, create our `HolidayScreen` *composable* function in the `hu.bme.aut.android.workplaceapp.ui.screen.holiday` *package* as follows:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
+package hu.bme.aut.android.workplaceapp.ui.screen.holiday
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -842,7 +885,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
+import hu.bme.aut.android.workplaceapp.ui.common.TopBar
 
 @Composable
 fun HolidayScreen(
@@ -905,7 +948,7 @@ val pieChartData = PieChartData(
     * We can pass two parameters to `PieChartData`:
         - **slices**: This parameter will contain the data, the distribution of the data, and the color of the data.
         - **plotType**: We can use this variable to specify the type of the chart. In this case, it will be `Pie` type.
-    * We can pass four parameters to `PieChartData.Slice`, we will only deal with the first three:
+    * We can pass four parameters to `PieChartData.Slice`. We will only deal with the first three:
         - **label**: This String will appear on each "slice".
         - **value**: This is the distribution value of the data
         - **color**: This allows us to set the color of each data in the chart.
@@ -949,61 +992,79 @@ PieChart(
 ```
     * We pass the two variables we created earlier to the `PieChart` *Composable* function, and it uses them to create the pie chart.
 
+### Navigation
+
 Finally, we also connect `HolidayScreen` to the navigation:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
-    object Holiday: Screen("holiday")
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+interface Screen : NavKey {
+    @Serializable
+    data object MenuScreenDestination: Screen
+    @Serializable
+    data object ProfileScreenDestination: Screen
+    @Serializable
+    data object HolidayScreenDestination: Screen
 }
 ```
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
+package hu.bme.aut.android.workplaceapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.workplaceapp.feature.holiday.HolidayScreen
-import hu.bme.aut.android.workplaceapp.feature.holiday.HolidayViewModel
-import hu.bme.aut.android.workplaceapp.feature.menu.MenuScreen
-import hu.bme.aut.android.workplaceapp.feature.profile.ProfileScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.workplaceapp.ui.screen.holiday.HolidayScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.menu.MenuScreen
+import hu.bme.aut.android.workplaceapp.ui.screen.profile.ProfileScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Menu.route
-    ) {
-        composable("menu") {
-            MenuScreen(
-                onProfileButtonClick = { navController.navigate(Screen.Profile.route) },
-                onHolidayButtonClick = { navController.navigate(Screen.Holiday.route) },
-                onSalaryButtonClick = {},
-                onCafeteriaButtonClick = {})
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = remember { mutableStateListOf<Screen>(Screen.MenuScreenDestination) }
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.MenuScreenDestination> {
+                MenuScreen(
+                    onProfileButtonClick = {
+                        backStack.add(Screen.ProfileScreenDestination)
+                    },
+                    onSalaryButtonClick = {},
+                    onHolidayButtonClick = {
+                        backStack.add(Screen.HolidayScreenDestination)
+                    },
+                    onCafeteriaButtonClick = {}
+                )
+            }
+
+            entry<Screen.ProfileScreenDestination> {
+                ProfileScreen()
+            }
+
+            entry<Screen.HolidayScreenDestination> {
+                HolidayScreen()
+            }
         }
-        composable(Screen.Profile.route) {
-            ProfileScreen()
-        }
-        composable(Screen.Holiday.route) {
-            HolidayScreen()
-        }
-    }
+    )
 }
 ```
+
 
 
 So that if we start the application now, we can already see the diagram for the Holiday option, but we can't change it yet.
 
-!!!example "BEADANDÓ (1 point)"
+!!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **holiday screen** (on an emulator, by mirroring the device or by taking a screenshot), a **corresponding code snippet**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f3.png!
 
     The screenshot is a necessary condition for getting a score.
@@ -1011,17 +1072,18 @@ So that if we start the application now, we can already see the diagram for the 
 ## Implementing a date picker (1 point)
 
 The next step is to implement the `Take Holiday` button:
-    * For this, we will need a `DialogWindow` in step 4, but in the meantime we can set the Button's behavior. When we press the button, we set the variable indicating the dialog display to true:
 
-```kotlin
-Button(
-    onClick = { showDialog = true }
-) {
-    Text("Take holiday")
-}
-```
+* We'll need a `DialogWindow` in step 4 for this, but we can set the button's behavior in the meantime. When we press the *Take Holiday* button, we set the variable indicating that the dialog should be displayed to true:
 
-### Maintaining state between screens using ViewModel
+	```kotlin
+	Button(
+	    onClick = { showDialog = true }
+	) {
+	    Text("Take holiday")
+	}
+	```
+
+### ViewModel
 
 To avoid losing track of holidays when navigating between screens (and for architectural reasons), we cannot store this state in *screens*.
 Create a new *Kotlin File* called `HolidayViewModel` in the `holiday` *package*. This is where we will store the maximum number of holidays and the number of holidays already taken. (Of course, in a real application, this data would come from some kind of backend or network, and the *viewmodel* would get it from there.)
@@ -1029,7 +1091,7 @@ Create a new *Kotlin File* called `HolidayViewModel` in the `holiday` *package*.
 The code for `HolidayViewModel` is:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
+package hu.bme.aut.android.workplaceapp.ui.screen.holiday
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -1055,54 +1117,39 @@ class HolidayViewModel : ViewModel() {
 !!!warning "ViewModel"
     We will see examples of "prettier" and more complex uses of the viewmodel in later labs.
 
-Next, let's modify the `HolidayScreen` header to take *viewmodel*.t, and then get the appropriate properties from them:
+To use *viewModel*, we first need to add a new dependency:
+
+`libs.versions.toml`:
+
+```toml
+[versions]
+...
+lifecycleVersion = "2.9.4"
+
+[libraries]
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+```
+
+`build.gradle.kts`:
+
+```kts
+implementation(libs.androidx.lifecycle.viewmodel.compose)
+```
+
+Next, let's modify the *composable* parameters of `HolidayScreen` to take the *viewmodel* and then get the appropriate states from them:
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.holiday
-
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
-import androidx.compose.ui.unit.dp
-import co.yml.charts.common.model.PlotType
-import co.yml.charts.ui.piechart.charts.PieChart
-import co.yml.charts.ui.piechart.models.PieChartConfig
-import co.yml.charts.ui.piechart.models.PieChartData
-import hu.bme.aut.android.workplaceapp.ui.view.TopBar
-import androidx.lifecycle.viewmodel.compose.viewModel
-import java.util.Calendar
-
 @Composable
 fun HolidayScreen(
     modifier: Modifier = Modifier,
     viewModel: HolidayViewModel = viewModel()
 ) {
-
-    val maxHolidayValueVM by viewModel.maxHolidayValue.collectAsState()
-    val takenHolidayValueVM by viewModel.takenHolidayValue.collectAsState()
-    val remainingHolidaysVM = maxHolidayValueVM - takenHolidayValueVM
-
+    
+    val maxHolidayValue by viewModel.maxHolidayValue.collectAsState()
+    val takenHolidayValue by viewModel.takenHolidayValue.collectAsState()
+    val remainingHolidays = maxHolidayValue - takenHolidayValue
+    
     val currentDate = Calendar.getInstance()
-    val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
 
@@ -1120,55 +1167,16 @@ fun HolidayScreen(
             verticalArrangement = Arrangement.Center
         ) {
 
-            //Creating PieChartData 
+            //creating PieChartData
             val pieChartData = PieChartData(
                 slices = listOf(
-                    PieChartData.Slice("Remaining", remainingHolidaysVM.toFloat(), Color(0xFFFFEB3B)),
-                    PieChartData.Slice("Taken", takenHolidayValueVM.toFloat(), Color(0xFF00FF00)),
+                    PieChartData.Slice("Remaining", remainingHolidays.toFloat(), Color(0xFFFFEB3B)),
+                    PieChartData.Slice("Taken", takenHolidayValue.toFloat(), Color(0xFF00FF00)),
                 ), plotType = PlotType.Pie
             )
-
-            //Creating PieChartConfig 
-            val pieChartConfig = PieChartConfig(
-                backgroundColor = Color.Transparent,
-                labelType = PieChartConfig.LabelType.VALUE,
-                isAnimationEnable = true,
-                labelVisible = true,
-                sliceLabelTextSize = TextUnit(20f, TextUnitType.Sp),
-                animationDuration = 1000,
-                sliceLabelTextColor = Color.Black,
-                inActiveSliceAlpha = .8f,
-                activeSliceAlpha = 1.0f,
-            )
-
-            //Creating a PieChart - using PieChartData, PieChartConfig
-            PieChart(
-                modifier = Modifier
-                    .width(400.dp)
-                    .height(400.dp),
-                pieChartData,
-                pieChartConfig
-            )
-
-            //Holiday Button
-            Button(
-                onClick = { showDialog = true }
-            ) {
-                Text("Take holiday")
-            }
-
-            //DatePicker Dialog
-            //...
-
-        }
-    }
-
-}
-
-@Composable
-@Preview
-fun PreviewHolidayScreen() {
-    HolidayScreen()
+			...
+		}
+	}
 }
 ```
 !!!danger "pieChartData"
@@ -1180,69 +1188,57 @@ fun PreviewHolidayScreen() {
     import androidx.lifecycle.viewmodel.compose.viewModel
     ```
 
+### Dialog
+
 After that, we create the dialog window as follows:
 
 ```kotlin
 //DatePicker Dialog
 if (showDialog) {
+
+    val datePickerState = rememberDatePickerState()
+
     DatePickerDialog(
-        context,
-        { _, _year, _months, _days ->
+        onDismissRequest = {
             showDialog = false
-            val selectedDate = Calendar.getInstance().apply{
-                set(_year, _months, _days)
-            }
-            val diff = ((selectedDate.timeInMillis - currentDate.timeInMillis) / (24 * 60 * 60 * 1000)).toInt()
-            viewModel.takeHoliday(
-                days = diff
-            )
         },
-        currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH)
-    ).apply {
-        setOnCancelListener { showDialog = false }
-        show()
-    }
-}
-```
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    showDialog = false
+                    if (datePickerState.selectedDateMillis != null) {
 
-We use the DataPicker Dialog in a similar way to what we saw in previous labs. We pass it a context, then a lambda parameter that will describe the behavior if we select a date, and finally we pass the current date as the last three parameters.
-
-!!!tip "DatePickerDialog import"
-    For `DatePickerDialog` we use the following import:
-    ```kotlin
-    import android.app.DatePickerDialog
-    ```
-
-Once we have that, we just need to modify `NavGraph` so that the values ​​are retained by the application when we exit and enter the Holiday screen. We can do this as follows:
-
-```kotlin
-package hu.bme.aut.android.workplaceapp.navigation
-
-sealed class Screen(val route: String) {
-    object Menu : Screen("menu")
-    object Profile: Screen("profile")
-    object Holiday: Screen("holiday")
-}
-```
-
-```kotlin
-@Composable
-fun NavGraph(
-    ...
-){
-    val holidayViewModel: HolidayViewModel = viewModel()
-
-    NavHost(
-        ...
-    ){
-        ...
-        composable(Screen.Holiday.route) {
-            HolidayScreen(viewModel = holidayViewModel)
+                        val diff =
+                            ((datePickerState.selectedDateMillis!! - currentDate.timeInMillis) / (24 * 60 * 60 * 1000)).toInt() + 1
+                        viewModel.takeHoliday(diff)
+                    }
+                }
+            ) {
+                Text(stringResource(R.string.dialog_ok_button_text))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    showDialog = false
+                }
+            ) {
+                Text(stringResource(R.string.dialog_dismiss_button_text))
+            }
         }
-
+    ) {
+        DatePicker(state = datePickerState)
     }
 }
 ```
+
+We pass the following parameters to `DatePickerDialog`:
+
+* **onDismissRequest**: event handler in case the user does not press a button, but clicks next to the dialog.
+* **confirmButton**: confirmation button to accept the selection.
+* **dismissButton**: button to cancel the process.
+
+In `DatePickerDialog`, we display a `DatePicker`, to which we pass the created state.
 
 Then, when you start the application, our `Take Holiday` button will work.
 
@@ -1255,6 +1251,10 @@ Then, when you start the application, our `Take Holiday` button will work.
 ## Independent task (1 point)
 
 * Only allow taking a new holiday if the selected day is later than today. (0.5 points)
+
+    !!!tip
+        Let's use the `selectableDates` parameter of `rememberDatePickerState`.
+
 * If our holiday frame is exhausted, the Take Holiday button should be disabled. (0.5 points)
 
 !!!example "TO BE SUBMITTED (0.5 points)"
