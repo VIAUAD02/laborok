@@ -84,7 +84,7 @@ Első lépésként, hogy ezzel a fejlesztés során a későbbiekben ne legyen g
 </resources>
 ```
 
-Második lépésként, hogy a felhasználói felületületét akadálytalanul el tudjuk készíteni, készítsük el az adat struktúrát, ami a tárolandó adatokat fogja tartalmazni. Szükégünk vagy egy listára, amely az adatokat tartalmazza. Ebben a listában az alábbi `SalaryData` *data class* objektumokat fogunk tárolni. Hozzunk létre egy `data` *package*-et a fő *package*-ünkön belül, majd abba tegyük bele a `SalaryData` osztályt:
+Második lépésként, hogy a felhasználói felületületét akadálytalanul el tudjuk készíteni, készítsük el az adat struktúrát, ami a tárolandó adatokat fogja tartalmazni. Szükégünk van egy listára, amely az adatokat tartalmazza. Ebben a listában az alábbi `SalaryData` *data class* objektumokat fogunk tárolni. Hozzunk létre egy `data` *package*-et a fő *package*-ünkön belül, majd abba tegyük bele a `SalaryData` osztályt:
 
 ```kotlin
 package hu.bme.aut.android.androidwallet.data
