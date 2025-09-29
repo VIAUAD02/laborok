@@ -50,7 +50,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 ## Projekt létrehozása
 
-Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
+Hozzunk létre egy WorkplaceApp nevű projektet Android Studioban:
 
 1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
 1. A projekt neve legyen `WorkplaceApp`, a kezdő package `hu.bme.aut.android.workplaceapp`, a mentési hely pedig a kicheckoutolt repository-n belül az WorkplaceApp mappa.
