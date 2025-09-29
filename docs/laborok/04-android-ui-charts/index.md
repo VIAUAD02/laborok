@@ -621,7 +621,7 @@ Ez a *Composable* függvény fog felelni az első oldalért, a következő pedig
 `ProfileSecondPage`
 
 ```kotlin
-package hu.bme.aut.android.workplaceapp.feature.profile
+package hu.bme.aut.android.workplaceapp.ui.screen.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -630,7 +630,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import hu.bme.aut.android.workplaceapp.ui.view.InfoField
+import hu.bme.aut.android.workplaceapp.ui.common.InfoField
 
 @Composable
 fun ProfileSecondPage(
