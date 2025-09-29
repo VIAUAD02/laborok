@@ -82,7 +82,7 @@ composeBom = "2025.09.01"
 ...
 ```
 
-First, download the [compressed file] containing the application images (./downloads/res.zip) and extract it. Copy the mipmap directory in it to the app/src/main/res folder (in Studio, while standing in the res folder, press `Ctrl+V`).
+First, download the [compressed file](./downloads/res.zip) containing the application images and extract it. Copy the mipmap directory in it to the app/src/main/res folder (in Studio, while standing in the res folder, press `Ctrl+V`).
 
 !!!info "Managing screens in Android apps"
 	Most mobile applications are built from a combination of distinct pages/screens. One of the first major decisions we make when designing an application is how to structure these screens and how to navigate between them. For an Android-based application, there are several options:
@@ -398,8 +398,8 @@ import kotlinx.serialization.Serializable
 interface Screen : NavKey {
     @Serializable
     data object MenuScreenDestination: Screen
+}
 ```
-
 
 `AppNavigation.kt`:
 
