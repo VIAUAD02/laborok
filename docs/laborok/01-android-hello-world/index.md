@@ -2,7 +2,7 @@
 
 Az első labor rendhagyó a többihez képest. Itt kevés kóddal fogunk találkozni, inkább az alapok átnézésén van a hangsúly.
 
-A labor célja, hogy bemutassa az Android Studio fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Ismertetjük egy Hello World alkalmazás elkészítésének módját és a debugoláshoz használható fontosabb eszközöket.
+A labor célja, hogy bemutassa az Android Studio fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Ismertetjük egy Hello World alkalmazás elkészítésének módját és a debuggoláshoz használható fontosabb eszközöket.
 
 A labor végén egy jegyzőkönyvet kell beadni a jegy megszerzéséhez.
 
@@ -125,9 +125,9 @@ SDK manager felülete:
 ![](assets/sdk_manager.png)
 
 !!! note "Megjegyzés"
-	Korábban létezett egy standalone SDK manager de ennek használata mára deprecated lett. Ha online forrásokban ilyet látunk ne lepődjünk meg.
+	Korábban létezett egy standalone SDK manager, de ennek használata mára deprecated lett. Ha online forrásokban ilyet látunk, ne lepődjünk meg.
 
-Indítsuk el az AVD managert, és vizsgáljuk mel, hogy rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.
+Indítsuk el az AVD managert, és vizsgáljuk meg, hogy rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.
 
 
 ### AVD Manager
@@ -180,13 +180,13 @@ A Play gombbal indítsuk el az új emulátort!
 
     * Van-e elég hely (minimum 15-20 GB) a meghajtón?
     * Legfrissebb-e az Android Studio és az sdk?
-    * SDK manager > sdk tools: legrisebb-e az android emulator?
-    * Nincs-e az Android Studio vagy az sdk telepítési útjában szóköz, ékezetes betű vagy különleges karakter?
+    * SDK manager > sdk tools: legfrissebb-e az android emulátor?
+    * Nincs-e az Android Studio vagy az SDK telepítési útjában szóköz, ékezetes betű vagy különleges karakter?
     * Próbáltál-e más API-t, Play Store-ral, a nélkül?
     * Virtualizáció be van-e kapcsolva/engedélyezve van-e a gépen?
     * Grafikai gyorsítás típusát próbáljuk meg átállítani.
 
-Az elindított emulátoron próbáljunk ki néhány előre telepítétt alkalmazást!
+Az elindított emulátoron próbáljunk ki néhány előre telepített alkalmazást!
 
 !!! note "Megjegyzés"
 	A gyári emulátoron kívül több alternatíva is létezik, mint pl. a [Genymotion](https://www.genymotion.com/fun-zone/) vagy a [BigNox](https://www.bignox.com/), viszont a Google féle emulátor a legelterjedtebb, így amennyiben ezzel nem jelentkeznek problémáink, maradjunk ennél.
@@ -198,7 +198,7 @@ Tesztelés céljából nagyon jól használható az emulátor, amely az alábbi 
 
 ## Fejlesztői környezet
 
- Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a *Tip of the day*, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a *Settings -> Appeareance & Behavior -> System Settings -> Reopen projects on startup* opcióval ki is kapcsolhatjuk.)
+Android fejlesztésre a labor során a JetBrains IntelliJ alapjain nyugvó Android Studio-t fogjuk használni. A Studio-val ismerkedők számára hasznos funkció a *Tip of the day*, érdemes egyből kipróbálni, megnézni az adott funkciót. Induláskor alapértelmezetten a legutóbbi projekt nyílik meg, ha nincs ilyen, vagy ha minden projektünket bezártuk, akkor a nyitó képernyő. (A legutóbbi projekt újranyitását a *Settings -> Appeareance & Behavior -> System Settings -> Reopen projects on startup* opcióval ki is kapcsolhatjuk.)
 
 ![](assets/studio.png)
 
@@ -269,7 +269,7 @@ Ez a rész azoknak szól, akik korábban már használtak más IntelliJ terméke
 
 [További billentyűkombinációk](https://developer.android.com/studio/intro/keyboard-shortcuts).
 !!!tip "Keresés"
-    Hogy ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki és keressünk rá a "Device Manager" opcióra.
+    Ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki, és keressünk rá a "Device Manager" opcióra.
 
 
 ### Eszközök, szerkesztők
@@ -284,7 +284,7 @@ A *View* menü *Tool Windows* menüpontjában lehetőség van különböző abla
 *   Event Log
 *   Gradle
 
-Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal, *Split Right/Down* vagy csak kattintsunk rá hosszan és kezdjük el húzni a kódfelületre!
+Lehetőség van felosztani a szerkesztőablakot, ehhez kattintsunk egy megnyitott fájl tabfülére jobb gombbal, *Split Right/Down* vagy csak kattintsunk rá hosszan és kezdjük el húzni a kódfelületre!
 
 
 ### Hasznos beállítások
@@ -340,7 +340,7 @@ A készüléken lévő fájlrendszert is [böngészhetjük](https://developer.an
 1.  Változtassuk meg a készülék tartózkodási helyét (GPS) az emulátor megfelelő paneljének segítségével!
 1.  Vizsgáljuk meg az elindított `HelloWorld` projekt nyitott szálait, memóriafoglalását!
 1.  Vizsgáljuk meg a Logcat panel tartalmát!
-1.  Vizsgáljuk meg az Code -> Inspect code eredményét!
+1.  Vizsgáljuk meg a Code -> Inspect code eredményét!
 1.  Keressük ki a létrehozott `HelloWorld` projekt mappáját és a build könyvtáron belül vizsgálja meg az `.apk` állomány tartalmát! Hol található a lefordított kód? 
 
 !!! example "BEADANDÓ"
