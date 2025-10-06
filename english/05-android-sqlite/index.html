@@ -1,0 +1,1914 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Tóth Tibor, Gincsai Gábor, Ekler Péter, Gazdi László, Pomázi Krisztián, Kövesdán Gábor">
+      
+      
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
+    
+    
+      
+        <title>Labor 05 - SQLite - Drawing Application - BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-05-sqlite-drawing-application" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 05 - SQLite - Drawing Application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-tabs__link">
+        Mobil Laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../laborok/08-http/" class="md-tabs__link">
+        Webes Laborok
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAD02 - Mobil- és webes szoftverek laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/viauad02/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    viauad02/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="false">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tudnivalók" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tudnivalok/github/contributing/" class="md-nav__link">
+        Hozzájárulás az anyaghoz
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Mobil Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobil Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mobil Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/01-android-hello-world/" class="md-nav__link">
+        Labor 01 - Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/02-android-ui/" class="md-nav__link">
+        Labor 02 - UI - Tömegközlekedési alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/03-android-ui-adv/" class="md-nav__link">
+        Labor 03 - UI, LazyColumn - Kiadás és bevétel kezelő alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/04-android-ui-charts/" class="md-nav__link">
+        Labor 04 - UI,HorizontalPager, Charts - HR alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/05-android-sqlite/" class="md-nav__link">
+        Labor 05 - SQLite - Rajzoló alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/06-android-room/" class="md-nav__link">
+        Labor 06 - Room - Bevásárló lista alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/07-android-network/" class="md-nav__link">
+        Labor 07 - Retrofit - Időjárás alkalmazás
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Webes Laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webes Laborok" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Webes Laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/08-http/" class="md-nav__link">
+        Labor 08 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/09-css/" class="md-nav__link">
+        Labor 09 - CSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/10-bootstrap/" class="md-nav__link">
+        Labor 10 - Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/11-js/" class="md-nav__link">
+        Labor 11 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/12-js-advanced/" class="md-nav__link">
+        Labor 12 - Haladó JavaScript
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laborok/13-jquery/" class="md-nav__link">
+        Labor 13 - jQuery
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    Preparations
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-downloading-a-git-repository" class="md-nav__link">
+    Creating and downloading a Git repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-the-project" class="md-nav__link">
+    Preparing the project
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparing the project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-project" class="md-nav__link">
+    Creating the project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-resources" class="md-nav__link">
+    Adding Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enforcing-portrait-layout" class="md-nav__link">
+    Enforcing portrait layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-appbars" class="md-nav__link">
+    Creating AppBars
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-drawingscreen-interface" class="md-nav__link">
+    The DrawingScreen interface
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-the-style-selector-1-point" class="md-nav__link">
+    Implementing the style selector (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing the style selector (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-a-required-dependency" class="md-nav__link">
+    Add a required dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-viewmodel" class="md-nav__link">
+    Create ViewModel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#style-selector" class="md-nav__link">
+    Style Selector
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-the-canvas-1-point" class="md-nav__link">
+    Implementing the canvas (1 point)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-persistence-using-a-sqlite-database-1-point" class="md-nav__link">
+    Implementing persistence using a SQLite database (1 point)
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing persistence using a SQLite database (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-tables" class="md-nav__link">
+    Defining tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-helper-class" class="md-nav__link">
+    Creating the helper class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewmodel-extension" class="md-nav__link">
+    ViewModel Extension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#independent-task-clearing-the-canvas-1-point" class="md-nav__link">
+    Independent task: Clearing the canvas (1 point)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imsc-task-2-imsc-points" class="md-nav__link">
+    iMSc task (2 iMSc points)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="labor-05-sqlite-drawing-application">Labor 05 - SQLite - Drawing Application<a class="headerlink" href="#labor-05-sqlite-drawing-application" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The task of this lab is to create a simple drawing application. The application allows you to draw lines or points on a canvas and then persistently save the drawn figure so that it can be reloaded even after the application is restarted.</p>
+<p align="center">
+<img src="./assets/main_screen.png" width="160">
+<img src="./assets/color_selector.png" width="160">
+<img src="./assets/style_selector.png" width="160">
+<img src="./assets/clear_dialog.png" width="160">
+</p>
+
+<div class="admonition info">
+<p class="admonition-title">Room library</p>
+<p>During the lab, we will get acquainted with the SQLite library, which allows us to persistently store data in a local SQL database. Modern Android-based developments usually use Room, which is built on SQLite and provides an easy-to-use ORM layer combined with Android lifecycles. However, we considered it important to make the material easy to understand, so we will only examine the SQLite solution for now.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">IMSc</p>
+<p>After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.</p>
+</div>
+<h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
+<p>When solving the tasks, do not forget to follow the <a href="../github/GitHub.md">task submission process</a>.</p>
+<h3 id="creating-and-downloading-a-git-repository">Creating and downloading a Git repository<a class="headerlink" href="#creating-and-downloading-a-git-repository" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Find the lab invitation URL in Moodle and use it to create your own repository.</p>
+</li>
+<li>
+<p>Wait until the repository is ready, then checkout it.</p>
+<div class="admonition tip">
+<p>In university labs, if the system does not ask for a username and password during checkout and the checkout fails, the system probably tried to use a username previously saved on the computer. First, delete the saved login data and try again.</p>
+</div>
+</li>
+<li>
+<p>Create a new branch called <code>solution</code> and work on this branch.</p>
+</li>
+<li>
+<p>Write your Neptun code in the <code>neptun.txt</code> file. The file should contain nothing else, only the 6 characters of the Neptun code on a single line.</p>
+</li>
+</ol>
+<h2 id="preparing-the-project">Preparing the project<a class="headerlink" href="#preparing-the-project" title="Permanent link">&para;</a></h2>
+<h3 id="creating-the-project">Creating the project<a class="headerlink" href="#creating-the-project" title="Permanent link">&para;</a></h3>
+<p>Let's create a project called <code>Simple Drawer</code> in Android Studio:</p>
+<ol>
+<li>Create a new project, select the <em>Empty Activity</em> option.</li>
+<li>The project name should be <code>Simple Drawer</code>, the starting package <code>hu.bme.aut.android.simpledrawer</code>, and the save location should be the SimpleDrawer folder within the checked-out repository.</li>
+<li>Select <em>Kotlin</em> as the language.</li>
+<li>The minimum API level should be API24: Android 7.0.</li>
+<li>The <em>Build configuration language</em> should be Kotlin DSL.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>The project should be placed in the SimpleDrawer directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!</p>
+</div>
+<p>During the lab, we will encounter the following technologies:</p>
+<ul>
+<li>SQLite</li>
+<li>Scaffold<ul>
+<li>TopBar</li>
+<li>BottomBar</li>
+</ul>
+</li>
+<li>ViewModel</li>
+<li>Dialog</li>
+</ul>
+<h3 id="adding-resources">Adding Resources<a class="headerlink" href="#adding-resources" title="Permanent link">&para;</a></h3>
+<p>First, download the <a href="downloads/res.zip">compressed file containing the application images</a>, which contains all the images we will need. Copy its contents into the <code>app/src/main/res</code> folder (it helps if you switch from the regular <em>Android</em> view in the top left of <em>Android Studio</em> to the <em>Project</em> view for this time).</p>
+<p>Copy the following <em>string resources</em> required for the application into the <code>res/values/strings.xml</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>Simple<span class="w"> </span>Drawer<span class="nt">&lt;/string&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;style&quot;</span><span class="nt">&gt;</span>Style<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>Line<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;point&quot;</span><span class="nt">&gt;</span>Point<span class="nt">&lt;/string&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;color&quot;</span><span class="nt">&gt;</span>Color<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;red&quot;</span><span class="nt">&gt;</span>Red<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;green&quot;</span><span class="nt">&gt;</span>Green<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;blue&quot;</span><span class="nt">&gt;</span>Blue<span class="nt">&lt;/string&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;clear&quot;</span><span class="nt">&gt;</span>Clear<span class="nt">&lt;/string&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;are_you_sure_want_to_clear&quot;</span><span class="nt">&gt;</span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>drawing<span class="w"> </span>sheet??<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ok&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cancel&quot;</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<p>Are you sure you want to delete the ## Creating the home screen (1 point)</p>
+<h3 id="enforcing-portrait-layout">Enforcing portrait layout<a class="headerlink" href="#enforcing-portrait-layout" title="Permanent link">&para;</a></h3>
+<p>For the sake of simplicity, we are only supporting portrait mode in our application right now. To do this, in <code>AndroidManifest.xml</code>, within the <code>&lt;activity&gt;</code> tag, modify the following: </p>
+<p>Drawing page</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;activity</span>
+<span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
+<span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+<span class="w">    </span><span class="na">android:screenOrientation=</span><span class="s">&quot;sensorPortrait&quot;</span>
+<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.SimpleDrawer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;intent-filter&gt;</span>
+<span class="w">        </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;category</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.category.LAUNCHER&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/activity&gt;</span>
+</code></pre></div>
+<h3 id="creating-appbars">Creating AppBars<a class="headerlink" href="#creating-appbars" title="Permanent link">&para;</a></h3>
+<p>Within the existing <code>ui</code> <em>package</em>, create a <code>view</code> <em>package</em>, including a <code>TopBar</code> and a <code>BottomBar</code> <em>Kotlin File</em>, and then write the following into it:</p>
+<p><code>TopBar.kt</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.TopAppBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.TopAppBarDefaults</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.R</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">TopBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TopAppBar</span><span class="p">(</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">app_name</span><span class="p">),</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TopAppBarDefaults</span><span class="p">.</span><span class="na">topAppBarColors</span><span class="p">(</span><span class="n">containerColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFF6200EE</span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewTopBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TopBar</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+This is just a simple TopBar with the name of the application written on top. The BottomBar will be a little more complex than that.</p>
+<p><code>BottomBar.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Arrangement</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Row</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.height</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.size</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.BottomAppBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Icon</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.IconButton</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.painterResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.R</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">BottomBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BottomAppBar</span><span class="p">(</span>
+<span class="w">        </span><span class="n">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Row</span><span class="p">(</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">horizontalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">End</span><span class="p">,</span>
+<span class="w">                </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">IconButton</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/*TODO*/</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">64.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_style</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">style</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="c1">//Stílusok</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">containerColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="m">0</span><span class="n">xFF6200EE</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewBottomBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BottomBar</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The BottomBar is a bit more complex, here we can pass composable elements with the <code>actions</code> parameter that will appear as small icons on the AppBar, and we can later add an onClick event to these. This is how we will implement the style change option, when pressed, a window will pop up where you can select the desired style (Line, point)</p>
+<h3 id="the-drawingscreen-interface">The DrawingScreen interface<a class="headerlink" href="#the-drawingscreen-interface" title="Permanent link">&para;</a></h3>
+<p>Within the <code>ui</code> <em>package</em>, create a <code>screen</code> <em>package</em>. Our <code>DrawingScreen</code> will be placed in this. Here we will place the <em>Scaffold</em>, with the help of which we will implement a TopBar and a BottomBar. Initially, the content of the Scaffold will only be a black <code>Spacer</code>, which will later be replaced by <code>Canvas</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Spacer</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">bottomBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">BottomBar</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="c1">//TODO replace with canvas</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewDrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DrawingScreen</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Finally, let's rewrite the code in <code>MainActivity.kt</code> so that it instantiates the <code>DrawingScreen</code> we just created:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.enableEdgeToEdge</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen.DrawingScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.theme.SimpleDrawerTheme</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">SimpleDrawerTheme</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">DrawingScreen</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>So that we are done with this, let's start the application! Now we can see the two AppBars and the black screen between them. An icon also appears on the BottomBar, pressing which does nothing yet.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>finished home screen</strong> (on an emulator, by mirroring the device or by taking a screen shot), a <strong>corresponding code snippet</strong>, and <strong>your neptun code somewhere in the code as a comment</strong>' Upload the image to the repository in the solution as f1.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="implementing-the-style-selector-1-point">Implementing the style selector (1 point)<a class="headerlink" href="#implementing-the-style-selector-1-point" title="Permanent link">&para;</a></h2>
+<p>Now that the BottomBar and the home screen framework have been created, let's implement the style selector. To do this, we need to modify the <code>BottomBar</code> so that when we click on the Style selector button, a menu appears where we can select the drawing mode. This mode can be implemented as a state of the drawing. These states are stored in a separate <em>viewModel</em>, as we saw in previous labs.</p>
+<h3 id="add-a-required-dependency">Add a required dependency<a class="headerlink" href="#add-a-required-dependency" title="Permanent link">&para;</a></h3>
+<p>To use the <em>viewModel</em>, we need to add a dependency to the <code>build.gradle.kts</code> file. To do this, open the <code>libs.versions.toml</code> file in the <code>gradle</code> <em>package</em>, and then write the following:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">lifecycleCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.8.6&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">androidx-lifecycle-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleCompose&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+Then update <code>build.gradle.kts</code> as well:
+<div class="highlight"><pre><span></span><code>dependencies{
+    ...
+    implementation(libs.androidx.lifecycle.compose)
+}
+</code></pre></div></p>
+<p>After adding the dependency, don't forget to click the <code>Sync Now</code> button.</p>
+<h3 id="create-viewmodel">Create ViewModel<a class="headerlink" href="#create-viewmodel" title="Permanent link">&para;</a></h3>
+<p>So let's get our <em>viewModel</em>. This will help with color/style switching, and later with persistent data storage.</p>
+<p>Let's create a <code>DrawingViewModel</code> <em>Kotlin File</em> in the <code>screen</code> <em>package</em> next to <code>DrawingScreen</code> and write the following code in it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.AndroidViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.StateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">DrawingMode</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawingMode</span>
+
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">emptyList</span><span class="p">())</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawElements</span>
+
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setDrawingMode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">){</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">_drawingMode</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mode</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">addDrawElement</span><span class="p">(</span><span class="n">element</span><span class="p">:</span><span class="w"> </span><span class="kt">Any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">_drawElements</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">element</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingMode</span><span class="p">{</span>
+<span class="w">    </span><span class="n">LINE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">POINT</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>We need another class for the viewModel, <code>DrawingMode</code>. This will allow us to set the drawing style.</p>
+<div class="admonition warning">
+<p class="admonition-title">Code Interpretation</p>
+<p>Let's interpret the viewModel code with the help of the lab instructor!</p>
+</div>
+<p>Now that we have the <em>viewModel</em>, we just need to modify the <code>BottomBar</code> so that we can set the state.</p>
+<h3 id="style-selector">Style Selector<a class="headerlink" href="#style-selector" title="Permanent link">&para;</a></h3>
+<p>Let's modify the <code>BottomBar</code> so that when we click the Style Selector button, a window appears where we can select the drawing mode. We can do this as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">BottomBar</span><span class="p">(</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showStyle</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">BottomAppBar</span><span class="p">(</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="n">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Row</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="p">...</span>
+<span class="w">            </span><span class="p">){</span>
+<span class="w">                </span><span class="n">IconButton</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">showStyle</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">64.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_style</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">style</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="n">DropdownMenu</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">showStyle</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">DropdownMenuItem</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                                </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">point</span><span class="p">),</span>
+<span class="w">                                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">POINT</span><span class="p">)</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Magenta</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span>
+<span class="w">                            </span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                            </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">viewModel</span><span class="p">.</span><span class="na">setDrawingMode</span><span class="p">(</span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">POINT</span><span class="p">)</span>
+<span class="w">                                </span><span class="n">showStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">DropdownMenuItem</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                                </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">line</span><span class="p">),</span>
+<span class="w">                                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Magenta</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">)</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">viewModel</span><span class="p">.</span><span class="na">setDrawingMode</span><span class="p">(</span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span>
+<span class="w">                                </span><span class="n">showStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="p">...</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">viewModel</p>
+<p>Many times Android Studio cannot find the import required for <code>viewModel()</code>. In this case, we manually write the following import for the imports:
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
+</code></pre></div></p>
+</div>
+<p>Then we modify the <code>BottomBar</code> function call on <code>DrawingScreen</code> and add the viewModel parameter.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Spacer</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.platform.LocalContext</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
+<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
+<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">bottomBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">BottomBar</span><span class="p">(</span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="c1">//TODO replace with canvas</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewDrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DrawingScreen</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>completed Style Selector opened</strong> (on an emulator, mirroring the device or with a screen capture), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f2.png!</p>
+<p>The screenshot is a necessary condition for getting a score.</p>
+</div>
+<h2 id="implementing-the-canvas-1-point">Implementing the canvas (1 point)<a class="headerlink" href="#implementing-the-canvas-1-point" title="Permanent link">&para;</a></h2>
+<p>During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named <code>Line</code> and <code>Point</code>. Let's create a <code>model</code> <em>package</em> in our main <em>package</em>, then implement the two classes:</p>
+<p><code>Point.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">x</span><span class="p">:</span><span class="w"> </span><span class="kt">Float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0F</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">y</span><span class="p">:</span><span class="w"> </span><span class="kt">Float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0F</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">color</span><span class="p">:</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Yellow</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>Line.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Line</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">start</span><span class="p">:</span><span class="w"> </span><span class="n">Point</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">end</span><span class="p">:</span><span class="w"> </span><span class="n">Point</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">color</span><span class="p">:</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Yellow</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>This is how we will store our data in the list. It is true that the <code>Line</code> data class will receive the color twice more, but this is just for the sake of simplicity, we will not deal with this parameter.</p>
+<p>Then, within the <code>view</code> <em>package</em>, we will create a <code>DrawingCanvas</code> <em>Kotlin File</em>. In this Composable class, we will implement the drawing using the built-in <code>Canvas</code> <em>Composable</em>. This class has a <code>Modifier.pointerInteropFilter</code> parameter, which we will use to handle gestures.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Canvas</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.getValue</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.setValue</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.ExperimentalComposeUiApi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.geometry.Offset</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.input.pointer.pointerInteropFilter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen.DrawingMode</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen.DrawingViewModel</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalComposeUiApi</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingCanvas</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">currentColor</span><span class="p">:</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">,</span>
+<span class="w">    </span><span class="n">drawingMode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="p">,</span>
+<span class="w">    </span><span class="n">drawElements</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">startPoint</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="o">&lt;</span><span class="n">Offset?&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">endPoint</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="o">&lt;</span><span class="n">Offset?&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tempPoint</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="o">&lt;</span><span class="n">Offset?&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Canvas</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">pointerInteropFilter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">action</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="cm">/*TODO*/</span>
+<span class="w">                    </span><span class="c1">//ACTION_DOWN</span>
+
+<span class="w">                    </span><span class="c1">//ACTION_MOVE</span>
+
+<span class="w">                    </span><span class="c1">//ACTION_UP</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">//TODO drawElements</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Within <code>event.action</code> we will handle the <code>MotionEvent.ACTION_DOWN</code>, <code>MotionEvent.ACTION_MOVE</code>, <code>MotionEvent.ACTION_UP</code> events, as well as drawing on the <code>Canvas</code>.</p>
+<p><code>ACTION_DOWN</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_DOWN</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">startPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tempPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startPoint</span>
+<span class="p">}</span>
+</code></pre></div>
+This event occurs when we place our finger on the screen. At that time, we save this parameter in a <code>startPoint</code> variable.</p>
+<p><code>ACTION_MOVE</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_MOVE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tempPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">endPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempPoint</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+After we place our finger, we can move it. This is when this event occurs. Here the process is divided into two parts, namely, if we draw a point and move our finger, we want to place the point at the last position, so we write the position in <code>tempPoint</code>. If we draw a line, we need to write the position in <code>endPoint</code>.</p>
+<p><code>ACTION_UP</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MotionEvent</span><span class="p">.</span><span class="na">ACTION_UP</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">POINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tempPoint</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">viewModel</span><span class="p">.</span><span class="na">addDrawElement</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">y</span><span class="p">,</span><span class="w"> </span><span class="n">currentColor</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">endPoint</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">startPoint</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">viewModel</span><span class="p">.</span><span class="na">addDrawElement</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">Line</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">Point</span><span class="p">(</span><span class="n">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="na">y</span><span class="p">,</span><span class="w"> </span><span class="n">currentColor</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">Point</span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">y</span><span class="p">,</span><span class="w"> </span><span class="n">currentColor</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">currentColor</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">startPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="n">endPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="n">tempPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>In this event, we handle when the user lifts their finger from the screen. Here too, the algorithm is divided into two options, namely, if it is a point, then only the value of <code>tempPoint</code> needs to be recorded. However, if it is a line, then the values ​​of <code>endPoint</code> and <code>startPoint</code> need to be recorded as a line. <strong>Null checking is required for both events</strong>!</p>
+<p>Once the events are available, all that remains is to draw them. We can do this by drawing the data stored in drawElements one by one, depending on their type:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">Canvas</span><span class="w"> </span><span class="p">(..){</span>
+<span class="w">    </span><span class="n">drawElements</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawCircle</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawLine</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+This completes the <code>DrawingCanvas</code>, but we still can't see the drawing until we lift our finger from the screen. This can be fixed as follows:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">Canvas</span><span class="w"> </span><span class="p">(..){</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">tempPoint</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">POINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">drawCircle</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentColor</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">drawingMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">startPoint</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">drawLine</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentColor</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startPoint</span><span class="o">!!</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">,</span><span class="w"> </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+In this case, we draw the element whose starting point is the point where we placed our finger, and whose ending point is where our finger is. If we move this, it will update in real time, so we can see the final result in advance.</p>
+<p>Then modify the <code>DrawingScreen</code> and replace the <code>Spacer</code> with the <code>DrawingCanvas</code> we just created.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
+<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
+<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawElements</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">DrawingCanvas</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">innerPadding</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">drawingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drawingMode</span><span class="p">,</span>
+<span class="w">            </span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">,</span>
+<span class="w">            </span><span class="n">drawElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drawElements</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>finished DrawingScreen</strong> (on emulator, mirroring device or with a screen capture) with a few lines and dots, <strong>a code snippet of the DrawingCanvas</strong>, and <strong>your neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f3.png!</p>
+<p>The screenshot is a necessary condition for getting a score.</p>
+</div>
+<h2 id="implementing-persistence-using-a-sqlite-database-1-point">Implementing persistence using a <em>SQLite</em> database (1 point)<a class="headerlink" href="#implementing-persistence-using-a-sqlite-database-1-point" title="Permanent link">&para;</a></h2>
+<p>In order for the objects we draw to persist even after exiting the application, we need to somehow organize our data in a form that we can easily store in a <em>SQLite</em> database.</p>
+<p>Let's create a new package within <code>hu.bme.aut.android.simpledrawer</code>, which we will name <code>sqlite</code>.</p>
+<h3 id="defining-tables">Defining tables<a class="headerlink" href="#defining-tables" title="Permanent link">&para;</a></h3>
+<p>During database management, we have to work with many constant variables, such as the names of columns in tables, table names, database file names, schema creation and deletion scripts, etc. It is worth storing these in a common place, so that when editing or introducing a new entity, you do not have to jump between source files, and it is easier to generate scripts that create and delete the entire database. Let's create a new singleton class with the <code>object</code> keyword within the <code>sqlite</code> package called <code>DbConstants</code>.</p>
+<p>First of all, we add the database name and version as constants. If we want to change the schema of our database, we need to increment the latter, so that we can avoid unwanted errors due to incompatibility.</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+
+<span class="kd">object</span><span class="w"> </span><span class="nc">DbConstants</span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;simpledrawer.db&quot;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_VERSION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="w">    </span><span class="c1">//Points</span>
+
+<span class="w">    </span><span class="c1">//Lines</span>
+<span class="p">}</span>
+</code></pre></div>
+After that, we create the constants for the <code>Point</code> class in a class called <code>DbConstants</code>. Within the classes, we also create an <code>enum</code> to make it easier to manage the table columns, and then we store the SQL statement used to create the table and the table name in constants. Finally, we create the functions that need to be called when the table is created or upgraded:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">Points</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_TABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;points&quot;</span>
+
+<span class="w">    </span><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Columns</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">COORD_X</span><span class="p">,</span><span class="w"> </span><span class="n">COORD_Y</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_CREATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;create table if not exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s"> (</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> integer primary key autoincrement,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null</span>
+<span class="s">        );&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_DROP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop table if exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s">;&quot;</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_CREATE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onUpgrade</span><span class="p">(</span><span class="n">database</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">,</span><span class="w"> </span><span class="n">oldVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">newVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_DROP</span><span class="p">)</span>
+<span class="w">        </span><span class="n">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Notice that we have created an inner class called <code>Points</code> inside the <code>DbConstants</code> class, in which we store the constant values ​​belonging to the table that stores the <code>Points</code> entities. If our application stores multiple entities in a database, it is worth storing the constants belonging to each class in separate inner classes. This way, the code will be much more transparent and maintainable than if we were to add all the constants of all the tables to DbConstants in bulk. These inner classes practically exist with the same name as the entity classes. So let's add the <code>Lines</code> class in a similar way:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">Lines</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_TABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lines&quot;</span>
+
+<span class="w">    </span><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Columns</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">START_X</span><span class="p">,</span><span class="w"> </span><span class="n">START_Y</span><span class="p">,</span><span class="w"> </span><span class="n">END_X</span><span class="p">,</span><span class="w"> </span><span class="n">END_Y</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_CREATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;create table if not exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s"> (</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> integer primary key autoincrement,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null,</span>
+<span class="s">        </span><span class="si">${</span><span class="n">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s"> real not null</span>
+<span class="s">        );&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">DATABASE_DROP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop table if exists </span><span class="si">$</span><span class="n">DATABASE_TABLE</span><span class="s">;&quot;</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_CREATE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onUpgrade</span><span class="p">(</span><span class="n">database</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">,</span><span class="w"> </span><span class="n">oldVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">newVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">database</span><span class="p">.</span><span class="na">execSQL</span><span class="p">(</span><span class="n">DATABASE_DROP</span><span class="p">)</span>
+<span class="w">        </span><span class="n">onCreate</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>It is also worth noting that we did not declare the classes with the class keyword. Instead, we use <code>object</code>, which the Kotlin language uses to ensure that <code>DbConstants</code> and the <code>Points</code> and <code>Lines</code> classes in it behave as singletons, meaning that an instance of them is created when the application is run, and no further instances can be created of them.</p>
+<h3 id="creating-the-helper-class">Creating the helper class<a class="headerlink" href="#creating-the-helper-class" title="Permanent link">&para;</a></h3>
+<p>To create the database, we need a helper class that creates the database itself and initializes the tables within it. In our case, this will be the <code>DbHelper</code> class, which is derived from the <code>SQLiteOpenHelper</code> class. Let's add this to the <code>sqlite</code> package as well.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteOpenHelper</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">DbHelper</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">):</span>
+<span class="w">    </span><span class="n">SQLiteOpenHelper</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_NAME</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">DATABASE_VERSION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">)</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onUpgrade</span><span class="p">(</span>
+<span class="w">        </span><span class="n">sqLiteDatabase</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase</span><span class="p">,</span>
+<span class="w">        </span><span class="n">oldVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">        </span><span class="n">newVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">onUpgrade</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">,</span><span class="w"> </span><span class="n">oldVersion</span><span class="p">,</span><span class="w"> </span><span class="n">newVersion</span><span class="p">)</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">onUpgrade</span><span class="p">(</span><span class="n">sqLiteDatabase</span><span class="p">,</span><span class="w"> </span><span class="n">oldVersion</span><span class="p">,</span><span class="w"> </span><span class="n">newVersion</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>In addition, we need a helper class that brings all this together and allows us to easily manage our database. This will be <code>PersistentDataHelper</code>, still in the <code>sqlite</code> package. In it, we will implement functions such as <code>open()</code> and <code>close()</code>, which we can use to open and close the database connection. In addition, in this class, we will also implement the functions that are responsible for writing data to and reading it from the database. Make sure to select your own Point class during the import.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteException</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">PersistentDataHelper</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">database</span><span class="p">:</span><span class="w"> </span><span class="n">SQLiteDatabase? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dbHelper</span><span class="p">:</span><span class="w"> </span><span class="n">DbHelper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DbHelper</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">pointColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">lineColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">ID</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="nd">@Throws</span><span class="p">(</span><span class="n">SQLiteException</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">open</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbHelper</span><span class="p">.</span><span class="na">writableDatabase</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dbHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//PersistPoints</span>
+
+
+<span class="w">    </span><span class="c1">//RestorePoints</span>
+
+
+<span class="w">    </span><span class="c1">//ClearPoints</span>
+
+
+<span class="w">    </span><span class="c1">//CursorToPoint</span>
+
+
+<span class="w">    </span><span class="c1">//PersistLines</span>
+
+
+<span class="w">    </span><span class="c1">//RestoreLines</span>
+
+
+<span class="w">    </span><span class="c1">//ClearLines</span>
+
+
+<span class="w">    </span><span class="c1">//CursorToLine</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>Complete the <code>PersistentDataHelper</code> class as follows:</p>
+<ol>
+<li>PersistPoints: Here we need to implement the storage of points. First, we empty the database, then we go through the received List parameter and save the points one by one.</li>
+<li>RestorePoints: Here we need to implement the loading of points. For this, we use a temporary MutableList, to which we add the read points.</li>
+<li>ClearPoints: With this function, we delete the Points table from the database.</li>
+<li>CursorToPoint: With this function, we read the data of a single point from the database.</li>
+<li>PersistLines: Here we need to implement the storage of lines. First, we empty the database, then we go through the received List parameter and save the lines one by one.</li>
+<li>RestoreLines: Here we need to implement the loading of lines. For this we use a temporary MutableList, to which we add the read lines.</li>
+<li>ClearLines: With this function we delete the Lines table from the database.</li>
+<li>CursorToLine: With this function we read the data of a single line from the database.</li>
+</ol>
+<p><strong>1. PersistPoints</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">persistPoints</span><span class="p">(</span><span class="n">points</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">clearPoints</span><span class="p">()</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">points</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentValues</span><span class="p">()</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">point</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">point</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<strong>2. RestorePoints</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">restorePoints</span><span class="p">():</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">points</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">pointColumns</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="n">cursor</span><span class="p">.</span><span class="na">moveToFirst</span><span class="p">()</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">cursor</span><span class="p">.</span><span class="na">isAfterLast</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">point</span><span class="p">:</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cursorToPoint</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+<span class="w">        </span><span class="n">points</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="w">        </span><span class="n">cursor</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cursor</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">points</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>3. ClearPoints</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">clearPoints</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>4. CursorToPoints</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">cursorToPoint</span><span class="p">(</span><span class="n">cursor</span><span class="p">:</span><span class="w"> </span><span class="n">Cursor</span><span class="p">):</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span>
+<span class="w">        </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+<span class="w">        </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Points</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">COORD_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+<span class="w">        </span><span class="n">Color</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">.</span><span class="na">toArgb</span><span class="p">())</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">point</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>5. PersistLines</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">persistLines</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">clearLines</span><span class="p">()</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lines</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentValues</span><span class="p">()</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">)</span>
+<span class="w">        </span><span class="n">values</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<strong>6. RestoreLines</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">restoreLines</span><span class="p">():</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">lines</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">        </span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">lineColumns</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="n">cursor</span><span class="p">.</span><span class="na">moveToFirst</span><span class="p">()</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">cursor</span><span class="p">.</span><span class="na">isAfterLast</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">line</span><span class="p">:</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cursorToLine</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+<span class="w">        </span><span class="n">lines</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="w">        </span><span class="n">cursor</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cursor</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">lines</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>7. ClearLines</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">clearLines</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">database</span><span class="o">!!</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">DATABASE_TABLE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>8. CursorToLine</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">cursorToLine</span><span class="p">(</span><span class="n">cursor</span><span class="p">:</span><span class="w"> </span><span class="n">Cursor</span><span class="p">):</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Line</span><span class="p">(</span>
+<span class="w">        </span><span class="n">Point</span><span class="p">(</span>
+<span class="w">            </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+<span class="w">            </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">START_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="n">Point</span><span class="p">(</span>
+<span class="w">            </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_X</span><span class="p">.</span><span class="na">ordinal</span><span class="p">),</span>
+<span class="w">            </span><span class="n">cursor</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="n">DbConstants</span><span class="p">.</span><span class="na">Lines</span><span class="p">.</span><span class="na">Columns</span><span class="p">.</span><span class="na">END_Y</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="n">Color</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">.</span><span class="na">toArgb</span><span class="p">())</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">line</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="viewmodel-extension">ViewModel Extension<a class="headerlink" href="#viewmodel-extension" title="Permanent link">&para;</a></h3>
+<p>For persistence to work properly, we need to extend the viewModel so that it saves the data to the database after each drawing. This way, our data will persist even if we restart the application. In order to see this again on the drawing interface, we need to load the drawing. The <code>init{}</code> block will play a role in this.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
+
+
+<span class="w">    </span><span class="c1">//DrawingMode</span>
+
+<span class="w">    </span><span class="c1">//DrawElements</span>
+
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataHelper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PersistentDataHelper</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="k">init</span><span class="p">{</span>
+<span class="w">        </span><span class="n">loadDrawElements</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">//setDrawingMode</span>
+
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">addDrawElement</span><span class="p">(</span><span class="n">element</span><span class="p">:</span><span class="w"> </span><span class="kt">Any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">_drawElements</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">element</span>
+<span class="w">            </span><span class="n">saveDrawElements</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saveDrawElements</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">open</span><span class="p">()</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">clearPoints</span><span class="p">()</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">clearLines</span><span class="p">()</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawElements</span><span class="p">.</span><span class="na">value</span><span class="p">.</span><span class="na">filterIsInstance</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawElements</span><span class="p">.</span><span class="na">value</span><span class="p">.</span><span class="na">filterIsInstance</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">persistPoints</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">persistLines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">loadDrawElements</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">open</span><span class="p">()</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">restorePoints</span><span class="p">()</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">restoreLines</span><span class="p">()</span>
+<span class="w">            </span><span class="n">_drawElements</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lines</span>
+<span class="w">            </span><span class="n">dataHelper</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>We can see that in the <code>init{}</code> block <code>loadDrawElements()</code> is called, which is used to read the data from the database using the previously defined <code>restorePoints</code> and <code>restoreLines</code> functions, and then add it to our List.</p>
+<p>Saving works in a similar way, only this function is called when we have drawn.</p>
+<div class="admonition example">
+<p class="admonition-title">TO BE SUBMITTED (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>finished DrawingScreen</strong> (on an emulator, mirroring the device or with a screen capture) with a few lines and points, and the <strong>corresponding code snippet</strong>, as well as your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f4.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<h2 id="independent-task-clearing-the-canvas-1-point">Independent task: Clearing the canvas (1 point)<a class="headerlink" href="#independent-task-clearing-the-canvas-1-point" title="Permanent link">&para;</a></h2>
+<p>Add a new control to the <em>BottomBar</em> that is responsible for clearing! When you press it, a dialog box should pop up and warn you that the clearing cannot be undone! It should have a positive and a negative button!</p>
+<p>The button icon should be <code>R.drawable.ic_clear_canvas</code>!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>deletion confirmation dialog box</strong> (on an emulator, by mirroring the device or by taking a screenshot), the <strong>code snippet that performs the clearing</strong>, and your <strong>Neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f5.png!</p>
+<p>The screenshot is a necessary condition for getting a score.</p>
+</div>
+<h2 id="imsc-task-2-imsc-points">iMSc task (2 iMSc points)<a class="headerlink" href="#imsc-task-2-imsc-points" title="Permanent link">&para;</a></h2>
+<p>Let's add a control to the application that can change the drawing color between the 3 main colors (<em>RGB</em>).</p>
+<p><strong>Attention:</strong> the color of the given object must also be saved in the database!</p>
+<div class="admonition tip">
+<p class="admonition-title">Database</p>
+<p>It is worth starting Wipe Data or changing the version of the database, so that if we change its structure, it will be saved.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>drawing page with the different colors</strong> (on an emulator, mirroring the device or with a screen capture), a <strong>corresponding code fragment</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f6.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 iMSc point)</p>
+<p>Create a <strong>screenshot</strong> showing the <strong>code snippet that saves different colors</strong>, as well as your <strong>Neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f7.png!</p>
+<p>The screenshot is a necessary condition for obtaining a score.</p>
+</div>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2025. október 6. 16:54:39">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 6. 16:54:39 CEST"><span class="timeago" datetime="2025-10-06T16:54:39+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 6. 16:54:39 CEST">2025-10-06</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  </body>
+</html>
