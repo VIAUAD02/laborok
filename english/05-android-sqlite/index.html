@@ -754,15 +754,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#add-a-required-dependency" class="md-nav__link">
-    Add a required dependency
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-viewmodel" class="md-nav__link">
-    Create ViewModel
+  <a href="#creating-the-viewmodel" class="md-nav__link">
+    Creating the ViewModel
   </a>
   
 </li>
@@ -783,6 +776,26 @@
   <a href="#implementing-the-canvas-1-point" class="md-nav__link">
     Implementing the canvas (1 point)
   </a>
+  
+    <nav class="md-nav" aria-label="Implementing the canvas (1 point)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-classes" class="md-nav__link">
+    Model classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canvas" class="md-nav__link">
+    Canvas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -863,6 +876,18 @@
 <img src="./assets/clear_dialog.png" width="160">
 </p>
 
+<p>During the lab we will encounter the following technologies:</p>
+<ul>
+<li>SQLite</li>
+<li>Scaffold<ul>
+<li>TopBar</li>
+<li>BottomBar</li>
+</ul>
+</li>
+<li>DrawingCanvas</li>
+<li>ViewModel</li>
+<li>DropDownMenu</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Room library</p>
 <p>During the lab, we will get acquainted with the SQLite library, which allows us to persistently store data in a local SQL database. Modern Android-based developments usually use Room, which is built on SQLite and provides an easy-to-use ORM layer combined with Android lifecycles. However, we considered it important to make the material easy to understand, so we will only examine the SQLite solution for now.</p>
@@ -893,10 +918,10 @@
 </ol>
 <h2 id="preparing-the-project">Preparing the project<a class="headerlink" href="#preparing-the-project" title="Permanent link">&para;</a></h2>
 <h3 id="creating-the-project">Creating the project<a class="headerlink" href="#creating-the-project" title="Permanent link">&para;</a></h3>
-<p>Let's create a project called <code>Simple Drawer</code> in Android Studio:</p>
+<p>Let's create a project called <code>SimpleDrawer</code> in Android Studio:</p>
 <ol>
 <li>Create a new project, select the <em>Empty Activity</em> option.</li>
-<li>The project name should be <code>Simple Drawer</code>, the starting package <code>hu.bme.aut.android.simpledrawer</code>, and the save location should be the SimpleDrawer folder within the checked-out repository.</li>
+<li>The project name should be <code>SimpleDrawer</code>, the starting package <code>hu.bme.aut.android.simpledrawer</code>, and the save location should be the SimpleDrawer folder within the checked-out repository.</li>
 <li>Select <em>Kotlin</em> as the language.</li>
 <li>The minimum API level should be API24: Android 7.0.</li>
 <li>The <em>Build configuration language</em> should be Kotlin DSL.</li>
@@ -905,17 +930,10 @@
 <p class="admonition-title">FILE PATH</p>
 <p>The project should be placed in the SimpleDrawer directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!</p>
 </div>
-<p>During the lab, we will encounter the following technologies:</p>
-<ul>
-<li>SQLite</li>
-<li>Scaffold<ul>
-<li>TopBar</li>
-<li>BottomBar</li>
-</ul>
-</li>
-<li>ViewModel</li>
-<li>Dialog</li>
-</ul>
+<div class="admonition danger">
+<p class="admonition-title">FILE PATH</p>
+<p>The repository path should not contain accents or special characters, as AndroidStudio is sensitive to these and the code will not compile. It is worth working in the root of the C:\ drive.</p>
+</div>
 <h3 id="adding-resources">Adding Resources<a class="headerlink" href="#adding-resources" title="Permanent link">&para;</a></h3>
 <p>First, download the <a href="downloads/res.zip">compressed file containing the application images</a>, which contains all the images we will need. Copy its contents into the <code>app/src/main/res</code> folder (it helps if you switch from the regular <em>Android</em> view in the top left of <em>Android Studio</em> to the <em>Project</em> view for this time).</p>
 <p>Copy the following <em>string resources</em> required for the application into the <code>res/values/strings.xml</code> file:</p>
@@ -956,9 +974,9 @@
 <span class="nt">&lt;/activity&gt;</span>
 </code></pre></div>
 <h3 id="creating-appbars">Creating AppBars<a class="headerlink" href="#creating-appbars" title="Permanent link">&para;</a></h3>
-<p>Within the existing <code>ui</code> <em>package</em>, create a <code>view</code> <em>package</em>, including a <code>TopBar</code> and a <code>BottomBar</code> <em>Kotlin File</em>, and then write the following into it:</p>
+<p>Within the existing <code>ui</code> <em>package</em>, create a <code>common</code> <em>package</em>, including a <code>TopBar</code> and a <code>BottomBar</code> <em>Kotlin File</em>, and then write the following into it:</p>
 <p><code>TopBar.kt</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
@@ -992,7 +1010,7 @@
 </code></pre></div>
 This is just a simple TopBar with the name of the application written on top. The BottomBar will be a little more complex than that.</p>
 <p><code>BottomBar.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Arrangement</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Row</span>
@@ -1058,13 +1076,14 @@ This is just a simple TopBar with the name of the application written on top. Th
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.BottomBar</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common.TopBar</span>
 
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
 <span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
 <span class="w">        </span><span class="p">},</span>
@@ -1110,54 +1129,47 @@ This is just a simple TopBar with the name of the application written on top. Th
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>So that we are done with this, let's start the application! Now we can see the two AppBars and the black screen between them. An icon also appears on the BottomBar, pressing which does nothing yet.</p>
+<p>So that we are done with this, let's start the application! Now we can see the two <em>AppBars</em> and the black screen between them. An icon also appears on the <em>BottomBar</em>, pressing which does nothing yet.</p>
 <div class="admonition example">
 <p class="admonition-title">TO BE SUBMITTED (1 point)</p>
 <p>Create a <strong>screenshot</strong> showing the <strong>finished home screen</strong> (on an emulator, by mirroring the device or by taking a screen shot), a <strong>corresponding code snippet</strong>, and <strong>your neptun code somewhere in the code as a comment</strong>' Upload the image to the repository in the solution as f1.png!</p>
 <p>The screenshot is a necessary condition for obtaining a score.</p>
 </div>
 <h2 id="implementing-the-style-selector-1-point">Implementing the style selector (1 point)<a class="headerlink" href="#implementing-the-style-selector-1-point" title="Permanent link">&para;</a></h2>
-<p>Now that the BottomBar and the home screen framework have been created, let's implement the style selector. To do this, we need to modify the <code>BottomBar</code> so that when we click on the Style selector button, a menu appears where we can select the drawing mode. This mode can be implemented as a state of the drawing. These states are stored in a separate <em>viewModel</em>, as we saw in previous labs.</p>
-<h3 id="add-a-required-dependency">Add a required dependency<a class="headerlink" href="#add-a-required-dependency" title="Permanent link">&para;</a></h3>
-<p>To use the <em>viewModel</em>, we need to add a dependency to the <code>build.gradle.kts</code> file. To do this, open the <code>libs.versions.toml</code> file in the <code>gradle</code> <em>package</em>, and then write the following:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<p>After we have created the <em>BottomBar</em> and the home screen frame, let's implement the style selector. To do this, we need to modify the <code>BottomBar</code> so that when we click on the <em>Style selector</em> button, a menu appears where we can select the drawing mode. This mode can be implemented as a state of the drawing. And as we have seen in previous labs, these states are stored in a separate <em>viewModel</em>.</p>
+<h3 id="creating-the-viewmodel">Creating the ViewModel<a class="headerlink" href="#creating-the-viewmodel" title="Permanent link">&para;</a></h3>
+<p>To use the <em>viewModel</em>, we first need to add a new dependency:</p>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">lifecycleCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.8.6&quot;</span>
+<span class="n">lifecycleCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.4&quot;</span>
 
 <span class="k">[libraries]</span>
-<span class="p">...</span>
-<span class="n">androidx-lifecycle-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleCompose&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-lifecycle-viewmodel-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lifecycleVersion&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-Then update <code>build.gradle.kts</code> as well:
-<div class="highlight"><pre><span></span><code>dependencies{
-    ...
-    implementation(libs.androidx.lifecycle.compose)
-}
-</code></pre></div></p>
+<p><code>build.gradle.kts</code>:</p>
+<div class="highlight"><pre><span></span><code>implementation(libs.androidx.lifecycle.viewmodel.compose)
+</code></pre></div>
 <p>After adding the dependency, don't forget to click the <code>Sync Now</code> button.</p>
-<h3 id="create-viewmodel">Create ViewModel<a class="headerlink" href="#create-viewmodel" title="Permanent link">&para;</a></h3>
-<p>So let's get our <em>viewModel</em>. This will help with color/style switching, and later with persistent data storage.</p>
+<p>After synchronization, we can also create our <em>viewModel</em>. This will help with color/style switching, and later with persistent data storage.</p>
 <p>Let's create a <code>DrawingViewModel</code> <em>Kotlin File</em> in the <code>screen</code> <em>package</em> next to <code>DrawingScreen</code> and write the following code in it:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.AndroidViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.StateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">DrawingMode</span><span class="p">.</span><span class="na">LINE</span><span class="p">)</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">DrawingMode</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawingMode</span>
 
-
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_drawElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">emptyList</span><span class="p">())</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_drawElements</span>
 
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setDrawingMode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setDrawingMode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingMode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">_drawingMode</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mode</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1170,12 +1182,13 @@ Then update <code>build.gradle.kts</code> as well:
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingMode</span><span class="p">{</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingMode</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">LINE</span><span class="p">,</span>
 <span class="w">    </span><span class="n">POINT</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We need another class for the viewModel, <code>DrawingMode</code>. This will allow us to set the drawing style.</p>
+<p><code>DrawingViewModel</code> stores two states (drawing mode and drawn shapes) and returns them as <em>StateFlow</em>.</p>
+<p>To represent the drawing style, we need another class, <code>DrawingMode</code>. Since this can only take two values, we will implement it as an <em>Enum Class</em>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Code Interpretation</p>
 <p>Let's interpret the viewModel code with the help of the lab instructor!</p>
@@ -1185,13 +1198,12 @@ Then update <code>build.gradle.kts</code> as well:
 <p>Let's modify the <code>BottomBar</code> so that when we click the Style Selector button, a window appears where we can select the drawing mode. We can do this as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">BottomBar</span><span class="p">(</span>
-<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span>
 <span class="p">){</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showStyle</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">BottomAppBar</span><span class="p">(</span>
-<span class="w">        </span><span class="p">...</span>
 <span class="w">        </span><span class="n">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">Row</span><span class="w"> </span><span class="p">(</span>
 <span class="w">                </span><span class="p">...</span>
@@ -1235,17 +1247,22 @@ Then update <code>build.gradle.kts</code> as well:
 <span class="w">        </span><span class="p">...</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PreviewBottomBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BottomBar</span><span class="p">(</span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">())</span>
+<span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">viewModel</p>
-<p>Many times Android Studio cannot find the import required for <code>viewModel()</code>. In this case, we manually write the following import for the imports:
+<p>Many times Android Studio cannot find the import required for <code>viewModel()</code>. In such cases, we manually specify the following import:
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
 </code></pre></div></p>
 </div>
 <p>Then we modify the <code>BottomBar</code> function call on <code>DrawingScreen</code> and add the viewModel parameter.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.screen</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Spacer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
@@ -1254,21 +1271,19 @@ Then update <code>build.gradle.kts</code> as well:
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.platform.LocalContext</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.BottomBar</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view.TopBar</span>
 
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
-<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
-<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span>
 <span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TopBar</span><span class="p">()</span>
 <span class="w">        </span><span class="p">},</span>
@@ -1292,12 +1307,14 @@ Then update <code>build.gradle.kts</code> as well:
 <span class="w">    </span><span class="n">DrawingScreen</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
+Let's run the application and try out the style selector!</p>
 <div class="admonition example">
 <p class="admonition-title">TO BE SUBMITTED (1 point)</p>
 <p>Create a <strong>screenshot</strong> showing the <strong>completed Style Selector opened</strong> (on an emulator, mirroring the device or with a screen capture), a <strong>corresponding code snippet</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f2.png!</p>
 <p>The screenshot is a necessary condition for getting a score.</p>
 </div>
 <h2 id="implementing-the-canvas-1-point">Implementing the canvas (1 point)<a class="headerlink" href="#implementing-the-canvas-1-point" title="Permanent link">&para;</a></h2>
+<h3 id="model-classes">Model classes<a class="headerlink" href="#model-classes" title="Permanent link">&para;</a></h3>
 <p>During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named <code>Line</code> and <code>Point</code>. Let's create a <code>model</code> <em>package</em> in our main <em>package</em>, then implement the two classes:</p>
 <p><code>Point.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
@@ -1322,8 +1339,9 @@ Then update <code>build.gradle.kts</code> as well:
 <span class="p">)</span>
 </code></pre></div>
 <p>This is how we will store our data in the list. It is true that the <code>Line</code> data class will receive the color twice more, but this is just for the sake of simplicity, we will not deal with this parameter.</p>
-<p>Then, within the <code>view</code> <em>package</em>, we will create a <code>DrawingCanvas</code> <em>Kotlin File</em>. In this Composable class, we will implement the drawing using the built-in <code>Canvas</code> <em>Composable</em>. This class has a <code>Modifier.pointerInteropFilter</code> parameter, which we will use to handle gestures.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.view</span>
+<h3 id="canvas">Canvas<a class="headerlink" href="#canvas" title="Permanent link">&para;</a></h3>
+<p>Then, inside the <code>common</code> <em>package</em>, create a <code>DrawingCanvas</code> <em>Kotlin File</em>. In this <em>Composable</em> class, we will implement the drawing using the built-in <code>Canvas</code> <em>Composable</em>. This class has a <code>Modifier.pointerInteropFilter</code> parameter, which we will use to handle gestures.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.ui.common</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Canvas</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
@@ -1421,11 +1439,20 @@ After we place our finger, we can move it. This is when this event occurs. Here 
 <p><div class="highlight"><pre><span></span><code><span class="n">Canvas</span><span class="w"> </span><span class="p">(..){</span>
 <span class="w">    </span><span class="n">drawElements</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawCircle</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
-<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawLine</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">),</span><span class="w"> </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawCircle</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span>
+<span class="w">                </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span>
+<span class="w">            </span><span class="p">)</span>
+
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drawLine</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">color</span><span class="p">,</span>
+<span class="w">                </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">start</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">.</span><span class="na">end</span><span class="p">.</span><span class="na">y</span><span class="p">),</span>
+<span class="w">                </span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5f</span>
+<span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
 This completes the <code>DrawingCanvas</code>, but we still can't see the drawing until we lift our finger from the screen. This can be fixed as follows:</p>
@@ -1443,14 +1470,13 @@ This completes the <code>DrawingCanvas</code>, but we still can't see the drawin
 In this case, we draw the element whose starting point is the point where we placed our finger, and whose ending point is where our finger is. If we move this, it will update in real time, so we can see the final result in advance.</p>
 <p>Then modify the <code>DrawingScreen</code> and replace the <code>Spacer</code> with the <code>DrawingCanvas</code> we just created.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
-<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
-<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawingMode</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawingMode</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">drawElements</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">drawElements</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
 <span class="w">        </span><span class="p">...</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
@@ -1747,24 +1773,19 @@ After that, we create the constants for the <code>Point</code> class in a class 
 </code></pre></div></p>
 <h3 id="viewmodel-extension">ViewModel Extension<a class="headerlink" href="#viewmodel-extension" title="Permanent link">&para;</a></h3>
 <p>For persistence to work properly, we need to extend the viewModel so that it saves the data to the database after each drawing. This way, our data will persist even if we restart the application. In order to see this again on the drawing interface, we need to load the drawing. The <code>init{}</code> block will play a role in this.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">){</span>
-
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DrawingViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">):</span><span class="w"> </span><span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">//DrawingMode</span>
 
 <span class="w">    </span><span class="c1">//DrawElements</span>
 
-
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataHelper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PersistentDataHelper</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
-
 
 <span class="w">    </span><span class="k">init</span><span class="p">{</span>
 <span class="w">        </span><span class="n">loadDrawElements</span><span class="p">()</span>
 <span class="w">    </span><span class="p">}</span>
 
-
 <span class="w">    </span><span class="c1">//setDrawingMode</span>
-
 
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">addDrawElement</span><span class="p">(</span><span class="n">element</span><span class="p">:</span><span class="w"> </span><span class="kt">Any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
@@ -1772,7 +1793,6 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <span class="w">            </span><span class="n">saveDrawElements</span><span class="p">()</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saveDrawElements</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
@@ -1798,8 +1818,26 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We can see that in the <code>init{}</code> block <code>loadDrawElements()</code> is called, which is used to read the data from the database using the previously defined <code>restorePoints</code> and <code>restoreLines</code> functions, and then add it to our List.</p>
+<p>In the <code>init{}</code> block, <code>loadDrawElements()</code> is called, which is used to read the data from the database using the previously defined <code>restorePoints</code> and <code>restoreLines</code> functions, and then add it to our List.</p>
 <p>Saving works in a similar way, only this function is called when we have drawn.</p>
+<div class="admonition warning">
+<p class="admonition-title">ViewModel</p>
+<p><em>viewModel</em> is basically context-independent, and it should be, but in this case we can see that <code>PersistentDataHelper</code> needs the context to access the database. So instead of the <code>ViewModel</code> class, we derive our <code>DrawingViewModel</code> from <code>AndroidViewModel</code>, which now accepts <code>Application</code> as a parameter.</p>
+<p>This is solved in larger projects with a more complex architecture and <em>Dependency Injection</em>, so the context-independence of the ViewModel can be maintained.</p>
+</div>
+<p>So let's change the instantiation of <code>DrawingViewModel</code> in <code>DrawingScreen</code> as well:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DrawingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">DrawingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span>
+<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">AndroidViewModelFactory</span><span class="p">(</span>
+<span class="w">            </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">.</span><span class="na">applicationContext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Application</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">TO BE SUBMITTED (1 point)</p>
 <p>Create a <strong>screenshot</strong> showing the <strong>finished DrawingScreen</strong> (on an emulator, mirroring the device or with a screen capture) with a few lines and points, and the <strong>corresponding code snippet</strong>, as well as your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f4.png!</p>
@@ -1840,8 +1878,8 @@ After that, we create the constants for the <code>Point</code> class in a class 
           </path>
         </svg>
       </span>
-      <span title="2025. október 6. 16:54:39">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 6. 16:54:39 CEST"><span class="timeago" datetime="2025-10-06T16:54:39+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 6. 16:54:39 CEST">2025-10-06</span>
+      <span title="2025. október 6. 16:57:35">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 6. 16:57:35 CEST"><span class="timeago" datetime="2025-10-06T16:57:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 6. 16:57:35 CEST">2025-10-06</span>
       </span>
     </span>
 
