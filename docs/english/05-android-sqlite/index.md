@@ -11,11 +11,22 @@ The task of this lab is to create a simple drawing application. The application 
 <img src="./assets/clear_dialog.png" width="160">
 </p>
 
+During the lab we will encounter the following technologies:
+
+- SQLite
+- Scaffold
+    - TopBar
+    - BottomBar
+- DrawingCanvas
+- ViewModel
+- DropDownMenu
+
 !!!info "Room library"
     During the lab, we will get acquainted with the SQLite library, which allows us to persistently store data in a local SQL database. Modern Android-based developments usually use Room, which is built on SQLite and provides an easy-to-use ORM layer combined with Android lifecycles. However, we considered it important to make the material easy to understand, so we will only examine the SQLite solution for now.
 
 !!! warning "IMSc"
     After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.
+
 
 ## Preparations
 
@@ -39,10 +50,10 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 ### Creating the project
 
-Let's create a project called `Simple Drawer` in Android Studio:
+Let's create a project called `SimpleDrawer` in Android Studio:
 
 1. Create a new project, select the *Empty Activity* option.
-1. The project name should be `Simple Drawer`, the starting package `hu.bme.aut.android.simpledrawer`, and the save location should be the SimpleDrawer folder within the checked-out repository.
+1. The project name should be `SimpleDrawer`, the starting package `hu.bme.aut.android.simpledrawer`, and the save location should be the SimpleDrawer folder within the checked-out repository.
 1. Select *Kotlin* as the language.
 1. The minimum API level should be API24: Android 7.0.
 1. The *Build configuration language* should be Kotlin DSL.
@@ -50,14 +61,8 @@ Let's create a project called `Simple Drawer` in Android Studio:
 !!!danger "FILE PATH"
     The project should be placed in the SimpleDrawer directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!
 
-During the lab, we will encounter the following technologies:
-
-- SQLite
-- Scaffold
-    - TopBar
-    - BottomBar
-- ViewModel
-- Dialog
+!!!danger "FILE PATH"
+    The repository path should not contain accents or special characters, as AndroidStudio is sensitive to these and the code will not compile. It is worth working in the root of the C:\\ drive.
 
 ### Adding Resources
 
@@ -109,15 +114,14 @@ Drawing page
 </activity>
 ```
 
-
 ### Creating AppBars
 
-Within the existing `ui` *package*, create a `view` *package*, including a `TopBar` and a `BottomBar` *Kotlin File*, and then write the following into it:
+Within the existing `ui` *package*, create a `common` *package*, including a `TopBar` and a `BottomBar` *Kotlin File*, and then write the following into it:
 
 `TopBar.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.ui.view
+package hu.bme.aut.android.simpledrawer.ui.common
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -154,7 +158,7 @@ This is just a simple TopBar with the name of the application written on top. Th
 `BottomBar.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.ui.view
+package hu.bme.aut.android.simpledrawer.ui.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -225,13 +229,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import hu.bme.aut.android.simpledrawer.ui.view.BottomBar
-import hu.bme.aut.android.simpledrawer.ui.view.TopBar
+import hu.bme.aut.android.simpledrawer.ui.common.BottomBar
+import hu.bme.aut.android.simpledrawer.ui.common.TopBar
 
 @Composable
-fun DrawingScreen() {
+fun DrawingScreen(modifier: Modifier = Modifier) {
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopBar()
         },
@@ -281,7 +286,7 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-So that we are done with this, let's start the application! Now we can see the two AppBars and the black screen between them. An icon also appears on the BottomBar, pressing which does nothing yet.
+So that we are done with this, let's start the application! Now we can see the two *AppBars* and the black screen between them. An icon also appears on the *BottomBar*, pressing which does nothing yet.
 
 !!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **finished home screen** (on an emulator, by mirroring the device or by taking a screen shot), a **corresponding code snippet**, and **your neptun code somewhere in the code as a comment**' Upload the image to the repository in the solution as f1.png!
@@ -290,58 +295,53 @@ So that we are done with this, let's start the application! Now we can see the t
 
 ## Implementing the style selector (1 point)
 
-Now that the BottomBar and the home screen framework have been created, let's implement the style selector. To do this, we need to modify the `BottomBar` so that when we click on the Style selector button, a menu appears where we can select the drawing mode. This mode can be implemented as a state of the drawing. These states are stored in a separate *viewModel*, as we saw in previous labs.
+After we have created the *BottomBar* and the home screen frame, let's implement the style selector. To do this, we need to modify the `BottomBar` so that when we click on the *Style selector* button, a menu appears where we can select the drawing mode. This mode can be implemented as a state of the drawing. And as we have seen in previous labs, these states are stored in a separate *viewModel*.
 
-### Add a required dependency
+### Creating the ViewModel
 
-To use the *viewModel*, we need to add a dependency to the `build.gradle.kts` file. To do this, open the `libs.versions.toml` file in the `gradle` *package*, and then write the following:
+To use the *viewModel*, we first need to add a new dependency:
+
+`libs.versions.toml`:
 
 ```toml
 [versions]
 ...
-lifecycleCompose = "2.8.6"
+lifecycleCompose = "2.9.4"
 
 [libraries]
-...
-androidx-lifecycle-compose = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleCompose" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
 ```
-Then update `build.gradle.kts` as well:
+
+ `build.gradle.kts`:
+
 ```kts
-dependencies{
-    ...
-    implementation(libs.androidx.lifecycle.compose)
-}
+implementation(libs.androidx.lifecycle.viewmodel.compose)
 ```
 
 After adding the dependency, don't forget to click the `Sync Now` button.
 
-### Create ViewModel
-
-So let's get our *viewModel*. This will help with color/style switching, and later with persistent data storage.
+After synchronization, we can also create our *viewModel*. This will help with color/style switching, and later with persistent data storage.
 
 Let's create a `DrawingViewModel` *Kotlin File* in the `screen` *package* next to `DrawingScreen` and write the following code in it:
 
 ```kotlin
 package hu.bme.aut.android.simpledrawer.ui.screen
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class DrawingViewModel(application: Application): AndroidViewModel(application){
+class DrawingViewModel : ViewModel() {
 
     private val _drawingMode = MutableStateFlow(DrawingMode.LINE)
     val drawingMode: StateFlow<DrawingMode> = _drawingMode
 
-
     private val _drawElements = MutableStateFlow<List<Any>>(emptyList())
     val drawElements: StateFlow<List<Any>> = _drawElements
 
-
-    fun setDrawingMode(mode: DrawingMode){
+    fun setDrawingMode(mode: DrawingMode) {
         viewModelScope.launch {
             _drawingMode.value = mode
         }
@@ -354,19 +354,21 @@ class DrawingViewModel(application: Application): AndroidViewModel(application){
     }
 }
 
-enum class DrawingMode{
+enum class DrawingMode {
     LINE,
     POINT
 }
 ```
 
+`DrawingViewModel` stores two states (drawing mode and drawn shapes) and returns them as *StateFlow*.
 
-We need another class for the viewModel, `DrawingMode`. This will allow us to set the drawing style.
+To represent the drawing style, we need another class, `DrawingMode`. Since this can only take two values, we will implement it as an *Enum Class*.
 
 !!!warning "Code Interpretation"
     Let's interpret the viewModel code with the help of the lab instructor!
 
 Now that we have the *viewModel*, we just need to modify the `BottomBar` so that we can set the state.
+
 
 ### Style Selector
 
@@ -375,13 +377,12 @@ Let's modify the `BottomBar` so that when we click the Style Selector button, a 
 ```kotlin
 @Composable
 fun BottomBar(
-    viewModel: DrawingViewModel = viewModel()
+    viewModel: DrawingViewModel
 ){
     var showStyle by remember { mutableStateOf(false) }
     val drawingMode by viewModel.drawingMode.collectAsState()
 
     BottomAppBar(
-        ...
         actions = {
             Row (
                 ...
@@ -425,10 +426,16 @@ fun BottomBar(
         ...
     )
 }
+
+@Composable
+@Preview
+fun PreviewBottomBar() {
+    BottomBar(viewModel = viewModel())
+}
 ```
 
 !!!warning "viewModel"
-    Many times Android Studio cannot find the import required for `viewModel()`. In this case, we manually write the following import for the imports:
+    Many times Android Studio cannot find the import required for `viewModel()`. In such cases, we manually specify the following import:
     ```kotlin
     import androidx.lifecycle.viewmodel.compose.viewModel
     ```
@@ -438,7 +445,6 @@ Then we modify the `BottomBar` function call on `DrawingScreen` and add the view
 ```kotlin
 package hu.bme.aut.android.simpledrawer.ui.screen
 
-import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -447,21 +453,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import hu.bme.aut.android.simpledrawer.ui.view.BottomBar
 import hu.bme.aut.android.simpledrawer.ui.view.TopBar
 
 @Composable
-fun DrawingScreen() {
-    val viewModel: DrawingViewModel = viewModel(
-        factory = ViewModelProvider.AndroidViewModelFactory(
-            LocalContext.current.applicationContext as Application
-        )
-    )
+fun DrawingScreen(
+    modifier: Modifier = Modifier,
+    viewModel: DrawingViewModel = viewModel()
+) {
+
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopBar()
         },
@@ -485,13 +489,19 @@ fun PreviewDrawingScreen() {
     DrawingScreen()
 }
 ```
+Let's run the application and try out the style selector!
 
 !!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **completed Style Selector opened** (on an emulator, mirroring the device or with a screen capture), a **corresponding code snippet**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f2.png!
 
     The screenshot is a necessary condition for getting a score.
 
+
 ## Implementing the canvas (1 point)
+
+
+
+### Model classes
 
 During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named `Line` and `Point`. Let's create a `model` *package* in our main *package*, then implement the two classes:
 
@@ -525,10 +535,12 @@ data class Line(
 
 This is how we will store our data in the list. It is true that the `Line` data class will receive the color twice more, but this is just for the sake of simplicity, we will not deal with this parameter.
 
-Then, within the `view` *package*, we will create a `DrawingCanvas` *Kotlin File*. In this Composable class, we will implement the drawing using the built-in `Canvas` *Composable*. This class has a `Modifier.pointerInteropFilter` parameter, which we will use to handle gestures.
+### Canvas
+
+Then, inside the `common` *package*, create a `DrawingCanvas` *Kotlin File*. In this *Composable* class, we will implement the drawing using the built-in `Canvas` *Composable*. This class has a `Modifier.pointerInteropFilter` parameter, which we will use to handle gestures.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.ui.view
+package hu.bme.aut.android.simpledrawer.ui.common
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -634,18 +646,26 @@ MotionEvent.ACTION_UP -> {
 
 In this event, we handle when the user lifts their finger from the screen. Here too, the algorithm is divided into two options, namely, if it is a point, then only the value of `tempPoint` needs to be recorded. However, if it is a line, then the values ​​of `endPoint` and `startPoint` need to be recorded as a line. **Null checking is required for both events**!
 
-
 Once the events are available, all that remains is to draw them. We can do this by drawing the data stored in drawElements one by one, depending on their type:
 
 ```kotlin
 Canvas (..){
     drawElements.forEach { element ->
         when (element) {
-            is Point -> drawCircle(color = element.color, center = Offset(element.x, element.y), radius = 5f)
-            is Line -> drawLine(color = element.color, start = Offset(element.start.x, element.start.y), end = Offset(element.end.x, element.end.y), strokeWidth = 5f)
+            is Point -> drawCircle(
+                color = element.color,
+                center = Offset(element.x, element.y),
+                radius = 5f
+            )
+
+            is Line -> drawLine(
+                color = element.color,
+                start = Offset(element.start.x, element.start.y),
+                end = Offset(element.end.x, element.end.y),
+                strokeWidth = 5f
+            )
         }
     }
-    ...
 }
 ```
 This completes the `DrawingCanvas`, but we still can't see the drawing until we lift our finger from the screen. This can be fixed as follows:
@@ -668,14 +688,13 @@ Then modify the `DrawingScreen` and replace the `Spacer` with the `DrawingCanvas
 
 ```kotlin
 @Composable
-fun DrawingScreen() {
-    val viewModel: DrawingViewModel = viewModel(
-        factory = ViewModelProvider.AndroidViewModelFactory(
-            LocalContext.current.applicationContext as Application
-        )
-    )
+fun DrawingScreen(
+    modifier: Modifier = Modifier,
+    viewModel: DrawingViewModel = viewModel()
+) {
     val drawingMode by viewModel.drawingMode.collectAsState()
     val drawElements by viewModel.drawElements.collectAsState()
+
     Scaffold(
         ...
     ) { innerPadding ->
@@ -695,6 +714,7 @@ fun DrawingScreen() {
     Create a **screenshot** showing the **finished DrawingScreen** (on emulator, mirroring device or with a screen capture) with a few lines and dots, **a code snippet of the DrawingCanvas**, and **your neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f3.png!
 
     The screenshot is a necessary condition for getting a score.
+
 
 ## Implementing persistence using a *SQLite* database (1 point)
 
@@ -784,6 +804,7 @@ object Lines {
 It is also worth noting that we did not declare the classes with the class keyword. Instead, we use `object`, which the Kotlin language uses to ensure that `DbConstants` and the `Points` and `Lines` classes in it behave as singletons, meaning that an instance of them is created when the application is run, and no further instances can be created of them.
 
 ### Creating the helper class
+
 To create the database, we need a helper class that creates the database itself and initializes the tables within it. In our case, this will be the `DbHelper` class, which is derived from the `SQLiteOpenHelper` class. Let's add this to the `sqlite` package as well.
 
 ```kotlin
@@ -1011,24 +1032,19 @@ private fun cursorToLine(cursor: Cursor): Line {
 For persistence to work properly, we need to extend the viewModel so that it saves the data to the database after each drawing. This way, our data will persist even if we restart the application. In order to see this again on the drawing interface, we need to load the drawing. The `init{}` block will play a role in this.
 
 ```kotlin
-class DrawingViewModel(application: Application): AndroidViewModel(application){
-
+class DrawingViewModel(application: Application): AndroidViewModel(application) {
 
     //DrawingMode
 
     //DrawElements
 
-
     private val dataHelper = PersistentDataHelper(application)
-
 
     init{
         loadDrawElements()
     }
 
-
     //setDrawingMode
-    
     
     fun addDrawElement(element: Any) {
         viewModelScope.launch {
@@ -1036,7 +1052,6 @@ class DrawingViewModel(application: Application): AndroidViewModel(application){
             saveDrawElements()
         }
     }
-
 
     private fun saveDrawElements() {
         viewModelScope.launch {
@@ -1063,9 +1078,30 @@ class DrawingViewModel(application: Application): AndroidViewModel(application){
 }
 ```
 
-We can see that in the `init{}` block `loadDrawElements()` is called, which is used to read the data from the database using the previously defined `restorePoints` and `restoreLines` functions, and then add it to our List.
+In the `init{}` block, `loadDrawElements()` is called, which is used to read the data from the database using the previously defined `restorePoints` and `restoreLines` functions, and then add it to our List.
 
 Saving works in a similar way, only this function is called when we have drawn.
+
+!!!warning "ViewModel"
+    *viewModel* is basically context-independent, and it should be, but in this case we can see that `PersistentDataHelper` needs the context to access the database. So instead of the `ViewModel` class, we derive our `DrawingViewModel` from `AndroidViewModel`, which now accepts `Application` as a parameter.
+
+    This is solved in larger projects with a more complex architecture and *Dependency Injection*, so the context-independence of the ViewModel can be maintained.
+
+So let's change the instantiation of `DrawingViewModel` in `DrawingScreen` as well:
+
+```kotlin
+@Composable
+fun DrawingScreen(
+    modifier: Modifier = Modifier,
+    viewModel: DrawingViewModel = viewModel(
+        factory = ViewModelProvider.AndroidViewModelFactory(
+            LocalContext.current.applicationContext as Application
+        )
+    )
+) {
+    ...
+}
+```
 
 !!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **finished DrawingScreen** (on an emulator, mirroring the device or with a screen capture) with a few lines and points, and the **corresponding code snippet**, as well as your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f4.png!
