@@ -30,7 +30,7 @@ During the lab we will encounter the following technologies:
 
 ## Preparations
 
-When solving the tasks, do not forget to follow the [task submission process](../github/GitHub.md).
+When solving the tasks, do not forget to follow the [task submission process](../github/).
 
 ### Creating and downloading a Git repository
 
@@ -196,7 +196,7 @@ fun BottomBar() {
                         painterResource(id = R.drawable.ic_style),
                         contentDescription = stringResource(id = R.string.style)
                     )
-                    //Stílusok
+                    //Styles
                 }
             }
         },
@@ -306,7 +306,7 @@ To use the *viewModel*, we first need to add a new dependency:
 ```toml
 [versions]
 ...
-lifecycleCompose = "2.9.4"
+lifecycleVersion = "2.9.4"
 
 [libraries]
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
@@ -455,8 +455,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import hu.bme.aut.android.simpledrawer.ui.view.BottomBar
-import hu.bme.aut.android.simpledrawer.ui.view.TopBar
+import hu.bme.aut.android.simpledrawer.ui.common.BottomBar
+import hu.bme.aut.android.simpledrawer.ui.common.TopBar
 
 @Composable
 fun DrawingScreen(
