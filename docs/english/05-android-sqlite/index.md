@@ -91,7 +91,7 @@ Copy the following _string resources_ required for the application into the `res
 </resources>
 ```
 
-Are you sure you want to delete the ## Creating the home screen (1 point)
+## Creating the home screen (1 point)
 
 ### Enforcing portrait layout
 
