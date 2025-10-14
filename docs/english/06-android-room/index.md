@@ -36,15 +36,12 @@ We can delete all list items with the *Delete all* option in the menu.
 ### Lab tasks
 During the lab, the following tasks must be completed with the help of the lab leader, and the assigned tasks must be completed independently.
 
-1. Creating the user interface: 2 points
+1. Implementing the addition of a new element: 1 point
 1. Designing the *viewModel* and *repository*: 1 point
 1. Implementing persistent data storage: 1 point
-1. **Standalone task** (implementing deletion): 1 point
+1. **Independent task** (implementing deletion): 1 point
+1. **Independent task** (confirmation dialogue): 1 point
 
-!!! warning "IMSc"
-    After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc tasks:
-        Confirmation dialog: 1 point
-        Editing elements: 1 point
 
 ## Preparations
 
@@ -64,48 +61,161 @@ When solving the tasks, do not forget to follow the [task submission process](..
 1. Write your Neptun code in the `neptun.txt` file. The file should contain nothing else, except the 6 characters of the Neptun code on a single line.
 
 
+### Opening a project
 
-## Create a project
+In this lab, we will not create a new project, but will start from an existing one, which already contains the basics learned in the previous labs. The project can be found in the checked-out repository under the name *ShoppingList*. Let's open the project and review its structure with the lab leader!
 
-First, launch Android Studio, then:
+#### Dependencies
 
-1. Create a new project, select *Empty Activity*.
+The project contains all the dependencies needed during the lab, these will not need to be added again later, but we will include them in the given section.
 
-1. Name the project `ShoppingList`, and the starting package `hu.bme.aut.android.shoppinglist`
-
-1. Select *Kotlin* as the language.
-
-1. The minimum API level should be **API24: Android 7.0**.
-
-1. The *Build configuration language* should be Kotlin DSL.
-
-!!!danger "FILE PATH"
-    The project should be placed in the ShoppingList directory in the repository, and it should be pushed when submitted! Without the code, we cannot give maximum points to the lab!
-
-### Update dependencies
-
-Android Studio uses an outdated [*ComposeBom*](https://developer.android.com/develop/ui/compose/bom) when creating the project. Let's update the version of this in the `libs.versions.toml` file:
+`libs.versions.toml`:
 
 ```toml
 [versions]
-...
-composeBom = "2024.09.03"
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.11.0"
+composeBom = "2025.10.00"
+
+viewModel = "2.9.4"
+
+ksp = "2.2.10-2.0.2"
+room = "2.8.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+
+androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
+
+androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
 ```
 
-Don't forget to press the `Sync Now` button!
+Project level `build.gradle.kts`:
 
-### Resources
+```kts
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.compose) apply false
 
-Download and unzip [the resources required for the application](./downloads/res.zip), then copy them to the *app/src/main/res* folder of the project (in Studio, on the *res* folder, *Ctrl+V*)!
+    alias(libs.plugins.google.devtools.ksp) apply false
+}
+```
 
-Then paste the text resources too!
+Modul level `build.gradle.kts`:
+
+```kts
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.google.devtools.ksp)
+}
+
+android {
+    namespace = "hu.bme.aut.android.shoppinglist"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "hu.bme.aut.android.shoppinglist"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.material.icons.extended)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+}
+```
+
+#### Resources
+
+The project includes the application icons, necessary graphic resources, and text resources:
 
 `strings.xml`:
 
 ```xml
 <resources>
     <string name="app_name">ShoppingList</string>
-    <string name="new_shopping_item">New Shopping Item</string>
+    <string name="add_shopping_item">Add Shopping Item</string>
     <string name="edit_shopping_item">Edit Shopping Item</string>
     <string name="label_name">Name</string>
     <string name="label_description">Description</string>
@@ -122,9 +232,9 @@ Then paste the text resources too!
 </resources>
 ```
 
-## Creating the Model
+#### The Model
 
-Our application will display a shopping list, including shopping items. This will be important for both the user interface and persistent data storage, so let's create this first. Add a `data` *package* to the default *package* of our project, and then an `entities` *package* within that. This is where we will implement the `ShoppingItem` class.
+Our application will display a shopping list, including shopping items. This will be important for both the user interface and persistent data storage. Within the `data` *package*, in the `entities` *package*, we have a `ShoppingItem` data class.
 
 `ShoppingItem.kt`:
 
@@ -150,18 +260,14 @@ Our item contains an ID, a name, a description, a category, a price and a switch
 !!!info "data class"
     Kotlin allows you to create a so-called data class. This can probably be most easily compared to Java's POJO (Plain-Old-Java-Object) classes. Their purpose is to store related data in public properties, nothing more! In addition, certain helper functions are automatically created, such as a suitable equals, toString and copy implementation.
 
-## Creating the user interface (2 points)
+#### The user interface
 
-The user interface of our application is quite simple. It contains a *screen* with a `TopBar`, a list of items and a `FloatingActionButton`. Pressing the button will open a dialog window for adding a new item. `ShoppingListScreen` will be placed in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package*, and its building blocks will be placed in a `components` *package* within it. Let's start with these:
+The user interface of our application is quite simple. It contains a *screen* with a `TopBar`, a list of items and a `FloatingActionButton`. Pressing the button will open a dialog window for adding a new item. `ShoppingListScreen` is located in the `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist` *package*, and its building blocks are located in a `components` *package* within it:
 
-### Components
-
-#### TopBar Implementation
-
-Let's create the `ShoppingListTopBar.kt` file in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*, then fill it with the following content:
+`ShoppingListTopBar.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui,screen.shoppinglist.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -213,14 +319,10 @@ fun MainTopBarPreview() {
 
 We pass a name to the `TopAppBar` built-in *Composable* function with the *title* parameter and an action button with the *actions* parameter. In this case, we will add a `Delete all items` button, the functionality of which must be implemented in the standalone task part.
 
-#### Creating a list item
-
-In order to display the shopping list, we need to create the appearance of a list item. This instance will be received by the LazyColumn. Also in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*, we create the `ItemShoppingItem.kt` file, and then implement the *Composable*.
-
 `ItemShoppingItem.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -261,7 +363,7 @@ import hu.bme.aut.android.shoppinglist.R
 import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 
 @Composable
-fun ItemShoppingItem(
+fun UIShoppingItem(
     shoppingItem: ShoppingItem,
     onCheckBoxClick: (ShoppingItem) -> Unit,
     onDeleteIconClick: () -> Unit,
@@ -369,7 +471,7 @@ fun ItemShoppingItem(
 @Preview(showBackground = true)
 @Composable
 fun ItemShoppingItemPurchasedPreview() {
-    ItemShoppingItem(
+    UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description",
@@ -386,7 +488,7 @@ fun ItemShoppingItemPurchasedPreview() {
 @Preview(showBackground = true)
 @Composable
 fun ItemShoppingItemNotPurchasedPreview() {
-    ItemShoppingItem(
+    UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description description description description description",
@@ -405,9 +507,147 @@ The interface displays the `ShoppingItem` data. On the left side, the category-d
 
 You can see that the interface takes over the `ShoppingItem` to be displayed, as well as three *callback* functions: the *CheckBox*, the delete and the modify icons to handle touch events. Of these, only the *CheckBox* is used for now (the others will be independent tasks), where the changed state is returned with the method.
 
-#### New item dialog
+Now that we have our components, we can finally assemble them into our `ShoppingListScreen`:
 
-In order to be able to put together our `ShoppingListScreen` screen, the only thing missing is the dialog for adding a new item. Let's create this in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*.
+`ShoppingListScreen.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingListTopBar
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.UIShoppingItem
+
+
+@Composable
+fun ShoppingListScreen(modifier : Modifier = Modifier) {
+
+    val list = remember {
+        mutableStateListOf(
+            ShoppingItem(
+                id = 1,
+                name = "Alma",
+                description = "jonatán\n1 kg",
+                estimatedPrice = 500,
+                category = ShoppingItem.Category.FOOD,
+                isBought = true
+            ),
+            ShoppingItem(
+                id = 2,
+                name = "A gyűrűk ura",
+                description = "A gyűrű szövetsége",
+                estimatedPrice = 8000,
+                category = ShoppingItem.Category.BOOK,
+                isBought = false
+            )
+        )
+    }
+
+    Scaffold(
+        modifier = modifier,
+        topBar = {
+            ShoppingListTopBar()
+        },
+        floatingActionButton = {
+            LargeFloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.primary,
+                onClick = {
+                    /*TODO*/
+                }) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add new item"
+                )
+            }
+        }
+    ) { innerPadding ->
+
+        LazyColumn(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            items(list, key = { item -> item.id!! }) {
+
+                UIShoppingItem(
+                    shoppingItem = it,
+                    onCheckBoxClick = { shoppingItem ->
+                        /*TODO*/
+                    },
+                    onDeleteIconClick = {
+                        /*TODO*/
+                    },
+                    onEditIconClick = {
+                        /*TODO*/
+                    }
+                )
+                if (list.indexOf(it) < list.size - 1) {
+                    HorizontalDivider()
+                }
+            }
+        }
+    }
+
+}
+
+@Preview
+@Composable
+fun MainScreenPreview() {
+    ShoppingListScreen()
+}
+```
+
+Now all we have to do is display our own `ShoppingListScreen` in `MainActivity`:
+
+`MainActivity.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.ui.Modifier
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.ShoppingListScreen
+import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            ShoppingListTheme {
+                ShoppingListScreen(modifier = Modifier.safeDrawingPadding())
+            }
+        }
+    }
+}
+```
+
+Let's try the application!
+
+Our list is now displayed, but we cannot modify the individual items or add new items.
+
+## Add new item (1 point)
+
+### Dialog
+
+We want a dialog window to open when we press the *FloatingActionButton* on the `ShoppingListScreen`, where we can enter the details of the new products and then add them to our list. Let's create this dialog in the `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components` *package*.
 
 On the interface, one below the other, we find:
 
@@ -422,7 +662,7 @@ On the interface, one below the other, we find:
 `ShoppingItemDialog.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -438,9 +678,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -468,6 +708,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingItemDialog(
+    modifier : Modifier = Modifier,
     shoppingItem: ShoppingItem? = null,
     onDismissRequest: () -> Unit = {},
     onSaveClick: (ShoppingItem) -> Unit
@@ -489,15 +730,14 @@ fun ShoppingItemDialog(
     val categoryOptions = ShoppingItem.Category.entries.toList()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(Color.White)
-            .fillMaxWidth()
     ) {
         //Title of the Dialog Window
         Text(
             text =
             if (shoppingItem?.id == null)
-                stringResource(id = R.string.new_shopping_item)
+                stringResource(id = R.string.add_shopping_item)
             else
                 stringResource(id = R.string.edit_shopping_item),
             modifier = Modifier
@@ -694,64 +934,20 @@ As you can see, in `ShoppingItemDialog` we store as state:
 
 We want `ShoppingItemDialog` to be reusable, i.e. not only for adding a new item, but also for editing. To do this, we take a *shoppingItem* as a parameter. If it is null, we add a new item, if not, we edit it.
 
-### The ShoppingListScreen interface
+### Rendering and Updating
 
-Now that we have our components, we can finally assemble our `ShoppingListScreen` from them. Create a new file in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package* and upload it with the following content:
-
-`ShoppingListScreen.kt`:
+Now that our dialog interface is ready, let's render it! We'll bind the visibility of the `ShoppingItemDialog` to a state variable on the `ShoppingListScreen`, which we'll set when the *FloatingActionButton* is pressed:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist
-
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.window.Dialog
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ItemShoppingItem
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ShoppingItemDialog
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ShoppingListTopBar
-import androidx.compose.foundation.lazy.items
-
-
 @Composable
-fun ShoppingListScreen() {
-
-        val list = mutableListOf(
-        ShoppingItem(
-            id = 1,
-            name = "Alma",
-            description = "jonatán\n1 kg",
-            estimatedPrice = 500,
-            category = ShoppingItem.Category.FOOD,
-            isBought = true
-        ),
-        ShoppingItem(
-            id = 2,
-            name = "A gyűrűk ura",
-            description = "A gyűrű szövetsége",
-            estimatedPrice = 8000,
-            category = ShoppingItem.Category.BOOK,
-            isBought = false
-        )
-    )
+fun ShoppingListScreen(modifier : Modifier = Modifier) {
 
     var isDialogOpen by remember { mutableStateOf(false) }
 
+    ...
+
     Scaffold(
+        modifier = modifier,
         topBar = {
             ShoppingListTopBar()
         },
@@ -767,30 +963,8 @@ fun ShoppingListScreen() {
                 )
             }
         }
-    ) { innerPadding ->
-
-        LazyColumn(
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            items(list, key = { item -> item.id!! }) {
-
-                ItemShoppingItem(
-                    shoppingItem = it,
-                    onCheckBoxClick = { shoppingItem ->
-                        /*TODO*/
-                    },
-                    onDeleteIconClick = {
-                        /*TODO*/
-                    },
-                    onEditIconClick = {
-                        /*TODO*/
-					}
-                )
-                if (list.indexOf(it) < list.size - 1) {
-                    HorizontalDivider()
-                }
-            }
-        }
+    ) { 
+		...
     }
 
     if (isDialogOpen) {
@@ -798,66 +972,34 @@ fun ShoppingListScreen() {
             ShoppingItemDialog(
                 onDismissRequest = { isDialogOpen = false },
                 onSaveClick = { newShoppingItem ->
-                    /*TODO*/
+                    newShoppingItem.id = Random.nextLong()
+                    list += newShoppingItem
                 }
             )
         }
     }
 }
-
-@Preview
-@Composable
-fun MainScreenPreview() {
-    ShoppingListScreen()
-}
 ```
 
-### Updating MainActivity
-
-Now all we have to do is display our own `ShoppingListScreen` in `MainActivity`.
-
-`MainActivity.kt`:
+Our application now has a dialog box, and we can add a new item to our list, but the modification still doesn't work. Let's also make sure that the interface refreshes when the *CheckBox* is pressed. To do this, we need to define the appropriate *callBack* function:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.ShoppingListScreen
-import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ShoppingListTheme {
-                ShoppingListScreen()
-            }
-        }
-    }
-}
+onCheckBoxClick = { shoppingItem ->
+    list[list.indexOf(it)] = shoppingItem
+},
 ```
 
 Let's try the application!
 
-Our list and dialog are already displayed, but they don't or don't respond well to interactions. We will fix these in the following.
-
 !!!example "TO BE SUBMITTED (1 point)"
-    Create a **screenshot** showing the **list** (on an emulator, mirroring the device or with a screenshot), a **related code snippet**, and **your neptun code as the name of one of the products**! Upload the image to the repository in the solution as **f1.png**!
+    Take a **screenshot** of the **updated and expanded list** (on an emulator, mirroring your device, or with a screenshot), a **corresponding code snippet**, and your **neptun code as the name of one of the products**! Upload the image to the repository in the solution as **f1.png**!
 
     The screenshot is a necessary condition for getting points.
 
-!!!example "TO BE SUBMITTED (1 point)"
-    Create a **screenshot** showing the **add new item dialog** (on an emulator, mirroring the device or with a screenshot), a **related code snippet**, and **your neptun code as the name of the product**! Upload the image to the repository in the solution as **f2.png**!
-
-    The screenshot is a necessary condition for getting a score.
 
 ## Designing the architecture (1 point)
 
-You can see that we have burned our list for now and stored it in a *screen composable* in a rather ugly way. We did this for the sake of quick testing, but now we are creating the appropriate architecture. Initially, we will still stick with the list stored in memory, but we will choose their location in a more architecturally appropriate way.
+You can see that our list is currently burned in and stored in a *screen composable* in a rather ugly way. (In addition, if we rotate our device, the entire list will reset.) We did this for quick testing, but now we are creating the appropriate architecture. Initially, we will still stick with the list stored in memory, but we will choose their location in a more architecturally appropriate way.
 
 ### Creating the repository
 
@@ -936,7 +1078,7 @@ class MemoryShoppingItemRepository : IShoppingItemRepository {
 }
 ```
 
-`IShoppingItemRepository` describes a generic interface that makes tasks available to the application, while `MemoryShoppingListRepository` describes a memory-based implementation. Although we don't need to use the suspend keyword here, we can ensure that we can easily migrate the project later after creating a database or network TodoRepository, and we can also simulate this delay by calling the delay() function.
+`IShoppingItemRepository` describes a generic interface that makes tasks available to the application, while `MemoryShoppingListRepository` describes a memory-based implementation. Although we don't need to use the suspend keyword here, we can ensure that we can easily migrate the project later after creating a database or network TodoRepository, and we can also simulate this delay by calling the delay() function. You can see that we store our list privately and only make it available through a function embedded in a `Flow`.
 
 !!!info "Flow"
     In *coroutines*, [Flow](https://developer.android.com/kotlin/flow) is a type that can return multiple values ​​in a row, as opposed to functions that only return a single value. With *Flow*, we can continuously monitor a data source and get live updates from, for example, a database.
@@ -951,6 +1093,7 @@ We've just created our *repository*, but nothing has instantiated it and made it
 package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
+import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemRepository
 
 class ShoppingListApplication : Application() {
@@ -980,12 +1123,35 @@ After creating the *appilication* class, let's set it in `AndroidManifest.xml` t
 
 ### Creating the ViewModel
 
-Now we can access our *repository* anytime, anywhere, but it wouldn't be nice if the *screens* directly accessed the *repository*, and the list would still be stored in the *screeSn* class. Let's introduce a `ShoppingListViewModel` to store this state. In addition to `ShoppingListScreen`, we create the *viewModel* in the `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package*:
+This way, we can access our *repository* anytime, anywhere, but it wouldn't be nice if the *screen*s accessed the *repository* directly, and the list would still be stored in the *screen* class. Let's introduce a `ShoppingListViewModel` to store this state. In addition to `ShoppingListScreen`, we create the *viewModel* in the `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist` *package*:
+
+???success "viewModel"
+    To use the *viewModel* framework, we will need a dependency. Let's add the following to our project:
+
+    `libs.versions.toml`:
+
+	```toml
+	[versions]
+	viewModel = "2.9.4"
+	...
+
+	[libraries]
+	androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
+	...
+	```
+
+	Modul level `build.gradle.kts`:
+
+	```kotlin
+	dependencies {
+		implementation(libs.androidx.lifecycle.viewmodel.compose)
+		...
+	```
 
 `ShoppingListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -1065,13 +1231,18 @@ Since the *viewModel* can outlive the component that created it, we will not cre
 
 ### Using the ViewModel
 
-Now we can replace the part of the `ShoppingListScreen` implementation that initializes the list with access via a `ShoppingListViewModel`. In the `ShoppingListScreen` constructor, pass the *ViewModel* and implement the dialog window's *onSaveClick* event handler:
+Now we can replace the part of the `ShoppingListScreen` implementation where the list is initialized with a `ShoppingListViewModel`. To do this, we pass the *ViewModel* in the `ShoppingListScreen` constructor. Once we have it, we replace the *onCheckBoxClick* and the *onSaveClick* event handlers of the dialog box:
 
 ```kotlin
 @Composable
-fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = ShoppingListViewModel.Factory)) {
+fun ShoppingListScreen(
+
+    modifier: Modifier = Modifier,
+    viewModel: ShoppingListViewModel = viewModel(factory = ShoppingListViewModel.Factory)
+) {
 
     val list = viewModel.shoppingItemList.collectAsStateWithLifecycle().value
+    var isDialogOpen by remember { mutableStateOf(false) }
 
     Scaffold(
         ...
@@ -1082,7 +1253,7 @@ fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = Sh
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                ItemShoppingItem(
+                UIShoppingItem(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         viewModel.update(shoppingItem)
@@ -1105,96 +1276,77 @@ fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = Sh
 
 Notice how we collect the shopping list from the *viewModel* as state!
 
-To use the *viewModel* framework, we will need a dependency. Let's add the following to our project:
-
-`libs.versions.toml`:
-
-```toml
-[versions]
-viewModel = "2.8.6"
-...
-
-[libraries]
-androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
-...
-```
-
-Module level `build.gradle.kts`:
-
-```kotlin
-dependencies {
-	implementation(libs.androidx.lifecycle.viewmodel.compose)
-	...
-```
-
 Let's try the application!
 
 Now, if we click on the *CheckBox* or add a new item to our list, it will appear on the interface within a short time (1000ms delay). What we are actually doing is that, as a result of the interaction performed on the *screen*, we manipulate our list in the *repository* with *coroutines* (on a background thread) through the *viewModel*. If this *repository* could access the data from a persistent store, our application would already be ready.
 
+We can also observe that our list now survives rotations, as it is no longer stored in *screen*.
+
 !!!example "BEADANDÓ (1 point)"
-    Create a **screenshot** showing the **list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **ShoppingListViewModel code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f3.png**!
+    Create a **screenshot** showing the **list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **ShoppingListViewModel code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f2.png**!
 
 A screenshot is required to get a score.
 
 ## Implementing Persistent Data Storage (1 point)
+
 We will use the `Room` library to store data persistently.
 
 !!!info "Room"
     [`Room`](https://developer.android.com/training/data-storage/room/) provides a convenient database management API on top of the platform-wide SQLite implementation. It saves you from writing a lot of the code you saw before, such as the *Table classes that contain the table data and the creation script, the DBHelper, and the PersistentDataHelper*. These and other helper classes are generated by `Room` using *annotation*-based code generation as part of the *build* process.
 
-### Adding Room to the project
 
-First, open the `libs.versions.toml` file and add the following:
+???success "Adding Room to Project"
+    First, open the `libs.versions.toml` file and enter the following: 
 
-`libs.versions.toml`:
+	`libs.versions.toml`:
 
-```toml
-[versions]
-...
-ksp = "1.9.0-1.0.13"
-room = "2.6.1"
-
-[libraries]
-...
-androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
-androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
-androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
-
-[plugins]
-...
-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
-```
-
-Next, we enable the use of the [Kotlin Symbol Processing API](https://kotlinlang.org/docs/ksp-overview.html) in the project-level `build.gradle.kts` file:
-
-Project-level `build.gradle.kts`:
-
-```kotlin
-plugins {
+	```toml
+	[versions]
     ...
-    alias(libs.plugins.google.devtools.ksp) apply false
-}
-```
+	ksp = "2.2.10-2.0.2"
+	room = "2.8.2"
 
-Then, in the `build.gradle.kts` file belonging to the app module, we also enable *KSP* and add the dependencies:
-
-Module-level `build.gradle.kts`:
-
-```kotlin
-plugins {
+	[libraries]
 	...
-    alias(libs.plugins.google.devtools.ksp)
-}
-...
-dependencies {
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-	...
-}
-```
+	androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+	androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+	androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
 
-Then click the **Sync Now** button in the upper right corner.
+	[plugins]
+	...
+	google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
+	```
+
+	Next, we enable the use of the [Kotlin Symbol Processing API](https://kotlinlang.org/docs/ksp-overview.html) in the project-level `build.gradle.kts` file:
+
+	Projekt level `build.gradle.kts`:
+
+	```kotlin
+	plugins {
+	    ...
+	    alias(libs.plugins.google.devtools.ksp) apply false
+	}
+	```
+
+	Then enable *KSP* in the `build.gradle.kts` file for the app module and add the dependencies:
+
+	Modul level `build.gradle.kts`:
+
+	```kotlin
+	plugins {
+		...
+	    alias(libs.plugins.google.devtools.ksp)
+	}
+	...
+	dependencies {
+	    ksp(libs.androidx.room.compiler)
+	    implementation(libs.androidx.room.runtime)
+	    implementation(libs.androidx.room.ktx)
+		...
+	}
+	```
+
+    Then click the **Sync Now** button in the upper right corner.
 
 ### Creating the model class
 
@@ -1252,8 +1404,6 @@ We have also created an *enum* in the class, with which we want to encode a cate
 
 It can also be observed that these functions are also provided with the `@JvmStatic` annotation. This is necessary because basically, when the *companion objects* are converted to *Jvm* bytecode, a separate static class is created for them. This annotation can be used to specify that a separate static class should not be created, but instead they should be static functions of the enclosing class (in this case *Category*). This special behavior is necessary because of the way *Room* works, as it needs to know where to look for converters for a type.
 
-!!!info "data class"
-    Kotlin has the option of creating a so-called data class. This can perhaps be most easily compared to *Java*'s *POJO* (Plain-Old-Java-Object) classes. Their purpose is to store related data in public *properties*, nothing more! In addition, certain helper functions are automatically created, such as a proper equals, toString, and copy implementation.
 
 ### Creating a DAO class
 
@@ -1323,9 +1473,9 @@ The `ShoppingListDatabase` class is also responsible for the availability of the
 
 ### Creating the repository
 
-Now that we have the database, we can create our *repository* that accesses it, similar to `MemoryShoppingItemRepository`. So let's create a `RoomShoppingListRepository` class in the `hu.bme.aut.android.shoppinglist.data.repository` *package*, which takes the *DAO* as a parameter and implements the `IShoppingItemRepository` *interface*.
+Now that we have the database, we can create our *repository* that accesses it, similar to `MemoryShoppingItemRepository`. So let's create a `RoomShoppingItemRepository` class in the `hu.bme.aut.android.shoppinglist.data.repository` *package*, which takes the *DAO* as a parameter and implements the `IShoppingItemRepository` *interface*.
 
-`RoomShoppingListRepository.kt`:
+`RoomShoppingItemRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.repository
@@ -1334,7 +1484,7 @@ import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
 import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 import kotlinx.coroutines.flow.Flow
 
-class RoomShoppingListRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
+class RoomShoppingItemRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
 
     override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll()
     override suspend fun insert(shoppingItem: ShoppingItem) = dao.insert(shoppingItem)
@@ -1355,8 +1505,8 @@ package hu.bme.aut.android.shoppinglist
 import android.app.Application
 import androidx.room.Room
 import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
-import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingListRepository
-import hu.bme.aut.android.shoppinglist.database.ShoppingListDatabase
+import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.data.database.ShoppingListDatabase
 
 class ShoppingListApplication : Application() {
 
@@ -1374,9 +1524,9 @@ class ShoppingListApplication : Application() {
             applicationContext,
             ShoppingListDatabase::class.java,
             "shoppinglist_database"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration(false).build()
 
-        repository = RoomShoppingListRepository(database.shoppingItemDao)
+        repository = RoomShoppingItemRepository(database.shoppingItemDao)
 
         //repository = MemoryShoppingItemRepository()
     }
@@ -1390,7 +1540,7 @@ Our application is now able to record items and save them.
 In the previous task, we not only implemented persistent storage, but also created an architecturally well-thought-out application. This is also supported by the fact that in order for our data to be stored not only in memory, but also in a database, we only had to write the implementation parts for the *Room* database and initialize the appropriate *repository*. We did not have to change either the *viewModel* or the *screen*.
 
 !!!example "TO BE SUBMITTED (1 point)"
-    Create a **screenshot** showing the **shopping list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **`RoomShoppingListRepository` code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f4.png**!
+    Create a **screenshot** showing the **shopping list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **`RoomShoppingListRepository` code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f3.png**!
 
 The screenshot is a necessary condition for obtaining a score.
 
@@ -1403,30 +1553,23 @@ Implement the deletion of items one by one, by clicking on the trash icon on the
         - Implementing the deletion *callback* on `ShoppingListScreen`
 
 !!!example "TO BE SUBMITTED (1 point)"
-    Create a **screenshot** showing the **empty list** (on emulator, device mirroring or with a screenshot), a **code snippet for deletion**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as **f5.png**!
+    Create a **screenshot** showing the **empty list** (on emulator, device mirroring or with a screenshot), a **code snippet for deletion**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as **f4.png**!
 
     The screenshot is a necessary condition for obtaining a score.
 
-## IMSc tasks
-
-### Confirmation dialog (1 point)
+## Independent task: confirmation dialogue (1 point)
 
 Implement a *Delete all* menu item and its associated function!
 
 The application should display a confirmation dialog when the user clicks on the *Delete all* menu item. The dialog should contain a short text warning that all items will be deleted, a positive and negative button (*OK* and *Cancel*). When the positive button is pressed, only the items should be deleted.
 
 !!!example "TO BE SUBMITTED (1 iMSc point)"
-    Create a **screenshot** showing the **confirmation dialog** (on an emulator, by mirroring the device or by taking a screenshot), a **corresponding code snippet**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as **f6.png**!
+    Create a **screenshot** showing the **confirmation dialog** (on an emulator, by mirroring the device or by taking a screenshot), a **corresponding code snippet**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as **f5.png**!
 
     The screenshot is a required condition for getting a score.
 
-### Edit items (1 point)
+## Bonus task: editing elements
 
 Create the ability to edit list items!
 
-The edit button on the list item should open the previously implemented input dialog, and the input fields should be pre-filled with the saved values. The *Save* button should modify the existing list item in the database and in the view.
-
-!!!example "TO BE SUBMITTED (1 iMSc point)"
-    Create a **screenshot** showing the **edit dialog** (on an emulator, by mirroring the device or by taking a screenshot), a **corresponding code snippet**, and your **Neptune code somewhere in the code as a comment**! Upload the image to the repository in the solution as **f7.png**!
-
-    The screenshot is a necessary condition for obtaining a score.
+The edit button on the list item should open the previously implemented entry dialog, and the input fields should be pre-filled with the saved values. The *Save* button should modify the existing list item in both the database and the view.
