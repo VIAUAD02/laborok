@@ -1658,7 +1658,7 @@ dependencies {
 
 <span class="w">            </span><span class="n">OutlinedTextField</span><span class="p">(</span>
 <span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
-<span class="w">                    </span><span class="p">.</span><span class="na">menuAnchor</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MenuAnchorType</span><span class="p">.</span><span class="na">PrimaryNotEditable</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">menuAnchor</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExposedDropdownMenuAnchorType</span><span class="p">.</span><span class="na">PrimaryNotEditable</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">(),</span>
 <span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCategoryTextByCategory</span><span class="p">(</span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">category</span><span class="p">),</span>
@@ -1960,7 +1960,7 @@ dependencies {
 <details class="success">
 <summary>viewModel</summary>
 <p>To use the <em>viewModel</em> framework, we will need a dependency. Let's add the following to our project:</p>
-<p><code>libs.versions.toml</code>:</p>
+<p><code>libs.versions.toml</code> added already:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.4&quot;</span>
 <span class="p">...</span>
@@ -2110,7 +2110,7 @@ dependencies {
 <details class="success">
 <summary>Adding Room to Project</summary>
 <p>First, open the <code>libs.versions.toml</code> file and enter the following: </p>
-<p><code>libs.versions.toml</code>:</p>
+<p><code>libs.versions.toml</code> added already:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
 <span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.10-2.0.2&quot;</span>
@@ -2127,14 +2127,14 @@ dependencies {
 <span class="n">google-devtools-ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.google.devtools.ksp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="o">=</span><span class="s">&quot;ksp&quot;</span><span class="p">}</span>
 </code></pre></div>
 <p>Next, we enable the use of the <a href="https://kotlinlang.org/docs/ksp-overview.html">Kotlin Symbol Processing API</a> in the project-level <code>build.gradle.kts</code> file:</p>
-<p>Projekt level <code>build.gradle.kts</code>:</p>
+<p>Project level <code>build.gradle.kts</code> added already:</p>
 <div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">devtools</span><span class="p">.</span><span class="na">ksp</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Then enable <em>KSP</em> in the <code>build.gradle.kts</code> file for the app module and add the dependencies:</p>
-<p>Modul level <code>build.gradle.kts</code>:</p>
+<p>Modul level <code>build.gradle.kts</code> added already:</p>
 <div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">devtools</span><span class="p">.</span><span class="na">ksp</span><span class="p">)</span>
@@ -2235,7 +2235,7 @@ dependencies {
 <h3 id="creating-the-database-class">Creating the database class<a class="headerlink" href="#creating-the-database-class" title="Permanent link">&para;</a></h3>
 <p>In the <code>hu.bme.aut.android.shoppinglist.data</code> <em>package</em>, create a new <em>package</em> called <code>database</code>, and then a new Kotlin class in it called <code>ShoppingListDatabase</code>:</p>
 <p><code>ShoppingListDatabase.kt</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.database</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.database</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Database</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.RoomDatabase</span>
@@ -2345,8 +2345,8 @@ The <code>@Database</code> annotation can be used to indicate to the code genera
           </path>
         </svg>
       </span>
-      <span title="2025. október 14. 18:50:28">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 14. 18:50:28 CEST"><span class="timeago" datetime="2025-10-14T18:50:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 14. 18:50:28 CEST">2025-10-14</span>
+      <span title="2025. október 14. 21:51:47">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 14. 21:51:47 CEST"><span class="timeago" datetime="2025-10-14T21:51:47+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 14. 21:51:47 CEST">2025-10-14</span>
       </span>
     </span>
 
