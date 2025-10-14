@@ -796,7 +796,7 @@ fun ShoppingItemDialog(
 
             OutlinedTextField(
                 modifier = Modifier
-                    .menuAnchor(type = MenuAnchorType.PrimaryNotEditable)
+                    .menuAnchor(type = ExposedDropdownMenuAnchorType.PrimaryNotEditable)
                     .padding(8.dp)
                     .fillMaxWidth(),
                 value = getCategoryTextByCategory(category = category),
@@ -1128,7 +1128,7 @@ This way, we can access our *repository* anytime, anywhere, but it wouldn't be n
 ???success "viewModel"
     To use the *viewModel* framework, we will need a dependency. Let's add the following to our project:
 
-    `libs.versions.toml`:
+    `libs.versions.toml` added already:
 
 	```toml
 	[versions]
@@ -1298,7 +1298,7 @@ We will use the `Room` library to store data persistently.
 ???success "Adding Room to Project"
     First, open the `libs.versions.toml` file and enter the following: 
 
-	`libs.versions.toml`:
+	`libs.versions.toml` added already:
 
 	```toml
 	[versions]
@@ -1319,7 +1319,7 @@ We will use the `Room` library to store data persistently.
 
 	Next, we enable the use of the [Kotlin Symbol Processing API](https://kotlinlang.org/docs/ksp-overview.html) in the project-level `build.gradle.kts` file:
 
-	Projekt level `build.gradle.kts`:
+	Project level `build.gradle.kts` added already:
 
 	```kotlin
 	plugins {
@@ -1330,7 +1330,7 @@ We will use the `Room` library to store data persistently.
 
 	Then enable *KSP* in the `build.gradle.kts` file for the app module and add the dependencies:
 
-	Modul level `build.gradle.kts`:
+	Modul level `build.gradle.kts` added already:
 
 	```kotlin
 	plugins {
@@ -1453,7 +1453,7 @@ In the `hu.bme.aut.android.shoppinglist.data` *package*, create a new *package* 
 `ShoppingListDatabase.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.database
+package hu.bme.aut.android.shoppinglist.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
