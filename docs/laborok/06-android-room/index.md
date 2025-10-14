@@ -1453,7 +1453,7 @@ A `hu.bme.aut.android.shoppinglist.data` *package*-ben hozzunk létre egy új *p
 `ShoppingListDatabase.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.database
+package hu.bme.aut.android.shoppinglist.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
