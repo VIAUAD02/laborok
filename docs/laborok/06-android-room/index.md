@@ -36,16 +36,11 @@ A menüben található *Delete all* opcióval az összes lista elemet törölhet
 ### Laborfeladatok
 A labor során az alábbi feladatokat a laborvezető segítségével, illetve a jelölt feladatokat önállóan kell megvalósítani.
 
-1. A felhasználói felület létrehozása: 2 pont
+1. Új elem felvételének megvalósítása: 1 pont
 1. A *viewModel* és a *repository* kialakítása: 1 pont
 1. A perzisztens adattárolás megvalósítása: 1 pont
 1. **Önálló feladat** (törlés megvalósítása): 1 pont
-
-
-!!! warning "IMSc"
-	A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc pont szerezhető:  
-        Megerősítő dialógus: 1 pont  
-        Elemek szerkesztése: 1 pont
+1. **Önálló feladat** (megerősítő dialógus): 1 pont
 
 
 ## Előkészületek
@@ -66,48 +61,161 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 1. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
 
+### Projekt megnyitása
 
-## Projekt létrehozása
+Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből indulunk ki, amiben már megtalálhatóak az elmúlt laborokon tanult alapok. A projekt megtalálható a kicheckoutolt repositoryban *ShoppingList* néven. Nyissuk meg a projektet és a laborvezetővel nézzük át a felépítését!
 
-Első lépésként indítsuk el az Android Studio-t, majd:
+#### Függéségek
 
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
+A projektben szerepel a labor során szükséges összes függőség, ezeket a későbbiekben már nem kell újra hozzáadni, de azért az adott résznél szerepeltetni fogjuk őket.
 
-1. A projekt neve legyen `ShoppingList`, a kezdő package pedig `hu.bme.aut.android.shoppinglist`
-
-1. Nyelvnek válasszuk a *Kotlin*-t.
-
-1. A minimum API szint legyen **API24: Android 7.0**.
-
-1. A *Build configuration language* Kotlin DSL legyen.
-
-!!!danger "FILE PATH"
-	A projekt a repository-ban lévő ShoppingList könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
-
-### Függöségek frissítése
-
-Az Android Studio a projekt létrehozásakor egy elavult [*ComposeBom*](https://developer.android.com/develop/ui/compose/bom)-ot használ. Ennek a verzióját frissítsük a `libs.versions.toml` fájlban:
+`libs.versions.toml`:
 
 ```toml
 [versions]
-...
-composeBom = "2024.09.03"
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.11.0"
+composeBom = "2025.10.00"
+
+viewModel = "2.9.4"
+
+ksp = "2.2.10-2.0.2"
+room = "2.8.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+
+androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
+
+androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
 ```
 
-Ne felejtsünk el rányomni a `Sync Now` gombra!
+Projekt szintű `build.gradle.kts`:
 
-### Erőforrások
+```kts
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.compose) apply false
 
-Töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](./downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
+    alias(libs.plugins.google.devtools.ksp) apply false
+}
+```
 
-Ez után illesszük be a szöveges erőforrásokat is!
+Modul szintű `build.gradle.kts`:
+
+```kts
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.google.devtools.ksp)
+}
+
+android {
+    namespace = "hu.bme.aut.android.shoppinglist"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "hu.bme.aut.android.shoppinglist"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.material.icons.extended)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+}
+```
+
+#### Erőforrások
+
+A projektben szerepelnek az alkalmazás ikonjai, a szükséges grafikus erőforrások és a szöveges erőforrások:
 
 `strings.xml`:
 
 ```xml
 <resources>
     <string name="app_name">ShoppingList</string>
-    <string name="new_shopping_item">New Shopping Item</string>
+    <string name="add_shopping_item">Add Shopping Item</string>
     <string name="edit_shopping_item">Edit Shopping Item</string>
     <string name="label_name">Name</string>
     <string name="label_description">Description</string>
@@ -124,9 +232,9 @@ Ez után illesszük be a szöveges erőforrásokat is!
 </resources>
 ```
 
-## A modell létrehozása
+#### A modell 
 
-Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából, így először készítsük el ezt. Vegyünk fel a projektünk alapértelmezett *package*-ébe egy `data` *package*-et, majd ezen belül egy `entities` *package*-et. Itt fogjuk megvalósítani a `ShoppingItem` osztályt.
+Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából. A `data` *package*-en belül az `entities` *package*-ben van egy `ShoppingItem` adat osztályunk.
 
 `ShoppingItem.kt`:
 
@@ -152,19 +260,14 @@ A tételünk tartalmaz egy ID-t, egy nevet, egy leírást, egy kategóriát, egy
 !!!info "data class"
     Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a Java-s POJO (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus property-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.
 
-## A felhasználói felület elkészítése (2 pont)
+#### A felhasználói felület
 
-Az alkalmazásunk felhasználói felülete elég egyszerű. Egy *screen*-t tartalmaz, amin található egy `TopBar`, a lista az elemekről és egy `FloatingActionButton`. A gomb megnyomásának hatására fog megnyílni az új elem felvételére szolgáló dialógus ablak. A `ShoppingListScreen` a `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package*-be fog kerülni, az építőelemei pedig ezen belül egy `components` *package*-be. Kezdjük is ezekkel:
+Az alkalmazásunk felhasználói felülete elég egyszerű. Egy *screen*-t tartalmaz, amin található egy `TopBar`, a lista az elemekről és egy `FloatingActionButton`. A gomb megnyomásának hatására fog megnyílni az új elem felvételére szolgáló dialógus ablak. A `ShoppingListScreen` a `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist` *package*-ben található, az építőelemei pedig ezen belül egy `components` *package*-ben:
 
-### Komponensek
-
-#### TopBar megvalósítása
-
-
-Hozzuk létre a `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*-ben a `ShoppingListTopBar.kt` fájlt, majt töltsük fel az alábbi tartalommal:
+`ShoppingListTopBar.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -216,14 +319,10 @@ fun MainTopBarPreview() {
 
 A `TopAppBar` beépített *Composable* függvénynek adunk át egy nevet a *title* paraméterrel és egy akciógombot az *actions* paraméterrel. Jelen esetben egy `Delete all items` gombot fogunk hozzáadni, aminek a működését az önálló feladatrésznél kell megvalósítani.
 
-#### Lista elem létrehozása
-
-Ahhoz, hogy a bevásárló listát meg tudjuk jeleníteni, el kell készítenünk egy listaelem kinézetét.  Ezt a példányt fogja majd a LazyColumn megkapni. Szintén a `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*-ben hozzuk létre az `ItemShoppingItem.kt` fájlt, majd valósítsuk meg a *Composable*-t.
-
-`ItemShoppingItem.kt`:
+`UIShoppingItem.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -264,7 +363,7 @@ import hu.bme.aut.android.shoppinglist.R
 import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 
 @Composable
-fun ItemShoppingItem(
+fun UIShoppingItem(
     shoppingItem: ShoppingItem,
     onCheckBoxClick: (ShoppingItem) -> Unit,
     onDeleteIconClick: () -> Unit,
@@ -372,7 +471,7 @@ fun ItemShoppingItem(
 @Preview(showBackground = true)
 @Composable
 fun ItemShoppingItemPurchasedPreview() {
-    ItemShoppingItem(
+    UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description",
@@ -389,7 +488,7 @@ fun ItemShoppingItemPurchasedPreview() {
 @Preview(showBackground = true)
 @Composable
 fun ItemShoppingItemNotPurchasedPreview() {
-    ItemShoppingItem(
+    UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description description description description description",
@@ -408,9 +507,147 @@ A felület a `ShoppingItem` adatait jeleníti meg. Bal oldalon a kategóriától
 
 Látható, hogy a felület átveszi a megjelenítendő `ShoppingItem`-et, valamint három *callback* függvényt: a *CheckBox*, a törlés valamint a módosítás ikonok érintés eseményeinek lekezelésére. Ezek közül egyelőre csak a *CheckBox* van használva (a többi önálló feladat lesz), ahol a megváltozott állapotot visszaküldjük a metódussal. 
 
-#### Új elem dialógus
+Most, hogy megvagyunk a komponenseinkkel, végre összeállíthatjuk belőlük a `ShoppingListScreen`-ünket:
 
-Ahhoz, hogy össze tudjuk állítani a `ShoppingListScreen` képernyőnket, már csak az új tétel felvételére szolgáló dialógus hiányzik. Készítsük el ezt is a `hu.bme.aut.android.shoppinglist.feature.shoppinglist.components` *package*-ben.
+`ShoppingListScreen.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingListTopBar
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.UIShoppingItem
+
+
+@Composable
+fun ShoppingListScreen(modifier : Modifier = Modifier) {
+
+    val list = remember {
+        mutableStateListOf(
+            ShoppingItem(
+                id = 1,
+                name = "Alma",
+                description = "jonatán\n1 kg",
+                estimatedPrice = 500,
+                category = ShoppingItem.Category.FOOD,
+                isBought = true
+            ),
+            ShoppingItem(
+                id = 2,
+                name = "A gyűrűk ura",
+                description = "A gyűrű szövetsége",
+                estimatedPrice = 8000,
+                category = ShoppingItem.Category.BOOK,
+                isBought = false
+            )
+        )
+    }
+
+    Scaffold(
+        modifier = modifier,
+        topBar = {
+            ShoppingListTopBar()
+        },
+        floatingActionButton = {
+            LargeFloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.primary,
+                onClick = {
+                    /*TODO*/
+                }) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add new item"
+                )
+            }
+        }
+    ) { innerPadding ->
+
+        LazyColumn(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            items(list, key = { item -> item.id!! }) {
+
+                UIShoppingItem(
+                    shoppingItem = it,
+                    onCheckBoxClick = { shoppingItem ->
+                        /*TODO*/
+                    },
+                    onDeleteIconClick = {
+                        /*TODO*/
+                    },
+                    onEditIconClick = {
+                        /*TODO*/
+                    }
+                )
+                if (list.indexOf(it) < list.size - 1) {
+                    HorizontalDivider()
+                }
+            }
+        }
+    }
+
+}
+
+@Preview
+@Composable
+fun MainScreenPreview() {
+    ShoppingListScreen()
+}
+```
+
+Most már csak annyi dolgunk van, hogy a saját `ShoppingListScreen`-ünket jelenítsük meg a `MainActivity`-n:
+
+`MainActivity.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.ui.Modifier
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.ShoppingListScreen
+import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            ShoppingListTheme {
+                ShoppingListScreen(modifier = Modifier.safeDrawingPadding())
+            }
+        }
+    }
+}
+```
+
+Próbáljuk ki az alkalmazást!
+
+A listánk már megjelenik, azonban sem az egyes elemeket nem lehet módosítani, sem új elemet nem lehet felvenni.
+
+## Új elem felvétele (1 pont)
+
+### Dialógus
+
+Azt szeretnénk, ha a  `ShoppingListScreen`-en található *FloatingActionButton* megnyomásának hatására megnyílna egy dialógusablak, ahol meg tudjuk adni az új termékek adatait, majd fel tudjuk venni őket a listánkra. Készítsük el ezt a dialógust is a `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components` *package*-ben.
 
 A felületen egymás alatt található:
 
@@ -425,7 +662,7 @@ A felületen egymás alatt található:
 `ShoppingItemDialog.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist.components
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -441,9 +678,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -471,6 +708,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingItemDialog(
+    modifier : Modifier = Modifier,
     shoppingItem: ShoppingItem? = null,
     onDismissRequest: () -> Unit = {},
     onSaveClick: (ShoppingItem) -> Unit
@@ -492,15 +730,14 @@ fun ShoppingItemDialog(
     val categoryOptions = ShoppingItem.Category.entries.toList()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(Color.White)
-            .fillMaxWidth()
     ) {
         //Title of the Dialog Window
         Text(
             text =
             if (shoppingItem?.id == null)
-                stringResource(id = R.string.new_shopping_item)
+                stringResource(id = R.string.add_shopping_item)
             else
                 stringResource(id = R.string.edit_shopping_item),
             modifier = Modifier
@@ -559,7 +796,7 @@ fun ShoppingItemDialog(
 
             OutlinedTextField(
                 modifier = Modifier
-                    .menuAnchor(type = MenuAnchorType.PrimaryNotEditable)
+                    .menuAnchor(type = ExposedDropdownMenuAnchorType.PrimaryNotEditable)
                     .padding(8.dp)
                     .fillMaxWidth(),
                 value = getCategoryTextByCategory(category = category),
@@ -695,68 +932,22 @@ Mint látható, a `ShoppingItemDialog`-ban állapotként tároljuk:
 - azt, hogy a category *Dropdown* nyitva van-e: `isCategoryDropdownExpanded` és
 - azt, hogy a név mezőben van-e hiba, azaz üres-e: `isNameError`.
 
-
-
 Szeretnénk, hogy a `ShoppingItemDialog` többször is felhasználható legyen, azaz nem csak új elem felvételekor, hanem szerkesztéshor is használhassuk. Ennek érdekében paraméterként átveszünk egy *shoppingItem*-et. Ha ez null, akkor új elemet veszünk föl, ha nem, akkor szerkesztünk.
 
-### A ShoppingListScreen felület
+### Megjelenítés és frissítés
 
-Most, hogy megvagyunk a komponenseinkkel, végre összeállíthatjuk belőlük a `ShoppingListScreen`-ünket. A `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package*-ben hozzunk létre egy új fájlt, majd töltsük fel az alábbi tartalommal:
-
-`ShoppingListScreen.kt`:
+Most, hogy elkészült a dialógus felületünk, jelenítsük is meg azt! A `ShoppingItemDialog` láthatóságát egy állapotváltozóhoz fogjuk kötni a `ShoppingListScreen`-en, amit a *FloatingActionButton* megnyomásakor állítunk be:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist
-
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.window.Dialog
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ItemShoppingItem
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ShoppingItemDialog
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.components.ShoppingListTopBar
-import androidx.compose.foundation.lazy.items
-
-
 @Composable
-fun ShoppingListScreen() {
-
-        val list = mutableListOf(
-        ShoppingItem(
-            id = 1,
-            name = "Alma",
-            description = "jonatán\n1 kg",
-            estimatedPrice = 500,
-            category = ShoppingItem.Category.FOOD,
-            isBought = true
-        ),
-        ShoppingItem(
-            id = 2,
-            name = "A gyűrűk ura",
-            description = "A gyűrű szövetsége",
-            estimatedPrice = 8000,
-            category = ShoppingItem.Category.BOOK,
-            isBought = false
-        )
-    )
+fun ShoppingListScreen(modifier : Modifier = Modifier) {
 
     var isDialogOpen by remember { mutableStateOf(false) }
 
+    ...
+
     Scaffold(
+        modifier = modifier,
         topBar = {
             ShoppingListTopBar()
         },
@@ -772,30 +963,8 @@ fun ShoppingListScreen() {
                 )
             }
         }
-    ) { innerPadding ->
-
-        LazyColumn(
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            items(list, key = { item -> item.id!! }) {
-
-                ItemShoppingItem(
-                    shoppingItem = it,
-                    onCheckBoxClick = { shoppingItem ->
-                        /*TODO*/
-                    },
-                    onDeleteIconClick = {
-                        /*TODO*/
-                    },
-                    onEditIconClick = {
-                        /*TODO*/
-					}
-                )
-                if (list.indexOf(it) < list.size - 1) {
-                    HorizontalDivider()
-                }
-            }
-        }
+    ) { 
+		...
     }
 
     if (isDialogOpen) {
@@ -803,66 +972,34 @@ fun ShoppingListScreen() {
             ShoppingItemDialog(
                 onDismissRequest = { isDialogOpen = false },
                 onSaveClick = { newShoppingItem ->
-                    /*TODO*/
+                    newShoppingItem.id = Random.nextLong()
+                    list += newShoppingItem
                 }
             )
         }
     }
 }
-
-@Preview
-@Composable
-fun MainScreenPreview() {
-    ShoppingListScreen()
-}
 ```
 
-### MainActivity aktualizálása
-
-Most már csak annyi dolgunk van, hogy a saját `ShoppingListScreen`-ünket jelenítsük meg a `MainActivity`-n.
-
-`MainActivity.kt`:
+Az alkalmazásunkban most már megjelenik a dialógus ablak, tudunk is új elemet felvenni a listánkra, azonban a módosítás még mindig nem működik. Valósítsuk meg azt is, hogy a *CheckBox* megnyomásakor frissüljün a felület. Ehhez a megfelelő *callBack* függvényt kell megadnunk:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import hu.bme.aut.android.shoppinglist.feature.shoppinglist.ShoppingListScreen
-import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ShoppingListTheme {
-                ShoppingListScreen()
-            }
-        }
-    }
-}
+onCheckBoxClick = { shoppingItem ->
+    list[list.indexOf(it)] = shoppingItem
+},
 ```
 
-Próbáljuk ki az alkalmazás!
-
-A listánk és a dialógusunk már megjelenik, azonban nem, vagy nem jól reagál az interakciókra. Ezeket a következőkben javítjuk.
+Próbáljuk ki az alkalmazást!
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az egyik termék neveként**! A képet a megoldásban a repository-ba **f1.png** néven töltsd föl!
+	Készíts egy **képernyőképet**, amelyen látszik a **frissített és kibővített lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az egyik termék neveként**! A képet a megoldásban a repository-ba **f1.png** néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-!!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **új elem felvétele dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a termék neveként**! A képet a megoldásban a repository-ba **f2.png** néven töltsd föl!
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ## Az architektúra kialakítása (1 pont)
 
-Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon egy *screen composable*-ben tároljuk. Ezt a gyors kipróbálhatóság érdekében tettük, azonban most kialakítjuk a megfelelő architektúrát. Kezdetben még maradunk a memóriában tárolt listánál, azonban azok helyét architekturálisan megfelelőbben választjuk meg.
+Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon egy *screen composable*-ben tároljuk. (Ráadásul ha elforgatjuk az eszközünket az egész lista visszaáll.) Ezt a gyors kipróbálhatóság érdekében tettük, azonban most kialakítjuk a megfelelő architektúrát. Kezdetben még maradunk a memóriában tárolt listánál, azonban azok helyét architekturálisan megfelelőbben választjuk meg.
 
 ### A repository létrehozása
 
@@ -941,7 +1078,7 @@ class MemoryShoppingItemRepository : IShoppingItemRepository {
 }
 ```
 
-Az `IShoppingItemRepository`egy általános interfészt ír le, mellyel elérhetővé válnak a feladatok az alkalmazás számára, míg a `MemoryShoppingListRepository` egy memória alapú megvalósítását mutatja be. Bár itt most nem lenne szükség a suspend kulcsszó használatára, ezzel tudjuk biztosítani, hogy a későbbiekben egy adatbázis vagy hálózati TodoRepository elkészítése után könnyedén tudjuk migrálni a projektet, ezt a késleltetést imitáljuk a delay() függvény hívásával is. 
+Az `IShoppingItemRepository`egy általános interfészt ír le, mellyel elérhetővé válnak a feladatok az alkalmazás számára, míg a `MemoryShoppingListRepository` egy memória alapú megvalósítását mutatja be. Bár itt most nem lenne szükség a suspend kulcsszó használatára, ezzel tudjuk biztosítani, hogy a későbbiekben egy adatbázis vagy hálózati TodoRepository elkészítése után könnyedén tudjuk migrálni a projektet, ezt a késleltetést imitáljuk a delay() függvény hívásával is. Látható, hogy a listánkat privát módon tároljuk, és csak egy függvényen keresztül egy `Flow`-ba ágyazva tesszük elérhetővé.
 
 !!!info "Flow"
 	A *korutin*-okban a [Flow](https://developer.android.com/kotlin/flow) olyan típus, amely több értéket is képes kiadni egymás után, szemben az olyan függvényekkel, amelyek csak egyetlen értéket adnak vissza. A *Flow* segítségével tehát folyamatosan megfigyelhetünk egy adatforrást, és élő frissítéseket kaphatunk például egy adatbázisból.
@@ -956,6 +1093,7 @@ Az imént létrehoztuk a *repository*-nkat, azonban azt még semmi sem példány
 package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
+import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemRepository
 
 class ShoppingListApplication : Application() {
@@ -985,12 +1123,35 @@ Az *appilication* osztály létrehozása után állítsuk be az `AndroidManifest
 
 ### A ViewModel elkészítése
 
-Így már bármikor, bárhonnan elérhetjük a *repository*-nkat, azonban az egyáltalán nem lenne szép, ha a *screen*-ek közvetlenül érnék el a *repository*-t, ráadásul a lista tárolása ugyan úgy a *screeSn* osztályban maradna. Vezessünk be ennek az állapotnak a tárolására egy `ShoppingListViewModel`-t. A `ShoppingListScreen` mellett, a `hu.bme.aut.android.shoppinglist.feature.shoppinglist` *package*-ben hozzuk létre a *viewModel*-t:
+Így már bármikor, bárhonnan elérhetjük a *repository*-nkat, azonban az egyáltalán nem lenne szép, ha a *screen*-ek közvetlenül érnék el a *repository*-t, ráadásul a lista tárolása ugyan úgy a *screen* osztályban maradna. Vezessünk be ennek az állapotnak a tárolására egy `ShoppingListViewModel`-t. A `ShoppingListScreen` mellett, a `hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist` *package*-ben hozzuk létre a *viewModel*-t:
+
+???success "viewModel"
+	A *viewModel* keretrendszer használatához szükségünk lesz egy függőségre. Adjuk hozzá a projektünkhöz az alábbiakat:
+
+	`libs.versions.toml`:
+	
+	```toml
+	[versions]
+	viewModel = "2.9.4"
+	...
+	
+	[libraries]
+	androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
+	...
+	```
+	
+	Modul szintű `build.gradle.kts`:
+	
+	```kotlin
+	dependencies {
+		implementation(libs.androidx.lifecycle.viewmodel.compose)
+		...
+	```
 
 `ShoppingListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.feature.shoppinglist
+package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -1070,13 +1231,18 @@ Mivel a *viewModel* képes túlélni az őt létrehozó komponenst, ezért a kó
 
 ### A ViewModel használata
 
-Most már tehát lecserélhetjük a `ShoppingListScreen` implementációjának azon részét, amiben a listát inicializálja egy `ShoppingListViewModel`-en keresztüli elérésre. A `ShoppingListScreen` konstruktorában adjuk át a *ViewModel*-t, és valósítsuk meg a dialógus ablak *onSaveClick* eseménykezelőjét: 
+Most már tehát lecserélhetjük a `ShoppingListScreen` implementációjának azon részét, amiben a listát inicializálja egy `ShoppingListViewModel`-en keresztüli elérésre. Ehhez a `ShoppingListScreen` konstruktorában adjuk át a *ViewModel*-t. Ha ez megvan, cseréljük le az *onCheckBoxClick* és a dialógus ablak *onSaveClick* eseménykezelőjét: 
 
 ```kotlin
 @Composable
-fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = ShoppingListViewModel.Factory)) {
+fun ShoppingListScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ShoppingListViewModel = viewModel(factory = ShoppingListViewModel.Factory)
+) {
 
     val list = viewModel.shoppingItemList.collectAsStateWithLifecycle().value
+
+    var isDialogOpen by remember { mutableStateOf(false) }
 
     Scaffold(
         ...
@@ -1087,7 +1253,7 @@ fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = Sh
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                ItemShoppingItem(
+                UIShoppingItem(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         viewModel.update(shoppingItem)
@@ -1110,97 +1276,77 @@ fun ShoppingListScreen(viewModel: ShoppingListViewModel = viewModel(factory = Sh
 
 Figyeljük meg, hogy hogyan gyűjtjük be a *viewModel*-ből a bevásárlólistát állapotként!
 
-A *viewModel* keretrendszer használatához szükségünk lesz egy függőségre. Adjuk hozzá a projektünkhöz az alábbiakat:
-
-`libs.versions.toml`:
-
-```toml
-[versions]
-viewModel = "2.8.6"
-...
-
-[libraries]
-androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
-...
-```
-
-Modul szintű `build.gradle.kts`:
-
-```kotlin
-dependencies {
-	implementation(libs.androidx.lifecycle.viewmodel.compose)
-	...
-```
-
 Próbáljuk ki az alkalmazást!
 
 Most már, ha a *CheckBox*-okra klikkelünk, vagy új elemet adunk hozzá a listánkhoz, az rövid időn belül (1000ms késleltetés) megjelenik a felületen is. Amit valójában csinálunk ilyenkor, hogy a *screen*-en végrehajtott interakció hatására a *viewModel*-en keresztül *korutin*-okkal (háttérszálon) manipuláljuk a *repository*-ban található listánkat. Amennyiben ez a *repository* egy perzisztens tárból férne hozzá az adatokhoz, az alkalmazásunk már készen is lenne. 
 
+Azt is megfigyelhetjük, hogy a listánk most már túléli a forgatásokat is, mivel már nem a *screen* tárolja.
+
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **lista több elemmel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **ShoppingListViewModel kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f3.png** néven töltsd föl!
+	Készíts egy **képernyőképet**, amelyen látszik a **lista több elemmel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **ShoppingListViewModel kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f2.png** néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 ## Perzisztens adattárolás megvalósítása (1 pont)
+
 Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
 
 !!!info "Room"
     A  [`Room`](https://developer.android.com/training/data-storage/room/) egy kényelmes adatbazáskezelést lehetővé tevő API-t nyújt a platform szintű SQLite implementáció fölé. Megspórolható vele a korábban látott sok újra és újra megírandó kód, például a táblák adatait és létrehozó scriptjét tartalmazó *Table osztályok, a DBHelper és a PersistentDataHelper*. Ezeket, és más segédosztályokat a `Room` *annotation* alapú kódgenerálással hozza létre a *build* folyamat részeként.
 
 
-### Room hozzáadása a projekthez
-
-Először nyissuk meg a `libs.versions.toml` fájlt, és írjuk bele a következőket:
-
-`libs.versions.toml`:
-
-```toml
-[versions]
-...
-ksp = "1.9.0-1.0.13"
-room = "2.6.1"
-
-[libraries]
-...
-androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
-androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
-androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
-
-[plugins]
-...
-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
-```
-
-Ez után engedélyezzük a [Kotlin Symbol Processing API﻿](https://kotlinlang.org/docs/ksp-overview.html) használatát a projekt szintű `build.gradle.kts` fájlban:
-
-Projekt szintű `build.gradle.kts`:
-
-```kotlin
-plugins {
-    ...
-    alias(libs.plugins.google.devtools.ksp) apply false
-}
-```
-
-Majd az app modulhoz tartozó `build.gradle.kts` fájlban is kapcsoljuk be a *KSP*-t, és adjuk hozzá a függőségeket:
-
-Modul szintű `build.gradle.kts`:
-
-```kotlin
-plugins {
+???success "Room hozzáadása a projekthez"
+	Először nyissuk meg a `libs.versions.toml` fájlt, és írjuk bele a következőket:
+	
+	`libs.versions.toml`:
+	
+	```toml
+	[versions]
 	...
-    alias(libs.plugins.google.devtools.ksp)
-}
-...
-dependencies {
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
+	ksp = "2.2.10-2.0.2"
+	room = "2.8.2"
+	
+	[libraries]
 	...
-}
-```
-
-Ezután kattintsunk a jobb felső sarokban megjelenő **Sync Now** gombra.
+	androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+	androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+	androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
+	
+	[plugins]
+	...
+	google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
+	```
+	
+	Ez után engedélyezzük a [Kotlin Symbol Processing API﻿](https://kotlinlang.org/docs/ksp-overview.html) használatát a projekt szintű `build.gradle.kts` fájlban:
+	
+	Projekt szintű `build.gradle.kts`:
+	
+	```kotlin
+	plugins {
+	    ...
+	    alias(libs.plugins.google.devtools.ksp) apply false
+	}
+	```
+	
+	Majd az app modulhoz tartozó `build.gradle.kts` fájlban is kapcsoljuk be a *KSP*-t, és adjuk hozzá a függőségeket:
+	
+	Modul szintű `build.gradle.kts`:
+	
+	```kotlin
+	plugins {
+		...
+	    alias(libs.plugins.google.devtools.ksp)
+	}
+	...
+	dependencies {
+	    ksp(libs.androidx.room.compiler)
+	    implementation(libs.androidx.room.runtime)
+	    implementation(libs.androidx.room.ktx)
+		...
+	}
+	```
+	
+	Ezután kattintsunk a jobb felső sarokban megjelenő **Sync Now** gombra.
 
 ### A modell osztály elkészítése
 
@@ -1258,8 +1404,6 @@ Az osztályban létrehoztunk egy *enum*-ot is, amivel egy kategóriát akarunk k
 
 Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic` annotációval is. Erre azért van szükség, mert alapvetően, amikor a *companion object*-ek *Jvm* bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben *Category*) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a *Room* működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.
 
-!!!info "data class"
-    Kotlinban van lehetőség úgynevezett data class létrehozására. Ezt talán legkönnyebben a *Java*-s *POJO* (Plain-Old-Java-Object) osztályoknak lehet megfeleltetni. A céljuk, hogy publikus *property*-kben összefüggő adatokat tároljanak, semmi több! Ezen kívül automatikusan létrejönnek bizonyos segédfüggvények is, például egy megfelelő equals, toString és copy implementáció.
 
 ### Egy DAO osztály létrehozása
 
@@ -1329,9 +1473,9 @@ A `ShoppingListDatabase` osztály felelős a megfelelő DAO osztályok elérhet�
 
 ### A repository létrehozása
 
-Most, hogy megvan az adatbázisunk, már el tudjuk készíteni az azt elérő *repository*-nkat a `MemoryShoppingItemRepository`-hoz hasonlóan. Hozzunk létre tehát a `hu.bme.aut.android.shoppinglist.data.repository` *package*-ben egy `RoomShoppingListRepository` osztályt, ami paraméterül kapja a *DAO*-t, és megvalósítja az `IShoppingItemRepository` *interface*-t.
+Most, hogy megvan az adatbázisunk, már el tudjuk készíteni az azt elérő *repository*-nkat a `MemoryShoppingItemRepository`-hoz hasonlóan. Hozzunk létre tehát a `hu.bme.aut.android.shoppinglist.data.repository` *package*-ben egy `RoomShoppingItemRepository` osztályt, ami paraméterül kapja a *DAO*-t, és megvalósítja az `IShoppingItemRepository` *interface*-t.
 
-`RoomShoppingListRepository.kt`:
+`RoomShoppingItemRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.repository
@@ -1340,7 +1484,7 @@ import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
 import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 import kotlinx.coroutines.flow.Flow
 
-class RoomShoppingListRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
+class RoomShoppingItemRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
 
     override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll()
     override suspend fun insert(shoppingItem: ShoppingItem) = dao.insert(shoppingItem)
@@ -1361,8 +1505,8 @@ package hu.bme.aut.android.shoppinglist
 import android.app.Application
 import androidx.room.Room
 import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
-import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingListRepository
-import hu.bme.aut.android.shoppinglist.database.ShoppingListDatabase
+import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.data.database.ShoppingListDatabase
 
 class ShoppingListApplication : Application() {
 
@@ -1380,9 +1524,9 @@ class ShoppingListApplication : Application() {
             applicationContext,
             ShoppingListDatabase::class.java,
             "shoppinglist_database"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration(false).build()
 
-        repository = RoomShoppingListRepository(database.shoppingItemDao)
+        repository = RoomShoppingItemRepository(database.shoppingItemDao)
 
         //repository = MemoryShoppingItemRepository()
     }
@@ -1396,7 +1540,7 @@ Az alkalmazásunk most már képes tételek felvételére, és azok elmentésér
 Az iménti feladatrészben nem csak a perzisztens tárolást valósítottuk meg, hanem architekturálisan is jól átgondolt alkalmazást készítettünk. Ezt támasztja alá az is, hogy ahhoz, hogy az adataink ne csak a memóriában tárolódjanak, hanem adatbázisba kerüljenek, csak a *Room* adatbázishoz tartozó implementációs részeket kellett megírnunk, és a megfelelő *repository*-t inicializálni. Nem kellett változtatnunk sem a *viewModel*-en, sem a *screen*-en.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **bevásárlólista több tétellel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **`RoomShoppingListRepository` kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f4.png** néven töltsd föl! 
+	Készíts egy **képernyőképet**, amelyen látszik a **bevásárlólista több tétellel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **`RoomShoppingListRepository` kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f3.png** néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
@@ -1409,30 +1553,23 @@ Valósítsd meg a tételek törlését egyesével, az elemeken található szeme
       - A törlés *callback* megvalósítása a `ShoppingListScreen`-en
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **üres lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a törléshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f5.png** néven töltsd föl! 
+	Készíts egy **képernyőképet**, amelyen látszik az **üres lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **a törléshez tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f4.png** néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-## IMSc feladatok
-
-### Megerősítő dialógus (1 pont)
+## Önálló feladat: megerősítő dialógus (1 pont)
 
 Implementálj egy *Delete all* menüpontot és a hozzá tartozó funkciót!
 
 Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a *Delete all* menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (*OK* és *Cancel*). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
 
-!!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **megerősítő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f6.png** néven töltsd föl!
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az **megerősítő dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f5.png** néven töltsd föl!
 	
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-### Elemek szerkesztése (1 pont)
+## Bonus feladat: elemek szerkesztése
 
 Teremtsd meg a lista elemek szerkesztésének lehetőségét! 
 
 A lista elemen lévő szerkesztés gomb hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. A *Save* gomb hatására a meglévő lista elem módosuljon az adatbázisban és a nézeten is.
-
-!!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **szerkesztési dialógus** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba **f7.png** néven töltsd föl!
-
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
