@@ -1549,7 +1549,7 @@ Az iménti feladatrészben nem csak a perzisztens tárolást valósítottuk meg,
 Valósítsd meg a tételek törlését egyesével, az elemeken található szemetes ikonra kattintás hatására!
 
 ???success "Megoldás"
-      - Gomb eseménykezelőjének megvalósítása az `ItemShoppingItem`-ben
+      - Gomb eseménykezelőjének megvalósítása az `UIShoppingItem`-ben
       - A törlés *callback* megvalósítása a `ShoppingListScreen`-en
 
 !!!example "BEADANDÓ (1 pont)"
