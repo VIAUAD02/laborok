@@ -368,7 +368,7 @@ dependencies {
 }
 ```
 
-Végezetül kapcsoljuk be az alábbi plugint a build.gradle.kts fáj tetején:
+Végezetül kapcsoljuk be az alábbi plugint a build.gradle.kts fájl tetején:
 
 ```kts
 plugins {
