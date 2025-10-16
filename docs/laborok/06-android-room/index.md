@@ -470,7 +470,7 @@ fun UIShoppingItem(
 
 @Preview(showBackground = true)
 @Composable
-fun ItemShoppingItemPurchasedPreview() {
+fun UIShoppingItemPurchasedPreview() {
     UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
@@ -487,7 +487,7 @@ fun ItemShoppingItemPurchasedPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun ItemShoppingItemNotPurchasedPreview() {
+fun UIShoppingItemNotPurchasedPreview() {
     UIShoppingItem(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
@@ -1540,7 +1540,7 @@ Az alkalmazásunk most már képes tételek felvételére, és azok elmentésér
 Az iménti feladatrészben nem csak a perzisztens tárolást valósítottuk meg, hanem architekturálisan is jól átgondolt alkalmazást készítettünk. Ezt támasztja alá az is, hogy ahhoz, hogy az adataink ne csak a memóriában tárolódjanak, hanem adatbázisba kerüljenek, csak a *Room* adatbázishoz tartozó implementációs részeket kellett megírnunk, és a megfelelő *repository*-t inicializálni. Nem kellett változtatnunk sem a *viewModel*-en, sem a *screen*-en.
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **bevásárlólista több tétellel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **`RoomShoppingListRepository` kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f3.png** néven töltsd föl! 
+	Készíts egy **képernyőképet**, amelyen látszik a **bevásárlólista több tétellel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **`RoomShoppingItemRepository` kódja**, valamint a **neptun kódod egy termék neveként**! A képet a megoldásban a repository-ba **f3.png** néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
