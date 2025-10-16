@@ -1617,7 +1617,7 @@ dependencies {
 
 <span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">ItemShoppingItemPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">UIShoppingItemPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">UIShoppingItem</span><span class="p">(</span>
 <span class="w">        </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
 <span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;LongItemName&quot;</span><span class="p">,</span>
@@ -1634,7 +1634,7 @@ dependencies {
 
 <span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">ItemShoppingItemNotPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">UIShoppingItemNotPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">UIShoppingItem</span><span class="p">(</span>
 <span class="w">        </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
 <span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;LongItemName&quot;</span><span class="p">,</span>
@@ -2575,7 +2575,7 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 <p>Az iménti feladatrészben nem csak a perzisztens tárolást valósítottuk meg, hanem architekturálisan is jól átgondolt alkalmazást készítettünk. Ezt támasztja alá az is, hogy ahhoz, hogy az adataink ne csak a memóriában tárolódjanak, hanem adatbázisba kerüljenek, csak a <em>Room</em> adatbázishoz tartozó implementációs részeket kellett megírnunk, és a megfelelő <em>repository</em>-t inicializálni. Nem kellett változtatnunk sem a <em>viewModel</em>-en, sem a <em>screen</em>-en.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
-<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>bevásárlólista több tétellel</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong><code>RoomShoppingListRepository</code> kódja</strong>, valamint a <strong>neptun kódod egy termék neveként</strong>! A képet a megoldásban a repository-ba <strong>f3.png</strong> néven töltsd föl! </p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>bevásárlólista több tétellel</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong><code>RoomShoppingItemRepository</code> kódja</strong>, valamint a <strong>neptun kódod egy termék neveként</strong>! A képet a megoldásban a repository-ba <strong>f3.png</strong> néven töltsd föl! </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h2 id="onallo-feladat-torles-megvalositasa-1-pont">Önálló feladat: törlés megvalósítása (1 pont)<a class="headerlink" href="#onallo-feladat-torles-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
@@ -2613,8 +2613,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           </path>
         </svg>
       </span>
-      <span title="2025. október 15. 19:19:38">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 15. 19:19:38 CEST"><span class="timeago" datetime="2025-10-15T19:19:38+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 15. 19:19:38 CEST">2025-10-15</span>
+      <span title="2025. október 16. 14:29:35">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 16. 14:29:35 CEST"><span class="timeago" datetime="2025-10-16T14:29:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 16. 14:29:35 CEST">2025-10-16</span>
       </span>
     </span>
 
