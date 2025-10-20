@@ -12,22 +12,28 @@ Az alkalmazás városok listáját jeleníti meg egy [`LazyColumn`](https://deve
 Felhasznált technológiák: 
 
 - [`Activity`](https://developer.android.com/guide/components/activities/intro-activities)
+- [`Scaffold`](https://developer.android.com/develop/ui/compose/components/scaffold)
+- [`AppBar`](https://developer.android.com/develop/ui/compose/components/app-bars)
+- [`FloatingActionButton`](https://developer.android.com/develop/ui/compose/components/fab)
 - [`LazyColumn`](https://developer.android.com/develop/ui/compose/lists)
+- [`Dialog`](https://developer.android.com/develop/ui/compose/components/dialog)
+- [`SwipeToDismissBox`](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#SwipeToDismissBox(androidx.compose.material3.SwipeToDismissBoxState,kotlin.Function1,androidx.compose.ui.Modifier,kotlin.Boolean,kotlin.Boolean,kotlin.Boolean,kotlin.Function1))
+- [`Navigation3`](https://developer.android.com/jetpack/androidx/releases/navigation3)
+- [`ViewModel`](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- [`Repository Pattern`](https://developer.android.com/codelabs/basic-android-kotlin-compose-add-repository)
 - [`Retrofit`](https://square.github.io/retrofit/)
 - [`Moshi`](https://github.com/square/moshi)
 - [`Coil`](https://github.com/coil-kt/coil)
-- [`ViewModel`](https://developer.android.com/topic/libraries/architecture/viewmodel)
-- [`NavHost`](https://developer.android.com/develop/ui/compose/navigation)
-- [`SwipeToDismissBox`](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#SwipeToDismissBox(androidx.compose.material3.SwipeToDismissBoxState,kotlin.Function1,androidx.compose.ui.Modifier,kotlin.Boolean,kotlin.Boolean,kotlin.Boolean,kotlin.Function1))
+- [`Room`](https://developer.android.com/training/data-storage/room)
 
 
 ## Az alkalmazás specifikációja
 
 Az alkalmazás egy `Activity`-ből áll. 
 
-Az alkalmazás indulásakor megjelenő `CityListScreen` a felhasználó által felvett városok listáját jeleníti meg. A városokat balra elhúzva az adott város törlődik a listából. Új várost a nézet jobb alsó sarkában található `FloatingActionButton` megnyomásával lehet felvenni.
+Az alkalmazás indulásakor megjelenő `CityListScreen` a felhasználó által felvett városok listáját jeleníti meg. A városokat balra elhúzva az adott város törlődik a listából. Új várost a nézet jobb alsó sarkában található *FloatingActionButton* megnyomásával lehet felvenni.
 
-Egy városra való kattintás hatására a `NavGraph` segítségével egy új *Composable* képernyőt hozunk előtérbe az adott város időjárás adataival. A rövid jellemzés mellett egy akutális ikon és a  városban mért átlagos, minimum és maximum hőmérséklet, a légnyomás és a páratartalom értéke látható.
+Egy városra való kattintás hatására egy új *Composable* képernyőt hozunk előtérbe az adott város időjárás adataival. A rövid jellemzés mellett egy akutális ikon és a  városban mért átlagos, minimum és maximum hőmérséklet, a légnyomás és a páratartalom értéke látható.
 
 <p align="center">
 <img src="./assets/list.png" width="240">
@@ -40,79 +46,203 @@ Egy városra való kattintás hatására a `NavGraph` segítségével egy új *C
 
 A labor során az alábbi feladatokat a laborvezető segítségével, illetve a jelölt feladatokat önállóan kell megvalósítani.
 
-1. Város lista megvalósítása: 1 pont
-1. Időjárás nézet létrehozása és bekötése a navigációba: 2 pont
+1. MVI architektúra megvalósítása: 1 pont
+1. Időjárás nézet létrehozása : 1 pont
 1. Hálózati kommunikáció megvalósítása: 1 pont
 1. Önálló feladat: város listából törlés megvalósítása: 1 pont
+1. Önálló feladat: perzisztens mentés megvalósítása: 1 pont
 
 A labor során egy komplex időjárás alkalmazás készül el. A labor szűkös időkerete miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljünk a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél a bemutatott kódok megértése és a felhasznált libraryk használatának elsajátítása.
-
-*Elnézést kérünk  az eddigieknél nagyobb kód blokkokért, de egy ilyen, bemutató jellegű feladat kisebb méretben nem oldható meg, illetve a labor elveszítené a lényegét, ha csak egy „hello world” hálózati kommunikációs lekérést valósítanánk meg. Köszönjük a megértést.*
 
 
 ## Előkészületek
 
 A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyamatát](../../tudnivalok/github/GitHub.md).
 
-
 ### Git repository létrehozása és letöltése
 
 1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 
-2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+1. Várd meg, míg elkészül a repository, majd checkout-old ki.
 
     !!! tip ""
         Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 
-3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
-
-### Projekt létrehozása
-
-Első lépésként indítsuk el az Android Studio-t, majd:  
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.  
-2. A projekt neve legyen `WeatherInfo`, a kezdő package pedig `hu.bme.aut.android.weatherinfo`  
-3. Nyelvnek válasszuk a *Kotlin*-t.
-4. A minimum API szint legyen **API24: Android 7.0.**
-5. A *Build configuration language* Kotlin DSL legyen.
-
-!!!danger "FILE PATH"
-	A projekt a repository-ban lévő WeatherInfo könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+1. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
 
-### Függőségek felvétele
+### Projekt megnyitása
 
-Vegyük fel a szükséges könyvtárakat a `libs.versions.toml` fájlban:
+Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből indulunk ki, amiben már megtalálhatóak az elmúlt laborokon tanult alapok. A projekt megtalálható a kicheckoutolt repositoryban *WeatherInfo* néven. Nyissuk meg a projektet és a laborvezetővel nézzük át a felépítését!
+
+#### Függéségek
+
+A projektben szerepel a labor során szükséges összes függőség, ezeket a későbbiekben már nem kell újra hozzáadni, de azért az adott résznél szerepeltetni fogjuk őket.
+
+
+`libs.versions.toml`:
+
 ```toml
 [versions]
-coilCompose = "2.6.0"
-moshi = "1.15.1"
-retrofit = "2.11.0"
-navigationCompose = "2.8.2"
+agp = "8.12.3"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.11.0"
+composeBom = "2025.10.00"
+
+
+viewModel = "2.9.4"
+nav3Core = "1.0.0-alpha11"
+kotlinSerialization = "2.2.20"
+kotlinxSerializationCore = "1.9.0"
+coilCompose = "2.7.0"
+moshi = "1.15.2"
+retrofit = "3.0.0"
+ksp = "2.2.10-2.0.2"
+room = "2.8.2"
 
 [libraries]
-androidx-navigation-compose = { group = "androidx.navigation", name="navigation-compose", version.ref = "navigationCompose" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "viewModel" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 coil-compose = { group = "io.coil-kt", name="coil-compose", version.ref = "coilCompose" }
 squareup-moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
 converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
 ```
 
-Majd az *app* modulhoz tartozó `build.gradle` fájlban a `dependencies` blokkhoz adjuk hozzá az alábbiakat:
 
-```kotlin
-dependencies{
-    implementation(libs.androidx.navigation.compose)
+Projekt szintű `build.gradle.kts`:
+
+```kts
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+    alias(libs.plugins.google.devtools.ksp) apply false
+}
+```
+
+Modul szintű `build.gradle.kts`:
+
+```kts
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.google.devtools.ksp)
+
+}
+
+android {
+    namespace = "hu.bme.aut.android.weatherinfo"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "hu.bme.aut.android.weatherinfo"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.kotlinx.serialization.core)
     implementation(libs.retrofit)
     implementation(libs.squareup.moshi)
     implementation(libs.converter.moshi)
     implementation(libs.coil.compose)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
 }
 ```
-
-Ezután kattintsunk a jobb felső sarokban megjelenő **Sync now** gombra.
-
 
 !!!info "Retrofit"
     A `Retrofit` a fejlesztő által leírt egyszerű, megfelelően annotált interfészek alapján kódgenerálással állít elő HTTP hivásokat lebonyolító implementációt. Kezeli az URL-ben inline módon adott paramétereket, az URL queryket, stb. Támogatja a legnépszerűbb szerializáló/deszerializáló megoldásokat is (pl.: [`Gson`](https://github.com/google/gson), [`Moshi`](https://github.com/square/moshi), [`Simple XML`](https://sourceforge.net/projects/simple/), stb.), amikkel Java/Kotlin objektumok, és JSON vagy XML formátumú adatok közötti kétirányú átalakítás valósítható meg. A laboron ezek közül a `Moshi`-t fogjuk használni a JSON-ban érkező időjárás adatok konvertálására.
@@ -120,68 +250,39 @@ Ezután kattintsunk a jobb felső sarokban megjelenő **Sync now** gombra.
 !!!info "Coil"
     A `Coil`  egy hatékony képbetöltést és cache-elést megvalósító library Androidra. Egyszerű *interface*-e és hatékonysága miatt használjuk.
 
-### Engedélyek felvétele
-Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az `AndroidManifest.xml` állományban az *Internet permission*-t az `application` tagen *kívülre*:
 
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
+#### Erőforrások
 
-!!!info "Engedélyek"
-    Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A *normal* csoportba tartozó engedélyeket elég felvenni az `AndroidManifest.xml` fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A *dangerous* csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a [developer.android.com](https://developer.android.com/guide/topics/permissions/overview) oldalon lehet tájékozódni.
+A projektben szerepelnek az alkalmazás ikonjai, a szükséges grafikus erőforrások és a szöveges erőforrások:
 
-
-### Erőforrások hozzáadása
-
-Töltsük le az alkalmazásban használt képeket tartalmazó [tömörített fájlt](./downloads/res.zip), majd helyezzük el a tartalmát a projektünk *res* mappájába.
-
-Vegyük fel az alábbi szöveges erőforrásokat a `res/values/strings.xml`-be:
+`strings.xml`:
 
 ```xml
 <resources>
     <string name="app_name">WeatherInfo</string>
-    <string name="new_city">New city</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="weather_in">Weather in %1$s</string>
+    <string name="button_label_ok">OK</string>
+    <string name="button_label_cancel">Cancel</string>
     <string name="some_error_message">Something went wrong.</string>
+    <string name="label_add_city">Add city</string>
+    <string name="label_weather_in">Weather in %1$s</string>
     <string name="label_temperature">Temperature</string>
     <string name="label_min_temperature">Min. temperature</string>
     <string name="label_max_temperature">Max. temperature</string>
     <string name="label_pressure">Pressure</string>
     <string name="label_humidity">Humidity</string>
-    <string name="new_city_hint">City</string>
+    <string name="label_city">City</string>
 </resources>
+
 ```
 
-### OpenWeatherMap API kulcs
+#### A modell 
 
-Regisztráljunk saját felhasználót az [OpenWeatherMap](https://openweathermap.org/) oldalon, és hozzunk létre egy API kulcsot, aminek a segítségével használhatjuk majd a szolgáltatást az alkalmazásunkban! 
-
-1. Kattintsunk a *Sign in* majd a *Create an account* gombra.
-2. Töltsük ki a regisztrációs formot
-3. A *Company* mező értéke legyen "BME", a *Purpose* értéke legyen "Education/Science"
-4. Sikeres regisztráció után az *API keys* tabon található az alapértelmezettként létrehozott API kulcs.
-
-A kapott API kulcsra később szükségünk lesz az időjárás adatokat lekérő API hívásnál.
-
-## Városlista megvalósítása (1 pont)
-
-Valósítsuk meg az egy `LazyColumn`-ból álló, városok listáját megjelenítő `CityListScreen`-t!
-
-A város nevére kattintva jelenik majd meg az időjárás nézet (*WeatherScreen*), ahol az időjárás információk letöltése fog történni. Új város felvételére egy *FloatingActionButton* fog szolgálni.
-
-### Az architektúra kialakítása
-
-Az adatok forrása az előző laboron látottakhoz hasonlóan egy *repository* lesz. Innen fogjuk visszakapni a (jelenleg csak a memóriában tárolt) városainkat.
-
-#### A modell osztály
-Vegyünk fel a fő *package*-ünkbe egy `data`, majd ezen belül egy `local`, majd ezen belül egy `model` *package*-et. Ide fog kerülni a városainkat reprezentáló osztály, ami jelen esetben csupán egy *id*-val és egy *névvel* rendelkezik.
+Az alkalmazásunk a fő képernyőjén egy város listát fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind az adattárolás szempontjából, így a `domain` *package*-en belül a `model` *package*-be kerül.
 
 `City.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.data.local.model
+package hu.bme.aut.android.weatherinfo.domain.model
 
 class City(
     var id: Int,
@@ -189,21 +290,24 @@ class City(
 )
 ```
 
+A tételünk tartalmaz egy ID-t, valamint egy nevet a városnak.
+
+
 #### A repository
 
-Ez után már elkészíthetjük a *repository*-jainkat a már látott módon a `hu.bme.aut.android.weatherinfo.data.local.repository` *package*-ben.
+Ugyan jelenleg csak memóriában tároljuk a városlistánkat, de a későbbi bővíthetőség érdekében megtartjuk a korábban tanult *repository* mintát a `data.local.repository` *package*-ben:
 
 `ICityRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.weatherinfo.data.local.repository
 
-import hu.bme.aut.android.weatherinfo.data.local.model.City
+import hu.bme.aut.android.weatherinfo.domain.model.City
 import kotlinx.coroutines.flow.Flow
 
 interface ICityRepository {
 
-    fun getAllCities(): Flow<List<City>>
+    suspend fun getAllCities(): Flow<List<City>>
     suspend fun addCityByName(cityName: String)
 }
 ```
@@ -214,7 +318,7 @@ interface ICityRepository {
 package hu.bme.aut.android.weatherinfo.data.local.repository
 
 import androidx.compose.runtime.mutableStateListOf
-import hu.bme.aut.android.weatherinfo.data.local.model.City
+import hu.bme.aut.android.weatherinfo.domain.model.City
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -227,7 +331,7 @@ class MemoryCityRepository : ICityRepository {
         City(id = 2, "Berlin")
     )
 
-    override fun getAllCities(): Flow<List<City>> = flow {
+    override suspend fun getAllCities(): Flow<List<City>> = flow {
         emit(cities)
     }
 
@@ -237,6 +341,8 @@ class MemoryCityRepository : ICityRepository {
 
 }
 ```
+
+Látható, hogy jelenleg egy hármas listával dolgozunk, és minden újabb város inkrementálisan kap ID-t.
 
 A *repository* elkészítése után példányosítsuk is azt az *application* osztályunkban a `hu.bme.aut.android.weatherinfo` *package*-ben.
 
@@ -275,104 +381,159 @@ Majd pedig az `AndroidManifest.xml`-ben állítsuk be az *application* osztályu
 ...
 ```
 
-#### A ViewModel
 
-Miután a *repository*-val megvagyunk, folytathatjuk a következő réteggel, a *viewmodel*-lel. A városlistához tartozó *viewmodel*-t és *screen*-t a `hu.bme.aut.android.weatherinfo.feature.citylist` *package*-ben fogjuk elkészíteni. Hozzunk tehát létre itt egy új *package*-et az állapotnak `state` néven, majd helyezzük is el benne a `CityListState`-et.
+#### A felhasználói felület
 
-`CityListState.kt`:
+A városok megjelenítése mellett lehetővé kell tennünk új város felvételét is. Ezt egy egyszerű általános dialógussal fogjuk megtenni, amibe a felhasználó egy szöveget írhat be. Ez, mivel nem felület specifikus elem, a `ui.common` *package*-be kerül:
 
-```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist.state
-
-import hu.bme.aut.android.weatherinfo.data.local.model.City
-
-
-sealed class CityListState {
-    data object Loading : CityListState()
-    data class Error(val error: Throwable) : CityListState()
-    data class Result(val cityList: List<City>) : CityListState()
-}
-```
-
-Ezek után a `citylist` *package*-be jöhet a *viewmodel*:
-
-`CityListViewModel.kt`:
+`StringInputDialog.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist
+package hu.bme.aut.android.weatherinfo.ui.common
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
-import hu.bme.aut.android.weatherinfo.data.local.model.City
-import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
-import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationCity
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import hu.bme.aut.android.weatherinfo.R
 
-class CityListViewModel(
-    private val cityRepository: ICityRepository
-) : ViewModel() {
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StringInputDialog(
+    modifier: Modifier = Modifier,
+    title: String,
+    label: String,
+    onDismiss: () -> Unit,
+    onConfirm: (String) -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(shape = RoundedCornerShape(16.dp)) {
+            Column(
 
-    private val _state = MutableStateFlow<CityListState>(CityListState.Loading)
-    val state = _state.asStateFlow()
+                modifier = modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
 
-    init {
-        getAllCities()
-    }
+                var input by remember { mutableStateOf("") }
+                var isInputError by remember { mutableStateOf(input.isEmpty()) }
 
-    private fun getAllCities() {
-        viewModelScope.launch {
-            _state.value = CityListState.Loading
-            try {
-                cityRepository.getAllCities().collectLatest{
-                    _state.tryEmit(CityListState.Result(it))
-                }
-            } catch (e: Exception) {
-                _state.value = CityListState.Error(e)
-            }
-        }
-    }
-
-    fun addCity(city: String) {
-        viewModelScope.launch {
-            try {
-                cityRepository.addCityByName(city)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                CityListViewModel(
-                    cityRepository = WeatherInfoApplication.cityRepository
+                Icon(
+                    imageVector = Icons.Default.LocationCity,
+                    contentDescription = null
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    shape = RoundedCornerShape(8.dp),
+                    value = input,
+                    onValueChange = {
+                        input = it
+                        isInputError = it.isEmpty()
+                    },
+                    maxLines = 1,
+                    isError = isInputError,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    label = { Text(text = label) }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    OutlinedButton(
+                        onClick = onDismiss,
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = modifier
+                            .weight(1f)
+                            .padding(8.dp)
+                    ) {
+                        Text(stringResource(id = R.string.button_label_cancel))
+                    }
+                    Button(
+                        onClick = {
+                            if (!isInputError) {
+                                onConfirm(input)
+                                onDismiss()
+                            }
+                        },
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = modifier
+                            .weight(1f)
+                            .padding(8.dp)
+                    ) {
+                        Text(stringResource(id = R.string.button_label_ok))
+                    }
+                }
             }
         }
     }
 }
+
+@Composable
+@Preview
+fun StringInputDialogPreview() {
+    StringInputDialog(
+        title = "Add City",
+        label = "City name",
+        onDismiss = {},
+        onConfirm = {}
+    )
+}
 ```
 
-### A városlista képernyő megvalósítása
+Ennek a függvénynek két lambda paramétere van: az `onDismiss` fog felelni azért hogy a dialógus ablakunkat el tudjuk tüntetni, az `onConfirm` pedig az új város hozzáadását teszi lehetővé. Ezeket a lambda paramétereket továbbadjuk paraméterként a többi függvénynek a következő képpen:
 
-Immáron a város adataink készen állnak arra, hogy megjelenítsük azokat a felületen. A `CityListScreen` elkészítése előtt azonban először az azt alkotó komponenseket készítsük el.
+- `onDismiss` - Ezt a paramétert mind a két gomb meg kell hogy kapja, ugyanis ha hozzáadtunk egy új várost azt szeretnénk hogy eltűnjön az ablak, illetve ha meggondolnánk magunkat és nem szeretnénk új várost felvenni akkor is el kell tüntetni az ablakot.
+- `onConfirm` - Ezt csak a pozitív gombra fogjuk rátenni, egy *string* paraméterrel, ami pedig a beviteli mező szerint lesz változtatható.
 
-#### A komponensek elkészítése
-
-A városainkat egy *kártyán* fogjuk megjeleníteni, aminek van egy ikonja, ami egyelőre csak egy *placeholder*, egy felirata, valamint egy `SwipeToDismissBox` segítségével megvalósítja azt, hogy ha balra húzzuk, akkor törlődik. Készítsük el ezt a komponenst a `hu.bme.aut.android.weatherinfo.feature.citylist.components` *package*-ben.
+Az alkalmazásunk felhasználói felülete jelenleg elég egyszerű. Egy *screen*-t tartalmaz, amin található egy `TopBar`, a lista az elemekről és egy `FloatingActionButton`. A gomb megnyomásának hatására megnyílik az új elem felvételére szolgáló `StringInputDialog` dialógus ablak. A `CityListScreen` és a hozzá tartozó a  `CityListViewModel` a `hu.bme.aut.android.weatherinfo.ui.screen.citylist` *package*-ben található, az építőelemei pedig ezen belül egy `components` *package*-ben:
 
 `CityCard.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist.components
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -412,70 +573,31 @@ fun CityCard(
     onCityClick: (String) -> Unit,
     onDelete: (String) -> Unit
 ) {
-    val dismissState = rememberSwipeToDismissBoxState(confirmValueChange = {
-        if (it == SwipeToDismissBoxValue.EndToStart) {
-            onDelete(city)
-        }
-        return@rememberSwipeToDismissBoxState true
-    },
-        // positional threshold of 25%
-        positionalThreshold = { it * .25f }
-    )
-    OutlinedCard(
-        modifier = Modifier
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        SwipeToDismissBox(
-            enableDismissFromStartToEnd = false,
-            state = dismissState,
-            backgroundContent = {
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            when (dismissState.dismissDirection) {
-                                SwipeToDismissBoxValue.EndToStart -> Color.Red
-                                else -> MaterialTheme.colorScheme.background
-                            }
-                        )
-                        .padding(12.dp, 8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete"
-                    )
-                }
-            }
-        ) {
-            ListItem(
-                colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                headlineContent = {
-                    Text(
-                        text = city,
-                        fontSize = 24.sp
-                    )
 
-                },
-                leadingContent = {
-                    Icon(
-                        modifier = Modifier
-                            .size(64.dp),
-                        painter = painterResource(id = R.drawable.ic_placeholder),
-                        contentDescription = ""
-                    )
-                },
-                modifier = Modifier.clickable(onClick = {
-                    onCityClick(
-                        city
-                    )
-                }
-                )
+    ListItem(
+        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        headlineContent = {
+            Text(
+                text = city,
+                fontSize = 24.sp
+            )
+
+        },
+        leadingContent = {
+            Icon(
+                modifier = Modifier
+                    .size(64.dp),
+                painter = painterResource(id = R.drawable.ic_placeholder),
+                contentDescription = ""
+            )
+        },
+        modifier = Modifier.clickable(onClick = {
+            onCityClick(
+                city
             )
         }
-    }
+        )
+    )
 }
 
 @Composable
@@ -485,147 +607,75 @@ fun CityCardPreview() {
 }
 ```
 
-A megjelenítéshez most nem készítettünk saját komplex elrendezést, inkább a beépített `ListItem` *composable*-t használjuk. A nekünk kellő funkcionalitást, hogy kiírunk egy szöveget, és felhelyezünk egy képet, könnyen megtehetjük a *headlineContent* és a *leadingContent* *property*-kkel.
+Itt látható, hogy a város nevén kívül átveszünk két eseménykezelőt: egyet a városra kattintáshoz, egyet pedig a törléshez. A megjelenítéshez most nem készítettünk saját komplex elrendezést, inkább a beépített `ListItem` *composable*-t használjuk. A nekünk kellő funkcionalitást, hogy kiírunk egy szöveget, és felhelyezünk egy képet, könnyen megtehetjük a *headlineContent* és a *leadingContent* *property*-kkel.
 
-Figyeljük meg, hogy a `SwipeToDismissBox`-nál hogyan tiltjuk le a balra húzást, és hogyan állítjuk be az állapotát!
+Most, hogy megvagyunk a komponenseinkkel, jöhet a `CityListViewModel`:
 
-A város lista kiírása után már csak annyi dolgunk van, hogy lehetővé tegyük új város felvételét is. Ezt egy egyszerű általános dialógussal fogjuk megtenni, amibe a felhasználó egy szöveget írhat be.
-
-`StringInputDialog.kt`:
+`CityListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist.components
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
-import hu.bme.aut.android.weatherinfo.R
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
+import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
+import hu.bme.aut.android.weatherinfo.domain.model.City
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-@Composable
-fun StringInputDialog(
-    modifier: Modifier = Modifier,
-    title: String,
-    label: String,
-    onDismiss: () -> Unit,
-    onConfirm: (String) -> Unit
-) {
-    Dialog(onDismissRequest = onDismiss) {
-        Card(shape = RoundedCornerShape(16.dp)) {
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.background)
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = title,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
+class CityListViewModel(
+    private val cityRepository: ICityRepository
+) : ViewModel() {
+
+    private val _list = MutableStateFlow<List<City>>(listOf())
+    val cityList = _list.asStateFlow()
+
+    init {
+        getAllCities()
+    }
+
+    private fun getAllCities() {
+        viewModelScope.launch {
+            cityRepository.getAllCities().collectLatest {
+                _list.tryEmit(it)
+            }
+        }
+    }
+
+    fun addCity(city: String) {
+        viewModelScope.launch {
+            try {
+                cityRepository.addCityByName(city)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    companion object {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                CityListViewModel(
+                    cityRepository = WeatherInfoApplication.cityRepository
                 )
-                Spacer(modifier = Modifier.height(16.dp))
-                var input by remember { mutableStateOf("") }
-                var isInputError by remember { mutableStateOf(input.isEmpty()) }
-                OutlinedTextField(
-                    shape = RoundedCornerShape(8.dp),
-                    value = input,
-                    onValueChange = {
-                        input = it
-                        isInputError = it.isEmpty()
-                    },
-                    maxLines = 1,
-                    isError = isInputError,
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                    label = { Text(text = label) }
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    OutlinedButton(
-                        onClick = onDismiss,
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = modifier
-                            .weight(1f)
-                            .padding(8.dp)
-                    ) {
-                        Text(stringResource(id = R.string.cancel))
-                    }
-                    Button(
-                        onClick = {
-                            if (!isInputError) {
-                                onConfirm(input)
-                                onDismiss()
-                            }
-                        },
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = modifier
-                            .weight(1f)
-                            .padding(8.dp)
-                    ) {
-                        Text(stringResource(id = R.string.ok))
-                    }
-                }
             }
         }
     }
 }
-
-@Composable
-@Preview
-fun StringInputDialogPreview() {
-    StringInputDialog(
-        title = "New City",
-        label = "City name",
-        onDismiss = {},
-        onConfirm = {}
-    )
-}
 ```
 
-Ennek a függvénynek két lambda paramétere lesz, `onDismiss` ez fog felelni azért hogy a dialógus ablakunkat el tudjuk tüntetni, illetve az `onConfirm`, ami pedig az új város hozzáadását teszi lehetővé. Ezeket a lambda paramétereket továbbadjuk paraméterként a többi függvénynek a következő képpen.
-
-- `onDismiss` - Ezt a paramétert mind a két gomb meg kell hogy kapja, ugyanis ha hozzáadtunk egy új várost azt szeretnénk hogy eltűnjön az ablak, illetve ha meggondolnánk magunkat és nem szeretnénk új várost felvenni akkor is el kell tüntetni az ablakot.
-- `onConfirm` - Ezt csak a pozitív gombra fogjuk rátenni, egy *string* paraméterrel, ami pedig a beviteli mező szerint lesz változtatható.
-
-
-#### A CityListScreen elkészítése
-
-Miután elkészültönk a *viewmodel*-lel és a komponensekkel is, nincs más hátra, minthogy összerakjuk a `CityListScreen`-t a `hu.bme.aut.android.weatherinfo.feature.citylist` *package*-ben.
+Ezek után pedig a már összeállíthatjuk a `CityListScreen`-t:
 
 `CityListScreen.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -634,7 +684,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFloatingActionButton
@@ -655,22 +704,23 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import hu.bme.aut.android.weatherinfo.R
-import hu.bme.aut.android.weatherinfo.feature.citylist.components.CityCard
-import hu.bme.aut.android.weatherinfo.feature.citylist.components.StringInputDialog
-import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
+import hu.bme.aut.android.weatherinfo.ui.common.StringInputDialog
+import hu.bme.aut.android.weatherinfo.ui.screen.citylist.components.CityCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CityListScreen(
+    modifier: Modifier = Modifier,
     onCityClick: (String) -> Unit,
     viewModel: CityListViewModel = viewModel(factory = CityListViewModel.Factory)
 ) {
 
-    val state = viewModel.state.collectAsStateWithLifecycle().value
+    val list = viewModel.cityList.collectAsStateWithLifecycle().value
 
-    var isNewCityDialogOpen by remember { mutableStateOf(false) }
+    var isAddCityDialogOpen by remember { mutableStateOf(false) }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(id = R.string.app_name)) },
@@ -683,7 +733,7 @@ fun CityListScreen(
         floatingActionButton = {
             LargeFloatingActionButton(
                 onClick = {
-                    isNewCityDialogOpen = true
+                    isAddCityDialogOpen = true
                 },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
@@ -694,15 +744,275 @@ fun CityListScreen(
             }
         }
     ) { innerPadding ->
+        LazyColumn(
+            modifier = modifier
+                .padding(innerPadding)
+                .padding(8.dp)
+        ) {
+            items(items = list, key = { item -> item.id }) { city ->
+                CityCard(
+                    city = city.name,
+                    onCityClick = onCityClick,
+                    onDelete = { /*TODO remove city*/ }
+                )
+                if (list.size - 1 > list.indexOf(city)) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
+        }
+
+
+        if (isAddCityDialogOpen) {
+
+            StringInputDialog(
+                onDismiss = { isAddCityDialogOpen = false },
+                onConfirm = { cityList ->
+                    viewModel.addCity(cityList)
+                    isAddCityDialogOpen = false
+                },
+                title = stringResource(id = R.string.label_add_city),
+                label = stringResource(id = R.string.label_city)
+            )
+        }
+    }
+}
+
+@Composable
+@Preview
+fun CityListScreenPreview() {
+    CityListScreen(onCityClick = {})
+}
+```
+
+#### Navigáció
+
+Ugyan most még csak egy képernyőnk van, de a projektben már elő van készítve a navigáció a korábbi laborokon tanultak szerint:
+
+`Screen.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.ui.navigation
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+sealed interface Screen : NavKey {
+    @Serializable
+    data object CityListScreenDestination : Screen
+}
+```
+
+`AppNavigation.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.ui.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.weatherinfo.ui.screen.citylist.CityListScreen
+
+@Composable
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = rememberNavBackStack(Screen.CityListScreenDestination)
+
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
+
+            entry<Screen.CityListScreenDestination> {
+                CityListScreen(
+                    modifier = modifier,
+                    onCityClick = {}
+                )
+            }
+
+
+        }
+    )
+}
+```
+
+Most már csak annyi dolgunk van, hogy az `AppNavigation`-t megjelenítsük a `MainActivity`-n:
+
+`MainActivity.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import hu.bme.aut.android.weatherinfo.ui.navigation.AppNavigation
+import hu.bme.aut.android.weatherinfo.ui.theme.WeatherInfoTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            WeatherInfoTheme {
+                AppNavigation(modifier = Modifier.safeDrawingPadding())
+            }
+        }
+    }
+}
+```
+
+Próbáljuk ki az alkalmazást!
+
+A listánk már megjelenik, és akár bővíteni is tudjuk.
+
+
+### Engedélyek felvétele
+Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az `AndroidManifest.xml` állományban az *Internet permission*-t az `application` tagen *kívülre*:
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+
+!!!info "Engedélyek"
+    Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A *normal* csoportba tartozó engedélyeket elég felvenni az `AndroidManifest.xml` fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A *dangerous* csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a [developer.android.com](https://developer.android.com/guide/topics/permissions/overview) oldalon lehet tájékozódni.
+
+
+### OpenWeatherMap API kulcs
+
+Regisztráljunk saját felhasználót az [OpenWeatherMap](https://openweathermap.org/) oldalon, és hozzunk létre egy API kulcsot, aminek a segítségével használhatjuk majd a szolgáltatást az alkalmazásunkban! 
+
+1. Kattintsunk a *Sign in* majd a *Create an account* gombra.
+1. Töltsük ki a regisztrációs formot
+1. A *Company* mező értéke legyen "BME", a *Purpose* értéke legyen "Education/Science"
+1. Sikeres regisztráció után az *API keys* tabon található az alapértelmezettként létrehozott API kulcs.
+
+A kapott API kulcsra később szükségünk lesz az időjárás adatokat lekérő API hívásnál.
+
+
+## MVI architektúra (1 pont)
+
+Az eddigi laborokon (és a jelen projektben is) a UI rétegben az *MVVM* architektúrát alkalmaztuk. Vagyis egy *ViewModel* tartalmazta a megjelenítendő adatainkat, listánkat. Most azonban, mivel az adataink távoli forrásból fognak jönni, és abban sem lehetünk biztosak, hogy rendben megérkeznek, érdemes lehet az adatok és a felület állapotait külön kezelni. Ezért át fogunk térni az *MVI* mintára. Itt a felület állapotát egy külön osztályban, a `CityListScreenState`-ben fogjuk tárolni, és a releváns adatokat ebből tudja majd kinyerni a felület.
+
+### Város lista állapot
+
+
+#### A ViewModel
+
+Hozzunk tehát létre egy új *package*-et `state` néven a `hu.bme.aut.android.weatherinfo.ui.screen.citylist`-en belül, majd helyezzük is el benne a `CityListScreenState`-et. Ezt is a már ismert *sealed class*-ként fogjuk megvalósítani:
+
+`CityListScreenState.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist.state
+
+import hu.bme.aut.android.weatherinfo.domain.model.City
+
+
+sealed class CityListScreenState {
+    data object Loading : CityListScreenState()
+    data class Error(val error: Throwable) : CityListScreenState()
+    data class Result(val cityList: List<City>) : CityListScreenState()
+}
+```
+
+Itt látható, hogy három különböző lehetséges állapotra számítunk:
+
+- *Loading*: az adatok még töltés alatt.
+- *Error*: hiba történt az adatok betöltésekor
+- *Result*: megvan az eredmény, a tartalmazott listából kiolvasható.
+
+Ezek után a `CityListViewModel` a következőképpen alakul át:
+
+`CityListViewModel.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.feature.citylist
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
+import hu.bme.aut.android.weatherinfo.data.local.model.City
+import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
+import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
+class CityListViewModel(
+    private val cityRepository: ICityRepository
+) : ViewModel() {
+
+    private val _state = MutableStateFlow<CityListScreenState>(CityListScreenState.Loading)
+    val state = _state.asStateFlow()
+
+    init {
+        getAllCities()
+    }
+
+    private fun getAllCities() {
+        viewModelScope.launch {
+            _state.value = CityListScreenState.Loading
+            try {
+                cityRepository.getAllCities().collectLatest {
+                    _state.tryEmit(CityListScreenState.Result(it))
+                }
+            } catch (e: Exception) {
+                _state.value = CityListScreenState.Error(e)
+            }
+
+
+        }
+    }
+
+	...
+}
+```
+
+Itt tehát már nem a város listát, hanem a `CityListScreenState`-et tároljuk állapotként, és ezt tesszük elérhetővé a `CityListScreen` számára. Az adatok betöltésénél pedig először *Loading*-ra állítjuk az állapotot, majd az eredménytől függően vagy *Result* vagy *Error* állapotba haladunk tovább.
+
+#### Screen
+
+Ezek után a `CityListScreen` így alakul:
+
+```kotlin
+fun CityListScreen(
+    modifier: Modifier = Modifier,
+    onCityClick: (String) -> Unit,
+    viewModel: CityListViewModel = viewModel(factory = CityListViewModel.Factory)
+) {
+
+    val state = viewModel.state.collectAsStateWithLifecycle().value
+
+    var isAddCityDialogOpen by remember { mutableStateOf(false) }
+
+    Scaffold(
+        ...
+    ) { innerPadding ->
         when (state) {
-            is CityListState.Loading -> CircularProgressIndicator()
-            is CityListState.Error -> {
+            is CityListScreenState.Loading -> CircularProgressIndicator()
+            is CityListScreenState.Error -> {
                 Text(text = state.error.toString())
             }
 
-            is CityListState.Result -> {
+            is CityListScreenState.Result -> {
                 LazyColumn(
-                    modifier = Modifier
+                    modifier = modifier
                         .padding(innerPadding)
                         .padding(8.dp)
                 ) {
@@ -720,120 +1030,82 @@ fun CityListScreen(
             }
         }
 
-
-        if (isNewCityDialogOpen) {
-
-            StringInputDialog(
-                onDismiss = { isNewCityDialogOpen = false },
-                onConfirm = { cityList ->
-                    viewModel.addCity(cityList)
-                    isNewCityDialogOpen = false
-                },
-                title = stringResource(id = R.string.new_city),
-                label = stringResource(id = R.string.new_city_hint)
-            )
-        }
-    }
-}
-
-@Composable
-@Preview
-fun CityListScreenPreview() {
-    CityListScreen(onCityClick = {})
+		...
+	}
 }
 ```
 
-### A navigáció elkészítése
+Figyeljük meg, hogy a felületen hogyan kezeljük le az egyes állapotokat!
 
-A szokásoknak megfelelően, a navigációhoz `NavGraph`-ot fogunk használni. Készítsük tehát el a `hu.bme.aut.android.weatherinfo.navigation` *package*-ben a szükséges osztályokat.
+### Események
 
-`Screen.kt`:
+Az *MVI* architektúra másik sarokpontja, az állapot tárolása mellett, az, hogy a *Screen* -ről a *ViewModel* felé nem egyszerű függvényhívások, hanem interakciók/események érkeznek. Ezt a mostani felületen (a teljesség igénye nélkül) az új város hozzáadásánál és az egyes városok törlésénél fogjuk bevezetni. Vegyük fel először a hozzáadás eseményt egy külön osztályba a `hu.bme.aut.android.weatherinfo.ui.screen.citylist.event` *package*-be:
+
+`CityListScreenEvent.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.navigation
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist.event
 
-sealed class Screen(val route: String) {
-    object CityListScreen : Screen(route = "city_list")
+sealed class CityListScreenEvent {
+    data class CityCreated(val city: String) : CityListScreenEvent()
 }
 ```
 
-`NavGraph.kt`:
+Látható, hogy az eseménnyel a várost is átadjuk paraméterként.
+
+Ezek után az események lekezelését a `CityListViewModel`-ben végezzük el:
+
+`CityListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.navigation
+class CityListViewModel(
+    private val cityRepository: ICityRepository
+) : ViewModel() {
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import hu.bme.aut.android.weatherinfo.feature.citylist.CityListScreen
+    ...
 
-@Composable
-fun NavGraph(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.CityListScreen.route
-) {
-
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-        modifier = modifier
-    ) {
-
-        composable(Screen.CityListScreen.route) {
-            CityListScreen(
-                onCityClick = { /*TODO navigation*/ }
-            )
+    fun onEvent(event: CityListScreenEvent) {
+        when (event) {
+            is CityListScreenEvent.CityCreated ->
+                addCity(event.city)
         }
     }
+
+	...
 }
 ```
 
-Végül tegyük fel a `MainActivity`-re a `NavGraph`-unkat.
+Ezek után a `CityListViewModel` `addCity` függvényét priváttá is tehetjük.
 
-`MainActivity.kt`:
+Így természetesen meg kell változtatnunk a `CityListScreen` beli hívást is:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import hu.bme.aut.android.weatherinfo.navigation.NavGraph
-import hu.bme.aut.android.weatherinfo.ui.theme.WeatherInfoTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            WeatherInfoTheme {
-                NavGraph()
-            }
-        }
-    }
-}
+StringInputDialog(
+    onDismiss = { isAddCityDialogOpen = false },
+    onConfirm = { city ->
+        viewModel.onEvent(CityListScreenEvent.CityCreated(city))
+        isAddCityDialogOpen = false
+    },
+    title = stringResource(id = R.string.label_add_city),
+    label = stringResource(id = R.string.label_city)
+)
 ```
 
-Ezen a ponton már megjelenik a város lista, és fel is tudunk venni bele új elemet.
+Láthatjuk, hogy ezzel a lépéssel architekturálisan még jobban szétválasztottuk a *Screen*-t és a *ViewModel*-t.
 
 Próbáljuk ki az alkalmazást!
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **városnevek listája egy újonnan hozzáadott várossal amelynek a neve a NEPTUN kódod** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **NewCityDialog** kódja, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f1.png néven töltsd föl!
+	Készíts egy **képernyőképet**, amelyen látszik a **városnevek listája egy újonnan hozzáadott várossal amelynek a neve a NEPTUN kódod** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **CityListViewModel** kódja, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f1.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-## Az időjárás nézet létrehozása és bekötése a navigációba (2 pont)
+
+## Az időjárás nézet (1 pont)
 
 ### Az architektúra kialakítása
 
-Az adataink áramlása hasonló lesz a már korábban látottakhoz, (*repository* -> *viewmodel* -> *screen*) szóval készítsük is el ezeket.
+Az adataink áramlása hasonló lesz a már korábban látottakhoz, (*repository* -> *viewmodel(state)* -> *screen*) szóval készítsük is el ezeket.
 
 #### Modell osztályok
 
@@ -898,7 +1170,7 @@ Keressük meg az Android Studio beállításai között a *Plugins*-t, ott pedig
 <img src="./assets/plugin.png" width="720">
 </p>
 
-Ha ez megvan, hozzuk létra a modell osztályok *package*-ét a `hu.bme.aut.android.weatherinfo.data.network.model` helye. Ez után nyomjunk a *package*-re jobb klikket, majd *New*-> *Kotlin data class File from JSON*.
+Ha ez megvan, hozzuk létre a modell osztályok *package*-ét a `hu.bme.aut.android.weatherinfo.data.network.model` helye. Ez után nyomjunk a *package*-re jobb klikket, majd *New*-> *Kotlin data class File from JSON*.
 
 <p align="center">
 <img src="./assets/jsontokotlin.png" width="720">
@@ -910,7 +1182,7 @@ A plugin létre is hozta nekünk az összes szükséges Kotlin osztált a konver
 
 ???info "Modell osztályok"
 
-	`Cloud.kt`:
+	`Clouds.kt`:
 
 	```kotlin
 	@Serializable
@@ -1074,64 +1346,61 @@ class WeatherInfoApplication : Application() {
 
 #### A ViewModel
 
-A *viewmodel*-ünk itt is egy állapotot fog tárolni, amiben az időjárásadatok vannak megfigyelhető formában. Készítsük el tehát először ezt az állapotot a `hu.bme.aut.android.weatherinfo.feature.weather.state` *package*-ben.
+A *viewmodel*-ünk itt is egy állapotot fog tárolni, amiben az időjárásadatok vannak megfigyelhető formában. Készítsük el tehát először ezt az állapotot a `hu.bme.aut.android.weatherinfo.ui.screen.weather.state` *package*-ben.
 
-`WeatherState.kt`:
+`WeatherScreenState.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.weather.state
+package hu.bme.aut.android.weatherinfo.ui.screen.weather.state
 
 import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
 
-sealed class WeatherState{
-    data object Loading: WeatherState()
-    data class Error(val error: Throwable): WeatherState()
-    data class Success(val weatherData: WeatherData?): WeatherState()
+sealed class WeatherScreenState{
+    data object Loading: WeatherScreenState()
+    data class Error(val error: Throwable): WeatherScreenState()
+    data class Success(val weatherData: WeatherData?): WeatherScreenState()
 }
 ```
 
-Most már jöhet a *viewmodel* a `hu.bme.aut.android.weatherinfo.feature.weather` csomagba.
+Most már jöhet a *viewmodel* a `hu.bme.aut.android.weatherinfo.ui.screen.weather` csomagba.
 
 `WeatherViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.weather
+package hu.bme.aut.android.weatherinfo.ui.screen.weather
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
 import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
 import hu.bme.aut.android.weatherinfo.data.network.repository.IWeatherRepository
-import hu.bme.aut.android.weatherinfo.feature.weather.state.WeatherState
+import hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.jvm.java
 
 class WeatherViewModel(
-    val savedStateHandle: SavedStateHandle,
+    private val cityNameArg: String,
     private val weatherRepository: IWeatherRepository
 ) : ViewModel() {
-    private var _state = MutableStateFlow<WeatherState>(WeatherState.Loading)
+    private var _state = MutableStateFlow<WeatherScreenState>(WeatherScreenState.Loading)
     val state = _state.asStateFlow()
 
-    private var _cityName = MutableStateFlow<String>(checkNotNull(savedStateHandle["cityName"]))
+    private var _cityName = MutableStateFlow<String>(cityNameArg)
     val cityName = _cityName.asStateFlow()
 
     init {
-        getWeather(checkNotNull(savedStateHandle["cityName"]))
+        getWeather(cityName.value)
     }
 
     private fun getWeather(cityName: String) {
         viewModelScope.launch {
-            _state.value = WeatherState.Loading
+            _state.value = WeatherScreenState.Loading
             try {
                 weatherRepository.getWeather(cityName)
                     ?.enqueue(object : Callback<WeatherData?> {
@@ -1140,7 +1409,7 @@ class WeatherViewModel(
                             response: Response<WeatherData?>
                         ) {
                             if (response.isSuccessful) {
-                                _state.tryEmit(WeatherState.Success(response.body()))
+                                _state.tryEmit(WeatherScreenState.Success(response.body()))
                             }
                         }
 
@@ -1149,31 +1418,35 @@ class WeatherViewModel(
                             t: Throwable
                         ) {
                             t.printStackTrace()
-                            _state.value = WeatherState.Error(t)
+                            _state.value = WeatherScreenState.Error(t)
                         }
                     })
             } catch (e: Exception) {
-                _state.value = WeatherState.Error(e)
+                _state.value = WeatherScreenState.Error(e)
             }
         }
     }
 
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val savedStateHandle = createSavedStateHandle()
-                val weatherRepository = WeatherInfoApplication.weatherRepository
-                WeatherViewModel(
-                    savedStateHandle = savedStateHandle,
+    class WeatherViewModelFactory(private val cityName: String) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            val weatherRepository = WeatherInfoApplication.weatherRepository
+            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return WeatherViewModel(
+                    cityNameArg = cityName,
                     weatherRepository = weatherRepository
-                )
+                ) as T
             }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
+
     }
 }
 ```
 
-A `WeatherViewModel` paraméterként megkapja az `IWeatherRepository` egy példányát, valamint egy `SavedStateHandle`-t a városnév paraméter kiolvasásához. Ezen kívül tárolja az állapotot, és a városnevet (a `SavedStateHandle`-ből kiolvasva). Egyetlen függvénye a hálózati hívást korutinnal elvégző *getWeather()*. Tartalmazza még a saját példányosításához szükséges *Factory method*-ot.
+A `WeatherViewModel` paraméterként megkapja az `IWeatherRepository` egy példányát, valamint a lekérdezendő város nevét. Ezen kívül tárolja az állapotot és a városnevet (immár *Flow*-ként. Egyetlen függvénye a hálózati hívást korutinnal elvégző *getWeather()*. Tartalmazza még a saját példányosításához szükséges *Factory method*-ot. 
+
+Figyeljük meg, hogy hogyan adjuk át a *Factory method*-on keresztül a város nevét, illetve a `weatherRepository`-t!
 
 Látható, hogy a *getWeather* függvényben a `weatherRepository` *getWeather* függvényének válaszára (ami egy *Call<WeatherData>* objektum, egy *callbacket* helyeztünk el. Ezzel tudjuk kezelni a hálózati hívásunk különböző állapotait.
 
@@ -1186,7 +1459,7 @@ Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése
 `WeatherDataText.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.weather.components
+package hu.bme.aut.android.weatherinfo.ui.screen.weather.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -1231,14 +1504,14 @@ fun WeatherDataTextPreview() {
 }
 ```
 
-### A WeatherScreen elkészítése
+#### A WeatherScreen elkészítése
 
-Most már minden készen áll ahhoz, hogy elkészítsük az időjárás képernyőnket a `hu.bme.aut.android.weatherinfo.feature.weather` *package*-ben.
+Most már minden készen áll ahhoz, hogy elkészítsük az időjárás képernyőnket a `hu.bme.aut.android.weatherinfo.ui.screen.weather` *package*-ben.
 
 `WeatherScreen.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.weather
+package hu.bme.aut.android.weatherinfo.ui.screen.weather
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -1272,25 +1545,29 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import hu.bme.aut.android.weatherinfo.R
-import hu.bme.aut.android.weatherinfo.feature.weather.components.WeatherDataText
-import hu.bme.aut.android.weatherinfo.feature.weather.state.WeatherState
+import hu.bme.aut.android.weatherinfo.ui.screen.weather.components.WeatherDataText
+import hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WeatherScreen(
-    weatherViewModel: WeatherViewModel = viewModel(factory = WeatherViewModel.Factory),
+    modifier: Modifier = Modifier,
+    cityName: String,
     onNavigateBack: () -> Unit
 ) {
+    val weatherViewModel: WeatherViewModel =
+        viewModel(factory = WeatherViewModel.WeatherViewModelFactory(cityName), key = cityName)
+
     val state = weatherViewModel.state.collectAsStateWithLifecycle().value
 
     val cityName = weatherViewModel.cityName.collectAsStateWithLifecycle().value
 
     Scaffold(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.weather_in, cityName)) },
+                title = { Text(text = stringResource(R.string.label_weather_in, cityName)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
@@ -1314,20 +1591,20 @@ fun WeatherScreen(
                 .padding(8.dp)
         ) {
             when (state) {
-                is WeatherState.Loading -> {
+                is WeatherScreenState.Loading -> {
                     CircularProgressIndicator(
                         color = MaterialTheme.colorScheme.secondaryContainer,
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
 
-                is WeatherState.Error -> {
+                is WeatherScreenState.Error -> {
                     Text(
                         text = state.error.message.toString()
                     )
                 }
 
-                is WeatherState.Success -> {
+                is WeatherScreenState.Success -> {
                     Column {
                         Text(
                             text = state.weatherData?.weather?.get(0)?.description ?: "",
@@ -1388,15 +1665,18 @@ fun WeatherScreen(
 @Composable
 @Preview
 fun WeatherScreenPreview() {
-    WeatherScreen(onNavigateBack = {})
+    WeatherScreen(
+        cityName = "Budapest",
+        onNavigateBack = {})
 }
 ```
 
-A felületünk vázát egy `Scaffold` adja, amiben *topBar*-on kiírjuk a város nevét és felteszünk egy vissza navigációs ikont. Figyeljük meg, hogy hogyan írunk ki paraméteres *stringet* az erőforrások közül.
+A felületünk vázát egy `Scaffold` adja, amiben *topBar*-on kiírjuk a város nevét és felteszünk egy vissza navigációs ikont. Figyeljük meg, hogy hogyan írunk ki paraméteres *stringet* az erőforrások közül!
 
 Az oldal tartalma pedig állapottól függően vagy egy `CircularProgressIndicator`, vagy egy hiba szöveg, vagy pedig az adott város időjárásának adatai. 
 
 Figyeljük meg, hogy hogyan használjuk a kódban a *Coil* library *AsyncImage* függvényét a weben található kép megjelenítésére!
+
 
 #### Bekötés a navigációba
 
@@ -1405,67 +1685,61 @@ Egészítsük ki a `Screen` osztályunkat az új képernyővel.
 `Screen.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.navigation
+package hu.bme.aut.android.weatherinfo.ui.navigation
 
-sealed class Screen(val route: String) {
-    object CityListScreen : Screen(route = "city_list")
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
 
-    object WeatherScreen : Screen(route = "weather/{${Args.cityName}}") {
-        fun passCityName(cityName: String) = "weather/$cityName"
+sealed interface Screen : NavKey {
+    @Serializable
+    data object CityListScreenDestination : Screen
 
-        object Args {
-            const val cityName = "cityName"
-        }
-    }
+    @Serializable
+    data class WeatherScreenDestination(val cityName: String) : Screen
 }
 ```
 
-Figyeljük meg, hogy hogyan valósítjuk meg azt, hogy a `WeatherScreen`-nek paraméterül át lehessen adni a városnevet.
+Figyeljük meg, hogy hogyan valósítjuk meg azt, hogy a `WeatherScreen`-nek paraméterül át lehessen adni a városnevet!
 
-Ezek után a frissített `NavGraph`:
+Ezek után a frissített `AppNavigation`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.navigation
+package hu.bme.aut.android.weatherinfo.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import hu.bme.aut.android.weatherinfo.feature.citylist.CityListScreen
-import hu.bme.aut.android.weatherinfo.feature.weather.WeatherScreen
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.ui.NavDisplay
+import hu.bme.aut.android.weatherinfo.ui.screen.citylist.CityListScreen
+import hu.bme.aut.android.weatherinfo.ui.screen.weather.WeatherScreen
 
 @Composable
-fun NavGraph(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.CityListScreen.route
-) {
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val backStack = rememberNavBackStack(Screen.CityListScreenDestination)
 
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-        modifier = modifier
-    ) {
+    NavDisplay(
+        modifier = modifier,
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryProvider = entryProvider {
 
-        composable(Screen.CityListScreen.route) {
-            CityListScreen(
-                onCityClick = { navController.navigate(Screen.WeatherScreen.passCityName(cityName = it)) }
-            )
+            entry<Screen.CityListScreenDestination> {
+                CityListScreen(
+                    modifier = modifier,
+                    onCityClick = { backStack.add(Screen.WeatherScreenDestination(cityName = it)) }
+                )
+            }
+
+            entry<Screen.WeatherScreenDestination> { key ->
+                WeatherScreen(
+                    modifier = modifier,
+                    cityName = key.cityName,
+                    onNavigateBack = { backStack.removeLastOrNull() }
+                )
+            }
         }
-        composable(
-            Screen.WeatherScreen.route,
-            arguments = listOf(navArgument(Screen.WeatherScreen.Args.cityName) {
-                defaultValue = "Budapest"
-                type = NavType.StringType
-            })
-        ) {
-            WeatherScreen(onNavigateBack = { navController.popBackStack() })
-        }
-    }
+    )
 }
 ```
 
@@ -1483,7 +1757,7 @@ Az időjárás képernyőnk megjelenik, ott van a felirat a fejlécen, de a val�
 				...
 	```
 
-!!!example "BEADANDÓ (2 pont)"
+!!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az **időjárás nézet a megfelelő fejléccel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **WeatherScreen** kódja, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f2.png néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
@@ -1494,6 +1768,51 @@ Az időjárás képernyőnk megjelenik, ott van a felirat a fejlécen, de a val�
 ### A WeatherAPI megvalósítása
 
 A hálózati kérések végrahajtásához a `Retrofit` külső könyvtárat fogjuk használni. Ennek a függőségeit már a labor elején felvettük a megfelelő helyre, most már csak alkalmazni fogjuk a könyvtár funkcióit.
+
+!!! info "Retrofit" 
+
+    A [Retrofit](https://square.github.io/retrofit/) egy általános célú HTTP könyvtár Java és Kötlin környezetben. Széles körben használják, számos projektben bizonyított már (kvázi ipari standard). Azért használjuk, hogy ne kelljen alacsony színtű hálózati hívásokat implementálni.
+
+    Segítségével elég egy interface-ben annotációk segítségével leírni az API-t (ez pl. a [Swagger](https://swagger.io/) eszközzel generálható is), majd e mögé készít a Retrofit egy olyan osztályt, mely a szükséges hálózati hívásokat elvégzi. A Retrofit a háttérben az [OkHttp3](https://github.com/square/okhttp)-at használja, valamint az objektumok JSON formátumba történő sorosítását a [Moshi](https://github.com/square/moshi) libraryvel végzi. Ezért ezeket is be kell hivatkozni.
+
+!!! info "Coil"
+
+    A Coil (Coroutine Image Loader) egy kép betöltő könyvtár Androidra, amelyet a Kotlin koroutinokra épül.   
+    A Coil használatának előnyei:  
+
+    - Gyors: A Coil számos optimalizálást végez, beleértve a memória- és lemeztároló gyorsítótárazást, az átméretezést a memóriában, az automatikus kérések szüneteltetését/leállítását és még sok mást.  
+    - Könnyű: A Coil kb. 2000 metódust ad az APK-hoz (azoknak az alkalmazásoknak, amelyek már használják az OkHttp és a Coroutines könyvtárakat), ami hasonló a Picasso-hoz és jelentősen kevesebb, mint a Glide és a Fresco könyvtárak.  
+    - Könnyen használható: A Coil API-ja a Kotlin nyelv funkcióit használja a könnyű használat és a minimális boilerplate kód érdekében.  
+    - Modern: A Coil a Kotlin nyelvűséget helyezi előtérbe és a modern könyvtárakat használja, beleértve a Coroutines-t, az OkHttp-t, az Okio-t és az AndroidX Lifecycles-t.  
+
+???info "Függőségek"
+	
+	`libs.versions.toml`:
+
+	```toml
+	[versions]
+	coilCompose = "2.7.0"
+	moshi = "1.15.2"
+	retrofit = "3.0.0"
+	
+	[libraries]
+	coil-compose = { group = "io.coil-kt", name="coil-compose", version.ref = "coilCompose" }
+	squareup-moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+	converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+	retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+	```
+
+	modul szintű `build.gradle.kts`:
+
+	```kts
+	dependencies{
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.retrofit)
+    implementation(libs.squareup.moshi)
+    implementation(libs.converter.moshi)
+    implementation(libs.coil.compose)
+	}
+	```
 
 Hozzunk létre a `hu.bme.aut.android.weatherinfo.data.network` csomagban egy `WeatherApi` Kotlin fájlt.
 
@@ -1586,15 +1905,94 @@ Próbáljuk ki az alkalmazást!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-## Önálló feladat: város listából törlés megvalósítása (1 pont)
+## Önálló feladat 1: város listából törlés megvalósítása (1 pont)
 
-Valósítsuk meg a városok törlését az elemek balra elhúzásának hatására.
+Valósítsuk meg a városok törlését az elemek balra elhúzásának hatására!
+
+A város kártyák oldalra elhúzhatóságát egy *SwipeToDismissBox* segítségével fogjuk megvalósítani. Egészítsük ki tehát a `CityCard`-ot:
+
+`CityCard.kt`:
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CityCard(
+    city: String,
+    onCityClick: (String) -> Unit,
+    onDelete: (String) -> Unit
+) {
+    val dismissState = rememberSwipeToDismissBoxState(confirmValueChange = {
+        if (it == SwipeToDismissBoxValue.EndToStart) {
+            onDelete(city)
+        }
+        return@rememberSwipeToDismissBoxState true
+    },
+        // positional threshold of 25%
+        positionalThreshold = { it * .25f }
+    )
+    OutlinedCard(
+        modifier = Modifier
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        SwipeToDismissBox(
+            enableDismissFromStartToEnd = false,
+            state = dismissState,
+            backgroundContent = {
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            when (dismissState.dismissDirection) {
+                                SwipeToDismissBoxValue.EndToStart -> Color.Red
+                                else -> MaterialTheme.colorScheme.background
+                            }
+                        )
+                        .padding(12.dp, 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete"
+                    )
+                }
+            }
+        ) {
+            ListItem(
+				...
+			)
+		}
+	}
+}
+```
+
+Figyeljük meg, hogy a SwipeToDismissBox-nál hogyan tiltjuk le a balra húzást, és hogyan állítjuk be az állapotát!
+
+Ezek után már csak a listából való törlést kell megvalósítanunk.
 
 ???success "A megvalósítás lépései"
 	- törlés függvény a *repository interface*-be
 	- törlés függvény a *repository*-ba
 	- törlés függvény a *viewmodel*-be
-	- törlés eseménykezelő a *CityListScreen*-be
+	- törlés esemény a `CityListScreenEvent`-be
+	- törlés eseménykezelő az `onEvent` függvénybe
+	- törlés eseményt küldeni az elhúzás hatására
+
+!!!example "BEADANDÓ (1 pont)"
+	Készíts egy **képernyőképet**, amelyen látszik az emulátoron a **városok listája CSAK Budapesttel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl!
+
+	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+
+## Önálló feladat 2: városok perzisztens mentése (1 pont)
+
+Valósítsuk meg a városok adatbázisba mentését!
+
+???success "A megvalósítás lépései"
+	- egészítsük ki a model osztályt, hogy Room-ba menthető legyen
+	- hozzunk létre egy DAO osztályt
+	- hozzuk létre az adatbázist
+	- cseréljük le a `cityRepository` inicializálását
 
 !!!example "BEADANDÓ (1 pont)"
 	Készíts egy **képernyőképet**, amelyen látszik az emulátoron a **városok listája CSAK Budapesttel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl!
