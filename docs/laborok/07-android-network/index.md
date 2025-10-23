@@ -1995,7 +1995,6 @@ Valósítsuk meg a városok adatbázisba mentését!
 	- cseréljük le a `cityRepository` inicializálását
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az emulátoron a **városok listája CSAK Budapesttel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törlés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f4.png néven töltsd föl!
+	Készíts egy **képernyőképet**, amelyen látszik a **perzisztens mentés releváns** kódrészlete, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f5.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-
