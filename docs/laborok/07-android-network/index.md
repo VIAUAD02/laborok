@@ -938,7 +938,7 @@ Ezek után a `CityListViewModel` a következőképpen alakul át:
 `CityListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -946,9 +946,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
-import hu.bme.aut.android.weatherinfo.data.local.model.City
+import hu.bme.aut.android.weatherinfo.domain.model.City
 import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
-import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
+import hu.bme.aut.android.weatherinfo.ui.screen.citylist.state.CityListScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -1771,7 +1771,7 @@ A hálózati kérések végrahajtásához a `Retrofit` külső könyvtárat fogj
 
 !!! info "Retrofit" 
 
-    A [Retrofit](https://square.github.io/retrofit/) egy általános célú HTTP könyvtár Java és Kötlin környezetben. Széles körben használják, számos projektben bizonyított már (kvázi ipari standard). Azért használjuk, hogy ne kelljen alacsony színtű hálózati hívásokat implementálni.
+    A [Retrofit](https://square.github.io/retrofit/) egy általános célú HTTP könyvtár Java és Kotlin környezetben. Széles körben használják, számos projektben bizonyított már (kvázi ipari standard). Azért használjuk, hogy ne kelljen alacsony színtű hálózati hívásokat implementálni.
 
     Segítségével elég egy interface-ben annotációk segítségével leírni az API-t (ez pl. a [Swagger](https://swagger.io/) eszközzel generálható is), majd e mögé készít a Retrofit egy olyan osztályt, mely a szükséges hálózati hívásokat elvégzi. A Retrofit a háttérben az [OkHttp3](https://github.com/square/okhttp)-at használja, valamint az objektumok JSON formátumba történő sorosítását a [Moshi](https://github.com/square/moshi) libraryvel végzi. Ezért ezeket is be kell hivatkozni.
 
