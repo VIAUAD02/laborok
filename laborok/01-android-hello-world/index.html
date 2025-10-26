@@ -1047,7 +1047,7 @@
 
 <h1 id="labor-01-hello-world">Labor 01 - Hello World<a class="headerlink" href="#labor-01-hello-world" title="Permanent link">&para;</a></h1>
 <p>Az első labor rendhagyó a többihez képest. Itt kevés kóddal fogunk találkozni, inkább az alapok átnézésén van a hangsúly.</p>
-<p>A labor célja, hogy bemutassa az Android Studio fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Ismertetjük egy Hello World alkalmazás elkészítésének módját és a debugoláshoz használható fontosabb eszközöket.</p>
+<p>A labor célja, hogy bemutassa az Android Studio fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Ismertetjük egy Hello World alkalmazás elkészítésének módját és a debuggoláshoz használható fontosabb eszközöket.</p>
 <p>A labor végén egy jegyzőkönyvet kell beadni a jegy megszerzéséhez.</p>
 <p>A mérés az alábbi témákat érinti:</p>
 <ul>
@@ -1178,9 +1178,9 @@
 <p><img alt="" src="assets/sdk_manager.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Megjegyzés</p>
-<p>Korábban létezett egy standalone SDK manager de ennek használata mára deprecated lett. Ha online forrásokban ilyet látunk ne lepődjünk meg.</p>
+<p>Korábban létezett egy standalone SDK manager, de ennek használata mára deprecated lett. Ha online forrásokban ilyet látunk, ne lepődjünk meg.</p>
 </div>
-<p>Indítsuk el az AVD managert, és vizsgáljuk mel, hogy rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.</p>
+<p>Indítsuk el az AVD managert, és vizsgáljuk meg, hogy rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.</p>
 <h3 id="avd-manager">AVD Manager<a class="headerlink" href="#avd-manager" title="Permanent link">&para;</a></h3>
 <p>Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is szó esett, nem csak valódi eszközön futtathatjuk a kódunkat, hanem emulátoron is. (Mi is a különbség szimulátor és emulátor között?) Az AVD indítása a fejlesztői környezeten keresztül (<em>Tools-&gt;Device Manager</em>), illetve parancssorból is lehetséges, de ennek a használatára csak speciális esetekben van szükség.</p>
 <p>Az AVD Manager ikonja:</p>
@@ -1230,14 +1230,14 @@
 <ul>
 <li>Van-e elég hely (minimum 15-20 GB) a meghajtón?</li>
 <li>Legfrissebb-e az Android Studio és az sdk?</li>
-<li>SDK manager &gt; sdk tools: legrisebb-e az android emulator?</li>
-<li>Nincs-e az Android Studio vagy az sdk telepítési útjában szóköz, ékezetes betű vagy különleges karakter?</li>
+<li>SDK manager &gt; sdk tools: legfrissebb-e az android emulátor?</li>
+<li>Nincs-e az Android Studio vagy az SDK telepítési útjában szóköz, ékezetes betű vagy különleges karakter?</li>
 <li>Próbáltál-e más API-t, Play Store-ral, a nélkül?</li>
 <li>Virtualizáció be van-e kapcsolva/engedélyezve van-e a gépen?</li>
 <li>Grafikai gyorsítás típusát próbáljuk meg átállítani.</li>
 </ul>
 </div>
-<p>Az elindított emulátoron próbáljunk ki néhány előre telepítétt alkalmazást!</p>
+<p>Az elindított emulátoron próbáljunk ki néhány előre telepített alkalmazást!</p>
 <div class="admonition note">
 <p class="admonition-title">Megjegyzés</p>
 <p>A gyári emulátoron kívül több alternatíva is létezik, mint pl. a <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> vagy a <a href="https://www.bignox.com/">BigNox</a>, viszont a Google féle emulátor a legelterjedtebb, így amennyiben ezzel nem jelentkeznek problémáink, maradjunk ennél.</p>
@@ -1319,7 +1319,7 @@
 <p><a href="https://developer.android.com/studio/intro/keyboard-shortcuts">További billentyűkombinációk</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Keresés</p>
-<p>Hogy ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki és keressünk rá a "Device Manager" opcióra.</p>
+<p>Ha bármikor szükségünk van valamire, de esetleg nem találnánk a menüpontok között, akkor a dupla Shift lenyomásával (<kbd>Shift</kbd>+<kbd>Shift</kbd>) kereshetünk az Android Studioban (illetve más JetBrains IDE-kben). Próbáljuk is ki, és keressünk rá a "Device Manager" opcióra.</p>
 </div>
 <h3 id="eszkozok-szerkesztok">Eszközök, szerkesztők<a class="headerlink" href="#eszkozok-szerkesztok" title="Permanent link">&para;</a></h3>
 <p>A <em>View</em> menü <em>Tool Windows</em> menüpontjában lehetőség van különböző ablakok ki- és bekapcsolására. Tekintsük át az alábbi eszközöket:</p>
@@ -1332,7 +1332,7 @@
 <li>Event Log</li>
 <li>Gradle</li>
 </ul>
-<p>Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal, <em>Split Right/Down</em> vagy csak kattintsunk rá hosszan és kezdjük el húzni a kódfelületre!</p>
+<p>Lehetőség van felosztani a szerkesztőablakot, ehhez kattintsunk egy megnyitott fájl tabfülére jobb gombbal, <em>Split Right/Down</em> vagy csak kattintsunk rá hosszan és kezdjük el húzni a kódfelületre!</p>
 <h3 id="hasznos-beallitasok">Hasznos beállítások<a class="headerlink" href="#hasznos-beallitasok" title="Permanent link">&para;</a></h3>
 <p>Állítsuk be a következő hasznos funkciókat:</p>
 <ul>
@@ -1369,7 +1369,7 @@
 <li>Változtassuk meg a készülék tartózkodási helyét (GPS) az emulátor megfelelő paneljének segítségével!</li>
 <li>Vizsgáljuk meg az elindított <code>HelloWorld</code> projekt nyitott szálait, memóriafoglalását!</li>
 <li>Vizsgáljuk meg a Logcat panel tartalmát!</li>
-<li>Vizsgáljuk meg az Code -&gt; Inspect code eredményét!</li>
+<li>Vizsgáljuk meg a Code -&gt; Inspect code eredményét!</li>
 <li>Keressük ki a létrehozott <code>HelloWorld</code> projekt mappáját és a build könyvtáron belül vizsgálja meg az <code>.apk</code> állomány tartalmát! Hol található a lefordított kód? </li>
 </ol>
 <div class="admonition example">
@@ -1387,8 +1387,8 @@
           </path>
         </svg>
       </span>
-      <span title="2025. szeptember 15. 11:28:42">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 15. 11:28:42 CEST"><span class="timeago" datetime="2025-09-15T11:28:42+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 15. 11:28:42 CEST">2025-09-15</span>
+      <span title="2025. szeptember 17. 14:47:37">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 17. 14:47:37 CEST"><span class="timeago" datetime="2025-09-17T14:47:37+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 17. 14:47:37 CEST">2025-09-17</span>
       </span>
     </span>
 
