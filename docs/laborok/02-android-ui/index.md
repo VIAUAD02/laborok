@@ -112,7 +112,7 @@ Itt az `implementation` függvény segítségével tudunk új függőséget felv
 - megadjuk a fájl nevét, jelen esetben `libs` 
 - majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.
 
-Végezetül kapcsoljuk be az alábbi `plugint` a `build.gradle.kts` fáj tetején:
+Végezetül kapcsoljuk be az alábbi `plugint` a `build.gradle.kts` fájl tetején:
 
 ```kotlin
 plugins {
