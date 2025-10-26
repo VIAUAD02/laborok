@@ -362,7 +362,7 @@ enum class DrawingMode {
 
 A `DrawingViewModel` két állapotot tárol (rajzolási mód és a rajzolt alakzatok), és ad vissza *StateFlow*-ként.
 
-A rejzolási stílus reprezentálásához szükségünk van még egy osztályra, a `DrawingMode`-ra. Mivel ez csak két értéket vehet fel, egy *Enum Class*-ként fogjuk megvalósítani.
+A rajzolási stílus reprezentálásához szükségünk van még egy osztályra, a `DrawingMode`-ra. Mivel ez csak két értéket vehet fel, egy *Enum Class*-ként fogjuk megvalósítani.
 
 !!!warning "Kód értelmezése"
     A laborvezető segítségével értelmezzük a viewModel kódját!
