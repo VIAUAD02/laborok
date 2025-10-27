@@ -2121,7 +2121,7 @@ dependencies {
 </ul>
 <p>Ezek után a <code>CityListViewModel</code> a következőképpen alakul át:</p>
 <p><code>CityListViewModel.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.feature.citylist</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.citylist</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
@@ -2129,9 +2129,9 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.WeatherInfoApplication</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.model.City</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.citylist.state.CityListScreenState</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.collectLatest</span>
@@ -2844,7 +2844,7 @@ dependencies {
 <p>A hálózati kérések végrahajtásához a <code>Retrofit</code> külső könyvtárat fogjuk használni. Ennek a függőségeit már a labor elején felvettük a megfelelő helyre, most már csak alkalmazni fogjuk a könyvtár funkcióit.</p>
 <div class="admonition info">
 <p class="admonition-title">Retrofit</p>
-<p>A <a href="https://square.github.io/retrofit/">Retrofit</a> egy általános célú HTTP könyvtár Java és Kötlin környezetben. Széles körben használják, számos projektben bizonyított már (kvázi ipari standard). Azért használjuk, hogy ne kelljen alacsony színtű hálózati hívásokat implementálni.</p>
+<p>A <a href="https://square.github.io/retrofit/">Retrofit</a> egy általános célú HTTP könyvtár Java és Kotlin környezetben. Széles körben használják, számos projektben bizonyított már (kvázi ipari standard). Azért használjuk, hogy ne kelljen alacsony színtű hálózati hívásokat implementálni.</p>
 <p>Segítségével elég egy interface-ben annotációk segítségével leírni az API-t (ez pl. a <a href="https://swagger.io/">Swagger</a> eszközzel generálható is), majd e mögé készít a Retrofit egy olyan osztályt, mely a szükséges hálózati hívásokat elvégzi. A Retrofit a háttérben az <a href="https://github.com/square/okhttp">OkHttp3</a>-at használja, valamint az objektumok JSON formátumba történő sorosítását a <a href="https://github.com/square/moshi">Moshi</a> libraryvel végzi. Ezért ezeket is be kell hivatkozni.</p>
 </div>
 <div class="admonition info">
@@ -3057,8 +3057,8 @@ implementation(libs.coil.compose)
           </path>
         </svg>
       </span>
-      <span title="2025. október 23. 19:35:13">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 23. 19:35:13 CEST"><span class="timeago" datetime="2025-10-23T19:35:13+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 23. 19:35:13 CEST">2025-10-23</span>
+      <span title="2025. október 25. 14:40:18">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 25. 14:40:18 CEST"><span class="timeago" datetime="2025-10-25T14:40:18+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 25. 14:40:18 CEST">2025-10-25</span>
       </span>
     </span>
 
