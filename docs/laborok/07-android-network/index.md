@@ -1459,7 +1459,7 @@ Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése
 `WeatherDataText.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.ui.screen.weather.components
+package hu.bme.aut.android.weatherinfo.feature.weather.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -1545,7 +1545,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import hu.bme.aut.android.weatherinfo.R
-import hu.bme.aut.android.weatherinfo.ui.screen.weather.components.WeatherDataText
+import hu.bme.aut.android.weatherinfo.feature.weather.components.WeatherDataText
 import hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState
 
 @OptIn(ExperimentalMaterial3Api::class)
