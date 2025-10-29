@@ -1777,7 +1777,7 @@ A hálózati kérések végrahajtásához a `Retrofit` külső könyvtárat fogj
 
 !!! info "Coil"
 
-    A Coil (Coroutine Image Loader) egy kép betöltő könyvtár Androidra, amelyet a Kotlin koroutinokra épül.   
+    A Coil (Coroutine Image Loader) egy kép betöltő könyvtár Androidra, amely Kotlin koroutinokra épül.   
     A Coil használatának előnyei:  
 
     - Gyors: A Coil számos optimalizálást végez, beleértve a memória- és lemeztároló gyorsítótárazást, az átméretezést a memóriában, az automatikus kérések szüneteltetését/leállítását és még sok mást.  
