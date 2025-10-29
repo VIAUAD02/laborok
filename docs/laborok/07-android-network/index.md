@@ -938,7 +938,7 @@ Ezek után a `CityListViewModel` a következőképpen alakul át:
 `CityListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist
+package hu.bme.aut.android.weatherinfo.ui.screen.citylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -948,7 +948,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
 import hu.bme.aut.android.weatherinfo.data.local.model.City
 import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
-import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
+import hu.bme.aut.android.weatherinfo.ui.screen.citylist.state.CityListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -1454,12 +1454,12 @@ Látható, hogy a *getWeather* függvényben a `weatherRepository` *getWeather* 
 
 #### Komponensek
 
-Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése és egy ikon mellett a konkrét számszerű értékeket is ki szeretnénk írni. Ennek a megvalósításához hozzunk létre egy segéd *composable*-t a `hu.bme.aut.android.weatherinfo.feature.weather.components` *package*-ben, ami a szövegek és értékek egymás mellé írását fogja segíteni.
+Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése és egy ikon mellett a konkrét számszerű értékeket is ki szeretnénk írni. Ennek a megvalósításához hozzunk létre egy segéd *composable*-t a `hu.bme.aut.android.weatherinfo.ui.screen.weather.components` *package*-ben, ami a szövegek és értékek egymás mellé írását fogja segíteni.
 
 `WeatherDataText.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.weather.components
+package hu.bme.aut.android.weatherinfo.ui.screen.weather.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -1545,7 +1545,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import hu.bme.aut.android.weatherinfo.R
-import hu.bme.aut.android.weatherinfo.feature.weather.components.WeatherDataText
+import hu.bme.aut.android.weatherinfo.ui.screen.weather.components.WeatherDataText
 import hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState
 
 @OptIn(ExperimentalMaterial3Api::class)
