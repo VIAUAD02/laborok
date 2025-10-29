@@ -1454,7 +1454,7 @@ Látható, hogy a *getWeather* függvényben a `weatherRepository` *getWeather* 
 
 #### Komponensek
 
-Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése és egy ikon mellett a konkrét számszerű értékeket is ki szeretnénk írni. Ennek a megvalósításához hozzunk létre egy segéd *composable*-t a `hu.bme.aut.android.weatherinfo.feature.weather.components` *package*-ben, ami a szövegek és értékek egymás mellé írását fogja segíteni.
+Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése és egy ikon mellett a konkrét számszerű értékeket is ki szeretnénk írni. Ennek a megvalósításához hozzunk létre egy segéd *composable*-t a `hu.bme.aut.android.weatherinfo.ui.screen.weather.components` *package*-ben, ami a szövegek és értékek egymás mellé írását fogja segíteni.
 
 `WeatherDataText.kt`:
 
