@@ -309,7 +309,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
     * **Kép kezelése képaláírással**:
         * Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.
-        * A képeknél használjunk placeholder-t pl: https://via.placeholder.com/200x200. Adj meg alternative textet is.
+        * A képeknél használjunk placeholder-t pl: https://placehold.co/200x200. Adj meg alternative textet is.
 
         ??? info "Segítség"
             * `figure` - tag, ami összefogja a képet és a képaláírást.
@@ -323,7 +323,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 
 7. Készítsünk egy tartalomtól független részt a szerzőről
     * A szerző neve a megfelelő heading típussal.
-    * Egy kép a szerzőről. Keress egy képet és azt is tedd a repositoryba, vagy használd a https://via.placeholder.com/80x80 placeholdert.
+    * Egy kép a szerzőről. Keress egy képet és azt is tedd a repositoryba, vagy használd a https://placehold.co/80x80 placeholdert.
     * Egy bekezdés szöveg, amit legegyszerűbben a https://www.lipsum.com/ oldal segítségével generálhatunk.
 
 8. Készítsük el a láblécet, amibe az évszám és a BME AUT felirat kerüljön.
