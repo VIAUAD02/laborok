@@ -519,7 +519,7 @@ Az `AppNavigation` függvényünkben először létrehozunk egy `backStack`-et, 
 * a **modifier** dekorátort,
 * az imént létrehozott **backstack**-et
 * azt a **viselkedést, amit a vissza gomb hatására végre kell hajtani** (jelen esetben levenni a *backstack* felső elemét),
-* illetve magát a navigációs logikát, ahol attól függően, hogy melyik "állomás"-on vagyöunk, megjelenítünk valamit (jelen esetben a `LoginScreenDestination` esetén a `LoginScreen`-t.
+* illetve magát a navigációs logikát, ahol attól függően, hogy melyik "állomás"-on vagyunk, megjelenítünk valamit (jelen esetben a `LoginScreenDestination` esetén a `LoginScreen`-t.
 
 
 Már csak egyetlen lépés van, hogy ezt a képernyőt az emulátoron láthassuk az indítás után. Nyissuk meg a `MainActivity` fájlt, és módosítsuk a következő szerint:
@@ -1062,7 +1062,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 ```
 
 !!!warning ""
-	Figyeljük meg, ho hogyan hoztunk létre olyan állomást, ami paramétert fogad, illetve hogyan adjuk át ezt a paramétert navigáció esetén!
+	Figyeljük meg, hogy hogyan hoztunk létre olyan állomást, ami paramétert fogad, illetve hogyan adjuk át ezt a paramétert navigáció esetén!
 
 
 !!!example "BEADANDÓ (1 pont)"

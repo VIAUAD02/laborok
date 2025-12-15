@@ -1234,8 +1234,8 @@ if (showDialog) {
 
 A `DatePickerDialog`-nak az alábbi paramétereket adjuk át:
 
-* **onDismissRequest**: eseménykezelő arra az esetre, ha a felhasználó nem nyomna gombot, cska a dialógus mellé kattintana.
-* **confirmButton**: megerősítő gomb a választás elfpgadására.
+* **onDismissRequest**: eseménykezelő arra az esetre, ha a felhasználó nem nyomna gombot, csak a dialógus mellé kattintana.
+* **confirmButton**: megerősítő gomb a választás elfogadására.
 * **dismissButton**: gomb a folyamat megszakítására.
 
 A `DatePickerDialog`-ban pedig egy `DatePicker`-t jelenítünk meg, aminek átadjuk a létrehozott állapotot.

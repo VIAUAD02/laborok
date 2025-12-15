@@ -586,7 +586,7 @@ Ezzel a lépéssel elérkeztünk a kész alkalmazáshoz, és indítás során a 
 
 ### Összegző mező (1 pont)
 
-Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint arran, hogy a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy az pozitív vagy negatív érték. 
+Vegyünk fel egy összegző mezőt valahova a felületre, amely minden bevitt érték után frissül. Figyeljünk arra, hogyha nincs még egyetlen bejegyzés sem, akkor ne jelenjen meg semmi, valamint arra, hogy a felhasználó nem mínusz karakter alapján állítja a kiadás/bevétel állapotot, hanem a kapcsoló alapján kell eldöntenünk, hogy az pozitív vagy negatív érték. 
 
 !!!warning "Figyelem"
 	Figyeljünk az összegző mező helyes működésére! Ha töröljük a listából a bejegyzéseket, akkor a számláló is nullázódjon és tűnjön el! (Nem elég csak akkor eltüntetni, hogyha a `sum` 0 értéket vesz fel.) (-0.5 pont)
