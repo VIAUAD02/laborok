@@ -1743,7 +1743,7 @@ Ebben az esetben kirajzoljuk azt az elemet aminek a kezdőpontja az a pont ahol 
 <p>Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy <em>SQLite</em> adatbázisban.</p>
 <p>Hozzunk létre egy új package-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül, aminek adjuk az <code>sqlite</code> nevet.</p>
 <h3 id="tablak-definialasa">Táblák definiálása<a class="headerlink" href="#tablak-definialasa" title="Permanent link">&para;</a></h3>
-<p>Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkiptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új singleton osztályt az <code>object</code> kulcsszóval az <code>sqlite</code> package-en belül <code>DbConstants</code> néven.</p>
+<p>Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkriptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új singleton osztályt az <code>object</code> kulcsszóval az <code>sqlite</code> package-en belül <code>DbConstants</code> néven.</p>
 <p>Ezen belül először is konstansként felvesszük az adatbázis nevét és verzióját is. Ha az adatbázisunk sémáján szeretnénk változtatni, akkor ez utóbbit kell inkrementálnunk, így elkerülhetjük az inkompatibilitás miatti nem kívánatos hibákat.</p>
 <p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
 
@@ -2121,8 +2121,8 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
           </path>
         </svg>
       </span>
-      <span title="2025. október 9. 15:04:16">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 9. 15:04:16 CEST"><span class="timeago" datetime="2025-10-09T15:04:16+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 9. 15:04:16 CEST">2025-10-09</span>
+      <span title="2025. december 15. 19:50:29">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. december 15. 19:50:29 CET"><span class="timeago" datetime="2025-12-15T19:50:29+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. december 15. 19:50:29 CET">2025-12-15</span>
       </span>
     </span>
 
