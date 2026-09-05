@@ -11,13 +11,13 @@ The submission requirements detailed below and mandatory. Submissions not follow
 
 The detailed description below shows the entire procedure. This summary is an overview of the whole process.
 
-1. The exercises are solved in a dedicated GitHub repository created using a GitHub Classroom invitation link published in Moodle.
+1. The exercises are solved in a dedicated GitHub repository created using a AHK invitation link published in Moodle.
 
 1. Your solution is submitted on a new branch, not on master. You can create any number of commits on this branch. You need to push these commits to GitHub.
 
 1. You submit your final solution through a pull request assigned to the instructor.
 
-1. You can ask questions regarding the results and evaluation in the pull request comment thread. To notify your instructor use the @name annotation in the comment text.
+1. You can ask questions regarding the results and evaluation in email.
 
 ## Starting your work: git checkout
 
@@ -27,10 +27,8 @@ The detailed description below shows the entire procedure. This summary is an ov
 
     ![Authorize GitHub classroom](images/github/github-authorize-classroom.png)
 
-1. You will see a page where you can "Accept the ... assignment". Click the button.
-
-    ![Accept assignment](images/github/github-accept-assignment.png)
-
+1. You will see a page where you can enter your GitHub username, then "Accept this assignment". Click the button.
+    
 1. Wait for the repository creation to finish. You will get the repository URL here.
 
 
@@ -72,7 +70,7 @@ The detailed description below shows the entire procedure. This summary is an ov
     1. After this, cloning and pushing to the repository should work.
 
 
-1. If the cloning is successful, **PLEASE CHECK THE ASSIGNMENT MILESTONE INSTRUCTIONS!** The individual part of your solution should _not_ be committed to the repository `master` branch. 
+1. The individual part of your solution should _not_ be committed to the repository `master` branch. 
 
     Before you make your first commit, check whether your name and email address are properly configured. You can check this using the following commands.
 
@@ -199,9 +197,5 @@ The detailed description below shows the entire procedure. This summary is an ov
 
 ## Questions and complaints regarding the final result
 
-If you have questions or concerns regarding the automated evaluation, use the pull request for communication with the instructor by asking questions via comments. To let the instructor know you have questions, please use `@siktdavid` [mention](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax#mentioning-people-and-teams) in the PR comment. This will automatically send an email notification.
-
-![GitHub PR asking questions](images/github/github-question-in-pr.png)
-
-Please note that if you think the evaluation made a mistake, you must support your question/complaint with proof (e.g., show how you tested your solution and prove that it worked).
+If you have questions or concerns regarding the automated evaluation, send email. 
 
