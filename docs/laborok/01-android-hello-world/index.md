@@ -33,8 +33,6 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz!
 
-1. A `neptun.txt` fájlba írd bele a Neptun kódodat! A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere!
-
 
 ### Markdown fájl megnyitása
 
@@ -102,13 +100,18 @@ A [developer.android.com/studio](https://developer.android.com/studio) oldalról
 
 ![](assets/ide_android.png)
 
+!!!danger "Android Studio verzió"
+	A félév kezdetén a legutóbbi stabil Android Studio verzió a 2026.1.3, így a laborok során az útmutatók erre fognak készülni. Javasoljuk ennek a verziónak a telepítését otthonra a kompatibilitási problémák elkerülése végett.
+	
+	![](assets/studio_version.png)
+
 SDK szerkezet:
 
 *   `build-tools`: Fordítást segítő eszközök API szintenkét: AIDL, AAPT2, stb.
 *   `emulator`: Az Android emulátor fájljainak helye. 
 *   `extras`: Különböző extra szoftverek helye. Maven repository, support libes anyagok, analytics SDK, Google [Android USB driver](https://developer.android.com/studio/run/win-usb.html) (amennyiben SDK managerrel ezt is letöltöttük) stb.
-*   `platform-tools`: Fastboot és ADB binárisok helye (legtöbbet használt eszközök).
 *   `platforms`, `sources`, `system-images`: Minden API levelhez külön almappában a platform anyagok, források, OS image-ek
+*   `platform-tools`: Fastboot és ADB binárisok helye (legtöbbet használt eszközök).
 *   `tools`: Fordítást és tesztelést segítő eszközök, SDK manager, stb.
 
 
