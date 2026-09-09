@@ -42,12 +42,6 @@ A ZH-kon 10-10 pont és a laborokon összesen 10 pont szerezhető. Az első labo
 
 Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labor teljesítésének.
 
-### Kis ZH-k
-
-A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át. A KisZH kiváltja a beugró szerepét.
-
-A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjük. A mostani Labor 01-en nincs kisZH.
-
 
 ## Képernyőképek
 
