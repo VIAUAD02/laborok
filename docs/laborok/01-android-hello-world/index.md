@@ -101,7 +101,7 @@ A [developer.android.com/studio](https://developer.android.com/studio) oldalról
 ![](assets/ide_android.png)
 
 !!!danger "Android Studio verzió"
-	A félév kezdetén a legutóbbi stabil Android Studio verzió a 2026.1.3, így a laborok során az útmutatók erre fognak készülni. Javasoljuk ennek a verziónak a telepítését otthonra a kompatibilitási problémák elkerülése végett.
+	A félév kezdetén a legutóbbi stabil Android Studio verzió a  2026.1.3 Patch 1, így az útmutatók erre fognak készülni. Javasoljuk ennek a verziónak a telepítését otthonra a kompatibilitási problémák elkerülése végett.
 	
 	![](assets/studio_version.png)
 
