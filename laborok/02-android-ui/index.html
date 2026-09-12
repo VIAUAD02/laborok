@@ -621,15 +621,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kulonbozo-berlet-napi-arak-1-imsc-pont" class="md-nav__link">
-    Különböző bérlet napi árak (1 IMSc pont)
+  <a href="#kulonbozo-berlet-napi-arak-05-imsc-pont" class="md-nav__link">
+    Különböző bérlet napi árak (0,5 IMSc pont)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#szazalekos-kedvezmenyek-1-imsc-pont" class="md-nav__link">
-    Százalékos kedvezmények ( 1 IMSc pont)
+  <a href="#szazalekos-kedvezmenyek-05-imsc-pont" class="md-nav__link">
+    Százalékos kedvezmények ( 0,5 IMSc pont)
   </a>
   
 </li>
@@ -1008,15 +1008,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kulonbozo-berlet-napi-arak-1-imsc-pont" class="md-nav__link">
-    Különböző bérlet napi árak (1 IMSc pont)
+  <a href="#kulonbozo-berlet-napi-arak-05-imsc-pont" class="md-nav__link">
+    Különböző bérlet napi árak (0,5 IMSc pont)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#szazalekos-kedvezmenyek-1-imsc-pont" class="md-nav__link">
-    Százalékos kedvezmények ( 1 IMSc pont)
+  <a href="#szazalekos-kedvezmenyek-05-imsc-pont" class="md-nav__link">
+    Százalékos kedvezmények ( 0,5 IMSc pont)
   </a>
   
 </li>
@@ -1058,7 +1058,7 @@
 
 <div class="admonition warning">
 <p class="admonition-title">IMSc</p>
-<p>A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.</p>
+<p>A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 1 IMSc pont szerezhető.</p>
 </div>
 <h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
 <p>A feladatok megoldása során ne felejtsd el követni a <a href="../../tudnivalok/github/GitHub/">feladat beadás folyamatát</a>.</p>
@@ -1077,7 +1077,7 @@
 <p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
 </li>
 <li>
-<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+<p>A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az <code>Readme.md</code> fájlban.</p>
 </li>
 </ol>
 <div class="admonition info">
@@ -1089,7 +1089,7 @@
 <p>Első lépésként indítsuk el az Android Studio-t, majd:</p>
 <ol>
 <li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Activity</em> lehetőséget.</li>
-<li>A projekt neve legyen <code>PublicTransport</code>, a kezdő package <code>hu.bme.aut.android.publictransport</code>, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.</li>
+<li>A projekt neve legyen <code>PublicTransport</code>, a kezdő <em>package</em> <code>hu.bme.aut.android.publictransport</code>, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.</li>
 <li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
 <li>A minimum API szint legyen API24: Android 7.0.</li>
 <li>A <em>Build configuration language</em> Kotlin DSL legyen.</li>
@@ -1109,20 +1109,20 @@
 </ul>
 <p>Először másoljuk be a következő függőségeket a <code>libs.version.toml</code> verzió katalógus fájlba:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;8.12.3&quot;</span>
-<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
-<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.17.0&quot;</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;9.3.2&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.19.0&quot;</span>
 <span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;4.13.2&quot;</span>
 <span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
 <span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3.7.0&quot;</span>
-<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.3&quot;</span>
-<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.12.0-alpha08&quot;</span>
-<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2025.09.00&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.11.0&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.13.0&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.4.20&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2026.09.00&quot;</span>
 
-<span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.1&quot;</span>
-<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.0-alpha09&quot;</span>
-<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
-<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.9.0&quot;</span>
+<span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.2.0&quot;</span>
+<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.1.7&quot;</span>
+<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.4.20&quot;</span>
+<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.11.0&quot;</span>
 
 
 <span class="k">[libraries]</span>
@@ -1130,20 +1130,22 @@
 <span class="n">androidx-core-splashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.core:core-splashscreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coreSplashscreen&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-navigation3-runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-runtime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-navigation3-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span><span class="n">androidx-material-icons-extended</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.compose.material&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;material-icons-extended&quot;</span><span class="w"> </span><span class="p">}</span>
+
 
 
 <span class="k">[plugins]</span>
 <span class="n">jetbrains-kotlin-serialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinSerialization&quot;</span><span class="p">}</span>
 </code></pre></div>
 <p>Itt a <code>[versions]</code> tag-en belül adhatunk egy változó nevet, majd egy verzió értéket, amit majd a következő lépésben átadunk a <code>version.ref</code>-nek. Ez mondja meg, hogy melyik verziót használja az adott modulból. A <code>[libraries]</code> tag-en belül definiálunk szintén egy változót <code>androidx-navigation-compose</code> néven, amit majd később használunk fel a <code>build.gradle.kts</code> fájlban. Ennek megadjuk, hogy melyik modul-t szeretnénk beletenni a projektbe, valamint egy verzió számot, amit korábban már definiáltunk. </p>
-<p>Hogy ha ezzel megvagyunk, nyissuk meg a <code>build.gradle.kts</code> fájlt, és adjuk hozzá az imént felvett modulokat a <code>dependencies</code> tag-en belülre:</p>
+<p>Hogy ha ezzel megvagyunk, nyissuk meg a modul szintű <code>build.gradle.kts</code> fájlt, és adjuk hozzá az imént felvett modulokat a <code>dependencies</code> tag-en belülre:</p>
 <div class="highlight"><pre><span></span><code>dependencies {
     ...
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.androidx.material.icons.extended)
 }
 </code></pre></div>
 <p>Itt az <code>implementation</code> függvény segítségével tudunk új függőséget felvenni a projektbe, és ezen belül meg kell adnunk a modul nevét, amit már korábban definiáltunk a <code>libs.version.toml</code>-ban. Ezt a következő képpen tehetjük meg: </p>
@@ -1151,7 +1153,14 @@
 <li>megadjuk a fájl nevét, jelen esetben <code>libs</code> </li>
 <li>majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.</li>
 </ul>
-<p>Végezetül kapcsoljuk be az alábbi <code>plugint</code> a <code>build.gradle.kts</code> fájl tetején:</p>
+<p>Végezetül már csak a <code>plugint</code> kell bekapcsolnunk.</p>
+<p>Ehhez először vegyük föl a teljes projektünkbe a projekt szintű <code>build.gradle.kts</code> tetején, de kapcsoljuk is ki:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">serialization</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Majd kapcsoljuk be a <code>plugint</code> csak a modulunkra a modul szintű <code>build.gradle.kts</code> fájl tetején:</p>
 <div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">serialization</span><span class="p">)</span>
@@ -1248,7 +1257,7 @@
 <p>Az új stílusunk a <code>Theme.PublicTransport.Starting</code> nevet viseli, és a <code>Theme.SplashScreen</code> témából származik. Ezen kívül beállítottuk benne, hogy</p>
 <ul>
 <li><code>windowSplashScreenBackground</code>: a splash képernyő háttere (természetesen más is választható),</li>
-<li><code>windowSplashScreenAnimatedIcon</code>: a középen megjelenő ikon a saját ikonunk legyen, annak is csak az előtere,</li>
+<li><code>windowSplashScreenAnimatedIcon</code>: a középen megjelenő ikon a saját ikonunk legyen,</li>
 <li><code>android:windowSplashScreenIconBackgroundColor</code>: az ikonunk mögött milyen háttér legyen (ez is személyre szabható más színnel),</li>
 <li><code>postSplashScreenTheme</code>: a splash screen után milyen stílusra kell visszaváltania az alkalmazásnak.</li>
 </ul>
@@ -1258,9 +1267,11 @@
 </div>
 <p>Most már, hogy bekonfiguráltuk a <em>splash</em> képernyőnket, már csak be kell állítanunk a használatát. Ehhez először az imént létrehozott stílust kell alkalmaznunk <code>MainActivity</code>-re a <code>AndroidManifest.xml</code>-ben.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;activity</span>
-<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
 <span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
-<span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
+<span class="w">    </span><span class="na">android:windowSoftInputMode=</span><span class="s">&quot;adjustResize&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span>...
 <span class="nt">&lt;/activity&gt;</span>
 </code></pre></div>
@@ -1289,7 +1300,7 @@
 </p>
 
 <h3 id="felulet">Felület<a class="headerlink" href="#felulet" title="Permanent link">&para;</a></h3>
-<p>Először hozzunk létre egy új <em>Packaget</em> <code>screen</code> néven a projekt mappában, majd ezen belül hozzunk létre egy új <em>Kotlin Filet</em> <code>LoginScreen</code> néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:</p>
+<p>Először hozzunk létre egy új <em>package</em>-et a <code>ui</code> <em>package</em>-en belül <code>screen</code> néven a projekt mappában, majd ezen belül hozzunk létre egy új <em>Kotlin Filet</em> <code>LoginScreen</code> néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">LoginScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -1450,7 +1461,7 @@
 <p>A laborvezető segítségével beszéljük át, és értelmezzük a kódot!</p>
 </div>
 <h3 id="navigacio">Navigáció<a class="headerlink" href="#navigacio" title="Permanent link">&para;</a></h3>
-<p>Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a <code>LoginScreen</code> függvényt a <code>MainActivity</code> <code>onCreate</code> függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új <em>Packaget</em> a projekt mappába <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>Package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>AppNavigation</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#extra-feladat-atlathatobb-navigacio">Extra feladat - Átláthatóbb navigáció</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
+<p>Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a <code>LoginScreen</code> függvényt a <code>MainActivity</code> <code>onCreate</code> függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új <em>package</em>-et a <code>ui</code> <em>package</em>-be <code>navigation</code> néven, majd ebbe hozzunk létre két <em>Kotlin Filet</em> (a <em>package</em>-ünkön jobb klikk -&gt; New -&gt; Kotlin Class/File) <code>AppNavigation</code> illetve <code>Screen</code> néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az <a href="#extra-feladat-atlathatobb-navigacio">Extra feladat - Átláthatóbb navigáció</a> résznél fogjuk részletezve leírni az érdeklődők kedvéért.</p>
 <p>Nyissuk meg az <code>AppNavigation</code> fájlt, készítsük el a következő kódot, majd nézzük át és értelmezzük a laborvezető segítségével!</p>
 <div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
 
@@ -1519,7 +1530,7 @@
 </p>
 
 <p>Először töltsük le <a href="downloads/res.zip">az alkalmazás képi erőforrásait tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be a projektünkön belül az <code>app/src/main/res</code> mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk &gt; Show in Explorer).</p>
-<p>Hozzunk ehhez létre egy új <em>Kotlin Filet</em> a <code>screen</code> <em>Packageban</em> és nevezzük el <code>ListScreen</code> néven, majd írjuk bele a következőt:</p>
+<p>Hozzunk ehhez létre egy új <em>Kotlin Filet</em> a <code>screen</code> <em>package</em>-ben <code>ListScreen</code> néven, majd írjuk bele a következőt:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ListScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onTransportClick</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -1721,7 +1732,7 @@
 <img src="./assets/details.png" width="320">
 </p>
 
-<p>Hozzuk létre az új képernyőt <code>DetailsScreen</code> néven a <code>screen</code> <em>Packageban</em>, és készítsük el a felépítését, az alábbi szerint:</p>
+<p>Hozzuk létre az új képernyőt <code>DetailsScreen</code> néven a <code>screen</code> <em>package</em>-ben, és készítsük el a felépítését az alábbi szerint:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">DetailsScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
@@ -1838,7 +1849,11 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <li>Month - jelenlegi hónap</li>
 <li>Day - jelenlegi nap</li>
 </ol>
-<p>Ez utóbbi három a DatePicker dialógus jelenlegi nap helyzetét fogja befolyásolni.</p>
+<p>Ez utóbbi három a <code>DatePicker</code> dialógus jelenlegi nap helyzetét fogja befolyásolni.</p>
+<div class="admonition warning">
+<p class="admonition-title">DatePicker</p>
+<p>A jelenlegi megoldás a korábbi, <em>View</em> alapú <code>DatePicker</code>-t használja. Természetesen létezik <em>Compose</em>-os megvalósítás is, azonban ehhez saját dialógus ablakot kell létrehoznunk, ami túlmutat a jelenlegi labor keretein. A <em>Compose</em>-os dialógusok használatáról későbbi laborokban lesz szó.</p>
+</div>
 <p><strong>End date</strong>
 <div class="highlight"><pre><span></span><code><span class="n">Text</span><span class="p">(</span>
 <span class="w">     </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
@@ -1982,7 +1997,7 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <img src="./assets/pass.png" width="320">
 </p>
 
-<p>Hozzuk létre a szükséges <em>Kotlin Filet</em> szintén a <code>screen</code> packageba, <code>PassScreen</code> néven, majd írjuk bele az alábbiakat.</p>
+<p>Hozzuk létre a szükséges <em>Kotlin Filet</em> szintén a <code>screen</code> <em>package</em>-be, <code>PassScreen</code> néven, majd írjuk bele az alábbiakat:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">PassScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">passDetails</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
@@ -2104,6 +2119,10 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <p>Készíts <strong>két képernyőképet</strong>, amelyen látszik a <strong>jármű választó képernyő</strong> illetve a <strong>hajó bérlet képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), és az <strong>ezekhez tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képeket a megoldásban a repository-ba f6.png és f7.png néven töltsd föl!</p>
 <p>A képernyőképek szükséges feltételei a pontszám megszerzésének!</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">AI nyilatkozat</p>
+<p>Ne felejtsd el kitölteni az AI nyilatkozatot a <em>repository</em>-ban lévő <code>Readme.md</code> fájlban. A nyilatkozat szükséges feltétele a pontszám megszerzésének!</p>
+</div>
 <h2 id="extra-feladatok">Extra feladatok<a class="headerlink" href="#extra-feladatok" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Ismertető</p>
@@ -2113,38 +2132,20 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <p>A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tudunk hozni egy kezdő képernyőt amit az alkalmazás megnyitása után közvetlen látunk. Ezen az a megjelenő Icont könnyen tudjuk animálni is, ehhez mindössze pár <code>.xml</code> fájlt kell létrehozunk az Android Studio segítségével, amelyekben megvalósítjuk ezeket a műveleteket.</p>
 <p>Szükségünk van a következőkre:</p>
 <ul>
-<li>Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn. (Ezt már korábban létrehoztuk, csak módosítani fogjuk)</li>
+<li>Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn.</li>
 <li>Animator - Ebben fogjuk leírni az animációt amit szeretnénk használni az adott Logo-n.</li>
 <li>Animated Vector Drawable - Ennek a segítségével lesz összekötve az Animator, és a Logo.</li>
 <li>Themes - Ezt is csak módosítani fogjuk</li>
 <li>Animation - Ebben meg tudunk adni Interpolációkat még az animációk mellé</li>
 </ul>
-<p><strong>Logo módosítása</strong></p>
-<p>Módosítsuk a már meglévő Logo-t az alábbiak szerint. (<code>ic_transport_foreground.xml</code>)</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-<span class="w">    </span><span class="na">android:width=</span><span class="s">&quot;108dp&quot;</span>
-<span class="w">    </span><span class="na">android:height=</span><span class="s">&quot;108dp&quot;</span>
-<span class="w">    </span><span class="na">android:viewportWidth=</span><span class="s">&quot;24&quot;</span>
-<span class="w">    </span><span class="na">android:viewportHeight=</span><span class="s">&quot;24&quot;</span>
-<span class="w">    </span><span class="na">android:tint=</span><span class="s">&quot;#FFFF00&quot;</span><span class="nt">&gt;</span>
-<span class="w">  </span><span class="nt">&lt;group</span>
-<span class="w">      </span><span class="na">android:name=</span><span class="s">&quot;animationGroup&quot;</span>
-<span class="w">      </span><span class="na">android:pivotX=</span><span class="s">&quot;12&quot;</span>
-<span class="w">      </span><span class="na">android:pivotY=</span><span class="s">&quot;12&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;path</span>
-<span class="w">        </span><span class="na">android:fillColor=</span><span class="s">&quot;@android:color/white&quot;</span>
-<span class="w">        </span><span class="na">android:pathData=</span><span class="s">&quot;M4,16c0,0.88 0.39,1.67 1,2.22L5,20c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h8v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1.78c0.61,-0.55 1,-1.34 1,-2.22L20,6c0,-3.5 -3.58,-4 -8,-4s-8,0.5 -8,4v10zM7.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,14 7.5,14s1.5,0.67 1.5,1.5S8.33,17 7.5,17zM16.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM18,11L6,11L6,6h12v5z&quot;</span><span class="nt">/&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/group&gt;</span>
-<span class="nt">&lt;/vector&gt;</span>
-</code></pre></div>
-<p>A már meglévő path-et belecsomagoltuk egy group tag-be, amire azért van szükség, hogy tudjuk animálni az icont. Ennek a groupnak adunk egy nevet, amit az animálásnál fogunk felhasználni, hogy melyik csoportot szeretnénk, illetve beállítjuk a pivotX, és pivotY pontokat. Ezt jelen esetben középre tesszük, ugyanis a Logo-t középről szeretnénk animálni.</p>
 <p><strong>Animator létrehozása</strong></p>
 <p>Ahhoz hogy a Logo-t animálni tudjuk, létre kell hozunk egy Animator típusú fájlt. Kattintsunk a <code>res</code> mappára jobb klikkel, majd <em>New-&gt;Android Resource file</em>, névnek adjuk meg a <code>logo_animator</code>-t, type-nak az <code>Animator</code> típust, és Root elementnek pedig <code>objectAnimator</code>-t, majd kattintsunk az OK gombra. Ez létrehozta a szükséges fájlt, már csak meg kell írni az animációkat. Első sorban állítsuk be az animáció időtartamát, ezt az <code>android:duration</code> segítségével tehetjük meg az <code>objectAnimator</code> tagen belül. </p>
 <ul>
 <li>Kezdetben állítsuk egy másodpercre (1000). </li>
 <li>Ezután adjunk a Logo-nak egy Scale animációt, ennek a segítségével el tudjuk érni azt, hogy a semmiből megjelenjen, és az animáció időtartamával lineárisan megnövekedjen. Ehhez szükségünk van egy <code>propertyValuesHolder</code> tag-re az <code>objectAnimator</code>-on belül. </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;objectAnimator</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;objectAnimator</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">android:duration=</span><span class="s">&quot;1000&quot;</span>
 <span class="w">    </span><span class="na">android:interpolator=</span><span class="s">&quot;@android:anim/overshoot_interpolator&quot;</span><span class="nt">&gt;</span>
 
@@ -2166,7 +2167,8 @@ Egy <code>Text</code> és egy <code>TextButton</code> segítéségvel egy dátum
 <p>Ahhoz, hogy ezt az animációt összekössük a Logo-val, létre kell hoznunk egy Animated Vector Drawable-t.</p>
 <p><strong>Animated Vector Drawable</strong></p>
 <p>Hozzuk létre az Animated Vector Drawable file-t az Android Studio segítségével. Kattintsunk jobb klikkel a drawable mappánkra, majd <em>New-&gt;Drawable Resource File</em>. Itt névnek adjuk meg a <code>animated_logo</code>-t, valamint root element-nek <code>animated-vector</code>-t, majd kattintsunk az OK gombra. Ez létrehozta a szükséges file-t. Egészítsük ki az alábbiak szerint:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;animated-vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;animated-vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">android:drawable=</span><span class="s">&quot;@drawable/ic_transport_foreground&quot;</span><span class="nt">&gt;</span>
 
 <span class="w">    </span><span class="nt">&lt;target</span>
@@ -2220,7 +2222,7 @@ Itt csak az AnimatedIcon-t lecseréltük az <code>animated_logo</code>-ra, a sim
 <p>Illesszük ezt be a <code>MainActivity</code> <code>onCreate()</code> függvényébe a megfelelő helyre, majd próbáljuk ki az alkalmazást!</p>
 <h3 id="extra-feladat-navigacio-splash">Extra feladat - Navigáció-Splash<a class="headerlink" href="#extra-feladat-navigacio-splash" title="Permanent link">&para;</a></h3>
 <p>Korábban ezt a képernyőt a <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a> segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most návigáció segítségével fogunk egyet megnézni.</p>
-<p>Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új <em>Kotlin Filet</em> a <code>screen</code> packagen belül, majd nevezzük el <code>SplashScreen</code>-nek, és írjuk bele az alábbi kódot:</p>
+<p>Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új <em>Kotlin Filet</em> a <code>screen</code> <em>package</em>-en belül, majd nevezzük el <code>SplashScreen</code>-nek, és írjuk bele az alábbi kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">SplashScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -2397,15 +2399,15 @@ Látható, hogy az <em>interface</em>-ünk megvalósít egy <code>NavKey</code> 
 <li>A másik függvény pedig ami a napok, és a kategória alapján kiszámolja az árat</li>
 </ul>
 </details>
-<h3 id="kulonbozo-berlet-napi-arak-1-imsc-pont">Különböző bérlet napi árak (1 IMSc pont)<a class="headerlink" href="#kulonbozo-berlet-napi-arak-1-imsc-pont" title="Permanent link">&para;</a></h3>
+<h3 id="kulonbozo-berlet-napi-arak-05-imsc-pont">Különböző bérlet napi árak (0,5 IMSc pont)<a class="headerlink" href="#kulonbozo-berlet-napi-arak-05-imsc-pont" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 IMSc pont)</p>
+<p class="admonition-title">BEADANDÓ (0,5 IMSc pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik egy <strong>több napos bérlet részletes nézete az árral</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), <strong>a bérletárakkal kapcsolatos kóddal</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f8.png néven töltsd föl! </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének!</p>
 </div>
-<h3 id="szazalekos-kedvezmenyek-1-imsc-pont">Százalékos kedvezmények ( 1 IMSc pont)<a class="headerlink" href="#szazalekos-kedvezmenyek-1-imsc-pont" title="Permanent link">&para;</a></h3>
+<h3 id="szazalekos-kedvezmenyek-05-imsc-pont">Százalékos kedvezmények ( 0,5 IMSc pont)<a class="headerlink" href="#szazalekos-kedvezmenyek-05-imsc-pont" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 IMSc pont)</p>
+<p class="admonition-title">BEADANDÓ (0,5 IMSc pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik egy <strong>több napos kedvezményes bérlet részletes nézete az árral</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), <strong>a bérletkedvezményekkel kapcsolatos kóddal</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f9.png néven töltsd föl! </p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének!</p>
 </div>
@@ -2419,8 +2421,8 @@ Látható, hogy az <em>interface</em>-ünk megvalósít egy <code>NavKey</code> 
           </path>
         </svg>
       </span>
-      <span title="2025. december 15. 19:50:29">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. december 15. 19:50:29 CET"><span class="timeago" datetime="2025-12-15T19:50:29+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. december 15. 19:50:29 CET">2025-12-15</span>
+      <span title="2026. szeptember 12. 13:28:25">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. szeptember 12. 13:28:25 CEST"><span class="timeago" datetime="2026-09-12T13:28:25+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. szeptember 12. 13:28:25 CEST">2026-09-12</span>
       </span>
     </span>
 
