@@ -13,7 +13,7 @@ A labor során egy tömegközlekedési vállalat számára megálmodott alkalmaz
 </p>
 
 !!! warning "IMSc"
-	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
+	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 1 IMSc pont szerezhető.
 
 ## Előkészületek
 
@@ -30,7 +30,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-1. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+1. A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az `Readme.md` fájlban.
 
 
 !!! info "Android, Java, Kotlin"
@@ -43,7 +43,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 Első lépésként indítsuk el az Android Studio-t, majd:
 
 1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
-2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
+2. A projekt neve legyen `PublicTransport`, a kezdő *package* `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
 3. Nyelvnek válasszuk a *Kotlin*-t.
 4. A minimum API szint legyen API24: Android 7.0.
 5. A *Build configuration language* Kotlin DSL legyen.
@@ -65,20 +65,20 @@ Először másoljuk be a következő függőségeket a `libs.version.toml` verzi
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.2"
+coreKtx = "1.19.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.3"
-activityCompose = "1.12.0-alpha08"
-composeBom = "2025.09.00"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
 
-coreSplashscreen = "1.0.1"
-nav3Core = "1.0.0-alpha09"
-kotlinSerialization = "2.2.20"
-kotlinxSerializationCore = "1.9.0"
+coreSplashscreen = "1.2.0"
+nav3Core = "1.1.7"
+kotlinSerialization = "2.4.20"
+kotlinxSerializationCore = "1.11.0"
 
 
 [libraries]
@@ -86,7 +86,8 @@ kotlinxSerializationCore = "1.9.0"
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+
 
 
 [plugins]
@@ -95,7 +96,7 @@ jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serializati
 
 Itt a `[versions]` tag-en belül adhatunk egy változó nevet, majd egy verzió értéket, amit majd a következő lépésben átadunk a `version.ref`-nek. Ez mondja meg, hogy melyik verziót használja az adott modulból. A `[libraries]` tag-en belül definiálunk szintén egy változót `androidx-navigation-compose` néven, amit majd később használunk fel a `build.gradle.kts` fájlban. Ennek megadjuk, hogy melyik modul-t szeretnénk beletenni a projektbe, valamint egy verzió számot, amit korábban már definiáltunk. 
 
-Hogy ha ezzel megvagyunk, nyissuk meg a `build.gradle.kts` fájlt, és adjuk hozzá az imént felvett modulokat a `dependencies` tag-en belülre:
+Hogy ha ezzel megvagyunk, nyissuk meg a modul szintű `build.gradle.kts` fájlt, és adjuk hozzá az imént felvett modulokat a `dependencies` tag-en belülre:
 
 ```kts
 dependencies {
@@ -104,6 +105,7 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.androidx.material.icons.extended)
 }
 ```
 
@@ -112,7 +114,18 @@ Itt az `implementation` függvény segítségével tudunk új függőséget felv
 - megadjuk a fájl nevét, jelen esetben `libs` 
 - majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.
 
-Végezetül kapcsoljuk be az alábbi `plugint` a `build.gradle.kts` fájl tetején:
+Végezetül már csak a `plugint` kell bekapcsolnunk.
+
+Ehhez először vegyük föl a teljes projektünkbe a projekt szintű `build.gradle.kts` tetején, de kapcsoljuk is ki:
+
+```kotlin
+plugins {
+	...
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+}
+```
+
+Majd kapcsoljuk be a `plugint` csak a modulunkra a modul szintű `build.gradle.kts` fájl tetején:
 
 ```kotlin
 plugins {
@@ -243,7 +256,7 @@ A splash képernyő elkészítéséhez egy új stílust kell definiálnunk a `th
 Az új stílusunk a `Theme.PublicTransport.Starting` nevet viseli, és a `Theme.SplashScreen` témából származik. Ezen kívül beállítottuk benne, hogy
 
 - `windowSplashScreenBackground`: a splash képernyő háttere (természetesen más is választható),
-- `windowSplashScreenAnimatedIcon`: a középen megjelenő ikon a saját ikonunk legyen, annak is csak az előtere,
+- `windowSplashScreenAnimatedIcon`: a középen megjelenő ikon a saját ikonunk legyen,
 - `android:windowSplashScreenIconBackgroundColor`: az ikonunk mögött milyen háttér legyen (ez is személyre szabható más színnel),
 - `postSplashScreenTheme`: a splash screen után milyen stílusra kell visszaváltania az alkalmazásnak.
 
@@ -256,9 +269,11 @@ Most már, hogy bekonfiguráltuk a *splash* képernyőnket, már csak be kell á
 
 ```xml
 <activity
-    android:theme="@style/Theme.PublicTransport.Starting"
     android:name=".MainActivity"
-    android:exported="true">
+    android:exported="true"
+    android:label="@string/app_name"
+    android:theme="@style/Theme.PublicTransport.Starting"
+    android:windowSoftInputMode="adjustResize">
     ...
 </activity>
 ```
@@ -297,7 +312,7 @@ Most már elkészíthetjük a login képernyőt. A felhasználótól egy e-mail 
 
 ### Felület
 
-Először hozzunk létre egy új *Packaget* `screen` néven a projekt mappában, majd ezen belül hozzunk létre egy új *Kotlin Filet* `LoginScreen` néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:
+Először hozzunk létre egy új *package*-et a `ui` *package*-en belül `screen` néven a projekt mappában, majd ezen belül hozzunk létre egy új *Kotlin Filet* `LoginScreen` néven. Ezen a képernyőn fognak elhelyezkedni a szükséges feliratok, gombok, és beviteli mezők. Ehhez használjuk fel az alábbi kódot:
 
 ```kotlin
 @Composable
@@ -480,7 +495,7 @@ Button(
 
 ### Navigáció
 
-Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a `LoginScreen` függvényt a `MainActivity` `onCreate` függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új *Packaget* a projekt mappába `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *Package*-ünkön jobb klikk -> New -> Kotlin Class/File) `AppNavigation` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Átláthatóbb navigáció](#extra-feladat-atlathatobb-navigacio) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
+Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a `LoginScreen` függvényt a `MainActivity` `onCreate` függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új *package*-et a `ui` *package*-be `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *package*-ünkön jobb klikk -> New -> Kotlin Class/File) `AppNavigation` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Átláthatóbb navigáció](#extra-feladat-atlathatobb-navigacio) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
 
 
@@ -566,7 +581,7 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 
 Először töltsük le [az alkalmazás képi erőforrásait tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be a projektünkön belül az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
 
-Hozzunk ehhez létre egy új *Kotlin Filet* a `screen` *Packageban* és nevezzük el `ListScreen` néven, majd írjuk bele a következőt:
+Hozzunk ehhez létre egy új *Kotlin Filet* a `screen` *package*-ben `ListScreen` néven, majd írjuk bele a következőt:
 
 ```kotlin
 @Composable
@@ -785,7 +800,7 @@ Miután a felhasználó kiválasztotta a kívánt közlekedési eszközt, néhá
 <img src="./assets/details.png" width="320">
 </p>
 
-Hozzuk létre az új képernyőt `DetailsScreen` néven a `screen` *Packageban*, és készítsük el a felépítését, az alábbi szerint:
+Hozzuk létre az új képernyőt `DetailsScreen` néven a `screen` *package*-ben, és készítsük el a felépítését az alábbi szerint:
 
 ```kotlin
 @Composable
@@ -909,8 +924,10 @@ Egy `Text` és egy `TextButton` segítéségvel egy dátumválasztó mezőt val�
 4. Month - jelenlegi hónap
 5. Day - jelenlegi nap
 
-Ez utóbbi három a DatePicker dialógus jelenlegi nap helyzetét fogja befolyásolni.
+Ez utóbbi három a `DatePicker` dialógus jelenlegi nap helyzetét fogja befolyásolni.
 
+!!!warning "DatePicker"
+	A jelenlegi megoldás a korábbi, *View* alapú `DatePicker`-t használja. Természetesen létezik *Compose*-os megvalósítás is, azonban ehhez saját dialógus ablakot kell létrehoznunk, ami túlmutat a jelenlegi labor keretein. A *Compose*-os dialógusok használatáról későbbi laborokban lesz szó.
 
 **End date**
 ```kotlin
@@ -1081,7 +1098,7 @@ Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez maga a 
 </p>
 
 
-Hozzuk létre a szükséges *Kotlin Filet* szintén a `screen` packageba, `PassScreen` néven, majd írjuk bele az alábbiakat.
+Hozzuk létre a szükséges *Kotlin Filet* szintén a `screen` *package*-be, `PassScreen` néven, majd írjuk bele az alábbiakat:
 
 ```kotlin
 @Composable
@@ -1213,6 +1230,9 @@ Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltat�
 	A képernyőképek szükséges feltételei a pontszám megszerzésének!
 
 
+!!!danger "AI nyilatkozat"
+	Ne felejtsd el kitölteni az AI nyilatkozatot a *repository*-ban lévő `Readme.md` fájlban. A nyilatkozat szükséges feltétele a pontszám megszerzésének!
+
 ## Extra feladatok
 
 !!!warning "Ismertető"
@@ -1225,35 +1245,11 @@ A SplashScreen API-nak köszönhetően, már láttuk, hogy könnyedén létre tu
 
 Szükségünk van a következőkre:
 
-*   Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn. (Ezt már korábban létrehoztuk, csak módosítani fogjuk)
+*   Logo - Ezt fogjuk megjeleníteni a kezdőképernyőn.
 *   Animator - Ebben fogjuk leírni az animációt amit szeretnénk használni az adott Logo-n.
 *   Animated Vector Drawable - Ennek a segítségével lesz összekötve az Animator, és a Logo.
 *   Themes - Ezt is csak módosítani fogjuk
 *   Animation - Ebben meg tudunk adni Interpolációkat még az animációk mellé
-
-**Logo módosítása**
-
-Módosítsuk a már meglévő Logo-t az alábbiak szerint. (`ic_transport_foreground.xml`)
-
-```xml
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24"
-    android:tint="#FFFF00">
-  <group
-      android:name="animationGroup"
-      android:pivotX="12"
-      android:pivotY="12">
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M4,16c0,0.88 0.39,1.67 1,2.22L5,20c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h8v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1.78c0.61,-0.55 1,-1.34 1,-2.22L20,6c0,-3.5 -3.58,-4 -8,-4s-8,0.5 -8,4v10zM7.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,14 7.5,14s1.5,0.67 1.5,1.5S8.33,17 7.5,17zM16.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM18,11L6,11L6,6h12v5z"/>
-  </group>
-</vector>
-```
-
-A már meglévő path-et belecsomagoltuk egy group tag-be, amire azért van szükség, hogy tudjuk animálni az icont. Ennek a groupnak adunk egy nevet, amit az animálásnál fogunk felhasználni, hogy melyik csoportot szeretnénk, illetve beállítjuk a pivotX, és pivotY pontokat. Ezt jelen esetben középre tesszük, ugyanis a Logo-t középről szeretnénk animálni.
 
 **Animator létrehozása**
 
@@ -1263,6 +1259,7 @@ Ahhoz hogy a Logo-t animálni tudjuk, létre kell hozunk egy Animator típusú f
 *   Ezután adjunk a Logo-nak egy Scale animációt, ennek a segítségével el tudjuk érni azt, hogy a semmiből megjelenjen, és az animáció időtartamával lineárisan megnövekedjen. Ehhez szükségünk van egy `propertyValuesHolder` tag-re az `objectAnimator`-on belül. 
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="1000"
     android:interpolator="@android:anim/overshoot_interpolator">
@@ -1280,6 +1277,7 @@ Ahhoz hogy a Logo-t animálni tudjuk, létre kell hozunk egy Animator típusú f
         android:valueTo="0.5" />
 
 </objectAnimator>
+
 ```
 
 Ebben a rövid animációs kódban csak megnöveljük a méretét a Logo-nak 0-ról 0.5-re. A properyName-n belül tudjuk megadni az animációt, ez lehet scaleX, scaleY, roation, stb... valamint a valuesFrom/To-ban tudjuk megadni a kezdő-cél méretet.
@@ -1291,6 +1289,7 @@ Ahhoz, hogy ezt az animációt összekössük a Logo-val, létre kell hoznunk eg
 Hozzuk létre az Animated Vector Drawable file-t az Android Studio segítségével. Kattintsunk jobb klikkel a drawable mappánkra, majd *New->Drawable Resource File*. Itt névnek adjuk meg a `animated_logo`-t, valamint root element-nek `animated-vector`-t, majd kattintsunk az OK gombra. Ez létrehozta a szükséges file-t. Egészítsük ki az alábbiak szerint:
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/ic_transport_foreground">
 
@@ -1299,6 +1298,7 @@ Hozzuk létre az Animated Vector Drawable file-t az Android Studio segítségév
         android:name="animationGroup" />
 
 </animated-vector>
+
 ```
 
 *   Az `android:drawable` segítségével megadjuk azt a fájlt amit szeretnénk animálni.
@@ -1356,7 +1356,7 @@ Illesszük ezt be a `MainActivity` `onCreate()` függvényébe a megfelelő hely
 
 Korábban ezt a képernyőt a [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) segítségével oldottuk meg, azonban többfajta lehetőség is van, ezek közül most návigáció segítségével fogunk egyet megnézni.
 
-Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új *Kotlin Filet* a `screen` packagen belül, majd nevezzük el `SplashScreen`-nek, és írjuk bele az alábbi kódot:
+Ez a képernyő lényegében egy ugyanolyan képernyő mint a többi. Itt első sorban hozzunk létre egy új *Kotlin Filet* a `screen` *package*-en belül, majd nevezzük el `SplashScreen`-nek, és írjuk bele az alábbi kódot:
 
 ```kotlin
 @Composable
@@ -1526,16 +1526,16 @@ Ebből még az alábbi kedvezményeket adjuk:
     - Az egyik függvény egy különbség számító, ami két dátum között eltelt napokat számol
     - A másik függvény pedig ami a napok, és a kategória alapján kiszámolja az árat
 
-### Különböző bérlet napi árak (1 IMSc pont)
+### Különböző bérlet napi árak (0,5 IMSc pont)
 
-!!!example "BEADANDÓ (1 IMSc pont)"
+!!!example "BEADANDÓ (0,5 IMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik egy **több napos bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletárakkal kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f8.png néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének!
 
-### Százalékos kedvezmények ( 1 IMSc pont)
+### Százalékos kedvezmények ( 0,5 IMSc pont)
 
-!!!example "BEADANDÓ (1 IMSc pont)"
+!!!example "BEADANDÓ (0,5 IMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik egy **több napos kedvezményes bérlet részletes nézete az árral** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), **a bérletkedvezményekkel kapcsolatos kóddal**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f9.png néven töltsd föl! 
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének!
