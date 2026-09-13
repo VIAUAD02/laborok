@@ -86,7 +86,8 @@ kotlinxSerializationCore = "1.11.0"
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
 
 
 
@@ -495,7 +496,7 @@ Button(
 
 ### Navigáció
 
-Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a `LoginScreen` függvényt a `MainActivity` `onCreate` függvényében. Azomban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új *package*-et a `ui` *package*-be `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *package*-ünkön jobb klikk -> New -> Kotlin Class/File) `AppNavigation` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Átláthatóbb navigáció](#extra-feladat-atlathatobb-navigacio) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
+Ahhoz, hogy az új felületünket meg tudjuk jeleníteni, elég lenne egyszerűen meghívni a `LoginScreen` függvényt a `MainActivity` `onCreate` függvényében. Azonban jobban járunk, ha már most elkezdjük előkészíteni az alkalmazás navigációját. Ehhez először hozzunk létre egy új *package*-et a `ui` *package*-be `navigation` néven, majd ebbe hozzunk létre két *Kotlin Filet* (a *package*-ünkön jobb klikk -> New -> Kotlin Class/File) `AppNavigation` illetve `Screen` néven. Ez utóbbira csak azért lesz szükség, hogy a későbbiekben szebben tudjuk megoldani a navigációt a képernyők között. Ezt az [Extra feladat - Átláthatóbb navigáció](#extra-feladat-atlathatobb-navigacio) résznél fogjuk részletezve leírni az érdeklődők kedvéért.
 
 
 
