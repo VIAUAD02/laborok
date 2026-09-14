@@ -1238,9 +1238,6 @@ As our company expanded, we also launched a boat pass service. Let's add this ne
 !!!warning "Introductory"
     These tasks are not required to obtain the maximum score for the lab, they are merely introductory in the lab material for those who would like to delve deeper into the topic.
 
-!!!danger "AI Declaration"
-    Don't forget to fill out the AI ​​declaration in the `README.md` file in the repository. The declaration is a mandatory requirement for receiving a grade!
-
 
 ### Extra task - SplashScreen animation
 
@@ -1533,11 +1530,11 @@ We also give the following discounts:
 !!!example "TO BE SUBMITTED (0.5 IMSc points)"
     Create a **screenshot** showing a **detailed view of a multi-day pass with the price** (on an emulator, device mirroring or screenshot), **with the code related to the pass prices**, and **your neptun code as a comment somewhere in the code**! Upload the image to the repository in the solution as f8.png!
 
-    The screenshot is a necessary condition for getting points!
+    The screenshot and AI declaration are a necessary condition for getting points!
 
 ### Percentage discounts (0.5 IMSc points)
 
 !!!example "TO BE SUBMITTED (0.5 IMSc points)"
     Create a **screenshot** showing a **detailed view of a multi-day discount pass with price** (on emulator, device mirroring or screenshot), **with the code related to the pass discounts**, and **your neptun code as a comment somewhere in the code**! Upload the image to the repository in the solution as f9.png!
 
-    The screenshot is a necessary condition for getting points!
+    The screenshot and AI declaration are a necessary condition for getting points!
