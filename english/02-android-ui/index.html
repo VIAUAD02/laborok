@@ -809,15 +809,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#different-daily-pass-prices-1-imsc-point" class="md-nav__link">
-    Different daily pass prices (1 IMSc point)
+  <a href="#different-daily-pass-prices-05-imsc-points" class="md-nav__link">
+    Different daily pass prices (0.5 IMSc points)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#percentage-discounts-1-imsc-point" class="md-nav__link">
-    Percentage discounts (1 IMSc point)
+  <a href="#percentage-discounts-05-imsc-points" class="md-nav__link">
+    Percentage discounts (0.5 IMSc points)
   </a>
   
 </li>
@@ -859,7 +859,7 @@
 
 <div class="admonition warning">
 <p class="admonition-title">IMSc</p>
-<p>After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.</p>
+<p>After successfully completing the lab tasks, 1 IMSc points can be earned by solving the IMSc task.</p>
 </div>
 <h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
 <p>When solving the tasks, don't forget to follow the <a href="../github/GitHub.md">task submission process</a>.</p>
@@ -878,6 +878,9 @@
 <p>Create a new branch called <code>solution</code> and work on this branch.</p>
 </li>
 <li>
+<p>Keep a running log of any AI usage in the <code>README.md</code> file while working on the task.</p>
+</li>
+<li>
 <p>Write your Neptun code in the file <code>neptun.txt</code>. The file should contain nothing else but the 6 characters of the Neptun code on a single line.</p>
 </li>
 </ol>
@@ -890,7 +893,7 @@
 <p>First, let's start Android Studio, then:</p>
 <ol>
 <li>Create a new project, select <em>Empty Activity</em>.</li>
-<li>The project name should be <code>PublicTransport</code>, the starting package <code>hu.bme.aut.android.publictransport</code>, and the save location should be the PublicTransport folder within the checked-out repository.</li>
+<li>The project name should be <code>PublicTransport</code>, the starting <em>package</em> <code>hu.bme.aut.android.publictransport</code>, and the save location should be the PublicTransport folder within the checked-out repository.</li>
 <li>Select <em>Kotlin</em> as the language.</li>
 <li>The minimum API level should be API24: Android 7.0.</li>
 <li>The <em>Build configuration language</em> should be Kotlin DSL.</li>
@@ -910,41 +913,41 @@
 </ul>
 <p>First, copy the following dependencies into the <code>libs.version.toml</code> version catalog file:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;8.12.3&quot;</span>
-<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
-<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.17.0&quot;</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;9.3.2&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.19.0&quot;</span>
 <span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;4.13.2&quot;</span>
 <span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
 <span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3.7.0&quot;</span>
-<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.3&quot;</span>
-<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.12.0-alpha08&quot;</span>
-<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2025.09.00&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.11.0&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.13.0&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.4.20&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2026.09.00&quot;</span>
 
-<span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.1&quot;</span>
-<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0.0-alpha09&quot;</span>
-<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.2.20&quot;</span>
-<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.9.0&quot;</span>
+<span class="n">coreSplashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.2.0&quot;</span>
+<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.1.7&quot;</span>
+<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.4.20&quot;</span>
+<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.11.0&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="p">...</span>
 <span class="n">androidx-core-splashscreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.core:core-splashscreen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coreSplashscreen&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-navigation3-runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-runtime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-navigation3-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation3:navigation3-ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nav3Core&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">kotlinx-serialization-core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-serialization-core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinxSerializationCore&quot;</span><span class="w"> </span><span class="p">}</span><span class="n">androidx-material-icons-extended</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.compose.material&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;material-icons-extended&quot;</span><span class="w"> </span><span class="p">}</span>
+
 
 <span class="k">[plugins]</span>
-
-
 <span class="n">jetbrains-kotlin-serialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kotlinSerialization&quot;</span><span class="p">}</span>
 </code></pre></div>
 <p>Here, inside the <code>[versions]</code> tag, we can give a variable name and then a version value, which we will pass to <code>version.ref</code> in the next step. This tells us which version of the given module is being used. Inside the <code>[libraries]</code> tag, we also define a variable called <code>androidx-navigation-compose</code>, which we will use later in the <code>build.gradle.kts</code> file. We give it which module we want to include in the project, as well as a version number that we have previously defined.</p>
-<p>Once we are done with this, let's open the <code>build.gradle.kts</code> file and add the modules we just added inside the <code>dependencies</code> tag:</p>
+<p>Once we are done with this, let's open the module-level <code>build.gradle.kts</code> file and add the modules we just added inside the <code>dependencies</code> tag:</p>
 <div class="highlight"><pre><span></span><code>dependencies {
     ...
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.androidx.material.icons.extended)
 }
 </code></pre></div>
 <p>Here we can add a new dependency to the project using the <code>implementation</code> function, and within this we need to specify the name of the module, which we have previously defined in <code>libs.version.toml</code>. We can do this as follows:</p>
@@ -952,7 +955,14 @@
 <li>specify the name of the file, in this case <code>libs</code></li>
 <li>then specify the name of the variable to which we previously assigned our module.</li>
 </ul>
-<p>Finally, enable the following <code>plugin</code> at the top of the <code>build.gradle.kts</code> file:</p>
+<p>Finally, we just need to enable the <code>plugin</code>.</p>
+<p>To do this, first add it to the entire project at the top of the project-level <code>build.gradle.kts</code>, but disable it:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">serialization</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then, enable the plugin specifically for our module at the top of the module-level <code>build.gradle.kts</code> file:</p>
 <div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">serialization</span><span class="p">)</span>
@@ -1049,7 +1059,7 @@
 <p>Our new style is called <code>Theme.PublicTransport.Starting</code> and is derived from the <code>Theme.SplashScreen</code> theme. In addition, we set it to</p>
 <ul>
 <li><code>windowSplashScreenBackground</code>: the background of the splash screen (of course, you can choose a different one),</li>
-<li><code>windowSplashScreenAnimatedIcon</code>: the icon in the middle should be our own icon, and it is only its foreground,</li>
+<li><code>windowSplashScreenAnimatedIcon</code>: the icon in the middle should be our own icon,</li>
 <li><code>android:windowSplashScreenIconBackgroundColor</code>: what background should be behind our icon (this can also be customized with a different color),</li>
 <li><code>postSplashScreenTheme</code>: what style the application should switch back to after the splash screen.</li>
 </ul>
@@ -1059,9 +1069,11 @@
 </div>
 <p>Now that we have configured our <em>splash</em> screen, we just need to configure its use. To do this, we first need to apply the style we just created to <code>MainActivity</code> in <code>AndroidManifest.xml</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;activity</span>
-<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
 <span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
-<span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.PublicTransport.Starting&quot;</span>
+<span class="w">    </span><span class="na">android:windowSoftInputMode=</span><span class="s">&quot;adjustResize&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span>...
 <span class="nt">&lt;/activity&gt;</span>
 </code></pre></div>
@@ -1090,7 +1102,7 @@
 </p>
 
 <h3 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
-<p>First, let's create a new <em>Package</em> called <code>screen</code> in the project folder, and then within that, create a new <em>Kotlin File</em> called <code>LoginScreen</code>. This screen will contain the necessary labels, buttons, and input fields. To do this, we use the following code:</p>
+<p>First, create a new <em>package</em> named <code>screen</code> within the <code>ui</code> <em>package</em> in the project folder, and then create a new <em>Kotlin file</em> named <code>LoginScreen</code> inside it. This screen will contain the necessary labels, buttons, and input fields. Use the following code for this:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">LoginScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -1251,7 +1263,7 @@
 <p>Let's talk through and interpret the code with the help of the lab leader!</p>
 </div>
 <h3 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h3>
-<p>To display our new interface, it would be enough to simply call the <code>LoginScreen</code> function in the <code>onCreate</code> function of <code>MainActivity</code>. However, it would be better if we start preparing the application navigation now. To do this, first create a new <em>Package</em> in the project folder called <code>navigation</code>, and then create two <em>Kotlin Files</em> in it (right click on our <em>Package</em> -&gt; New -&gt; Kotlin Class/File) called <code>AppNavigation</code> and <code>Screen</code>. The latter will only be needed so that we can solve the navigation between the screens in a better way later. We will describe this in detail in the <a href="#extra-task-more-transparent-navigation">Extra task - More transparent navigation</a> section for those interested.</p>
+<p>To display our new interface, simply calling the <code>LoginScreen</code> function within <code>MainActivity</code>'s <code>onCreate</code> method would suffice. However, it is better to start setting up the application's navigation right away. To do this, first create a new <em>package</em> named <code>navigation</code> inside the <code>ui</code> <em>package</em>, and then create two <em>Kotlin files</em> within it (right-click on the <em>package</em> -&gt; New -&gt; Kotlin Class/File) named <code>AppNavigation</code> and <code>Screen</code>. The latter is needed solely to implement navigation between screens more elegantly later on. We will describe this in detail in the <a href="#extra-task-more-transparent-navigation">Extra task - More transparent navigation</a> section for those interested.</p>
 <p>Open the <code>AppNavigation</code> file, create the following code, and then review and interpret it with the help of the lab leader!</p>
 <div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">LoginScreenDestination</span>
 
@@ -1320,7 +1332,7 @@
 </p>
 
 <p>First, download the <a href="downloads/res.zip">compressed file containing the application's image resources</a>, which contains all the images we will need. Copy its contents into the <code>app/src/main/res</code> folder within our project (this can be done by switching from the standard Android view in the top left to the Project view in Android Studio, or by right-clicking on the folder &gt; Show in Explorer).</p>
-<p>To do this, create a new <em>Kotlin File</em> in the <code>screen</code> <em>Package</em> and name it <code>ListScreen</code>, then enter the following:</p>
+<p>To do this, create a new <em>Kotlin File</em> in the <code>screen</code> <em>package</em> and name it <code>ListScreen</code>, then enter the following:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ListScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onTransportClick</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -1522,7 +1534,7 @@
 <img src="./assets/details.png" width="320">
 </p>
 
-<p>Create the new screen named <code>DetailsScreen</code> in the <code>screen</code> <em>Package</em> and structure it as follows:</p>
+<p>Create the new screen named <code>DetailsScreen</code> in the <code>screen</code> <em>package</em> and structure it as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">DetailsScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
@@ -1639,7 +1651,11 @@ We will implement a date picker field using a <code>Text</code> and a <code>Text
 <li>Month - current month</li>
 <li>Day - current day</li>
 </ol>
-<p>These last three will affect the current day position of the DatePicker dialog.</p>
+<p>These last three will affect the current day position of the <code>DatePicker</code> dialog.</p>
+<div class="admonition warning">
+<p class="admonition-title">DatePicker</p>
+<p>The current solution uses the earlier <em>View</em>-based <code>DatePicker</code>. Naturally, a <em>Compose</em>-based implementation also exists; however, that would require creating a custom dialog, which goes beyond the scope of the current lab. The use of <em>Compose</em> dialogs will be covered in future labs.</p>
+</div>
 <p><strong>End date</strong>
 <div class="highlight"><pre><span></span><code><span class="n">Text</span><span class="p">(</span>
 <span class="w">     </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
@@ -1783,7 +1799,7 @@ We will implement a date picker field using a <code>Text</code> and a <code>Text
 <img src="./assets/pass.png" width="320">
 </p>
 
-<p>Let's create the necessary <em>Kotlin File</em> also in the <code>screen</code> package, named <code>PassScreen</code>, and then write the following into it.</p>
+<p>Let's create the necessary <em>Kotlin File</em> also in the <code>screen</code> <em>package</em>, named <code>PassScreen</code>, and then write the following into it.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">PassScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">passDetails</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
@@ -1905,48 +1921,37 @@ We will implement a date picker field using a <code>Text</code> and a <code>Text
 <p>Create <strong>two screenshots</strong> showing the <strong>vehicle selection screen</strong> and the <strong>boat pass screen</strong> (on an emulator, by mirroring the device or by taking a screenshot), and the <strong>corresponding code snippet</strong>, as well as <strong>your neptun code somewhere in the code as a comment</strong>! Upload the images to the repository in the solution as f6.png and f7.png!</p>
 <p>Screenshots are necessary conditions for getting points!</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">AI Declaration</p>
+<p>Don't forget to fill out the AI ​​declaration in the <code>README.md</code> file in the repository. The declaration is a mandatory requirement for receiving a grade!</p>
+</div>
 <h2 id="extra-tasks">Extra tasks<a class="headerlink" href="#extra-tasks" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Introductory</p>
 <p>These tasks are not required to obtain the maximum score for the lab, they are merely introductory in the lab material for those who would like to delve deeper into the topic.</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">AI Declaration</p>
+<p>Don't forget to fill out the AI ​​declaration in the <code>README.md</code> file in the repository. The declaration is a mandatory requirement for receiving a grade!</p>
+</div>
 <h3 id="extra-task-splashscreen-animation">Extra task - SplashScreen animation<a class="headerlink" href="#extra-task-splashscreen-animation" title="Permanent link">&para;</a></h3>
 <p>Thanks to the SplashScreen API, we have already seen that we can easily create a splash screen that we see immediately after opening the application. We can also easily animate the Icon that appears on it, for this we only need to create a few <code>.xml</code> files using Android Studio, in which we will implement these operations.</p>
 <p>We need the following:</p>
 <ul>
-<li>Logo - This is what we will display on the splash screen. (We have already created this before, we will just modify it)</li>
+<li>Logo - This is what we will display on the splash screen. </li>
 <li>Animator - In this we will describe the animation that we want to use on the given Logo.</li>
 <li>Animated Vector Drawable - With this, the Animator and the Logo will be connected.</li>
 <li>Themes - We will also only modify this</li>
 <li>Animation - In this we can specify Interpolations in addition to the animations</li>
 </ul>
-<p><strong>Modify Logo</strong></p>
-<p>Modify the existing Logo as follows.
-(<code>ic_transport_foreground.xml</code>)</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-<span class="w">    </span><span class="na">android:width=</span><span class="s">&quot;108dp&quot;</span>
-<span class="w">    </span><span class="na">android:height=</span><span class="s">&quot;108dp&quot;</span>
-<span class="w">    </span><span class="na">android:viewportWidth=</span><span class="s">&quot;24&quot;</span>
-<span class="w">    </span><span class="na">android:viewportHeight=</span><span class="s">&quot;24&quot;</span>
-<span class="w">    </span><span class="na">android:tint=</span><span class="s">&quot;#FFFF00&quot;</span><span class="nt">&gt;</span>
-<span class="w">  </span><span class="nt">&lt;group</span>
-<span class="w">      </span><span class="na">android:name=</span><span class="s">&quot;animationGroup&quot;</span>
-<span class="w">      </span><span class="na">android:pivotX=</span><span class="s">&quot;12&quot;</span>
-<span class="w">      </span><span class="na">android:pivotY=</span><span class="s">&quot;12&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;path</span>
-<span class="w">        </span><span class="na">android:fillColor=</span><span class="s">&quot;@android:color/white&quot;</span>
-<span class="w">        </span><span class="na">android:pathData=</span><span class="s">&quot;M4,16c0,0.88 0.39,1.67 1,2.22L5,20c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h8v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1.78c0.61,-0.55 1,-1.34 1,-2.22L20,6c0,-3.5 -3.58,-4 -8,-4s-8,0.5 -8,4v10zM7.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,14 7.5,14s1.5,0.67 1.5,1.5S8.33,17 7.5,17zM16.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM18,11L6,11L6,6h12v5z&quot;</span><span class="nt">/&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/group&gt;</span>
-<span class="nt">&lt;/vector&gt;</span>
-</code></pre></div>
-<p>We wrapped the existing path in a group tag, which is needed to animate the icon. We give this group a name that we will use when animating, which group we want, and set the pivotX and pivotY points. In this case, we will set it to the center, because we want to animate the Logo from the center.</p>
 <p><strong>Creating an Animator</strong></p>
 <p>In order to animate the Logo, we need to create an Animator type file. Right-click on the <code>res</code> folder, then <em>New-&gt;Android Resource file</em>, enter <code>logo_animator</code> as the name, <code>Animator</code> as the type, and <code>objectAnimator</code> as the Root element, then click the OK button. This has created the necessary file, all we need to do is write the animations. First, set the duration of the animation, we can do this using <code>android:duration</code> within the <code>objectAnimator</code> tag.</p>
 <ul>
 <li>Initially set to one second (1000).</li>
 <li>Next, we give the Logo a Scale animation, which allows us to make it appear from scratch and grow linearly over the duration of the animation. For this, we need a <code>propertyValuesHolder</code> tag inside the <code>objectAnimator</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;objectAnimator</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;objectAnimator</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">android:duration=</span><span class="s">&quot;1000&quot;</span>
 <span class="w">    </span><span class="na">android:interpolator=</span><span class="s">&quot;@android:anim/overshoot_interpolator&quot;</span><span class="nt">&gt;</span>
 
@@ -1968,7 +1973,8 @@ We will implement a date picker field using a <code>Text</code> and a <code>Text
 <p>To connect this animation to the Logo, we need to create an Animated Vector Drawable.</p>
 <p><strong>Animated Vector Drawable</strong></p>
 <p>Let's create the Animated Vector Drawable file using Android Studio. Right-click on our drawable folder, then <em>New-&gt;Drawable Resource File</em>. Here, we give the name <code>animated_logo</code> and the root element <code>animated-vector</code>, then click the OK button. This will create the required file. Complete it as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;animated-vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;animated-vector</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">android:drawable=</span><span class="s">&quot;@drawable/ic_transport_foreground&quot;</span><span class="nt">&gt;</span>
 
 <span class="w">    </span><span class="nt">&lt;target</span>
@@ -2022,7 +2028,7 @@ Here we just replaced AnimatedIcon with <code>animated_logo</code> instead of th
 <p>Let's paste this into the <code>MainActivity</code> <code>onCreate()</code> function in the appropriate place, then test the application!</p>
 <h3 id="extra-task-navigation-splash">Extra task - Navigation-Splash<a class="headerlink" href="#extra-task-navigation-splash" title="Permanent link">&para;</a></h3>
 <p>Previously, we solved this screen using the <a href="https://developer.android.com/develop/ui/views/launch/splash-screen">Splash Screen API</a>, but there are several options, of which we will now look at one using navigation.</p>
-<p>This screen is essentially the same screen as the others. Here, first, let's create a new <em>Kotlin File</em> inside the <code>screen</code> package, then name it <code>SplashScreen</code>, and write the following code in it:</p>
+<p>This screen is essentially the same screen as the others. Here, first, let's create a new <em>Kotlin File</em> inside the <code>screen</code> <em>package</em>, then name it <code>SplashScreen</code>, and write the following code in it:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">SplashScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onSuccess</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
@@ -2199,15 +2205,15 @@ You can see that our <em>interface</em> implements a <code>NavKey</code> <em>int
 <li>The other function calculates the price based on the days and the category</li>
 </ul>
 </details>
-<h3 id="different-daily-pass-prices-1-imsc-point">Different daily pass prices (1 IMSc point)<a class="headerlink" href="#different-daily-pass-prices-1-imsc-point" title="Permanent link">&para;</a></h3>
+<h3 id="different-daily-pass-prices-05-imsc-points">Different daily pass prices (0.5 IMSc points)<a class="headerlink" href="#different-daily-pass-prices-05-imsc-points" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">TO BE SUBMITTED (1 IMSc point)</p>
+<p class="admonition-title">TO BE SUBMITTED (0.5 IMSc points)</p>
 <p>Create a <strong>screenshot</strong> showing a <strong>detailed view of a multi-day pass with the price</strong> (on an emulator, device mirroring or screenshot), <strong>with the code related to the pass prices</strong>, and <strong>your neptun code as a comment somewhere in the code</strong>! Upload the image to the repository in the solution as f8.png!</p>
 <p>The screenshot is a necessary condition for getting points!</p>
 </div>
-<h3 id="percentage-discounts-1-imsc-point">Percentage discounts (1 IMSc point)<a class="headerlink" href="#percentage-discounts-1-imsc-point" title="Permanent link">&para;</a></h3>
+<h3 id="percentage-discounts-05-imsc-points">Percentage discounts (0.5 IMSc points)<a class="headerlink" href="#percentage-discounts-05-imsc-points" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">TO BE SUBMITTED (1 IMSc point)</p>
+<p class="admonition-title">TO BE SUBMITTED (0.5 IMSc points)</p>
 <p>Create a <strong>screenshot</strong> showing a <strong>detailed view of a multi-day discount pass with price</strong> (on emulator, device mirroring or screenshot), <strong>with the code related to the pass discounts</strong>, and <strong>your neptun code as a comment somewhere in the code</strong>! Upload the image to the repository in the solution as f9.png!</p>
 <p>The screenshot is a necessary condition for getting points!</p>
 </div>
@@ -2221,8 +2227,8 @@ You can see that our <em>interface</em> implements a <code>NavKey</code> <em>int
           </path>
         </svg>
       </span>
-      <span title="2025. szeptember 15. 23:58:53">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. szeptember 15. 23:58:53 CEST"><span class="timeago" datetime="2025-09-15T23:58:53+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. szeptember 15. 23:58:53 CEST">2025-09-15</span>
+      <span title="2026. szeptember 14. 11:06:37">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. szeptember 14. 11:06:37 CEST"><span class="timeago" datetime="2026-09-14T11:06:37+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. szeptember 14. 11:06:37 CEST">2026-09-14</span>
       </span>
     </span>
 
