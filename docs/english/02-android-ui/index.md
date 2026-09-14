@@ -13,7 +13,7 @@ During the lab, we will create a skeleton of an application for a public transpo
 </p>
 
 !!! warning "IMSc"
-	After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.
+	After successfully completing the lab tasks, 1 IMSc points can be earned by solving the IMSc task.
 
 ## Preparations
 
@@ -30,6 +30,8 @@ When solving the tasks, don't forget to follow the [task submission process](../
 
 1. Create a new branch called `solution` and work on this branch.
 
+1. Keep a running log of any AI usage in the `README.md` file while working on the task.
+
 1. Write your Neptun code in the file `neptun.txt`. The file should contain nothing else but the 6 characters of the Neptun code on a single line.
 
 
@@ -43,7 +45,7 @@ When solving the tasks, don't forget to follow the [task submission process](../
 First, let's start Android Studio, then:
 
 1. Create a new project, select *Empty Activity*.
-2. The project name should be `PublicTransport`, the starting package `hu.bme.aut.android.publictransport`, and the save location should be the PublicTransport folder within the checked-out repository.
+2. The project name should be `PublicTransport`, the starting *package* `hu.bme.aut.android.publictransport`, and the save location should be the PublicTransport folder within the checked-out repository.
 3. Select *Kotlin* as the language.
 4. The minimum API level should be API24: Android 7.0.
 5. The *Build configuration language* should be Kotlin DSL.
@@ -65,37 +67,36 @@ First, copy the following dependencies into the `libs.version.toml` version cata
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.2"
+coreKtx = "1.19.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.3"
-activityCompose = "1.12.0-alpha08"
-composeBom = "2025.09.00"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
 
-coreSplashscreen = "1.0.1"
-nav3Core = "1.0.0-alpha09"
-kotlinSerialization = "2.2.20"
-kotlinxSerializationCore = "1.9.0"
+coreSplashscreen = "1.2.0"
+nav3Core = "1.1.7"
+kotlinSerialization = "2.4.20"
+kotlinxSerializationCore = "1.11.0"
 
 [libraries]
 ...
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+
 
 [plugins]
-
-
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 ```
 
 Here, inside the `[versions]` tag, we can give a variable name and then a version value, which we will pass to `version.ref` in the next step. This tells us which version of the given module is being used. Inside the `[libraries]` tag, we also define a variable called `androidx-navigation-compose`, which we will use later in the `build.gradle.kts` file. We give it which module we want to include in the project, as well as a version number that we have previously defined.
 
-Once we are done with this, let's open the `build.gradle.kts` file and add the modules we just added inside the `dependencies` tag:
+Once we are done with this, let's open the module-level `build.gradle.kts` file and add the modules we just added inside the `dependencies` tag:
 
 ```kts
 dependencies {
@@ -104,6 +105,7 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.androidx.material.icons.extended)
 }
 ```
 
@@ -112,7 +114,18 @@ Here we can add a new dependency to the project using the `implementation` funct
 - specify the name of the file, in this case `libs`
 - then specify the name of the variable to which we previously assigned our module.
 
-Finally, enable the following `plugin` at the top of the `build.gradle.kts` file:
+Finally, we just need to enable the `plugin`.
+
+To do this, first add it to the entire project at the top of the project-level `build.gradle.kts`, but disable it:
+
+```kotlin
+plugins {
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+}
+```
+
+Then, enable the plugin specifically for our module at the top of the module-level `build.gradle.kts` file:
 
 ```kotlin
 plugins {
@@ -242,7 +255,7 @@ To create the splash screen, we need to define a new style in the `themes.xml` f
 Our new style is called `Theme.PublicTransport.Starting` and is derived from the `Theme.SplashScreen` theme. In addition, we set it to
 
 - `windowSplashScreenBackground`: the background of the splash screen (of course, you can choose a different one),
-- `windowSplashScreenAnimatedIcon`: the icon in the middle should be our own icon, and it is only its foreground,
+- `windowSplashScreenAnimatedIcon`: the icon in the middle should be our own icon,
 - `android:windowSplashScreenIconBackgroundColor`: what background should be behind our icon (this can also be customized with a different color),
 - `postSplashScreenTheme`: what style the application should switch back to after the splash screen.
 
@@ -255,9 +268,11 @@ Now that we have configured our *splash* screen, we just need to configure its u
 
 ```xml
 <activity
-    android:theme="@style/Theme.PublicTransport.Starting"
     android:name=".MainActivity"
-    android:exported="true">
+    android:exported="true"
+    android:label="@string/app_name"
+    android:theme="@style/Theme.PublicTransport.Starting"
+    android:windowSoftInputMode="adjustResize">
     ...
 </activity>
 ```
@@ -297,7 +312,7 @@ Now we can create the login screen. We will ask the user for an email address an
 
 ### UI
 
-First, let's create a new *Package* called `screen` in the project folder, and then within that, create a new *Kotlin File* called `LoginScreen`. This screen will contain the necessary labels, buttons, and input fields. To do this, we use the following code:
+First, create a new *package* named `screen` within the `ui` *package* in the project folder, and then create a new *Kotlin file* named `LoginScreen` inside it. This screen will contain the necessary labels, buttons, and input fields. Use the following code for this:
 
 ```kotlin
 @Composable
@@ -480,7 +495,7 @@ Button(
 
 ### Navigation
 
-To display our new interface, it would be enough to simply call the `LoginScreen` function in the `onCreate` function of `MainActivity`. However, it would be better if we start preparing the application navigation now. To do this, first create a new *Package* in the project folder called `navigation`, and then create two *Kotlin Files* in it (right click on our *Package* -> New -> Kotlin Class/File) called `AppNavigation` and `Screen`. The latter will only be needed so that we can solve the navigation between the screens in a better way later. We will describe this in detail in the [Extra task - More transparent navigation](#extra-task-more-transparent-navigation) section for those interested.
+To display our new interface, simply calling the `LoginScreen` function within `MainActivity`'s `onCreate` method would suffice. However, it is better to start setting up the application's navigation right away. To do this, first create a new *package* named `navigation` inside the `ui` *package*, and then create two *Kotlin files* within it (right-click on the *package* -> New -> Kotlin Class/File) named `AppNavigation` and `Screen`. The latter is needed solely to implement navigation between screens more elegantly later on. We will describe this in detail in the [Extra task - More transparent navigation](#extra-task-more-transparent-navigation) section for those interested.
 
 
 
@@ -566,7 +581,7 @@ On the next screen, the user can choose from different types of vehicles. For no
 
 First, download the [compressed file containing the application's image resources](./downloads/res.zip), which contains all the images we will need. Copy its contents into the `app/src/main/res` folder within our project (this can be done by switching from the standard Android view in the top left to the Project view in Android Studio, or by right-clicking on the folder > Show in Explorer).
 
-To do this, create a new *Kotlin File* in the `screen` *Package* and name it `ListScreen`, then enter the following:
+To do this, create a new *Kotlin File* in the `screen` *package* and name it `ListScreen`, then enter the following:
 
 ```kotlin
 @Composable
@@ -785,7 +800,7 @@ After the user has selected the desired mode of transport, we will offer them so
 <img src="./assets/details.png" width="320">
 </p>
 
-Create the new screen named `DetailsScreen` in the `screen` *Package* and structure it as follows:
+Create the new screen named `DetailsScreen` in the `screen` *package* and structure it as follows:
 
 ```kotlin
 @Composable
@@ -909,8 +924,10 @@ We will implement a date picker field using a `Text` and a `TextButton`. `Text` 
 4. Month - current month
 5. Day - current day
 
-These last three will affect the current day position of the DatePicker dialog.
+These last three will affect the current day position of the `DatePicker` dialog.
 
+!!!warning "DatePicker"
+    The current solution uses the earlier *View*-based `DatePicker`. Naturally, a *Compose*-based implementation also exists; however, that would require creating a custom dialog, which goes beyond the scope of the current lab. The use of *Compose* dialogs will be covered in future labs.
 
 **End date**
 ```kotlin
@@ -1080,7 +1097,7 @@ The last screen of the app will be quite simple, it will represent the pass itse
 </p>
 
 
-Let's create the necessary *Kotlin File* also in the `screen` package, named `PassScreen`, and then write the following into it.
+Let's create the necessary *Kotlin File* also in the `screen` *package*, named `PassScreen`, and then write the following into it.
 
 ```kotlin
 @Composable
@@ -1213,10 +1230,16 @@ As our company expanded, we also launched a boat pass service. Let's add this ne
     Screenshots are necessary conditions for getting points!
 
 
+!!!danger "AI Declaration"
+    Don't forget to fill out the AI ​​declaration in the `README.md` file in the repository. The declaration is a mandatory requirement for receiving a grade!
+
 ## Extra tasks
 
 !!!warning "Introductory"
     These tasks are not required to obtain the maximum score for the lab, they are merely introductory in the lab material for those who would like to delve deeper into the topic.
+
+!!!danger "AI Declaration"
+    Don't forget to fill out the AI ​​declaration in the `README.md` file in the repository. The declaration is a mandatory requirement for receiving a grade!
 
 
 ### Extra task - SplashScreen animation
@@ -1225,36 +1248,11 @@ Thanks to the SplashScreen API, we have already seen that we can easily create a
 
 We need the following:
 
-* Logo - This is what we will display on the splash screen. (We have already created this before, we will just modify it)
+* Logo - This is what we will display on the splash screen. 
 * Animator - In this we will describe the animation that we want to use on the given Logo.
 * Animated Vector Drawable - With this, the Animator and the Logo will be connected.
 * Themes - We will also only modify this
 * Animation - In this we can specify Interpolations in addition to the animations
-
-**Modify Logo**
-
-Modify the existing Logo as follows.
-(`ic_transport_foreground.xml`)
-
-```xml
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24"
-    android:tint="#FFFF00">
-  <group
-      android:name="animationGroup"
-      android:pivotX="12"
-      android:pivotY="12">
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M4,16c0,0.88 0.39,1.67 1,2.22L5,20c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1h8v1c0,0.55 0.45,1 1,1h1c0.55,0 1,-0.45 1,-1v-1.78c0.61,-0.55 1,-1.34 1,-2.22L20,6c0,-3.5 -3.58,-4 -8,-4s-8,0.5 -8,4v10zM7.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,14 7.5,14s1.5,0.67 1.5,1.5S8.33,17 7.5,17zM16.5,17c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM18,11L6,11L6,6h12v5z"/>
-  </group>
-</vector>
-```
-
-We wrapped the existing path in a group tag, which is needed to animate the icon. We give this group a name that we will use when animating, which group we want, and set the pivotX and pivotY points. In this case, we will set it to the center, because we want to animate the Logo from the center.
 
 **Creating an Animator**
 
@@ -1264,6 +1262,7 @@ In order to animate the Logo, we need to create an Animator type file. Right-cli
 * Next, we give the Logo a Scale animation, which allows us to make it appear from scratch and grow linearly over the duration of the animation. For this, we need a `propertyValuesHolder` tag inside the `objectAnimator`.
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="1000"
     android:interpolator="@android:anim/overshoot_interpolator">
@@ -1281,6 +1280,7 @@ In order to animate the Logo, we need to create an Animator type file. Right-cli
         android:valueTo="0.5" />
 
 </objectAnimator>
+
 ```
 
 In this short animation code, we just increase the size of the Logo from 0 to 0.5. We can specify the animation in the propertyName, which can be scaleX, scaleY, rotation, etc... and in valuesFrom/To we can specify the start-target size.
@@ -1292,6 +1292,7 @@ To connect this animation to the Logo, we need to create an Animated Vector Draw
 Let's create the Animated Vector Drawable file using Android Studio. Right-click on our drawable folder, then *New->Drawable Resource File*. Here, we give the name `animated_logo` and the root element `animated-vector`, then click the OK button. This will create the required file. Complete it as follows:
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/ic_transport_foreground">
 
@@ -1300,6 +1301,7 @@ Let's create the Animated Vector Drawable file using Android Studio. Right-click
         android:name="animationGroup" />
 
 </animated-vector>
+
 ```
 
 *   Az `android:drawable` segítségével megadjuk azt a fájlt amit szeretnénk animálni.
@@ -1357,7 +1359,7 @@ Let's paste this into the `MainActivity` `onCreate()` function in the appropriat
 
 Previously, we solved this screen using the [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen), but there are several options, of which we will now look at one using navigation.
 
-This screen is essentially the same screen as the others. Here, first, let's create a new *Kotlin File* inside the `screen` package, then name it `SplashScreen`, and write the following code in it:
+This screen is essentially the same screen as the others. Here, first, let's create a new *Kotlin File* inside the `screen` *package*, then name it `SplashScreen`, and write the following code in it:
 
 ```kotlin
 @Composable
@@ -1526,16 +1528,16 @@ We also give the following discounts:
     - One function is a difference calculator that calculates the days between two dates
     - The other function calculates the price based on the days and the category
 
-### Different daily pass prices (1 IMSc point)
+### Different daily pass prices (0.5 IMSc points)
 
-!!!example "TO BE SUBMITTED (1 IMSc point)"
+!!!example "TO BE SUBMITTED (0.5 IMSc points)"
     Create a **screenshot** showing a **detailed view of a multi-day pass with the price** (on an emulator, device mirroring or screenshot), **with the code related to the pass prices**, and **your neptun code as a comment somewhere in the code**! Upload the image to the repository in the solution as f8.png!
 
     The screenshot is a necessary condition for getting points!
 
-### Percentage discounts (1 IMSc point)
+### Percentage discounts (0.5 IMSc points)
 
-!!!example "TO BE SUBMITTED (1 IMSc point)"
+!!!example "TO BE SUBMITTED (0.5 IMSc points)"
     Create a **screenshot** showing a **detailed view of a multi-day discount pass with price** (on emulator, device mirroring or screenshot), **with the code related to the pass discounts**, and **your neptun code as a comment somewhere in the code**! Upload the image to the repository in the solution as f9.png!
 
     The screenshot is a necessary condition for getting points!
