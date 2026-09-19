@@ -52,20 +52,20 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-1. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+1. A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az `Readme.md` fájlban.
 
 ## Projekt létrehozása
 
 Hozzunk létre egy AndroidWallet nevű projektet Android Studioban:
 
 1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
-1. A projekt neve legyen `AndroidWallet`, a kezdő package `hu.bme.aut.android.androidwallet`, a mentési hely pedig a kicheckoutolt repository-n belül az AndroidWallet mappa.
+1. A projekt neve legyen `AndroidWallet`, a kezdő *package* `hu.bme.aut.android.androidwallet`, a mentési hely pedig a kicheckoutolt repository-n belül az AndroidWallet mappa.
 1. Nyelvnek válasszuk a *Kotlin*-t.
 1. A minimum API szint legyen API24: Android 7.0.
 1. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
-	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
+	A projekt a repository-ban lévő AndroidWallet könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk pontot adni a laborra!
 
 !!!danger "FILE PATH"
     A repository elérési helye ne tartalmazzon ékezeteket, illetve speciális karaktereket, mert az AndroidStudio ezekre érzékeny, így nem fog a kód lefordulni. Érdemes a C:\\ meghajtó gyökerében dolgozni.
@@ -272,6 +272,45 @@ fun PreviewTopBar() {
 ```
 
 A `TopAppBar`-nak a cím és a szín mellett megadtunk egy akciót is: egy `IconButton`-t amivel a lista törlését fogjuk majd megvalósítani.
+
+Láthatjuk, hogy a *Preview*-ban használt ikont nem ismeri fel a rendszer, mert egy külső könyvtárban található. Adjuk ezt hozzá a projektünkhöz:
+
+Először a `libs.versions.toml` fájlban bővítsük a könyvtárak felsorolását:
+
+```toml
+[libraries]
+...
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+```
+
+Ha már itt járunk, frissíthetjük a többi könyvtár verzióját is.
+
+```toml
+[versions]
+agp = "9.3.3"
+coreKtx = "1.19.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
+```
+
+Majd pedig ezt adjuk hozzá konkrét függőségként a modul szintű `build.gradle.kts` fájlunk megfelelő blokkjában:
+
+```kts
+dependencies {
+    ...
+    implementation(libs.androidx.material.icons.extended)
+}
+```
+
+
+
+Ezek után szinkronizáljuk újra a projektet.
+
 
 Miután elkészültünk a `TopBar`-unkkal, illesszük is ezt be a `MainScreen` beli `Scaffold` megfelelő helyére. Ezt a következő képpen tesszük meg: adunk neki egy tetszőleges *title*-t (általában az alkalmazás nevét), ez most *Android Wallet* lesz, majd egy icon-t. Használjuk az Android Studio beépített iconjait. Ezután meg kell adnunk egy Lambdát, aminek a segítségével leírjuk, hogy mi történjen, hogyha a felhasználó rákattint az iconra. Jelen esetben ki kell ürítenünk a listánkat. Mivel a listánk állapotként van tárolva `val salaryItems = remember { mutableStateListOf<SalaryData>() }`, ezért ha változás történik, akkor az összes Composable újrafordul ami függ tőle:
 
