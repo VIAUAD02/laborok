@@ -56,12 +56,12 @@ Első lépésként indítsuk el az Android Studio-t, majd:
 
 Láthatjuk, hogy létrejött egy projekt, abban egy Activity, `MainActivity` néven. Ez be is lett írva automatikusan a *Manifest* fájlba mint Activity komponens.
 
-Következő lépésként vagyük fel a szükséges függőségeket a projektbe! Ehhez nyissuk meg a
+Következő lépésként vegyük fel a szükséges függőségeket a projektbe! Ehhez nyissuk meg a
 
 - Modul szintű `build.gradle.kts` fájlt (*app -> build.gradle.kts*)
-- Illetve a `libs.version.toml` fájlt (*gradle -> libs.versions.toml*)
+- Illetve a `libs.versions.toml` fájlt (*gradle -> libs.versions.toml*)
 
-Először másoljuk be a következő függőségeket a `libs.version.toml` verzió katalógus fájlba:
+Először másoljuk be a következő függőségeket a `libs.versions.toml` verzió katalógus fájlba:
 
 ```toml
 [versions]
@@ -110,12 +110,12 @@ dependencies {
 }
 ```
 
-Itt az `implementation` függvény segítségével tudunk új függőséget felvenni a projektbe, és ezen belül meg kell adnunk a modul nevét, amit már korábban definiáltunk a `libs.version.toml`-ban. Ezt a következő képpen tehetjük meg: 
+Itt az `implementation` függvény segítségével tudunk új függőséget felvenni a projektbe, és ezen belül meg kell adnunk a modul nevét, amit már korábban definiáltunk a `libs.versions.toml`-ban. Ezt a következő képpen tehetjük meg: 
 
 - megadjuk a fájl nevét, jelen esetben `libs` 
 - majd ezután megadjuk annak a változónak a nevét amihez hozzárendeltük korábban a modulunkat.
 
-Végezetül már csak a `plugint` kell bekapcsolnunk.
+Végezetül már csak a `plugin`-t kell bekapcsolnunk.
 
 Ehhez először vegyük föl a teljes projektünkbe a projekt szintű `build.gradle.kts` tetején, de kapcsoljuk is ki:
 
@@ -126,7 +126,7 @@ plugins {
 }
 ```
 
-Majd kapcsoljuk be a `plugint` csak a modulunkra a modul szintű `build.gradle.kts` fájl tetején:
+Majd kapcsoljuk be a `plugin`-t csak a modulunkra a modul szintű `build.gradle.kts` fájl tetején:
 
 ```kotlin
 plugins {
@@ -150,7 +150,7 @@ Miután a felhasználó elindította az alkalmazást, egy "üdvözlő/splash" k�
 <img src="./assets/splash.png" width="320">
 </p>
 
-???info "Splash scheen Android 12 (API 31) alatt"
+???info "Splash screen Android 12 (API 31) alatt"
 
 	(A szükséges fájl [innen](./downloads/res.zip) elérhető)
 	
@@ -454,9 +454,9 @@ OutlinedTextField(
 Az `OutlinedTextField` fent használt használt paraméterei:
 
 1.   **label**: Ennek a segítségével tudjuk megadni azt a feliratot ami szerepelni fog az üres TextFieldben. Hogy ha írtunk már bele, akkor az `OutlinedTextField`-nek köszönhetően a *Label* szöveg, felcsúszik a bal fölső sarokba.
-2.   **value**: Ennek a praméternek adjuk át, a beírt értéket.
+2.   **value**: Ennek a paraméternek adjuk át, a beírt értéket.
 3.   **onValueChange**: Ez egy lambda, aminek a segítségével adunk újra és újra értéket annak a változónak amit átadtunk a **value** paraméternek. Minden egyes változásnál frissül ez a paraméter a `remember`-nek köszönhetően.
-4.   **visualTransformation**: Ennek a segítéségvel tudjuk változtatni, hogy *Password* vagy sima Input field legyen.
+4.   **visualTransformation**: Ennek a segítségével tudjuk változtatni, hogy *Password* vagy sima Input field legyen.
 5.   **keyboardOptions**: Ezzel a paraméterrel be tudjuk állítani, és korlátozni a felhasználót, hogy milyen adatot tudjon beleírni a beviteli mezőbe.
 6.   **isError**: Ennek szintén egy változót adunk át, amely minden egyes alkalommal frissül, hogy ha üres a beviteli mező. Ez azért lesz hasznos, ugyanis a feladatban azt szeretnénk elérni, hogy egy üzenetet írjon ki a TextField, hogy ha üresen szeretnénk bejelentkezni.
 7.   **trailingIcon**: Itt be tudjuk állítani azt az Icon-t amit látni szeretnénk a TextField jobb oldalán.
@@ -558,7 +558,7 @@ class MainActivity : ComponentActivity() {
 !!!note "EdgeToEdge"
 	Android 15-től (API 35) az alkalmazásunk képes a rendszer UI (StatusBar, NavigationBar, soft keyboard, stb.) alá is rajzolni. Ezzel valósították meg azt, hogy a készülék teljes képernyőjét használni tudjuk a szélétől a széléig. Ez hasznos lehet számtalan esetben, amikor "teljes képernyős" alkalmazást szeretnénk írni, nem korlátoz minket az elfedő rendszer UI. A funkció természetesen alacsonyabb API szinteken is elérhető, erre való a fent is látható `enableEdgeToEdge` függvényhívás.
 
-	Ez viszont amennyire hasznos, annyi problémát is tud okozni, ha e miatt valami vezérlőnk becsúszik mondjuk a szoftveres billentyűzet alá, amit így nem tudunk elérni. Ennek kiküszöbölésére találták ki az [inseteket](https://developer.android.com/develop/ui/compose/layouts/insets). Ennek számos beállítása van, amellyel nem kell nekünk kézzel megtippelni, hogy például a *status bar* hány dp magas, különösen, hogy ezek az értékek futásidőben változhatnak (lásd szoftveres billentyűzet). A számos beállítás közül mi most a fent látható `safeDrawindPadding`-et használjuk, ami mint neve is mutatja, pont akkora *paddinget* állít mindenhova, hogy semmit se takarjon ki a rendszer UI. (Természetesen ez nem csak az `Activity`-ben, hanem minden `Screenen` és `Composable`-ön kölün is használható.)
+	Ez viszont amennyire hasznos, annyi problémát is tud okozni, ha e miatt valami vezérlőnk becsúszik mondjuk a szoftveres billentyűzet alá, amit így nem tudunk elérni. Ennek kiküszöbölésére találták ki az [inseteket](https://developer.android.com/develop/ui/compose/layouts/insets). Ennek számos beállítása van, amellyel nem kell nekünk kézzel megtippelni, hogy például a *status bar* hány dp magas, különösen, hogy ezek az értékek futásidőben változhatnak (lásd szoftveres billentyűzet). A számos beállítás közül mi most a fent látható `safeDrawingPadding`-et használjuk, ami mint neve is mutatja, pont akkora *paddinget* állít mindenhova, hogy semmit se takarjon ki a rendszer UI. (Természetesen ez nem csak az `Activity`-ben, hanem minden `Screenen` és `Composable`-ön külön is használható.)
 
 	A funkció egyik jó demonstrációja, hogy a LoginScreen vezérlői, amik a teljes oldal közepére vannak helyezve, a szoftveres billentyűzet megjelenésekor nem takaródnak le, hanem a szabadon maradó hely közepére csúsznak.
 
@@ -778,7 +778,7 @@ fun PreviewListScreen() {
 
 Az itt használt `Box`-ról tudjuk, hogy a benne elhelyezett Composable-k egymásra pakolódnak, így könnyen el tudjuk érni azt, hogy egy képen felirat legyen. A `Box`-nak a `modifier` segítségével tudunk kattintás eventet adni neki (`Modifier.clickable{..}`), így könnyen elérhetjük a további navigáció. Azonban ez a funkció még nem működik, mert hiányzik a navigációból az elérési út, illetve az onClick paraméter. Ezt a következő feladatban fogjuk orvosolni. 
 
-Az `Image` *Composable* függvénynek egy `painter`, egy `contentDescription` és egy `contentScale` paramétere van. Ezeket át is tudjuk adni sorban a `painterResource`, `String` és a `ContentScale` segítségével. A `painterResource`-nak megadjuk a kép elérési útját, a `painterDescription`-nek, egy leírást, illetve a `contentScale`-nek egy `FillBounds`-ot. Ennek a segítségével el tudjuk érni, hogy a `Box` teljes területén kép legyen.
+Az `Image` *Composable* függvénynek egy `painter`, egy `contentDescription` és egy `contentScale` paramétere van. Ezeket át is tudjuk adni sorban a `painterResource`, `String` és a `ContentScale` segítségével. A `painterResource`-nak megadjuk a kép elérési útját, a `contentDescription`-nek, egy leírást, illetve a `contentScale`-nek egy `FillBounds`-ot. Ennek a segítségével el tudjuk érni, hogy a `Box` teljes területén kép legyen.
 
 !!!warning "kód értelmezése"
     A laborvezető segítségével beszéljük át, és értelmezzük a kódot!
@@ -789,7 +789,7 @@ A bejelentkezés után az elkészített lista nézetet kell látnunk. Habár a l
 
 
 !!!example "BEADANDÓ (1 pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **jármúvek listája** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f3.png néven töltsd föl!
+	Készíts egy **képernyőképet**, amelyen látszik a **járművek listája** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f3.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének!
 
@@ -917,7 +917,7 @@ TextButton(
     )
 }
 ```
-Egy `Text` és egy `TextButton` segítéségvel egy dátumválasztó mezőt valósítunk meg. A `Text` csak fejlécként nyújt információt, a `TextButton`-nak pedig egy onClick eventet adunk át, aminek a segítségével egy DatePicker dialógust valósítunk meg. Ennek átadjuk a szükséges paramétereket:
+Egy `Text` és egy `TextButton` segítségével egy dátumválasztó mezőt valósítunk meg. A `Text` csak fejlécként nyújt információt, a `TextButton`-nak pedig egy onClick eventet adunk át, aminek a segítségével egy DatePicker dialógust valósítunk meg. Ennek átadjuk a szükséges paramétereket:
 
 1. context
 2. Lambda paraméter, ami azt írja le, hogy a dátum választás során mi történjen. Jelen esetben nekünk arra van szükség, hogy a startDate változónkat felülírjuk.
@@ -1039,7 +1039,7 @@ A gombnak szintén átadunk egy onClick event eseményt, mégpedig a lambda para
 !!!warning "Értelmezés"
     Az alábbi kódban nagyon sok formázás van, így jelentősen megnehezítheti az értelmezését, ezt a laborvezető segítségével nézzük át, és értelmezzük.
 
-Ezután bővítsük ki az `AppNavigation`-ünket a következő szerint, majd beszéjük át a laborvezetővel a kód működését.
+Ezután bővítsük ki az `AppNavigation`-ünket a következő szerint, majd beszéljük át a laborvezetővel a kód működését.
 
 ```kotlin
 data object LoginScreenDestination
@@ -1322,7 +1322,7 @@ Itt csak az AnimatedIcon-t lecseréltük az `animated_logo`-ra, a sima helyett.
 
 **Animation - Interpolációk**
 
-Az instalSplashScreen-nek van egy lambda paramétere: `apply{}`. Ezen belül meg tudunk adni különböző működéseket is. Például `setKeepOnScreenCondition` ennek a segítségével a SplashScreent addig tudjuk a képernyőn tartani amíg nem teljesül valamilyen feltétel. Általánan ezen a blokkon belül érdemes végezni az adatbázis kiolvasásokat, vagy olyan dolgokat amik időigényesek és csak az alkalmazás indítása során egyszer kell végrehajtani. Hogy ha ezek végrehajtódtak teljesül egy feltétel, és eltűnik a SplashScreen. `setOnExitAnimationListener` - Ezen belül meg tudunk adni olyan animációt ami akkor hajtódik végre, hogy ha a `setKeepOnScreenCondition` nem tartja előtérben a SplashScreen-t, és éppen váltana képernyőt az alkalmazás. Ilyenkor végrehajthatunk egy kilépő animációt is. Például az alábbit:
+Az installSplashScreen-nek van egy lambda paramétere: `apply{}`. Ezen belül meg tudunk adni különböző működéseket is. Például `setKeepOnScreenCondition` ennek a segítségével a SplashScreent addig tudjuk a képernyőn tartani amíg nem teljesül valamilyen feltétel. Általában ezen a blokkon belül érdemes végezni az adatbázis kiolvasásokat, vagy olyan dolgokat amik időigényesek és csak az alkalmazás indítása során egyszer kell végrehajtani. Hogy ha ezek végrehajtódtak teljesül egy feltétel, és eltűnik a SplashScreen. `setOnExitAnimationListener` - Ezen belül meg tudunk adni olyan animációt ami akkor hajtódik végre, hogy ha a `setKeepOnScreenCondition` nem tartja előtérben a SplashScreen-t, és éppen váltana képernyőt az alkalmazás. Ilyenkor végrehajthatunk egy kilépő animációt is. Például az alábbit:
 
 ```kotlin
 installSplashScreen().apply {
