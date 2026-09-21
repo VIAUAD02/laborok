@@ -1446,7 +1446,7 @@ sealed interface Screen : NavKey {
 Látható, hogy az *interface*-ünk megvalósít egy `NavKey` *interface*-t. Ez nem tartalmaz releváns kódot, csak egy jelzés arra, hogy ezeket az objektumokat navigáció során fogjuk használni.
 
 !!!info "sealed class"
-	A Kotlin sealed class-ai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a `Details` valójában nem a `Screen` közvetlen leszármazottja, hanem anonim leszármazott osztálya, mivel a felhasználónév paraméterként történő kezelését is tartalmazza.
+	A Kotlin sealed class-ai olyan osztályok, amelyekből korlátozott az öröklés, és fordítási időben minden leszármazott osztálya ismert. Ezeket az osztályokat az enumokhoz hasonló módon tudjuk alkalmazni. Jelen esetben a `DetailsScreenDestination` és a `PassScreenDestination` *data class*, mivel paramétert is tartalmaznak (a jármű típusát, illetve a bérlet adatait), a többi állomás pedig paraméter nélküli, így azok *data object*-ek.
 
 Ez után tehát az `AppNavigation`-ünkből kitörölhetjük az állomásokat, valamint az `entryProvider`-t is egyszerűsíthetjük:
 
