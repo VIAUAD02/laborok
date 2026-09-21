@@ -54,12 +54,14 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 1. Write your Neptun code in the `neptun.txt` file. The file should contain nothing else, except the 6 characters of the Neptun code on a single line.
 
+1. As you work on the task, keep a running log of any AI usage in the `README.md` file.
+
 ## Create a project
 
 Let's create a project called AndroidWallet in Android Studio:
 
 1. Create a new project, select the *Empty Activity* option.
-1. The project name should be `AndroidWallet`, the starting package should be `hu.bme.aut.android.androidwallet`, and the save location should be the AndroidWallet folder within the checked out repository.
+1. The project name should be `AndroidWallet`, the starting *package* should be `hu.bme.aut.android.androidwallet`, and the save location should be the AndroidWallet folder within the checked out repository.
 1. Select *Kotlin* as the language.
 1. The minimum API level should be API24: Android 7.0.
 1. The *Build configuration language* should be Kotlin DSL.
@@ -272,6 +274,43 @@ fun PreviewTopBar() {
 ```
 
 In addition to the title and color, we have also given `TopAppBar` an action: an `IconButton` that will clear the list.
+
+We can see that the system does not recognize the icon used in the *Preview* because it is located in an external library. Let's add it to our project:
+
+First, let's expand the list of libraries in the `libs.versions.toml` file:
+
+
+```toml
+[libraries]
+...
+androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
+```
+
+While we're at it, we can also update the versions of the other libraries.
+
+```toml
+[versions]
+agp = "9.3.3"
+coreKtx = "1.19.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
+```
+
+Then, add this as a specific dependency in the appropriate block of our module-level `build.gradle.kts` file:
+
+```kts
+dependencies {
+    ...
+    implementation(libs.androidx.material.icons.extended)
+}
+```
+
+After this, we re-synchronize the project.
 
 Once we have our `TopBar`, let's insert it into the appropriate place in the `Scaffold` in `MainScreen`. We do this as follows: we give it an arbitrary *title* (usually the name of the application), this time it will be *Android Wallet*, and then an icon. We will use the built-in icons of Android Studio. Then we need to provide a Lambda, which we use to describe what should happen if the user clicks on the icon. In this case, we need to empty our list. Since our list is stored as a state `val salaryItems = remember { mutableStateListOf<SalaryData>() }`, if a change occurs, all Composables that depend on it will be reinitialized:
 
