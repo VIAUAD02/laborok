@@ -1,10 +1,17 @@
-FROM squidfunk/mkdocs-material:9.0.4
+FROM squidfunk/mkdocs-material:9.5.49
 
 # required for mkdocs-git-committers-plugin-2
-RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
-    apk add --no-cache libxslt && \
-    pip install --no-cache-dir lxml>=3.5.0 && \
-    apk del .build-deps
+RUN apk add --no-cache \
+		virtual \
+		.build-deps \
+		gcc \
+		libc-dev \
+		libxslt-dev \
+    && apk add --no-cache \
+		libxslt \
+    && pip install --no-cache-dir \
+		lxml>=4.9,<6 \
+    && apk del .build-deps
 
 RUN pip install --no-cache-dir \
   mkdocs-git-revision-date-localized-plugin \
