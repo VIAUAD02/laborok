@@ -1,8 +1,12 @@
 FROM squidfunk/mkdocs-material:9.5.49
 
 # required for mkdocs-git-committers-plugin-2
-RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev \
-    && apk add --no-cache libxslt \
+RUN apk add --no-cache --virtual .build-deps \
+		gcc \
+		libc-dev \
+		libxslt-dev \
+    && apk add --no-cache \
+		libxslt \
     && pip install --no-cache-dir "lxml>=4.9,<6" \
     && apk del .build-deps
 
