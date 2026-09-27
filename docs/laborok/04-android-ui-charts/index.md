@@ -45,7 +45,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+4. A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az `Readme.md` fájlban.
 
 ## Projekt létrehozása
 
@@ -69,15 +69,15 @@ Ha elkészült a projektünk, frissítsük a függőségeink verzióját a `libs
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.3"
+coreKtx = "1.19.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.12.0-alpha09"
-composeBom = "2025.09.01"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
 ...
 ```
 
@@ -334,10 +334,10 @@ Adjuk hozzá a Navigation3 könyvtárat a projektünkhöz. Ehhez a modul szintű
 ```toml
 [versions]
 ...
-coreSplashscreen = "1.0.1"
-nav3Core = "1.0.0-alpha10"
-kotlinSerialization = "2.2.20"
-kotlinxSerializationCore = "1.9.0"
+coreSplashscreen = "1.2.0"
+nav3Core = "1.2.0"
+kotlinSerialization = "2.4.20"
+kotlinxSerializationCore = "1.11.0"
 
 
 [libraries]
@@ -367,7 +367,16 @@ dependencies {
 }
 ```
 
-Végezetül kapcsoljuk be az alábbi plugint a build.gradle.kts fájl tetején:
+Végezetül kapcsoljuk ki az alábbi plugint a projekt szintű `build.gradle.kts` fájl tetején:
+
+```kts
+plugins {
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+}
+```
+
+Majd kapcsoljuk be csak az `app` modulra a modul szintű `build.gradle.kts` fájl tetején:
 
 ```kts
 plugins {
