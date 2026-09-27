@@ -472,7 +472,7 @@ A fenti gondolatmenetekhez hasonlóan készítse el a játék újrakezdését im
 !!! example "BEADANDÓ (1 pont)"
     Illesszen be képernyőképet a felületen dinamikusan elhelyezett gombról! (`f5.png`)
 
-## Feladat 6 iMSc - Szerver oldali logika (2 iMSc pont)
+## Feladat 6 iMSc - Szerver oldali logika (1 iMSc pont)
 
 A kliens oldalon tárolt logikát helyezze át a szerver oldalra a `Backend` mappában lévő `GuessWS.sln` ASP.NET Core 6-os projektbe!
 
@@ -563,5 +563,5 @@ Valósítsa meg az alábbiakat:
 * a szerver tárolja a toplistát,
 * a szerver küld válaszeseményeket a tippelésre, minden feliratkozót értesít.
 
-!!! example "BEADANDÓ (2 iMSc pont)"
+!!! example "BEADANDÓ (1 iMSc pont)"
     Készítsen képernyőképet a működő funkcióról, ahol látszik a fejlesztői eszköztár Network füle is egy releváns websocket kommunikációval! (`f6.imsc.png`)

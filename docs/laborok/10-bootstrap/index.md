@@ -270,7 +270,7 @@ A template amiből kiindultunk elég nagy felbontásnál vált át mobil nézetr
 
 ### Beadandó iMSc
 
-!!! example "1. feladat iMSc BEADANDÓ (1 iMSc pont)"
+!!! example "1. feladat iMSc BEADANDÓ (0.5 iMSc pont)"
     Készíts képernyőképet **`f1-imsc-1.png`** névvel és másold a repository gyökerébe  a böngésző devTool (F12) ablakáról, amin látható, hogy milyen CSS osztály határozza meg most az egyes menüpontok (pl.: Home) betűszínét.
 
     Commitold a módosított HTML és CSS fájlt a repositoryba!
@@ -460,5 +460,5 @@ A layout kialakításához vizsgáld meg a [Bootstrap form layout](https://getbo
     * A középre igazított rész köré tegyél egy 1px vastag keretet is.
 * Definiáld felül a placeholder szövegek megjelenítését is. Legyen piros dőlt betű a placeholder mindenhol. Tipp: `::placeholder`
 
-!!! example "5. feladat iMSc BEADANDÓ (1 iMSc pont)"
+!!! example "5. feladat iMSc BEADANDÓ (0.5 iMSc pont)"
     Demonstráld képernyőképpel **`f5-iMsc.png`** a fenti megjelenést.

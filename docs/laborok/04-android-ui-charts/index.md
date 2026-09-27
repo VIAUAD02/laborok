@@ -14,7 +14,7 @@ A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhaszn�
 
 
 !!! warning "IMSc"
-	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
+	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 0.5 IMSc pont szerezhető.
 
 ## Értékelés
 
@@ -28,8 +28,7 @@ Osztályzás:
 
 IMSc: Fizetés menüpont megvalósítása
 
-- Kördiagram: 1 IMSc pont
-- Oszlopdiagram: 1 IMSc pont
+- Oszlopdiagram: 0.5 IMSc pont
 
 ## Előkészületek
 
@@ -1267,24 +1266,17 @@ Ezután az alkalmazást elindítva már működik a `Take Holiday` gombunk.
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
-## iMSc feladat (2 pont)
+## iMSc feladat (0.5 pont)
 
 ### Fizetés menüpont megvalósítása
 
-A Payment menüpontra kattintva jelenjen meg egy `PaymentScreen` rajta egy HorizontalPager-rel és két képernyővel (A Profile menüponthoz hasonlóan):
-- `PaymentTaxesScreen`: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
-- `MonthlyPaymentScreen`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
+A Payment menüpontra kattintva jelenjen meg egy `PaymentScreen`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
 
 [Segítség](https://github.com/codeandtheory/YCharts)
 
-!!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik az **aktuális fizetés és nettó jövedelem a levont adókkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f6.png néven töltsd föl!
 
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
-	
-
-!!!example "BEADANDÓ (1 iMSc pont)"
-	Készíts egy **képernyőképet**, amelyen látszik a **12 oszlop a havi fizetési adatokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f7.png néven töltsd föl!
+!!!example "BEADANDÓ (0.5 iMSc pont)"
+	Készíts egy **képernyőképet**, amelyen látszik a **12 oszlop a havi fizetési adatokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f6.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 

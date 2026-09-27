@@ -25,7 +25,7 @@ A labor során az alábbi technológiákkal fogunk találkozni:
     A labor során meg fogunk ismerkedni az SQLite könyvtárral, mellyel egy lokális SQL adatbázisban tudunk adatokat perszisztensen tárolni. A modern Android alapú fejlesztéseknél már általában a Room-ot használják, mely az SQLite-ra építve biztosít egy könnyen használható ORM réteget az Android életciklusokkal kombinálva. Fontosnak tartottuk viszont, hogy könnyen érthető legyen az anyag, ezért most csak az SQLite-os megoldást fogjuk vizsgálni.
 
 !!! warning "IMSc"
-	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
+	A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 1 IMSc pont szerezhető.
 
 
 ## Előkészületek
@@ -1121,7 +1121,7 @@ A gomb iconja legyen a `R.drawable.ic_clear_canvas`!
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 
 
-## iMSc feladat (2 iMSc pont)
+## iMSc feladat (1 iMSc pont)
 
 Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a rajzolás színét a 3 fő szín között (_RGB_).
 
@@ -1131,13 +1131,13 @@ Vegyünk fel az alkalmazásba egy olyan vezérlőt, amivel változtatni lehet a 
     Érdemes Wipe Data-t indítani, vagy verziót váltani az adatbázisnál, hogy ha változtatjuk a felépítését.
 
 
-!!!example "BEADANDÓ (1 iMSc pont)"
+!!!example "BEADANDÓ (0.5 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **rajzoló oldal a különböző színekkel** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f6.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.
 	
 	
-!!!example "BEADANDÓ (1 iMSc pont)"
+!!!example "BEADANDÓ (0.5 iMSc pont)"
 	Készíts egy **képernyőképet**, amelyen látszik a **különböző színek mentését végző kódrészletet**, valamint a **neptun kódod a kódban valahol kommentként**! A képet a megoldásban a repository-ba f7.png néven töltsd föl!
 
 	A képernyőkép szükséges feltétele a pontszám megszerzésének.

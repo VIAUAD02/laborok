@@ -486,7 +486,7 @@ Az oldalsó sáv megjelenítését is a `news.css` fájlba készítsd el.
     Demonstrálja képernyőképpel a megoldást! **`f4-3.png`**
 
 #### IMSc Beadandó
-!!! example "4. feladat - Oldalsó sáv beadandó (1 IMSc pont)"
+!!! example "4. feladat - Oldalsó sáv beadandó (0.5 IMSc pont)"
     * Ha az oldalsó hír címe rövid, akkor a tartalmi rész felcsúszik alá a `float` miatt. Készítsd szabályt, ami a HTML módosítása nélkül az oldalsó sávban lévő hírek fejléce után törli a floatolást.
     * Használt a `::after` -t a megoldáshoz
     Demonstrálja képernyőképpel a megoldást! **`f4-3-iMsc.png`**
