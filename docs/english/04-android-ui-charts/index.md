@@ -14,7 +14,7 @@ During the lab, we will create an HR application, which allows the user to view 
 
 
 !!! warning "IMSc"
-	After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.
+	After successfully completing the lab tasks, 0.5 IMSc points can be earned by solving the IMSc task.
 
 ## Rating
 
@@ -28,8 +28,7 @@ Grading:
 
 IMSc: Implementation of the payment menu item
 
-- Pie chart: 1 IMSc point
-- Bar chart: 1 IMSc point
+- Bar chart: 0.5 IMSc points
 
 ## Preparations
 
@@ -70,15 +69,15 @@ Once our project is complete, let's update the version of our dependencies in th
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.3"
+coreKtx = "1.19.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.12.0-alpha09"
-composeBom = "2025.09.01"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
 ...
 ```
 
@@ -335,10 +334,10 @@ Let's add the Navigation3 library to our project. To do this, we will need the m
 ```toml
 [versions]
 ...
-coreSplashscreen = "1.0.1"
-nav3Core = "1.0.0-alpha10"
-kotlinSerialization = "2.2.20"
-kotlinxSerializationCore = "1.9.0"
+coreSplashscreen = "1.2.0"
+nav3Core = "1.2.0"
+kotlinSerialization = "2.4.20"
+kotlinxSerializationCore = "1.11.0"
 
 
 [libraries]
@@ -368,7 +367,16 @@ dependencies {
 }
 ```
 
-Finally, enable the following plugin in the build.gradle.kts file at the top:
+Finally, disable the following plugin at the top of the project-level `build.gradle.kts` file:
+
+```kts
+plugins {
+    ...
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+}
+```
+
+Then, let's enable it only for the `app` module at the top of the module-level `build.gradle.kts` file:
 
 ```kts
 plugins {
@@ -1267,23 +1275,17 @@ Then, when you start the application, our `Take Holiday` button will work.
 
     The screenshot is a necessary condition for obtaining a score.
 
-## iMSc task (2 points)
+## iMSc task (0.5 points)
 
 ### Payment menu item implementation
 
-Clicking on the Payment menu item should display a `PaymentScreen` with a HorizontalPager and two screens (similar to the Profile menu item):
-- `PaymentTaxesScreen`: a pie chart with the current payment written in the middle and showing the net income and taxes deducted (separately for each tax)
-- `MonthlyPaymentScreen`: show a bar chart with 12 columns, showing payments broken down by month - it is worth storing the data in the DataManager class here too
+Clicking the "Payment" menu item should display a `PaymentScreen` showing a bar chart with 12 bars representing monthly payments; it is advisable to store the data in the `DataManager` class here as well.
 
 [Help](https://github.com/codeandtheory/YCharts)
 
-!!!example "TO BE SUBMITTED (1 iMSc point)"
-    Create a **screenshot** showing the **current payment and net income with taxes deducted** (on an emulator, by mirroring the device or by taking a screenshot), a **corresponding code snippet**, and your **neptune code somewhere in the code as a comment**! Upload the image to the repository in the solution as f6.png!
 
-    The screenshot is a required condition for obtaining a score.
-
-!!!example "TO BE SUBMITTED (1 iMSc point)"
-    Create a **screenshot** showing the **12 columns with monthly payment data** (on an emulator, mirroring the device or with a screenshot), a **corresponding code fragment**, and your **neptune code somewhere in the code as a comment**! Upload the image to the repository in the solution as f7.png!
+!!!example "TO BE SUBMITTED (0.5 iMSc points)"
+    Take a **screenshot** showing the **12 columns of monthly payment data** (using an emulator, screen mirroring, or a screen recording), include the **corresponding code snippet**, and ensure your **Neptun code appears somewhere in the code as a comment**! Upload the image to the repository as `f6.png` as part of your solution.
 
     The screenshot is a required condition for obtaining a score.
 
