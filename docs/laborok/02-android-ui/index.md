@@ -345,9 +345,9 @@ fun LoginScreen(
 }
 
 
-private fun isEmailValid(email: String) = email.isEmpty()
+private fun isEmailInvalid(email: String) = email.isEmpty()
 
-private fun isPasswordValid(password: String) = password.isEmpty()
+private fun isPasswordInvalid(password: String) = password.isEmpty()
 
 @Preview
 @Composable
@@ -399,7 +399,7 @@ OutlinedTextField(
     onValueChange =
     {
         email = it
-        emailError = isEmailValid(email)
+        emailError = isEmailInvalid(email)
     },
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
     isError = emailError,
@@ -433,7 +433,7 @@ OutlinedTextField(
     onValueChange =
     {
         password = it
-        passwordError = isPasswordValid(it)
+        passwordError = isPasswordInvalid(it)
     },
     visualTransformation = PasswordVisualTransformation(),
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -468,9 +468,9 @@ Végül csináljuk meg az utolsó elemet is, ez pedig a gomb lesz, amely a bejel
 //Login Button
 Button(
     onClick = {
-        if (isEmailValid(email)) {
+        if (isEmailInvalid(email)) {
             emailError = true
-        } else if (isPasswordValid(password)) {
+        } else if (isPasswordInvalid(password)) {
             passwordError = true
         } else {
             onSuccess()
