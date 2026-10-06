@@ -25,7 +25,7 @@ During the lab we will encounter the following technologies:
     During the lab, we will get acquainted with the SQLite library, which allows us to persistently store data in a local SQL database. Modern Android-based developments usually use Room, which is built on SQLite and provides an easy-to-use ORM layer combined with Android lifecycles. However, we considered it important to make the material easy to understand, so we will only examine the SQLite solution for now.
 
 !!! warning "IMSc"
-    After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.
+    After successfully completing the lab tasks, 1 IMSc point can be earned by solving the IMSc task.
 
 
 ## Preparations
@@ -36,14 +36,16 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 1. Find the lab invitation URL in Moodle and use it to create your own repository.
 
-2. Wait until the repository is ready, then checkout it.
+1. Wait until the repository is ready, then checkout it.
 
     !!! tip ""
         In university labs, if the system does not ask for a username and password during checkout and the checkout fails, the system probably tried to use a username previously saved on the computer. First, delete the saved login data and try again.
 
-3. Create a new branch called `solution` and work on this branch.
+1. Create a new branch called `solution` and work on this branch.
 
-4. Write your Neptun code in the `neptun.txt` file. The file should contain nothing else, only the 6 characters of the Neptun code on a single line.
+1. Write your Neptun code in the `neptun.txt` file. The file should contain nothing else, only the 6 characters of the Neptun code on a single line.
+
+1. Keep a running log of any AI usage in the `README.md` file while working on the task.
 
 
 ## Preparing the project
@@ -105,7 +107,8 @@ Drawing page
     android:exported="true"
     android:label="@string/app_name"
     android:screenOrientation="sensorPortrait"
-    android:theme="@style/Theme.SimpleDrawer">
+    android:theme="@style/Theme.SimpleDrawer"
+    android:windowSoftInputMode="adjustResize">
     <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -306,7 +309,7 @@ To use the *viewModel*, we first need to add a new dependency:
 ```toml
 [versions]
 ...
-lifecycleVersion = "2.9.4"
+lifecycleVersion = "2.11.0"
 
 [libraries]
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
@@ -503,12 +506,12 @@ Let's run the application and try out the style selector!
 
 ### Model classes
 
-During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named `Line` and `Point`. Let's create a `model` *package* in our main *package*, then implement the two classes:
+During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named `Line` and `Point`. Let's create a `domain` package and, within it, a `model` *package* inside our main *package*, and then implement the two classes:
 
 `Point.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.model
+package hu.bme.aut.android.simpledrawer.domain.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -522,7 +525,7 @@ data class Point(
 `Line.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.model
+package hu.bme.aut.android.simpledrawer.domain.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -720,7 +723,7 @@ fun DrawingScreen(
 
 In order for the objects we draw to persist even after exiting the application, we need to somehow organize our data in a form that we can easily store in a *SQLite* database.
 
-Let's create a new package within `hu.bme.aut.android.simpledrawer`, which we will name `sqlite`.
+Let's create a new *package* named `data` within `hu.bme.aut.android.simpledrawer`, and then place an `sqlite` *package* inside it.
 
 ### Defining tables
 
@@ -729,7 +732,7 @@ During database management, we have to work with many constant variables, such a
 First of all, we add the database name and version as constants. If we want to change the schema of our database, we need to increment the latter, so that we can avoid unwanted errors due to incompatibility.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 object DbConstants{
 
@@ -808,7 +811,7 @@ It is also worth noting that we did not declare the classes with the class keywo
 To create the database, we need a helper class that creates the database itself and initializes the tables within it. In our case, this will be the `DbHelper` class, which is derived from the `SQLiteOpenHelper` class. Let's add this to the `sqlite` package as well.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -836,7 +839,7 @@ class DbHelper(context: Context):
 In addition, we need a helper class that brings all this together and allows us to easily manage our database. This will be `PersistentDataHelper`, still in the `sqlite` package. In it, we will implement functions such as `open()` and `close()`, which we can use to open and close the database connection. In addition, in this class, we will also implement the functions that are responsible for writing data to and reading it from the database. Make sure to select your own Point class during the import.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -1120,7 +1123,7 @@ The button icon should be `R.drawable.ic_clear_canvas`!
     The screenshot is a necessary condition for getting a score.
 
 
-## iMSc task (2 iMSc points)
+## iMSc task (1 iMSc point)
 
 Let's add a control to the application that can change the drawing color between the 3 main colors (_RGB_).
 
@@ -1129,12 +1132,12 @@ Let's add a control to the application that can change the drawing color between
 !!!tip "Database"
     It is worth starting Wipe Data or changing the version of the database, so that if we change its structure, it will be saved.
 
-!!!example "BEADANDÓ (1 iMSc point)"
+!!!example "BEADANDÓ (0.5 iMSc points)"
     Create a **screenshot** showing the **drawing page with the different colors** (on an emulator, mirroring the device or with a screen capture), a **corresponding code fragment**, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f6.png!
 
     The screenshot is a necessary condition for obtaining a score.
 
-!!!example "BEADANDÓ (1 iMSc point)"
+!!!example "BEADANDÓ (0.5 iMSc points)"
     Create a **screenshot** showing the **code snippet that saves different colors**, as well as your **Neptune code somewhere in the code as a comment**! Upload the image to the repository in the solution as f7.png!
 
     The screenshot is a necessary condition for obtaining a score.
