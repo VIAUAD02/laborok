@@ -1074,9 +1074,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#imsc-task-2-imsc-points" class="md-nav__link">
+  <a href="#imsc-task-1-imsc-point" class="md-nav__link">
     <span class="md-ellipsis">
-      iMSc task (2 iMSc points)
+      iMSc task (1 iMSc point)
     </span>
   </a>
   
@@ -1128,7 +1128,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">IMSc</p>
-<p>After successfully completing the lab tasks, 2 IMSc points can be earned by solving the IMSc task.</p>
+<p>After successfully completing the lab tasks, 1 IMSc point can be earned by solving the IMSc task.</p>
 </div>
 <h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
 <p>When solving the tasks, do not forget to follow the <a href="../github/">task submission process</a>.</p>
@@ -1148,6 +1148,9 @@
 </li>
 <li>
 <p>Write your Neptun code in the <code>neptun.txt</code> file. The file should contain nothing else, only the 6 characters of the Neptun code on a single line.</p>
+</li>
+<li>
+<p>Keep a running log of any AI usage in the <code>README.md</code> file while working on the task.</p>
 </li>
 </ol>
 <h2 id="preparing-the-project">Preparing the project<a class="headerlink" href="#preparing-the-project" title="Permanent link">&para;</a></h2>
@@ -1199,7 +1202,8 @@
 <span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
 <span class="w">    </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
 <span class="w">    </span><span class="na">android:screenOrientation=</span><span class="s">&quot;sensorPortrait&quot;</span>
-<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.SimpleDrawer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.SimpleDrawer&quot;</span>
+<span class="w">    </span><span class="na">android:windowSoftInputMode=</span><span class="s">&quot;adjustResize&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;intent-filter&gt;</span>
 <span class="w">        </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
@@ -1376,7 +1380,7 @@ This is just a simple TopBar with the name of the application written on top. Th
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
+<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="n">androidx-lifecycle-viewmodel-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycleVersion&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -1549,9 +1553,9 @@ Let's run the application and try out the style selector!</p>
 </div>
 <h2 id="implementing-the-canvas-1-point">Implementing the canvas (1 point)<a class="headerlink" href="#implementing-the-canvas-1-point" title="Permanent link">&para;</a></h2>
 <h3 id="model-classes">Model classes<a class="headerlink" href="#model-classes" title="Permanent link">&para;</a></h3>
-<p>During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named <code>Line</code> and <code>Point</code>. Let's create a <code>model</code> <em>package</em> in our main <em>package</em>, then implement the two classes:</p>
+<p>During the drawing process, we want to draw points and lines. To handle these, let's create two data classes named <code>Line</code> and <code>Point</code>. Let's create a <code>domain</code> package and, within it, a <code>model</code> <em>package</em> inside our main <em>package</em>, and then implement the two classes:</p>
 <p><code>Point.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.domain.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -1562,7 +1566,7 @@ Let's run the application and try out the style selector!</p>
 <span class="p">)</span>
 </code></pre></div>
 <p><code>Line.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.domain.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -1732,11 +1736,11 @@ In this case, we draw the element whose starting point is the point where we pla
 </div>
 <h2 id="implementing-persistence-using-a-sqlite-database-1-point">Implementing persistence using a <em>SQLite</em> database (1 point)<a class="headerlink" href="#implementing-persistence-using-a-sqlite-database-1-point" title="Permanent link">&para;</a></h2>
 <p>In order for the objects we draw to persist even after exiting the application, we need to somehow organize our data in a form that we can easily store in a <em>SQLite</em> database.</p>
-<p>Let's create a new package within <code>hu.bme.aut.android.simpledrawer</code>, which we will name <code>sqlite</code>.</p>
+<p>Let's create a new <em>package</em> named <code>data</code> within <code>hu.bme.aut.android.simpledrawer</code>, and then place an <code>sqlite</code> <em>package</em> inside it.</p>
 <h3 id="defining-tables">Defining tables<a class="headerlink" href="#defining-tables" title="Permanent link">&para;</a></h3>
 <p>During database management, we have to work with many constant variables, such as the names of columns in tables, table names, database file names, schema creation and deletion scripts, etc. It is worth storing these in a common place, so that when editing or introducing a new entity, you do not have to jump between source files, and it is easier to generate scripts that create and delete the entire database. Let's create a new singleton class with the <code>object</code> keyword within the <code>sqlite</code> package called <code>DbConstants</code>.</p>
 <p>First of all, we add the database name and version as constants. If we want to change the schema of our database, we need to increment the latter, so that we can avoid unwanted errors due to incompatibility.</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="kd">object</span><span class="w"> </span><span class="nc">DbConstants</span><span class="p">{</span>
 
@@ -1805,7 +1809,7 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <p>It is also worth noting that we did not declare the classes with the class keyword. Instead, we use <code>object</code>, which the Kotlin language uses to ensure that <code>DbConstants</code> and the <code>Points</code> and <code>Lines</code> classes in it behave as singletons, meaning that an instance of them is created when the application is run, and no further instances can be created of them.</p>
 <h3 id="creating-the-helper-class">Creating the helper class<a class="headerlink" href="#creating-the-helper-class" title="Permanent link">&para;</a></h3>
 <p>To create the database, we need a helper class that creates the database itself and initializes the tables within it. In our case, this will be the <code>DbHelper</code> class, which is derived from the <code>SQLiteOpenHelper</code> class. Let's add this to the <code>sqlite</code> package as well.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
@@ -1830,7 +1834,7 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <span class="p">}</span>
 </code></pre></div>
 <p>In addition, we need a helper class that brings all this together and allows us to easily manage our database. This will be <code>PersistentDataHelper</code>, still in the <code>sqlite</code> package. In it, we will implement functions such as <code>open()</code> and <code>close()</code>, which we can use to open and close the database connection. In addition, in this class, we will also implement the functions that are responsible for writing data to and reading it from the database. Make sure to select your own Point class during the import.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
@@ -2085,7 +2089,7 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <p>Create a <strong>screenshot</strong> showing the <strong>deletion confirmation dialog box</strong> (on an emulator, by mirroring the device or by taking a screenshot), the <strong>code snippet that performs the clearing</strong>, and your <strong>Neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f5.png!</p>
 <p>The screenshot is a necessary condition for getting a score.</p>
 </div>
-<h2 id="imsc-task-2-imsc-points">iMSc task (2 iMSc points)<a class="headerlink" href="#imsc-task-2-imsc-points" title="Permanent link">&para;</a></h2>
+<h2 id="imsc-task-1-imsc-point">iMSc task (1 iMSc point)<a class="headerlink" href="#imsc-task-1-imsc-point" title="Permanent link">&para;</a></h2>
 <p>Let's add a control to the application that can change the drawing color between the 3 main colors (<em>RGB</em>).</p>
 <p><strong>Attention:</strong> the color of the given object must also be saved in the database!</p>
 <div class="admonition tip">
@@ -2093,12 +2097,12 @@ After that, we create the constants for the <code>Point</code> class in a class 
 <p>It is worth starting Wipe Data or changing the version of the database, so that if we change its structure, it will be saved.</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 iMSc point)</p>
+<p class="admonition-title">BEADANDÓ (0.5 iMSc points)</p>
 <p>Create a <strong>screenshot</strong> showing the <strong>drawing page with the different colors</strong> (on an emulator, mirroring the device or with a screen capture), a <strong>corresponding code fragment</strong>, and your <strong>neptun code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f6.png!</p>
 <p>The screenshot is a necessary condition for obtaining a score.</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">BEADANDÓ (1 iMSc point)</p>
+<p class="admonition-title">BEADANDÓ (0.5 iMSc points)</p>
 <p>Create a <strong>screenshot</strong> showing the <strong>code snippet that saves different colors</strong>, as well as your <strong>Neptune code somewhere in the code as a comment</strong>! Upload the image to the repository in the solution as f7.png!</p>
 <p>The screenshot is a necessary condition for obtaining a score.</p>
 </div>
@@ -2111,8 +2115,8 @@ After that, we create the constants for the <code>Point</code> class in a class 
           </path>
         </svg>
       </span>
-      <span title="2025. október 11. 23:05:11">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 11. 23:05:11 CEST"><span class="timeago" datetime="2025-10-11T23:05:11+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 11. 23:05:11 CEST">2025-10-11</span>
+      <span title="2026. október 6. 17:48:20">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. október 6. 17:48:20 CEST"><span class="timeago" datetime="2026-10-06T17:48:20+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. október 6. 17:48:20 CEST">2026-10-06</span>
       </span>
     </span>
 
@@ -2127,10 +2131,10 @@ After that, we create the constants for the <code>Point</code> class in a class 
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/marusei-dev" target="_blank" rel="noopener noreferrer" class="md-author" title="@marusei-dev">
-          <img src="https://avatars.githubusercontent.com/u/69749986?v=4?size=72" alt="@marusei-dev">
-        </a><a href="https://github.com/siktdavid" target="_blank" rel="noopener noreferrer" class="md-author" title="@siktdavid">
+      <nav><a href="https://github.com/siktdavid" target="_blank" rel="noopener noreferrer" class="md-author" title="@siktdavid">
           <img src="https://avatars.githubusercontent.com/u/10747631?v=4?size=72" alt="@siktdavid">
+        </a><a href="https://github.com/marusei-dev" target="_blank" rel="noopener noreferrer" class="md-author" title="@marusei-dev">
+          <img src="https://avatars.githubusercontent.com/u/69749986?v=4?size=72" alt="@marusei-dev">
         </a></nav>      
     </span>
   </div>
