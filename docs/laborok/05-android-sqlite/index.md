@@ -36,14 +36,14 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 
-2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+1. Várd meg, míg elkészül a repository, majd checkout-old ki.
 
     !!! tip ""
         Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 
-3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-4. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+1. A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az `Readme.md` fájlban.
 
 
 ## A projekt előkészítése
@@ -104,7 +104,8 @@ Az alkalmazásunkban az egyszerűség kedvéért most csak az álló módot tám
     android:exported="true"
     android:label="@string/app_name"
     android:screenOrientation="sensorPortrait"
-    android:theme="@style/Theme.SimpleDrawer">
+    android:theme="@style/Theme.SimpleDrawer"
+    android:windowSoftInputMode="adjustResize">
     <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -306,7 +307,7 @@ A *viewModel* használatához először is fel kell vennünk egy új függőség
 ```toml
 [versions]
 ...
-lifecycleVersion = "2.9.4"
+lifecycleVersion = "2.11.0"
 
 [libraries]
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name="lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
@@ -502,12 +503,12 @@ Futtassuk az alkalmazást és próbáljuk ki a stílusválasztót!
 
 ### Model osztályok
 
-A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t `Line` és `Point` néven. Hozzunk létre egy `model` *package*-et a fő *package*-ünkben, majd implementáljuk a két osztályt:
+A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t `Line` és `Point` néven. Hozzunk létre egy `domain`, majd azon belül egy `model` *package*-et a fő *package*-ünkben, majd implementáljuk a két osztályt:
 
 `Point.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.model
+package hu.bme.aut.android.simpledrawer.domail.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -521,7 +522,7 @@ data class Point(
 `Line.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.model
+package hu.bme.aut.android.simpledrawer.domain.model
 
 import androidx.compose.ui.graphics.Color
 
@@ -720,7 +721,7 @@ fun DrawingScreen(
 
 Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy *SQLite* adatbázisban.
 
-Hozzunk létre egy új package-et az `hu.bme.aut.android.simpledrawer`-en belül, aminek adjuk az `sqlite` nevet.
+Hozzunk létre egy új *package*-et az `hu.bme.aut.android.simpledrawer`-en belül `data` néven, majd ebbe tegyünk bele egy `sqlite` *package*-et.
 
 ### Táblák definiálása
 
@@ -729,7 +730,7 @@ Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk,
 Ezen belül először is konstansként felvesszük az adatbázis nevét és verzióját is. Ha az adatbázisunk sémáján szeretnénk változtatni, akkor ez utóbbit kell inkrementálnunk, így elkerülhetjük az inkompatibilitás miatti nem kívánatos hibákat.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 object DbConstants{
 
@@ -808,7 +809,7 @@ object Lines {
 Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a `DbHelper` osztály, ami az `SQLiteOpenHelper` osztályból származik. Vegyük fel ezt is az `sqlite` package-be.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -836,7 +837,7 @@ class DbHelper(context: Context):
 Ezen kívül szükségünk van még egy olyan segédosztályra is, ami ezt az egészet összefogja, és amivel egyszerűen tudjuk kezelni az adatbázisunkat. Ez lesz a `PersistentDataHelper` továbbra is az `sqlite` package-ben. Ebben olyan függényeket fogunk megvalósítani, mint pl. az `open()` és a `close()`, amikkel az adatbáziskapcsolatot nyithatjuk meg, illetve zárhatjuk le. Ezen kívül ebben az osztályban valósítjuk meg azokat a függvényeket is, amik az adatok adatbázisba való kiírásáért, illetve az onnan való kiolvasásáért felelősek. Figyeljünk rá, hogy a saját Point osztályunkat válasszuk az import során.
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.sqlite
+package hu.bme.aut.android.simpledrawer.data.sqlite
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
