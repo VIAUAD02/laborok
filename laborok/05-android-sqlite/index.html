@@ -1432,7 +1432,7 @@
 <p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
 </li>
 <li>
-<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+<p>A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az <code>Readme.md</code> fájlban.</p>
 </li>
 </ol>
 <h2 id="a-projekt-elokeszitese">A projekt előkészítése<a class="headerlink" href="#a-projekt-elokeszitese" title="Permanent link">&para;</a></h2>
@@ -1483,7 +1483,8 @@
 <span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span>
 <span class="w">    </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
 <span class="w">    </span><span class="na">android:screenOrientation=</span><span class="s">&quot;sensorPortrait&quot;</span>
-<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.SimpleDrawer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.SimpleDrawer&quot;</span>
+<span class="w">    </span><span class="na">android:windowSoftInputMode=</span><span class="s">&quot;adjustResize&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;intent-filter&gt;</span>
 <span class="w">        </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
@@ -1659,7 +1660,7 @@ Ez csak egy egyszerű TopBar aminek a tetejére kiírhatjuk az alkalmazás nevé
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
+<span class="n">lifecycleVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="n">androidx-lifecycle-viewmodel-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;lifecycle-viewmodel-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycleVersion&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -1832,9 +1833,9 @@ Futtassuk az alkalmazást és próbáljuk ki a stílusválasztót!</p>
 </div>
 <h2 id="a-canvas-megvalositasa-1-pont">A canvas megvalósítása (1 pont)<a class="headerlink" href="#a-canvas-megvalositasa-1-pont" title="Permanent link">&para;</a></h2>
 <h3 id="model-osztalyok">Model osztályok<a class="headerlink" href="#model-osztalyok" title="Permanent link">&para;</a></h3>
-<p>A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t <code>Line</code> és <code>Point</code> néven. Hozzunk létre egy <code>model</code> <em>package</em>-et a fő <em>package</em>-ünkben, majd implementáljuk a két osztályt:</p>
+<p>A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezeléséhez hozzunk létre két data class-t <code>Line</code> és <code>Point</code> néven. Hozzunk létre egy <code>domain</code>, majd azon belül egy <code>model</code> <em>package</em>-et a fő <em>package</em>-ünkben, majd implementáljuk a két osztályt:</p>
 <p><code>Point.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.domail.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -1845,7 +1846,7 @@ Futtassuk az alkalmazást és próbáljuk ki a stílusválasztót!</p>
 <span class="p">)</span>
 </code></pre></div>
 <p><code>Line.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.model</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.domain.model</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.graphics.Color</span>
 
@@ -2015,11 +2016,11 @@ Ebben az esetben kirajzoljuk azt az elemet aminek a kezdőpontja az a pont ahol 
 </div>
 <h2 id="perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont">Perzisztencia megvalósítása <em>SQLite</em> adatbázis segítségével (1 pont)<a class="headerlink" href="#perzisztencia-megvalositasa-sqlite-adatbazis-segitsegevel-1-pont" title="Permanent link">&para;</a></h2>
 <p>Ahhoz, hogy az általunk rajzolt objektumok megmaradjanak az alkalmazásból való kilépés után is, az adatainkat valahogy olyan formába kell rendeznünk, hogy azt könnyedén el tudjuk tárolni egy <em>SQLite</em> adatbázisban.</p>
-<p>Hozzunk létre egy új package-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül, aminek adjuk az <code>sqlite</code> nevet.</p>
+<p>Hozzunk létre egy új <em>package</em>-et az <code>hu.bme.aut.android.simpledrawer</code>-en belül <code>data</code> néven, majd ebbe tegyünk bele egy <code>sqlite</code> <em>package</em>-et.</p>
 <h3 id="tablak-definialasa">Táblák definiálása<a class="headerlink" href="#tablak-definialasa" title="Permanent link">&para;</a></h3>
 <p>Az adatbáziskezelés során sok konstans jellegű változóval kell dolgoznunk, mint például a táblákban lévő oszlopok nevei, táblák neve, adatbázis fájl neve, séma létrehozó és törlő szkriptek, stb. Ezeket érdemes egy közös helyen tárolni, így szerkesztéskor vagy új entitás bevezetésekor nem kell a forrásfájlok között ugrálni, valamint egyszerűbb a teljes adatbázist létrehozó és törlő szkripteket generálni. Hozzunk létre egy új singleton osztályt az <code>object</code> kulcsszóval az <code>sqlite</code> package-en belül <code>DbConstants</code> néven.</p>
 <p>Ezen belül először is konstansként felvesszük az adatbázis nevét és verzióját is. Ha az adatbázisunk sémáján szeretnénk változtatni, akkor ez utóbbit kell inkrementálnunk, így elkerülhetjük az inkompatibilitás miatti nem kívánatos hibákat.</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="kd">object</span><span class="w"> </span><span class="nc">DbConstants</span><span class="p">{</span>
 
@@ -2088,7 +2089,7 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 <p>Érdemes megfigyelni továbbá azt is, hogy az osztályokat nem a class kulcsszóval deklaráltuk. Helyette az <code>object</code>-et használjuk, amivel a Kotlin nyelv azt biztosítja számunkra, hogy a <code>DbConstants</code> és a benne lévő <code>Points</code> és <code>Lines</code> osztály is singletonként viselkednek, azaz az alkalmazás futtatásakor létrejön belőlük egy példány, további példányokat pedig nem lehet létrehozni belőlük.</p>
 <h3 id="a-segedosztaly-letrehozasa">A segédosztály létrehozása<a class="headerlink" href="#a-segedosztaly-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Az adatbázis létrehozásához szükség van egy olyan segédosztályra, ami létrehozza magát az adatbázist, és azon belül inicializálja a táblákat is. Esetünkben ez lesz a <code>DbHelper</code> osztály, ami az <code>SQLiteOpenHelper</code> osztályból származik. Vegyük fel ezt is az <code>sqlite</code> package-be.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
@@ -2113,7 +2114,7 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
 <span class="p">}</span>
 </code></pre></div>
 <p>Ezen kívül szükségünk van még egy olyan segédosztályra is, ami ezt az egészet összefogja, és amivel egyszerűen tudjuk kezelni az adatbázisunkat. Ez lesz a <code>PersistentDataHelper</code> továbbra is az <code>sqlite</code> package-ben. Ebben olyan függényeket fogunk megvalósítani, mint pl. az <code>open()</code> és a <code>close()</code>, amikkel az adatbáziskapcsolatot nyithatjuk meg, illetve zárhatjuk le. Ezen kívül ebben az osztályban valósítjuk meg azokat a függvényeket is, amik az adatok adatbázisba való kiírásáért, illetve az onnan való kiolvasásáért felelősek. Figyeljünk rá, hogy a saját Point osztályunkat válasszuk az import során.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.sqlite</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.simpledrawer.data.sqlite</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.database.sqlite.SQLiteDatabase</span>
@@ -2394,8 +2395,8 @@ Ezek után a <code>DbConstants</code> nevű osztályba hozzuk létre a <code>Poi
           </path>
         </svg>
       </span>
-      <span title="2026. szeptember 27. 17:33:53">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. szeptember 27. 17:33:53 CEST"><span class="timeago" datetime="2026-09-27T17:33:53+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. szeptember 27. 17:33:53 CEST">2026-09-27</span>
+      <span title="2026. október 6. 13:10:30">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. október 6. 13:10:30 CEST"><span class="timeago" datetime="2026-10-06T13:10:30+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. október 6. 13:10:30 CEST">2026-10-06</span>
       </span>
     </span>
 
