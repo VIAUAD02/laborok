@@ -508,7 +508,7 @@ A rajzolás folyamán pontokat és vonalakat szeretnénk rajzolni. Ezek kezelés
 `Point.kt`:
 
 ```kotlin
-package hu.bme.aut.android.simpledrawer.domail.model
+package hu.bme.aut.android.simpledrawer.domain.model
 
 import androidx.compose.ui.graphics.Color
 
