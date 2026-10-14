@@ -58,7 +58,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 1. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 
-1. A `neptun.txt` fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+1. A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az `Readme.md` fájlban.
 
 
 ### Projekt megnyitása
@@ -73,20 +73,20 @@ A projektben szerepel a labor során szükséges összes függőség, ezeket a k
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.3"
+coreKtx = "1.19.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.11.0"
-composeBom = "2025.10.00"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.21"
+composeBom = "2026.09.00"
 
-viewModel = "2.9.4"
+viewModel = "2.11.0"
 
-ksp = "2.2.10-2.0.2"
-room = "2.8.2"
+ksp = "2.3.10"
+room = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -96,13 +96,13 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
 
@@ -114,7 +114,6 @@ androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "roo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
@@ -125,7 +124,6 @@ Projekt szintű `build.gradle.kts`:
 ```kts
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
     alias(libs.plugins.google.devtools.ksp) apply false
@@ -137,7 +135,6 @@ Modul szintű `build.gradle.kts`:
 ```kts
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.google.devtools.ksp)
@@ -145,12 +142,14 @@ plugins {
 
 android {
     namespace = "hu.bme.aut.android.shoppinglist"
-    compileSdk = 36
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = "hu.bme.aut.android.shoppinglist"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -159,19 +158,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            optimization {
+                enable = false
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -179,22 +173,21 @@ android {
 }
 
 dependencies {
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.material.icons.extended)
 
@@ -234,15 +227,15 @@ A projektben szerepelnek az alkalmazás ikonjai, a szükséges grafikus erőforr
 
 #### A modell 
 
-Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából. A `data` *package*-en belül az `entities` *package*-ben van egy `ShoppingItem` adat osztályunk.
+Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából. A `domain` *package*-en belül a `model` *package*-ben van egy `ShoppingItem` adat osztályunk.
 
 `ShoppingItem.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.data.entities
+package hu.bme.aut.android.shoppinglist.domain.model
 
 data class ShoppingItem(
-		var id: Long? = null,
+        var id: Long? = null,
         var name: String,
         var description: String,
         var category: Category,
@@ -319,7 +312,7 @@ fun MainTopBarPreview() {
 
 A `TopAppBar` beépített *Composable* függvénynek adunk át egy nevet a *title* paraméterrel és egy akciógombot az *actions* paraméterrel. Jelen esetben egy `Delete all items` gombot fogunk hozzáadni, aminek a működését az önálló feladatrésznél kell megvalósítani.
 
-`UIShoppingItem.kt`:
+`ShoppingItemCard.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
@@ -360,10 +353,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import hu.bme.aut.android.shoppinglist.R
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 
 @Composable
-fun UIShoppingItem(
+fun ShoppingItemCard(
     shoppingItem: ShoppingItem,
     onCheckBoxClick: (ShoppingItem) -> Unit,
     onDeleteIconClick: () -> Unit,
@@ -375,9 +368,7 @@ fun UIShoppingItem(
         ShoppingItem.Category.FOOD -> R.drawable.groceries
         ShoppingItem.Category.ELECTRONIC -> R.drawable.lightning
         ShoppingItem.Category.BOOK -> R.drawable.open_book
-        else -> R.drawable.groceries
     }
-
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -470,8 +461,8 @@ fun UIShoppingItem(
 
 @Preview(showBackground = true)
 @Composable
-fun UIShoppingItemPurchasedPreview() {
-    UIShoppingItem(
+fun ShoppingItemCardPurchasedPreview() {
+    ShoppingItemCard(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description",
@@ -487,8 +478,8 @@ fun UIShoppingItemPurchasedPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun UIShoppingItemNotPurchasedPreview() {
-    UIShoppingItem(
+fun ShoppingItemCardNotPurchasedPreview() {
+    ShoppingItemCard(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description description description description description",
@@ -501,6 +492,7 @@ fun UIShoppingItemNotPurchasedPreview() {
         onEditIconClick = {}
     )
 }
+
 ```
 
 A felület a `ShoppingItem` adatait jeleníti meg. Bal oldalon a kategóriától függő képet, középen a nevet, a leírást valamint az árat, jobb oldalon pedig a *CheckBox*-ot, ami a termék megvásárlását jelzi. E mellett érintés hatására a felület jobb szélére kinyitható egy panel, ami a törlés és módosítás gombokat tartalmazza.
@@ -526,12 +518,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingListTopBar
-import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.UIShoppingItem
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingItemCard
 
 
 @Composable
@@ -582,7 +574,7 @@ fun ShoppingListScreen(modifier : Modifier = Modifier) {
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                UIShoppingItem(
+                ShoppingItemCard(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         /*TODO*/
@@ -621,8 +613,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.ui.Modifier
 import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.ShoppingListScreen
 import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
 
@@ -632,7 +622,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShoppingListTheme {
-                ShoppingListScreen(modifier = Modifier.safeDrawingPadding())
+                ShoppingListScreen()
             }
         }
     }
@@ -702,7 +692,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import hu.bme.aut.android.shoppinglist.R
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -1003,14 +993,16 @@ Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon eg
 
 ### A repository létrehozása
 
-Az adataink tipikusan egy adatforrásból, egy *repository*-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy *interface*-t és egy konkrét megvalósítást is (ami még mindig memória alapú) a `hu.bme.aut.android.shoppinglist.data.repository` *package*-ben:
+Az adataink tipikusan egy adatforrásból, egy *repository*-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy *interface*-t majd egy konkrét megvalósítást is (ami még mindig memória alapú).
+
+Az *interface*, ami az adatainkon végezhető műveleteket reprezentálja a domain réteg része, vagyis a `hu.bme.aut.android.shoppinglist.domain.repository` *package*-ben készítsük el:
 
 `IShoppingItemRepository.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.data.repository
+package hu.bme.aut.android.shoppinglist.domain.repository
 
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import kotlinx.coroutines.flow.Flow
 
 interface IShoppingItemRepository {
@@ -1022,13 +1014,16 @@ interface IShoppingItemRepository {
 }
 ```
 
+A konkrét megvalósítás viszont már konkrét adattárolással és konkrét műveletekkel jár, vagyis az adat rétegbe kell kerülnie. Helyezzük tehát a `hu.bme.aut.android.shoppinglist.data.repository` *package*-be:
+
 `MemoryShoppingItemRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.repository
 
 import androidx.compose.runtime.mutableStateListOf
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -1093,8 +1088,8 @@ Az imént létrehoztuk a *repository*-nkat, azonban azt még semmi sem példány
 package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 
 class ShoppingListApplication : Application() {
 
@@ -1132,7 +1127,7 @@ Az *appilication* osztály létrehozása után állítsuk be az `AndroidManifest
 	
 	```toml
 	[versions]
-	viewModel = "2.9.4"
+	viewModel = "2.11.0"
 	...
 	
 	[libraries]
@@ -1159,8 +1154,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.shoppinglist.ShoppingListApplication
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -1253,7 +1248,7 @@ fun ShoppingListScreen(
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                UIShoppingItem(
+                ShoppingItemCard(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         viewModel.update(shoppingItem)
@@ -1303,8 +1298,8 @@ Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
 	```toml
 	[versions]
 	...
-	ksp = "2.2.10-2.0.2"
-	room = "2.8.2"
+	ksp = "2.3.10"
+	room = "2.8.5"
 	
 	[libraries]
 	...
@@ -1350,20 +1345,19 @@ Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
 
 ### A modell osztály elkészítése
 
-Az ORM lényege, hogy objektumokat tudunk adatbázisban tárolni, vagyis szükségünk van egy modell osztályra. Eddig a teljes projektben a korábban létrehozott `ShoppingItem` osztályt használtuk az adataink tárolására. Szerencsére a `Room`-ra való áttéréssel nem kell ezt teljesen kidobnunk, kisebb módosítással továbbra is használhatjuk. Egészítsük tehát ki a `ShoppingItem` osztályunkat:
+Az ORM lényege, hogy objektumokat tudunk adatbázisban tárolni, vagyis szükségünk van egy modell osztályra. Eddig a teljes projektben a korábban létrehozott `ShoppingItem` osztályt használtuk az adataink tárolására. Szerencsére a `Room`-ra való áttéréssel nem kell ezt teljesen kidobnunk, a domain és a ui rétegekben továbbra is használhatjuk, a tároláshoz azonban ki kell egészítenünk néhány dologgal. Hozzunk tehát létre egy `ShoppingItemEntity` osztályt a `hu.bme.aut.android.shoppinglist.data.entities` *package*-ben:
 
-`ShoppingItem.kt`:
+`ShoppingItemEntity.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.entities
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "shoppingItem")
-data class ShoppingItem(
+data class ShoppingItemEntity(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long? = null,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "description") var description: String,
@@ -1372,37 +1366,72 @@ data class ShoppingItem(
     @ColumnInfo(name = "isBought") var isBought: Boolean
 ) {
     enum class Category {
-        FOOD, ELECTRONIC, BOOK;
-
-        companion object {
-            @JvmStatic
-            @TypeConverter
-            fun getByOrdinal(ordinal: Int): Category? {
-                var ret: Category? = null
-                for (cat in values()) {
-                    if (cat.ordinal == ordinal) {
-                        ret = cat
-                        break
-                    }
-                }
-                return ret
-            }
-
-            @JvmStatic
-            @TypeConverter
-            fun toInt(category: Category): Int {
-                return category.ordinal
-            }
-        }
+        FOOD, ELECTRONIC, BOOK
     }
 }
 ```
 
 Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő enum osztály függvényein annotációkat helyeztünk el. Az `@Entity` jelzi a *Room* kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A `@ColumnInfo` annotációval megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. `@PrimaryKey`-jel jelöljük a tábla egyszerű kulcs attribútumát.
 
-Az osztályban létrehoztunk egy *enum*-ot is, amivel egy kategóriát akarunk kódolni. Az *enum*-nak van két statikus metódusa, `@TypeConverter` annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva.
+A *domain model* és a *room entity* látszólag nagyon hasonlóak, mégis különböző osztályok, ezért szükségünk van közöttük konverziós függvényekre. Helyezzük el ezeket az *extension function*-öket a `hu.bme.aut.android.shoppinglist.data.mappers` *package*-ben:
 
-Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic` annotációval is. Erre azért van szükség, mert alapvetően, amikor a *companion object*-ek *Jvm* bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben *Category*) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a *Room* működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.
+`ShoppingItemEntityMappers.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist.data.mappers
+
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+
+fun ShoppingItemEntity.asShoppingItem(): ShoppingItem = ShoppingItem(
+    id = id,
+    name = name,
+    description = description,
+    category = ShoppingItem.Category.valueOf(category.name),
+    estimatedPrice = estimatedPrice,
+    isBought = isBought
+)
+
+fun ShoppingItem.asShoppingItemEntity(): ShoppingItemEntity = ShoppingItemEntity(
+    id = id,
+    name = name,
+    description = description,
+    category = ShoppingItemEntity.Category.valueOf(category.name),
+    estimatedPrice = estimatedPrice,
+    isBought = isBought
+)
+```
+
+!!!info "Extension Function"
+	A Kotlin extension function (kiterjesztő függvény) lehetővé teszi, hogy új függvényeket adjunk egy meglévő osztályhoz anélkül, hogy örökölnénk belőle (inheritance), vagy megváltoztatnánk az eredeti forráskódját.
+	
+	Gyakorlatilag úgy hívhatjuk meg ezeket a függvényeket az adott osztály objektumain, mintha az osztály saját, gyári metódusai lennének.
+
+A *Room* az általános típusokat (*String*, *Int*, *Boolean*) automatikusan elmenti, azonban a `ShoppingItemEntity` objektumaink teljes tárolásához a `Category` *enum*-ot is le kell tárolnunk valahogyan. Ezek tárolása nem automatikus, nekünk kell konvertereket adnunk a *Room* számára. Készítsük el ezeket a `hu.bme.aut.android.shoppinglist.data.converters` *package*-ben:
+
+`ShoppingItemCategoryConverter.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist.data.converters
+
+import androidx.room.TypeConverter
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
+
+class ShoppingItemCategoryConverter {
+
+    @TypeConverter
+    fun fromOrdinal(ordinal: Int): ShoppingItemEntity.Category {
+        return ShoppingItemEntity.Category.entries.getOrNull(ordinal) ?: ShoppingItemEntity.Category.FOOD
+    }
+
+    @TypeConverter
+    fun toOrdinal(category: ShoppingItemEntity.Category): Int {
+        return category.ordinal
+    }
+}
+```
+
+Magukat a függvényeket a `@TypeConverter` annotációval láttuk el. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva.
 
 
 ### Egy DAO osztály létrehozása
@@ -1422,23 +1451,23 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ShoppingItemDao {
 
     @Query("SELECT * FROM shoppingitem")
-    fun getAll(): Flow<List<ShoppingItem>>
+    fun getAll(): Flow<List<ShoppingItemEntity>>
 
     @Insert
-    suspend fun insert(item: ShoppingItem)
+    suspend fun insert(item: ShoppingItemEntity)
 
     @Update
-    suspend fun update(item: ShoppingItem)
+    suspend fun update(item: ShoppingItemEntity)
 
     @Delete
-    suspend fun delete(item: ShoppingItem)
+    suspend fun delete(item: ShoppingItemEntity)
 }
 ```
 
@@ -1458,11 +1487,12 @@ package hu.bme.aut.android.shoppinglist.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import hu.bme.aut.android.shoppinglist.data.converters.ShoppingItemCategoryConverter
 import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
 
-@Database(entities = [ShoppingItem::class], version = 1)
-@TypeConverters(value = [ShoppingItem.Category::class])
+@Database(entities = [ShoppingItemEntity::class], version = 1)
+@TypeConverters(value = [ShoppingItemCategoryConverter::class])
 abstract class ShoppingListDatabase : RoomDatabase() {
     abstract val shoppingItemDao: ShoppingItemDao
 }
@@ -1481,17 +1511,34 @@ Most, hogy megvan az adatbázisunk, már el tudjuk készíteni az azt elérő *r
 package hu.bme.aut.android.shoppinglist.data.repository
 
 import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItem
+import hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItemEntity
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class RoomShoppingItemRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
 
-    override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll()
-    override suspend fun insert(shoppingItem: ShoppingItem) = dao.insert(shoppingItem)
-    override suspend fun update(shoppingItem: ShoppingItem) = dao.update(shoppingItem)
-    override suspend fun delete(shoppingItem: ShoppingItem) = dao.delete(shoppingItem)
+    override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll().map { list ->
+        list.map { shoppingItem ->
+            shoppingItem.asShoppingItem()
+        }
+    }
+
+    override suspend fun insert(shoppingItem: ShoppingItem) =
+        dao.insert(shoppingItem.asShoppingItemEntity())
+
+    override suspend fun update(shoppingItem: ShoppingItem) =
+        dao.update(shoppingItem.asShoppingItemEntity())
+
+    override suspend fun delete(shoppingItem: ShoppingItem) =
+        dao.delete(shoppingItem.asShoppingItemEntity())
 }
 ```
+
+Figyeljük meg, hogy a `ShoppingItemEntity` és a `ShoppingItem` objektumok közötti konverzió is itt történik.
+
 
 ### A repository inicializálása
 
@@ -1504,9 +1551,10 @@ package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
 import androidx.room.Room
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
-import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.database.ShoppingListDatabase
+import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
+
 
 class ShoppingListApplication : Application() {
 
@@ -1549,7 +1597,7 @@ Az iménti feladatrészben nem csak a perzisztens tárolást valósítottuk meg,
 Valósítsd meg a tételek törlését egyesével, az elemeken található szemetes ikonra kattintás hatására!
 
 ???success "Megoldás"
-      - Gomb eseménykezelőjének megvalósítása az `UIShoppingItem`-ben
+      - Gomb eseménykezelőjének megvalósítása az `ShoppingItemCard`-ben
       - A törlés *callback* megvalósítása a `ShoppingListScreen`-en
 
 !!!example "BEADANDÓ (1 pont)"
