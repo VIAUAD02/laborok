@@ -60,6 +60,8 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 1. Write your Neptun code in the `neptun.txt` file. The file should contain nothing else, except the 6 characters of the Neptun code on a single line.
 
+1. As you work on the task, keep a running log of any AI usage in the `README.md` file.
+
 
 ### Opening a project
 
@@ -73,20 +75,20 @@ The project contains all the dependencies needed during the lab, these will not 
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.3"
+coreKtx = "1.19.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.11.0"
-composeBom = "2025.10.00"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.21"
+composeBom = "2026.09.00"
 
-viewModel = "2.9.4"
+viewModel = "2.11.0"
 
-ksp = "2.2.10-2.0.2"
-room = "2.8.2"
+ksp = "2.3.10"
+room = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -96,13 +98,13 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
 
@@ -114,7 +116,6 @@ androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "roo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
@@ -125,7 +126,6 @@ Project level `build.gradle.kts`:
 ```kts
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
     alias(libs.plugins.google.devtools.ksp) apply false
@@ -137,7 +137,6 @@ Modul level `build.gradle.kts`:
 ```kts
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.google.devtools.ksp)
@@ -145,12 +144,14 @@ plugins {
 
 android {
     namespace = "hu.bme.aut.android.shoppinglist"
-    compileSdk = 36
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = "hu.bme.aut.android.shoppinglist"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -159,19 +160,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            optimization {
+                enable = false
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -180,21 +176,21 @@ android {
 
 dependencies {
 
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.material.icons.extended)
 
@@ -234,15 +230,15 @@ The project includes the application icons, necessary graphic resources, and tex
 
 #### The Model
 
-Our application will display a shopping list, including shopping items. This will be important for both the user interface and persistent data storage. Within the `data` *package*, in the `entities` *package*, we have a `ShoppingItem` data class.
+Our application will display a shopping list, including shopping items. This will be important for both the user interface and persistent data storage. Within the `domain` *package*, in the `model` *package*, we have a `ShoppingItem` data class.
 
 `ShoppingItem.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.data.entities
+package hu.bme.aut.android.shoppinglist.domain.model
 
 data class ShoppingItem(
-		var id: Long? = null,
+	var id: Long? = null,
         var name: String,
         var description: String,
         var category: Category,
@@ -319,7 +315,7 @@ fun MainTopBarPreview() {
 
 We pass a name to the `TopAppBar` built-in *Composable* function with the *title* parameter and an action button with the *actions* parameter. In this case, we will add a `Delete all items` button, the functionality of which must be implemented in the standalone task part.
 
-`ItemShoppingItem.kt`:
+`ShoppingItemCard.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components
@@ -360,10 +356,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import hu.bme.aut.android.shoppinglist.R
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 
 @Composable
-fun UIShoppingItem(
+fun ShoppingItemCard(
     shoppingItem: ShoppingItem,
     onCheckBoxClick: (ShoppingItem) -> Unit,
     onDeleteIconClick: () -> Unit,
@@ -375,9 +371,7 @@ fun UIShoppingItem(
         ShoppingItem.Category.FOOD -> R.drawable.groceries
         ShoppingItem.Category.ELECTRONIC -> R.drawable.lightning
         ShoppingItem.Category.BOOK -> R.drawable.open_book
-        else -> R.drawable.groceries
     }
-
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -470,8 +464,8 @@ fun UIShoppingItem(
 
 @Preview(showBackground = true)
 @Composable
-fun ItemShoppingItemPurchasedPreview() {
-    UIShoppingItem(
+fun ShoppingItemCardPurchasedPreview() {
+    ShoppingItemCard(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description",
@@ -487,8 +481,8 @@ fun ItemShoppingItemPurchasedPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun ItemShoppingItemNotPurchasedPreview() {
-    UIShoppingItem(
+fun ShoppingItemCardNotPurchasedPreview() {
+    ShoppingItemCard(
         shoppingItem = ShoppingItem(
             name = "LongItemName",
             description = "description description description description description",
@@ -501,6 +495,7 @@ fun ItemShoppingItemNotPurchasedPreview() {
         onEditIconClick = {}
     )
 }
+
 ```
 
 The interface displays the `ShoppingItem` data. On the left side, the category-dependent image, in the middle, the name, description and price, and on the right side, the *CheckBox*, which indicates the purchase of the product. In addition, a panel containing the delete and modify buttons can be opened on the right edge of the interface when touched.
@@ -526,12 +521,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingListTopBar
-import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.UIShoppingItem
+import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingItemCard
 
 
 @Composable
@@ -582,7 +577,7 @@ fun ShoppingListScreen(modifier : Modifier = Modifier) {
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                UIShoppingItem(
+                ShoppingItemCard(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         /*TODO*/
@@ -621,8 +616,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.ui.Modifier
 import hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.ShoppingListScreen
 import hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme
 
@@ -632,7 +625,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShoppingListTheme {
-                ShoppingListScreen(modifier = Modifier.safeDrawingPadding())
+                ShoppingListScreen()
             }
         }
     }
@@ -702,7 +695,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import hu.bme.aut.android.shoppinglist.R
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -1003,14 +996,16 @@ You can see that our list is currently burned in and stored in a *screen composa
 
 ### Creating the repository
 
-Our data typically comes from a data source, a *repository*. There can be several implementations of this, even in parallel. Let's define an *interface* and a specific implementation (which is still memory-based) in the `hu.bme.aut.android.shoppinglist.data.repository` *package*:
+Our data typically comes from a single data source—a *repository*. There can be multiple implementations of this, potentially existing in parallel. Let us define an *interface* and then a concrete implementation (which will still be memory-based).
+
+The *interface* representing the operations that can be performed on our data is part of the domain layer; therefore, we should create it in the `hu.bme.aut.android.shoppinglist.domain.repository` *package*:
 
 `IShoppingItemRepository.kt`:
 
 ```kotlin
-package hu.bme.aut.android.shoppinglist.data.repository
+package hu.bme.aut.android.shoppinglist.domain.repository
 
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
 import kotlinx.coroutines.flow.Flow
 
 interface IShoppingItemRepository {
@@ -1022,13 +1017,16 @@ interface IShoppingItemRepository {
 }
 ```
 
+The actual implementation, however, involves concrete data storage and operations—meaning it needs to be placed in the data layer. So, let's place it in the `hu.bme.aut.android.shoppinglist.data.repository` *package*:
+
 `MemoryShoppingItemRepository.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.repository
 
 import androidx.compose.runtime.mutableStateListOf
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -1093,8 +1091,8 @@ We've just created our *repository*, but nothing has instantiated it and made it
 package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 
 class ShoppingListApplication : Application() {
 
@@ -1132,7 +1130,7 @@ This way, we can access our *repository* anytime, anywhere, but it wouldn't be n
 
 	```toml
 	[versions]
-	viewModel = "2.9.4"
+	viewModel = "2.11.0"
 	...
 
 	[libraries]
@@ -1159,8 +1157,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.shoppinglist.ShoppingListApplication
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -1253,7 +1251,7 @@ fun ShoppingListScreen(
         ) {
             items(list, key = { item -> item.id!! }) {
 
-                UIShoppingItem(
+                ShoppingItemCard(
                     shoppingItem = it,
                     onCheckBoxClick = { shoppingItem ->
                         viewModel.update(shoppingItem)
@@ -1303,8 +1301,8 @@ We will use the `Room` library to store data persistently.
 	```toml
 	[versions]
     ...
-	ksp = "2.2.10-2.0.2"
-	room = "2.8.2"
+	ksp = "2.3.10"
+	room = "2.8.5"
 
 	[libraries]
 	...
@@ -1350,20 +1348,19 @@ We will use the `Room` library to store data persistently.
 
 ### Creating the model class
 
-The essence of ORM is that we can store objects in a database, which means we need a model class. So far, we have been using the previously created `ShoppingItem` class to store our data throughout the entire project. Fortunately, by switching to `Room`, we don't have to throw it away completely, we can continue to use it with minor modifications. So let's complete our `ShoppingItem` class:
+The essence of ORM is the ability to store objects in a database, which requires a model class. Up to this point, we have used the previously created `ShoppingItem` class throughout the project to store our data. Fortunately, switching to `Room` does not mean we have to discard it entirely; we can still use it in the domain and UI layers, though we need to add a few elements to it for storage purposes. So, let’s create a `ShoppingItemEntity` class in the `hu.bme.aut.android.shoppinglist.data.entities` *package*:
 
-`ShoppingItem.kt`:
+`ShoppingItemEntity.kt`:
 
 ```kotlin
 package hu.bme.aut.android.shoppinglist.data.entities
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "shoppingItem")
-data class ShoppingItem(
+data class ShoppingItemEntity(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long? = null,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "description") var description: String,
@@ -1372,38 +1369,72 @@ data class ShoppingItem(
     @ColumnInfo(name = "isBought") var isBought: Boolean
 ) {
     enum class Category {
-        FOOD, ELECTRONIC, BOOK;
-
-        companion object {
-            @JvmStatic
-            @TypeConverter
-            fun getByOrdinal(ordinal: Int): Category? {
-                var ret: Category? = null
-                for (cat in values()) {
-                    if (cat.ordinal == ordinal) {
-                        ret = cat
-                        break
-                    }
-                }
-                return ret
-            }
-
-            @JvmStatic
-            @TypeConverter
-            fun toInt(category: Category): Int {
-                return category.ordinal
-            }
-        }
+        FOOD, ELECTRONIC, BOOK
     }
 }
 ```
 
 You can see that we have placed annotations on the class, the variables of the class, and the functions of the enum class within the class. `@Entity` indicates to the *Room* code generator that the instances of this class will correspond to database records in a table and that its individual variables will correspond to the columns of the table. With the `@ColumnInfo` annotation, we specify the name of the column corresponding to the member variable. With `@PrimaryKey` we mark the primary key attribute of the table.
 
-We have also created an *enum* in the class, with which we want to encode a category. *enum* has two static methods, annotated with `@TypeConverter`. These can be used to allow the database to store even complex data structures. These functions are responsible for translating a user-defined type to a type supported by the database, and vice versa.
+The *domain model* and the *room entity* are seemingly very similar yet distinct classes, so we need conversion functions between them. Let's place these *extension functions* in the `hu.bme.aut.android.shoppinglist.data.mappers` *package*:
 
-It can also be observed that these functions are also provided with the `@JvmStatic` annotation. This is necessary because basically, when the *companion objects* are converted to *Jvm* bytecode, a separate static class is created for them. This annotation can be used to specify that a separate static class should not be created, but instead they should be static functions of the enclosing class (in this case *Category*). This special behavior is necessary because of the way *Room* works, as it needs to know where to look for converters for a type.
+`ShoppingItemEntityMappers.kt`:
 
+```kotlin
+package hu.bme.aut.android.shoppinglist.data.mappers
+
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+
+fun ShoppingItemEntity.asShoppingItem(): ShoppingItem = ShoppingItem(
+    id = id,
+    name = name,
+    description = description,
+    category = ShoppingItem.Category.valueOf(category.name),
+    estimatedPrice = estimatedPrice,
+    isBought = isBought
+)
+
+fun ShoppingItem.asShoppingItemEntity(): ShoppingItemEntity = ShoppingItemEntity(
+    id = id,
+    name = name,
+    description = description,
+    category = ShoppingItemEntity.Category.valueOf(category.name),
+    estimatedPrice = estimatedPrice,
+    isBought = isBought
+)
+```
+
+!!!info "Extension Function"
+	A Kotlin extension function allows you to add new functions to an existing class without inheriting from it or modifying its original source code.
+	
+	We can essentially call these functions on objects of the given class as if they were the class's own built-in methods.
+
+While *Room* automatically saves standard types (such as *String*, *Int*, and *Boolean*), to fully store our `ShoppingItemEntity` objects, we also need a way to save the `Category` *enum*. Since this is not handled automatically, we must provide converters for *Room*. Let's create these in the `hu.bme.aut.android.shoppinglist.data.converters` *package*:
+
+`ShoppingItemCategoryConverter.kt`:
+
+```kotlin
+package hu.bme.aut.android.shoppinglist.data.converters
+
+import androidx.room.TypeConverter
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
+
+class ShoppingItemCategoryConverter {
+
+    @TypeConverter
+    fun fromOrdinal(ordinal: Int): ShoppingItemEntity.Category {
+        return ShoppingItemEntity.Category.entries.getOrNull(ordinal) ?: ShoppingItemEntity.Category.FOOD
+    }
+
+    @TypeConverter
+    fun toOrdinal(category: ShoppingItemEntity.Category): Int {
+        return category.ordinal
+    }
+}
+```
+
+We have annotated the functions themselves with `@TypeConverter`. These enable the database to store even complex data structures. These functions are responsible for converting a custom type into a type supported by the database, and vice versa.
 
 ### Creating a DAO class
 
@@ -1422,23 +1453,23 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ShoppingItemDao {
 
     @Query("SELECT * FROM shoppingitem")
-    fun getAll(): Flow<List<ShoppingItem>>
+    fun getAll(): Flow<List<ShoppingItemEntity>>
 
     @Insert
-    suspend fun insert(item: ShoppingItem)
+    suspend fun insert(item: ShoppingItemEntity)
 
     @Update
-    suspend fun update(item: ShoppingItem)
+    suspend fun update(item: ShoppingItemEntity)
 
     @Delete
-    suspend fun delete(item: ShoppingItem)
+    suspend fun delete(item: ShoppingItemEntity)
 }
 ```
 
@@ -1458,11 +1489,12 @@ package hu.bme.aut.android.shoppinglist.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import hu.bme.aut.android.shoppinglist.data.converters.ShoppingItemCategoryConverter
 import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity
 
-@Database(entities = [ShoppingItem::class], version = 1)
-@TypeConverters(value = [ShoppingItem.Category::class])
+@Database(entities = [ShoppingItemEntity::class], version = 1)
+@TypeConverters(value = [ShoppingItemCategoryConverter::class])
 abstract class ShoppingListDatabase : RoomDatabase() {
     abstract val shoppingItemDao: ShoppingItemDao
 }
@@ -1481,17 +1513,33 @@ Now that we have the database, we can create our *repository* that accesses it, 
 package hu.bme.aut.android.shoppinglist.data.repository
 
 import hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao
-import hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem
+import hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItem
+import hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItemEntity
+import hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class RoomShoppingItemRepository(private val dao: ShoppingItemDao) : IShoppingItemRepository {
 
-    override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll()
-    override suspend fun insert(shoppingItem: ShoppingItem) = dao.insert(shoppingItem)
-    override suspend fun update(shoppingItem: ShoppingItem) = dao.update(shoppingItem)
-    override suspend fun delete(shoppingItem: ShoppingItem) = dao.delete(shoppingItem)
+    override fun getAllItems(): Flow<List<ShoppingItem>> = dao.getAll().map { list ->
+        list.map { shoppingItem ->
+            shoppingItem.asShoppingItem()
+        }
+    }
+
+    override suspend fun insert(shoppingItem: ShoppingItem) =
+        dao.insert(shoppingItem.asShoppingItemEntity())
+
+    override suspend fun update(shoppingItem: ShoppingItem) =
+        dao.update(shoppingItem.asShoppingItemEntity())
+
+    override suspend fun delete(shoppingItem: ShoppingItem) =
+        dao.delete(shoppingItem.asShoppingItemEntity())
 }
 ```
+
+Note that the conversion between the `ShoppingItemEntity` and `ShoppingItem` objects also takes place here.
 
 ### Initializing the repository
 
@@ -1504,9 +1552,9 @@ package hu.bme.aut.android.shoppinglist
 
 import android.app.Application
 import androidx.room.Room
-import hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository
-import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
 import hu.bme.aut.android.shoppinglist.data.database.ShoppingListDatabase
+import hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository
+import hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository
 
 class ShoppingListApplication : Application() {
 
@@ -1540,7 +1588,7 @@ Our application is now able to record items and save them.
 In the previous task, we not only implemented persistent storage, but also created an architecturally well-thought-out application. This is also supported by the fact that in order for our data to be stored not only in memory, but also in a database, we only had to write the implementation parts for the *Room* database and initialize the appropriate *repository*. We did not have to change either the *viewModel* or the *screen*.
 
 !!!example "TO BE SUBMITTED (1 point)"
-    Create a **screenshot** showing the **shopping list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **`RoomShoppingListRepository` code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f3.png**!
+    Create a **screenshot** showing the **shopping list with multiple items** (on an emulator, mirroring the device or with a screenshot), the **`RoomShoppingItemRepository` code**, and your **neptun code as a product name**! Upload the image to the repository in the solution as **f3.png**!
 
 The screenshot is a necessary condition for obtaining a score.
 
@@ -1549,7 +1597,7 @@ The screenshot is a necessary condition for obtaining a score.
 Implement the deletion of items one by one, by clicking on the trash icon on the items!
 
 ???success "Solution"
-        - Implementing the button event handler in `ItemShoppingItem`
+        - Implementing the button event handler in `ShoppingItemCard`
         - Implementing the deletion *callback* on `ShoppingListScreen`
 
 !!!example "TO BE SUBMITTED (1 point)"
