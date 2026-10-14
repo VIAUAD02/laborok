@@ -1530,7 +1530,7 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 <p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
 </li>
 <li>
-<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+<p>A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az <code>Readme.md</code> fájlban.</p>
 </li>
 </ol>
 <h3 id="projekt-megnyitasa">Projekt megnyitása<a class="headerlink" href="#projekt-megnyitasa" title="Permanent link">&para;</a></h3>
@@ -1539,20 +1539,20 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 <p>A projektben szerepel a labor során szükséges összes függőség, ezeket a későbbiekben már nem kell újra hozzáadni, de azért az adott résznél szerepeltetni fogjuk őket.</p>
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;8.12.3&quot;</span>
-<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.20&quot;</span>
-<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.17.0&quot;</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;9.3.3&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.19.1&quot;</span>
 <span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;4.13.2&quot;</span>
 <span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.3.0&quot;</span>
 <span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.7.0&quot;</span>
-<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
-<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.11.0&quot;</span>
-<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2025.10.00&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.13.0&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.4.21&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2026.09.00&quot;</span>
 
-<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
+<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
 
-<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.10-2.0.2&quot;</span>
-<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.2&quot;</span>
+<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.3.10&quot;</span>
+<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.5&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="n">androidx-core-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;core-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;coreKtx&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -1562,13 +1562,13 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 <span class="n">androidx-lifecycle-runtime-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycle-runtime-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycleRuntimeKtx&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-activity-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.activity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;activity-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;activityCompose&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-compose-bom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;compose-bom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;composeBom&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-graphics&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-tooling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-tooling-preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling-preview&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-test-manifest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-manifest&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-test-junit4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-junit4&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-material3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;material3&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-graphics&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-tooling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-tooling-preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling-preview&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-test-manifest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-manifest&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-test-junit4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-junit4&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-material3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;material3&quot;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="n">androidx-material-icons-extended</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;material-icons-extended&quot;</span><span class="w"> </span><span class="p">}</span>
 
@@ -1580,7 +1580,6 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 
 <span class="k">[plugins]</span>
 <span class="n">android-application</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;com.android.application&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;agp&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">kotlin-android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;org.jetbrains.kotlin.android&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;kotlin&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">kotlin-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;org.jetbrains.kotlin.plugin.compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;kotlin&quot;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="n">google-devtools-ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;com.google.devtools.ksp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="p">=</span><span class="s2">&quot;ksp&quot;</span><span class="p">}</span>
@@ -1588,7 +1587,6 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 <p>Projekt szintű <code>build.gradle.kts</code>:</p>
 <div class="highlight"><pre><span></span><code>plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
     alias(libs.plugins.google.devtools.ksp) apply false
@@ -1597,7 +1595,6 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 <p>Modul szintű <code>build.gradle.kts</code>:</p>
 <div class="highlight"><pre><span></span><code>plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.google.devtools.ksp)
@@ -1605,12 +1602,14 @@ A menüben található <em>Delete all</em> opcióval az összes lista elemet tö
 
 android {
     namespace = &quot;hu.bme.aut.android.shoppinglist&quot;
-    compileSdk = 36
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = &quot;hu.bme.aut.android.shoppinglist&quot;
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = &quot;1.0&quot;
 
@@ -1619,19 +1618,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile(&quot;proguard-android-optimize.txt&quot;),
-                &quot;proguard-rules.pro&quot;
-            )
+            optimization {
+                enable = false
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = &quot;11&quot;
     }
     buildFeatures {
         compose = true
@@ -1639,22 +1633,21 @@ android {
 }
 
 dependencies {
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.material.icons.extended)
 
@@ -1687,9 +1680,9 @@ dependencies {
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre></div>
 <h4 id="a-modell">A modell<a class="headerlink" href="#a-modell" title="Permanent link">&para;</a></h4>
-<p>Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából. A <code>data</code> <em>package</em>-en belül az <code>entities</code> <em>package</em>-ben van egy <code>ShoppingItem</code> adat osztályunk.</p>
+<p>Az alkalmazásunk egy bevásárló listát, azon belül is vásárlási tételeket fog megjeleníteni. Ez fontos lesz mind a felhasználói felület, mind a perzisztens adattárolás szempontjából. A <code>domain</code> <em>package</em>-en belül a <code>model</code> <em>package</em>-ben van egy <code>ShoppingItem</code> adat osztályunk.</p>
 <p><code>ShoppingItem.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model</span>
 
 <span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItem</span><span class="p">(</span>
 <span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
@@ -1762,7 +1755,7 @@ dependencies {
 <span class="p">}</span>
 </code></pre></div>
 <p>A <code>TopAppBar</code> beépített <em>Composable</em> függvénynek adunk át egy nevet a <em>title</em> paraméterrel és egy akciógombot az <em>actions</em> paraméterrel. Jelen esetben egy <code>Delete all items</code> gombot fogunk hozzáadni, aminek a működését az önálló feladatrésznél kell megvalósítani.</p>
-<p><code>UIShoppingItem.kt</code>:</p>
+<p><code>ShoppingItemCard.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.Image</span>
@@ -1801,10 +1794,10 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.sp</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.R</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
 
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">UIShoppingItem</span><span class="p">(</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ShoppingItemCard</span><span class="p">(</span>
 <span class="w">    </span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">,</span>
 <span class="w">    </span><span class="n">onCheckBoxClick</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
 <span class="w">    </span><span class="n">onDeleteIconClick</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
@@ -1816,9 +1809,7 @@ dependencies {
 <span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">FOOD</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">groceries</span>
 <span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">ELECTRONIC</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">lightning</span>
 <span class="w">        </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">BOOK</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">open_book</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">groceries</span>
 <span class="w">    </span><span class="p">}</span>
-
 <span class="w">    </span><span class="n">Row</span><span class="p">(</span>
 <span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">)</span>
@@ -1911,8 +1902,8 @@ dependencies {
 
 <span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">UIShoppingItemPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">UIShoppingItem</span><span class="p">(</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ShoppingItemCardPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ShoppingItemCard</span><span class="p">(</span>
 <span class="w">        </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
 <span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;LongItemName&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;description&quot;</span><span class="p">,</span>
@@ -1928,8 +1919,8 @@ dependencies {
 
 <span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">UIShoppingItemNotPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">UIShoppingItem</span><span class="p">(</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ShoppingItemCardNotPurchasedPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ShoppingItemCard</span><span class="p">(</span>
 <span class="w">        </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
 <span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;LongItemName&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;description description description description description&quot;</span><span class="p">,</span>
@@ -1961,12 +1952,12 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.lazy.items</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingListTopBar</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.UIShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.components.ShoppingItemCard</span>
 
 
 <span class="nd">@Composable</span>
@@ -2017,7 +2008,7 @@ dependencies {
 <span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="na">id</span><span class="o">!!</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">                </span><span class="n">UIShoppingItem</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ShoppingItemCard</span><span class="p">(</span>
 <span class="w">                    </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">onCheckBoxClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">                        </span><span class="cm">/*TODO*/</span>
@@ -2052,8 +2043,6 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.enableEdgeToEdge</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.safeDrawingPadding</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.screen.shoppinglist.ShoppingListScreen</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ui.theme.ShoppingListTheme</span>
 
@@ -2063,7 +2052,7 @@ dependencies {
 <span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
 <span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">ShoppingListTheme</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">ShoppingListScreen</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">safeDrawingPadding</span><span class="p">())</span>
+<span class="w">                </span><span class="n">ShoppingListScreen</span><span class="p">()</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -2125,7 +2114,7 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.sp</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.R</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
 
 <span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
@@ -2412,11 +2401,12 @@ dependencies {
 <h2 id="az-architektura-kialakitasa-1-pont">Az architektúra kialakítása (1 pont)<a class="headerlink" href="#az-architektura-kialakitasa-1-pont" title="Permanent link">&para;</a></h2>
 <p>Látható, hogy a listánkat egyelőre beégettünk, és elég csúnya módon egy <em>screen composable</em>-ben tároljuk. (Ráadásul ha elforgatjuk az eszközünket az egész lista visszaáll.) Ezt a gyors kipróbálhatóság érdekében tettük, azonban most kialakítjuk a megfelelő architektúrát. Kezdetben még maradunk a memóriában tárolt listánál, azonban azok helyét architekturálisan megfelelőbben választjuk meg.</p>
 <h3 id="a-repository-letrehozasa">A repository létrehozása<a class="headerlink" href="#a-repository-letrehozasa" title="Permanent link">&para;</a></h3>
-<p>Az adataink tipikusan egy adatforrásból, egy <em>repository</em>-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy <em>interface</em>-t és egy konkrét megvalósítást is (ami még mindig memória alapú) a <code>hu.bme.aut.android.shoppinglist.data.repository</code> <em>package</em>-ben:</p>
+<p>Az adataink tipikusan egy adatforrásból, egy <em>repository</em>-ból jönnek. Ennek számos megvalósítása lehet, akár párhuzamosan is. Definiáljunk egy <em>interface</em>-t majd egy konkrét megvalósítást is (ami még mindig memória alapú).</p>
+<p>Az <em>interface</em>, ami az adatainkon végezhető műveleteket reprezentálja a domain réteg része, vagyis a <code>hu.bme.aut.android.shoppinglist.domain.repository</code> <em>package</em>-ben készítsük el:</p>
 <p><code>IShoppingItemRepository.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nc">IShoppingItemRepository</span><span class="w"> </span><span class="p">{</span>
@@ -2427,11 +2417,13 @@ dependencies {
 <span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>A konkrét megvalósítás viszont már konkrét adattárolással és konkrét műveletekkel jár, vagyis az adat rétegbe kell kerülnie. Helyezzük tehát a <code>hu.bme.aut.android.shoppinglist.data.repository</code> <em>package</em>-be:</p>
 <p><code>MemoryShoppingItemRepository.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.delay</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.flow</span>
@@ -2491,8 +2483,8 @@ dependencies {
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.MemoryShoppingItemRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -2523,7 +2515,7 @@ dependencies {
 <p>A <em>viewModel</em> keretrendszer használatához szükségünk lesz egy függőségre. Adjuk hozzá a projektünkhöz az alábbiakat:</p>
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
+<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
 <span class="p">...</span>
 
 <span class="k">[libraries]</span>
@@ -2545,8 +2537,8 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.ShoppingListApplication</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.collectLatest</span>
@@ -2633,7 +2625,7 @@ dependencies {
 <span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="na">id</span><span class="o">!!</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">                </span><span class="n">UIShoppingItem</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ShoppingItemCard</span><span class="p">(</span>
 <span class="w">                    </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">onCheckBoxClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">                        </span><span class="n">viewModel</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
@@ -2674,8 +2666,8 @@ dependencies {
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.10-2.0.2&quot;</span>
-<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.2&quot;</span>
+<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.3.10&quot;</span>
+<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.5&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="p">...</span>
@@ -2711,17 +2703,16 @@ dependencies {
 <p>Ezután kattintsunk a jobb felső sarokban megjelenő <strong>Sync Now</strong> gombra.</p>
 </details>
 <h3 id="a-modell-osztaly-elkeszitese">A modell osztály elkészítése<a class="headerlink" href="#a-modell-osztaly-elkeszitese" title="Permanent link">&para;</a></h3>
-<p>Az ORM lényege, hogy objektumokat tudunk adatbázisban tárolni, vagyis szükségünk van egy modell osztályra. Eddig a teljes projektben a korábban létrehozott <code>ShoppingItem</code> osztályt használtuk az adataink tárolására. Szerencsére a <code>Room</code>-ra való áttéréssel nem kell ezt teljesen kidobnunk, kisebb módosítással továbbra is használhatjuk. Egészítsük tehát ki a <code>ShoppingItem</code> osztályunkat:</p>
-<p><code>ShoppingItem.kt</code>:</p>
+<p>Az ORM lényege, hogy objektumokat tudunk adatbázisban tárolni, vagyis szükségünk van egy modell osztályra. Eddig a teljes projektben a korábban létrehozott <code>ShoppingItem</code> osztályt használtuk az adataink tárolására. Szerencsére a <code>Room</code>-ra való áttéréssel nem kell ezt teljesen kidobnunk, a domain és a ui rétegekben továbbra is használhatjuk, a tároláshoz azonban ki kell egészítenünk néhány dologgal. Hozzunk tehát létre egy <code>ShoppingItemEntity</code> osztályt a <code>hu.bme.aut.android.shoppinglist.data.entities</code> <em>package</em>-ben:</p>
+<p><code>ShoppingItemEntity.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.ColumnInfo;</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Entity;</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.PrimaryKey;</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.TypeConverter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.ColumnInfo</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Entity</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.PrimaryKey</span>
 
 <span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shoppingItem&quot;</span><span class="p">)</span>
-<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItem</span><span class="p">(</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItemEntity</span><span class="p">(</span>
 <span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="nd">@PrimaryKey</span><span class="p">(</span><span class="n">autoGenerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
 <span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;description&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
@@ -2730,34 +2721,62 @@ dependencies {
 <span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;isBought&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">isBought</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Category</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">FOOD</span><span class="p">,</span><span class="w"> </span><span class="n">ELECTRONIC</span><span class="p">,</span><span class="w"> </span><span class="n">BOOK</span><span class="p">;</span>
-
-<span class="w">        </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
-<span class="w">            </span><span class="nd">@JvmStatic</span>
-<span class="w">            </span><span class="nd">@TypeConverter</span>
-<span class="w">            </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getByOrdinal</span><span class="p">(</span><span class="n">ordinal</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">Category? </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nv">ret</span><span class="p">:</span><span class="w"> </span><span class="n">Category? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">cat</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">values</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="na">ordinal</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ordinal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat</span>
-<span class="w">                        </span><span class="k">break</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">            </span><span class="nd">@JvmStatic</span>
-<span class="w">            </span><span class="nd">@TypeConverter</span>
-<span class="w">            </span><span class="kd">fun</span><span class="w"> </span><span class="nf">toInt</span><span class="p">(</span><span class="n">category</span><span class="p">:</span><span class="w"> </span><span class="n">Category</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">category</span><span class="p">.</span><span class="na">ordinal</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">FOOD</span><span class="p">,</span><span class="w"> </span><span class="n">ELECTRONIC</span><span class="p">,</span><span class="w"> </span><span class="n">BOOK</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Látható, hogy az osztályon, az osztály változóin, valamint az osztályon belül lévő enum osztály függvényein annotációkat helyeztünk el. Az <code>@Entity</code> jelzi a <em>Room</em> kódgenerátorának, hogy ennek az osztálynak a példányai adatbázis rekordoknak fognak megfelelni egy táblában és hogy az egyes változói felelnek majd meg a tábla oszlopainak. A <code>@ColumnInfo</code> annotációval megadjuk, hogy mi legyen a tagváltozónak megfelelő oszlop neve. <code>@PrimaryKey</code>-jel jelöljük a tábla egyszerű kulcs attribútumát.</p>
-<p>Az osztályban létrehoztunk egy <em>enum</em>-ot is, amivel egy kategóriát akarunk kódolni. Az <em>enum</em>-nak van két statikus metódusa, <code>@TypeConverter</code> annotációval ellátva. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva.</p>
-<p>Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmStatic</code> annotációval is. Erre azért van szükség, mert alapvetően, amikor a <em>companion object</em>-ek <em>Jvm</em> bájtkódra fordulnak, akkor egy külön statikus osztály jön számukra létre. Ezzel az annotációval lehet megadni, hogy ne jöjjön létre külön statikus osztály, ehelyett a bennfoglaló osztály (jelen esetben <em>Category</em>) statikus függvényei legyenek. Erre a speciális viselkedésre pedig a <em>Room</em> működése miatt van szükség, ugyanis tudnia kell, hol keresse egy-egy típusra a konvertereket.</p>
+<p>A <em>domain model</em> és a <em>room entity</em> látszólag nagyon hasonlóak, mégis különböző osztályok, ezért szükségünk van közöttük konverziós függvényekre. Helyezzük el ezeket az <em>extension function</em>-öket a <code>hu.bme.aut.android.shoppinglist.data.mappers</code> <em>package</em>-ben:</p>
+<p><code>ShoppingItemEntityMappers.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.mappers</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="nf">asShoppingItem</span><span class="p">():</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">description</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">category</span><span class="p">.</span><span class="na">name</span><span class="p">),</span>
+<span class="w">    </span><span class="n">estimatedPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimatedPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isBought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isBought</span>
+<span class="p">)</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">.</span><span class="nf">asShoppingItemEntity</span><span class="p">():</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">description</span><span class="p">,</span>
+<span class="w">    </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">category</span><span class="p">.</span><span class="na">name</span><span class="p">),</span>
+<span class="w">    </span><span class="n">estimatedPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimatedPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isBought</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isBought</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Extension Function</p>
+<p>A Kotlin extension function (kiterjesztő függvény) lehetővé teszi, hogy új függvényeket adjunk egy meglévő osztályhoz anélkül, hogy örökölnénk belőle (inheritance), vagy megváltoztatnánk az eredeti forráskódját.</p>
+<p>Gyakorlatilag úgy hívhatjuk meg ezeket a függvényeket az adott osztály objektumain, mintha az osztály saját, gyári metódusai lennének.</p>
+</div>
+<p>A <em>Room</em> az általános típusokat (<em>String</em>, <em>Int</em>, <em>Boolean</em>) automatikusan elmenti, azonban a <code>ShoppingItemEntity</code> objektumaink teljes tárolásához a <code>Category</code> <em>enum</em>-ot is le kell tárolnunk valahogyan. Ezek tárolása nem automatikus, nekünk kell konvertereket adnunk a <em>Room</em> számára. Készítsük el ezeket a <code>hu.bme.aut.android.shoppinglist.data.converters</code> <em>package</em>-ben:</p>
+<p><code>ShoppingItemCategoryConverter.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.converters</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.TypeConverter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItemCategoryConverter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@TypeConverter</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">fromOrdinal</span><span class="p">(</span><span class="n">ordinal</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="na">Category</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">entries</span><span class="p">.</span><span class="na">getOrNull</span><span class="p">(</span><span class="n">ordinal</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="na">Category</span><span class="p">.</span><span class="na">FOOD</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@TypeConverter</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">toOrdinal</span><span class="p">(</span><span class="n">category</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">.</span><span class="na">Category</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">category</span><span class="p">.</span><span class="na">ordinal</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Magukat a függvényeket a <code>@TypeConverter</code> annotációval láttuk el. Ezekkel oldható meg, hogy az adatbázis akár összetett adatszerkezeteket is tárolni tudjon. Ezek a függvények felelősek azért, hogy egy felhasználói típust lefordítsanak egy, az adatbázis által támogatott típusra, illetve fordítva.</p>
 <h3 id="egy-dao-osztaly-letrehozasa">Egy DAO osztály létrehozása<a class="headerlink" href="#egy-dao-osztaly-letrehozasa" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">DAO</p>
@@ -2772,23 +2791,23 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Insert</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Query</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Update</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
 
 <span class="nd">@Dao</span>
 <span class="kd">interface</span><span class="w"> </span><span class="nc">ShoppingItemDao</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT * FROM shoppingitem&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAll</span><span class="p">():</span><span class="w"> </span><span class="n">Flow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;&gt;</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAll</span><span class="p">():</span><span class="w"> </span><span class="n">Flow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItemEntity</span><span class="o">&gt;&gt;</span>
 
 <span class="w">    </span><span class="nd">@Insert</span>
-<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">)</span>
 
 <span class="w">    </span><span class="nd">@Update</span>
-<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">)</span>
 
 <span class="w">    </span><span class="nd">@Delete</span>
-<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemEntity</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Egy <code>@Dao</code> annotációval ellátott <em>interface</em> a <code>Room</code> kódgenerátora számára azt jelzi, hogy generálni kell az <em>interface</em>-hez egy olyan implementációt, ami az <em>interface</em> függvényeket az azokon lévő annotációk (<code>@Query</code>, <code>@Insert</code>, <code>@Update</code>, <code>@Delete</code>) alapján valósítja meg.</p>
@@ -2801,11 +2820,12 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Database</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.RoomDatabase</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.TypeConverters</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.converters.ShoppingItemCategoryConverter</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItemEntity</span>
 
-<span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItem</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
-<span class="nd">@TypeConverters</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItem</span><span class="p">.</span><span class="na">Category</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">)</span>
+<span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItemEntity</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nd">@TypeConverters</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">ShoppingItemCategoryConverter</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">)</span>
 <span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListDatabase</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RoomDatabase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">shoppingItemDao</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemDao</span>
 <span class="p">}</span>
@@ -2818,17 +2838,32 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.dao.ShoppingItemDao</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.entities.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.mappers.asShoppingItemEntity</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.model.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.map</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">RoomShoppingItemRepository</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dao</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemDao</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IShoppingItemRepository</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAllItems</span><span class="p">():</span><span class="w"> </span><span class="n">Flow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao</span><span class="p">.</span><span class="na">getAll</span><span class="p">()</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAllItems</span><span class="p">():</span><span class="w"> </span><span class="n">Flow</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao</span><span class="p">.</span><span class="na">getAll</span><span class="p">().</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">shoppingItem</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">asShoppingItem</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">dao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">asShoppingItemEntity</span><span class="p">())</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">dao</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">asShoppingItemEntity</span><span class="p">())</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">dao</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">shoppingItem</span><span class="p">.</span><span class="na">asShoppingItemEntity</span><span class="p">())</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>Figyeljük meg, hogy a <code>ShoppingItemEntity</code> és a <code>ShoppingItem</code> objektumok közötti konverzió is itt történik.</p>
 <h3 id="a-repository-inicializalasa_1">A repository inicializálása<a class="headerlink" href="#a-repository-inicializalasa_1" title="Permanent link">&para;</a></h3>
 <p>Most már teljesen készen vagyunk az adatbázis megvalósításával. Már csak példányosítani kell valahol, és lecserélni az eddig adatelérésre használt <code>MemoryShoppingItemRepository</code>-t. Tegyük ezt meg a <em>application</em> osztályunkban:</p>
 <p><code>ShoppingListApplication.kt</code>:</p>
@@ -2836,9 +2871,10 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Room</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.IShoppingItemRepository</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.database.ShoppingListDatabase</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.data.repository.RoomShoppingItemRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.shoppinglist.domain.repository.IShoppingItemRepository</span>
+
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -2877,7 +2913,7 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
 <details class="success">
 <summary>Megoldás</summary>
 <ul>
-<li>Gomb eseménykezelőjének megvalósítása az <code>UIShoppingItem</code>-ben</li>
+<li>Gomb eseménykezelőjének megvalósítása az <code>ShoppingItemCard</code>-ben</li>
 <li>A törlés <em>callback</em> megvalósítása a <code>ShoppingListScreen</code>-en</li>
 </ul>
 </details>
@@ -2906,8 +2942,8 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
           </path>
         </svg>
       </span>
-      <span title="2025. október 16. 14:29:35">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 16. 14:29:35 CEST"><span class="timeago" datetime="2025-10-16T14:29:35+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 16. 14:29:35 CEST">2025-10-16</span>
+      <span title="2026. október 14. 19:23:28">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. október 14. 19:23:28 CEST"><span class="timeago" datetime="2026-10-14T19:23:28+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. október 14. 19:23:28 CEST">2026-10-14</span>
       </span>
     </span>
 
@@ -2922,31 +2958,7 @@ A <code>@Database</code> annotációval lehet jelezni a kódgenerátornak, hogy 
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
-          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
-        </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
-        </a><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
-          <img src="https://avatars.githubusercontent.com/u/90260479?v=4?size=72" alt="@norbertkurcsi">
-        </a><a href="https://github.com/zoltanszatmary" target="_blank" rel="noopener noreferrer" class="md-author" title="@zoltanszatmary">
-          <img src="https://avatars.githubusercontent.com/u/40998048?v=4?size=72" alt="@zoltanszatmary">
-        </a><a href="https://github.com/bohcstams" target="_blank" rel="noopener noreferrer" class="md-author" title="@bohcstams">
-          <img src="https://avatars.githubusercontent.com/u/126723855?v=4?size=72" alt="@bohcstams">
-        </a><a href="https://github.com/tibitoth" target="_blank" rel="noopener noreferrer" class="md-author" title="@tibitoth">
-          <img src="https://avatars.githubusercontent.com/u/8333960?v=4?size=72" alt="@tibitoth">
-        </a><a href="https://github.com/AlmosF" target="_blank" rel="noopener noreferrer" class="md-author" title="@AlmosF">
-          <img src="https://avatars.githubusercontent.com/u/92093359?v=4?size=72" alt="@AlmosF">
-        </a><a href="https://github.com/sloweroons" target="_blank" rel="noopener noreferrer" class="md-author" title="@sloweroons">
-          <img src="https://avatars.githubusercontent.com/u/127698251?v=4?size=72" alt="@sloweroons">
-        </a><a href="https://github.com/gaborbsd" target="_blank" rel="noopener noreferrer" class="md-author" title="@gaborbsd">
-          <img src="https://avatars.githubusercontent.com/u/5345619?v=4?size=72" alt="@gaborbsd">
-        </a><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
-          <img src="https://avatars.githubusercontent.com/u/22079595?v=4?size=72" alt="@kpomazi">
-        </a><a href="https://github.com/perryd01" target="_blank" rel="noopener noreferrer" class="md-author" title="@perryd01">
-          <img src="https://avatars.githubusercontent.com/u/46491285?v=4?size=72" alt="@perryd01">
-        </a><a href="https://github.com/zoli0" target="_blank" rel="noopener noreferrer" class="md-author" title="@zoli0">
-          <img src="https://avatars.githubusercontent.com/u/24962402?v=4?size=72" alt="@zoli0">
-        </a></nav>      
+      <nav></nav>      
     </span>
   </div>
 
