@@ -911,9 +911,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
+  <a href="#domain-reteg" class="md-nav__link">
     <span class="md-ellipsis">
-      Repository
+      Domain réteg
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adat-reteg-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adat réteg - Repository
     </span>
   </a>
   
@@ -1469,9 +1478,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
+  <a href="#domain-reteg" class="md-nav__link">
     <span class="md-ellipsis">
-      Repository
+      Domain réteg
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adat-reteg-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adat réteg - Repository
     </span>
   </a>
   
@@ -1669,7 +1687,7 @@
 <p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
 </li>
 <li>
-<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+<p>A feladatmegoldás során folyamatosan vezesd az esetleges AI használatot az Readme.md fájlban.</p>
 </li>
 </ol>
 <h3 id="projekt-megnyitasa">Projekt megnyitása<a class="headerlink" href="#projekt-megnyitasa" title="Permanent link">&para;</a></h3>
@@ -1678,26 +1696,25 @@
 <p>A projektben szerepel a labor során szükséges összes függőség, ezeket a későbbiekben már nem kell újra hozzáadni, de azért az adott résznél szerepeltetni fogjuk őket.</p>
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
-<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;8.12.3&quot;</span>
-<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.20&quot;</span>
-<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.17.0&quot;</span>
+<span class="n">agp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;9.3.3&quot;</span>
+<span class="n">coreKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.19.1&quot;</span>
 <span class="n">junit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;4.13.2&quot;</span>
 <span class="n">junitVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.3.0&quot;</span>
 <span class="n">espressoCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.7.0&quot;</span>
-<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
-<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.11.0&quot;</span>
-<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2025.10.00&quot;</span>
+<span class="n">lifecycleRuntimeKtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
+<span class="n">activityCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.13.0&quot;</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.4.21&quot;</span>
+<span class="n">composeBom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2026.09.00&quot;</span>
 
-
-<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.9.4&quot;</span>
-<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0.0-alpha11&quot;</span>
-<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.20&quot;</span>
-<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.9.0&quot;</span>
+<span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.11.0&quot;</span>
+<span class="n">nav3Core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.2.0&quot;</span>
+<span class="n">kotlinSerialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.4.21&quot;</span>
+<span class="n">kotlinxSerializationCore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.12.0&quot;</span>
 <span class="n">coilCompose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.7.0&quot;</span>
 <span class="n">moshi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.15.2&quot;</span>
 <span class="n">retrofit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span>
-<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.2.10-2.0.2&quot;</span>
-<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.2&quot;</span>
+<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.3.10&quot;</span>
+<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.8.5&quot;</span>
 
 <span class="k">[libraries]</span>
 <span class="n">androidx-core-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.core&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;core-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;coreKtx&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -1707,13 +1724,13 @@
 <span class="n">androidx-lifecycle-runtime-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.lifecycle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycle-runtime-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;lifecycleRuntimeKtx&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-activity-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.activity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;activity-compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;activityCompose&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-compose-bom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;compose-bom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;composeBom&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-graphics&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-tooling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-tooling-preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling-preview&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-test-manifest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-manifest&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-ui-test-junit4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-junit4&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">androidx-material3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;material3&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-graphics&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-tooling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-tooling-preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-tooling-preview&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-test-manifest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-manifest&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-ui-test-junit4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.ui&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;ui-test-junit4&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-compose-material3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;material3&quot;</span><span class="w"> </span><span class="p">}</span>
 
 
 <span class="n">androidx-material-icons-extended</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.compose.material&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;material-icons-extended&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -1729,10 +1746,8 @@
 <span class="n">androidx-room-compiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.room&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;room-compiler&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;room&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">androidx-room-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;androidx.room&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;room-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;room&quot;</span><span class="w"> </span><span class="p">}</span>
 
-
 <span class="k">[plugins]</span>
 <span class="n">android-application</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;com.android.application&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;agp&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="n">kotlin-android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;org.jetbrains.kotlin.android&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;kotlin&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="n">kotlin-compose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;org.jetbrains.kotlin.plugin.compose&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;kotlin&quot;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="n">jetbrains-kotlin-serialization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;kotlinSerialization&quot;</span><span class="p">}</span>
@@ -1742,7 +1757,6 @@
 <div class="highlight"><pre><span></span><code>// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
     alias(libs.plugins.jetbrains.kotlin.serialization) apply false
@@ -1752,22 +1766,22 @@ plugins {
 <p>Modul szintű <code>build.gradle.kts</code>:</p>
 <div class="highlight"><pre><span></span><code>plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.google.devtools.ksp)
-
 }
 
 android {
     namespace = &quot;hu.bme.aut.android.weatherinfo&quot;
-    compileSdk = 36
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = &quot;hu.bme.aut.android.weatherinfo&quot;
-        minSdk = 24
-        targetSdk = 36
+        minSdk = 26
+        targetSdk = 37
         versionCode = 1
         versionName = &quot;1.0&quot;
 
@@ -1776,19 +1790,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile(&quot;proguard-android-optimize.txt&quot;),
-                &quot;proguard-rules.pro&quot;
-            )
+            optimization {
+                enable = false
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = &quot;11&quot;
     }
     buildFeatures {
         compose = true
@@ -1796,22 +1805,21 @@ android {
 }
 
 dependencies {
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -1866,9 +1874,9 @@ dependencies {
 </code></pre></div>
 <p>A tételünk tartalmaz egy ID-t, valamint egy nevet a városnak.</p>
 <h4 id="a-repository">A repository<a class="headerlink" href="#a-repository" title="Permanent link">&para;</a></h4>
-<p>Ugyan jelenleg csak memóriában tároljuk a városlistánkat, de a későbbi bővíthetőség érdekében megtartjuk a korábban tanult <em>repository</em> mintát a <code>data.local.repository</code> <em>package</em>-ben:</p>
+<p>Ugyan jelenleg csak memóriában tároljuk a városlistánkat, de a későbbi bővíthetőség érdekében megtartjuk a korábban tanult <em>repository</em> mintát a <code>domain.repository</code> (<em>interface</em>) és a <code>data.local.repository</code> (megvalósítás) <em>package</em>-ben:</p>
 <p><code>ICityRepository.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
@@ -1884,6 +1892,7 @@ dependencies {
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.mutableStateListOf</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.Flow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.flow</span>
 
@@ -1912,8 +1921,8 @@ dependencies {
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.MemoryCityRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">WeatherInfoApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
@@ -2162,8 +2171,8 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.WeatherInfoApplication</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.collectLatest</span>
@@ -2374,7 +2383,6 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.enableEdgeToEdge</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.padding</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.safeDrawingPadding</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Scaffold</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.Text</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
@@ -2389,7 +2397,7 @@ dependencies {
 <span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
 <span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">WeatherInfoTheme</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">AppNavigation</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">safeDrawingPadding</span><span class="p">())</span>
+<span class="w">                    </span><span class="n">AppNavigation</span><span class="p">()</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -2424,7 +2432,6 @@ dependencies {
 
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
 
-
 <span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">CityListScreenState</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">Loading</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CityListScreenState</span><span class="p">()</span>
 <span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Error</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">error</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CityListScreenState</span><span class="p">()</span>
@@ -2439,23 +2446,7 @@ dependencies {
 </ul>
 <p>Ezek után a <code>CityListViewModel</code> a következőképpen alakul át:</p>
 <p><code>CityListViewModel.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.citylist</span>
-
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.WeatherInfoApplication</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.City</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.citylist.state.CityListScreenState</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.collectLatest</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">CityListViewModel</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">CityListViewModel</span><span class="p">(</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">cityRepository</span><span class="p">:</span><span class="w"> </span><span class="n">ICityRepository</span>
 <span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -2476,8 +2467,6 @@ dependencies {
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CityListScreenState</span><span class="p">.</span><span class="na">Error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="w">            </span><span class="p">}</span>
-
-
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -2641,7 +2630,7 @@ dependencies {
 <img src="./assets/plugin.png" width="720">
 </p>
 
-<p>Ha ez megvan, hozzuk létre a modell osztályok <em>package</em>-ét a <code>hu.bme.aut.android.weatherinfo.data.network.model</code> helye. Ez után nyomjunk a <em>package</em>-re jobb klikket, majd <em>New</em>-&gt; <em>Kotlin data class File from JSON</em>.</p>
+<p>Ha ez megvan, hozzuk létre a modell osztályok <em>package</em>-ét a <code>hu.bme.aut.android.weatherinfo.data.network.dto</code> helyre. Ez után nyomjunk a <em>package</em>-re jobb klikket, majd <em>New</em>-&gt; <em>Kotlin data class File from JSON</em>.</p>
 <p align="center">
 <img src="./assets/jsontokotlin.png" width="720">
 </p>
@@ -2728,40 +2717,69 @@ dependencies {
 <span class="p">)</span>
 </code></pre></div>
 </details>
-<h4 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h4>
-<p>Miután megvannak a modell osztályaink, elkészíthetjük a <em>repository</em>-t. A <code>hu.bme.aut.android.weatherinfo.data.network</code> csomagba készísünk egy <code>repository</code> <em>package</em>-et, majd abba egy <code>IWeatherRepository</code> <em>interface</em>-t, aminek egyetlen egy <em>getWeather()</em> függvénye lesz.</p>
-<p><code>IWeatherRepository.kt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository</span>
+<h4 id="domain-reteg">Domain réteg<a class="headerlink" href="#domain-reteg" title="Permanent link">&para;</a></h4>
+<p>Ezen az osztályok alapján már lehet elképzelésünk arról, hogy milyen adatokat is szeretnénk megjeleníteni a felületünkön. Hozzunk létre erre egy modellt a <code>domain</code> rétegben, és vegyük föl benne:
+-  a lírást, 
+- egy ikont, 
+- a páratartalmat, 
+- a nyomás értéket, 
+- valamint a hőmérséklet értékeket.</p>
+<p><code>WeatherInfo.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">WeatherInfo</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">icon</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">humidity</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">pressure</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">temp</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">minTemp</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">maxTemp</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Ezek után már elkészíthetjük a <code>domain.repository</code>-t, amiről tudjuk, hogy egy olyan függvényt tartalmaz, ami képes visszaadni egy város neve alapján egy ilyen <code>WeatherInfo</code> objektumot.</p>
+<p><code>IWeatherRepository.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nc">IWeatherRepository</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">WeatherInfo</span><span class="o">&gt;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Ezek alapján a <code>RetrofitWeatherRepository</code> (amit majd később kiegészítünk a hálózati hívással):</p>
+<p>Itt egyrészt tudjuk, hogy a <em>getWeather</em> függvény egy hosszan tartó függvény, ezért ellátjuk a <em>suspend</em> kulcsszóval, másrészt az eredményt beágyazzuk egy <code>Result</code> objektumba, hogy mind a sikerességét, mind a sikertelenségét vizsgálni tudjuk majd.</p>
+<h4 id="adat-reteg-repository">Adat réteg - Repository<a class="headerlink" href="#adat-reteg-repository" title="Permanent link">&para;</a></h4>
+<p>Ezek után már elkészíthetjük a <em>repository</em>-nk konkrét megvalósítását a <code>hu.bme.aut.android.weatherinfo.data.network.repository</code> <em>package</em>-be  ( a hálózati hívással majd később egészítjük ki):</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">RetrofitWeatherRepository</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IWeatherRepository</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">WeatherInfo</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span>
+<span class="w">            </span><span class="n">WeatherInfo</span><span class="p">(</span>
+<span class="w">                </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Clear sky&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;01d&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">humidity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span>
+<span class="w">                </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1013</span><span class="p">,</span>
+<span class="w">                </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22.5</span><span class="p">,</span>
+<span class="w">                </span><span class="n">minTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18.0</span><span class="p">,</span>
+<span class="w">                </span><span class="n">maxTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25.0</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A <em>getWeather()</em> függvény visszatérési értéke egy <code>Call&lt;WeatherData&gt;</code> típusú objektum lesz. (A retrofites <em>Call</em>-t importáljuk a megjelenő lehetőségek közül.) Ez egy olyan hálózati hívást ír le, aminek a válasza <em>WeatherData</em> típusú objektummá alakítható.</p>
-<p>Példányosítsuk ismét a <em>repository</em>-t az *application osztályunkban.</p>
+<p>Példányosítsuk ismét a <em>repository</em>-t az <em>application</em> osztályunkban:</p>
 <p><code>WeatherInfoApplication.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.local.repository.MemoryCityRepository</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository.IWeatherRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository.RetrofitWeatherRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">WeatherInfoApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
@@ -2783,12 +2801,12 @@ dependencies {
 <p><code>WeatherScreenState.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.weather.state</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo</span>
 
 <span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">WeatherScreenState</span><span class="p">{</span>
 <span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">Loading</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">()</span>
 <span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Error</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">error</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span><span class="p">):</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">()</span>
-<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Success</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherData</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherData?)</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Success</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">weather</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherInfo</span><span class="p">):</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Most már jöhet a <em>viewmodel</em> a <code>hu.bme.aut.android.weatherinfo.ui.screen.weather</code> csomagba.</p>
@@ -2798,17 +2816,14 @@ dependencies {
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.ViewModelProvider</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewModelScope</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.WeatherInfoApplication</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository.IWeatherRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Callback</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Response</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">kotlin.jvm.java</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">WeatherViewModel</span><span class="p">(</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">cityNameArg</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
@@ -2829,49 +2844,33 @@ dependencies {
 <span class="w">            </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Loading</span>
 <span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">weatherRepository</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">cityName</span><span class="p">)</span>
-<span class="w">                    </span><span class="o">?.</span><span class="na">enqueue</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Callback</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResponse</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
-<span class="w">                            </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="n">Response</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span>
-<span class="w">                        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">isSuccessful</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="n">_state</span><span class="p">.</span><span class="na">tryEmit</span><span class="p">(</span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Success</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">()))</span>
-<span class="w">                            </span><span class="p">}</span>
-<span class="w">                        </span><span class="p">}</span>
-
-<span class="w">                        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
-<span class="w">                            </span><span class="n">t</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span>
-<span class="w">                        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="n">t</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
-<span class="w">                            </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Error</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">}</span>
-<span class="w">                    </span><span class="p">})</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">onSuccess</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">weatherInfo</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                        </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Success</span><span class="p">(</span><span class="n">weatherInfo</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">onFailure</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">throwable</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                        </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Error</span><span class="p">(</span><span class="n">throwable</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nc">WeatherViewModelFactory</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">modelClass</span><span class="p">:</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">):</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">modelClass</span><span class="p">.</span><span class="na">isAssignableFrom</span><span class="p">(</span><span class="n">WeatherViewModel</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nd">@Suppress</span><span class="p">(</span><span class="s">&quot;UNCHECKED_CAST&quot;</span><span class="p">)</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">factory</span><span class="p">(</span><span class="n">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">initializer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">WeatherViewModel</span><span class="p">(</span>
 <span class="w">                    </span><span class="n">cityNameArg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cityName</span><span class="p">,</span>
-<span class="w">                    </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherRepository</span>
-<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">T</span>
+<span class="w">                    </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span>
+<span class="w">                </span><span class="p">)</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Unknown ViewModel class&quot;</span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
-
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A <code>WeatherViewModel</code> paraméterként megkapja az <code>IWeatherRepository</code> egy példányát, valamint a lekérdezendő város nevét. Ezen kívül tárolja az állapotot és a városnevet (immár <em>Flow</em>-ként. Egyetlen függvénye a hálózati hívást korutinnal elvégző <em>getWeather()</em>. Tartalmazza még a saját példányosításához szükséges <em>Factory method</em>-ot. </p>
+<p>A <code>WeatherViewModel</code> paraméterként megkapja az <code>IWeatherRepository</code> egy példányát, valamint a lekérdezendő város nevét. Ezen kívül tárolja az állapotot és a városnevet immár <em>Flow</em>-ként. Egyetlen függvénye a hálózati hívást korutinnal elvégző <em>getWeather()</em>. Tartalmazza még a saját példányosításához szükséges <em>Factory method</em>-ot. </p>
 <p>Figyeljük meg, hogy hogyan adjuk át a <em>Factory method</em>-on keresztül a város nevét, illetve a <code>weatherRepository</code>-t!</p>
-<p>Látható, hogy a <em>getWeather</em> függvényben a <code>weatherRepository</code> <em>getWeather</em> függvényének válaszára (ami egy <em>Call<WeatherData></em> objektum, egy <em>callbacket</em> helyeztünk el. Ezzel tudjuk kezelni a hálózati hívásunk különböző állapotait.</p>
+<p>Látható, hogy a <em>getWeather</em> függvényben a <code>weatherRepository</code> <em>getWeather</em> függvényének válaszára (ami egy <em>Response<WeatherInfo></em> objektum, <em>listener</em>-eket helyeztünk el. Ezzel tudjuk kezelni a hálózati válasz különböző állapotait.</p>
 <h3 id="az-idojaras-felulet">Az időjárás felület<a class="headerlink" href="#az-idojaras-felulet" title="Permanent link">&para;</a></h3>
 <h4 id="komponensek">Komponensek<a class="headerlink" href="#komponensek" title="Permanent link">&para;</a></h4>
 <p>Az időjárás képernyőn a város neve, aktuális időjárásának jellemzése és egy ikon mellett a konkrét számszerű értékeket is ki szeretnénk írni. Ennek a megvalósításához hozzunk létre egy segéd <em>composable</em>-t a <code>hu.bme.aut.android.weatherinfo.ui.screen.weather.components</code> <em>package</em>-ben, ami a szövegek és értékek egymás mellé írását fogja segíteni.</p>
@@ -2968,7 +2967,10 @@ dependencies {
 <span class="w">    </span><span class="n">onNavigateBack</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">viewModel</span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="p">.</span><span class="na">WeatherViewModelFactory</span><span class="p">(</span><span class="n">cityName</span><span class="p">),</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cityName</span><span class="p">)</span>
+<span class="w">        </span><span class="n">viewModel</span><span class="p">(</span>
+<span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="p">.</span><span class="na">factory</span><span class="p">(</span><span class="n">cityName</span><span class="p">),</span>
+<span class="w">            </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cityName</span>
+<span class="w">        </span><span class="p">)</span>
 
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherViewModel</span><span class="p">.</span><span class="na">state</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">().</span><span class="na">value</span>
 
@@ -3019,12 +3021,12 @@ dependencies {
 <span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">WeatherScreenState</span><span class="p">.</span><span class="na">Success</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">description</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">description</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                        </span><span class="n">AsyncImage</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageRequest</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">)</span>
-<span class="w">                                </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">first</span><span class="p">()</span><span class="o">?.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
 <span class="w">                                </span><span class="p">.</span><span class="na">crossfade</span><span class="p">(</span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="w">                                </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
 <span class="w">                            </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
@@ -3040,31 +3042,31 @@ dependencies {
 <span class="w">                        </span><span class="n">WeatherDataText</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_temperature</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">temp</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                        </span><span class="n">WeatherDataText</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_min_temperature</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_min</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">minTemp</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                        </span><span class="n">WeatherDataText</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_max_temperature</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_max</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">maxTemp</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                        </span><span class="n">WeatherDataText</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_pressure</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">pressure</span><span class="si">}</span><span class="s"> hPa&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">pressure</span><span class="si">}</span><span class="s"> hPa&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                        </span><span class="n">WeatherDataText</span><span class="p">(</span>
 <span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_humidity</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weatherData</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">humidity</span><span class="si">}</span><span class="s"> %&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">weather</span><span class="p">.</span><span class="na">humidity</span><span class="si">}</span><span class="s"> %&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
 <span class="w">                        </span><span class="p">)</span>
 <span class="w">                    </span><span class="p">}</span>
@@ -3142,16 +3144,7 @@ dependencies {
 <span class="p">}</span>
 </code></pre></div>
 <p>Próbáljuk ki az alkalmazást!</p>
-<p>Az időjárás képernyőnk megjelenik, ott van a felirat a fejlécen, de a valós adatok nem láthatóak, hiszen a <em>repository</em>-nk mindig egy <em>null</em> adattal tér vissza. Ezért csak a töltő képernyőt látjuk.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Ha meg akarjuk nézni a <code>WeatherScreen</code>-t teljes egészében, írjuk át a <em>getWeather</em> függvény elején az állapotot <em>Loading</em>-ról <em>Success</em>-re.</p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">_state</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherState</span><span class="p">.</span><span class="na">Success</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="p">...</span>
-</code></pre></div>
-</div>
+<p>Az időjárás képernyőnk megjelenik, ott van a felirat a fejlécen, de a valós adatok nem láthatóak, hiszen a <em>repository</em>-nk mindig egy beégetett adattal tér vissza.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>időjárás nézet a megfelelő fejléccel</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>WeatherScreen</strong> kódja, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f2.png néven töltsd föl! </p>
@@ -3204,18 +3197,17 @@ implementation(libs.coil.compose)
 <p><code>WeatherApi.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.dto.WeatherData</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.http.GET</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.http.Query</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nc">WeatherApi</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@GET</span><span class="p">(</span><span class="s">&quot;/data/2.5/weather&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span>
 <span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span>
 <span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;units&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">units</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span>
 <span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;appid&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">appId</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span>
-<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">WeatherData</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Látható, hogy a <em>Retrofit</em>-ben annotációk alkalmazásával tuduk jelezni, hogy az adott függvényhívás milyen hálózati hívásnak fog megfelelni. A <code>@GET</code> annotáció <em>HTTP GET</em> kérést jelent, a paraméterként adott <em>string</em> pedig azt jelzi, hogy hogy a szerver alap <em>URL</em>-éhez képest melyik végpontra szeretnénk küldeni a kérést.</p>
@@ -3227,16 +3219,17 @@ implementation(libs.coil.compose)
 <p>További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field</p>
 </div>
 <h3 id="a-retrofitweatherrepository-frissitese">A RetrofitWeatherRepository frissítése<a class="headerlink" href="#a-retrofitweatherrepository-frissitese" title="Permanent link">&para;</a></h3>
-<p>Most már készen áll az <em>interface</em>-ünk arra, hogy hálózati hívásokat végezzünk rajta keresztül. Cseréljük tehát le a <code>RetrofitWeatherRepository</code> <em>getWeather</em> függvényében visszaadott <em>null</em> értéket az igazi megvalósításra.</p>
+<p>Most már készen áll az <em>interface</em>-ünk arra, hogy hálózati hívásokat végezzünk rajta keresztül. Cseréljük tehát le a <code>RetrofitWeatherRepository</code> <em>getWeather</em> függvényében visszaadott beégetett értéket az igazi megvalósításra.</p>
 <p><code>RetrofitWeatherRepository.kt</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.repository</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">com.squareup.moshi.Moshi</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.WeatherApi</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.converter.asWeatherInfo</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">okhttp3.OkHttpClient</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Retrofit</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.converter.moshi.MoshiConverterFactory</span>
 
@@ -3259,17 +3252,40 @@ implementation(libs.coil.compose)
 <span class="w">        </span><span class="n">weatherApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">retrofit</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">WeatherApi</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">weatherApi</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;metric&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">APP_ID</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">WeatherInfo</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherApi</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;metric&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">APP_ID</span><span class="p">)</span>
+<span class="w">            </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">asWeatherInfo</span><span class="p">())</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Result</span><span class="p">.</span><span class="na">failure</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. </p>
-<p>A <code>Retrofit.Builder()</code> hívással kérhetünk egy pareméterezhető <code>Builder</code> példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt (<a href="http://square.github.io/okhttp/">OkHttp</a>), valamint a JSON és objektum reprezentációk közötti konvertert (Moshi).</p>
+<p>A <code>Retrofit.Builder()</code> hívással kérhetünk egy paraméterezhető <code>Builder</code> példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt (<a href="http://square.github.io/okhttp/">OkHttp</a>), valamint a JSON és objektum reprezentációk közötti konvertert (Moshi).</p>
 <p>A <code>WeatherApi</code> interfészből a <code>Builder</code>-rel létrehozott <code>Retrofit</code> példány segítségével tudjuk elkérni a fordítási időben generált, paraméterezett implementációt.</p>
 <p>A <code>retrofit.create(WeatherApi.class)</code> hívás eredményeként kapott objektum megvalósítja a <code>WeatherApi</code> interfészt.  Ha ezen az objektumon meghívjuk a <code>getWeather(...)</code> függvényt, akkor megtörténik az általunk az interfészben definiált hálózati hívás. </p>
 <p><strong>Cseréljük le</strong> az <code>APP_ID</code> értékét az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon kapott saját API kulcsunkra!</p>
+<p>Megfigyelhetjük, hogy a <code>WeatherAPI</code> <em>getWeather</em> függvénye még <code>WeatherData</code> objektumot ad vissza, azonban a <code>RetrofitWeatherRepository</code> <em>getWeather</em> függvénye már <code>WeatherInfo</code>-t. Ezek alapján a konverziót tehát itt kell elvégezni. Valósítsuk is meg a <code>WeatherData.asWeatherInfo()</code> konverter függvényt a <code>data.network.converter</code> <em>package</em>-ben:</p>
+<p><code>WeatherInfo.kt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.converter</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.data.network.dto.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="n">WeatherData</span><span class="p">.</span><span class="nf">asWeatherInfo</span><span class="p">():</span><span class="w"> </span><span class="n">WeatherInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfo</span><span class="p">(</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weather</span><span class="p">.</span><span class="na">first</span><span class="p">().</span><span class="na">description</span><span class="p">,</span>
+<span class="w">    </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weather</span><span class="p">.</span><span class="na">first</span><span class="p">().</span><span class="na">icon</span><span class="p">,</span>
+<span class="w">    </span><span class="n">humidity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="na">humidity</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="na">pressure</span><span class="p">,</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="na">temp</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="na">temp_min</span><span class="p">,</span>
+<span class="w">    </span><span class="n">maxTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="na">temp_max</span>
+<span class="p">)</span>
+</code></pre></div>
 <p>Próbáljuk ki az alkalmazást!</p>
+<p>Most már rövid töltés után megkapjuk a hálózatról a valós időjárási adatainkat.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (1 pont)</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az emulátoron egy <strong>város időjárása</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>RetrofitWeatherRepository</strong> kódja, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>! A képet a megoldásban a repository-ba f3.png néven töltsd föl! </p>
@@ -3354,7 +3370,8 @@ implementation(libs.coil.compose)
 <details class="success">
 <summary>A megvalósítás lépései</summary>
 <ul>
-<li>egészítsük ki a model osztályt, hogy Room-ba menthető legyen</li>
+<li>készítsünk egy model osztályt, ami Room-ba menthető</li>
+<li>készítsünk egy konverter függvényt</li>
 <li>hozzunk létre egy DAO osztályt</li>
 <li>hozzuk létre az adatbázist</li>
 <li>cseréljük le a <code>cityRepository</code> inicializálását</li>
@@ -3374,8 +3391,8 @@ implementation(libs.coil.compose)
           </path>
         </svg>
       </span>
-      <span title="2025. október 29. 11:59:13">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. október 29. 11:59:13 CET"><span class="timeago" datetime="2025-10-29T11:59:13+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. október 29. 11:59:13 CET">2025-10-29</span>
+      <span title="2026. október 21. 22:43:52">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. október 21. 22:43:52 CEST"><span class="timeago" datetime="2026-10-21T22:43:52+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. október 21. 22:43:52 CEST">2026-10-21</span>
       </span>
     </span>
 
@@ -3390,14 +3407,14 @@ implementation(libs.coil.compose)
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/albi005" target="_blank" rel="noopener noreferrer" class="md-author" title="@albi005">
+      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
+        </a><a href="https://github.com/albi005" target="_blank" rel="noopener noreferrer" class="md-author" title="@albi005">
           <img src="https://avatars.githubusercontent.com/u/22728934?v=4?size=72" alt="@albi005">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
         </a><a href="https://github.com/T0liver" target="_blank" rel="noopener noreferrer" class="md-author" title="@T0liver">
           <img src="https://avatars.githubusercontent.com/u/123989030?v=4?size=72" alt="@T0liver">
-        </a><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
-          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a><a href="https://github.com/zoltanszatmary" target="_blank" rel="noopener noreferrer" class="md-author" title="@zoltanszatmary">
           <img src="https://avatars.githubusercontent.com/u/40998048?v=4?size=72" alt="@zoltanszatmary">
         </a><a href="https://github.com/norbertkurcsi" target="_blank" rel="noopener noreferrer" class="md-author" title="@norbertkurcsi">
