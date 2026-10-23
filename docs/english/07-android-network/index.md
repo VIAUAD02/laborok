@@ -72,6 +72,8 @@ When solving the tasks, do not forget to follow the [task submission process](..
 
 1. Write your Neptun code in the `neptun.txt` file. Nothing else should be in the file, except the 6 characters of the Neptun code on a single line.
 
+1. Throughout the task-solving process, keep a running record of any AI usage in the `README.md` file.
+
 
 ### Creating a project
 
@@ -86,26 +88,25 @@ The project includes all the dependencies needed during the lab, they don't need
 
 ```toml
 [versions]
-agp = "8.12.3"
-kotlin = "2.2.20"
-coreKtx = "1.17.0"
+agp = "9.3.3"
+coreKtx = "1.19.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.11.0"
-composeBom = "2025.10.00"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+kotlin = "2.4.21"
+composeBom = "2026.09.00"
 
-
-viewModel = "2.9.4"
-nav3Core = "1.0.0-alpha11"
-kotlinSerialization = "2.2.20"
-kotlinxSerializationCore = "1.9.0"
+viewModel = "2.11.0"
+nav3Core = "1.2.0"
+kotlinSerialization = "2.4.21"
+kotlinxSerializationCore = "1.12.0"
 coilCompose = "2.7.0"
 moshi = "1.15.2"
 retrofit = "3.0.0"
-ksp = "2.2.10-2.0.2"
-room = "2.8.2"
+ksp = "2.3.10"
+room = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -115,13 +116,13 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 
 androidx-material-icons-extended = { group = "androidx.compose.material", name="material-icons-extended" }
@@ -137,10 +138,8 @@ androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.r
 androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
 androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
 
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
@@ -154,7 +153,6 @@ Project level `build.gradle.kts`:
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
     alias(libs.plugins.jetbrains.kotlin.serialization) apply false
@@ -167,22 +165,22 @@ Modul level `build.gradle.kts`:
 ```kts
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.google.devtools.ksp)
-
 }
 
 android {
     namespace = "hu.bme.aut.android.weatherinfo"
-    compileSdk = 36
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = "hu.bme.aut.android.weatherinfo"
-        minSdk = 24
-        targetSdk = 36
+        minSdk = 26
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -191,19 +189,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            optimization {
+                enable = false
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -211,22 +204,21 @@ android {
 }
 
 dependencies {
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -295,12 +287,12 @@ Our item contains an ID as well as a name for the city.
 
 #### The repository
 
-Although we currently store our city list only in memory, for future extensibility we keep the previously learned *repository* pattern in the `data.local.repository` *package*:
+Although we currently store our list of cities only in memory, to allow for future extensibility, we retain the *repository* pattern—which we have encountered previously—organized into the `domain.repository` (*interface*) and `data.local.repository` (implementation) *packages*:
 
 `ICityRepository.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.data.local.repository
+package hu.bme.aut.android.weatherinfo.domain.repository
 
 import hu.bme.aut.android.weatherinfo.domain.model.City
 import kotlinx.coroutines.flow.Flow
@@ -319,6 +311,7 @@ package hu.bme.aut.android.weatherinfo.data.local.repository
 
 import androidx.compose.runtime.mutableStateListOf
 import hu.bme.aut.android.weatherinfo.domain.model.City
+import hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -352,8 +345,8 @@ After creating the *repository*, let's instantiate it in our *application* class
 package hu.bme.aut.android.weatherinfo
 
 import android.app.Application
-import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
 import hu.bme.aut.android.weatherinfo.data.local.repository.MemoryCityRepository
+import hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository
 
 class WeatherInfoApplication : Application() {
     companion object {
@@ -622,8 +615,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
-import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
 import hu.bme.aut.android.weatherinfo.domain.model.City
+import hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -850,7 +843,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -865,7 +857,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WeatherInfoTheme {
-                AppNavigation(modifier = Modifier.safeDrawingPadding())
+                AppNavigation()
             }
         }
     }
@@ -919,7 +911,6 @@ package hu.bme.aut.android.weatherinfo.ui.screen.citylist.state
 
 import hu.bme.aut.android.weatherinfo.domain.model.City
 
-
 sealed class CityListScreenState {
     data object Loading : CityListScreenState()
     data class Error(val error: Throwable) : CityListScreenState()
@@ -938,22 +929,6 @@ After this, `CityListViewModel` transforms as follows:
 `CityListViewModel.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.feature.citylist
-
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
-import hu.bme.aut.android.weatherinfo.data.local.model.City
-import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
-import hu.bme.aut.android.weatherinfo.feature.citylist.state.CityListState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-
 class CityListViewModel(
     private val cityRepository: ICityRepository
 ) : ViewModel() {
@@ -975,8 +950,6 @@ class CityListViewModel(
             } catch (e: Exception) {
                 _state.value = CityListScreenState.Error(e)
             }
-
-
         }
     }
 
@@ -1170,7 +1143,7 @@ Find *Plugins* in the Android Studio settings, and there, in the *Marketplace* s
 <img src="./assets/plugin.png" width="720">
 </p>
 
-Once you have this, create the *package* of the model classes at `hu.bme.aut.android.weatherinfo.data.network.model`. After that, right-click on the *package*, then *New*-> *Kotlin data class File from JSON*.
+Once you have this, create the *package* of the model classes at `hu.bme.aut.android.weatherinfo.data.network.dto`. After that, right-click on the *package*, then *New*-> *Kotlin data class File from JSON*.
 
 <p align="center">
 <img src="./assets/jsontokotlin.png" width="720">
@@ -1281,41 +1254,77 @@ The plugin also created all the necessary Kotlin classes for the conversion.
 	)
 	```
 
-####  Repository
 
-Once we have our model classes, we can create the *repository*. We will create a `repository` *package* in the `hu.bme.aut.android.weatherinfo.data.network` package, and then an `IWeatherRepository` *interface* in it, which will have a single *getWeather()* function.
+####  Domain layer
+
+Based on these classes, we can form an idea of ​​the data we wish to display on our interface. Let’s create a model for this within the `domain` layer and include the following:
+- a description,
+- an icon,
+- humidity,
+- pressure,
+- and temperature values.
+
+`WeatherInfo.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.domain.model
+
+data class WeatherInfo(
+    val description: String,
+    val icon: String,
+    val humidity: Int,
+    val pressure: Int,
+    val temp: Double,
+    val minTemp: Double,
+    val maxTemp: Double
+)
+```
+
+With this in place, we can now create the `domain.repository`, which we know contains a function capable of returning a `WeatherInfo` object based on a city name.
 
 `IWeatherRepository.kt`:
 
 ```kotlin
-package hu.bme.aut.android.weatherinfo.data.network.repository
+package hu.bme.aut.android.weatherinfo.domain.repository
 
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
-import retrofit2.Call
+import hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo
 
 interface IWeatherRepository {
-    suspend fun getWeather(city: String?): Call<WeatherData?>?
+    suspend fun getWeather(city: String?): Result<WeatherInfo>
 }
 ```
 
-Based on this, `RetrofitWeatherRepository` (which we will later supplement with the network call):
+Here, on one hand, we know that the *getWeather* function is a long-running operation, so we mark it with the *suspend* keyword; on the other hand, we wrap the result in a `Result` object so that we can examine both its success and failure.
+
+#### Data Layer – Repository
+
+With this in place, we can create the concrete implementation of our *repository* within the `hu.bme.aut.android.weatherinfo.data.network.repository` *package* (we will add the actual network call later):
+
 
 ```kotlin
 package hu.bme.aut.android.weatherinfo.data.network.repository
 
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
-import retrofit2.Call
+import hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo
+import hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository
 
 class RetrofitWeatherRepository : IWeatherRepository {
-    override suspend fun getWeather(city: String?): Call<WeatherData?>? {
-        return null
+    override suspend fun getWeather(city: String?): Result<WeatherInfo> {
+        return Result.success(
+            WeatherInfo(
+                description = "Clear sky",
+                icon = "01d",
+                humidity = 50,
+                pressure = 1013,
+                temp = 22.5,
+                minTemp = 18.0,
+                maxTemp = 25.0
+            )
+        )
     }
 }
 ```
 
-The return value of the *getWeather()* function will be an object of type `Call<WeatherData>`. (We import the retrofitted *Call* from the options that appear.) This describes a network call whose response can be converted into an object of type *WeatherData*.
-
-Let's instantiate *repository* again in our *application class.
+Let’s instantiate the repository again in our application class:
 
 `WeatherInfoApplication.kt`:
 
@@ -1323,10 +1332,10 @@ Let's instantiate *repository* again in our *application class.
 package hu.bme.aut.android.weatherinfo
 
 import android.app.Application
-import hu.bme.aut.android.weatherinfo.data.local.repository.ICityRepository
 import hu.bme.aut.android.weatherinfo.data.local.repository.MemoryCityRepository
-import hu.bme.aut.android.weatherinfo.data.network.repository.IWeatherRepository
+import hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository
 import hu.bme.aut.android.weatherinfo.data.network.repository.RetrofitWeatherRepository
+import hu.bme.aut.android.weatherinfo.domain.repository.ICityRepository
 
 class WeatherInfoApplication : Application() {
     companion object {
@@ -1353,12 +1362,12 @@ Our *viewmodel* will also store a state in which the weather data is in observab
 ```kotlin
 package hu.bme.aut.android.weatherinfo.ui.screen.weather.state
 
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
+import hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo
 
 sealed class WeatherScreenState{
     data object Loading: WeatherScreenState()
     data class Error(val error: Throwable): WeatherScreenState()
-    data class Success(val weatherData: WeatherData?): WeatherScreenState()
+    data class Success(val weather: WeatherInfo): WeatherScreenState()
 }
 ```
 
@@ -1372,17 +1381,14 @@ package hu.bme.aut.android.weatherinfo.ui.screen.weather
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.android.weatherinfo.WeatherInfoApplication
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
-import hu.bme.aut.android.weatherinfo.data.network.repository.IWeatherRepository
+import hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository
 import hu.bme.aut.android.weatherinfo.ui.screen.weather.state.WeatherScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import kotlin.jvm.java
 
 class WeatherViewModel(
     private val cityNameArg: String,
@@ -1403,52 +1409,36 @@ class WeatherViewModel(
             _state.value = WeatherScreenState.Loading
             try {
                 weatherRepository.getWeather(cityName)
-                    ?.enqueue(object : Callback<WeatherData?> {
-                        override fun onResponse(
-                            call: Call<WeatherData?>,
-                            response: Response<WeatherData?>
-                        ) {
-                            if (response.isSuccessful) {
-                                _state.tryEmit(WeatherScreenState.Success(response.body()))
-                            }
-                        }
-
-                        override fun onFailure(
-                            call: Call<WeatherData?>,
-                            t: Throwable
-                        ) {
-                            t.printStackTrace()
-                            _state.value = WeatherScreenState.Error(t)
-                        }
-                    })
+                    .onSuccess { weatherInfo ->
+                        _state.value = WeatherScreenState.Success(weatherInfo)
+                    }
+                    .onFailure { throwable ->
+                        _state.value = WeatherScreenState.Error(throwable)
+                    }
             } catch (e: Exception) {
                 _state.value = WeatherScreenState.Error(e)
             }
         }
     }
 
-    class WeatherViewModelFactory(private val cityName: String) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            val weatherRepository = WeatherInfoApplication.weatherRepository
-            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return WeatherViewModel(
+    companion object {
+        fun factory(cityName: String): ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                WeatherViewModel(
                     cityNameArg = cityName,
-                    weatherRepository = weatherRepository
-                ) as T
+                    weatherRepository = WeatherInfoApplication.weatherRepository
+                )
             }
-            throw IllegalArgumentException("Unknown ViewModel class")
         }
-
     }
 }
 ```
 
-The `WeatherViewModel` receives an instance of `IWeatherRepository` as a parameter, as well as the name of the city to be queried. It also stores the state and the city name (now as *Flow*). Its only function is *getWeather()*, which makes the network call with a coroutine. It also contains the *Factory method* necessary for its own instantiation.
+The `WeatherViewModel` receives an instance of `IWeatherRepository` as a parameter, as well as the name of the city to be queried. It also stores the state and the city name now as *Flow*. Its only function is *getWeather()*, which makes the network call with a coroutine. It also contains the *Factory method* necessary for its own instantiation.
 
 Let's notice how we pass the city name and `weatherRepository` through the *Factory method*!
 
-You can see that in the *getWeather* function, we have placed a *callback* for the response of the *getWeather* function of the `weatherRepository` (which is a *Call<WeatherData>* object). This allows us to handle the different states of our network call.
+You can see that in the *getWeather* function, we have placed *listener*s for the response of the *getWeather* function of the `weatherRepository` (which is a *Response<WeatherInfo>* object). This allows us to handle the different states of our network response.
 
 ### The weather interface
 
@@ -1556,7 +1546,10 @@ fun WeatherScreen(
     onNavigateBack: () -> Unit
 ) {
     val weatherViewModel: WeatherViewModel =
-        viewModel(factory = WeatherViewModel.WeatherViewModelFactory(cityName), key = cityName)
+        viewModel(
+            factory = WeatherViewModel.factory(cityName),
+            key = cityName
+        )
 
     val state = weatherViewModel.state.collectAsStateWithLifecycle().value
 
@@ -1607,12 +1600,12 @@ fun WeatherScreen(
                 is WeatherScreenState.Success -> {
                     Column {
                         Text(
-                            text = state.weatherData?.weather?.get(0)?.description ?: "",
+                            text = state.weather.description ?: "",
                             fontSize = 24.sp
                         )
                         AsyncImage(
                             model = ImageRequest.Builder(context = LocalContext.current)
-                                .data("https://openweathermap.org/img/w/${state.weatherData?.weather?.first()?.icon}.png")
+                                .data("https://openweathermap.org/img/w/${state.weather.icon}.png")
                                 .crossfade(enable = true)
                                 .build(),
                             contentDescription = null,
@@ -1628,31 +1621,31 @@ fun WeatherScreen(
                         WeatherDataText(
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
                             label = stringResource(id = R.string.label_temperature),
-                            value = "${state.weatherData?.main?.temp} \u2103",
+                            value = "${state.weather.temp} \u2103",
                             textSize = 24.sp
                         )
                         WeatherDataText(
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
                             label = stringResource(id = R.string.label_min_temperature),
-                            value = "${state.weatherData?.main?.temp_min} \u2103",
+                            value = "${state.weather.minTemp} \u2103",
                             textSize = 24.sp
                         )
                         WeatherDataText(
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
                             label = stringResource(id = R.string.label_max_temperature),
-                            value = "${state.weatherData?.main?.temp_max} \u2103",
+                            value = "${state.weather.maxTemp} \u2103",
                             textSize = 24.sp
                         )
                         WeatherDataText(
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
                             label = stringResource(id = R.string.label_pressure),
-                            value = "${state.weatherData?.main?.pressure} hPa",
+                            value = "${state.weather.pressure} hPa",
                             textSize = 24.sp
                         )
                         WeatherDataText(
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
                             label = stringResource(id = R.string.label_humidity),
-                            value = "${state.weatherData?.main?.humidity} %",
+                            value = "${state.weather.humidity} %",
                             textSize = 24.sp
                         )
                     }
@@ -1745,17 +1738,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 
 Let's try the application!
 
-Our weather screen appears, there is the caption in the header, but the real data is not visible, since our *repository* always returns a *null* data. Therefore, we only see the loading screen.
-
-!!!info
-    If we want to see the `WeatherScreen` in its entirety, let's change the status at the beginning of the *getWeather* function from *Loading* to *Success*.
-
-	```kotlin
-	 viewModelScope.launch {
-            _state.value = WeatherState.Success(null)
-            try {
-				...
-	```
+Our weather screen appears, and the label is present in the header, but the actual data is not visible, as our repository always returns hardcoded data.
 
 !!!example "TO BE SUBMITTED (1 points)"
     Create a **screenshot** showing the **weather view with the appropriate header** (on emulator, device mirroring or screen capture), the **WeatherScreen** code, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f2.png!
@@ -1821,18 +1804,17 @@ Let's create a `WeatherApi` Kotlin file in the `hu.bme.aut.android.weatherinfo.d
 ```kotlin
 package hu.bme.aut.android.weatherinfo.data.network
 
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
-import retrofit2.Call
+import hu.bme.aut.android.weatherinfo.data.network.dto.WeatherData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApi {
     @GET("/data/2.5/weather")
-    fun getWeather(
+    suspend fun getWeather(
         @Query("q") cityName: String?,
         @Query("units") units: String?,
         @Query("appid") appId: String?
-    ): Call<WeatherData?>?
+    ): WeatherData
 }
 ```
 
@@ -1847,7 +1829,7 @@ The function parameters are annotated with the *@Query* annotation. This means t
 
 ### Updating the RetrofitWeatherRepository
 
-Now our *interface* is ready to make network calls through it. So let's replace the *null* value returned by `RetrofitWeatherRepository`'s *getWeather* function with the actual implementation.
+Now our *interface* is ready to make network calls through it. So let's replace the hardcoded value returned by `RetrofitWeatherRepository`'s *getWeather* function with the actual implementation.
 
 `RetrofitWeatherRepository.kt`:
 
@@ -1857,9 +1839,10 @@ package hu.bme.aut.android.weatherinfo.data.network.repository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.bme.aut.android.weatherinfo.data.network.WeatherApi
-import hu.bme.aut.android.weatherinfo.data.network.model.WeatherData
+import hu.bme.aut.android.weatherinfo.data.network.converter.asWeatherInfo
+import hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo
+import hu.bme.aut.android.weatherinfo.domain.repository.IWeatherRepository
 import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -1882,8 +1865,13 @@ class RetrofitWeatherRepository : IWeatherRepository {
         weatherApi = retrofit.create(WeatherApi::class.java)
     }
 
-    override suspend fun getWeather(city: String?): Call<WeatherData?>? {
-        return weatherApi.getWeather(city, "metric", APP_ID)
+    override suspend fun getWeather(city: String?): Result<WeatherInfo> {
+        return try {
+            val response = weatherApi.getWeather(city, "metric", APP_ID)
+            Result.success(response.asWeatherInfo())
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }
 ```
@@ -1898,7 +1886,31 @@ The object obtained as a result of the `retrofit.create(WeatherApi.class)` call 
 
 **Replace** the `APP_ID` ​​value with your own API key obtained from [OpenWeatherMap](https://openweathermap.org/)!
 
+We can observe that the `getWeather` function in `WeatherAPI` returns a `WeatherData` object, whereas the `getWeather` function in `RetrofitWeatherRepository` returns a `WeatherInfo` object. Consequently, the conversion must be performed here. Let’s implement the `WeatherData.asWeatherInfo()` converter function within the `data.network.converter` package:
+
+`WeatherInfo.kt`:
+
+```kotlin
+package hu.bme.aut.android.weatherinfo.data.network.converter
+
+import hu.bme.aut.android.weatherinfo.data.network.dto.WeatherData
+import hu.bme.aut.android.weatherinfo.domain.model.WeatherInfo
+
+fun WeatherData.asWeatherInfo(): WeatherInfo = WeatherInfo(
+    description = weather.first().description,
+    icon = weather.first().icon,
+    humidity = main.humidity,
+    pressure = main.pressure,
+    temp = main.temp,
+    minTemp = main.temp_min,
+    maxTemp = main.temp_max
+)
+```
+
+
 Let's try the application!
+
+Now, after a brief loading period, we receive our real-time weather data from the network.
 
 !!!example "TO BE SUBMITTED (1 point)"
     Create a **screenshot** showing the **weather of a city** on the emulator (on the emulator, by mirroring the device or by taking a screenshot), the **RetrofitWeatherRepository** code, and your **neptun code somewhere in the code as a comment**! Upload the image to the repository in the solution as f3.png!
@@ -1972,8 +1984,8 @@ Notice how we disable the swipe left and set its state in SwipeToDismissBox!
 Now all we need to do is delete from the list.
 
 ???success "Steps of implementation"
-    - delete function in *repository interface*
-    - delete function in *repository*
+    - delete function in the *repository interface*
+    - delete function in the *repository*
     - delete function in *viewmodel*
     - delete event in `CityListScreenEvent`
     - delete event handler in `onEvent` function
@@ -1989,7 +2001,8 @@ Now all we need to do is delete from the list.
 Let's implement saving the cities to the database!
 
 ???success "Implementation Steps"
-    - extend the model class so that it can be saved to Room
+    - create a model class that can be saved in Room
+    - create a converter function
     - create a DAO class
     - create the database
     - replace the `cityRepository` initialization
