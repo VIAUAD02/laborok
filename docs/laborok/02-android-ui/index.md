@@ -369,7 +369,7 @@ Image(
 )
 ```
 
-Mivel az `Image` *Composable* csak vektoros erőforrást fogad el, elsőre hibát kapunk. Ezt most a legegyszerűbben úgy oldhatjuk meg, ha az *ic_transport* és az *ic_transport_round* erőforrásoknak kiröröljük az *xml*-es verzióit, és csak a *png*-ket hagyjuk meg. Innen már az alkalmazás buildelése után megjelenik a felületünk előnézete is.
+Mivel az `Image` *Composable* csak vektoros és raszteres képet tud megjeleníteni, *adaptive icon*-t nem, elsőre hibát kapunk. Ezt most a legegyszerűbben úgy oldhatjuk meg, ha az *ic_transport* és az *ic_transport_round* erőforrásoknak kitöröljük a `mipmap-anydpi-v26` mappában lévő *xml*-es verzióit, és csak a *png*-ket hagyjuk meg. Innen már az alkalmazás buildelése után megjelenik a felületünk előnézete is.
 
 Folytassuk a `Text` *Composable*-lel. Ez egy üzenetként fog szolgálni a form tetején `"Please enter your credentials!"` felirattal.
 
