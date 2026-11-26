@@ -759,7 +759,7 @@ fun PreviewListScreen() {
 	
 	                Image(
 	                        painter = painterResource(id = i.value),
-	                        contentDescription = "$i Button",
+	                        contentDescription = "${i.key} Button",
 	                        modifier = Modifier.fillMaxSize(),
 	                        contentScale = ContentScale.FillBounds
 	                    )
