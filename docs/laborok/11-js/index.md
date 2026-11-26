@@ -32,10 +32,9 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 
 1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 2. Várd meg, míg elkészül a repository, majd checkout-old ki.
-    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+    - Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
-
 
 ## 1. Feladat - Eseménykezelés
 
@@ -43,8 +42,8 @@ Az alkalmazás alapjaként egy egyszerű HTML oldal szolgál, amihez a saját Ja
 
 A JS kódot HTML-ben is elhelyezhetnénk, viszont az nem karbantartható és alapvetően nem best practice, úgyhogy a saját `todo.js` fájlba fogjuk tenni a kódot, amit behivatkozunk. A stílusozást Bootstrappel oldjuk meg.
 
-* Nyissuk meg a Visual Studio Code-dal leklónozott repository `feladat` mappáját *(File --> Open Folder)* és indítsuk el az alkalmazást a Live Serverrel *(`index.html` --> jobb klikk --> Open with Live Server)*
-* Ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
+- Nyissuk meg a Visual Studio Code-dal leklónozott repository `feladat` mappáját _(File --> Open Folder)_ és indítsuk el az alkalmazást a Live Serverrel _(`index.html` --> jobb klikk --> Open with Live Server)_
+- Ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
 
 <figure markdown>
   ![Kiinduló állapot](./assets/todo-start.png)
@@ -54,13 +53,12 @@ A JS kódot HTML-ben is elhelyezhetnénk, viszont az nem karbantartható és ala
 !!! warning cache
     A böngésző különböző körülmények függvényében **cache-elheti a fájljainkat**, ezért a frissítést ilyenkor kézzel kell megoldanunk. Ne felejtsük el menteni a fájlt, ezután a böngészőben állítsuk be az F12 Developer Tools-ban a Network fülön az "Always refresh from server" / "Disable cache" elnevezésű beállítást!
 
-
 Láthatjuk, hogy a statikus oldal az alábbiakból tevődik össze:
 
-* cím,
-* fülek az összes, aktív, inaktív és kész elemek szűrésére,
-* a to-do elemek listája, az egyes elemek mellett az értelmezett műveletek,
-* új elem hozzáadása panel, melyen az új to-do bejegyzés szövegét kell megadnunk egy űrlapon.
+- cím,
+- fülek az összes, aktív, inaktív és kész elemek szűrésére,
+- a to-do elemek listája, az egyes elemek mellett az értelmezett műveletek,
+- új elem hozzáadása panel, melyen az új to-do bejegyzés szövegét kell megadnunk egy űrlapon.
 
 A `<body>` végén egy `<script>` a `todo.js` fájlra hivatkozik! A szkript az oldal lényegi tartalmának betöltődése után fut le, így nem kell majd várakoznunk a dokumentum teljes betöltődésére (a gyakorlatban ez azt jelenti, hogy a szkript futásának kezdetén a DOM a HTML-nek megfelelő állapotban már létrejött). A gyakorlatban ez változó, szokás a `<head>` elemben is betölteni JS fájlokat, amikor kritikus, viszont az gátolja a HTML megjelenését, amíg a JS fájl le nem töltődik.
 
@@ -69,8 +67,7 @@ A `<body>` végén egy `<script>` a `todo.js` fájlra hivatkozik! A szkript az o
 Az egyes Todo elemek modelljére érdemes saját osztályt definiálnunk.
 
 ???+ tip "Osztályok"
-    Modern (ES6/ES2015 és magasabb) JavaScriptben konstruktor függvény helyett használhatunk valós osztályokat is, a gyakorlaton ezt fogjuk látni. JavaScriptben egy (nem osztály) függvény konstruktorfüggvény, ha a `this` változón tulajdonságokat helyez el és nem tér vissza semmivel. Ekkor a `new` kulcsszóval meghívva a függvényt az konstruktorként funkcionál és a `this` (tulajdonságokkal "felaggatott") értékét kapjuk vissza. Ezen felül az `instanceof` kulcsszóval megvizsgálhatjuk, hogy egy adott függvény konstruktora által készített objektumról van-e szó, tehát *szinte* már osztálypéldányként kezelhetjük az objektumot.
-
+    Modern (ES6/ES2015 és magasabb) JavaScriptben konstruktor függvény helyett használhatunk valós osztályokat is, a gyakorlaton ezt fogjuk látni. JavaScriptben egy (nem osztály) függvény konstruktorfüggvény, ha a `this` változón tulajdonságokat helyez el és nem tér vissza semmivel. Ekkor a `new` kulcsszóval meghívva a függvényt az konstruktorként funkcionál és a `this` (tulajdonságokkal "felaggatott") értékét kapjuk vissza. Ezen felül az `instanceof` kulcsszóval megvizsgálhatjuk, hogy egy adott függvény konstruktora által készített objektumról van-e szó, tehát _szinte_ már osztálypéldányként kezelhetjük az objektumot.
 
 A fülek lehetséges állapotai az `all`, `active`, `inactive` és `done`. Az `all` kivételével ezeket az állapotokat veheti fel egy Todo elem is.
 
@@ -104,12 +101,12 @@ A legnyilvánvalóbb (ha nem is a legrobusztusabb) módja a hibakeresésnek az, 
 
 Iratkozzunk fel az űrlap `submit` eseményére és valósítsuk meg az új Todo elem létrehozását. A feliratkozást megtehetjük HTML-ből és JavaScriptből is, most az utóbbit alkalmazzuk! Illesszük be az alábbi kódrészletet a korábbi kódrészletek után!
 
-* Hozzunk létre egy `form` változót, amibe mentsük el az oldalon található `new-todo-form` azonosítójú form referenciáját. Tipp: `document.getElementById("new-todo-form")`
-* Egy másik `input` nevű változóba pedig mentsük el a szövegdoboz referenciáját, ahol a Todo elem nevét meg lehet adni. Ennek az azonosítója a `new-todo-title`.
-* Iratkozzunk fel a `form` submit eseményére egy függvénnyel, aminek egy `event` bemenő paramétere legyen.
-* Tiltsuk le az űrlap postolásának alapértelmezett viselkedését, hogy ne töltse újra az oldalt. Tipp: `preventDefault()`.
-* Ha a szövegdobozban szerepel valamilyen érték, akkor azzal a névvel adjunk a `todos` tömbhöz egy új Todo elemet.
-* A szövegdobozból töröljük ki a begépelt szöveget.
+- Hozzunk létre egy `form` változót, amibe mentsük el az oldalon található `new-todo-form` azonosítójú form referenciáját. Tipp: `document.getElementById("new-todo-form")`
+- Egy másik `input` nevű változóba pedig mentsük el a szövegdoboz referenciáját, ahol a Todo elem nevét meg lehet adni. Ennek az azonosítója a `new-todo-title`.
+- Iratkozzunk fel a `form` submit eseményére egy függvénnyel, aminek egy `event` bemenő paramétere legyen.
+- Tiltsuk le az űrlap postolásának alapértelmezett viselkedését, hogy ne töltse újra az oldalt. Tipp: `preventDefault()`.
+- Ha a szövegdobozban szerepel valamilyen érték, akkor azzal a névvel adjunk a `todos` tömbhöz egy új Todo elemet.
+- A szövegdobozból töröljük ki a begépelt szöveget.
 
 ??? tip "Megvalósítás: Todo elem felvétele"
     ```js
@@ -134,14 +131,14 @@ Iratkozzunk fel az űrlap `submit` eseményére és valósítsuk meg az új Todo
     }
     ```
 
-Definiálnunk kell még egy `Button` osztályt a gombok kezelésére, amiket a Todo elemekhez fogunk rendelni. Nem volna *szükség* a modellek definiálására, elvégre is a JS egy dinamikus nyelv, de struktúrát ad a kódnak, objektum-orientáltabban kezelhető.
+Definiálnunk kell még egy `Button` osztályt a gombok kezelésére, amiket a Todo elemekhez fogunk rendelni. Nem volna _szükség_ a modellek definiálására, elvégre is a JS egy dinamikus nyelv, de struktúrát ad a kódnak, objektum-orientáltabban kezelhető.
 
 A Button osztályon az alábbi tulajdonságok legyenek:
 
-* `action` - Művelet, amit a gomb végez
-* `icon` - FontAwesome ikon neve (class="fas fa-*")
-* `type` - Bootstrapbeni típus ("secondary", "danger" stb.)
-* `title` - Tooltip szövege
+- `action` - Művelet, amit a gomb végez
+- `icon` - FontAwesome ikon neve (class="fas fa-*")
+- `type` - Bootstrapbeni típus ("secondary", "danger" stb.)
+- `title` - Tooltip szövege
 
 Illetve készítsünk egy tömböt `buttons` névvel, amibe a következő négy gombot tegyük bele: Done, Active, Inactive, Remove. A gombok nevéből kiderül, hogy ezekkel tudjuk új állapotba tenni, vagy törölni az elemet.
 
@@ -188,19 +185,19 @@ function createElementFromHTML(html) {
 }
 ```
 
-Erre azért van szükség, mert nincs arra natív JavaScript API (jelenleg), hogy stringből HTML elemet hozzunk létre, viszont bármely (akár virtuális, tehát az aktuális DOM-ban nem, de memóriában létező) DOM elem innerHTML-jének beállításával a DOM elem(ek) ténylegesen létrejön(nek). 
+Erre azért van szükség, mert nincs arra natív JavaScript API (jelenleg), hogy stringből HTML elemet hozzunk létre, viszont bármely (akár virtuális, tehát az aktuális DOM-ban nem, de memóriában létező) DOM elem innerHTML-jének beállításával a DOM elem(ek) ténylegesen létrejön(nek).
 
 Alternatív megoldásként megtehetnénk, hogy létrehozzuk a `createElement` segítségével az elemet, majd egyesével beállítjuk az attribútumait, de az jóval körülményesebb, kódolósabb megoldást eredményez.
 
 Ezt követően készítsük el a `renderTodos` függvényt, ami az összes Todo elemet kirajzolja a felületre. Bemenő paraméter nem kell neki, mert a `todos` tömböt elérjük.
 
-* A lista elemei a `todo-list` azonosítójú DOM elemben találhatók. Ezt először törölni kell. Tipp: az `innerHTML`-t kell üres sztringre állítani.
-* Iteráljunk végig a `todos` tömbön és egy `row` változóba készítsük el a szükséges HTML template-et. A HTML template megtalálható az index.html oldalon, közvetlenül a `todo-list` azonosítójú elem alatt.
-* A gombokhoz tartozó HTML tartalmat is érdemes egy ciklussal generálni. Ehhez a `buttons` tömbön kell végigiterálni és a `createElementFromHTML` függvény segítségével minden gombhoz létrehozni a szükséges DOM elemet.
-    * Itt kell figyelni arra, hogy azt a gombot tegyük `disabled`-re, amelyik állapotban éppen a Todo elem van.
-    * Majd az egyes gombokhoz generált DOM elemet adjuk hozzá az `action-buttons` CSS osztállyal ellátott elemhez, ami a sor templatejében `row` változóként kell szerepeljen. Tipp: `.querySelector("   ").appendChild(domElem)`
-* Végül az így összeállított sor template-et (`row`) hozzá kell adni a `todo-list`-hez.
-* Ne feledd, hogy ezt a függvényt meg is kell hívni, hogy a kezdeti állapotot kirajzolja!
+- A lista elemei a `todo-list` azonosítójú DOM elemben találhatók. Ezt először törölni kell. Tipp: az `innerHTML`-t kell üres sztringre állítani.
+- Iteráljunk végig a `todos` tömbön és egy `row` változóba készítsük el a szükséges HTML template-et. A HTML template megtalálható az index.html oldalon, közvetlenül a `todo-list` azonosítójú elem alatt.
+- A gombokhoz tartozó HTML tartalmat is érdemes egy ciklussal generálni. Ehhez a `buttons` tömbön kell végigiterálni és a `createElementFromHTML` függvény segítségével minden gombhoz létrehozni a szükséges DOM elemet.
+    - Itt kell figyelni arra, hogy azt a gombot tegyük `disabled`-re, amelyik állapotban éppen a Todo elem van.
+    - Majd az egyes gombokhoz generált DOM elemet adjuk hozzá az `action-buttons` CSS osztállyal ellátott elemhez, ami a sor templatejében `row` változóként kell szerepeljen. Tipp: `.querySelector("   ").appendChild(domElem)`
+- Végül az így összeállított sor template-et (`row`) hozzá kell adni a `todo-list`-hez.
+- Ne feledd, hogy ezt a függvényt meg is kell hívni, hogy a kezdeti állapotot kirajzolja!
 
 ???+ tip "Selectorok"
     A `querySelector()/querySelectorAll()` API-kkal egy CSS szelektort adhatunk meg a document-en vagy egy elemen, és az illeszkedő első/összes elemet kapjuk vissza.
@@ -275,15 +272,15 @@ HTML-ben az `on{eseménynév}` attribútumok megadásával tudunk eseménykezel�
 
 JavaScriptben a DOM API-t használva, az elem referenciáját megszerezve
 
-* az `.addEventListener("eseménynév", callbackFüggvény)` függvény meghívásával
-* vagy a megfelelő `on{eseménynév}` tulajdonság beállításával. Például: `elem.onclick = callbackFüggvény`
+- az `.addEventListener("eseménynév", callbackFüggvény)` függvény meghívásával
+- vagy a megfelelő `on{eseménynév}` tulajdonság beállításával. Például: `elem.onclick = callbackFüggvény`
 
 ### 2.1. Tabfül váltás
 
 Készítsük el a kódot, amiben az egyes tabfülek között váltani tudunk. Ehhez a `todo.js` fájlt kell kiegészíteni.
 
-* Vegyünk fel egy változót `currentTab` névvel, amiben eltároljuk az aktuálisan kiválasztott fül típusát.
-* Készítsünk egy függvényt `selectTab` névvel, ami paraméterül megkapja, hogy melyik fület kell megjelenítenie és ez alapján a `todo-tab` CSS osztállyal rendelkező tabfüleken az `.active` CSS osztályt átteszi az újonnan kiválasztott fülre.
+- Vegyünk fel egy változót `currentTab` névvel, amiben eltároljuk az aktuálisan kiválasztott fül típusát.
+- Készítsünk egy függvényt `selectTab` névvel, ami paraméterül megkapja, hogy melyik fület kell megjelenítenie és ez alapján a `todo-tab` CSS osztállyal rendelkező tabfüleken az `.active` CSS osztályt átteszi az újonnan kiválasztott fülre.
 
 ??? info "Megvalósítás: Tabfül váltás JavaScript"
     ```js
@@ -312,13 +309,13 @@ Készítsük el a kódot, amiben az egyes tabfülek között váltani tudunk. Eh
     ```
 
 ???+ tip "self-invoking function declaration"
-    A fenti minta, amikor egy függvényt a definiálása után közvetlenül meghívunk, egy "csúnyább", de elterjedt alternatívával szokták alkalmazni, ez az ún. *self-invoking function declaration*, aminek sok változata ismeretes, ez az egyik:
+    A fenti minta, amikor egy függvényt a definiálása után közvetlenül meghívunk, egy "csúnyább", de elterjedt alternatívával szokták alkalmazni, ez az ún. _self-invoking function declaration_, aminek sok változata ismeretes, ez az egyik:
     ```js
     (const selectTab = function(type) { /* ... */})("all");
     ```
 
-* A HTML-ben az egyes fülekhez a klikk eseménykezelőben hívjuk meg a `selectTab` függvényt. Tipp: `onclick="selectTab('all')"`
-* Ezen felül minden fülhöz vegyünk fel egy adattároló attribútumot is. Ezt az attribútumot a `data-` előtaggal látjuk el jelezvén, hogy az attribútum kizárólag adathordozásra szolgál. Tipp: `data-tab-name="all"`
+- A HTML-ben az egyes fülekhez a klikk eseménykezelőben hívjuk meg a `selectTab` függvényt. Tipp: `onclick="selectTab('all')"`
+- Ezen felül minden fülhöz vegyünk fel egy adattároló attribútumot is. Ezt az attribútumot a `data-` előtaggal látjuk el jelezvén, hogy az attribútum kizárólag adathordozásra szolgál. Tipp: `data-tab-name="all"`
 
 ??? info "Megvalósítás: Tabfül váltás HTML"
     ```html
@@ -350,9 +347,9 @@ Az elemek állapotának változását hasonlóképpen kezelhetjük, mint a tabf�
 
 Amikor a gombokat gyártjuk a `renderTodos()` függvényben, az eseménykezelőket ott helyben be tudjuk regisztrálni (a `// TODO: a gomb klikk eseményének kezelése` komment helyére):
 
-* Regisztráljuk be a kattintás eseménykezelőt a gombhoz.
-* A `remove` akciót külön kell kezelni. Egy megerősítés után (tipp: `confirm`) a `todos` tömbből kell kivenni az elemet.
-* Az összes többi esetben csak az adott todo elem állapotát kell módosítani a gomb actionjére.
+- Regisztráljuk be a kattintás eseménykezelőt a gombhoz.
+- A `remove` akciót külön kell kezelni. Egy megerősítés után (tipp: `confirm`) a `todos` tömbből kell kivenni az elemet.
+- Az összes többi esetben csak az adott todo elem állapotát kell módosítani a gomb actionjére.
 
 ??? tip "Megvalósítás: Gomb eseménykezelők állapot változáshoz"
     ```js
@@ -393,7 +390,7 @@ Egészítsük ki a `renderTodos()` függvényt, hogy frissítse a fülek mellett
     ```
 
 !!! info "Filter"
-    A `filter()` függvénynek egy callbacket adunk át, ez fog kiértékelődni minden elemre: ha a feltétel igaz, akkor az elemet visszakapjuk, különben nem. Magyarul: azokra az elemekre szűrünk, amelyek állapota az aktuálisan bejárt állapot ("active", "inactive", "done"), tehát megszámoljuk, hány elem van az adott státuszban. Ezen felül, ha az érték *falsy*, tehát esetünkben 0, helyette üres stringet adunk vissza, így nem fog megjelenni a badge.
+    A `filter()` függvénynek egy callbacket adunk át, ez fog kiértékelődni minden elemre: ha a feltétel igaz, akkor az elemet visszakapjuk, különben nem. Magyarul: azokra az elemekre szűrünk, amelyek állapota az aktuálisan bejárt állapot ("active", "inactive", "done"), tehát megszámoljuk, hány elem van az adott státuszban. Ezen felül, ha az érték _falsy_, tehát esetünkben 0, helyette üres stringet adunk vissza, így nem fog megjelenni a badge.
 
 ### 2.4. Lista szűrése
 
@@ -429,9 +426,9 @@ Tehát az eredeti `todos` tömböt a `filter` segítségével szűrjük úgy, ho
 
 Legyenek fel-le mozgathatók a to-do elemek az `all` listában!
 
-* Hozz létre két új gombot, amelyek a felfelé és lefelé mozgatást jelzik az elemnél! Használd a `fas fa-arrow-up` és `fas fa-arrow-down` osztályokat az ikonokhoz! A gombok csak az `all` fülön legyenek láthatók!
-* A gomb legyen letiltva, ha nem mozgatható az elem a megadott irányba!
-* A gombra kattintva az elem kerüljön előrébb/hátrébb az elemek listájában!
+- Hozz létre két új gombot, amelyek a felfelé és lefelé mozgatást jelzik az elemnél! Használd a `fas fa-arrow-up` és `fas fa-arrow-down` osztályokat az ikonokhoz! A gombok csak az `all` fülön legyenek láthatók!
+- A gomb legyen letiltva, ha nem mozgatható az elem a megadott irányba!
+- A gombra kattintva az elem kerüljön előrébb/hátrébb az elemek listájában!
 
 ### Beadandó
 
@@ -442,11 +439,11 @@ Legyenek fel-le mozgathatók a to-do elemek az `all` listában!
 
 Egy to-do listának nem sok értelme van, ha nem menthetők el az adataink. A mentésre egyértelmű lehetőséget biztosít a `localStorage` és a `sessionStorage`. Mindkettő kulcs-érték tároló, a kulcsok és értékek egyaránt `string` típusúak. A különbség a kettő között az élettartamuk: míg a `localStorage` - bár korlátos méretű - a böngészőt újraindítva is megtartja állapotát, a `sessionStorage` a böngészőt/fület bezárva elvész. A `sessionStorage` adatokat memóriában, a `localStorage` adatokat viszont perzisztensen, fájlban tárolja a böngésző.
 
-A tároláshoz minden renderelési ciklus elején volna érdemes mentenünk. Bár az alkalmazásunk `renderTodos()` függvénye nevéből fakadóan a DOM-ot manipulálja, ez az a pont, ahol bármilyen változásról értesülünk. Fontos, hogy tartsuk be a *separation of concerns* elvet: mindenki a saját feladatával foglalkozzon! Ezért ne itt valósítsuk meg a perzisztálást, hanem egy saját függvényben, amit meghívunk minden változást indukáló ponton a kódban:
+A tároláshoz minden renderelési ciklus elején volna érdemes mentenünk. Bár az alkalmazásunk `renderTodos()` függvénye nevéből fakadóan a DOM-ot manipulálja, ez az a pont, ahol bármilyen változásról értesülünk. Fontos, hogy tartsuk be a _separation of concerns_ elvet: mindenki a saját feladatával foglalkozzon! Ezért ne itt valósítsuk meg a perzisztálást, hanem egy saját függvényben, amit meghívunk minden változást indukáló ponton a kódban:
 
-* elem állapotának változása,
-* elem létrehozása,
-* elem törlése.
+- elem állapotának változása,
+- elem létrehozása,
+- elem törlése.
 
 !!! note "Változásdetektálás"
     Komplexebb alkalmazásfejlesztő keretrendszerekben is problémát okoz a változásokról történő értesülés, a React, az AngularJS és az Angular mind más és más módszereket alkalmaznak a változások detektálására.
@@ -458,10 +455,10 @@ A tároláshoz a `localStorage.setItem(key, value)` függvényt használjuk. A s
 
 A részfeladatok tehát:
 
-* Készíts egy függvényt, ami elmenti a teljes todos tömb tartalmát `localStorage`-ba,
-* Bármilyen változás hatására (elem állapotváltozása, létrejötte, törlése) mentsd el a függvény segítségével az elemeket,
-* Alkalmazás indulásakor egyetlen alkalommal töltsd vissza az összes eltárolt todo elemet, és ez legyen a `todos` változó kiinduló tartalma!
-* Az elkészített alkalmazást az implementáció után teszteld egy inkognitó ablakban is, hogy ott is működik-e, vagy netán a `todos` tömb `null` vagy `undefined` értéket kap, amin a `push` nem értelmezett.
+- Készíts egy függvényt, ami elmenti a teljes todos tömb tartalmát `localStorage`-ba,
+- Bármilyen változás hatására (elem állapotváltozása, létrejötte, törlése) mentsd el a függvény segítségével az elemeket,
+- Alkalmazás indulásakor egyetlen alkalommal töltsd vissza az összes eltárolt todo elemet, és ez legyen a `todos` változó kiinduló tartalma!
+- Az elkészített alkalmazást az implementáció után teszteld egy inkognitó ablakban is, hogy ott is működik-e, vagy netán a `todos` tömb `null` vagy `undefined` értéket kap, amin a `push` nem értelmezett.
 
 !!! tip "Storage debuggolás"
     A storage tartalmát böngészőtől függően különböző helyen tudjuk megvizsgálni, jellemzően az Application/Storage vagy Debugger fülön található.
