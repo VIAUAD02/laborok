@@ -12,6 +12,14 @@ MD004:
 MD033:
   allowed_elements:
     - "figure"
+    - "figcaption"
+
+MD007:
+  indent: 4
+
+# "Beadandó" címek
+MD024:
+  siblings_only: true
 
 MD046: false
 
