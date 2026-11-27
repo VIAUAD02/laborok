@@ -396,7 +396,7 @@ Egészítsük ki a `renderTodos()` függvényt, hogy frissítse a fülek mellett
 
 Utolsó lépésként logikus, hogy az aktuális fül alapján szűrjük le az elemeket, ne mindig az összes látszódjon. Ezt a `renderTodos()` apró módosításával tudjuk megtenni. Szűrjük le a `todos` tömböt, majd a szűrés eredményén iteráljunk végig a `for...of` ciklussal.
 
-Tehát az eredeti `todos` tömböt a `filter` segítségével szűrjük úgy, hogy csak azok az elemek maradjanak a szűrt tömbben, amelyek az aktuális fülnek megfelel VAGY az "all" fülön vagyunk (tehát látszódjon minden).
+Tehát az eredeti `todos` tömböt a `filter` segítségével szűrjük úgy, hogy csak azok az elemek maradjanak a szűrt tömbben, amelyek az aktuális fülnek megfelelnek VAGY az "all" fülön vagyunk (tehát látszódjon minden).
 
 ??? tip "Megvalósítás: lista szűrése"
     ```js
